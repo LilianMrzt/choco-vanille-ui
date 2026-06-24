@@ -1,0 +1,78 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Source,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks';
+
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+<Title />
+
+<Subtitle>
+  Interactive action primitive built on the shadcn/ui button — CVA variants, Radix Slot asChild support, and full ref forwarding.
+</Subtitle>
+
+Use `variant` to set the visual style, `size` to control dimensions, and `asChild` to render the button styles on a different element (e.g. a router `<Link>`).
+
+<Source
+  language="tsx"
+  code={`import { Button } from '@my-org/ui-kit';
+
+// Standard button
+<Button variant="default">Save changes</Button>
+<Button variant="destructive">Delete</Button>
+<Button variant="outline" size="sm">Cancel</Button>
+
+// Render as an anchor via asChild (shadcn pattern)
+<Button asChild>
+  <a href="/dashboard">Go to dashboard</a>
+</Button>`}
+/>
+
+## Playground
+
+<Canvas of={ButtonStories.Default} />
+
+<Controls of={ButtonStories.Default} />
+
+## Variants
+
+<Canvas of={ButtonStories.AllVariants} />
+
+## Sizes
+
+<Canvas of={ButtonStories.AllSizes} />
+
+## asChild — polymorphic composition
+
+The `asChild` prop delegates rendering to the direct child element while keeping
+all button styles and accessibility attributes.
+This follows the shadcn/ui / Radix UI `asChild` pattern powered by `@radix-ui/react-slot`.
+
+<Canvas of={ButtonStories.AsChildLink} />
+
+## Variant reference
+
+| Variant       | Use for                                           |
+| ------------- | ------------------------------------------------- |
+| `default`     | Primary actions — most prominent call-to-action.  |
+| `destructive` | Irreversible actions — deletions, removals.       |
+| `outline`     | Secondary actions — less emphasis than default.   |
+| `secondary`   | Tertiary actions — low visual priority.           |
+| `ghost`       | Inline / toolbar actions — minimal chrome.        |
+| `link`        | Navigation-style text actions.                    |
+
+## Size reference
+
+| Size      | Height | Use for                                    |
+| --------- | ------ | ------------------------------------------ |
+| `sm`      | 36 px  | Compact UIs, inline actions.               |
+| `default` | 40 px  | Standard forms and dialogs.                |
+| `lg`      | 44 px  | Hero sections, prominent CTAs.             |
+| `icon`    | 40×40  | Square icon-only buttons (provide a label).|
+

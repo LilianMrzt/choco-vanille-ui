@@ -114,6 +114,35 @@ describe('Typography', () => {
         })
     })
 
+    describe('asChild — Radix Slot polymorphism', () => {
+        it('renders as the child element when asChild=true', () => {
+            const { container } = render(
+                <Typography variant={'h1'} asChild>
+                    <span>heading</span>
+                </Typography>,
+            )
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe('span')
+        })
+
+        it('still applies the variant CSS classes when asChild is set', () => {
+            const { container } = render(
+                <Typography variant={'h1'} asChild>
+                    <span>heading</span>
+                </Typography>,
+            )
+            expect(getFirstChild(container).className).toContain('text-5xl')
+        })
+
+        it('asChild takes precedence over `as`', () => {
+            const { container } = render(
+                <Typography variant={'h1'} as={'div'} asChild>
+                    <section>heading</section>
+                </Typography>,
+            )
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe('section')
+        })
+    })
+
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
             const ref = createRef<HTMLElement>()

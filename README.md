@@ -82,6 +82,7 @@ yarn publish --access public
 
 ## Adding more shadcn components
 
-Place new components under `src/components/<name>/`, re-export them from
-`src/index.ts`, and add a `*.stories.tsx` file next to each component. Use the
-`cn()` helper (exported from the package) to compose Tailwind classes.
+Place new components under `src/components/<group>/<name>/` (e.g. `actions/`,
+`foundation/`), re-export them from `src/index.ts`, and add a `*.stories.tsx`
+file next to each component. Use the `mergeClassNames()` helper (exported from
+the package) to compose Tailwind classes.

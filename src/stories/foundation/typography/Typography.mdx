@@ -18,7 +18,8 @@ import * as TypographyStories from './Typography.stories';
 </Subtitle>
 
 Use `variant` to pick the rendered element, `fontSize` / `fontWeight` to override the default
-styles, and `as` to decouple the visual style from the rendered HTML tag.
+styles, `as` to decouple the visual style from the rendered HTML tag, and `asChild` to delegate
+rendering to a child element via Radix Slot (shadcn/ui pattern).
 
 <Source
   language="tsx"
@@ -30,6 +31,11 @@ styles, and `as` to decouple the visual style from the rendered HTML tag.
 
 // Decouple style from semantics with \`as\`
 <Typography variant="h2" as="span">Looks like an h2, renders as a span</Typography>
+
+// Radix Slot asChild — render styles on a child element
+<Typography variant="p" asChild>
+  <label htmlFor="name">Full name</label>
+</Typography>
 
 // Override individual tokens
 <Typography variant="p" fontSize="2xl" fontWeight="bold">Big bold paragraph</Typography>`}

@@ -1,5 +1,13 @@
 import { cva } from 'class-variance-authority'
 
+/*
+ * Typography style recipe — shadcn/ui flavour.
+ *
+ * Note: shadcn/ui ships Typography only as documentation (plain HTML examples);
+ * there is no `shadcn add typography` component. This `cva` is the kit's own
+ * shadcn-flavoured recipe and the single source of truth for text styles:
+ * customise typography by editing the classes below.
+ */
 export const typographyVariants = cva('', {
     variants: {
         variant: {

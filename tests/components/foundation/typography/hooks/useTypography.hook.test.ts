@@ -1,3 +1,4 @@
+import { Slot } from '@radix-ui/react-slot'
 import { describe, expect, it } from 'vitest'
 import { useTypography } from '@components/foundation/typography/hooks/useTypography.hook.ts'
 import { TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
@@ -23,6 +24,11 @@ describe('useTypography', () => {
         it('overrides the element with the `as` prop regardless of variant', () => {
             expect(useTypography({ variant: 'h1', as: 'span' }).element).toBe('span')
             expect(useTypography({ variant: 'p', as: 'div' }).element).toBe('div')
+        })
+
+        it('returns Slot when asChild=true, ignoring variant and as', () => {
+            expect(useTypography({ asChild: true, variant: 'h1' }).element).toBe(Slot)
+            expect(useTypography({ asChild: true, as: 'div' }).element).toBe(Slot)
         })
     })
 

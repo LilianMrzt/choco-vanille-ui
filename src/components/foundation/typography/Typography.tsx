@@ -4,9 +4,10 @@ import type { TypographyProps } from '@components/foundation/typography/types/Ty
 import { useTypography } from '@components/foundation/typography/hooks/useTypography.hook.ts'
 
 export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-    ({ as, variant, fontSize, fontWeight, ellipsis, className, ...props }, ref) => {
+    ({ as, asChild, variant, fontSize, fontWeight, ellipsis, className, ...props }, ref) => {
         const { element: Element, resolvedClassName } = useTypography({
             as,
+            asChild,
             variant,
             fontSize,
             fontWeight,
