@@ -2,7 +2,7 @@
 import './styles/globals.css';
 
 // Utilities
-export { cn } from './lib/utils';
+export { mergeClassNames } from './utils/mergeClassNames.ts';
 
 // Components
-export * from './components/typography';
+export * from './components/foundation/typography';

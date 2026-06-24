@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 
-import { Typography } from '@/components/typography';
-import type { TypographySize, TypographyVariant, TypographyWeight } from '@/components/typography';
+import { Typography } from '@/components/foundation/typography';
+import type { TypographySize, TypographyVariant, TypographyWeight } from '@/components/foundation/typography';
 
 const VARIANTS: TypographyVariant[] = [
   'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -18,7 +18,7 @@ const WEIGHTS: TypographyWeight[] = [
 ];
 
 const meta = {
-  title: 'Typography/Typography',
+  title: 'Foundation/Typography',
   component: Typography,
   parameters: { layout: 'centered' },
   argTypes: {
