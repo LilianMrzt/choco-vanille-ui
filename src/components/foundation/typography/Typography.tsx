@@ -1,27 +1,27 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import type { TypographyProps } from './types/Typography.props.ts';
-import { useTypography } from './hooks/useTypography.hook.ts';
+import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
+import { useTypography } from '@components/foundation/typography/hooks/useTypography.hook.ts'
 
 export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ as, variant, fontSize, fontWeight, ellipsis, className, ...props }, ref) => {
-    const { element: Element, resolvedClassName } = useTypography({
-      as,
-      variant,
-      fontSize,
-      fontWeight,
-      ellipsis,
-      className,
-    });
+    ({ as, variant, fontSize, fontWeight, ellipsis, className, ...props }, ref) => {
+        const { element: Element, resolvedClassName } = useTypography({
+            as,
+            variant,
+            fontSize,
+            fontWeight,
+            ellipsis,
+            className,
+        })
 
-    return (
-      <Element
-        ref={ref}
-        className={resolvedClassName}
-        {...props}
-      />
-    );
-  },
-);
+        return (
+            <Element
+                ref={ref}
+                className={resolvedClassName}
+                {...props}
+            />
+        )
+    },
+)
 
-Typography.displayName = 'Typography';
+Typography.displayName = 'Typography'

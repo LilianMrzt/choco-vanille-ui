@@ -22,7 +22,13 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@components": ["./src/components/index.ts"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@stories/*": ["./src/stories/*"],
+      "@tests/*": ["./tests/*"]
     }
   },
   "include": ["src", ".storybook", "tests"]

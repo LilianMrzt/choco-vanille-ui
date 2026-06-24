@@ -1,5 +1,5 @@
-export { Typography } from './Typography.tsx';
-export { typographyVariants } from './constants/typographyVariants.const.ts';
-export { TYPOGRAPHY_ELEMENT_MAP } from './constants/typographyElementMap.const.ts';
-export type { TypographyProps } from './types/Typography.props.ts';
-export type { TypographyVariant, TypographySize, TypographyWeight } from './types/Typography.types.ts';
+export { Typography } from '@components/foundation/typography/Typography.tsx'
+export { typographyVariants } from '@components/foundation/typography/constants/typographyVariants.const.ts'
+export { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/constants/typographyElementMap.const.ts'
+export type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
+export type { TypographyVariant, TypographySize, TypographyWeight } from '@components/foundation/typography/types/Typography.types.ts'
