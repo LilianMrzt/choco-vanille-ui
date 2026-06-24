@@ -1,11 +1,8 @@
 import {
-  ArgTypes,
   Canvas,
   Controls,
   Meta,
-  Primary,
   Source,
-  Stories,
   Subtitle,
   Title,
 } from '@storybook/addon-docs/blocks';
@@ -40,13 +37,9 @@ styles, and `as` to decouple the visual style from the rendered HTML tag.
 
 ## Playground
 
-<Primary />
+<Canvas of={TypographyStories.Default} />
 
-<Controls />
-
-## Props
-
-<ArgTypes of={TypographyStories.Default} />
+<Controls of={TypographyStories.Default} />
 
 ## When to use each variant
 
@@ -77,21 +70,7 @@ styles, and `as` to decouple the visual style from the rendered HTML tag.
 | `sub`        | Subscript               | Chemical formulas (H₂O). Avoid for decoration.          |
 | `sup`        | Superscript             | Footnote markers, exponents (x²). Avoid for decoration. |
 
-## Accessibility
-
-Every story is automatically audited with
-[`@storybook/addon-a11y`](https://storybook.js.org/addons/@storybook/addon-a11y), which runs the
-[axe-core](https://github.com/dequelabs/axe-core) ruleset. Open the **Accessibility** panel below
-any story to review the results — violations are reported as errors. The example below shows the
-recommended semantic patterns:
-
-<Canvas of={TypographyStories.AccessibilityBestPractices} />
-
 ## All variants
 
 <Canvas of={TypographyStories.AllVariants} />
-
-## More stories
-
-<Stories includePrimary={false} />
 

@@ -153,48 +153,7 @@ export const Heading1: Story = {
   },
 };
 
-export const Heading2: Story = {
-  args: { variant: 'h2', children: 'The People of the Kingdom' },
-};
-
-export const Heading3: Story = {
-  args: { variant: 'h3', children: 'The Joke Tax' },
-};
-
-// ─── Semantic inline ─────────────────────────────────────────────────────────
-
-export const InlineCode: Story = {
-  args: { variant: 'code', children: 'npm install @my-org/ui-kit' },
-};
-
-export const Keyboard: Story = {
-  args: { variant: 'kbd', children: '⌘ K' },
-};
-
-export const Blockquote: Story = {
-  args: {
-    variant: 'blockquote',
-    children: '"Everyone enjoys a good joke, so it\'s only fair they should pay for the privilege."',
-  },
-};
-
-export const Mark: Story = {
-  args: { variant: 'mark', children: 'Highlighted text' },
-};
-
-export const Deleted: Story = {
-  args: { variant: 'del', children: 'This content was removed' },
-};
-
 // ─── Overrides ───────────────────────────────────────────────────────────────
-
-export const FontSizeOverride: Story = {
-  args: { variant: 'p', fontSize: '2xl', children: 'A paragraph rendered at 2xl.' },
-};
-
-export const FontWeightOverride: Story = {
-  args: { variant: 'p', fontWeight: 'black', children: 'Paragraph with black weight.' },
-};
 
 export const Ellipsis: Story = {
   decorators: [(Story) => <div className="w-48"><Story /></div>],
