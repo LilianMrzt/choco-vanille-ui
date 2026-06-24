@@ -17,7 +17,7 @@ export default defineConfig({
       tsconfigPath: './tsconfig.build.json',
       include: ['src'],
       exclude: ['src/**/*.stories.tsx', 'src/**/*.stories.ts'],
-      rollupTypes: true,
+      bundleTypes: true,
     }),
   ],
   resolve: {
