@@ -19,6 +19,17 @@ export default defineConfig({
   },
   test: {
     projects: [
+      // Unit tests (jsdom, fast, no browser)
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          setupFiles: ['./tests/setup.ts'],
+          include: ['tests/**/*.test.{ts,tsx}'],
+        },
+      },
+      // Storybook interaction / visual tests (real Chromium)
       {
         extends: true,
         plugins: [

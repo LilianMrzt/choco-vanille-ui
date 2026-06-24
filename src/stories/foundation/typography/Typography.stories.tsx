@@ -36,7 +36,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// ─── Accessibility guide ──────────────────────────────────────────────────────
+// Accessibility guide
 // Referenced by Typography.mdx — hidden from the sidebar in dev mode.
 
 export const AccessibilityBestPractices: Story = {
@@ -130,7 +130,7 @@ export const AccessibilityBestPractices: Story = {
   },
 };
 
-// ─── Default ──────────────────────────────────────────────────────────────────
+//  Default
 
 export const Default: Story = {
   // Smoke test: the primary story renders its content for the docs playground.
@@ -140,46 +140,7 @@ export const Default: Story = {
   },
 };
 
-// ─── Headings ────────────────────────────────────────────────────────────────
-
-export const Heading1: Story = {
-  args: { variant: 'h1', children: 'Taxing Laughter: The Joke Tax Chronicles' },
-  // Headings must expose the implicit heading role to assistive technology.
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await expect(
-      canvas.getByRole('heading', { level: 1, name: 'Taxing Laughter: The Joke Tax Chronicles' }),
-    ).toBeInTheDocument();
-  },
-};
-
-// ─── Overrides ───────────────────────────────────────────────────────────────
-
-export const Ellipsis: Story = {
-  decorators: [(Story) => <div className="w-48"><Story /></div>],
-  args: {
-    variant: 'p',
-    ellipsis: true,
-    children: 'This text is too long and will be truncated with an ellipsis.',
-  },
-};
-
-export const PolymorphicAs: Story = {
-  args: {
-    variant: 'h2',
-    as: 'span',
-    children: 'Looks like h2, renders as <span>',
-  },
-  // The `as` prop must change the rendered tag without leaking a heading role.
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const node = canvas.getByText('Looks like h2, renders as <span>');
-    await expect(node.tagName).toBe('SPAN');
-    await expect(canvas.queryByRole('heading')).not.toBeInTheDocument();
-  },
-};
-
-// ─── All variants ────────────────────────────────────────────────────────────
+// All variants
 
 export const AllVariants: Story = {
   parameters: { controls: { disable: true } },

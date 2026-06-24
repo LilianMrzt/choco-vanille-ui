@@ -11,7 +11,7 @@ export const useTypography = ({
   fontWeight,
   ellipsis,
   className,
-}: Pick<TypographyProps, 'as' | 'variant' | 'fontSize' | 'fontWeight' | 'ellipsis' | 'className'>) => {
+}: Partial<Pick<TypographyProps, 'as' | 'variant' | 'fontSize' | 'fontWeight' | 'ellipsis' | 'className'>>) => {
   const element = as ?? TYPOGRAPHY_ELEMENT_MAP[(variant as TypographyVariant) ?? 'p'] ?? 'p';
 
   const resolvedClassName = mergeClassNames(
