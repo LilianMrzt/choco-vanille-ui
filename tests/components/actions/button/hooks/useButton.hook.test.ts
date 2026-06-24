@@ -1,4 +1,3 @@
-import { Slot } from '@radix-ui/react-slot'
 import { describe, expect, it } from 'vitest'
 import { useButton } from '@components/actions/button/hooks/useButton.hook.ts'
 import type { ButtonVariant, ButtonSize } from '@components/actions/button'
@@ -7,27 +6,20 @@ import type { ButtonVariant, ButtonSize } from '@components/actions/button'
 // so it can be called directly — no renderHook needed.
 
 describe('useButton', () => {
-    describe('element resolution', () => {
-        it('returns "button" by default', () => {
-            const { element } = useButton({})
-            expect(element).toBe('button')
-        })
-
-        it('returns Slot when asChild=true', () => {
-            const { element } = useButton({ asChild: true })
-            expect(element).toBe(Slot)
-        })
-
-        it('returns "button" when asChild=false', () => {
-            const { element } = useButton({ asChild: false })
-            expect(element).toBe('button')
-        })
-    })
-
     describe('resolvedClassName', () => {
         it('includes base button classes', () => {
             const { resolvedClassName } = useButton({})
             expect(resolvedClassName).toContain('inline-flex')
+        })
+
+        it('uses rounded-sm', () => {
+            const { resolvedClassName } = useButton({})
+            expect(resolvedClassName).toContain('rounded-sm')
+        })
+
+        it('has no box-shadow class', () => {
+            const { resolvedClassName } = useButton({})
+            expect(resolvedClassName).not.toMatch(/\bshadow\b/)
         })
 
         it('includes default variant classes', () => {
@@ -48,11 +40,6 @@ describe('useButton', () => {
         it('includes ghost variant classes', () => {
             const { resolvedClassName } = useButton({ variant: 'ghost' })
             expect(resolvedClassName).toContain('hover:bg-accent')
-        })
-
-        it('includes link variant classes', () => {
-            const { resolvedClassName } = useButton({ variant: 'link' })
-            expect(resolvedClassName).toContain('underline-offset-4')
         })
 
         it('includes sm size class', () => {
@@ -76,7 +63,7 @@ describe('useButton', () => {
         })
 
         it('applies all variants without throwing', () => {
-            const variants: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link']
+            const variants: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
             for (const variant of variants) {
                 expect(() => useButton({ variant })).not.toThrow()
             }

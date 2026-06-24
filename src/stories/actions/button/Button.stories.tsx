@@ -4,7 +4,7 @@ import { expect, userEvent, within } from 'storybook/test'
 import { Button } from '@/components/actions/button'
 import type { ButtonSize, ButtonVariant } from '@components/actions/button'
 
-const VARIANTS: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link']
+const VARIANTS: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
 const SIZES: ButtonSize[] = ['default', 'sm', 'lg', 'icon']
 
 const meta = {
@@ -12,13 +12,13 @@ const meta = {
     component: Button,
     parameters: { layout: 'centered' },
     argTypes: {
+        label: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         size: { control: 'select', options: SIZES },
-        asChild: { control: 'boolean' },
         disabled: { control: 'boolean' },
     },
     args: {
-        children: 'Button',
+        label: 'Button',
     },
 } satisfies Meta<typeof Button>
 
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
-        await expect(canvas.getByRole('button', { name: args.children as string })).toBeInTheDocument()
+        await expect(canvas.getByRole('button', { name: args.label as string })).toBeInTheDocument()
     },
 }
 
@@ -41,12 +41,26 @@ export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <div className={'flex flex-wrap items-center gap-3 p-4'}>
-            <Button variant={'default'}>Default</Button>
-            <Button variant={'destructive'}>Destructive</Button>
-            <Button variant={'outline'}>Outline</Button>
-            <Button variant={'secondary'}>Secondary</Button>
-            <Button variant={'ghost'}>Ghost</Button>
-            <Button variant={'link'}>Link</Button>
+            <Button
+                variant={'default'}
+                label={'Default'}
+            />
+            <Button
+                variant={'destructive'}
+                label={'Destructive'}
+            />
+            <Button
+                variant={'outline'}
+                label={'Outline'}
+            />
+            <Button
+                variant={'secondary'}
+                label={'Secondary'}
+            />
+            <Button
+                variant={'ghost'}
+                label={'Ghost'}
+            />
         </div>
     ),
 }
@@ -57,13 +71,23 @@ export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <div className={'flex flex-wrap items-end gap-3 p-4'}>
-            <Button size={'sm'}>Small</Button>
-            <Button size={'default'}>Default</Button>
-            <Button size={'lg'}>Large</Button>
+            <Button
+                size={'sm'}
+                label={'Small'}
+            />
+            <Button
+                size={'default'}
+                label={'Default'}
+            />
+            <Button
+                size={'lg'}
+                label={'Large'}
+            />
             <Button
                 size={'icon'}
                 aria-label={'Icon button'}
-            >⚙</Button>
+                label={'⚙'}
+            />
         </div>
     ),
 }
@@ -75,24 +99,6 @@ export const Disabled: Story = {
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('button')).toBeDisabled()
-    },
-}
-
-// asChild — renders as an anchor tag
-
-export const AsChildLink: Story = {
-    name: 'asChild — rendered as <a>',
-    parameters: { controls: { disable: true } },
-    render: () => (
-        <Button asChild>
-            <a href={'#'}>Open link</a>
-        </Button>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const link = canvas.getByRole('link', { name: 'Open link' })
-        await expect(link).toBeInTheDocument()
-        await expect(link.tagName.toLowerCase()).toBe('a')
     },
 }
 

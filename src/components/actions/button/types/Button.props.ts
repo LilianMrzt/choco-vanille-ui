@@ -3,11 +3,11 @@ import type * as React from 'react'
 
 import type { buttonVariants } from '@components/actions/button/Button.styles.ts'
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'children'
+> &
   VariantProps<typeof buttonVariants> & {
-    /**
-     * When true, the button renders as its child element via Radix Slot,
-     * merging props and ref — the shadcn/ui asChild pattern.
-     */
-    asChild?: boolean;
+    /** The text content rendered inside the button via the Typography component. */
+    label?: string;
   };
