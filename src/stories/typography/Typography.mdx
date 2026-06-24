@@ -1,0 +1,97 @@
+import {
+  ArgTypes,
+  Canvas,
+  Controls,
+  Meta,
+  Primary,
+  Source,
+  Stories,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks';
+
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+<Title />
+
+<Subtitle>
+  Polymorphic text primitive that maps semantic HTML elements to consistent Tailwind styles.
+</Subtitle>
+
+Use `variant` to pick the rendered element, `fontSize` / `fontWeight` to override the default
+styles, and `as` to decouple the visual style from the rendered HTML tag.
+
+<Source
+  language="tsx"
+  code={`import { Typography } from '@my-org/ui-kit';
+
+// Semantic element chosen by \`variant\`
+<Typography variant="h1">Page title</Typography>
+<Typography variant="p">Body copy goes here.</Typography>
+
+// Decouple style from semantics with \`as\`
+<Typography variant="h2" as="span">Looks like an h2, renders as a span</Typography>
+
+// Override individual tokens
+<Typography variant="p" fontSize="2xl" fontWeight="bold">Big bold paragraph</Typography>`}
+/>
+
+## Playground
+
+<Primary />
+
+<Controls />
+
+## Props
+
+<ArgTypes of={TypographyStories.Default} />
+
+## When to use each variant
+
+| Variant      | Use for                 | Accessibility notes                                     |
+| ------------ | ----------------------- | ------------------------------------------------------- |
+| `h1`         | Page title              | One per page. Defines the main topic.                   |
+| `h2`         | Section heading         | Subdivides the page into major sections.                |
+| `h3`         | Sub-section heading     | Nested under `h2`. Never skip levels.                   |
+| `h4`         | Sub-sub-section heading | Nested under `h3`.                                      |
+| `h5`         | Deep heading            | Rarely needed. Prefer restructuring content.            |
+| `h6`         | Deepest heading         | Rarely needed. Prefer restructuring content.            |
+| `p`          | Body text               | Default for prose. Preferred over bare text nodes.      |
+| `span`       | Inline wrapper          | No semantic meaning. Use for styling only.              |
+| `label`      | Form label              | Always pair with `htmlFor` pointing to an input `id`.   |
+| `small`      | Fine print              | Legal text, captions, secondary info.                   |
+| `strong`     | Strong importance       | Screen readers may stress this. Not just bold.          |
+| `em`         | Emphasis                | Screen readers may stress this. Not just italic.        |
+| `blockquote` | Long quotation          | Add a `cite` attribute pointing to the source.          |
+| `pre`        | Preformatted text       | Preserves whitespace. Wrap code inside `<code>`.        |
+| `code`       | Inline code             | Single expressions or identifiers.                      |
+| `kbd`        | Keyboard input          | Documents key combinations users should press.          |
+| `samp`       | Program output          | Terminal output or computed values.                     |
+| `abbr`       | Abbreviation            | Always provide `title` with the expanded form.          |
+| `cite`       | Creative work title     | Book, film, or article title. Not for people.           |
+| `mark`       | Highlighted text        | Relevance highlight (e.g. search results).              |
+| `del`        | Deleted content         | Document revisions. Pair with `ins` when replacing.     |
+| `ins`        | Inserted content        | Document revisions. Pair with `del` when replacing.     |
+| `sub`        | Subscript               | Chemical formulas (H₂O). Avoid for decoration.          |
+| `sup`        | Superscript             | Footnote markers, exponents (x²). Avoid for decoration. |
+
+## Accessibility
+
+Every story is automatically audited with
+[`@storybook/addon-a11y`](https://storybook.js.org/addons/@storybook/addon-a11y), which runs the
+[axe-core](https://github.com/dequelabs/axe-core) ruleset. Open the **Accessibility** panel below
+any story to review the results — violations are reported as errors. The example below shows the
+recommended semantic patterns:
+
+<Canvas of={TypographyStories.AccessibilityBestPractices} />
+
+## All variants
+
+<Canvas of={TypographyStories.AllVariants} />
+
+## More stories
+
+<Stories includePrimary={false} />
+
