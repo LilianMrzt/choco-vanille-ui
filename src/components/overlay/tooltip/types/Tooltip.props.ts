@@ -1,0 +1,24 @@
+import type * as React from 'react'
+
+import type { TooltipSide, TooltipAlign } from '@components/overlay/tooltip/types/Tooltip.types.ts'
+
+export type TooltipProps = {
+  /** The element that triggers the tooltip (must be a single React element that can receive a ref). */
+  children: React.ReactNode;
+  /** Content rendered inside the tooltip bubble. */
+  content: React.ReactNode;
+  /** Side of the trigger on which the tooltip appears. @default 'top' */
+  side?: TooltipSide;
+  /** Alignment of the tooltip along the trigger's axis. @default 'center' */
+  align?: TooltipAlign;
+  /** Delay in milliseconds before the tooltip opens. @default 300 */
+  delayDuration?: number;
+  /** Whether the tooltip is disabled. */
+  disabled?: boolean;
+  /** Additional class names to apply to the tooltip content. */
+  className?: string;
+  /** Controls the open state when used as a controlled component. */
+  open?: boolean;
+  /** Callback called when the open state changes. */
+  onOpenChange?: (open: boolean) => void;
+}

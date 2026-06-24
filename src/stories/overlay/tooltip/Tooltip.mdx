@@ -1,0 +1,69 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Source,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks';
+
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+<Title />
+
+<Subtitle>
+  Accessible tooltip overlay built on Radix UI — controlled or uncontrolled, four sides, animated transitions, and full keyboard support.
+</Subtitle>
+
+Wrap any focusable element with `<Tooltip>` and provide the `content` prop to display contextual information on hover or focus.
+
+<Source
+  language="tsx"
+  code={`import { Tooltip, Button } from '@my-org/ui-kit';
+
+// Basic usage
+<Tooltip content="Save the current document">
+  <Button label="Save" />
+</Tooltip>
+
+// Custom side and delay
+<Tooltip content="More options" side="right" delayDuration={500}>
+  <Button variant="ghost" label="⚙" />
+</Tooltip>
+
+// Controlled
+<Tooltip content="Always visible" open={true}>
+  <Button label="Trigger" />
+</Tooltip>`}
+/>
+
+## Playground
+
+<Canvas of={TooltipStories.Default} />
+
+<Controls of={TooltipStories.Default} />
+
+## All sides
+
+<Canvas of={TooltipStories.AllSides} />
+
+## Always open (controlled)
+
+<Canvas of={TooltipStories.AlwaysOpen} />
+
+## API reference
+
+| Prop            | Type                                    | Default    | Description                                                  |
+| --------------- | --------------------------------------- | ---------- | ------------------------------------------------------------ |
+| `children`      | `ReactNode`                             | —          | The trigger element (must be a single, focusable element).   |
+| `content`       | `ReactNode`                             | —          | Content rendered inside the tooltip bubble.                  |
+| `side`          | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'`   | Which side of the trigger to display the tooltip on.         |
+| `align`         | `'start' \| 'center' \| 'end'`         | `'center'` | Alignment along the trigger's axis.                          |
+| `delayDuration` | `number`                                | `300`      | Delay in ms before the tooltip opens.                        |
+| `disabled`      | `boolean`                               | `false`    | When `true`, the tooltip is not rendered.                    |
+| `open`          | `boolean`                               | —          | Controlled open state.                                       |
+| `onOpenChange`  | `(open: boolean) => void`               | —          | Callback fired when the open state changes.                  |
+| `className`     | `string`                                | —          | Extra CSS classes applied to the tooltip content element.    |
+
