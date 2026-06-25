@@ -2,14 +2,6 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 
-/*
- * Typography styles — Vanilla Extract recipe (the kit's `cva` replacement).
- *
- * Variant groups are declared in cascade order: `variant` provides the base
- * look, then `fontSize` / `fontWeight` are emitted afterwards so they override
- * the variant's defaults (matching the previous tailwind-merge behaviour).
- * All values come from the design tokens (`vars`).
- */
 export const typographyRecipe = recipe({
     base: {
         margin: 0,

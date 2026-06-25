@@ -4,7 +4,7 @@ export { vars } from '@theme'
 export type { ThemeVars } from '@theme'
 
 // Utilities
-export { mergeClassNames } from '@utils/mergeClassNames.ts'
+export { cn } from '@utils/cn.ts'
 
 // Components
 export * from '@components'

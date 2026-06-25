@@ -1,8 +1,8 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
-import { tooltipArrowClass } from '@components/overlay/tooltip/Tooltip.css.ts'
-import { useTooltip } from '@components/overlay/tooltip/hooks/useTooltip.hook.ts'
+import { tooltipArrowClass, tooltipContentClass } from '@components/overlay/tooltip/Tooltip.css.ts'
+import { cn } from '@utils/cn.ts'
 
 export const Tooltip = ({
     children,
@@ -15,8 +15,6 @@ export const Tooltip = ({
     open,
     onOpenChange,
 }: TooltipProps) => {
-    const { resolvedClassName } = useTooltip({ className })
-
     if (disabled) {
         return <>{children}</>
     }
@@ -36,7 +34,7 @@ export const Tooltip = ({
                     <RadixTooltip.Content
                         side={side}
                         align={align}
-                        className={resolvedClassName}
+                        className={cn(tooltipContentClass, className)}
                         sideOffset={6}
                     >
                         {content}
@@ -49,5 +47,4 @@ export const Tooltip = ({
 }
 
 Tooltip.displayName = 'Tooltip'
-
 

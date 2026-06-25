@@ -2,14 +2,6 @@ import { style, keyframes } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 
-/*
- * Tooltip styles — Vanilla Extract.
- *
- * The content has no variants, so a plain `style()` (a scoped class string) is
- * the right primitive. Open/close transitions are driven by Radix's
- * `data-state` / `data-side` attributes via `selectors`.
- */
-
 const fadeZoomIn = keyframes({
     from: { opacity: 0, transform: 'scale(0.95)' },
     to: { opacity: 1, transform: 'scale(1)' },
@@ -30,7 +22,7 @@ export const tooltipContentClass = style({
     fontFamily: vars.fontFamily.sans,
     fontSize: vars.fontSize.xs,
     lineHeight: vars.lineHeight.normal,
-    filter: vars.dropShadow.md,
+    filter: vars.dropShadow.sm,
     transformOrigin: 'var(--radix-tooltip-content-transform-origin)',
     selectors: {
         '&[data-state="delayed-open"], &[data-state="instant-open"]': {

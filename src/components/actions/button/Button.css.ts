@@ -3,16 +3,6 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 
-/*
- * Button styles — Vanilla Extract recipe.
- *
- * `recipe()` is the kit's replacement for `cva`: it returns a function
- * `buttonRecipe({ variant, size })` that produces a scoped class name, so the
- * hook/component API is unchanged. Every value is pulled from the design
- * tokens (`vars`), making the Button fully themeable.
- */
-
-// Auto-size any SVG icon placed inside the button (child selectors require globalStyle).
 const iconReset = style({})
 globalStyle(`${iconReset} svg`, {
     pointerEvents: 'none',

@@ -1,17 +1,16 @@
 import * as React from 'react'
 
+import { buttonRecipe } from '@components/actions/button/Button.css.ts'
 import { Typography } from '@components/foundation/typography'
 import type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
-import { useButton } from '@components/actions/button/hooks/useButton.hook.ts'
+import { cn } from '@utils/cn.ts'
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ variant, size, className, label, ...props }, ref) => {
-        const { resolvedClassName } = useButton({ variant, size, className })
-
         return (
             <button
                 ref={ref}
-                className={resolvedClassName}
+                className={cn(buttonRecipe({ variant, size }), className)}
                 {...props}
             >
                 {label !== undefined && (
