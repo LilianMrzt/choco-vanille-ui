@@ -7,10 +7,10 @@ import { iconButtonSizeToIconSize } from '@components/actions/icon-button/consta
 
 const IconButton: FC<IconButtonProps> = ({
     variant,
+    color,
     size = 'default',
     className,
     icon,
-    label,
     ref,
     ...props
 }) => {
@@ -19,8 +19,7 @@ const IconButton: FC<IconButtonProps> = ({
     return (
         <button
             ref={ref}
-            aria-label={label}
-            className={cn(iconButtonRecipe({ variant, size }), className)}
+            className={cn(iconButtonRecipe({ variant, color, size }), className)}
             {...props}
         >
             <Icon

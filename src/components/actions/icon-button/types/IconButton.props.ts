@@ -5,12 +5,12 @@ import type { RefAttributes } from 'react'
 
 export type IconButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  'children'
+  'children' | 'aria-label'
 > &
   RefAttributes<HTMLButtonElement> &
   IconButtonRecipeVariants & {
     /** Iconify icon name rendered inside the button. */
     icon: string;
-    /** Accessible label for the button (used as aria-label). */
-    label: string;
+    /** Accessible label for the button. */
+    'aria-label': string;
   };

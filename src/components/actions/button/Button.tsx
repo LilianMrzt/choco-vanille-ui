@@ -8,6 +8,7 @@ import { buttonSizeToFontSize, buttonSizeToIconSize } from '@components/actions/
 
 const Button: FC<ButtonProps> = ({
     variant,
+    color,
     size = 'default',
     className,
     label,
@@ -22,7 +23,7 @@ const Button: FC<ButtonProps> = ({
     return (
         <button
             ref={ref}
-            className={cn(buttonRecipe({ variant, size }), className)}
+            className={cn(buttonRecipe({ variant, color, size }), className)}
             {...props}
         >
             {startIcon && (

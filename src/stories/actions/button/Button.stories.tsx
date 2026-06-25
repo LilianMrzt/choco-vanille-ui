@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Button } from '@/components/actions/button'
-import type { ButtonSize, ButtonVariant } from '@components/actions/button'
+import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions/button'
 
-const VARIANTS: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
+const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
+const COLORS: ButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
 const SIZES: ButtonSize[] = ['default', 'sm', 'lg']
 
 const meta = {
@@ -14,6 +15,7 @@ const meta = {
     argTypes: {
         label: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
+        color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         disabled: { control: 'boolean' },
     },
@@ -42,25 +44,42 @@ export const AllVariants: Story = {
     render: () => (
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem', padding: '1rem' }}>
             <Button
-                variant={'default'}
-                label={'Default'}
+                variant={'contained'}
+                label={'Contained'}
             />
             <Button
-                variant={'destructive'}
-                label={'Destructive'}
-            />
-            <Button
-                variant={'outline'}
-                label={'Outline'}
-            />
-            <Button
-                variant={'secondary'}
-                label={'Secondary'}
+                variant={'outlined'}
+                label={'Outlined'}
             />
             <Button
                 variant={'ghost'}
                 label={'Ghost'}
             />
+        </div>
+    ),
+}
+
+// All colors
+
+export const AllColors: Story = {
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+            {VARIANTS.map((variant) => (
+                <div
+                    key={variant}
+                    style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}
+                >
+                    {COLORS.map((color) => (
+                        <Button
+                            key={color}
+                            variant={variant}
+                            color={color}
+                            label={color}
+                        />
+                    ))}
+                </div>
+            ))}
         </div>
     ),
 }

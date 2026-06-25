@@ -6,7 +6,7 @@ import { palette } from '@theme/tokens/palette.ts'
  */
 export const lightColors = {
     /* ── Base surfaces & text ─────────────────────────────────────────────── */
-    background: palette.neutral[0],
+    background: palette.neutral[100],
     foreground: palette.neutral[950],
 
     /* ── Elevated surfaces ────────────────────────────────────────────────── */
@@ -20,6 +20,9 @@ export const lightColors = {
     primaryForeground: palette.neutral[0],
     primaryHover: palette.brand[700],
     primaryActive: palette.brand[800],
+    /** Subtle tint — for use on `background` or `card` surfaces only. */
+    primarySubtle: palette.brand[50],
+    primarySubtleForeground: palette.brand[700],
 
     /* ── Secondary intent (low-emphasis neutral fill) ─────────────────────── */
     secondary: palette.neutral[100],

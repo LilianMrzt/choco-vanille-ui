@@ -14,20 +14,20 @@ import * as ButtonStories from './Button.stories';
 <Title />
 
 <Subtitle>
-  Composant d'action interactif avec support des icônes de début et de fin, des variantes visuelles et des tailles.
+x  Composant d'action interactif avec support des icônes de début et de fin, des variantes visuelles, des couleurs thématiques et des tailles.
 </Subtitle>
 
-Utilisez `variant` pour le style visuel, `size` pour les dimensions, `startIcon` / `endIcon` pour ajouter des icônes. Pour un bouton icône seul, préférez le composant `IconButton`.
+Utilisez `variant` pour le style visuel, `color` pour la couleur thématique, `size` pour les dimensions, `startIcon` / `endIcon` pour ajouter des icônes. Pour un bouton icône seul, préférez le composant `IconButton`.
 
 <Source
   language="tsx"
   code={`import { Button } from '@my-org/ui-kit';
 
-<Button variant="default" label="Enregistrer" />
-<Button variant="destructive" label="Supprimer" />
-<Button variant="outline" size="sm" label="Annuler" />
-<Button variant="default" startIcon="mdi:plus" label="Ajouter" />
-<Button variant="ghost" endIcon="mdi:arrow-right" label="Suivant" />`}
+<Button variant="contained" color="primary" label="Enregistrer" />
+<Button variant="contained" color="destructive" label="Supprimer" />
+<Button variant="outlined" color="primary" size="sm" label="Annuler" />
+<Button variant="contained" color="primary" startIcon="mdi:plus" label="Ajouter" />
+<Button variant="ghost" color="secondary" endIcon="mdi:arrow-right" label="Suivant" />`}
 />
 
 ## Playground
@@ -40,19 +40,32 @@ Utilisez `variant` pour le style visuel, `size` pour les dimensions, `startIcon`
 
 <Canvas of={ButtonStories.AllVariants} />
 
+## Colors
+
+<Canvas of={ButtonStories.AllColors} />
+
 ## Sizes
 
 <Canvas of={ButtonStories.AllSizes} />
 
 ## Variant reference
 
-| Variant       | Usage                                             |
-| ------------- | ------------------------------------------------- |
-| `default`     | Action principale — CTA le plus visible.          |
-| `destructive` | Actions irréversibles — suppressions.             |
-| `outline`     | Actions secondaires — moins d'emphase.            |
-| `secondary`   | Actions tertiaires — priorité visuelle faible.    |
-| `ghost`       | Actions inline / barre d'outils — chrome minimal. |
+| Variant      | Usage                                              |
+| ------------ | -------------------------------------------------- |
+| `contained`  | Action principale — CTA le plus visible.           |
+| `outlined`   | Actions secondaires — moins d'emphase.             |
+| `ghost`      | Actions inline / barre d'outils — chrome minimal.  |
+
+## Color reference
+
+| Color         | Usage                                              |
+| ------------- | -------------------------------------------------- |
+| `primary`     | Action de marque — couleur principale du thème.    |
+| `secondary`   | Actions neutres — priorité visuelle faible.        |
+| `destructive` | Actions irréversibles — suppressions / danger.     |
+| `success`     | Confirmation — validations, créations réussies.    |
+| `warning`     | Avertissement — actions à risque modéré.           |
+| `info`        | Information — actions informatives.                |
 
 ## Size reference
 

@@ -14,7 +14,7 @@ import * as IconButtonStories from './IconButton.stories';
 <Title />
 
 <Subtitle>
-  Bouton carré dédié aux icônes seules — mêmes variantes que Button, accessibilité garantie via aria-label obligatoire.
+  Bouton carré dédié aux icônes seules — mêmes variantes et couleurs que Button, accessibilité garantie via aria-label obligatoire.
 </Subtitle>
 
 Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'une icône. Le prop `label` est obligatoire et sert d'`aria-label` pour l'accessibilité.
@@ -24,7 +24,7 @@ Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'
   code={`import { IconButton } from '@my-org/ui-kit';
 
 <IconButton icon="mdi:pencil" label="Éditer" />
-<IconButton icon="mdi:trash-can" label="Supprimer" variant="destructive" />
+<IconButton icon="mdi:trash-can" label="Supprimer" variant="contained" color="destructive" />
 <IconButton icon="mdi:close" label="Fermer" variant="ghost" size="sm" />`}
 />
 
@@ -38,19 +38,32 @@ Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'
 
 <Canvas of={IconButtonStories.AllVariants} />
 
+## Colors
+
+<Canvas of={IconButtonStories.AllColors} />
+
 ## Sizes
 
 <Canvas of={IconButtonStories.AllSizes} />
 
 ## Variant reference
 
-| Variant       | Usage                                             |
-| ------------- | ------------------------------------------------- |
-| `default`     | Action principale — CTA le plus visible.          |
-| `destructive` | Actions irréversibles — suppressions.             |
-| `outline`     | Actions secondaires — moins d'emphase.            |
-| `secondary`   | Actions tertiaires — priorité visuelle faible.    |
-| `ghost`       | Actions inline / barre d'outils — chrome minimal. |
+| Variant      | Usage                                              |
+| ------------ | -------------------------------------------------- |
+| `contained`  | Action principale — CTA le plus visible.           |
+| `outlined`   | Actions secondaires — moins d'emphase.             |
+| `ghost`      | Actions inline / barre d'outils — chrome minimal.  |
+
+## Color reference
+
+| Color         | Usage                                              |
+| ------------- | -------------------------------------------------- |
+| `primary`     | Action de marque — couleur principale du thème.    |
+| `secondary`   | Actions neutres — priorité visuelle faible.        |
+| `destructive` | Actions irréversibles — suppressions / danger.     |
+| `success`     | Confirmation — validations, créations réussies.    |
+| `warning`     | Avertissement — actions à risque modéré.           |
+| `info`        | Information — actions informatives.                |
 
 ## Size reference
 
@@ -59,4 +72,3 @@ Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'
 | `sm`      | 36×36 px   | UI compacts, barres d'outils.      |
 | `default` | 40×40 px   | Usage standard.                    |
 | `lg`      | 44×44 px   | Zones tactiles larges.             |
-

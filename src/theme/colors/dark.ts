@@ -18,6 +18,9 @@ export const darkColors: Record<keyof LightColors, string> = {
     primaryForeground: palette.neutral[950],
     primaryHover: palette.brand[400],
     primaryActive: palette.brand[300],
+    /** Subtle tint — for use on `background` or `card` surfaces only. */
+    primarySubtle: palette.brand[950],
+    primarySubtleForeground: palette.brand[300],
 
     /* ── Secondary intent ─────────────────────────────────────────────────── */
     secondary: palette.neutral[800],

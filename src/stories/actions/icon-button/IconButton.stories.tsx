@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { IconButton } from '@/components/actions/icon-button'
-import type { IconButtonSize, IconButtonVariant } from '@components/actions/icon-button'
+import type { IconButtonColor, IconButtonSize, IconButtonVariant } from '@components/actions/icon-button'
 
-const VARIANTS: IconButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
+const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
+const COLORS: IconButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
 const SIZES: IconButtonSize[] = ['sm', 'default', 'lg']
 
 const meta = {
@@ -15,6 +16,7 @@ const meta = {
         icon: { control: 'text' },
         label: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
+        color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         disabled: { control: 'boolean' },
     },
@@ -50,6 +52,32 @@ export const AllVariants: Story = {
                     icon={'mdi:pencil'}
                     label={variant}
                 />
+            ))}
+        </div>
+    ),
+}
+
+// All colors
+
+export const AllColors: Story = {
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+            {VARIANTS.map((variant) => (
+                <div
+                    key={variant}
+                    style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}
+                >
+                    {COLORS.map((color) => (
+                        <IconButton
+                            key={color}
+                            variant={variant}
+                            color={color}
+                            icon={'mdi:pencil'}
+                            label={color}
+                        />
+                    ))}
+                </div>
             ))}
         </div>
     ),
