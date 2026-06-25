@@ -1,0 +1,68 @@
+import {
+    Canvas,
+    Controls,
+    Meta,
+    Source,
+    Subtitle,
+    Title,
+} from '@storybook/addon-docs/blocks'
+
+import * as IconStories from './Icon.stories'
+
+<Meta of={IconStories} />
+
+<Title />
+
+<Subtitle>
+  Flexible icon primitive powered by <a href="https://iconify.design" target="_blank">Iconify</a> — gives access to 200 000+ icons from 150+ icon sets with a single, consistent API.
+</Subtitle>
+
+Pass any [Iconify icon identifier](https://icon-sets.iconify.design/) to the `icon` prop. Use `size` to match the icon to its context, and provide `aria-label` whenever the icon conveys meaning to assistive technology.
+
+<Source
+  language="tsx"
+  code={`import { Icon } from '@my-org/ui-kit';
+
+// Decorative — hidden from screen readers
+<Icon icon="mdi:home" />
+
+// Semantic — announced as an image with an accessible name
+<Icon icon="mdi:information" aria-label="Information" />
+
+// Size variants
+<Icon icon="mdi:check" size="xs" />
+<Icon icon="mdi:check" size="sm" />
+<Icon icon="mdi:check" size="md" />   // default
+<Icon icon="mdi:check" size="lg" />
+<Icon icon="mdi:check" size="xl" />
+<Icon icon="mdi:check" size="2xl" />
+
+// Spin animation (loading states)
+<Icon icon="mdi:loading" spin />
+
+// Inline with text — inherits color via currentColor
+<button>
+  <Icon icon="mdi:plus" /> Add item
+</button>`}
+/>
+
+## Playground
+
+<Canvas of={IconStories.Default} />
+
+<Controls of={IconStories.Default} />
+
+## Sizes
+
+<Canvas of={IconStories.AllSizes} />
+
+## Accessibility
+
+| Usage | How to use | Notes |
+|---|---|---|
+| Decorative icon | Omit `aria-label` | `aria-hidden="true"` is set automatically |
+| Meaningful icon | Pass `aria-label` | Renders as `role="img"` with `aria-label` |
+
+<Canvas of={IconStories.Decorative} />
+<Canvas of={IconStories.WithLabel} />
+

@@ -1,0 +1,32 @@
+import { Icon as Iconify } from '@iconify/react'
+
+import { iconRecipe } from '@components/foundation/icon/Icon.css.ts'
+import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
+import { cn } from '@utils/cn.ts'
+import type { FC } from 'react'
+
+const Icon: FC<IconProps> = ({
+    icon,
+    size,
+    spin,
+    'aria-label': ariaLabel,
+    className,
+    ...props
+}) => {
+    const isDecorative = ariaLabel === undefined
+
+    return (
+        <Iconify
+            icon={icon}
+            aria-hidden={isDecorative}
+            aria-label={ariaLabel}
+            role={isDecorative ? undefined : 'img'}
+            className={cn(iconRecipe({ size, spin }), className)}
+            {...props}
+        />
+    )
+}
+
+Icon.displayName = 'Icon'
+
+export default Icon
