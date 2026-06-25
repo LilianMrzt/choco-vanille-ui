@@ -9,7 +9,7 @@ import { buttonSizeToFontSize, buttonSizeToIconSize } from '@components/actions/
 const Button: FC<ButtonProps> = ({
     variant,
     color,
-    size = 'default',
+    size = 'md',
     className,
     label,
     startIcon,

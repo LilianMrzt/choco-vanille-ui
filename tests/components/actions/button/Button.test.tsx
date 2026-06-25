@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Button, buttonRecipe, type ButtonVariant, type ButtonSize } from '@components/actions/button'
+import { Button, buttonRecipe, type ButtonVariant, type ButtonColor, type ButtonSize } from '@components/actions/button'
 
 // Helper
 
@@ -31,16 +31,16 @@ describe('Button', () => {
     })
 
     describe('variant styling', () => {
-        const variants: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
+        const variants: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 
         it.each(variants)('applies a non-empty class for variant="%s"', (variant) => {
             const { container } = render(<Button variant={variant} label={'btn'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
-        it('falls back to the default variant when none is provided', () => {
+        it('falls back to the contained variant when none is provided', () => {
             const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toBe(buttonRecipe({ variant: 'default', size: 'default' }))
+            expect(getFirstChild(container).className).toBe(buttonRecipe({ variant: 'contained', size: 'md' }))
         })
 
         it('produces distinct class names for each variant', () => {
@@ -49,8 +49,22 @@ describe('Button', () => {
         })
     })
 
+    describe('color styling', () => {
+        const colors: ButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
+
+        it.each(colors)('applies a non-empty class for color="%s"', (color) => {
+            const { container } = render(<Button color={color} label={'btn'} />)
+            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+        })
+
+        it('produces distinct class names for each color', () => {
+            const classNames = colors.map((color) => buttonRecipe({ color }))
+            expect(new Set(classNames).size).toBe(colors.length)
+        })
+    })
+
     describe('size styling', () => {
-        const sizes: ButtonSize[] = ['default', 'sm', 'lg', 'icon']
+        const sizes: ButtonSize[] = ['sm', 'md', 'lg']
 
         it.each(sizes)('applies a non-empty class for size="%s"', (size) => {
             const { container } = render(<Button size={size} label={'btn'} />)

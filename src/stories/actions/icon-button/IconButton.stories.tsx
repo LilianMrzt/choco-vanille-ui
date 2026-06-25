@@ -6,7 +6,7 @@ import type { IconButtonColor, IconButtonSize, IconButtonVariant } from '@compon
 
 const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: IconButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
-const SIZES: IconButtonSize[] = ['sm', 'default', 'lg']
+const SIZES: IconButtonSize[] = ['sm', 'md', 'lg']
 
 const meta = {
     title: 'Actions/IconButton',
@@ -14,7 +14,7 @@ const meta = {
     parameters: { layout: 'centered' },
     argTypes: {
         icon: { control: 'text' },
-        label: { control: 'text' },
+        'aria-label': { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
@@ -22,7 +22,7 @@ const meta = {
     },
     args: {
         icon: 'mdi:pencil',
-        label: 'Éditer',
+        'aria-label': 'Éditer',
     },
 } satisfies Meta<typeof IconButton>
 
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
-        await expect(canvas.getByRole('button', { name: args.label })).toBeInTheDocument()
+        await expect(canvas.getByRole('button', { name: args['aria-label'] })).toBeInTheDocument()
     },
 }
 
@@ -50,7 +50,7 @@ export const AllVariants: Story = {
                     key={variant}
                     variant={variant}
                     icon={'mdi:pencil'}
-                    label={variant}
+                    aria-label={variant}
                 />
             ))}
         </div>
@@ -74,7 +74,7 @@ export const AllColors: Story = {
                             variant={variant}
                             color={color}
                             icon={'mdi:pencil'}
-                            label={color}
+                            aria-label={color}
                         />
                     ))}
                 </div>
@@ -97,7 +97,7 @@ export const AllSizes: Story = {
                     <IconButton
                         size={size}
                         icon={'mdi:pencil'}
-                        label={size}
+                        aria-label={size}
                     />
                     <span style={{ fontSize: '0.75rem', color: 'gray' }}>{size}</span>
                 </div>

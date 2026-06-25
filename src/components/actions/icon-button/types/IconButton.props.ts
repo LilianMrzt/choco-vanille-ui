@@ -11,6 +11,6 @@ export type IconButtonProps = Omit<
   IconButtonRecipeVariants & {
     /** Iconify icon name rendered inside the button. */
     icon: string;
-    /** Accessible label for the button. */
+    /** Accessible label for the button (used as aria-label). */
     'aria-label': string;
   };

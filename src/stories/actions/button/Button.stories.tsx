@@ -6,7 +6,7 @@ import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions
 
 const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: ButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
-const SIZES: ButtonSize[] = ['default', 'sm', 'lg']
+const SIZES: ButtonSize[] = ['sm', 'md', 'lg']
 
 const meta = {
     title: 'Actions/Button',
@@ -16,8 +16,7 @@ const meta = {
         label: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
-        size: { control: 'select', options: SIZES },
-        disabled: { control: 'boolean' },
+        size: { control: 'select', options: SIZES },        disabled: { control: 'boolean' },
     },
     args: {
         label: 'Button',
@@ -95,8 +94,8 @@ export const AllSizes: Story = {
                 label={'Small'}
             />
             <Button
-                size={'default'}
-                label={'Default'}
+                size={'md'}
+                label={'Medium'}
             />
             <Button
                 size={'lg'}

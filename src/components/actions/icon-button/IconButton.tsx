@@ -8,7 +8,7 @@ import { iconButtonSizeToIconSize } from '@components/actions/icon-button/consta
 const IconButton: FC<IconButtonProps> = ({
     variant,
     color,
-    size = 'default',
+    size = 'md',
     className,
     icon,
     ref,

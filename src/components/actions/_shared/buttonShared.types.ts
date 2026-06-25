@@ -15,6 +15,6 @@ export type ButtonColorShared =
 
 /** Size variants shared by Button and IconButton. */
 export type ButtonSizeShared =
-  | 'default'
   | 'sm'
+  | 'md'
   | 'lg';
