@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { useTooltip } from '@components/overlay/tooltip/hooks/useTooltip.hook.ts'
-import { tooltipContentClass } from '@components/overlay/tooltip/Tooltip.styles.css.ts'
+import { tooltipContentClass } from '@components/overlay/tooltip/Tooltip.css.ts'
 
 // Suites
 

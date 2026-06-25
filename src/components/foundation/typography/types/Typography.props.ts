@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TypographyRecipeVariants } from '@components/foundation/typography/Typography.styles.css.ts'
+import type { TypographyRecipeVariants } from '@components/foundation/typography/Typography.css.ts'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
   TypographyRecipeVariants & {

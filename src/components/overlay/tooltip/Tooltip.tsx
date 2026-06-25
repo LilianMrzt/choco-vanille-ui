@@ -1,7 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
-import { tooltipArrowClass } from '@components/overlay/tooltip/Tooltip.styles.css.ts'
+import { tooltipArrowClass } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { useTooltip } from '@components/overlay/tooltip/hooks/useTooltip.hook.ts'
 
 export const Tooltip = ({

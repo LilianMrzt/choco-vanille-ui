@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { useButton } from '@components/actions/button/hooks/useButton.hook.ts'
-import { buttonRecipe } from '@components/actions/button/Button.styles.css.ts'
+import { buttonRecipe } from '@components/actions/button/Button.css.ts'
 import type { ButtonVariant, ButtonSize } from '@components/actions/button'
 
 // useButton is a pure function (no React state/effects),

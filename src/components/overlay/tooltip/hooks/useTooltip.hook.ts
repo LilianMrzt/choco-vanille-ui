@@ -1,4 +1,4 @@
-import { tooltipContentClass } from '@components/overlay/tooltip/Tooltip.styles.css.ts'
+import { tooltipContentClass } from '@components/overlay/tooltip/Tooltip.css.ts'
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
 import { mergeClassNames } from '@/utils/mergeClassNames.ts'
 

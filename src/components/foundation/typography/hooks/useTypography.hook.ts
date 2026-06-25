@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
 
-import { typographyRecipe } from '@components/foundation/typography/Typography.styles.css.ts'
+import { typographyRecipe } from '@components/foundation/typography/Typography.css.ts'
 import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/constants/typographyElementMap.const.ts'
 import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'

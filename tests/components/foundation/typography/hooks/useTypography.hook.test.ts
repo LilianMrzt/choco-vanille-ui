@@ -1,7 +1,7 @@
 import { Slot } from '@radix-ui/react-slot'
 import { describe, expect, it } from 'vitest'
 import { useTypography } from '@components/foundation/typography/hooks/useTypography.hook.ts'
-import { typographyRecipe } from '@components/foundation/typography/Typography.styles.css.ts'
+import { typographyRecipe } from '@components/foundation/typography/Typography.css.ts'
 import { TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
 
 // useTypography is a pure function (no React state/effects),

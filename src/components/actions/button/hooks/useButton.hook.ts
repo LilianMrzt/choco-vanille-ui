@@ -1,4 +1,4 @@
-import { buttonRecipe } from '@components/actions/button/Button.styles.css.ts'
+import { buttonRecipe } from '@components/actions/button/Button.css.ts'
 import type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
 import { mergeClassNames } from '@/utils/mergeClassNames.ts'
 
