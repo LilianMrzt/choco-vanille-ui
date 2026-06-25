@@ -25,6 +25,7 @@ export default defineConfig({
       '@': resolve(root, 'src'),
       '@components': resolve(root, 'src/components'),
       '@theme': resolve(root, 'src/theme'),
+      '@constants': resolve(root, 'src/constants'),
       '@utils': resolve(root, 'src/utils'),
       '@stories': resolve(root, 'src/stories'),
       '@tests': resolve(root, 'tests'),

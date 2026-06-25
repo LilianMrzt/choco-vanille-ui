@@ -27,6 +27,8 @@
       "@components/*": ["./src/components/*"],
       "@theme": ["./src/theme/index.ts"],
       "@theme/*": ["./src/theme/*"],
+      "@constants": ["./src/constants"],
+      "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"],
       "@stories/*": ["./src/stories/*"],
       "@tests/*": ["./tests/*"]

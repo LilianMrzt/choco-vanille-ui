@@ -17,6 +17,7 @@ export default defineConfig({
       '@': path.resolve(dirname, 'src'),
       '@components': path.resolve(dirname, 'src/components'),
       '@theme': path.resolve(dirname, 'src/theme'),
+      '@constants': path.resolve(dirname, 'src/constants'),
       '@utils': path.resolve(dirname, 'src/utils'),
       '@stories': path.resolve(dirname, 'src/stories'),
       '@tests': path.resolve(dirname, 'tests'),
