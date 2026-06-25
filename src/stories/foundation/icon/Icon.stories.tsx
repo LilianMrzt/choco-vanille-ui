@@ -48,7 +48,7 @@ export const AllSizes: Story = {
                         icon={'mdi:home'}
                         size={size}
                     />
-                    <span style={{ fontSize: '0.75rem', color: 'gray' }}>{size}</span>
+                    <span style={{ fontSize: '0.75rem', color: 'black' }}>{size}</span>
                 </div>
             ))}
         </div>

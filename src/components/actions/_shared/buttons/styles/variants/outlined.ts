@@ -27,8 +27,8 @@ export const outlinedCompoundVariants = [
     {
         variants: { variant: 'outlined', color: 'destructive' },
         style: {
-            borderColor: vars.color.destructive,
-            color: vars.color.destructive,
+            borderColor: vars.color.destructiveSubtleForeground,
+            color: vars.color.destructiveSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.destructiveSubtle, color: vars.color.destructiveSubtleForeground },
                 '&:active': { backgroundColor: vars.color.destructiveSubtle, filter: 'brightness(0.9)' },

@@ -12,6 +12,16 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 // More info at: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
+  // Pre-bundle these deps so Vite does not re-optimise them mid-test, which
+  // would cause a server reload and make browser (Storybook) tests fail in CLI.
+  optimizeDeps: {
+    include: [
+      '@vanilla-extract/recipes',
+      '@vanilla-extract/recipes/createRuntimeFn',
+      '@storybook/addon-docs > react-dom/client',
+      '@storybook/react-dom-shim',
+    ],
+  },
   resolve: {
     alias: {
       '@': path.resolve(dirname, 'src'),
@@ -45,6 +55,13 @@ export default defineConfig({
         ],
         test: {
           name: 'storybook',
+          // Pre-create the Storybook coverage cache directory before the
+          // addon-vitest preset hook runs. Without this, the hook calls
+          // mkdir() without { recursive: true } and crashes with ENOENT when
+          // the parent path does not yet exist (e.g. on a clean checkout or
+          // after clearing node_modules/.cache).
+          // See: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#what-happens-if-vitest-itself-has-an-error
+          globalSetup: ['./tests/globalSetup.storybook.ts'],
           browser: {
             enabled: true,
             headless: true,

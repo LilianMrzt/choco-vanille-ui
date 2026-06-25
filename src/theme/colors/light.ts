@@ -2,74 +2,74 @@ import { palette } from '@theme/tokens/palette.ts'
 
 /*
  * Light theme — semantic color tokens.
- * Docs → docs/docs/theme/tokens.md · docs/docs/theme/overview.md
+ * Docs => docs/docs/theme/tokens.md · docs/docs/theme/overview.md
  */
 export const lightColors = {
-    /* ── Base surfaces & text ─────────────────────────────────────────────── */
+    /* Base surfaces & text  */
     background: palette.neutral[100],
     foreground: palette.neutral[950],
 
-    /* ── Elevated surfaces ────────────────────────────────────────────────── */
+    /* Elevated surfaces  */
     card: palette.neutral[0],
     cardForeground: palette.neutral[950],
     popover: palette.neutral[0],
     popoverForeground: palette.neutral[950],
 
-    /* ── Brand / primary intent ───────────────────────────────────────────── */
+    /* Brand / primary intent  */
     primary: palette.brand[600],
     primaryForeground: palette.neutral[0],
     primaryHover: palette.brand[700],
     primaryActive: palette.brand[800],
     /** Subtle tint — for use on `background` or `card` surfaces only. */
     primarySubtle: palette.brand[50],
-    primarySubtleForeground: palette.brand[700],
+    primarySubtleForeground: palette.brand[800],
 
-    /* ── Secondary intent (low-emphasis neutral fill) ─────────────────────── */
-    secondary: palette.neutral[100],
+    /* Secondary intent (low-emphasis neutral fill)  */
+    secondary: palette.neutral[200],
     secondaryForeground: palette.neutral[900],
-    secondaryHover: palette.neutral[200],
-    secondaryActive: palette.neutral[300],
+    secondaryHover: palette.neutral[300],
+    secondaryActive: palette.neutral[400],
 
-    /* ── Muted (quiet backgrounds & secondary text) ───────────────────────── */
+    /* Muted (quiet backgrounds & secondary text)  */
     muted: palette.neutral[100],
-    mutedForeground: palette.neutral[500],
+    mutedForeground: palette.neutral[600],
 
-    /* ── Accent (hover wash on ghost/outline controls) ────────────────────── */
+    /* Accent (hover wash on ghost/outline controls)  */
     accent: palette.neutral[100],
     accentForeground: palette.neutral[900],
 
-    /* ── Status: success ──────────────────────────────────────────────────── */
-    success: palette.green[600],
+    /* Status: success  */
+    success: palette.green[700],
     successForeground: palette.neutral[0],
     successSubtle: palette.green[50],
-    successSubtleForeground: palette.green[700],
+    successSubtleForeground: palette.green[800],
 
-    /* ── Status: warning ──────────────────────────────────────────────────── */
-    warning: palette.amber[500],
-    warningForeground: palette.neutral[950],
+    /* Status: warning  */
+    warning: palette.amber[800],
+    warningForeground: palette.neutral[0],
     warningSubtle: palette.amber[50],
-    warningSubtleForeground: palette.amber[700],
+    warningSubtleForeground: palette.amber[800],
 
-    /* ── Status: info ─────────────────────────────────────────────────────── */
+    /* Status: info  */
     info: palette.blue[600],
     infoForeground: palette.neutral[0],
     infoSubtle: palette.blue[50],
-    infoSubtleForeground: palette.blue[700],
+    infoSubtleForeground: palette.blue[800],
 
-    /* ── Status: destructive / danger ─────────────────────────────────────── */
+    /* Status: destructive / danger  */
     destructive: palette.red[600],
     destructiveForeground: palette.neutral[0],
     destructiveHover: palette.red[700],
     destructiveActive: palette.red[800],
     destructiveSubtle: palette.red[50],
-    destructiveSubtleForeground: palette.red[700],
+    destructiveSubtleForeground: palette.red[800],
 
-    /* ── Lines, fields & focus ────────────────────────────────────────────── */
+    /* Lines, fields & focus  */
     border: palette.neutral[200],
     input: palette.neutral[300],
     ring: palette.brand[600],
 
-    /* ── Highlight (Typography <mark>) ────────────────────────────────────── */
+    /* Highlight (Typography <mark>)  */
     highlight: palette.amber[200],
     highlightForeground: palette.amber[900],
 } as const

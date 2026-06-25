@@ -3,71 +3,71 @@ import { palette } from '@theme/tokens/palette.ts'
 import { type LightColors } from '@theme/colors/light.ts'
 
 export const darkColors: Record<keyof LightColors, string> = {
-    /* ── Base surfaces & text ─────────────────────────────────────────────── */
+    /* Base surfaces & text  */
     background: palette.neutral[950],
     foreground: palette.neutral[100],
 
-    /* ── Elevated surfaces — a hair lighter than the page for depth ───────── */
+    /* Elevated surfaces — a hair lighter than the page for depth  */
     card: palette.neutral[900],
     cardForeground: palette.neutral[100],
     popover: palette.neutral[900],
     popoverForeground: palette.neutral[100],
 
-    /* ── Brand / primary intent — shifted up the ramp for dark contrast ───── */
+    /* Brand / primary intent — shifted up the ramp for dark contrast  */
     primary: palette.brand[500],
     primaryForeground: palette.neutral[950],
     primaryHover: palette.brand[400],
     primaryActive: palette.brand[300],
     /** Subtle tint — for use on `background` or `card` surfaces only. */
     primarySubtle: palette.brand[950],
-    primarySubtleForeground: palette.brand[300],
+    primarySubtleForeground: palette.brand[200],
 
-    /* ── Secondary intent ─────────────────────────────────────────────────── */
+    /* Secondary intent  */
     secondary: palette.neutral[800],
     secondaryForeground: palette.neutral[100],
     secondaryHover: palette.neutral[700],
     secondaryActive: palette.neutral[600],
 
-    /* ── Muted ────────────────────────────────────────────────────────────── */
+    /* Muted  */
     muted: palette.neutral[800],
     mutedForeground: palette.neutral[400],
 
-    /* ── Accent ───────────────────────────────────────────────────────────── */
+    /* Accent  */
     accent: palette.neutral[800],
     accentForeground: palette.neutral[100],
 
-    /* ── Status: success ──────────────────────────────────────────────────── */
+    /* Status: success  */
     success: palette.green[500],
     successForeground: palette.neutral[950],
     successSubtle: palette.green[950],
-    successSubtleForeground: palette.green[300],
+    successSubtleForeground: palette.green[200],
 
-    /* ── Status: warning ──────────────────────────────────────────────────── */
+    /* Status: warning  */
     warning: palette.amber[400],
     warningForeground: palette.neutral[950],
     warningSubtle: palette.amber[950],
-    warningSubtleForeground: palette.amber[300],
+    warningSubtleForeground: palette.amber[200],
 
-    /* ── Status: info ─────────────────────────────────────────────────────── */
+    /* Status: info  */
     info: palette.blue[500],
     infoForeground: palette.neutral[950],
     infoSubtle: palette.blue[950],
-    infoSubtleForeground: palette.blue[300],
+    infoSubtleForeground: palette.blue[200],
 
-    /* ── Status: destructive / danger ─────────────────────────────────────── */
+    /* Status: destructive / danger  */
     destructive: palette.red[500],
     destructiveForeground: palette.neutral[950],
     destructiveHover: palette.red[400],
     destructiveActive: palette.red[300],
     destructiveSubtle: palette.red[950],
-    destructiveSubtleForeground: palette.red[300],
+    destructiveSubtleForeground: palette.red[200],
 
-    /* ── Lines, fields & focus ────────────────────────────────────────────── */
+    /* Lines, fields & focus  */
     border: palette.neutral[800],
     input: palette.neutral[700],
     ring: palette.brand[500],
 
-    /* ── Highlight ────────────────────────────────────────────────────────── */
+    /* Highlight  */
     highlight: palette.amber[400],
     highlightForeground: palette.neutral[950],
 }

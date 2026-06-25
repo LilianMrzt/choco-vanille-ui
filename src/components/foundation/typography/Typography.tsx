@@ -1,5 +1,5 @@
 import { typographyRecipe } from '@components/foundation/typography/Typography.css.ts'
-import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/constants/typographyElementMap.const.ts'
+import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/constants'
 import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
 import { vars } from '@theme/contract.css.ts'

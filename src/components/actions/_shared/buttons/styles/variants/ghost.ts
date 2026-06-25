@@ -25,7 +25,7 @@ export const ghostCompoundVariants = [
     {
         variants: { variant: 'ghost', color: 'destructive' },
         style: {
-            color: vars.color.destructive,
+            color: vars.color.destructiveSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.destructiveSubtle, color: vars.color.destructiveSubtleForeground },
                 '&:active': { backgroundColor: vars.color.destructiveSubtle, filter: 'brightness(0.9)' },
