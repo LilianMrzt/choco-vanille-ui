@@ -132,7 +132,6 @@ describe('Typography', () => {
         })
     })
 
-
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
             const ref = createRef<HTMLElement>()
