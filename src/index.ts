@@ -1,10 +1,11 @@
-// Theme — design tokens. This export also registers the `:root` CSS variables
-// and the global base styles (reset + themed body defaults) as a side effect.
 export { vars } from '@theme'
-export type { ThemeVars } from '@theme'
+export type { ThemeVars, ThemeColor } from '@theme'
 
 // Utilities
 export { cn } from '@utils/cn.ts'
+
+// Constants
+export * from '@constants'
 
 // Components
 export * from '@components'
