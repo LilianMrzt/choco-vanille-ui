@@ -1,5 +1,5 @@
 import type { ButtonSize, TypographySize } from '@components'
-import { buttonSizeToIconSize } from '@components/actions/_shared/buttonShared.constants.ts'
+import { buttonSizeToIconSize } from '@components/actions/_shared/buttons/constants'
 
 export { buttonSizeToIconSize }
 

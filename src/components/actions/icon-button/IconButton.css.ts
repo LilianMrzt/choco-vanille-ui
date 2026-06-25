@@ -7,7 +7,7 @@ import {
     sharedButtonColorVariants,
     sharedButtonCompoundVariants,
     sharedButtonDefaultVariants,
-} from '@components/actions/_shared/buttonShared.css.ts'
+} from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 
 export const iconButtonRecipe = recipe({
     base: [

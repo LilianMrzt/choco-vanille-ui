@@ -1,3 +1,3 @@
-import { buttonSizeToIconSize } from '@components/actions/_shared/buttonShared.constants.ts'
+import { buttonSizeToIconSize } from '@components/actions/_shared/buttons/constants'
 
 export { buttonSizeToIconSize as iconButtonSizeToIconSize }

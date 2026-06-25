@@ -1,4 +1,4 @@
-import type { ButtonVariantShared, ButtonColorShared, ButtonSizeShared } from '@components/actions/_shared/buttonShared.types.ts'
+import type { ButtonVariantShared, ButtonColorShared, ButtonSizeShared } from '@components/actions/_shared/buttons/types'
 
 /** Visual style variants for the IconButton component. */
 export type IconButtonVariant = ButtonVariantShared;

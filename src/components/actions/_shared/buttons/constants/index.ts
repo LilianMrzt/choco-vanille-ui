@@ -1,4 +1,4 @@
-import type { ButtonSizeShared } from '@components/actions/_shared/buttonShared.types.ts'
+import type { ButtonSizeShared } from '@components/actions/_shared/buttons/types'
 import type { IconSize } from '@components/foundation/icon'
 
 /** Size-to-icon-size mapping shared by Button and IconButton. */
