@@ -1,6 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css'
 
-import { vars } from '@theme/tokens.css.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /*
  * Tooltip styles — Vanilla Extract.

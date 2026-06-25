@@ -1,6 +1,6 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/tokens.css.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /*
  * Typography styles — Vanilla Extract recipe (the kit's `cva` replacement).

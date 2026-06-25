@@ -1,7 +1,7 @@
 import { style, globalStyle } from '@vanilla-extract/css'
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/tokens.css.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /*
  * Button styles — Vanilla Extract recipe.
@@ -34,8 +34,12 @@ export const buttonRecipe = recipe({
             border: '1px solid transparent',
             cursor: 'pointer',
             fontFamily: vars.fontFamily.sans,
-            transition:
-                'background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, filter 0.15s ease',
+            transition: [
+                `background-color ${vars.duration.normal} ${vars.easing.standard}`,
+                `color ${vars.duration.normal} ${vars.easing.standard}`,
+                `border-color ${vars.duration.normal} ${vars.easing.standard}`,
+                `filter ${vars.duration.normal} ${vars.easing.standard}`,
+            ].join(', '),
             selectors: {
                 '&:focus-visible': {
                     outline: 'none',
@@ -56,10 +60,10 @@ export const buttonRecipe = recipe({
                 color: vars.color.primaryForeground,
                 selectors: {
                     '&:hover': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.primary} 90%, transparent)`,
+                        backgroundColor: vars.color.primaryHover,
                     },
                     '&:active': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.primary} 80%, transparent)`,
+                        backgroundColor: vars.color.primaryActive,
                     },
                 },
             },
@@ -68,10 +72,10 @@ export const buttonRecipe = recipe({
                 color: vars.color.destructiveForeground,
                 selectors: {
                     '&:hover': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.destructive} 90%, transparent)`,
+                        backgroundColor: vars.color.destructiveHover,
                     },
                     '&:active': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.destructive} 80%, transparent)`,
+                        backgroundColor: vars.color.destructiveActive,
                     },
                 },
             },
@@ -96,10 +100,10 @@ export const buttonRecipe = recipe({
                 color: vars.color.secondaryForeground,
                 selectors: {
                     '&:hover': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.secondary} 80%, transparent)`,
+                        backgroundColor: vars.color.secondaryHover,
                     },
                     '&:active': {
-                        backgroundColor: `color-mix(in oklab, ${vars.color.secondary} 60%, transparent)`,
+                        backgroundColor: vars.color.secondaryActive,
                     },
                 },
             },

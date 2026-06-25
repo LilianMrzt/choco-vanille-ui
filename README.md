@@ -44,8 +44,22 @@ export function Example() {
 
 ### Theming
 
-The design system is the single source of truth for tokens, defined once in
-`src/theme/tokens.css.ts`. Tokens are available two ways:
+The design system is the single source of truth for tokens, organised by
+category under `src/theme/tokens/` (`colors.ts`, `spacing.ts`, `radii.ts`,
+`typography.ts`, `shadows.ts`, `zIndex.ts`, `motion.ts`) and built on top of a
+primitive OKLCH `palette.ts`. The typed contract and the light/dark theme
+registration live in `src/theme/contract.css.ts`.
+
+The kit ships with complete **light and dark** themes. Dark mode follows the
+OS by default (`prefers-color-scheme`) and can be forced per-subtree:
+
+```html
+<html data-theme="dark"> ...   <!-- force dark -->
+<html data-theme="light"> ...  <!-- force light -->
+<html> ...                     <!-- auto: follow the OS -->
+```
+
+Tokens are available two ways:
 
 **1. Typed `vars` (inside `*.css.ts`, fully autocompleted):**
 
