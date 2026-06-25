@@ -1,8 +1,10 @@
 import type * as React from 'react'
 
 import type { TypographyRecipeVariants } from '@components/foundation/typography/Typography.css.ts'
+import type { RefAttributes } from 'react'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
+  RefAttributes<HTMLElement> &
   TypographyRecipeVariants & {
     /** Override the rendered HTML element. */
     as?: React.ElementType;

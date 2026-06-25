@@ -1,4 +1,4 @@
-export { Typography } from '@components/foundation/typography/Typography.tsx'
+export { default as Typography } from '@components/foundation/typography/Typography.tsx'
 export { typographyRecipe } from '@components/foundation/typography/Typography.css.ts'
 export { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/constants/typographyElementMap.const.ts'
 export type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
