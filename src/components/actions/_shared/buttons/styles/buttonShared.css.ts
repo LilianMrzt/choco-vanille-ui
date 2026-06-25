@@ -17,6 +17,7 @@ export const buttonBaseStyles = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    lineHeight: vars.lineHeight.none,
     borderRadius: vars.radius.sm,
     border: '1px solid transparent',
     cursor: 'pointer',
