@@ -4,20 +4,20 @@ import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { defineConfig } from 'vitest/config';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), vanillaExtractPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(dirname, 'src'),
       '@components': path.resolve(dirname, 'src/components'),
+      '@theme': path.resolve(dirname, 'src/theme'),
       '@utils': path.resolve(dirname, 'src/utils'),
-      '@styles': path.resolve(dirname, 'src/styles'),
       '@stories': path.resolve(dirname, 'src/stories'),
       '@tests': path.resolve(dirname, 'tests'),
     },

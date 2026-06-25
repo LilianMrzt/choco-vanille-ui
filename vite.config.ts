@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
@@ -12,7 +12,7 @@ const root = fileURLToPath(new URL('.', import.meta.url));
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    vanillaExtractPlugin(),
     dts({
       tsconfigPath: './tsconfig.build.json',
       include: ['src'],
@@ -24,8 +24,8 @@ export default defineConfig({
     alias: {
       '@': resolve(root, 'src'),
       '@components': resolve(root, 'src/components'),
+      '@theme': resolve(root, 'src/theme'),
       '@utils': resolve(root, 'src/utils'),
-      '@styles': resolve(root, 'src/styles'),
       '@stories': resolve(root, 'src/stories'),
       '@tests': resolve(root, 'tests'),
     },

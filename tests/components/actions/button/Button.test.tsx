@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Button, type ButtonVariant, type ButtonSize } from '@components/actions/button'
+import { Button, buttonRecipe, type ButtonVariant, type ButtonSize } from '@components/actions/button'
 
 // Helper
 
@@ -30,86 +30,36 @@ describe('Button', () => {
         })
     })
 
-    describe('variant classes', () => {
+    describe('variant styling', () => {
         const variants: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
 
-        it.each(variants)('applies classes for variant="%s"', (variant) => {
+        it.each(variants)('applies a non-empty class for variant="%s"', (variant) => {
             const { container } = render(<Button variant={variant} label={'btn'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
-        it('applies default variant classes when no variant is provided', () => {
+        it('falls back to the default variant when none is provided', () => {
             const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('bg-primary')
+            expect(getFirstChild(container).className).toBe(buttonRecipe({ variant: 'default', size: 'default' }))
         })
 
-        it('applies destructive classes', () => {
-            const { container } = render(<Button variant={'destructive'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('bg-destructive')
-        })
-
-        it('applies outline classes', () => {
-            const { container } = render(<Button variant={'outline'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('border')
-        })
-
-        it('applies ghost classes', () => {
-            const { container } = render(<Button variant={'ghost'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('hover:bg-accent')
+        it('produces distinct class names for each variant', () => {
+            const classNames = variants.map((variant) => buttonRecipe({ variant }))
+            expect(new Set(classNames).size).toBe(variants.length)
         })
     })
 
-    describe('interactive state classes', () => {
-        it('applies hover classes for the default variant', () => {
-            const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('hover:bg-primary/90')
-        })
-
-        it('applies active classes for the default variant', () => {
-            const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('active:bg-primary/80')
-        })
-
-        it('applies active classes for the destructive variant', () => {
-            const { container } = render(<Button variant={'destructive'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('active:bg-destructive/80')
-        })
-    })
-
-    describe('style — no shadow, reduced radius', () => {
-        it('does not apply any box-shadow class', () => {
-            const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).not.toMatch(/\bshadow\b/)
-        })
-
-        it('uses rounded-sm (not rounded-md)', () => {
-            const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('rounded-sm')
-            expect(getFirstChild(container).className).not.toContain('rounded-md')
-        })
-    })
-
-    describe('size classes', () => {
+    describe('size styling', () => {
         const sizes: ButtonSize[] = ['default', 'sm', 'lg', 'icon']
 
-        it.each(sizes)('applies classes for size="%s"', (size) => {
+        it.each(sizes)('applies a non-empty class for size="%s"', (size) => {
             const { container } = render(<Button size={size} label={'btn'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
-        it('applies sm size class', () => {
-            const { container } = render(<Button size={'sm'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('h-9')
-        })
-
-        it('applies lg size class', () => {
-            const { container } = render(<Button size={'lg'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('h-11')
-        })
-
-        it('applies icon size class', () => {
-            const { container } = render(<Button size={'icon'} label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('w-10')
+        it('produces distinct class names for each size', () => {
+            const classNames = sizes.map((size) => buttonRecipe({ size }))
+            expect(new Set(classNames).size).toBe(sizes.length)
         })
     })
 
@@ -119,9 +69,11 @@ describe('Button', () => {
             expect(getFirstChild(container).className).toContain('my-custom-class')
         })
 
-        it('applies base inline-flex class', () => {
+        it('applies every base recipe class on the rendered element', () => {
             const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('inline-flex')
+            for (const cls of buttonRecipe({}).split(' ')) {
+                expect(getFirstChild(container).className).toContain(cls)
+            }
         })
     })
 
@@ -129,16 +81,6 @@ describe('Button', () => {
         it('is disabled when disabled prop is passed', () => {
             render(<Button disabled label={'btn'} />)
             expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(true)
-        })
-
-        it('applies disabled opacity class', () => {
-            const { container } = render(<Button disabled label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('disabled:opacity-50')
-        })
-
-        it('applies disabled pointer-events class', () => {
-            const { container } = render(<Button disabled label={'btn'} />)
-            expect(getFirstChild(container).className).toContain('disabled:pointer-events-none')
         })
     })
 

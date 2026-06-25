@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { useButton } from '@components/actions/button/hooks/useButton.hook.ts'
+import { buttonRecipe } from '@components/actions/button/Button.styles.css.ts'
 import type { ButtonVariant, ButtonSize } from '@components/actions/button'
 
 // useButton is a pure function (no React state/effects),
@@ -7,54 +8,26 @@ import type { ButtonVariant, ButtonSize } from '@components/actions/button'
 
 describe('useButton', () => {
     describe('resolvedClassName', () => {
-        it('includes base button classes', () => {
+        it('returns the recipe class for the default variant/size when called empty', () => {
             const { resolvedClassName } = useButton({})
-            expect(resolvedClassName).toContain('inline-flex')
+            expect(resolvedClassName).toBe(buttonRecipe({}))
         })
 
-        it('uses rounded-sm', () => {
+        it('returns a non-empty string', () => {
             const { resolvedClassName } = useButton({})
-            expect(resolvedClassName).toContain('rounded-sm')
+            expect(resolvedClassName.length).toBeGreaterThan(0)
         })
 
-        it('has no box-shadow class', () => {
-            const { resolvedClassName } = useButton({})
-            expect(resolvedClassName).not.toMatch(/\bshadow\b/)
+        it('produces distinct classes for each variant', () => {
+            const variants: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
+            const classNames = variants.map((variant) => useButton({ variant }).resolvedClassName)
+            expect(new Set(classNames).size).toBe(variants.length)
         })
 
-        it('includes default variant classes', () => {
-            const { resolvedClassName } = useButton({ variant: 'default' })
-            expect(resolvedClassName).toContain('bg-primary')
-        })
-
-        it('includes destructive variant classes', () => {
-            const { resolvedClassName } = useButton({ variant: 'destructive' })
-            expect(resolvedClassName).toContain('bg-destructive')
-        })
-
-        it('includes outline variant classes', () => {
-            const { resolvedClassName } = useButton({ variant: 'outline' })
-            expect(resolvedClassName).toContain('border')
-        })
-
-        it('includes ghost variant classes', () => {
-            const { resolvedClassName } = useButton({ variant: 'ghost' })
-            expect(resolvedClassName).toContain('hover:bg-accent')
-        })
-
-        it('includes sm size class', () => {
-            const { resolvedClassName } = useButton({ size: 'sm' })
-            expect(resolvedClassName).toContain('h-9')
-        })
-
-        it('includes lg size class', () => {
-            const { resolvedClassName } = useButton({ size: 'lg' })
-            expect(resolvedClassName).toContain('h-11')
-        })
-
-        it('includes icon size class', () => {
-            const { resolvedClassName } = useButton({ size: 'icon' })
-            expect(resolvedClassName).toContain('w-10')
+        it('produces distinct classes for each size', () => {
+            const sizes: ButtonSize[] = ['default', 'sm', 'lg', 'icon']
+            const classNames = sizes.map((size) => useButton({ size }).resolvedClassName)
+            expect(new Set(classNames).size).toBe(sizes.length)
         })
 
         it('merges a custom className', () => {

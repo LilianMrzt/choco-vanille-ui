@@ -1,6 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
+import { tooltipArrowClass } from '@components/overlay/tooltip/Tooltip.styles.css.ts'
 import { useTooltip } from '@components/overlay/tooltip/hooks/useTooltip.hook.ts'
 
 export const Tooltip = ({
@@ -39,7 +40,7 @@ export const Tooltip = ({
                         sideOffset={6}
                     >
                         {content}
-                        <RadixTooltip.Arrow className={'fill-popover'} />
+                        <RadixTooltip.Arrow className={tooltipArrowClass} />
                     </RadixTooltip.Content>
                 </RadixTooltip.Portal>
             </RadixTooltip.Root>

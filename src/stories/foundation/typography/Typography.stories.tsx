@@ -44,7 +44,7 @@ export const AccessibilityBestPractices: Story = {
     tags: ['!dev'],
     parameters: { controls: { disable: true }, layout: 'padded' },
     render: () => (
-        <div className={'flex max-w-2xl flex-col gap-6 p-4'}>
+        <div style={{ display: 'flex', maxWidth: '42rem', flexDirection: 'column', gap: '1.5rem', padding: '1rem' }}>
 
             {/* Heading hierarchy */}
             <section aria-labelledby={'section-heading'}>
@@ -54,7 +54,7 @@ export const AccessibilityBestPractices: Story = {
                 >Respect heading hierarchy</Typography>
                 <Typography
                     variant={'p'}
-                    className={'mt-2'}
+                    style={{ marginTop: '0.5rem' }}
                 >
                     Use one <Typography variant={'code'}>h1</Typography> per page as the main title.
                     Nest headings in order — never skip from{' '}
@@ -71,7 +71,7 @@ export const AccessibilityBestPractices: Story = {
                 >Always expand abbreviations</Typography>
                 <Typography
                     variant={'p'}
-                    className={'mt-2'}
+                    style={{ marginTop: '0.5rem' }}
                 >
                     Screen readers can announce the full form via the <Typography variant={'code'}>title</Typography> attribute:{' '}
                     <Typography
@@ -91,7 +91,7 @@ export const AccessibilityBestPractices: Story = {
                     variant={'h3'}
                     id={'label-heading'}
                 >Pair labels with inputs</Typography>
-                <div className={'mt-2 flex flex-col gap-1'}>
+                <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                     <label htmlFor={'email-input'}>
                         <Typography variant={'label'}>Email address</Typography>
                     </label>
@@ -99,7 +99,7 @@ export const AccessibilityBestPractices: Story = {
                         id={'email-input'}
                         type={'email'}
                         placeholder={'you@example.com'}
-                        className={'rounded border px-3 py-1.5 text-sm'}
+                        style={{ borderRadius: '0.375rem', border: '1px solid var(--color-border)', padding: '0.375rem 0.75rem', fontSize: '0.875rem' }}
                     />
                 </div>
             </section>
@@ -112,7 +112,7 @@ export const AccessibilityBestPractices: Story = {
                 >Separate visual style from semantics</Typography>
                 <Typography
                     variant={'p'}
-                    className={'mt-2'}
+                    style={{ marginTop: '0.5rem' }}
                 >
                     Use the <Typography variant={'code'}>as</Typography> prop when the visual style must differ
                     from the semantic element — for example, a card title that looks like an{' '}
@@ -122,7 +122,7 @@ export const AccessibilityBestPractices: Story = {
                 <Typography
                     variant={'h3'}
                     as={'span'}
-                    className={'mt-2 block'}
+                    style={{ marginTop: '0.5rem', display: 'block' }}
                 >
                     Visually h3, rendered as a span
                 </Typography>
@@ -136,7 +136,7 @@ export const AccessibilityBestPractices: Story = {
                 >Mark document changes clearly</Typography>
                 <Typography
                     variant={'p'}
-                    className={'mt-2'}
+                    style={{ marginTop: '0.5rem' }}
                 >
                     Pair <Typography variant={'code'}>del</Typography> and{' '}
                     <Typography variant={'code'}>ins</Typography> to communicate revisions:{' '}
@@ -182,7 +182,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div className={'flex max-w-2xl flex-col gap-3 p-4'}>
+        <div style={{ display: 'flex', maxWidth: '42rem', flexDirection: 'column', gap: '0.75rem', padding: '1rem' }}>
             <Typography variant={'h1'}>h1 — Heading 1</Typography>
             <Typography variant={'h2'}>h2 — Heading 2</Typography>
             <Typography variant={'h3'}>h3 — Heading 3</Typography>

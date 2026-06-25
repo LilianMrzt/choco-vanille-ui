@@ -1,10 +1,9 @@
-import type { VariantProps } from 'class-variance-authority'
 import type * as React from 'react'
 
-import type { typographyVariants } from '@components/foundation/typography/Typography.styles.ts'
+import type { TypographyRecipeVariants } from '@components/foundation/typography/Typography.styles.css.ts'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
-  VariantProps<typeof typographyVariants> & {
+  TypographyRecipeVariants & {
     /** Override the rendered HTML element. */
     as?: React.ElementType;
     /**

@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 
-// @ts-ignore
-import '../src/styles/globals.css';
+// Register the design tokens (`:root` CSS variables) and global base styles.
+import '../src/theme';
 
 const preview: Preview = {
   parameters: {

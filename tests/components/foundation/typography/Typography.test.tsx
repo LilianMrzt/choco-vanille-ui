@@ -1,12 +1,30 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { Typography, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
+import { Typography, typographyRecipe, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
 
-// Helper
+// Helpers
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
+
+/** Class names present in `a` but not in `b` — used to isolate a variant's class. */
+const onlyIn = (a: string, b: string): string[] => {
+    const bSet = new Set(b.split(' '))
+    return a.split(' ').filter((cls) => cls && !bSet.has(cls))
+}
+
+const variantClass = (variant: TypographyVariant): string =>
+    onlyIn(typographyRecipe({ variant }), typographyRecipe({ variant: 'span' }))[0]
+
+const fontSizeClass = (fontSize: 'xl' | 'sm'): string =>
+    onlyIn(typographyRecipe({ fontSize }), typographyRecipe({}))[0]
+
+const fontWeightClass = (fontWeight: 'bold'): string =>
+    onlyIn(typographyRecipe({ fontWeight }), typographyRecipe({}))[0]
+
+const ellipsisClass = (): string =>
+    onlyIn(typographyRecipe({ ellipsis: true }), typographyRecipe({}))[0]
 
 // Suites
 
@@ -37,7 +55,7 @@ describe('Typography', () => {
             const { container } = render(
                 <Typography variant="h1" as="span">heading</Typography>,
             )
-            expect(getFirstChild(container).className).toContain('text-5xl')
+            expect(getFirstChild(container).className).toContain(variantClass('h1'))
         })
     })
 
@@ -51,22 +69,22 @@ describe('Typography', () => {
     describe('CSS class application', () => {
         it('applies the fontSize class', () => {
             const { container } = render(<Typography fontSize="xl">text</Typography>)
-            expect(getFirstChild(container).className).toContain('text-xl')
+            expect(getFirstChild(container).className).toContain(fontSizeClass('xl'))
         })
 
         it('applies the fontWeight class', () => {
             const { container } = render(<Typography fontWeight="bold">text</Typography>)
-            expect(getFirstChild(container).className).toContain('font-bold')
+            expect(getFirstChild(container).className).toContain(fontWeightClass('bold'))
         })
 
-        it('applies `truncate` when ellipsis=true', () => {
+        it('applies the ellipsis class when ellipsis=true', () => {
             const { container } = render(<Typography ellipsis>text</Typography>)
-            expect(getFirstChild(container).className).toContain('truncate')
+            expect(getFirstChild(container).className).toContain(ellipsisClass())
         })
 
-        it('does not apply `truncate` when ellipsis is not set', () => {
+        it('does not apply the ellipsis class when ellipsis is not set', () => {
             const { container } = render(<Typography variant="p">text</Typography>)
-            expect(getFirstChild(container).className).not.toContain('truncate')
+            expect(getFirstChild(container).className).not.toContain(ellipsisClass())
         })
 
         it('merges a custom className', () => {
@@ -76,14 +94,14 @@ describe('Typography', () => {
             expect(getFirstChild(container).className).toContain('my-custom-class')
         })
 
-        it('fontSize overrides conflicting size from the variant (tailwind-merge)', () => {
-            // h1 normally has text-5xl; fontSize="sm" should win
+        it('applies the fontSize override class on top of the variant', () => {
+            // h1 has its own font-size; fontSize="sm" adds the sm class so it can override via cascade.
             const { container } = render(
                 <Typography variant="h1" fontSize="sm">heading</Typography>,
             )
             const className = getFirstChild(container).className
-            expect(className).toContain('text-sm')
-            expect(className).not.toContain('text-5xl')
+            expect(className).toContain(fontSizeClass('sm'))
+            expect(className).toContain(variantClass('h1'))
         })
     })
 
@@ -130,7 +148,7 @@ describe('Typography', () => {
                     <span>heading</span>
                 </Typography>,
             )
-            expect(getFirstChild(container).className).toContain('text-5xl')
+            expect(getFirstChild(container).className).toContain(variantClass('h1'))
         })
 
         it('asChild takes precedence over `as`', () => {

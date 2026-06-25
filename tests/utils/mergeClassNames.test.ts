@@ -7,10 +7,9 @@ describe('mergeClassNames', () => {
         expect(mergeClassNames('foo', 'bar')).toBe('foo bar')
     })
 
-    it('resolves Tailwind conflicts — last value wins', () => {
-        expect(mergeClassNames('text-sm', 'text-lg')).toBe('text-lg')
-        expect(mergeClassNames('font-bold', 'font-normal')).toBe('font-normal')
-        expect(mergeClassNames('p-2', 'p-4')).toBe('p-4')
+    it('does NOT resolve any conflicts — clsx simply concatenates', () => {
+        expect(mergeClassNames('text-sm', 'text-lg')).toBe('text-sm text-lg')
+        expect(mergeClassNames('a', 'b')).toBe('a b')
     })
 
     it('ignores falsy values (false, null, undefined)', () => {
@@ -30,9 +29,8 @@ describe('mergeClassNames', () => {
         expect(mergeClassNames({ active: true, disabled: false })).toBe('active')
     })
 
-    it('does NOT deduplicate non-Tailwind class names (tailwind-merge only resolves conflicts)', () => {
-    // tailwind-merge deduplicates conflicting Tailwind utilities (e.g. text-sm + text-lg → text-lg)
-    // but does not remove arbitrary duplicate class names.
+    it('does NOT deduplicate duplicate class names (clsx only concatenates)', () => {
+    // clsx concatenates values as-is; it performs no deduplication.
         expect(mergeClassNames('foo', 'foo')).toBe('foo foo')
     })
 })

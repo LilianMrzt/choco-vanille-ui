@@ -25,8 +25,9 @@
       "@/*": ["./src/*"],
       "@components": ["./src/components/index.ts"],
       "@components/*": ["./src/components/*"],
+      "@theme": ["./src/theme/index.ts"],
+      "@theme/*": ["./src/theme/*"],
       "@utils/*": ["./src/utils/*"],
-      "@styles/*": ["./src/styles/*"],
       "@stories/*": ["./src/stories/*"],
       "@tests/*": ["./tests/*"]
     }

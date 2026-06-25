@@ -25,7 +25,7 @@ export type TypographyVariant =
   | 'sub'
   | 'sup';
 
-/** Tailwind font-size scale exposed as a prop. */
+/** Font-size scale exposed as a prop. */
 export type TypographySize =
   | 'xs'
   | 'sm'
@@ -38,7 +38,7 @@ export type TypographySize =
   | '5xl'
   | '6xl';
 
-/** Tailwind font-weight scale exposed as a prop. */
+/** Font-weight scale exposed as a prop. */
 export type TypographyWeight =
   | 'thin'
   | 'extralight'

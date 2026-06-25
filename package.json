@@ -1,7 +1,7 @@
 {
   "name": "@my-org/ui-kit",
   "version": "0.1.0",
-  "description": "A React 19 UI kit built with Tailwind CSS and shadcn primitives.",
+  "description": "A React 19 UI kit built with Radix primitives and a Vanilla Extract design system.",
   "type": "module",
   "license": "MIT",
   "sideEffects": [
@@ -42,9 +42,9 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.0",
     "@radix-ui/react-tooltip": "^1.2.10",
-    "class-variance-authority": "0.7.1",
-    "clsx": "2.1.1",
-    "tailwind-merge": "3.6.0"
+    "@vanilla-extract/css": "1.21.0",
+    "@vanilla-extract/recipes": "0.5.7",
+    "clsx": "2.1.1"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -52,7 +52,6 @@
     "@storybook/addon-docs": "10.4.6",
     "@storybook/addon-vitest": "^10.4.6",
     "@storybook/react-vite": "10.4.6",
-    "@tailwindcss/vite": "4.3.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^26.0.1",
@@ -60,6 +59,7 @@
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
+    "@vanilla-extract/vite-plugin": "5.2.3",
     "@vitejs/plugin-react": "6.0.3",
     "@vitest/browser": "^4.1.9",
     "@vitest/browser-playwright": "^4.1.9",
@@ -80,7 +80,6 @@
     "react-dom": "19.2.7",
     "remark-gfm": "4.0.1",
     "storybook": "10.4.6",
-    "tailwindcss": "4.3.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.62.0",
     "vite": "8.1.0",

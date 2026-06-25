@@ -51,7 +51,7 @@ export const Default: Story = {
 export const AllSides: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div className={'flex flex-wrap items-center justify-center gap-6 p-16'}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', padding: '4rem' }}>
             {SIDES.map((side) => (
                 <Tooltip
                     key={side}

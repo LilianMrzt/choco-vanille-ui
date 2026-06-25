@@ -40,7 +40,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div className={'flex flex-wrap items-center gap-3 p-4'}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem', padding: '1rem' }}>
             <Button
                 variant={'default'}
                 label={'Default'}
@@ -70,7 +70,7 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div className={'flex flex-wrap items-end gap-3 p-4'}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '0.75rem', padding: '1rem' }}>
             <Button
                 size={'sm'}
                 label={'Small'}

@@ -1,15 +1,18 @@
 # @my-org/ui-kit
 
-A React 19 UI kit built with **Vite 8** (library mode), **Tailwind CSS v4**, and
-**shadcn/ui** primitives. Components are previewed with **Storybook**.
+A React 19 UI kit built with **Vite 8** (library mode), **Vanilla Extract**
+(zero-runtime, typed CSS-in-TS) and **Radix UI** primitives. Components are
+previewed with **Storybook**.
 
 ## Features
 
 - ⚛️ React 19 + TypeScript, ships ESM + CJS + type declarations
-- 🎨 Tailwind CSS v4 theme (CSS-first, shadcn token system, light/dark)
-- 🧩 shadcn-style components (`class-variance-authority`, `clsx`, `tailwind-merge`)
+- 🎨 Vanilla Extract design system — a fully typed token theme
+  (colors, spacing, radius, font sizes/weights, shadows, z-index)
+- 🧩 Radix-based components styled with Vanilla Extract `recipe()` (the typed
+  replacement for `cva`), composed with `clsx`
 - 📚 Storybook for interactive component docs
-- ✅ ESLint 9 flat config (typescript-eslint, react-hooks, jsx-a11y, storybook) + Prettier
+- ✅ ESLint flat config (typescript-eslint, react-hooks, jsx-a11y, storybook) + Prettier
 
 ## Install (in a consuming app)
 
@@ -41,9 +44,37 @@ export function Example() {
 
 ### Theming
 
-All theme tokens are CSS variables defined in `src/styles/globals.css`
-(`--background`, `--primary`, `--radius`, …). Override them in your app — or
-add a `.dark` class to a parent element to enable dark mode.
+The design system is the single source of truth for tokens, defined once in
+`src/theme/tokens.css.ts`. Tokens are available two ways:
+
+**1. Typed `vars` (inside `*.css.ts`, fully autocompleted):**
+
+```ts
+import { style } from '@vanilla-extract/css';
+import { vars } from '@my-org/ui-kit';
+
+export const card = style({
+  backgroundColor: vars.color.card,
+  color: vars.color.cardForeground,
+  padding: vars.space.lg,
+  borderRadius: vars.radius.md,
+  boxShadow: vars.shadow.sm,
+});
+```
+
+**2. Plain CSS variables** — every token is emitted on `:root` with a stable,
+human-readable name derived from its path (`--color-primary`, `--space-md`,
+`--radius-sm`, …). Use them in any stylesheet, or override them to retheme:
+
+```css
+:root {
+  --color-primary: oklch(0.55 0.2 250); /* rebrand the whole kit */
+  --radius-md: 0.25rem;
+}
+```
+
+Both stay in sync automatically — overriding a CSS variable also updates every
+component that references it through `vars`.
 
 ## Components
 
@@ -80,9 +111,10 @@ automatically, and `files` limits the published package to `dist/`.
 yarn publish --access public
 ```
 
-## Adding more shadcn components
+## Adding more components
 
 Place new components under `src/components/<group>/<name>/` (e.g. `actions/`,
 `foundation/`), re-export them from `src/index.ts`, and add a `*.stories.tsx`
-file next to each component. Use the `mergeClassNames()` helper (exported from
-the package) to compose Tailwind classes.
+file next to each component. Define styles in a colocated `*.styles.css.ts`
+file using Vanilla Extract `recipe()` / `style()` and the design tokens
+(`vars`), then compose class names with the `mergeClassNames()` helper.
