@@ -22,7 +22,6 @@ const fadeZoomOut = keyframes({
 
 export const tooltipContentClass = style({
     zIndex: vars.zIndex.tooltip,
-    overflow: 'hidden',
     borderRadius: vars.radius.sm,
     backgroundColor: vars.color.popover,
     color: vars.color.popoverForeground,
@@ -31,7 +30,7 @@ export const tooltipContentClass = style({
     fontFamily: vars.fontFamily.sans,
     fontSize: vars.fontSize.xs,
     lineHeight: vars.lineHeight.normal,
-    boxShadow: vars.shadow.md,
+    filter: vars.dropShadow.md,
     transformOrigin: 'var(--radix-tooltip-content-transform-origin)',
     selectors: {
         '&[data-state="delayed-open"], &[data-state="instant-open"]': {

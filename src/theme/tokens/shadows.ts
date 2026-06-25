@@ -29,3 +29,32 @@ export const darkShadows: Record<keyof typeof lightShadows, string> = {
 }
 
 export type Shadows = typeof lightShadows
+
+/*
+ * Drop-shadow tokens — used with `filter: drop-shadow(…)`.
+ *
+ * Unlike `box-shadow`, `filter: drop-shadow` follows the painted shape of an
+ * element and its children (e.g. a tooltip arrow SVG), so these tokens exist
+ * specifically for components that render non-rectangular shapes. Each value is
+ * a space-separated list of `drop-shadow()` functions usable directly as a CSS
+ * `filter` property value. Two layers mimic the same depth feel as the
+ * equivalent `box-shadow` ramp above.
+ */
+
+export const lightDropShadows = {
+    none: 'none',
+    sm: 'drop-shadow(0 1px 3px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.1))',
+    md: 'drop-shadow(0 4px 6px rgb(0 0 0 / 0.1)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.1))',
+    lg: 'drop-shadow(0 10px 15px rgb(0 0 0 / 0.1)) drop-shadow(0 4px 6px rgb(0 0 0 / 0.1))',
+    xl: 'drop-shadow(0 20px 25px rgb(0 0 0 / 0.1)) drop-shadow(0 8px 10px rgb(0 0 0 / 0.1))',
+} as const
+
+export const darkDropShadows: Record<keyof typeof lightDropShadows, string> = {
+    none: 'none',
+    sm: 'drop-shadow(0 1px 3px rgb(0 0 0 / 0.4)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.4))',
+    md: 'drop-shadow(0 4px 6px rgb(0 0 0 / 0.5)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.5))',
+    lg: 'drop-shadow(0 10px 15px rgb(0 0 0 / 0.55)) drop-shadow(0 4px 6px rgb(0 0 0 / 0.55))',
+    xl: 'drop-shadow(0 20px 25px rgb(0 0 0 / 0.6)) drop-shadow(0 8px 10px rgb(0 0 0 / 0.6))',
+}
+
+export type DropShadows = typeof lightDropShadows

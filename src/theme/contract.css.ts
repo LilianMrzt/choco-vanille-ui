@@ -2,7 +2,7 @@ import { assignVars, createGlobalTheme, createGlobalThemeContract, globalStyle }
 
 import { darkColors } from '@theme/colors/index.ts'
 import { lightTheme } from '@theme/tokens/index.ts'
-import { darkShadows } from '@theme/tokens/shadows.ts'
+import { darkShadows, darkDropShadows } from '@theme/tokens/shadows.ts'
 
 /** Typed token contract. `vars.color.primary` → CSS var `--color-primary`. */
 export const vars = createGlobalThemeContract(lightTheme, (_value, path) => path.join('-'))
@@ -13,6 +13,7 @@ createGlobalTheme(':root', vars, lightTheme)
 const darkOverrides = {
     ...assignVars(vars.color, darkColors),
     ...assignVars(vars.shadow, darkShadows),
+    ...assignVars(vars.dropShadow, darkDropShadows),
 }
 
 // 2. Explicit dark theme.

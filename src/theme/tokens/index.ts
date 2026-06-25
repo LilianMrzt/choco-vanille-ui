@@ -1,7 +1,7 @@
 import { lightColors, darkColors } from '@theme/colors/index.ts'
 import { duration, easing } from '@theme/tokens/motion.ts'
 import { radius } from '@theme/tokens/radii.ts'
-import { lightShadows, darkShadows } from '@theme/tokens/shadows.ts'
+import { lightShadows, darkShadows, lightDropShadows, darkDropShadows } from '@theme/tokens/shadows.ts'
 import { space } from '@theme/tokens/spacing.ts'
 import { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } from '@theme/tokens/typography.ts'
 import { zIndex } from '@theme/tokens/zIndex.ts'
@@ -32,12 +32,14 @@ const sharedTokens = {
 export const lightTheme = {
     color: lightColors,
     shadow: lightShadows,
+    dropShadow: lightDropShadows,
     ...sharedTokens,
 }
 
 export const darkTheme = {
     color: darkColors,
     shadow: darkShadows,
+    dropShadow: darkDropShadows,
     ...sharedTokens,
 }
 
