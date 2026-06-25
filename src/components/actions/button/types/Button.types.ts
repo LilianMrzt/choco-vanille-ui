@@ -6,9 +6,8 @@ export type ButtonVariant =
   | 'secondary'
   | 'ghost';
 
-/** Size variants for the Button component — mirroring shadcn/ui. */
+/** Size variants for the Button component. */
 export type ButtonSize =
   | 'default'
   | 'sm'
-  | 'lg'
-  | 'icon';
+  | 'lg';

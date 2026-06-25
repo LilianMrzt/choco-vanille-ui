@@ -14,24 +14,20 @@ import * as ButtonStories from './Button.stories';
 <Title />
 
 <Subtitle>
-  Interactive action primitive built on the shadcn/ui button — CVA variants, Radix Slot asChild support, and full ref forwarding.
+  Composant d'action interactif avec support des icônes de début et de fin, des variantes visuelles et des tailles.
 </Subtitle>
 
-Use `variant` to set the visual style, `size` to control dimensions, and `asChild` to render the button styles on a different element (e.g. a router `<Link>`).
+Utilisez `variant` pour le style visuel, `size` pour les dimensions, `startIcon` / `endIcon` pour ajouter des icônes. Pour un bouton icône seul, préférez le composant `IconButton`.
 
 <Source
   language="tsx"
   code={`import { Button } from '@my-org/ui-kit';
 
-// Standard button
-<Button variant="default">Save changes</Button>
-<Button variant="destructive">Delete</Button>
-<Button variant="outline" size="sm">Cancel</Button>
-
-// Render as an anchor via asChild (shadcn pattern)
-<Button asChild>
-  <a href="/dashboard">Go to dashboard</a>
-</Button>`}
+<Button variant="default" label="Enregistrer" />
+<Button variant="destructive" label="Supprimer" />
+<Button variant="outline" size="sm" label="Annuler" />
+<Button variant="default" startIcon="mdi:plus" label="Ajouter" />
+<Button variant="ghost" endIcon="mdi:arrow-right" label="Suivant" />`}
 />
 
 ## Playground
@@ -48,24 +44,20 @@ Use `variant` to set the visual style, `size` to control dimensions, and `asChil
 
 <Canvas of={ButtonStories.AllSizes} />
 
-
 ## Variant reference
 
-| Variant       | Use for                                           |
+| Variant       | Usage                                             |
 | ------------- | ------------------------------------------------- |
-| `default`     | Primary actions — most prominent call-to-action.  |
-| `destructive` | Irreversible actions — deletions, removals.       |
-| `outline`     | Secondary actions — less emphasis than default.   |
-| `secondary`   | Tertiary actions — low visual priority.           |
-| `ghost`       | Inline / toolbar actions — minimal chrome.        |
-| `link`        | Navigation-style text actions.                    |
+| `default`     | Action principale — CTA le plus visible.          |
+| `destructive` | Actions irréversibles — suppressions.             |
+| `outline`     | Actions secondaires — moins d'emphase.            |
+| `secondary`   | Actions tertiaires — priorité visuelle faible.    |
+| `ghost`       | Actions inline / barre d'outils — chrome minimal. |
 
 ## Size reference
 
-| Size      | Height | Use for                                    |
-| --------- | ------ | ------------------------------------------ |
-| `sm`      | 36 px  | Compact UIs, inline actions.               |
-| `default` | 40 px  | Standard forms and dialogs.                |
-| `lg`      | 44 px  | Hero sections, prominent CTAs.             |
-| `icon`    | 40×40  | Square icon-only buttons (provide a label).|
-
+| Size      | Height | Usage                              |
+| --------- | ------ | ---------------------------------- |
+| `sm`      | 36 px  | UI compacts, actions inline.       |
+| `default` | 40 px  | Formulaires et dialogues standard. |
+| `lg`      | 44 px  | Sections hero, CTA proéminents.    |

@@ -5,7 +5,7 @@ import { Button } from '@/components/actions/button'
 import type { ButtonSize, ButtonVariant } from '@components/actions/button'
 
 const VARIANTS: ButtonVariant[] = ['default', 'destructive', 'outline', 'secondary', 'ghost']
-const SIZES: ButtonSize[] = ['default', 'sm', 'lg', 'icon']
+const SIZES: ButtonSize[] = ['default', 'sm', 'lg']
 
 const meta = {
     title: 'Actions/Button',
@@ -82,11 +82,6 @@ export const AllSizes: Story = {
             <Button
                 size={'lg'}
                 label={'Large'}
-            />
-            <Button
-                size={'icon'}
-                aria-label={'Icon button'}
-                label={'⚙'}
             />
         </div>
     ),
