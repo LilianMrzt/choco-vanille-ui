@@ -2,19 +2,7 @@ import { palette } from '@theme/tokens/palette.ts'
 
 /*
  * Light theme — semantic color tokens.
- *
- * These are the concrete color values for the default (light) theme. Components
- * reference the *roles* defined here (e.g. `vars.color.primary`) rather than
- * anything from the raw palette, which keeps them completely theme-agnostic.
- *
- * Design rationale
- * ─────────────────
- * • Surfaces use near-white neutrals; text uses near-black.
- * • Brand uses the violet-indigo ramp at 600 — bold enough on white (WCAG AA),
- *   legible with a white foreground.
- * • Status roles ship in two flavours: a solid intent colour (for filled badges,
- *   buttons) and a *subtle* pair (tinted background + darker text) for banners,
- *   toasts and inline alerts.
+ * Docs → docs/docs/theme/tokens.md · docs/docs/theme/overview.md
  */
 export const lightColors = {
     /* ── Base surfaces & text ─────────────────────────────────────────────── */
