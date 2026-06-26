@@ -3,6 +3,7 @@ import { expect } from 'storybook/test'
 
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
+import { Flex } from '@/components/layout/flex'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 
@@ -38,19 +39,21 @@ export const Default: Story = {
 export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1rem' }}>
+        <Flex align={'center'} gap={'xl'} p={'lg'}>
             {SIZES.map((size) => (
-                <div
+                <Flex
                     key={size}
-                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
+                    direction={'column'}
+                    align={'center'}
+                    gap={'sm'}
                 >
                     <Icon
                         icon={'mdi:home'}
                         size={size}
                     />
                     <span style={{ fontSize: '0.75rem', color: 'black' }}>{size}</span>
-                </div>
+                </Flex>
             ))}
-        </div>
+        </Flex>
     ),
 }

@@ -3,6 +3,7 @@ import { expect, userEvent, within } from 'storybook/test'
 
 import { IconButton } from '@/components/actions/icon-button'
 import type { IconButtonColor, IconButtonSize, IconButtonVariant } from '@components/actions/icon-button'
+import { Flex } from '@/components/layout/flex'
 
 const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: IconButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
@@ -44,7 +45,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem', padding: '1rem' }}>
+        <Flex wrap={'wrap'} align={'center'} gap={'md'} p={'lg'}>
             {VARIANTS.map((variant) => (
                 <IconButton
                     key={variant}
@@ -53,7 +54,7 @@ export const AllVariants: Story = {
                     aria-label={variant}
                 />
             ))}
-        </div>
+        </Flex>
     ),
 }
 
@@ -62,11 +63,13 @@ export const AllVariants: Story = {
 export const AllColors: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+        <Flex direction={'column'} align={'stretch'} gap={'lg'} p={'lg'}>
             {VARIANTS.map((variant) => (
-                <div
+                <Flex
                     key={variant}
-                    style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}
+                    wrap={'wrap'}
+                    align={'center'}
+                    gap={'md'}
                 >
                     {COLORS.map((color) => (
                         <IconButton
@@ -77,9 +80,9 @@ export const AllColors: Story = {
                             aria-label={color}
                         />
                     ))}
-                </div>
+                </Flex>
             ))}
-        </div>
+        </Flex>
     ),
 }
 
@@ -88,11 +91,13 @@ export const AllColors: Story = {
 export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '0.75rem', padding: '1rem' }}>
+        <Flex wrap={'wrap'} align={'end'} gap={'md'} p={'lg'}>
             {SIZES.map((size) => (
-                <div
+                <Flex
                     key={size}
-                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
+                    direction={'column'}
+                    align={'center'}
+                    gap={'sm'}
                 >
                     <IconButton
                         size={size}
@@ -100,9 +105,9 @@ export const AllSizes: Story = {
                         aria-label={size}
                     />
                     <span style={{ fontSize: '0.75rem', color: 'gray' }}>{size}</span>
-                </div>
+                </Flex>
             ))}
-        </div>
+        </Flex>
     ),
 }
 

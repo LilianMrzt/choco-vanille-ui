@@ -3,6 +3,7 @@ import { expect, within } from 'storybook/test'
 
 import { Typography } from '@/components/foundation/typography'
 import type { TypographySize, TypographyVariant, TypographyWeight } from '@components/foundation/typography'
+import { Flex } from '@/components/layout/flex'
 
 const VARIANTS: TypographyVariant[] = [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -44,7 +45,7 @@ export const AccessibilityBestPractices: Story = {
     tags: ['!dev'],
     parameters: { controls: { disable: true }, layout: 'padded' },
     render: () => (
-        <div style={{ display: 'flex', maxWidth: '42rem', flexDirection: 'column', gap: '1.5rem', padding: '1rem' }}>
+        <Flex direction={'column'} align={'stretch'} gap={'xl'} p={'lg'} style={{ maxWidth: '42rem' }}>
 
             {/* Heading hierarchy */}
             <section aria-labelledby={'section-heading'}>
@@ -91,7 +92,7 @@ export const AccessibilityBestPractices: Story = {
                     variant={'h3'}
                     id={'label-heading'}
                 >Pair labels with inputs</Typography>
-                <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <Flex direction={'column'} align={'stretch'} gap={'xs'} mt={'sm'}>
                     <label htmlFor={'email-input'}>
                         <Typography variant={'label'}>Email address</Typography>
                     </label>
@@ -101,7 +102,7 @@ export const AccessibilityBestPractices: Story = {
                         placeholder={'you@example.com'}
                         style={{ borderRadius: '0.375rem', border: '1px solid var(--color-border)', padding: '0.375rem 0.75rem', fontSize: '0.875rem' }}
                     />
-                </div>
+                </Flex>
             </section>
 
             {/* Polymorphic as prop */}
@@ -145,7 +146,7 @@ export const AccessibilityBestPractices: Story = {
                 </Typography>
             </section>
 
-        </div>
+        </Flex>
     ),
     // Accessibility regression test: verifies the semantic relationships that
     // axe-core alone cannot fully assert (label/input pairing, abbr expansion).
@@ -182,7 +183,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', maxWidth: '42rem', flexDirection: 'column', gap: '0.75rem', padding: '1rem' }}>
+        <Flex direction={'column'} align={'stretch'} gap={'md'} p={'lg'} style={{ maxWidth: '42rem' }}>
             <Typography variant={'h1'}>h1 — Heading 1</Typography>
             <Typography variant={'h2'}>h2 — Heading 2</Typography>
             <Typography variant={'h3'}>h3 — Heading 3</Typography>
@@ -210,6 +211,6 @@ export const AllVariants: Story = {
             <Typography variant={'ins'}>ins — Inserted text</Typography>
             <Typography variant={'sub'}>sub — H₂O subscript</Typography>
             <Typography variant={'sup'}>sup — x² superscript</Typography>
-        </div>
+        </Flex>
     ),
 }

@@ -4,6 +4,7 @@ import { expect, userEvent, within, waitFor } from 'storybook/test'
 import { Tooltip } from '@/components/overlay/tooltip'
 import { Button } from '@/components/actions/button'
 import type { TooltipSide, TooltipAlign } from '@components/overlay/tooltip'
+import { Flex } from '@/components/layout/flex'
 
 const SIDES: TooltipSide[] = ['top', 'right', 'bottom', 'left']
 const ALIGNS: TooltipAlign[] = ['start', 'center', 'end']
@@ -51,7 +52,7 @@ export const Default: Story = {
 export const AllSides: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', padding: '4rem' }}>
+        <Flex wrap={'wrap'} align={'center'} justify={'center'} gap={'xl'} p={'4xl'}>
             {SIDES.map((side) => (
                 <Tooltip
                     key={side}
@@ -65,7 +66,7 @@ export const AllSides: Story = {
                     />
                 </Tooltip>
             ))}
-        </div>
+        </Flex>
     ),
 }
 

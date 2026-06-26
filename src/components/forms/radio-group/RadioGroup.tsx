@@ -16,7 +16,7 @@ import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioG
  * </RadioGroup>
  * ```
  */
-const RadioGroup: FC<RadioGroupProps> = ({ className, ...props }) => (
+const RadioGroup: FC<RadioGroupProps> = ({ className, children, ...props }) => (
     <RadixRadioGroup.Root
         asChild
         {...props}
@@ -24,8 +24,11 @@ const RadioGroup: FC<RadioGroupProps> = ({ className, ...props }) => (
         <Flex
             direction={'column'}
             gap={'sm'}
+            align={'start'}
             className={className}
-        />
+        >
+            {children}
+        </Flex>
     </RadixRadioGroup.Root>
 )
 

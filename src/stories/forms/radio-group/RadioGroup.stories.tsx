@@ -4,6 +4,8 @@ import { expect, userEvent, within } from 'storybook/test'
 
 import { RadioGroup } from '@/components/forms/radio-group'
 import { RadioItem } from '@/components/forms/radio-group'
+import { Box } from '@/components/layout/box'
+import { Flex } from '@/components/layout/flex'
 
 const meta = {
     title: 'Forms/RadioGroup',
@@ -11,9 +13,9 @@ const meta = {
     parameters: { layout: 'centered' },
     decorators: [
         (Story) => (
-            <div style={{ minWidth: '12rem', padding: '1rem' }}>
+            <Box p={'lg'} style={{ minWidth: '12rem' }}>
                 <Story />
-            </div>
+            </Box>
         ),
     ],
 } satisfies Meta<typeof RadioGroup>
@@ -151,7 +153,7 @@ export const Controlled: Story = {
     render: () => {
         const [value, setValue] = useState('standard')
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <Flex direction={'column'} align={'stretch'} gap={'md'}>
                 <RadioGroup
                     value={value}
                     onValueChange={setValue}
@@ -172,7 +174,7 @@ export const Controlled: Story = {
                 <span style={{ fontSize: '0.75rem', color: '#666' }}>
                     Selected: {value}
                 </span>
-            </div>
+            </Flex>
         )
     },
     play: async ({ canvasElement }) => {

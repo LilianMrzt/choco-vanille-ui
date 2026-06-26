@@ -17,6 +17,7 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuSubContent,
 } from '@/components/overlay/dropdown-menu'
+import { Flex } from '@/components/layout/flex'
 
 // Meta
 
@@ -26,9 +27,9 @@ const meta = {
     parameters: { layout: 'centered' },
     decorators: [
         (Story) => (
-            <div style={{ minHeight: '16rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '2rem' }}>
+            <Flex align={'start'} justify={'center'} pt={'2xl'} style={{ minHeight: '16rem' }}>
                 <Story />
-            </div>
+            </Flex>
         ),
     ],
 } satisfies Meta<typeof DropdownMenu>

@@ -3,6 +3,7 @@ import { expect, userEvent, within } from 'storybook/test'
 
 import { Button } from '@/components/actions/button'
 import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions/button'
+import { Flex } from '@/components/layout/flex'
 
 const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: ButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
@@ -41,7 +42,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem', padding: '1rem' }}>
+        <Flex wrap={'wrap'} align={'center'} gap={'md'} p={'lg'}>
             <Button
                 variant={'contained'}
                 label={'Contained'}
@@ -54,7 +55,7 @@ export const AllVariants: Story = {
                 variant={'ghost'}
                 label={'Ghost'}
             />
-        </div>
+        </Flex>
     ),
 }
 
@@ -63,11 +64,13 @@ export const AllVariants: Story = {
 export const AllColors: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+        <Flex direction={'column'} align={'stretch'} gap={'lg'} p={'lg'}>
             {VARIANTS.map((variant) => (
-                <div
+                <Flex
                     key={variant}
-                    style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}
+                    wrap={'wrap'}
+                    align={'center'}
+                    gap={'md'}
                 >
                     {COLORS.map((color) => (
                         <Button
@@ -77,9 +80,9 @@ export const AllColors: Story = {
                             label={color}
                         />
                     ))}
-                </div>
+                </Flex>
             ))}
-        </div>
+        </Flex>
     ),
 }
 
@@ -88,7 +91,7 @@ export const AllColors: Story = {
 export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '0.75rem', padding: '1rem' }}>
+        <Flex wrap={'wrap'} align={'end'} gap={'md'} p={'lg'}>
             <Button
                 size={'sm'}
                 label={'Small'}
@@ -101,7 +104,7 @@ export const AllSizes: Story = {
                 size={'lg'}
                 label={'Large'}
             />
-        </div>
+        </Flex>
     ),
 }
 

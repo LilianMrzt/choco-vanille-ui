@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Checkbox } from '@/components/forms/checkbox'
+import { Flex } from '@/components/layout/flex'
 
 const meta = {
     title: 'Forms/Checkbox',
@@ -68,7 +69,7 @@ export const DisabledChecked: Story = {
 export const AllStates: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+        <Flex direction={'column'} align={'stretch'} gap={'lg'} p={'lg'}>
             <Checkbox label={'Unchecked'} />
             <Checkbox
                 label={'Checked'}
@@ -83,7 +84,7 @@ export const AllStates: Story = {
                 disabled
                 defaultChecked
             />
-        </div>
+        </Flex>
     ),
 }
 
@@ -94,7 +95,7 @@ export const Controlled: Story = {
     render: () => {
         const [checked, setChecked] = useState(false)
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'flex-start' }}>
+            <Flex direction={'column'} align={'start'} gap={'md'}>
                 <Checkbox
                     label={checked ? 'Checked ✓' : 'Unchecked'}
                     checked={checked}
@@ -103,7 +104,7 @@ export const Controlled: Story = {
                 <span style={{ fontSize: '0.75rem', color: '#666' }}>
                     State: {String(checked)}
                 </span>
-            </div>
+            </Flex>
         )
     },
     play: async ({ canvasElement }) => {
