@@ -4,26 +4,20 @@ import { cn } from '@utils/cn.ts'
 import {
     dropdownMenuItemClass,
 } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
-import {
-    dropdownMenuCheckboxBoxClass,
-} from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/DropdownMenuCheckboxItem.css.ts'
+import {checkboxIndicatorClass, checkboxRootClass} from '@components/forms/checkbox/Checkbox.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types/DropdownMenuCheckboxItem.props.ts'
+import type {FC} from "react";
 
-/**
- * An item that can be toggled on/off like a checkbox.
- * Use `checked` and `onCheckedChange` for controlled behaviour.
- * The menu stays open after interaction.
- */
-const DropdownMenuCheckboxItem = ({
+const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = ({
     className,
     label,
     checked,
     onSelect,
     ...props
-}: DropdownMenuCheckboxItemProps) => (
-    <RadixDropdownMenu.CheckboxItem
+}) => (
+        <RadixDropdownMenu.CheckboxItem
         className={cn(dropdownMenuItemClass, className)}
         checked={checked}
         onSelect={(e) => {
@@ -32,14 +26,14 @@ const DropdownMenuCheckboxItem = ({
         }}
         {...props}
     >
-        <span className={dropdownMenuCheckboxBoxClass}>
-            <RadixDropdownMenu.ItemIndicator>
-                <Icon
-                    icon={'mdi:check'}
-                    size={'xs'}
-                />
-            </RadixDropdownMenu.ItemIndicator>
-        </span>
+            <span className={checkboxRootClass}>
+                <RadixDropdownMenu.ItemIndicator className={checkboxIndicatorClass}>
+                    <Icon
+                        icon={'mdi:check'}
+                        size={'xs'}
+                    />
+                </RadixDropdownMenu.ItemIndicator>
+            </span>
         <Typography as={'span'} variant={'span'}>{label}</Typography>
     </RadixDropdownMenu.CheckboxItem>
 )
