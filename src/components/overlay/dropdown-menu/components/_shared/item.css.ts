@@ -60,7 +60,7 @@ export const dropdownMenuItemDestructiveClass = style({
 
 /**
  * Wrapper for leading / trailing icons inside an item.
- * Inherits current color so it automatically matches item state.
+ * Inherits current color so it automatically matches item state (normal, destructive, highlighted…).
  */
 export const dropdownMenuItemIconClass = style({
     flexShrink: 0,
@@ -69,13 +69,8 @@ export const dropdownMenuItemIconClass = style({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: vars.color.mutedForeground,
+    color: 'inherit',
     transition: `color ${vars.duration.fast} ${vars.easing.standard}`,
-    selectors: {
-        '[data-highlighted] &': {
-            color: vars.color.primarySubtleForeground,
-        },
-    },
 })
 
 globalStyle(`${dropdownMenuItemIconClass} svg`, {

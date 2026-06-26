@@ -8,6 +8,7 @@ export const iconRecipe = recipe({
         display: 'inline-block',
         flexShrink: 0,
         verticalAlign: 'middle',
+        fill: 'currentColor',
     },
     variants: {
         size: {

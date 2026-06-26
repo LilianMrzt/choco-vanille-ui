@@ -11,7 +11,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.primarySubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.primarySubtle },
-                '&:active': { backgroundColor: vars.color.primarySubtleHover },
+                '&:active': { backgroundColor: vars.color.primarySubtleActive },
             },
         },
     },
@@ -22,7 +22,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.secondaryForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.secondarySubtle },
-                '&:active': { backgroundColor: vars.color.secondarySubtleHover },
+                '&:active': { backgroundColor: vars.color.secondarySubtleActive },
             },
         },
     },
@@ -33,7 +33,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.destructiveSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.destructiveSubtle },
-                '&:active': { backgroundColor: vars.color.destructiveSubtleHover },
+                '&:active': { backgroundColor: vars.color.destructiveSubtleActive },
             },
         },
     },
@@ -44,7 +44,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.successSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.successSubtle },
-                '&:active': { backgroundColor: vars.color.successSubtleHover },
+                '&:active': { backgroundColor: vars.color.successSubtleActive },
             },
         },
     },
@@ -55,7 +55,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.warningSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.warningSubtle },
-                '&:active': { backgroundColor: vars.color.warningSubtleHover },
+                '&:active': { backgroundColor: vars.color.warningSubtleActive },
             },
         },
     },
@@ -66,7 +66,7 @@ export const outlinedCompoundVariants = [
             color: vars.color.infoSubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.infoSubtle },
-                '&:active': { backgroundColor: vars.color.infoSubtleHover },
+                '&:active': { backgroundColor: vars.color.infoSubtleActive },
             },
         },
     },
