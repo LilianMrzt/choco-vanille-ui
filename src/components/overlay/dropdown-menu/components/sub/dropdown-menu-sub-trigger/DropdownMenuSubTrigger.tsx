@@ -3,9 +3,9 @@ import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 import { cn } from '@utils/cn.ts'
 import {
     dropdownMenuSubTriggerClass,
-    dropdownMenuItemIconClass,
     dropdownMenuSubTriggerChevronClass,
-} from '@components/overlay/dropdown-menu/DropdownMenu.css.ts'
+} from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.css.ts'
+import { dropdownMenuItemIconClass } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Icon } from '@components/foundation/icon'
 import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types/DropdownMenuSubTrigger.props.ts'
 

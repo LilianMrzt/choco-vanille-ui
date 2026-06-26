@@ -1,5 +1,5 @@
 import { cn } from '@utils/cn.ts'
-import { dropdownMenuShortcutClass } from '@components/overlay/dropdown-menu/DropdownMenu.css.ts'
+import { dropdownMenuShortcutClass } from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.css.ts'
 import type { DropdownMenuShortcutProps } from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/types/DropdownMenuShortcut.props.ts'
 
 /**

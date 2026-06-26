@@ -1,7 +1,7 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { cn } from '@utils/cn.ts'
-import { dropdownMenuContentClass } from '@components/overlay/dropdown-menu/DropdownMenu.css.ts'
+import { dropdownMenuContentClass } from '@components/overlay/dropdown-menu/components/content/dropdown-menu-content/DropdownMenuContent.css.ts'
 import type { DropdownMenuContentProps } from '@components/overlay/dropdown-menu/components/content/dropdown-menu-content/types/DropdownMenuContent.props.ts'
 
 /**

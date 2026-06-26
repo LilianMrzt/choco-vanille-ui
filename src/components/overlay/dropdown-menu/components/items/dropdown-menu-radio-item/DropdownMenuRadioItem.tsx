@@ -3,31 +3,40 @@ import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 import { cn } from '@utils/cn.ts'
 import {
     dropdownMenuItemClass,
-    dropdownMenuIndicatorItemClass,
-    dropdownMenuItemIndicatorClass,
-} from '@components/overlay/dropdown-menu/DropdownMenu.css.ts'
+} from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
+import {
+    dropdownMenuRadioCircleClass,
+} from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/DropdownMenuRadioItem.css.ts'
 import { Icon } from '@components/foundation/icon'
 import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
 
 /**
  * A radio item inside a `DropdownMenuRadioGroup`.
  * Use the `value` prop to identify the selected item.
+ * The menu stays open after interaction.
  */
 const DropdownMenuRadioItem = ({
     className,
     children,
+    onSelect,
     ...props
 }: DropdownMenuRadioItemProps) => (
     <RadixDropdownMenu.RadioItem
-        className={cn(dropdownMenuItemClass, dropdownMenuIndicatorItemClass, className)}
+        className={cn(dropdownMenuItemClass, className)}
+        onSelect={(e) => {
+            e.preventDefault()
+            onSelect?.(e)
+        }}
         {...props}
     >
-        <RadixDropdownMenu.ItemIndicator className={dropdownMenuItemIndicatorClass}>
-            <Icon
-                icon={'mdi:circle'}
-                size={'xs'}
-            />
-        </RadixDropdownMenu.ItemIndicator>
+        <span className={dropdownMenuRadioCircleClass}>
+            <RadixDropdownMenu.ItemIndicator>
+                <Icon
+                    icon={'mdi:circle'}
+                    size={'xs'}
+                />
+            </RadixDropdownMenu.ItemIndicator>
+        </span>
         {children}
     </RadixDropdownMenu.RadioItem>
 )

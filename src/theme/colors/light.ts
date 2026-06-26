@@ -22,7 +22,9 @@ export const lightColors = {
     primaryActive: palette.brand[800],
     /** Subtle tint — for use on `background` or `card` surfaces only. */
     primarySubtle: palette.brand[50],
-    primarySubtleForeground: palette.brand[800],
+    primarySubtleHover: palette.brand[100],
+    primarySubtleActive: palette.brand[200],
+    primarySubtleForeground: palette.brand[700],
 
     /* Secondary intent (low-emphasis neutral fill)  */
     secondary: palette.neutral[200],

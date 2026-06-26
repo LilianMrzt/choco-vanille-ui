@@ -5,7 +5,7 @@ import {
     dropdownMenuItemClass,
     dropdownMenuItemDestructiveClass,
     dropdownMenuItemIconClass,
-} from '@components/overlay/dropdown-menu/DropdownMenu.css.ts'
+} from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.tsx'
 import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types/DropdownMenuItem.props.ts'
 
