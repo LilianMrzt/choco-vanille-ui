@@ -1,0 +1,5 @@
+export { default as Box } from '@components/layout/box/Box.tsx'
+export { boxRecipe } from '@components/layout/box/Box.css.ts'
+export type { BoxRecipeVariants } from '@components/layout/box/Box.css.ts'
+export type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+export type { BoxVariant } from '@components/layout/box/types/Box.types.ts'
