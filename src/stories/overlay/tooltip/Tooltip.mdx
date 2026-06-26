@@ -14,7 +14,7 @@ import * as TooltipStories from './Tooltip.stories';
 <Title />
 
 <Subtitle>
-  Accessible tooltip overlay built on Radix UI — controlled or uncontrolled, four sides, animated transitions, and full keyboard support.
+  Accessible tooltip overlay — controlled or uncontrolled, four sides, animated transitions, and full keyboard support.
 </Subtitle>
 
 Wrap any focusable element with `<Tooltip>` and provide the `content` prop to display contextual information on hover or focus.
@@ -38,6 +38,16 @@ Wrap any focusable element with `<Tooltip>` and provide the `content` prop to di
   <Button label="Trigger" />
 </Tooltip>`}
 />
+
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `content` | ✅ Required | Must be supplementary — never put task-critical info exclusively in a tooltip. |
+| `children` | ✅ Required | Must be a single focusable element; add `tabIndex={0}` when wrapping a non-focusable node. |
+| `delayDuration` | No | Set to `0` in tests or when the tooltip acts as a persistent label. |
+| `disabled` | No | When `true`, suppresses the tooltip entirely. |
+| `open` | No | Controlled open state — pair with `onOpenChange` for custom show/hide logic. |
 
 ## Playground
 

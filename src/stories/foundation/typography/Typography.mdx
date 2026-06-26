@@ -19,7 +19,7 @@ import * as TypographyStories from './Typography.stories';
 
 Use `variant` to pick the rendered element, `fontSize` / `fontWeight` to override the default
 styles, `as` to decouple the visual style from the rendered HTML tag, and `asChild` to delegate
-rendering to a child element via Radix Slot (shadcn/ui pattern).
+rendering to a child element via the `asChild` slot pattern.
 
 <Source
   language="tsx"
@@ -32,7 +32,7 @@ rendering to a child element via Radix Slot (shadcn/ui pattern).
 // Decouple style from semantics with \`as\`
 <Typography variant="h2" as="span">Looks like an h2, renders as a span</Typography>
 
-// Radix Slot asChild — render styles on a child element
+// asChild — render styles on a child element
 <Typography variant="p" asChild>
   <label htmlFor="name">Full name</label>
 </Typography>
@@ -40,6 +40,15 @@ rendering to a child element via Radix Slot (shadcn/ui pattern).
 // Override individual tokens
 <Typography variant="p" fontSize="2xl" fontWeight="bold">Big bold paragraph</Typography>`}
 />
+
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `variant` | ✅ Required | Determines the semantic HTML element — never choose a heading level for its visual size, use `fontSize` instead. |
+| `as` | No | Overrides the rendered element while keeping the style (e.g. `h3` look on a `<span>` inside a `<li>`). |
+| `title` (for `abbr`) | Conditional | Required when `variant="abbr"` — exposes the expanded form to screen readers and hover tooltips. |
+| `htmlFor` (for `label`) | Conditional | Links a `label` variant to its form control; alternatively, wrap the control as a child. |
 
 ## Playground
 

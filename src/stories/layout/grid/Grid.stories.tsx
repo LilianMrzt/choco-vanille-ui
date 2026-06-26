@@ -6,7 +6,35 @@ import { Box } from '@components/layout/box'
 const meta = {
     title: 'Layout/Grid',
     component: Grid,
-    parameters: { layout: 'padded' },
+    parameters: {
+        layout: 'padded',
+        docs: {
+            description: {
+                component: `
+A layout primitive that renders a \`<div>\` with \`display: grid\` and token-based props for columns, gap, auto-flow, alignment, padding, background, and border-radius.
+
+**Usage**
+\`\`\`tsx
+// 3-column card grid with a gap
+<Grid columns={3} gap="md">
+  <Card />
+  <Card />
+  <Card />
+</Grid>
+\`\`\`
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`as\` | No | HTML element | Use \`as="ul"\` with \`<li>\` children when the grid represents a list; no ARIA needed for purely decorative grids. |
+| DOM order | — | — | CSS grid order does not affect tab order or screen-reader reading order — keep a logical DOM sequence. |
+
+- \`Grid\` has no implicit ARIA semantics; add semantic \`as\` values when the content has a structural role.
+                `,
+            },
+        },
+    },
     argTypes: {
         columns: { control: 'select', options: [undefined, 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
         autoRows: { control: 'select', options: [undefined, 'auto', 'min', 'max', 'fr'] },        flow: { control: 'select', options: [undefined, 'row', 'column', 'dense', 'row-dense', 'column-dense'] },
@@ -41,6 +69,13 @@ const Cell = ({ label }: { label: string }) => (
 )
 
 export const Default: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Interactive playground. Adjust `columns`, `gap`, `flow`, `align`, and other props in the Controls panel to explore the full Grid API.',
+            },
+        },
+    },
     render: (args) => (
         <Grid {...args}>
             {Array.from({ length: 9 }, (_, i) => (
@@ -55,7 +90,14 @@ export const Default: Story = {
 
 export const ColumnVariants: Story = {
     name: 'Column counts',
-    parameters: { controls: { disable: true } },
+    parameters: {
+        controls: { disable: true },
+        docs: {
+            description: {
+                story: 'The `columns` prop accepts values from `1` to `12`. Choose the count that best fits your content density — 2–4 columns for cards, 6–12 for fine-grained layouts.',
+            },
+        },
+    },
     render: () => (
         <Box
             display={'flex'}
@@ -87,7 +129,14 @@ export const ColumnVariants: Story = {
 
 export const ResponsiveCard: Story = {
     name: 'Card grid',
-    parameters: { controls: { disable: true } },
+    parameters: {
+        controls: { disable: true },
+        docs: {
+            description: {
+                story: 'A typical card layout using `columns={3}` with a muted background and rounded container. Combine with CSS media queries or container queries to make it responsive.',
+            },
+        },
+    },
     render: () => (
         <Grid
             columns={3}
@@ -119,7 +168,14 @@ export const ResponsiveCard: Story = {
 
 export const AutoFlow: Story = {
     name: 'Auto flow — column dense',
-    parameters: { controls: { disable: true } },
+    parameters: {
+        controls: { disable: true },
+        docs: {
+            description: {
+                story: '`flow="column-dense"` packs items into columns first and back-fills gaps. Useful for masonry-style layouts or dashboards with variable-size widgets.',
+            },
+        },
+    },
     render: () => (
         <Grid
             columns={4}

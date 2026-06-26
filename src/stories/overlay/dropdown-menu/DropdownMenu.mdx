@@ -13,7 +13,7 @@ import * as DropdownMenuStories from './DropdownMenu.stories';
 <Title />
 
 <Subtitle>
-  Fully accessible dropdown menu built on Radix UI — supports items, checkboxes, radio groups, sub-menus, separators, labels and keyboard shortcuts, with fluid entrance/exit animations.
+  Fully accessible dropdown menu — supports items, checkboxes, radio groups, sub-menus, separators, labels and keyboard shortcuts, with fluid entrance/exit animations.
 </Subtitle>
 
 The `DropdownMenu` is a **compound component**: import each building block you need and compose them freely.
@@ -58,6 +58,35 @@ The `DropdownMenu` is a **compound component**: import each building block you n
 </DropdownMenu>`}
 />
 
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| Focusable trigger | ✅ Required | Use `asChild` on `DropdownMenuTrigger` to forward behaviour to your own `Button` or `IconButton`. |
+| `shortcut` (on `DropdownMenuItem`) | No | Purely decorative — wire actual `keydown` handlers separately in your application. |
+| `destructive` (on `DropdownMenuItem`) | No | Applies a danger color to warn users before irreversible actions. |
+| `disabled` (on any item) | No | Marks the item as unavailable; it remains visible and announced by screen readers. |
+
+Keyboard navigation is built in: **Enter** / **Space** to open, **Arrow keys** to navigate, **Escape** to close.
+
+## Sub-components
+
+| Sub-component | What it is |
+| ------------- | ---------- |
+| `DropdownMenu` | Root context provider for the entire menu. |
+| `DropdownMenuTrigger` | The element that toggles the menu open / closed. |
+| `DropdownMenuContent` | The floating panel that contains menu items. |
+| `DropdownMenuGroup` | A logical grouping wrapper for related items. |
+| `DropdownMenuItem` | A single actionable item with optional icons and shortcut hint. |
+| `DropdownMenuCheckboxItem` | A toggleable item that shows a checkmark indicator when checked. |
+| `DropdownMenuRadioGroup` | Container for a set of mutually exclusive radio items. |
+| `DropdownMenuRadioItem` | A single radio option inside a `DropdownMenuRadioGroup`. |
+| `DropdownMenuLabel` | A non-interactive section heading for a group of items. |
+| `DropdownMenuSeparator` | A horizontal line that visually separates sections. |
+| `DropdownMenuSub` | Root wrapper for a nested sub-menu. |
+| `DropdownMenuSubTrigger` | An item that reveals a nested sub-menu on hover or keyboard focus. |
+| `DropdownMenuSubContent` | The floating panel for a nested sub-menu. |
+
 ## Demo
 
 A single menu showcasing all building blocks: regular items with icons & shortcuts, a sub-menu, checkbox items, a radio group, and destructive / disabled states.
@@ -65,57 +94,5 @@ A single menu showcasing all building blocks: regular items with icons & shortcu
 <Canvas of={DropdownMenuStories.Default} />
 
 
-## Compound API reference
 
-### `<DropdownMenu>` (Root)
-
-Manages open/close state. Accepts `open`, `onOpenChange`, `defaultOpen`, and `modal` from Radix.
-
-### `<DropdownMenuTrigger>`
-
-The element that opens the menu. Use `asChild` to forward the trigger behaviour to your own element.
-
-### `<DropdownMenuContent>`
-
-| Prop         | Type                                    | Default    | Description                              |
-| ------------ | --------------------------------------- | ---------- | ---------------------------------------- |
-| `side`       | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Side relative to the trigger.            |
-| `align`      | `'start' \| 'center' \| 'end'`         | `'start'`  | Alignment along the trigger axis.        |
-| `sideOffset` | `number`                                | `6`        | Gap in pixels between content & trigger. |
-| `className`  | `string`                                | —          | Additional CSS classes.                  |
-
-### `<DropdownMenuItem>`
-
-| Prop         | Type          | Default | Description                                       |
-| ------------ | ------------- | ------- | ------------------------------------------------- |
-| `destructive`| `boolean`     | `false` | Renders the item in a danger/red visual style.    |
-| `startIcon`  | `ReactNode`   | —       | Icon rendered on the left side of the label.      |
-| `endIcon`    | `ReactNode`   | —       | Icon rendered on the right side of the label.     |
-| `shortcut`   | `string`      | —       | Keyboard shortcut hint displayed on the far right.|
-| `disabled`   | `boolean`     | `false` | Makes the item non-interactive and dimmed.        |
-| `onSelect`   | `() => void`  | —       | Callback fired when the item is selected.         |
-
-### `<DropdownMenuCheckboxItem>`
-
-Accepts the same props as the Radix `CheckboxItem` primitive (`checked`, `onCheckedChange`, …).
-
-### `<DropdownMenuRadioGroup>` + `<DropdownMenuRadioItem>`
-
-Use `value` / `onValueChange` on `<DropdownMenuRadioGroup>` and `value` on each `<DropdownMenuRadioItem>`.
-
-### `<DropdownMenuSub>` + `<DropdownMenuSubTrigger>` + `<DropdownMenuSubContent>`
-
-Compose a nested sub-menu. `SubTrigger` accepts the same `startIcon` prop as `DropdownMenuItem`.
-
-### `<DropdownMenuLabel>`
-
-Non-interactive section heading. Pair with `<DropdownMenuGroup>` for semantic grouping.
-
-### `<DropdownMenuSeparator>`
-
-Thin horizontal rule for visual separation between groups.
-
-### `<DropdownMenuShortcut>`
-
-Inline span styled for keyboard shortcut display. Automatically aria-hidden.
 

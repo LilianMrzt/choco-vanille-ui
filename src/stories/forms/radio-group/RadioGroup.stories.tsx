@@ -10,7 +10,48 @@ import { Flex } from '@/components/layout/flex'
 const meta = {
     title: 'Forms/RadioGroup',
     component: RadioGroup,
-    parameters: { layout: 'centered' },
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: `
+A group of mutually exclusive radio options built on top of [\`@radix-ui/react-radio-group\`](https://www.radix-ui.com/docs/primitives/components/radio-group).
+Compose \`RadioGroup\` with one or more \`RadioItem\` children. Each item renders a radio control with an optional visible label.
+
+**Usage**
+\`\`\`tsx
+// Uncontrolled
+<RadioGroup defaultValue="system">
+  <RadioItem value="light" label="Light" />
+  <RadioItem value="dark"  label="Dark" />
+  <RadioItem value="system" label="System" />
+</RadioGroup>
+
+// Controlled
+const [theme, setTheme] = useState('system')
+<RadioGroup value={theme} onValueChange={setTheme}>
+  <RadioItem value="light"  label="Light" />
+  <RadioItem value="dark"   label="Dark" />
+  <RadioItem value="system" label="System" />
+</RadioGroup>
+\`\`\`
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`aria-label\` / \`aria-labelledby\` on \`RadioGroup\` | ✅ Yes | \`string\` | Announces the group purpose to screen readers when no visible group label is present. |
+| \`label\` on \`RadioItem\` | Conditional | \`string\` | Visible label for the option; auto-associated via a generated \`id\`. |
+| \`aria-label\` on \`RadioItem\` | Conditional | \`string\` | Required when \`label\` is omitted to give each option an accessible name. |
+| \`disabled\` (item) | No | \`boolean\` | Marks a single option as unavailable; skipped by keyboard navigation. |
+| \`disabled\` (group) | No | \`boolean\` | Disables every child item at once. |
+| \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Informs assistive technology of layout; affects expected arrow-key direction. |
+
+- Keyboard navigation is handled automatically: **Arrow keys** move between options; **Space** selects the focused option.
+                `,
+            },
+        },
+    },
     decorators: [
         (Story) => (
             <Box p={'lg'} style={{ minWidth: '12rem' }}>
@@ -43,6 +84,13 @@ export const Default: Story = {
             />
         </RadioGroup>
     ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Uncontrolled radio group with a pre-selected default value. Three labelled options render in a vertical stack. Arrow keys navigate between them.',
+            },
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         const radios = canvas.getAllByRole('radio')
@@ -73,6 +121,13 @@ export const WithoutLabels: Story = {
             />
         </RadioGroup>
     ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'When no visible label is rendered for each item, provide an `aria-label` on every `RadioItem` and an `aria-label` on the `RadioGroup` itself to give screen readers full context.',
+            },
+        },
+    },
 }
 
 // Horizontal
@@ -98,6 +153,13 @@ export const Horizontal: Story = {
             />
         </RadioGroup>
     ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Horizontal layout via `orientation="horizontal"` and a custom `style`. This is useful for compact filter bars or size selectors. Arrow keys still navigate between items as expected.',
+            },
+        },
+    },
 }
 
 // Disabled items
@@ -120,6 +182,13 @@ export const WithDisabledItem: Story = {
             />
         </RadioGroup>
     ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Individual options can be disabled without disabling the whole group. Disabled items are skipped by keyboard navigation and announced as unavailable by screen readers.',
+            },
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('radio', { name: 'Unavailable (disabled)' })).toBeDisabled()
@@ -144,12 +213,26 @@ export const Disabled: Story = {
             />
         </RadioGroup>
     ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Setting `disabled` on the `RadioGroup` disables every child item at once. Use this when the entire selection is read-only or when the form section is locked.',
+            },
+        },
+    },
 }
 
 // Controlled
 
 export const Controlled: Story = {
-    parameters: { controls: { disable: true } },
+    parameters: {
+        controls: { disable: true },
+        docs: {
+            description: {
+                story: 'Controlled mode: the parent owns the selected value via `value` + `onValueChange`. The interaction test below verifies that clicking an option updates the selection.',
+            },
+        },
+    },
     render: () => {
         const [value, setValue] = useState('standard')
         return (

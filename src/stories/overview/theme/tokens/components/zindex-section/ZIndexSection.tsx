@@ -18,7 +18,7 @@ const SORTED_ENTRIES = (Object.entries(zIndex) as [string, string][]).sort(
 export const ZIndexSection = () => (
     <TokenSection
         title={'Z-Index'}
-        subtitle={"Échelle d'empilement pour éviter les conflits de couches dans l'interface."}
+        subtitle={"Stacking scale to prevent layer conflicts in the interface."}
     >
         <div style={listStyle}>
             {SORTED_ENTRIES.map(([name, value]) => (

@@ -14,31 +14,31 @@ import * as RadioGroupStories from './RadioGroup.stories';
 <Title />
 
 <Subtitle>
-  Groupe de boutons radio à sélection unique construit sur Radix UI — accessible au clavier, supportant les modes contrôlé et non contrôlé, avec orientation horizontale ou verticale.
+  Single-selection radio group — keyboard accessible, supporting both controlled and uncontrolled modes, with horizontal or vertical orientation.
 </Subtitle>
 
-`RadioGroup` est un composant **compound** : `RadioGroup` gère l'état de sélection et chaque `RadioItem` représente une option.
-Utilisez `value` + `onValueChange` pour un mode **contrôlé**, ou `defaultValue` pour un mode **non contrôlé**.
+`RadioGroup` is a **compound component**: `RadioGroup` manages the selection state and each `RadioItem` represents an option.
+Use `value` + `onValueChange` for **controlled** mode, or `defaultValue` for **uncontrolled** mode.
 
 <Source
   language="tsx"
   code={`import { RadioGroup, RadioItem } from '@my-org/ui-kit';
 
-// Non contrôlé
+// Uncontrolled
 <RadioGroup defaultValue="system">
-  <RadioItem value="light" label="Clair" />
-  <RadioItem value="dark" label="Sombre" />
-  <RadioItem value="system" label="Système" />
+  <RadioItem value="light" label="Light" />
+  <RadioItem value="dark" label="Dark" />
+  <RadioItem value="system" label="System" />
 </RadioGroup>
 
-// Contrôlé
+// Controlled
 <RadioGroup value={theme} onValueChange={setTheme}>
-  <RadioItem value="light" label="Clair" />
-  <RadioItem value="dark" label="Sombre" />
-  <RadioItem value="system" label="Système" />
+  <RadioItem value="light" label="Light" />
+  <RadioItem value="dark" label="Dark" />
+  <RadioItem value="system" label="System" />
 </RadioGroup>
 
-// Disposition horizontale
+// Horizontal layout
 <RadioGroup defaultValue="md" orientation="horizontal" style={{ flexDirection: 'row', gap: '1.5rem' }}>
   <RadioItem value="sm" label="Small" />
   <RadioItem value="md" label="Medium" />
@@ -46,52 +46,57 @@ Utilisez `value` + `onValueChange` pour un mode **contrôlé**, ou `defaultValue
 </RadioGroup>`}
 />
 
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `aria-label` / `aria-labelledby` on `RadioGroup` | Conditional | Required when there is no visible group label — announces the group purpose to screen readers. |
+| `label` on `RadioItem` | Conditional | Visible label; auto-linked to the radio button via `htmlFor`. Provide one whenever possible. |
+| `aria-label` on `RadioItem` | Conditional | Required when `label` is omitted — each option must have an accessible name. |
+| `disabled` (item) | No | Marks a single option as unavailable; it is skipped by keyboard navigation. |
+| `disabled` (group) | No | Disables all items at once — use when the entire selection is locked. |
+| `orientation` | No | `'horizontal'` or `'vertical'` — informs assistive technology of the expected arrow-key direction. |
+
 ## Playground
 
 <Canvas of={RadioGroupStories.Default} />
 
-## Disposition horizontale
+## Horizontal layout
 
 <Canvas of={RadioGroupStories.Horizontal} />
 
-## Avec un item désactivé
+## With a disabled item
 
 <Canvas of={RadioGroupStories.WithDisabledItem} />
 
-## Groupe entièrement désactivé
+## Fully disabled group
 
 <Canvas of={RadioGroupStories.Disabled} />
 
-## Interaction contrôlée
+## Controlled interaction
 
 <Canvas of={RadioGroupStories.Controlled} />
 
 ## API reference — `<RadioGroup>`
 
-| Prop            | Type                        | Default      | Description                                             |
-| --------------- | --------------------------- | ------------ | ------------------------------------------------------- |
-| `value`         | `string`                    | —            | Valeur contrôlée. Utiliser avec `onValueChange`.        |
-| `defaultValue`  | `string`                    | —            | Valeur initiale non contrôlée.                          |
-| `onValueChange` | `(value: string) => void`   | —            | Callback déclenché lors d'un changement de sélection.   |
-| `disabled`      | `boolean`                   | `false`      | Désactive tous les items du groupe.                     |
-| `orientation`   | `'horizontal' \| 'vertical'` | `'vertical'` | Orientation pour la navigation clavier.                |
-| `className`     | `string`                    | —            | Classes CSS supplémentaires sur le conteneur racine.    |
+| Prop            | Type                          | Default      | Description                                            |
+| --------------- | ----------------------------- | ------------ | ------------------------------------------------------ |
+| `value`         | `string`                      | —            | Controlled value. Use with `onValueChange`.            |
+| `defaultValue`  | `string`                      | —            | Initial uncontrolled value.                            |
+| `onValueChange` | `(value: string) => void`     | —            | Callback fired when the selection changes.             |
+| `disabled`      | `boolean`                     | `false`      | Disables all items in the group.                       |
+| `orientation`   | `'horizontal' \| 'vertical'`  | `'vertical'` | Orientation used for keyboard navigation.              |
+| `className`     | `string`                      | —            | Additional CSS classes on the root container.          |
 
 ## API reference — `<RadioItem>`
 
-| Prop        | Type      | Default | Description                                                               |
-| ----------- | --------- | ------- | ------------------------------------------------------------------------- |
-| `value`     | `string`  | —       | **Requis.** Valeur identifiant cet item dans le groupe.                   |
-| `label`     | `string`  | —       | Libellé affiché à droite du bouton, lié via `htmlFor`.                    |
-| `id`        | `string`  | auto    | ID HTML du bouton. Auto-généré si `label` est fourni sans `id` explicite. |
-| `disabled`  | `boolean` | `false` | Désactive uniquement cet item.                                            |
-| `className` | `string`  | —       | Classes CSS supplémentaires sur le bouton radio.                          |
+| Prop        | Type      | Default | Description                                                                          |
+| ----------- | --------- | ------- | ------------------------------------------------------------------------------------ |
+| `value`     | `string`  | —       | **Required.** Value identifying this item within the group.                          |
+| `label`     | `string`  | —       | Label displayed to the right of the button, linked via `htmlFor`.                    |
+| `id`        | `string`  | auto    | HTML id of the button. Auto-generated when `label` is provided without an explicit `id`. |
+| `disabled`  | `boolean` | `false` | Disables this item only.                                                             |
+| `className` | `string`  | —       | Additional CSS classes on the radio button.                                          |
 
-## Accessibilité
 
-- Le rôle ARIA `radio` et `radiogroup` sont gérés nativement par `@radix-ui/react-radio-group`.
-- `aria-checked` est mis à jour automatiquement.
-- Navigation clavier : `Tab` pour entrer dans le groupe, `↑` / `↓` (ou `←` / `→` en horizontal) pour changer d'option.
-- Le focus visible est matérialisé par un anneau de focus utilisant `vars.color.ring`.
-- Lier un `label` via `htmlFor` permet de cliquer sur le texte pour sélectionner l'option.
 

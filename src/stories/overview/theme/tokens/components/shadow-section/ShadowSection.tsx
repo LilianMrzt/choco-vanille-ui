@@ -24,8 +24,8 @@ const DROP_SHADOW_VARIANTS = [
 
 export const ShadowSection = () => (
     <TokenSection
-        title={'Ombres'}
-        subtitle={'Élévations box-shadow et filtres drop-shadow. Les variantes light et dark sont présentées côte à côte.'}
+        title={'Shadows'}
+        subtitle={'Box-shadow elevations and drop-shadow filters. Light and dark variants are displayed side by side.'}
     >
         <div style={variantsWrapperStyle}>
             {SHADOW_VARIANTS.map(({ label, tokens, prefix }) => (

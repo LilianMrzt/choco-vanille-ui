@@ -14,19 +14,27 @@ import * as IconButtonStories from './IconButton.stories';
 <Title />
 
 <Subtitle>
-  Bouton carré dédié aux icônes seules — mêmes variantes et couleurs que Button, accessibilité garantie via aria-label obligatoire.
+  Square button dedicated to icons only — same variants and colors as Button, with accessibility guaranteed via a mandatory aria-label.
 </Subtitle>
 
-Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'une icône. Le prop `label` est obligatoire et sert d'`aria-label` pour l'accessibilité.
+Use `IconButton` instead of `Button` whenever the button contains only an icon. The `aria-label` prop is required and serves as the accessible name for assistive technology.
 
 <Source
   language="tsx"
   code={`import { IconButton } from '@my-org/ui-kit';
 
-<IconButton icon="mdi:pencil" label="Éditer" />
-<IconButton icon="mdi:trash-can" label="Supprimer" variant="contained" color="destructive" />
-<IconButton icon="mdi:close" label="Fermer" variant="ghost" size="sm" />`}
+<IconButton icon="mdi:pencil" aria-label="Edit" />
+<IconButton icon="mdi:trash-can" aria-label="Delete" variant="contained" color="destructive" />
+<IconButton icon="mdi:close" aria-label="Close" variant="ghost" size="sm" />`}
 />
+
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `aria-label` | ✅ Required | Sole accessible name — describe the action (e.g. `"Delete item"`), not the icon name. |
+| `disabled` | No | Keeps the button visible and announced by screen readers. |
+| `aria-*` | No | All native `<button>` ARIA attributes are forwarded to the underlying element. |
 
 ## Playground
 
@@ -48,27 +56,27 @@ Utilisez `IconButton` à la place de `Button` dès que le bouton ne contient qu'
 
 ## Variant reference
 
-| Variant      | Usage                                              |
-| ------------ | -------------------------------------------------- |
-| `contained`  | Action principale — CTA le plus visible.           |
-| `outlined`   | Actions secondaires — moins d'emphase.             |
-| `ghost`      | Actions inline / barre d'outils — chrome minimal.  |
+| Variant      | Usage                                             |
+| ------------ | ------------------------------------------------- |
+| `contained`  | Primary action — highest visual emphasis (CTA).   |
+| `outlined`   | Secondary actions — lower emphasis.               |
+| `ghost`      | Inline / toolbar actions — minimal chrome.        |
 
 ## Color reference
 
-| Color         | Usage                                              |
-| ------------- | -------------------------------------------------- |
-| `primary`     | Action de marque — couleur principale du thème.    |
-| `secondary`   | Actions neutres — priorité visuelle faible.        |
-| `destructive` | Actions irréversibles — suppressions / danger.     |
-| `success`     | Confirmation — validations, créations réussies.    |
-| `warning`     | Avertissement — actions à risque modéré.           |
-| `info`        | Information — actions informatives.                |
+| Color         | Usage                                               |
+| ------------- | --------------------------------------------------- |
+| `primary`     | Brand action — main theme color.                    |
+| `secondary`   | Neutral actions — low visual priority.              |
+| `destructive` | Irreversible actions — deletions / danger.          |
+| `success`     | Confirmation — successful validations or creations. |
+| `warning`     | Caution — moderate-risk actions.                    |
+| `info`        | Informational actions.                              |
 
 ## Size reference
 
-| Size      | Dimensions | Usage                              |
-| --------- | ---------- | ---------------------------------- |
-| `sm`      | 36×36 px   | UI compacts, barres d'outils.      |
-| `default` | 40×40 px   | Usage standard.                    |
-| `lg`      | 44×44 px   | Zones tactiles larges.             |
+| Size | Dimensions | Usage                        |
+| ---- | ---------- | ---------------------------- |
+| `sm` | 36×36 px   | Compact UI, toolbars.        |
+| `md` | 40×40 px   | Standard usage.              |
+| `lg` | 44×44 px   | Large touch targets.         |

@@ -17,7 +17,7 @@ export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
         <div
             style={colorSwatchStyles.wrapper()}
             onClick={handleCopy}
-            title={`Cliquer pour copier : ${value}`}
+            title={`Click to copy: ${value}`}
         >
             <div
                 style={colorSwatchStyles.swatch(value, dark)}
@@ -36,7 +36,7 @@ export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
             />
             <p style={colorSwatchStyles.tokenLabel(dark)}>{name}</p>
             <p style={colorSwatchStyles.valueLabel(dark)}>{value}</p>
-            <span style={colorSwatchStyles.badge(copied)}>{copied ? '✓ copié' : ''}</span>
+            <span style={colorSwatchStyles.badge(copied)}>{copied ? '✓ copied' : ''}</span>
         </div>
     )
 }

@@ -8,7 +8,7 @@ import { previewStyle } from '@stories/overview/theme/tokens/components/radius-s
 export const RadiusSection = () => (
     <TokenSection
         title={'Border Radius'}
-        subtitle={'Échelle de rayons de bord pour les composants arrondis.'}
+        subtitle={'Border radius scale for rounded components.'}
     >
         <div style={gridStyle}>
             {(Object.entries(radius) as [string, string][]).map(([name, value]) => (

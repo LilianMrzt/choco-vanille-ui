@@ -32,7 +32,7 @@ export const MotionSection = () => {
     return (
         <TokenSection
             title={'Motion'}
-            subtitle={"Tokens d'animation : durées et courbes d'accélération pour des transitions cohérentes."}
+            subtitle={"Animation tokens: durations and easing curves for consistent transitions."}
         >
             <div style={contentStyle}>
                 <div style={subGroupStyle}>
@@ -50,7 +50,7 @@ export const MotionSection = () => {
                 </div>
 
                 <div style={subGroupStyle}>
-                    <h3 style={subGroupTitleStyle}>{'Easing — cliquez sur une carte pour animer'}</h3>
+                    <h3 style={subGroupTitleStyle}>{'Easing — click a card to preview the animation'}</h3>
                     <div style={gridStyle}>
                         {(Object.entries(easing) as [string, string][]).map(([name, value]) => (
                             <div

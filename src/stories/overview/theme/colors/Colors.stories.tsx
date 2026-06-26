@@ -12,8 +12,8 @@ import { ColorPaletteSection } from '@stories/overview/theme/colors/components/c
 
 const colorGroups: ColorGroup[] = [
     {
-        label: 'Surfaces & Texte',
-        description: 'Arrière-plans principaux, surfaces élevées, texte de base et scrim.',
+        label: 'Surfaces & Text',
+        description: 'Main backgrounds, elevated surfaces, base text and scrim.',
         tokens: [
             'background',
             'foreground',
@@ -28,7 +28,7 @@ const colorGroups: ColorGroup[] = [
     },
     {
         label: 'Primary',
-        description: 'Couleur de marque. Famille solide + famille subtile, états inclus.',
+        description: 'Brand colour. Solid family + subtle family, all states included.',
         tokens: [
             'primary',
             'primaryHover',
@@ -43,7 +43,7 @@ const colorGroups: ColorGroup[] = [
     },
     {
         label: 'Secondary',
-        description: 'Intent neutre de faible emphase. Mêmes états que les autres familles.',
+        description: 'Low-emphasis neutral intent. Same states as other families.',
         tokens: [
             'secondary',
             'secondaryHover',
@@ -57,8 +57,8 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Succès',
-        description: 'Feedback positif, confirmations et états validés.',
+        label: 'Success',
+        description: 'Positive feedback, confirmations and validated states.',
         tokens: [
             'success',
             'successHover',
@@ -72,8 +72,8 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Avertissement',
-        description: 'Feedback de mise en garde, actions à risque modéré.',
+        label: 'Warning',
+        description: 'Cautionary feedback, moderate-risk actions.',
         tokens: [
             'warning',
             'warningHover',
@@ -87,8 +87,8 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Information',
-        description: 'Messages informatifs et indicateurs de statut neutre.',
+        label: 'Info',
+        description: 'Informational messages and neutral status indicators.',
         tokens: [
             'info',
             'infoHover',
@@ -102,8 +102,8 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Destructif',
-        description: 'Actions irréversibles, erreurs et suppressions.',
+        label: 'Destructive',
+        description: 'Irreversible actions, errors and deletions.',
         tokens: [
             'destructive',
             'destructiveHover',
@@ -117,13 +117,13 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Bordures & Focus',
-        description: 'Lignes de séparation, contours de champs et anneau de focus.',
+        label: 'Borders & Focus',
+        description: 'Divider lines, field outlines and focus ring.',
         tokens: ['border', 'borderStrong', 'input', 'ring'],
     },
     {
         label: 'Highlight',
-        description: 'Mise en évidence de texte (balise <mark>).',
+        description: 'Text highlight (mark element).',
         tokens: ['highlight', 'highlightForeground'],
     },
 ]
@@ -135,7 +135,30 @@ const meta = {
     parameters: {
         layout: 'fullscreen',
         controls: { disable: true },
-        docs: { canvas: { sourceState: 'hidden' } },
+        docs: {
+            canvas: { sourceState: 'hidden' },
+            description: {
+                component: `
+Semantic color tokens form the color system of this UI kit. Each token carries intent rather than a raw hex value, making the palette fully adaptable to light and dark themes without changing component code.
+
+**Token families**
+| Family | Purpose |
+|---|---|
+| Surfaces & Text | Backgrounds, elevated surfaces, base foreground text |
+| Primary | Main brand color — CTAs, active states |
+| Secondary | Neutral low-emphasis actions |
+| Success | Positive feedback, confirmed states |
+| Warning | Cautionary messages, moderate risk |
+| Info | Neutral informational messages |
+| Destructive | Errors, deletions, irreversible actions |
+| Borders & Focus | Dividers, field outlines, keyboard focus ring |
+| Highlight | Text highlight via the \`<mark>\` element |
+
+Each family exposes a **solid** family (e.g. \`primary\`) and a **subtle** family (e.g. \`primarySubtle\`) with their own hover, active, foreground, and border tokens.
+Click any swatch to copy its current value.
+                `,
+            },
+        },
     },
 } satisfies Meta
 
@@ -165,11 +188,18 @@ const pageDark: CSSProperties = {
 
 export const LightTheme: Story = {
     name: 'Light theme',
+    parameters: {
+        docs: {
+            description: {
+                story: 'All semantic color tokens resolved in the light theme. Click a swatch to copy its CSS custom property value.',
+            },
+        },
+    },
     render: () => (
         <div style={pageLight}>
             <ColorPaletteSection
-                title={'Thème Clair'}
-                subtitle={'Tokens sémantiques du thème clair. Cliquez sur un swatch pour copier la valeur.'}
+                title={'Light Theme'}
+                subtitle={'Semantic tokens of the light theme. Click a swatch to copy its value.'}
                 colors={lightColors as unknown as Record<string, string>}
                 colorGroups={colorGroups}
                 dark={false}
@@ -180,11 +210,18 @@ export const LightTheme: Story = {
 
 export const DarkTheme: Story = {
     name: 'Dark theme',
+    parameters: {
+        docs: {
+            description: {
+                story: 'All semantic color tokens resolved in the dark theme. The same token names are used as in the light theme — only the underlying values change.',
+            },
+        },
+    },
     render: () => (
         <div style={pageDark}>
             <ColorPaletteSection
-                title={'Thème Sombre'}
-                subtitle={'Tokens sémantiques du thème sombre. Cliquez sur un swatch pour copier la valeur.'}
+                title={'Dark Theme'}
+                subtitle={'Semantic tokens of the dark theme. Click a swatch to copy its value.'}
                 colors={darkColors as unknown as Record<string, string>}
                 colorGroups={colorGroups}
                 dark={true}

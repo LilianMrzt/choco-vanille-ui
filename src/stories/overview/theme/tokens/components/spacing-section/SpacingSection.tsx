@@ -16,8 +16,8 @@ import { toPx } from '@stories/overview/theme/tokens/components/spacing-section/
 
 export const SpacingSection = () => (
     <TokenSection
-        title={'Espacement'}
-        subtitle={"Échelle d'espacement basée sur une grille de 4 px, utilisée pour les padding, margin et gap."}
+        title={'Spacing'}
+        subtitle={"Spacing scale based on a 4 px grid, used for padding, margin and gap."}
     >
         <div style={listStyle}>
             {(Object.entries(space) as [string, string][]).map(([name, value]) => {

@@ -14,34 +14,44 @@ import * as CheckboxStories from './Checkbox.stories';
 <Title />
 
 <Subtitle>
-  Contrôle de sélection binaire (coché / non coché) construit sur Radix UI — accessible au clavier, supportant les modes contrôlé et non contrôlé, avec un label optionnel.
+  Binary selection control (checked / unchecked) — keyboard accessible, supporting both controlled and uncontrolled modes, with an optional label.
 </Subtitle>
 
-Utilisez `checked` + `onCheckedChange` pour un mode **contrôlé**, ou `defaultChecked` pour un mode **non contrôlé**.
-Passez une `label` pour afficher un libellé cliquable automatiquement associé au contrôle via `htmlFor`.
+Use `checked` + `onCheckedChange` for **controlled** mode, or `defaultChecked` for **uncontrolled** mode.
+Pass a `label` to display a clickable label automatically associated to the control via `htmlFor`.
 
 <Source
   language="tsx"
   code={`import { Checkbox } from '@my-org/ui-kit';
 
-// Non contrôlé
-<Checkbox label="Accepter les conditions" defaultChecked />
+// Uncontrolled
+<Checkbox label="Accept terms and conditions" defaultChecked />
 
-// Contrôlé
+// Controlled
 <Checkbox
-  label="Recevoir les notifications"
+  label="Receive notifications"
   checked={checked}
   onCheckedChange={(val) => setChecked(val === true)}
 />
 
-// Sans label (pour composition personnalisée)
+// Without label (for custom composition)
 <Checkbox
   id="my-checkbox"
-  aria-label="Activer le mode sombre"
+  aria-label="Enable dark mode"
   checked={checked}
   onCheckedChange={setChecked}
 />`}
 />
+
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `label` | Conditional | Displayed next to the control; auto-linked to the input via `htmlFor`. Provide one whenever possible. |
+| `aria-label` / `aria-labelledby` | Conditional | Required when `label` is omitted — the control must always have an accessible name. |
+| `disabled` | No | Keeps the control visible and announced by screen readers; do not hide unavailable options. |
+| `required` | No | Marks the field as required for native form validation. |
+| `name` / `value` | No | Used for native form submission. |
 
 ## Playground
 
@@ -49,31 +59,25 @@ Passez une `label` pour afficher un libellé cliquable automatiquement associé 
 
 <Controls of={CheckboxStories.Default} />
 
-## États
+## States
 
 <Canvas of={CheckboxStories.AllStates} />
 
-## Interaction contrôlée
+## Controlled interaction
 
 <Canvas of={CheckboxStories.Controlled} />
 
 ## API reference
 
-| Prop              | Type                                             | Default | Description                                                                 |
-| ----------------- | ------------------------------------------------ | ------- | --------------------------------------------------------------------------- |
-| `checked`         | `boolean \| 'indeterminate'`                     | —       | État contrôlé. Utiliser avec `onCheckedChange`.                             |
-| `defaultChecked`  | `boolean`                                        | `false` | État initial non contrôlé.                                                  |
-| `onCheckedChange` | `(checked: boolean \| 'indeterminate') => void`  | —       | Callback déclenché à chaque changement d'état.                              |
-| `label`           | `string`                                         | —       | Libellé affiché à droite du contrôle, lié via `htmlFor`.                    |
-| `id`              | `string`                                         | auto    | ID HTML du bouton. Auto-généré si `label` est fourni sans `id` explicite.   |
-| `disabled`        | `boolean`                                        | `false` | Désactive le contrôle et assombrit visuellement le label.                   |
-| `className`       | `string`                                         | —       | Classes CSS supplémentaires appliquées sur le bouton racine.                |
+| Prop              | Type                                             | Default | Description                                                                          |
+| ----------------- | ------------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
+| `checked`         | `boolean \| 'indeterminate'`                     | —       | Controlled state. Use with `onCheckedChange`.                                        |
+| `defaultChecked`  | `boolean`                                        | `false` | Initial uncontrolled state.                                                          |
+| `onCheckedChange` | `(checked: boolean \| 'indeterminate') => void`  | —       | Callback fired on every state change.                                                |
+| `label`           | `string`                                         | —       | Label displayed to the right of the control, linked via `htmlFor`.                   |
+| `id`              | `string`                                         | auto    | HTML id of the button. Auto-generated when `label` is provided without an explicit `id`. |
+| `disabled`        | `boolean`                                        | `false` | Disables the control and visually dims the label.                                    |
+| `className`       | `string`                                         | —       | Additional CSS classes applied to the root button.                                   |
 
-## Accessibilité
 
-- Le rôle ARIA `checkbox` est géré nativement par `@radix-ui/react-checkbox`.
-- `aria-checked` est mis à jour automatiquement selon l'état.
-- Le contrôle est entièrement navigable au clavier (`Space` pour basculer).
-- Le focus visible est matérialisé par un anneau de focus utilisant `vars.color.ring`.
-- Lier un `label` via `htmlFor` permet de cliquer sur le texte pour activer le contrôle.
 

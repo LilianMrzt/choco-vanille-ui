@@ -46,6 +46,13 @@ Pass any [Iconify icon identifier](https://icon-sets.iconify.design/) to the `ic
 </button>`}
 />
 
+## Accessibility
+
+| Usage | How to use | Notes |
+|---|---|---|
+| Decorative icon | Omit `aria-label` | `aria-hidden="true"` is set automatically |
+| Meaningful icon | Pass `aria-label` | Renders as `role="img"` with an accessible name |
+
 ## Playground
 
 <Canvas of={IconStories.Default} />
@@ -56,10 +63,5 @@ Pass any [Iconify icon identifier](https://icon-sets.iconify.design/) to the `ic
 
 <Canvas of={IconStories.AllSizes} />
 
-## Accessibility
 
-| Usage | How to use | Notes |
-|---|---|---|
-| Decorative icon | Omit `aria-label` | `aria-hidden="true"` is set automatically |
-| Meaningful icon | Pass `aria-label` | Renders as `role="img"` with `aria-label` |
 

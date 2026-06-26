@@ -10,58 +10,58 @@ import {
 <Title />
 
 <Subtitle>
-  Comment définir et utiliser correctement les icônes dans votre projet grâce au composant <code>Icon</code> et à un <strong>IconRegistry</strong> centralisé.
+  How to define and correctly use icons in your project with the <code>Icon</code> component and a centralised <strong>IconRegistry</strong>.
 </Subtitle>
 
 ---
 
-## 1 - Le composant `Icon`
+## 1 — The `Icon` component
 
-Le composant `Icon` de la librairie s'appuie sur **Iconify** pour accéder à plus de 200 000 icônes issues de 150+ jeux d'icônes. Il suffit de passer l'identifiant Iconify au prop `icon`.
+The `Icon` component gives access to over 200,000 icons from 150+ icon sets. Simply pass an Iconify identifier to the `icon` prop.
 
 <Source
   language="tsx"
   code={`import { Icon } from '@my-org/ui-kit';
 
-// Icône décorative - masquée aux lecteurs d'écran
+// Decorative icon — hidden from screen readers
 <Icon icon="mdi:home" />
 
-// Icône sémantique - annoncée avec un label accessible
-<Icon icon="mdi:alert-circle" aria-label="Attention" />`}
+// Semantic icon — announced with an accessible label
+<Icon icon="mdi:alert-circle" aria-label="Warning" />`}
 />
 
 ---
 
-## 2 - Définir un `IconRegistry` dans votre projet
+## 2 — Defining an `IconRegistry` in your project
 
-Plutôt que de disperser des chaînes Iconify (`"mdi:home"`, `"ph:gear"`, …) dans tous vos composants, **centralisez-les dans un registry**.
+Rather than scattering Iconify strings (`"mdi:home"`, `"ph:gear"`, …) throughout your components, **centralise them in a registry**.
 
-Cela vous apporte :
+This gives you:
 
-| Avantage | Détail |
+| Benefit | Details |
 | --- | --- |
-| 🔄 **Maintenabilité** | Changer de jeu d'icônes ? Un seul fichier à modifier. |
-| 🔒 **Type-safety** | TypeScript restreint les valeurs autorisées. |
-| 📖 **Cohérence** | Les développeurs savent toujours où trouver les icônes disponibles. |
-| 🔍 **Traçabilité** | Retrouver facilement où une icône est utilisée. |
+| 🔄 **Maintainability** | Switching icon sets? Only one file to update. |
+| 🔒 **Type-safety** | TypeScript restricts the allowed values. |
+| 📖 **Consistency** | Developers always know where to find available icons. |
+| 🔍 **Traceability** | Easily find where an icon is used. |
 
-### Créer le registry
+### Creating the registry
 
-Créez un fichier `src/icons/registry.ts` dans votre application :
+Create a `src/icons/registry.ts` file in your application:
 
 <Source
   language="ts"
   code={`// src/icons/registry.ts
 
 /**
- * IconRegistry - mappe un nom sémantique vers son identifiant Iconify.
+ * IconRegistry — maps a semantic name to its Iconify identifier.
  *
- * Format Iconify : "<set>:<icon>"
- * Parcourez les jeux disponibles sur https://icon-sets.iconify.design/
+ * Iconify format: "<set>:<icon>"
+ * Browse available sets at https://icon-sets.iconify.design/
  *
- * Conventions :
- *  - camelCase pour les clés  →  arrowRight, not arrow-right
- *  - Groupez par domaine fonctionnel si le registry devient grand
+ * Conventions:
+ *  - camelCase for keys  →  arrowRight, not arrow-right
+ *  - Group by functional domain if the registry grows large
  */
 export const IconRegistry = {
     // Navigation
@@ -83,14 +83,14 @@ export const IconRegistry = {
     error:      'mdi:alert-circle',
     info:       'mdi:information',
 
-    // État
+    // State
     loading:    'mdi:loading',
 } as const`}
 />
 
-### Utilisation dans vos composants
+### Using it in your components
 
-Il suffit d'utiliser directement le composant `Icon` en passant la valeur du registry :
+Simply use the `Icon` component directly with a value from the registry:
 
 <Source
   language="tsx"
@@ -98,33 +98,33 @@ Il suffit d'utiliser directement le composant `Icon` en passant la valeur du reg
 import { IconRegistry } from '@/icons/registry'
 
 <Icon icon={IconRegistry.home} />
-<Icon icon={IconRegistry.settings} size="lg" aria-label="Paramètres" />
+<Icon icon={IconRegistry.settings} size="lg" aria-label="Settings" />
 <Icon icon={IconRegistry.loading} spin />`}
 />
 
 ---
 
-## 3 - Bonnes pratiques
+## 3 — Best practices
 
-### Accessibilité
+### Accessibility
 
-| Situation | Recommandation |
+| Situation | Recommendation |
 | --- | --- |
-| Icône **décorative** (accompagnée d'un label texte) | Omettez `aria-label` → `aria-hidden="true"` est posé automatiquement |
-| Icône **seule** porteuse de sens | Passez `aria-label` avec une description explicite |
+| **Decorative** icon (accompanied by a text label) | Omit `aria-label` → `aria-hidden="true"` is set automatically |
+| **Standalone** meaningful icon | Pass `aria-label` with an explicit description |
 
-### Choisir le bon jeu d'icônes
+### Choosing the right icon set
 
-Nous recommandons d'utiliser un **seul jeu d'icônes** par projet pour garantir la cohérence visuelle.
+We recommend using a **single icon set** per project to ensure visual consistency.
 
-Parcourez les jeux disponibles sur [icon-sets.iconify.design](https://icon-sets.iconify.design/).
+Browse available sets at [icon-sets.iconify.design](https://icon-sets.iconify.design/).
 
-### Nommage des clés
+### Naming keys
 
 ```
 ✅  home, arrowRight, deleteUser, loadingSpinner
 ❌  arrow-right, ArrowRight, ARROW_RIGHT, icon_home
 ```
 
-Utilisez le **camelCase** et des noms **sémantiques** (ce que représente l'icône) plutôt que descriptifs (sa forme).
+Use **camelCase** and **semantic names** (what the icon represents) rather than descriptive names (its shape).
 

@@ -19,10 +19,10 @@ export const CopyBadge = ({ value }: CopyBadgeProps) => {
             tabIndex={0}
             onClick={handleCopy}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { handleCopy() } }}
-            title={`Cliquer pour copier : ${value}`}
+            title={`Click to copy: ${value}`}
             style={badgeStyle(copied)}
         >
-            {copied ? '✓ copié' : '⎘ copier'}
+            {copied ? '✓ copied' : '⎘ copy'}
         </span>
     )
 }

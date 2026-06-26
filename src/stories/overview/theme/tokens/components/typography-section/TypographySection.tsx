@@ -30,35 +30,35 @@ interface TypographyGroup {
 const GROUPS: TypographyGroup[] = [
     {
         label: 'Font Family',
-        subtitle: 'Familles typographiques disponibles.',
+        subtitle: 'Available type families.',
         prefix: 'fontFamily',
         entries: Object.entries(fontFamily) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontFamily: value }),
     },
     {
         label: 'Font Size',
-        subtitle: 'Échelle de tailles de police.',
+        subtitle: 'Font size scale.',
         prefix: 'fontSize',
         entries: Object.entries(fontSize) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontSize: value }),
     },
     {
         label: 'Font Weight',
-        subtitle: 'Graisses de police disponibles.',
+        subtitle: 'Available font weights.',
         prefix: 'fontWeight',
         entries: Object.entries(fontWeight) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontWeight: value }),
     },
     {
         label: 'Line Height',
-        subtitle: 'Hauteurs de ligne pour la lisibilité.',
+        subtitle: 'Line heights for readability.',
         prefix: 'lineHeight',
         entries: Object.entries(lineHeight) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ lineHeight: value, fontSize: 13 }),
     },
     {
         label: 'Letter Spacing',
-        subtitle: 'Espacement entre les caractères.',
+        subtitle: 'Letter spacing values.',
         prefix: 'letterSpacing',
         entries: Object.entries(letterSpacing) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ letterSpacing: value }),
@@ -67,8 +67,8 @@ const GROUPS: TypographyGroup[] = [
 
 export const TypographySection = () => (
     <TokenSection
-        title={'Typographie'}
-        subtitle={'Tokens typographiques : familles, tailles, graisses, hauteurs de ligne et espacements entre caractères.'}
+        title={'Typography'}
+        subtitle={'Typography tokens: families, sizes, weights, line heights and letter spacing.'}
     >
         <div style={groupsWrapperStyle}>
             {GROUPS.map(({ label, subtitle, prefix, entries, getPreviewStyle }) => (
