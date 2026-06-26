@@ -4,6 +4,10 @@ import { expect, within } from 'storybook/test'
 import { Typography } from '@/components/foundation/typography'
 import type { TypographySize, TypographyVariant, TypographyWeight } from '@components/foundation/typography'
 import { Flex } from '@/components/layout/flex'
+import { lightColors } from '@theme/colors/light.ts'
+import type { ThemeColor } from '@theme'
+
+const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
 
 const VARIANTS: TypographyVariant[] = [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -26,6 +30,7 @@ const meta = {
         variant: { control: 'select', options: VARIANTS },
         fontSize: { control: 'select', options: [undefined, ...SIZES] },
         fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
+        color: { control: 'select', options: [undefined, ...THEME_COLORS] },
         ellipsis: { control: 'boolean' },
     },
     args: {
@@ -45,7 +50,13 @@ export const AccessibilityBestPractices: Story = {
     tags: ['!dev'],
     parameters: { controls: { disable: true }, layout: 'padded' },
     render: () => (
-        <Flex direction={'column'} align={'stretch'} gap={'xl'} p={'lg'} style={{ maxWidth: '42rem' }}>
+        <Flex
+            direction={'column'}
+            align={'stretch'}
+            gap={'xl'}
+            p={'lg'}
+            style={{ maxWidth: '42rem' }}
+        >
 
             {/* Heading hierarchy */}
             <section aria-labelledby={'section-heading'}>
@@ -92,7 +103,12 @@ export const AccessibilityBestPractices: Story = {
                     variant={'h3'}
                     id={'label-heading'}
                 >Pair labels with inputs</Typography>
-                <Flex direction={'column'} align={'stretch'} gap={'xs'} mt={'sm'}>
+                <Flex
+                    direction={'column'}
+                    align={'stretch'}
+                    gap={'xs'}
+                    mt={'sm'}
+                >
                     <label htmlFor={'email-input'}>
                         <Typography variant={'label'}>Email address</Typography>
                     </label>
@@ -183,7 +199,13 @@ export const Default: Story = {
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <Flex direction={'column'} align={'stretch'} gap={'md'} p={'lg'} style={{ maxWidth: '42rem' }}>
+        <Flex
+            direction={'column'}
+            align={'stretch'}
+            gap={'md'}
+            p={'lg'}
+            style={{ maxWidth: '42rem' }}
+        >
             <Typography variant={'h1'}>h1 — Heading 1</Typography>
             <Typography variant={'h2'}>h2 — Heading 2</Typography>
             <Typography variant={'h3'}>h3 — Heading 3</Typography>

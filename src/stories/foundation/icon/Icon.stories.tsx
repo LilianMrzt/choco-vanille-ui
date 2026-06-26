@@ -4,8 +4,11 @@ import { expect } from 'storybook/test'
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
 import { Flex } from '@/components/layout/flex'
+import { lightColors } from '@theme/colors/light.ts'
+import type { ThemeColor } from '@theme'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
+const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
 
 const meta = {
     title: 'Foundation/Icon',
@@ -13,6 +16,7 @@ const meta = {
     parameters: { layout: 'centered' },
     argTypes: {
         size: { control: 'select', options: SIZES },
+        color: { control: 'select', options: [undefined, ...THEME_COLORS] },
         spin: { control: 'boolean' },
         'aria-label': { control: 'text' },
     },
@@ -39,7 +43,11 @@ export const Default: Story = {
 export const AllSizes: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
-        <Flex align={'center'} gap={'xl'} p={'lg'}>
+        <Flex
+            align={'center'}
+            gap={'xl'}
+            p={'lg'}
+        >
             {SIZES.map((size) => (
                 <Flex
                     key={size}
