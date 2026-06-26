@@ -9,8 +9,6 @@ import { vars } from '@theme/contract.css.ts'
  */
 export const dropdownMenuShortcutClass = style({
     marginLeft: 'auto',
-    display: 'inline-flex',
-    alignItems: 'center',
     fontSize: vars.fontSize.xs,
     fontFamily: vars.fontFamily.mono,
     letterSpacing: vars.letterSpacing.wide,

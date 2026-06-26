@@ -1,8 +1,7 @@
 import * as RadixRadioGroup from '@radix-ui/react-radio-group'
 import type { FC } from 'react'
 
-import { cn } from '@utils/cn.ts'
-import { radioGroupRootClass } from '@components/forms/radio-group/RadioGroup.css.ts'
+import { Flex } from '@components/layout/flex'
 import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioGroup.props.ts'
 
 /**
@@ -19,9 +18,15 @@ import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioG
  */
 const RadioGroup: FC<RadioGroupProps> = ({ className, ...props }) => (
     <RadixRadioGroup.Root
-        className={cn(radioGroupRootClass, className)}
+        asChild
         {...props}
-    />
+    >
+        <Flex
+            direction={'column'}
+            gap={'sm'}
+            className={className}
+        />
+    </RadixRadioGroup.Root>
 )
 
 RadioGroup.displayName = 'RadioGroup'

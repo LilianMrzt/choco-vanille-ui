@@ -10,6 +10,7 @@ const Flex: FC<FlexProps> = ({
     wrap,
     align,
     justify,
+    inline,
     gap = 'sm',
     className,
     ...props
@@ -17,7 +18,7 @@ const Flex: FC<FlexProps> = ({
     return (
         <Box
             gap={gap}
-            className={cn(flexRecipe({ direction, wrap, align, justify }), className)}
+            className={cn(flexRecipe({ direction, wrap, align, justify, inline }), className)}
             {...props}
         />
     )

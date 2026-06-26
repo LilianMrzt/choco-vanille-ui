@@ -6,6 +6,10 @@ export const flexRecipe = recipe({
     },
 
     variants: {
+        inline: {
+            true: { display: 'inline-flex' },
+        },
+
         direction: {
             row: { flexDirection: 'row' },
             column: { flexDirection: 'column' },

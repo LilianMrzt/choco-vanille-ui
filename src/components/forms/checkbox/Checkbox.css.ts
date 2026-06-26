@@ -35,70 +35,64 @@ export const checkboxRootClass = style({
         `box-shadow ${vars.duration.fast} ${vars.easing.standard}`,
     ].join(', '),
     selectors: {
-        /* ── Standalone: hover (only when NOT disabled) ─────────── */
+        /* Standalone: hover (only when NOT disabled) */
         '&:not([data-disabled]):hover': {
             borderColor: vars.color.primaryHover,
             backgroundColor: vars.color.primarySubtle,
         },
-        /* ── Standalone: active (only when NOT disabled) ────────── */
+        /* Standalone: active (only when NOT disabled) */
         '&:not([data-disabled]):active': {
             borderColor: vars.color.primaryActive,
             backgroundColor: vars.color.primarySubtleActive,
         },
-        /* ── Standalone: focus ring ──────────────────────────────── */
+        /* Standalone: focus ring */
         '&:focus-visible': {
             outline: 'none',
             boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
         },
-        /* ── Standalone: checked ─────────────────────────────────── */
+        /* Standalone: checked */
         '&[data-state="checked"]': {
             backgroundColor: vars.color.primary,
             borderColor: vars.color.primary,
             color: vars.color.primaryForeground,
         },
-        /* ── Standalone: checked + hover (only when NOT disabled) ── */
+        /* Standalone: checked + hover (only when NOT disabled) */
         '&[data-state="checked"]:not([data-disabled]):hover': {
             backgroundColor: vars.color.primaryHover,
             borderColor: vars.color.primaryHover,
         },
-        /* ── Standalone: checked + active (only when NOT disabled) ── */
+        /* Standalone: checked + active (only when NOT disabled) */
         '&[data-state="checked"]:not([data-disabled]):active': {
             backgroundColor: vars.color.primaryActive,
             borderColor: vars.color.primaryActive,
         },
-        /* ── Standalone: disabled ────────────────────────────────── */
+        /* Standalone: disabled */
         '&[data-disabled]': {
             cursor: 'not-allowed',
             opacity: 0.45,
         },
-        /* ── Dropdown: highlighted parent ────────────────────────── */
+        /* Dropdown: highlighted parent */
         '[data-highlighted] &': {
             borderColor: vars.color.primaryHover,
             backgroundColor: vars.color.primarySubtle,
         },
-        /* ── Dropdown: checked parent ────────────────────────────── */
+        /* Dropdown: checked parent */
         '[data-state="checked"] &': {
             backgroundColor: vars.color.primary,
             borderColor: vars.color.primary,
             color: vars.color.primaryForeground,
         },
-        /* ── Dropdown: checked + highlighted parent ──────────────── */
+        /* Dropdown: checked + highlighted parent */
         '[data-state="checked"][data-highlighted] &': {
             backgroundColor: vars.color.primaryHover,
             borderColor: vars.color.primaryHover,
         },
-        /* ── Dropdown: disabled parent — neutralise hover on span ── */
+        /* Dropdown: disabled parent — neutralize hover on span */
         '[data-disabled] &': {
             cursor: 'not-allowed',
             pointerEvents: 'none',
         },
     },
-})
-/** Wrapper that aligns the control and its optional label side-by-side. */
-export const checkboxWrapperClass = style({
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: vars.space.sm,
 })
 /**
  * Indicator slot — keeps the check icon centred.

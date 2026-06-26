@@ -3,10 +3,10 @@ import { useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
+import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import {
     radioItemRootClass,
-    radioItemWrapperClass,
     radioIndicatorClass,
     radioItemLabelClass,
 } from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
@@ -26,7 +26,11 @@ const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }
     const radioId = id ?? (label ? generatedId : undefined)
 
     return (
-        <span className={radioItemWrapperClass}>
+        <Flex
+            as={'span'}
+            inline
+            gap={'sm'}
+        >
             <RadixRadioGroup.Item
                 id={radioId}
                 value={value}
@@ -52,7 +56,7 @@ const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }
                     {label}
                 </Typography>
             )}
-        </span>
+        </Flex>
     )
 }
 

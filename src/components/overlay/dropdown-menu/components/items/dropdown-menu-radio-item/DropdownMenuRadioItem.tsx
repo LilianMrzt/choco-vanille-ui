@@ -4,6 +4,8 @@ import { cn } from '@utils/cn.ts'
 import {
     dropdownMenuItemClass,
 } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
+import { Box } from '@components/layout/box'
+import { Flex } from '@components/layout/flex'
 import {
     radioIndicatorClass,
     radioItemRootClass
@@ -11,7 +13,7 @@ import {
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
-import type { FC } from "react";
+import type { FC } from "react"
 
 const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
     className,
@@ -19,23 +21,15 @@ const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
     onSelect,
     ...props
 }) => (
-        <RadixDropdownMenu.RadioItem
-        className={cn(dropdownMenuItemClass, className)}
-        onSelect={(e) => {
-            e.preventDefault()
-            onSelect?.(e)
-        }}
-        {...props}
-    >
-            <span className={radioItemRootClass}>
+    <RadixDropdownMenu.RadioItem asChild onSelect={(e) => { e.preventDefault(); onSelect?.(e) }} {...props}>
+        <Flex gap={'sm'} className={cn(dropdownMenuItemClass, className)}>
+            <Box as={'span'} className={radioItemRootClass}>
                 <RadixDropdownMenu.ItemIndicator className={radioIndicatorClass}>
-                    <Icon
-                        icon={'mdi:circle'}
-                        size={'xs'}
-                    />
+                    <Icon icon={'mdi:circle'} size={'xs'} />
                 </RadixDropdownMenu.ItemIndicator>
-            </span>
-        <Typography as={'span'} variant={'span'}>{label}</Typography>
+            </Box>
+            <Typography as={'span'} variant={'span'}>{label}</Typography>
+        </Flex>
     </RadixDropdownMenu.RadioItem>
 )
 

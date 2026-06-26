@@ -3,10 +3,10 @@ import { useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
+import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import {
     checkboxRootClass,
-    checkboxWrapperClass,
     checkboxIndicatorClass,
     checkboxLabelClass,
 } from '@components/forms/checkbox/Checkbox.css.ts'
@@ -28,7 +28,11 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
     const checkboxId = id ?? (label ? generatedId : undefined)
 
     return (
-        <span className={checkboxWrapperClass}>
+        <Flex
+            as={'span'}
+            inline
+            gap={'sm'}
+        >
             <RadixCheckbox.Root
                 id={checkboxId}
                 className={cn(checkboxRootClass, className)}
@@ -53,7 +57,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
                     {label}
                 </Typography>
             )}
-        </span>
+        </Flex>
     )
 }
 

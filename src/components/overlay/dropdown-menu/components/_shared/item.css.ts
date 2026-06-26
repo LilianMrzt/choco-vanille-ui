@@ -8,9 +8,6 @@ import { vars } from '@theme/contract.css.ts'
  */
 export const dropdownMenuItemClass = style({
     position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    gap: vars.space.sm,
     borderRadius: vars.radius.sm,
     paddingBlock: vars.space.xs2,
     paddingInline: vars.space.sm,
@@ -66,9 +63,6 @@ export const dropdownMenuItemIconClass = style({
     flexShrink: 0,
     width: '1rem',
     height: '1rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     color: 'inherit',
     transition: `color ${vars.duration.fast} ${vars.easing.standard}`,
 })

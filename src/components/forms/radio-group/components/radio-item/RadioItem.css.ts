@@ -90,13 +90,6 @@ export const radioItemRootClass = style({
     },
 })
 
-/** Wrapper that aligns the radio button and its optional label. */
-export const radioItemWrapperClass = style({
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: vars.space.sm,
-})
-
 /**
  * Indicator slot inside the circle.
  * `color: inherit` picks up `primaryForeground` from the checked root.
