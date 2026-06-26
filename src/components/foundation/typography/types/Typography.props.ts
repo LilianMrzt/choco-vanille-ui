@@ -11,4 +11,6 @@ export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
     as?: React.ElementType;
     /** Optional theme color token applied to the text's `color` CSS property. */
     color?: ThemeColor;
+    /** Associates the element with a form control — forwarded as the native `for` attribute (use with `as="label"`). */
+    htmlFor?: string;
   };
