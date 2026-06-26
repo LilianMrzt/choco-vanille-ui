@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within, waitFor } from 'storybook/test'
-import { Icon } from '@/components/foundation/icon'
 import { Button } from '@/components/actions/button'
 
 import {
@@ -19,7 +18,7 @@ import {
     DropdownMenuSubContent,
 } from '@/components/overlay/dropdown-menu'
 
-//  Meta
+// Meta
 
 const meta = {
     title: 'Overlay/DropdownMenu',
@@ -38,7 +37,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-//  Default
+// All features — single story showcasing every building block
 
 export const Default: Story = {
     render: () => (
@@ -51,91 +50,96 @@ export const Default: Story = {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-                <DropdownMenuLabel>{'My Account'}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
 
+                {/* Regular items with icons & shortcuts */}
+                <DropdownMenuLabel label={'Account'} />
+                <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem
-                        startIcon={<Icon icon={'mdi:account-outline'} />}
+                        label={'Profile'}
+                        startIcon={'mdi:account-outline'}
                         shortcut={'⇧⌘P'}
-                    >
-                        {'Profile'}
-                    </DropdownMenuItem>
+                    />
                     <DropdownMenuItem
-                        startIcon={<Icon icon={'mdi:credit-card-outline'} />}
-                        shortcut={'⌘B'}
-                    >
-                        {'Billing'}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                        startIcon={<Icon icon={'mdi:cog-outline'} />}
+                        label={'Settings'}
+                        startIcon={'mdi:cog-outline'}
                         shortcut={'⌘S'}
-                    >
-                        {'Settings'}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                        startIcon={<Icon icon={'mdi:keyboard-outline'} />}
-                        shortcut={'⌘K'}
-                    >
-                        {'Keyboard shortcuts'}
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
-
-                <DropdownMenuSeparator />
-
-                <DropdownMenuGroup>
-                    <DropdownMenuItem startIcon={<Icon icon={'mdi:account-group-outline'} />}>
-                        {'Team'}
-                    </DropdownMenuItem>
+                    />
+                    {/* Sub-menu */}
                     <DropdownMenuSub>
-                        <DropdownMenuSubTrigger startIcon={<Icon icon={'mdi:account-plus-outline'} />}>
-                            {'Invite users'}
-                        </DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger
+                            label={'Invite users'}
+                            startIcon={'mdi:account-plus-outline'}
+                        />
                         <DropdownMenuSubContent>
-                            <DropdownMenuItem startIcon={<Icon icon={'mdi:email-outline'} />}>
-                                {'Email'}
-                            </DropdownMenuItem>
-                            <DropdownMenuItem startIcon={<Icon icon={'mdi:message-outline'} />}>
-                                {'Message'}
-                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                label={'Email'}
+                                startIcon={'mdi:email-outline'}
+                            />
+                            <DropdownMenuItem
+                                label={'Message'}
+                                startIcon={'mdi:message-outline'}
+                            />
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem startIcon={<Icon icon={'mdi:dots-horizontal'} />}>
-                                {'More…'}
-                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                label={'More…'}
+                                startIcon={'mdi:dots-horizontal'}
+                            />
                         </DropdownMenuSubContent>
                     </DropdownMenuSub>
+                    {/* Disabled item */}
                     <DropdownMenuItem
-                        startIcon={<Icon icon={'mdi:plus'} />}
-                        shortcut={'⌘+T'}
-                    >
-                        {'New team'}
-                    </DropdownMenuItem>
+                        label={'API (unavailable)'}
+                        startIcon={'mdi:cloud-off-outline'}
+                        disabled
+                    />
                 </DropdownMenuGroup>
 
+                {/* Checkbox items */}
                 <DropdownMenuSeparator />
+                <DropdownMenuLabel label={'Appearance'} />
+                <DropdownMenuCheckboxItem
+                    label={'Show status bar'}
+                    checked
+                />
+                <DropdownMenuCheckboxItem
+                    label={'Show activity bar'}
+                    checked={false}
+                />
 
-                <DropdownMenuItem startIcon={<Icon icon={'mdi:github'} />}>
-                    {'GitHub'}
-                </DropdownMenuItem>
-                <DropdownMenuItem startIcon={<Icon icon={'mdi:lifebuoy'} />}>
-                    {'Support'}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:cloud-off-outline'} />}
-                    disabled
-                >
-                    {'API (unavailable)'}
-                </DropdownMenuItem>
-
+                {/* Radio group */}
                 <DropdownMenuSeparator />
+                <DropdownMenuLabel label={'Panel position'} />
+                <DropdownMenuRadioGroup value={'bottom'}>
+                    <DropdownMenuRadioItem
+                        label={'Top'}
+                        value={'top'}
+                    />
+                    <DropdownMenuRadioItem
+                        label={'Bottom'}
+                        value={'bottom'}
+                    />
+                    <DropdownMenuRadioItem
+                        label={'Right'}
+                        value={'right'}
+                    />
+                </DropdownMenuRadioGroup>
 
+                {/* Destructive + disabled destructive */}
+                <DropdownMenuSeparator />
                 <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:logout'} />}
-                    shortcut={'⇧⌘Q'}
+                    label={'Delete (unavailable)'}
+                    startIcon={'mdi:trash-can-outline'}
+                    shortcut={'⌫'}
                     destructive
-                >
-                    {'Log out'}
-                </DropdownMenuItem>
+                    disabled
+                />
+                <DropdownMenuItem
+                    label={'Log out'}
+                    startIcon={'mdi:logout'}
+                    destructive
+                />
+
             </DropdownMenuContent>
         </DropdownMenu>
     ),
@@ -148,142 +152,4 @@ export const Default: Story = {
             expect(document.querySelector('[role="menu"]')).toBeTruthy(),
         )
     },
-}
-
-//  Checkboxes
-
-export const WithCheckboxItems: Story = {
-    render: () => (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    label={'View options'}
-                    variant={'outlined'}
-                    endIcon={'mdi:tune'}
-                />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent>
-                <DropdownMenuLabel>{'Appearance'}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem checked>
-                    {'Show status bar'}
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem checked={false}>
-                    {'Show activity bar'}
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem checked={false}>
-                    {'Show panel'}
-                </DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    ),
-}
-
-//  Radio group
-
-export const WithRadioItems: Story = {
-    render: () => (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    label={'Change position'}
-                    variant={'outlined'}
-                    endIcon={'mdi:chevron-down'}
-                />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent>
-                <DropdownMenuLabel>{'Panel position'}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuRadioGroup value={'bottom'}>
-                    <DropdownMenuRadioItem value={'top'}>{'Top'}</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value={'bottom'}>{'Bottom'}</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value={'right'}>{'Right'}</DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    ),
-}
-
-//  Destructive actions
-
-export const WithDestructiveItems: Story = {
-    render: () => (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    label={'Actions'}
-                    color={'destructive'}
-                    variant={'outlined'}
-                    endIcon={'mdi:chevron-down'}
-                />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent>
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:pencil-outline'} />}
-                    shortcut={'⌘E'}
-                >
-                    {'Rename'}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:content-copy'} />}
-                    shortcut={'⌘D'}
-                >
-                    {'Duplicate'}
-                </DropdownMenuItem>
-                <DropdownMenuItem startIcon={<Icon icon={'mdi:archive-outline'} />}>
-                    {'Archive'}
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:trash-can-outline'} />}
-                    shortcut={'⌫'}
-                    destructive
-                >
-                    {'Delete'}
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    ),
-}
-
-//  Disabled items
-
-export const WithDisabledItems: Story = {
-    render: () => (
-        <DropdownMenu defaultOpen>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    label={'Options'}
-                    variant={'ghost'}
-                    endIcon={'mdi:chevron-down'}
-                />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent>
-                <DropdownMenuItem startIcon={<Icon icon={'mdi:eye-outline'} />}>
-                    {'View'}
-                </DropdownMenuItem>
-                <DropdownMenuItem startIcon={<Icon icon={'mdi:pencil-outline'} />}>
-                    {'Edit'}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:share-outline'} />}
-                    disabled
-                >
-                    {'Share (unavailable)'}
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                    startIcon={<Icon icon={'mdi:trash-can-outline'} />}
-                    destructive
-                    disabled
-                >
-                    {'Delete (unavailable)'}
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-    ),
 }

@@ -7,6 +7,7 @@ import {
 } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.css.ts'
 import { dropdownMenuItemIconClass } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types/DropdownMenuSubTrigger.props.ts'
 
 /**
@@ -16,7 +17,7 @@ import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-m
 const DropdownMenuSubTrigger = ({
     className,
     startIcon,
-    children,
+    label,
     ...props
 }: DropdownMenuSubTriggerProps) => (
     <RadixDropdownMenu.SubTrigger
@@ -28,10 +29,10 @@ const DropdownMenuSubTrigger = ({
                 className={dropdownMenuItemIconClass}
                 aria-hidden
             >
-                {startIcon}
+                <Icon icon={startIcon} size={'xs'} />
             </span>
         )}
-        <span style={{ flex: 1 }}>{children}</span>
+        <Typography as={'span'} variant={'span'} style={{ flex: 1 }}>{label}</Typography>
         <span
             className={dropdownMenuSubTriggerChevronClass}
             aria-hidden

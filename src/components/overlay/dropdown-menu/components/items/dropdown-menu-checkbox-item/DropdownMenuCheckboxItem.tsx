@@ -8,6 +8,7 @@ import {
     dropdownMenuCheckboxBoxClass,
 } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/DropdownMenuCheckboxItem.css.ts'
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types/DropdownMenuCheckboxItem.props.ts'
 
 /**
@@ -17,7 +18,7 @@ import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown
  */
 const DropdownMenuCheckboxItem = ({
     className,
-    children,
+    label,
     checked,
     onSelect,
     ...props
@@ -39,7 +40,7 @@ const DropdownMenuCheckboxItem = ({
                 />
             </RadixDropdownMenu.ItemIndicator>
         </span>
-        {children}
+        <Typography as={'span'} variant={'span'}>{label}</Typography>
     </RadixDropdownMenu.CheckboxItem>
 )
 

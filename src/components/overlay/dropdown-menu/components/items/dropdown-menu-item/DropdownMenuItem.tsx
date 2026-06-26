@@ -6,6 +6,8 @@ import {
     dropdownMenuItemDestructiveClass,
     dropdownMenuItemIconClass,
 } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
+import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.tsx'
 import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types/DropdownMenuItem.props.ts'
 
@@ -15,11 +17,10 @@ import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/co
  * @example
  * ```tsx
  * <DropdownMenuItem
- *     startIcon={<Icon icon={'mdi:pencil'} />}
+ *     label={'Edit'}
+ *     startIcon={'mdi:pencil'}
  *     shortcut={'⌘E'}
- * >
- *     Edit
- * </DropdownMenuItem>
+ * />
  * ```
  */
 const DropdownMenuItem = ({
@@ -28,7 +29,7 @@ const DropdownMenuItem = ({
     startIcon,
     endIcon,
     shortcut,
-    children,
+    label,
     ...props
 }: DropdownMenuItemProps) => (
     <RadixDropdownMenu.Item
@@ -44,10 +45,10 @@ const DropdownMenuItem = ({
                 className={dropdownMenuItemIconClass}
                 aria-hidden
             >
-                {startIcon}
+                <Icon icon={startIcon} size={'xs'} />
             </span>
         )}
-        <span style={{ flex: 1 }}>{children}</span>
+        <Typography as={'span'} variant={'span'} style={{ flex: 1 }}>{label}</Typography>
         {shortcut && (
             <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>
         )}
@@ -56,7 +57,7 @@ const DropdownMenuItem = ({
                 className={dropdownMenuItemIconClass}
                 aria-hidden
             >
-                {endIcon}
+                <Icon icon={endIcon} size={'xs'} />
             </span>
         )}
     </RadixDropdownMenu.Item>
@@ -65,5 +66,4 @@ const DropdownMenuItem = ({
 DropdownMenuItem.displayName = 'DropdownMenuItem'
 
 export default DropdownMenuItem
-
 

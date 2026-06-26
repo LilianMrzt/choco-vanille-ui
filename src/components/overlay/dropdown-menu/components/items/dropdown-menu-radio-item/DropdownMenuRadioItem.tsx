@@ -8,6 +8,7 @@ import {
     dropdownMenuRadioCircleClass,
 } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/DropdownMenuRadioItem.css.ts'
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
 
 /**
@@ -17,7 +18,7 @@ import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-me
  */
 const DropdownMenuRadioItem = ({
     className,
-    children,
+    label,
     onSelect,
     ...props
 }: DropdownMenuRadioItemProps) => (
@@ -37,7 +38,7 @@ const DropdownMenuRadioItem = ({
                 />
             </RadixDropdownMenu.ItemIndicator>
         </span>
-        {children}
+        <Typography as={'span'} variant={'span'}>{label}</Typography>
     </RadixDropdownMenu.RadioItem>
 )
 

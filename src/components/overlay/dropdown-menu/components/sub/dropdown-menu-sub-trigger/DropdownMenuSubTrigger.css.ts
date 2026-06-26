@@ -35,7 +35,6 @@ export const dropdownMenuSubTriggerChevronClass = style({
 
     selectors: {
         '[data-state="open"] &': {
-            transform: 'rotate(90deg)',
             color: vars.color.primarySubtleForeground,
         },
         '[data-highlighted] &': {
