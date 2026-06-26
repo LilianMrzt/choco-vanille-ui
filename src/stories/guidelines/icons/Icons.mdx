@@ -1,0 +1,130 @@
+import {
+    Meta,
+    Source,
+    Subtitle,
+    Title,
+} from '@storybook/addon-docs/blocks'
+
+<Meta title="Guidelines/Icons" />
+
+<Title />
+
+<Subtitle>
+  Comment définir et utiliser correctement les icônes dans votre projet grâce au composant <code>Icon</code> et à un <strong>IconRegistry</strong> centralisé.
+</Subtitle>
+
+---
+
+## 1 - Le composant `Icon`
+
+Le composant `Icon` de la librairie s'appuie sur **Iconify** pour accéder à plus de 200 000 icônes issues de 150+ jeux d'icônes. Il suffit de passer l'identifiant Iconify au prop `icon`.
+
+<Source
+  language="tsx"
+  code={`import { Icon } from '@my-org/ui-kit';
+
+// Icône décorative - masquée aux lecteurs d'écran
+<Icon icon="mdi:home" />
+
+// Icône sémantique - annoncée avec un label accessible
+<Icon icon="mdi:alert-circle" aria-label="Attention" />`}
+/>
+
+---
+
+## 2 - Définir un `IconRegistry` dans votre projet
+
+Plutôt que de disperser des chaînes Iconify (`"mdi:home"`, `"ph:gear"`, …) dans tous vos composants, **centralisez-les dans un registry**.
+
+Cela vous apporte :
+
+| Avantage | Détail |
+| --- | --- |
+| 🔄 **Maintenabilité** | Changer de jeu d'icônes ? Un seul fichier à modifier. |
+| 🔒 **Type-safety** | TypeScript restreint les valeurs autorisées. |
+| 📖 **Cohérence** | Les développeurs savent toujours où trouver les icônes disponibles. |
+| 🔍 **Traçabilité** | Retrouver facilement où une icône est utilisée. |
+
+### Créer le registry
+
+Créez un fichier `src/icons/registry.ts` dans votre application :
+
+<Source
+  language="ts"
+  code={`// src/icons/registry.ts
+
+/**
+ * IconRegistry - mappe un nom sémantique vers son identifiant Iconify.
+ *
+ * Format Iconify : "<set>:<icon>"
+ * Parcourez les jeux disponibles sur https://icon-sets.iconify.design/
+ *
+ * Conventions :
+ *  - camelCase pour les clés  →  arrowRight, not arrow-right
+ *  - Groupez par domaine fonctionnel si le registry devient grand
+ */
+export const IconRegistry = {
+    // Navigation
+    home:       'mdi:home',
+    arrowRight: 'mdi:arrow-right',
+    arrowLeft:  'mdi:arrow-left',
+    close:      'mdi:close',
+
+    // Actions
+    settings:   'mdi:cog',
+    edit:       'mdi:pencil',
+    delete:     'mdi:trash-can',
+    add:        'mdi:plus',
+    search:     'mdi:magnify',
+
+    // Feedback
+    success:    'mdi:check-circle',
+    warning:    'mdi:alert',
+    error:      'mdi:alert-circle',
+    info:       'mdi:information',
+
+    // État
+    loading:    'mdi:loading',
+} as const`}
+/>
+
+### Utilisation dans vos composants
+
+Il suffit d'utiliser directement le composant `Icon` en passant la valeur du registry :
+
+<Source
+  language="tsx"
+  code={`import { Icon } from '@my-org/ui-kit'
+import { IconRegistry } from '@/icons/registry'
+
+<Icon icon={IconRegistry.home} />
+<Icon icon={IconRegistry.settings} size="lg" aria-label="Paramètres" />
+<Icon icon={IconRegistry.loading} spin />`}
+/>
+
+---
+
+## 3 - Bonnes pratiques
+
+### Accessibilité
+
+| Situation | Recommandation |
+| --- | --- |
+| Icône **décorative** (accompagnée d'un label texte) | Omettez `aria-label` → `aria-hidden="true"` est posé automatiquement |
+| Icône **seule** porteuse de sens | Passez `aria-label` avec une description explicite |
+
+### Choisir le bon jeu d'icônes
+
+Nous recommandons d'utiliser un **seul jeu d'icônes** par projet pour garantir la cohérence visuelle.
+
+Parcourez les jeux disponibles sur [icon-sets.iconify.design](https://icon-sets.iconify.design/).
+
+### Nommage des clés
+
+```
+✅  home, arrowRight, deleteUser, loadingSpinner
+❌  arrow-right, ArrowRight, ARROW_RIGHT, icon_home
+```
+
+Utilisez le **camelCase** et des noms **sémantiques** (ce que représente l'icône) plutôt que descriptifs (sa forme).
+

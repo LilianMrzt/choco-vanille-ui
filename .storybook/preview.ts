@@ -29,6 +29,11 @@ addIcon('mdi:pencil', {
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['Overview', 'Guidelines', '*'],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

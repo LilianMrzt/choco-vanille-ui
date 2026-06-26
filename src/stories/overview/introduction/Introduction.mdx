@@ -1,0 +1,111 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Introduction" />
+
+# @my-org/ui-kit
+
+Un kit de composants React 19 construit avec **Vite**, **Vanilla Extract** (CSS-in-TS zéro-runtime) et les primitives **Radix UI**.
+
+---
+
+## À quoi ça sert ?
+
+`@my-org/ui-kit` est la **bibliothèque de composants partagée** de l'organisation. Son rôle est de centraliser l'ensemble des briques d'interface réutilisables pour que chaque produit dispose :
+
+| Bénéfice | Détail |
+| --- | --- |
+| 🎨 **Cohérence visuelle** | Un seul système de design tokens (couleurs, espacement, radius, typographie, ombres…) partagé entre tous les projets. |
+| ⚡ **Vitesse de développement** | Des composants accessibles, typés et documentés prêts à l'emploi - pas besoin de réinventer la roue. |
+| ♿ **Accessibilité** | Les composants sont bâtis sur les primitives Radix UI et audités avec axe-core dans chaque story. |
+| 🔒 **Type-safety** | Tokens, props et variantes entièrement typés - les erreurs sont détectées à la compilation. |
+| 🌗 **Thèmes Light / Dark** | Le mode sombre suit l'OS par défaut (`prefers-color-scheme`) et peut être forcé par subtree. |
+
+---
+
+## Installation
+
+<Source
+  language="bash"
+  code={`yarn add @my-org/ui-kit react react-dom`}
+/>
+
+Importez la feuille de styles une seule fois dans votre point d'entrée :
+
+<Source
+  language="ts"
+  code={`import '@my-org/ui-kit/styles.css';`}
+/>
+
+---
+
+## Utilisation rapide
+
+<Source
+  language="tsx"
+  code={`import { Text, Button } from '@my-org/ui-kit';
+
+export function Example() {
+  return (
+    <>
+      <Text variant="h1">Bonjour 👋</Text>
+      <Text variant="muted">Une primitive typographique.</Text>
+      <Button intent="primary" onClick={() => alert('Cliqué !')}>
+        Action principale
+      </Button>
+    </>
+  );
+}`}
+/>
+
+---
+
+## Theming - remplacer les tokens
+
+Tous les tokens sont exposés en tant que **variables CSS** sur `:root` (ex. `--color-primary`, `--space-md`, `--radius-sm`).
+Vous pouvez les surcharger globalement dans votre CSS pour rebaptiser le kit sans toucher au code :
+
+<Source
+  language="css"
+  code={`:root {
+  --color-primary: oklch(0.55 0.2 250); /* rebrand complet */
+  --radius-md: 0.25rem;                 /* coins plus carrés */
+}`}
+/>
+
+Dans vos fichiers `*.css.ts` (Vanilla Extract), accédez aux tokens via l'objet `vars` pour bénéficier de l'autocomplétion :
+
+<Source
+  language="ts"
+  code={`import { style } from '@vanilla-extract/css';
+import { vars } from '@my-org/ui-kit';
+
+export const card = style({
+  backgroundColor: vars.color.card,
+  color:           vars.color.cardForeground,
+  padding:         vars.space.lg,
+  borderRadius:    vars.radius.md,
+  boxShadow:       vars.shadow.sm,
+});`}
+/>
+
+---
+
+## Structure du dépôt
+
+```
+src/
+├── components/       # Composants (actions/, foundation/, overlay/, …)
+├── theme/
+│   ├── tokens/       # Tokens bruts (colors, spacing, radii, typography, …)
+│   ├── colors/       # Mapping light.ts / dark.ts → tokens sémantiques
+│   └── contract.css.ts  # Contrat CSS typé + enregistrement des thèmes
+├── stories/          # Documentation Storybook (MDX + stories)
+└── index.ts          # Point d'entrée public de la librairie
+```
+
+---
+
+## Ajouter un composant
+
+Placez le nouveau composant dans `src/components/<groupe>/<nom>/`, ré-exportez-le depuis `src/index.ts` et ajoutez une `*.stories.tsx` pour le documenter.
+
