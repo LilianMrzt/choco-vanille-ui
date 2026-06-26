@@ -10,4 +10,12 @@ export type DropdownMenuContentProps = React.ComponentPropsWithoutRef<typeof Rad
     align?: DropdownMenuAlign
     /** Offset in pixels from the trigger. @default 6 */
     sideOffset?: number
+    /**
+     * Distance in pixels from the viewport edges used for collision detection.
+     * The menu shifts inward by exactly the overflowing amount to always stay
+     * fully visible — without flipping to the opposite side.
+     * Accepts a uniform number or per-side object.
+     * @default 8
+     */
+    collisionPadding?: number | { top?: number; right?: number; bottom?: number; left?: number }
 }

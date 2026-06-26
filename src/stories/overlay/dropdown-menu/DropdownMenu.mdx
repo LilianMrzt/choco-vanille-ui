@@ -28,34 +28,44 @@ The `DropdownMenu` is a **compound component**: import each building block you n
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
 } from '@my-org/ui-kit';
 
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
-    <Button label="Open" endIcon={<Icon icon="mdi:chevron-down" />} />
+    <Button label="Open" endIcon="mdi:chevron-down" />
   </DropdownMenuTrigger>
 
   <DropdownMenuContent>
-    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuLabel label="My Account" />
     <DropdownMenuSeparator />
 
     <DropdownMenuGroup>
-      <DropdownMenuItem startIcon={<Icon icon="mdi:account-outline" />} shortcut="⇧⌘P">
-        Profile
-      </DropdownMenuItem>
-      <DropdownMenuItem startIcon={<Icon icon="mdi:cog-outline" />} shortcut="⌘S">
-        Settings
-      </DropdownMenuItem>
+      <DropdownMenuItem label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
+      <DropdownMenuItem label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
     </DropdownMenuGroup>
 
     <DropdownMenuSeparator />
 
-    <DropdownMenuItem startIcon={<Icon icon="mdi:logout" />} destructive shortcut="⇧⌘Q">
-      Log out
-    </DropdownMenuItem>
+    <DropdownMenuItem label="Log out" startIcon="mdi:logout" destructive shortcut="⇧⌘Q" />
   </DropdownMenuContent>
 </DropdownMenu>`}
+/>
+
+## Viewport collision
+
+The floating panel never flips to the opposite side. Instead, `DropdownMenuContent` detects how much it overflows each viewport edge and translates itself inward by exactly that amount, always keeping the full panel visible.
+
+The `collisionPadding` prop controls the minimum gap (in px) between the panel and each viewport edge:
+
+<Source
+  language="tsx"
+  code={`// uniform gap on all sides (default: 8)
+<DropdownMenuContent collisionPadding={12}>…</DropdownMenuContent>
+
+// per-side gap
+<DropdownMenuContent collisionPadding={{ top: 8, right: 16, bottom: 8, left: 8 }}>
+  …
+</DropdownMenuContent>`}
 />
 
 ## Accessibility
@@ -77,7 +87,7 @@ Keyboard navigation is built in: **Enter** / **Space** to open, **Arrow keys** t
 | `DropdownMenuTrigger` | The element that toggles the menu open / closed. |
 | `DropdownMenuContent` | The floating panel that contains menu items. |
 | `DropdownMenuGroup` | A logical grouping wrapper for related items. |
-| `DropdownMenuItem` | A single actionable item with optional icons and shortcut hint. |
+| `DropdownMenuItem` | A single actionable item with optional `startIcon`, `endIcon` (Iconify ids) and `shortcut` hint. |
 | `DropdownMenuCheckboxItem` | A toggleable item that shows a checkmark indicator when checked. |
 | `DropdownMenuRadioGroup` | Container for a set of mutually exclusive radio items. |
 | `DropdownMenuRadioItem` | A single radio option inside a `DropdownMenuRadioGroup`. |
@@ -93,6 +103,14 @@ A single menu showcasing all building blocks: regular items with icons & shortcu
 
 <Canvas of={DropdownMenuStories.Default} />
 
+## Viewport shift — near right edge
 
+Trigger positioned at the right edge of the viewport. The panel shifts left to stay fully visible.
 
+<Canvas of={DropdownMenuStories.NearRightEdge} />
 
+## Viewport shift — near bottom edge
+
+Trigger positioned at the bottom edge of the viewport. The panel shifts up to stay fully visible.
+
+<Canvas of={DropdownMenuStories.NearBottomEdge} />

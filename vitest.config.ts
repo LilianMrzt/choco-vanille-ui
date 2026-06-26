@@ -29,6 +29,7 @@ export default defineConfig({
       '@theme': path.resolve(dirname, 'src/theme'),
       '@constants': path.resolve(dirname, 'src/constants'),
       '@utils': path.resolve(dirname, 'src/utils'),
+      '@hooks': path.resolve(dirname, 'src/hooks'),
       '@stories': path.resolve(dirname, 'src/stories'),
       '@tests': path.resolve(dirname, 'tests'),
     },

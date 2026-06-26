@@ -27,6 +27,7 @@ export default defineConfig({
       '@theme': resolve(root, 'src/theme'),
       '@constants': resolve(root, 'src/constants'),
       '@utils': resolve(root, 'src/utils'),
+      '@hooks': resolve(root, 'src/hooks'),
       '@stories': resolve(root, 'src/stories'),
       '@tests': resolve(root, 'tests'),
     },

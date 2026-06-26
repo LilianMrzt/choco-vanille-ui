@@ -30,6 +30,8 @@
       "@constants": ["./src/constants"],
       "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"],
+      "@hooks": ["./src/hooks/index.ts"],
+      "@hooks/*": ["./src/hooks/*"],
       "@stories/*": ["./src/stories/*"],
       "@tests/*": ["./tests/*"]
     }
