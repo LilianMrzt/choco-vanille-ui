@@ -5,7 +5,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { darkColors } from '@theme/colors/dark.ts'
 import { lightColors } from '@theme/colors/light.ts'
 
-import type { ColorGroup, ColorPaletteSection } from '@stories/overview/theme/colors/components'
+import type { ColorGroup } from '@stories/overview/theme/colors/components'
+import { ColorPaletteSection } from '@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection'
 
 // Groupes de couleurs
 
