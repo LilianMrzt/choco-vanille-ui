@@ -1,7 +1,7 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
-import { spinAnimation } from '@constants/animations/spinAnimation.css.ts'
+import { spinAnimation } from '@constants/animations'
 
 export const iconRecipe = recipe({
     base: {
