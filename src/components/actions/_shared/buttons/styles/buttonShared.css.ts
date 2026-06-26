@@ -26,7 +26,6 @@ export const buttonBaseStyles = {
         `background-color ${vars.duration.normal} ${vars.easing.standard}`,
         `color ${vars.duration.normal} ${vars.easing.standard}`,
         `border-color ${vars.duration.normal} ${vars.easing.standard}`,
-        `filter ${vars.duration.normal} ${vars.easing.standard}`,
     ].join(', '),
     selectors: {
         '&:focus-visible': {

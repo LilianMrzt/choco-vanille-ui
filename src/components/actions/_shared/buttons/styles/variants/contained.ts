@@ -1,6 +1,9 @@
 import { vars } from '@theme/contract.css.ts'
 
-/** Compound variants for the "contained" visual variant. */
+/**
+ * Compound variants for the "contained" (solid) visual variant.
+ * Every intent follows the same pattern: solid fill + Hover/Active states.
+ */
 export const containedCompoundVariants = [
     {
         variants: { variant: 'contained', color: 'primary' },
@@ -41,8 +44,8 @@ export const containedCompoundVariants = [
             backgroundColor: vars.color.success,
             color: vars.color.successForeground,
             selectors: {
-                '&:hover': { filter: 'brightness(0.9)' },
-                '&:active': { filter: 'brightness(0.8)' },
+                '&:hover': { backgroundColor: vars.color.successHover },
+                '&:active': { backgroundColor: vars.color.successActive },
             },
         },
     },
@@ -52,8 +55,8 @@ export const containedCompoundVariants = [
             backgroundColor: vars.color.warning,
             color: vars.color.warningForeground,
             selectors: {
-                '&:hover': { filter: 'brightness(0.9)' },
-                '&:active': { filter: 'brightness(0.8)' },
+                '&:hover': { backgroundColor: vars.color.warningHover },
+                '&:active': { backgroundColor: vars.color.warningActive },
             },
         },
     },
@@ -63,8 +66,8 @@ export const containedCompoundVariants = [
             backgroundColor: vars.color.info,
             color: vars.color.infoForeground,
             selectors: {
-                '&:hover': { filter: 'brightness(0.9)' },
-                '&:active': { filter: 'brightness(0.8)' },
+                '&:hover': { backgroundColor: vars.color.infoHover },
+                '&:active': { backgroundColor: vars.color.infoActive },
             },
         },
     },

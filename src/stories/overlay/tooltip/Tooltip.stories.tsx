@@ -60,7 +60,7 @@ export const AllSides: Story = {
                     delayDuration={0}
                 >
                     <Button
-                        variant={'outline'}
+                        variant={'outlined'}
                         label={side}
                     />
                 </Tooltip>

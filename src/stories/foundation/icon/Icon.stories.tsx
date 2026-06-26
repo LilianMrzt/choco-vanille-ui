@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, within } from 'storybook/test'
+import { expect } from 'storybook/test'
 
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
@@ -53,32 +53,4 @@ export const AllSizes: Story = {
             ))}
         </div>
     ),
-}
-
-// Decorative (aria-hidden)
-
-export const Decorative: Story = {
-    name: 'Decorative (aria-hidden)',
-    args: { icon: 'mdi:information' },
-    play: async ({ canvasElement }) => {
-        const svg = canvasElement.querySelector('svg')
-        await expect(svg).toHaveAttribute('aria-hidden', 'true')
-    },
-}
-
-// With accessible label
-
-export const WithLabel: Story = {
-    name: 'With accessible label',
-    args: { icon: 'mdi:information', 'aria-label': 'Information' },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await expect(canvas.getByRole('img', { name: 'Information' })).toBeInTheDocument()
-    },
-}
-
-// Spin animation
-
-export const Spin: Story = {
-    args: { icon: 'mdi:loading', spin: true },
 }

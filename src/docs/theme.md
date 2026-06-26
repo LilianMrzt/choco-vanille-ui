@@ -63,60 +63,56 @@ palette.red[500]    // 'oklch(0.637 0.237 25.3)'
 
 Maps palette values to *roles* — named slots that describe what a color is *used for*, not what it looks like. This is what allows the whole UI to switch themes by swapping one set of variables.
 
+### Naming convention — one symmetric set per intent
+
+Every **interactive intent** (`primary`, `secondary`, `success`, `warning`, `info`, `destructive`) ships the **exact same set of tokens**, so the API is predictable for both design and dev:
+
+| Family | Token | Used for |
+|---|---|---|
+| Solid | `{intent}` | Resting fill (contained buttons, solid badges) |
+| Solid | `{intent}Hover` | Fill on `:hover` |
+| Solid | `{intent}Active` | Fill on `:active` / pressed |
+| Solid | `{intent}Foreground` | Text/icon on the solid fill |
+| Subtle | `{intent}Subtle` | Resting tinted surface (ghost/outline/soft, alerts) |
+| Subtle | `{intent}SubtleHover` | Tinted surface on `:hover` |
+| Subtle | `{intent}SubtleActive` | Tinted surface on `:active` / pressed |
+| Subtle | `{intent}SubtleForeground` | Text/icon on the subtle surface |
+| Subtle | `{intent}SubtleBorder` | Border that pairs with the subtle surface |
+
+> **Rule of thumb** — reach for the **solid** family for primary actions, and the **subtle** family for low-emphasis controls (ghost/outline buttons), inline alerts, badges and highlighted menu items.
+
 ### Color roles reference
 
 #### Surfaces & text
 
 | Role | Light | Dark |
 |---|---|---|
-| `background` | neutral-0 | neutral-950 |
+| `background` | neutral-50 | neutral-950 |
 | `foreground` | neutral-950 | neutral-100 |
 | `card` / `cardForeground` | white / neutral-950 | neutral-900 / neutral-100 |
 | `popover` / `popoverForeground` | white / neutral-950 | neutral-900 / neutral-100 |
+| `muted` / `mutedForeground` | neutral-100 / neutral-600 | neutral-800 / neutral-400 |
+| `overlay` | black 50% | black 60% |
 
-#### Brand / primary
+#### Interactive intents (solid + subtle)
 
-| Role | Light | Dark |
+Each of the six intents exposes the nine tokens described above. Solid steps deepen on hover/active (light) or lighten (dark); subtle steps tint progressively.
+
+| Intent | Solid (light) | Subtle surface (light) |
 |---|---|---|
-| `primary` | brand-600 | brand-500 |
-| `primaryForeground` | neutral-0 | neutral-950 |
-| `primaryHover` | brand-700 | brand-400 |
-| `primaryActive` | brand-800 | brand-300 |
-
-#### Secondary
-
-| Role | Light | Dark |
-|---|---|---|
-| `secondary` | neutral-100 | neutral-800 |
-| `secondaryForeground` | neutral-900 | neutral-100 |
-| `secondaryHover` | neutral-200 | neutral-700 |
-| `secondaryActive` | neutral-300 | neutral-600 |
-
-#### Muted & accent
-
-| Role | Light | Dark |
-|---|---|---|
-| `muted` / `mutedForeground` | neutral-100 / neutral-500 | neutral-800 / neutral-400 |
-| `accent` / `accentForeground` | neutral-100 / neutral-900 | neutral-800 / neutral-100 |
-
-#### Status — solid + subtle pairs
-
-Each status intent ships in two flavours:  
-- **Solid** — for filled badges and buttons  
-- **Subtle** — tinted background + darker text, for banners, toasts, inline alerts
-
-| Intent | Roles |
-|---|---|
-| Success | `success`, `successForeground`, `successSubtle`, `successSubtleForeground` |
-| Warning | `warning`, `warningForeground`, `warningSubtle`, `warningSubtleForeground` |
-| Info | `info`, `infoForeground`, `infoSubtle`, `infoSubtleForeground` |
-| Destructive | `destructive`, `destructiveForeground`, `destructiveHover`, `destructiveActive`, `destructiveSubtle`, `destructiveSubtleForeground` |
+| `primary` | brand-600 → 700 → 800 | brand-50 → 100 → 200 |
+| `secondary` | neutral-200 → 300 → 400 | neutral-100 → 200 → 300 |
+| `success` | green-600 → 700 → 800 | green-50 → 100 → 200 |
+| `warning` | amber-500 → 600 → 700 (dark text) | amber-50 → 100 → 200 |
+| `info` | blue-600 → 700 → 800 | blue-50 → 100 → 200 |
+| `destructive` | red-600 → 700 → 800 | red-50 → 100 → 200 |
 
 #### Lines, fields & focus
 
 | Role | Description |
 |---|---|
 | `border` | Dividers, card outlines |
+| `borderStrong` | Stronger dividers, hovered borders, neutral outlines |
 | `input` | Input field borders |
 | `ring` | Focus ring |
 | `highlight` / `highlightForeground` | `<mark>` element |

@@ -50,11 +50,10 @@ export const dropdownMenuItemDestructiveClass = style({
     selectors: {
         '&[data-highlighted]': {
             backgroundColor: vars.color.destructiveSubtle,
-            color: vars.color.destructive,
+            color: vars.color.destructiveSubtleForeground,
         },
         '&[data-highlighted]:active': {
-            backgroundColor: vars.color.destructiveSubtle,
-            filter: 'brightness(0.96)',
+            backgroundColor: vars.color.destructiveSubtleHover,
         },
     },
 })
