@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import { CopyThemeButton } from './components/copy-theme-button'
+import { VarTable } from './components/var-table'
+import {
+  colorRows, shadowRows, dropShadowRows,
+  spacingRows, radiusRows,
+  fontFamilyRows, fontSizeRows, fontWeightRows, lineHeightRows, letterSpacingRows,
+  zIndexRows, durationRows, easingRows,
+} from './utils/theme.utils.ts'
+
+<Meta title="Overview/Theme/CSS Variables" />
+
+# CSS Variables
+
+The complete list of every CSS custom property exposed by `@my-org/ui-kit/styles.css`.
+All values are read directly from the theme source — this page updates automatically when tokens change.
+
+**Naming rule:** `--{category}-{token}`, the token kept as-is (camelCase) — e.g. `vars.color.primaryHover` → `--color-primaryHover`.
+
+Color and shadow tokens are **theme-dependent** (Light / Dark columns). All other tokens are identical across themes.
+
+<CopyThemeButton />
+
+---
+
+## Colors
+
+<VarTable rows={colorRows} showSwatch />
+
+---
+
+## Shadows
+
+### Box shadows — `--shadow-*`
+
+<VarTable rows={shadowRows} />
+
+### Drop shadows — `--dropShadow-*`
+
+<VarTable rows={dropShadowRows} />
+
+---
+
+## Spacing — `--space-*`
+
+<VarTable rows={spacingRows} />
+
+---
+
+## Radius — `--radius-*`
+
+<VarTable rows={radiusRows} />
+
+---
+
+## Typography
+
+### Font families — `--fontFamily-*`
+
+<VarTable rows={fontFamilyRows} />
+
+### Font sizes — `--fontSize-*`
+
+<VarTable rows={fontSizeRows} />
+
+### Font weights — `--fontWeight-*`
+
+<VarTable rows={fontWeightRows} />
+
+### Line heights — `--lineHeight-*`
+
+<VarTable rows={lineHeightRows} />
+
+### Letter spacing — `--letterSpacing-*`
+
+<VarTable rows={letterSpacingRows} />
+
+---
+
+## Z-index — `--zIndex-*`
+
+<VarTable rows={zIndexRows} />
+
+---
+
+## Motion
+
+### Durations — `--duration-*`
+
+<VarTable rows={durationRows} />
+
+### Easings — `--easing-*`
+
+<VarTable rows={easingRows} />
+
+---
+
+> See **Theme / Customization** to override any of these variables.
+

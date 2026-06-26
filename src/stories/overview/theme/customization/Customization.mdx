@@ -1,0 +1,129 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Theme/Customization" />
+
+# Customizing the theme
+
+Every token is a plain **CSS custom property** on `:root`, so you can re-skin the kit from **any** styling solution — plain CSS, Tailwind, or Vanilla Extract. No rebuild required: override a variable and every component in that scope updates.
+
+> Variable names are listed in **Theme / CSS Variables**.
+
+---
+
+## 1. Plain CSS (works everywhere)
+
+Override variables after importing the kit's stylesheet. This is the simplest approach and is framework-agnostic.
+
+<Source language="css" code={`@import '@my-org/ui-kit/styles.css';
+
+/* Global rebrand */
+:root {
+  --color-primary:           oklch(0.58 0.18 185); /* teal */
+  --color-primaryHover:      oklch(0.52 0.18 185);
+  --color-primaryForeground: oklch(1 0 0);
+  --color-ring:              oklch(0.58 0.18 185);
+  --radius-md:               0.75rem;
+}
+
+/* Scoped: only inside this subtree */
+[data-brand="acme"] {
+  --color-primary: oklch(0.55 0.22 130); /* green */
+}`} />
+
+---
+
+## 2. Tailwind
+
+Map the kit's variables to Tailwind tokens. Use **distinct names** so they don't clash with the kit's own variables.
+
+<Source language="css" code={`/* Tailwind v4 — app.css */
+@import 'tailwindcss';
+@import '@my-org/ui-kit/styles.css';
+
+@theme {
+  --color-brand:    var(--color-primary);
+  --color-brand-fg: var(--color-primaryForeground);
+  --color-surface:  var(--color-card);
+  --radius-card:    var(--radius-md);
+}
+
+/* Usage: <button class="bg-brand text-brand-fg rounded-card"> */`} />
+
+<Source language="js" code={`// Tailwind v3 — tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      colors: {
+        brand:     'var(--color-primary)',
+        'brand-fg':'var(--color-primaryForeground)',
+        surface:   'var(--color-card)',
+      },
+      borderRadius: { card: 'var(--radius-md)' },
+    },
+  },
+}`} />
+
+---
+
+## 3. Vanilla Extract (typed)
+
+Consume tokens through the typed `vars` object — full autocomplete, no magic strings:
+
+<Source language="ts" code={`// MyCard.css.ts
+import { style } from '@vanilla-extract/css';
+import { vars } from '@my-org/ui-kit';
+
+export const card = style({
+  background:   vars.color.card,
+  color:        vars.color.cardForeground,
+  padding:      vars.space.lg,
+  borderRadius: vars.radius.md,
+  boxShadow:    vars.shadow.sm,
+});`} />
+
+### Override helpers
+
+The kit exports two helpers for type-safe colour overrides: **`overrideColors`** (scopes a set of colours to any CSS selector) and **`setColorToken`** (patches a single token on `:root`).
+
+> **Important:** these helpers call Vanilla Extract's `globalStyle` internally, so they **must** be called from a `*.css.ts` file. Vanilla Extract captures side-effects at build time — calling them from a plain `.ts` file has no effect.
+
+<Source language="ts" code={`// brand.css.ts  ← must be a .css.ts file
+import { overrideColors, setColorToken } from '@my-org/ui-kit';
+
+// Override a set of colour tokens scoped to a CSS selector.
+// Every component inside [data-brand="acme"] will use these values.
+overrideColors('[data-brand="acme"]', {
+  primary:           'oklch(0.58 0.18 185)',
+  primaryHover:      'oklch(0.52 0.18 185)',
+  primaryForeground: 'oklch(1 0 0)',
+  ring:              'oklch(0.58 0.18 185)',
+});
+
+// Override a single token on :root.
+setColorToken('ring', 'oklch(0.58 0.22 290)');`} />
+
+Then wrap the section in React with the `data-brand` attribute:
+
+<Source language="tsx" code={`<div data-brand="acme">
+  {/* all kit components here use the overridden colours */}
+  <Button variant="contained" color="primary" label="Acme action" />
+</div>`} />
+
+> These helpers are typed wrappers — `overrideColors` accepts only valid token names (TypeScript error if you typo). Plain CSS overrides (section 1) achieve the same result without Vanilla Extract.
+
+---
+
+## 4. Dark mode
+
+`:root` is **light** by default. Dark mode follows the OS automatically; you can also force it per subtree with `data-theme`.
+
+<Source language="tsx" code={`<div data-theme="dark">…</div>   {/* force dark   */}
+<div data-theme="light">…</div>  {/* force light  */}
+{/* no attribute → follow the OS (prefers-color-scheme) */}`} />
+
+| Selector | Result |
+|---|---|
+| `:root` (no `data-theme`) | Light, unless the OS prefers dark |
+| `[data-theme="dark"]` | Always dark |
+| `[data-theme="light"]` | Always light (opts out of the OS rule) |
+

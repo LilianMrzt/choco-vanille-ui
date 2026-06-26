@@ -2,6 +2,10 @@
 
 The design system is built on a **three-layer token architecture** — the same approach used by Tailwind v4, Radix Colors and shadcn/ui.
 
+> **See also:**
+> - [CSS Variables Reference](cssVariables.md) — every `--custom-property` exposed by the theme.
+> - **Storybook:** `Overview / Theme / Customization` (how to override) and `Overview / Theme / CSS Variables` (full token list).
+
 ```
 ┌────────────────────────────────────────┐
 │  Layer 3 — Component styles            │  vars.color.primary, vars.space.md …

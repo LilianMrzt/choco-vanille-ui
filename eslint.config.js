@@ -106,11 +106,12 @@ export default [js.configs.recommended, {
     },
   },
   {
-    files: ['src/**/*.stories.tsx'],
+    files: ['src/**/*.stories.tsx', 'src/stories/**/*.tsx'],
     rules: {
       'import/order': 'off',
       'import/newline-after-import': 'off',
       'react/jsx-one-expression-per-line': 'off',
+      'no-restricted-imports': 'off',
     },
   },
   {
