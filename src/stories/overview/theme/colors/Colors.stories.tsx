@@ -5,8 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { darkColors } from '@theme/colors/dark.ts'
 import { lightColors } from '@theme/colors/light.ts'
 
-import type { ColorGroup } from './components/index.ts'
-import { ColorPaletteSection } from './components/index.ts'
+import type { ColorGroup, ColorPaletteSection } from '@stories/overview/theme/colors/components'
 
 // Groupes de couleurs
 
@@ -78,7 +77,7 @@ const colorGroups: ColorGroup[] = [
 // Meta
 
 const meta = {
-    title: 'Overview/Theme',
+    title: 'Overview/Theme/Colors',
     parameters: {
         layout: 'fullscreen',
         controls: { disable: true },
@@ -111,7 +110,7 @@ const pageDark: CSSProperties = {
 // Stories
 
 export const LightTheme: Story = {
-    name: 'Thème clair',
+    name: 'Light theme',
     render: () => (
         <div style={pageLight}>
             <ColorPaletteSection
@@ -126,7 +125,7 @@ export const LightTheme: Story = {
 }
 
 export const DarkTheme: Story = {
-    name: 'Thème sombre',
+    name: 'Dark theme',
     render: () => (
         <div style={pageDark}>
             <ColorPaletteSection

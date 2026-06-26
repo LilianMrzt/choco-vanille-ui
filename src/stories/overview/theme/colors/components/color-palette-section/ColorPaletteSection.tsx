@@ -1,13 +1,13 @@
-import { ColorGroupCard } from '../color-group-card/ColorGroupCard.tsx'
+import { ColorGroupCard } from '@stories/overview/theme/colors/components/color-group-card/ColorGroupCard.tsx'
 import {
     type ColorPaletteSectionProps,
     sectionStyle
-} from "@stories/overview/colors/components/color-palette-section/types";
+} from "@stories/overview/theme/colors/components/color-palette-section/types";
 import {
     gridStyle,
     headerStyle, subtitleStyle,
     titleStyle
-} from "@stories/overview/colors/components/color-palette-section/ColorPaletteSection.styles.ts";
+} from "@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection.styles.ts";
 
 export function ColorPaletteSection({ title, subtitle, colors, colorGroups, dark = false }: ColorPaletteSectionProps) {
     return (

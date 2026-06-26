@@ -7,6 +7,7 @@ export const space = {
     px: '1px',
     xxs: '0.125rem', // 2px
     xs: '0.25rem', // 4px
+    xs2: '0.375rem', // 6px
     sm: '0.5rem', // 8px
     md: '0.75rem', // 12px
     lg: '1rem', // 16px

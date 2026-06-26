@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import {colorSwatchStyles} from "@stories/overview/colors/components/color-swatch/ColorSwatch.styles.ts";
-import type {ColorSwatchProps} from "@stories/overview/colors/components/color-swatch/types";
+import {colorSwatchStyles} from "@stories/overview/theme/colors/components/color-swatch/ColorSwatch.styles.ts";
+import type {ColorSwatchProps} from "@stories/overview/theme/colors/components/color-swatch/types";
 
 
 export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {

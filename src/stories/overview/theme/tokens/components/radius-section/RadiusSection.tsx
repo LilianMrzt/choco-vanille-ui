@@ -1,0 +1,24 @@
+import { radius } from '@theme/tokens/radii.ts'
+
+import { TokenCard } from '@stories/overview/theme/tokens/components/token-card/TokenCard.tsx'
+import { gridStyle } from '@stories/overview/theme/tokens/components/token-card/TokenCard.styles.ts'
+import { TokenSection } from '@stories/overview/theme/tokens/components/token-section/TokenSection.tsx'
+import { previewStyle } from '@stories/overview/theme/tokens/components/radius-section/RadiusSection.styles.ts'
+
+export const RadiusSection = () => (
+    <TokenSection
+        title={'Border Radius'}
+        subtitle={'Échelle de rayons de bord pour les composants arrondis.'}
+    >
+        <div style={gridStyle}>
+            {(Object.entries(radius) as [string, string][]).map(([name, value]) => (
+                <TokenCard
+                    key={name}
+                    name={`radius.${name}`}
+                    value={value}
+                    preview={<div style={previewStyle(value)} />}
+                />
+            ))}
+        </div>
+    </TokenSection>
+)

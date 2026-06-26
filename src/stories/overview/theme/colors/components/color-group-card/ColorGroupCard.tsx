@@ -1,10 +1,10 @@
-import { ColorSwatch } from '../color-swatch/ColorSwatch.tsx'
-import type {ColorGroupCardProps} from "@stories/overview/colors/components/color-group-card/types";
+import { ColorSwatch } from '@stories/overview/theme/colors/components/color-swatch/ColorSwatch.tsx'
+import type {ColorGroupCardProps} from "@stories/overview/theme/colors/components/color-group-card/types";
 import {
     cardStyle,
     descStyle, swatchesGrid,
     titleStyle
-} from "@stories/overview/colors/components/color-group-card/ColorGroupCard.styles.ts";
+} from "@stories/overview/theme/colors/components/color-group-card/ColorGroupCard.styles.ts";
 
 export function ColorGroupCard({ group, colors, dark = false }: ColorGroupCardProps) {
     return (

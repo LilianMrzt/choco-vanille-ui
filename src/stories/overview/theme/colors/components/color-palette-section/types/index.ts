@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { ColorGroup } from '@stories/overview/colors/components/color-group-card/types'
+import type { ColorGroup } from '@stories/overview/theme/colors/components/color-group-card/types'
 
 export type ColorMap = Record<string, string>
 
