@@ -1,0 +1,208 @@
+import {
+    Meta,
+    Subtitle,
+    Title,
+    Source,
+} from '@storybook/addon-docs/blocks'
+
+<Meta title="Guidelines/Contributing" />
+
+<Title />
+
+<Subtitle>
+  The conventions that keep every file, folder, and component feeling like it was always part of the project.
+</Subtitle>
+
+---
+
+## 1 — Project structure
+
+```
+ui-kit/
+├── src/
+│   ├── components/      # All UI components, grouped by category
+│   ├── hooks/           # Shared React hooks
+│   ├── utils/           # Pure utility functions
+│   ├── constants/       # Project-wide constant values
+│   ├── theme/           # Design tokens, contracts, global styles
+│   ├── stories/         # Storybook stories & MDX docs (mirrors components/)
+│   └── index.ts         # Public package entry point
+├── tests/
+│   └── components/      # Vitest unit tests (mirrors src/components/)
+└── .storybook/          # Storybook configuration
+```
+
+The rule of thumb: **if you know what a file does, you should be able to guess its path.** The structure is intentionally mirrored across `src/components/`, `src/stories/`, and `tests/components/`.
+
+---
+
+## 2 — Component categories
+
+All components live under `src/components/` and are grouped into semantic categories:
+
+| Category | What belongs here |
+| --- | --- |
+| `actions/` | Interactive controls — `Button`, `IconButton`, links |
+| `data-display/` | Read-only presentation — tables, badges, avatars, tags |
+| `feedback/` | System responses — alerts, toasts, spinners, progress bars |
+| `forms/` | Input controls — text fields, checkboxes, radio groups, selects |
+| `foundation/` | Primitives used by other components — `Icon`, `Typography` |
+| `layout/` | Structural helpers — `Stack`, `Grid`, `Divider`, `Container` |
+| `overlay/` | Elements that float above the page — modals, tooltips, drawers |
+
+When in doubt, ask: *"Is this the most specific category that still makes sense?"* Prefer a narrower category over a broader one.
+
+---
+
+## 3 — Inside a component folder
+
+Every component lives in its own folder with a fixed internal layout:
+
+```
+src/components/<category>/<component-name>/
+├── <ComponentName>.tsx        # Component implementation
+├── <ComponentName>.css.ts     # Vanilla Extract styles
+├── index.ts                   # Public re-exports for this component
+├── constants/
+│   └── index.ts               # Component-scoped constants
+└── types/
+    ├── <ComponentName>.types.ts   # TypeScript types & unions
+    └── <ComponentName>.props.ts   # Component prop interfaces
+```
+
+If two or more components in the same category share logic, extract it into a `_shared/` folder at the category level. The underscore prefix is a deliberate signal — *internal, not exported publicly*.
+
+```
+src/components/actions/
+├── _shared/
+│   └── buttons/               # Shared between Button and IconButton
+├── button/
+└── icon-button/
+```
+
+Stories and tests **mirror** the component structure exactly:
+
+```
+src/stories/<category>/<component-name>/
+├── <ComponentName>.stories.tsx
+└── <ComponentName>.mdx
+
+tests/components/<category>/<component-name>/
+└── <ComponentName>.test.tsx
+```
+
+---
+
+## 4 — Naming conventions
+
+### Folders
+
+Use **`kebab-case`** for all folders, everywhere.
+
+```
+✅  icon-button/   use-viewport-shift/   data-display/   _shared/
+❌  IconButton/    useViewportShift/     DataDisplay/
+```
+
+### Component files
+
+| File | Convention | Example |
+| --- | --- | --- |
+| Component implementation | `PascalCase.tsx` | `Button.tsx` |
+| Vanilla Extract styles | `PascalCase.css.ts` | `Button.css.ts` |
+| Prop interface file | `PascalCase.props.ts` | `Button.props.ts` |
+| Type definitions file | `PascalCase.types.ts` | `Button.types.ts` |
+| Story file | `PascalCase.stories.tsx` | `Button.stories.tsx` |
+| MDX documentation | `PascalCase.mdx` | `Button.mdx` |
+| Test file | `PascalCase.test.tsx` | `Button.test.tsx` |
+| Barrel / re-export | `index.ts` | `index.ts` |
+
+### Hook files
+
+| File | Convention | Example |
+| --- | --- | --- |
+| Hook implementation | `camelCase.hook.ts` | `useViewportShift.hook.ts` |
+| Helper functions | `camelCase.helper.ts` | `normalizePadding.helper.ts` |
+| Barrel / re-export | `index.ts` | `index.ts` |
+
+### Inside files
+
+| Concept | Style | Example |
+| --- | --- | --- |
+| React component | `PascalCase` | `export const Button = …` |
+| Hook | `camelCase` prefixed with `use` | `export const useViewportShift = …` |
+| Helper function | `camelCase` | `export const normalizePadding = …` |
+| TypeScript type / interface | `PascalCase` | `export type ButtonVariant = …` |
+| Constant (exported) | `SCREAMING_SNAKE_CASE` | `export const DEFAULT_SIZE = …` |
+| CSS recipe / style | `camelCase` | `export const buttonRecipe = recipe(…)` |
+
+---
+
+## 5 — Adding a new component
+
+Here is a concrete walkthrough for adding a `Chip` component to the `data-display` category.
+
+**Create the folder structure**
+
+```
+src/components/data-display/chip/
+├── Chip.tsx
+├── Chip.css.ts
+├── index.ts
+├── constants/
+│   └── index.ts
+└── types/
+    ├── Chip.types.ts
+    └── Chip.props.ts
+```
+
+**Mirror it in stories and tests**
+
+```
+src/stories/data-display/chip/
+├── Chip.stories.tsx
+└── Chip.mdx
+
+tests/components/data-display/chip/
+└── Chip.test.tsx
+```
+
+**Export from the category barrel**
+
+<Source
+  language="ts"
+  code={`// src/components/data-display/index.ts
+export * from './chip';`}
+/>
+
+A PR that adds a component **must** include its story, its test, and its types. Incomplete PRs will be asked to finish before merging.
+
+---
+
+## 6 — Adding a new hook
+
+Here is a concrete walkthrough for adding a `useMediaQuery` hook.
+
+**Create the folder**
+
+```
+src/hooks/use-media-query/
+├── useMediaQuery.hook.ts
+├── index.ts
+├── constants/
+│   └── index.ts
+└── types/
+    └── index.ts
+```
+
+**Export from the hooks barrel**
+
+<Source
+  language="ts"
+  code={`// src/hooks/index.ts
+export * from './use-media-query';`}
+/>
+
+---
+
+When in doubt, look at an existing component (like `Button`) and copy the pattern. **Consistency is more important than cleverness.**
