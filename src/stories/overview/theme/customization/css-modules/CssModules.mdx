@@ -90,13 +90,20 @@ export const AcmeSection = ({ children }: { children: React.ReactNode }) => (
 
 ---
 
-## 3. Composing with kit class utilities
+## 3. Composing with your own token-based classes
 
-If the kit exposes utility classes (e.g. a `themeClass` export), you can compose them with `:composes`:
+The kit does **not** ship named utility classes — all of its styling is token-driven and its internal class names are hashed (not part of the public API). You can still use `composes` to share **your own** helper classes built on kit tokens:
+
+<Source language="css" code={`/* surfaces.module.css */
+.surface {
+  background:    var(--color-card);
+  color:         var(--color-cardForeground);
+  border-radius: var(--radius-md);
+}`} />
 
 <Source language="css" code={`/* MyComponent.module.css */
 .root {
-  composes: dark-surface from global; /* apply a global kit utility class */
+  composes: surface from './surfaces.module.css';
   padding: var(--space-md);
 }`} />
 

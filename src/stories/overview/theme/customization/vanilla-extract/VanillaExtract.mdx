@@ -85,9 +85,11 @@ overrideColors('[data-theme="dark"]', {
   primary: 'oklch(0.70 0.16 185)',
 });`} />
 
-<Source language="tsx" code={`<div data-theme="dark">…</div>   {/* force dark   */}
-<div data-theme="light">…</div>  {/* force light  */}
+<Source language="tsx" code={`<div data-theme="dark">…</div>    {/* force dark for this subtree     */}
+<html data-theme="light">…</html> {/* opt the app out of OS dark (root) */}
 {/* no attribute → follow the OS (prefers-color-scheme) */}`} />
+
+> The kit only defines light tokens on `:root` (there is no `[data-theme="light"]` rule), so `data-theme="light"` opts the **root** out of the OS dark preference but does not re-assert light inside a dark subtree.
 
 ---
 
