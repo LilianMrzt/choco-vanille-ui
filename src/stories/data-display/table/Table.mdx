@@ -1,0 +1,92 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Source,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks'
+
+import * as TableStories from './Table.stories'
+
+<Meta of={TableStories} />
+
+<Title />
+
+<Subtitle>
+  Semantic HTML table built from composable sub-components, styled with design tokens and scoped Vanilla Extract classes.
+</Subtitle>
+
+<Source
+  language="tsx"
+  code={`import {
+  Table, TableHeader, TableBody, TableFooter,
+  TableRow, TableHead, TableCell, TableCaption,
+  TableColGroup, TableCol,
+} from '@my-org/ui-kit'
+
+<Table size="md" striped fixed>
+  <TableColGroup>
+    <TableCol width="60px" />
+    <TableCol width="15%" />
+    <TableCol />
+    <TableCol width="10rem" />
+  </TableColGroup>
+  <TableCaption>Recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead align="center">#</TableHead>
+      <TableHead sortable sortDirection="asc" onClick={handleSort}>Status</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead align="right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow selectable selected={isSelected} onClick={handleSelect} intent="success">
+      <TableCell align="center">1</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell truncate>Long description that overflows…</TableCell>
+      <TableCell numeric>$250.00</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFooter>
+    <TableRow>
+      <TableCell colSpan={3}>Total</TableCell>
+      <TableCell numeric>$250.00</TableCell>
+    </TableRow>
+  </TableFooter>
+</Table>`}
+/>
+
+## Accessibility
+
+| Element / Prop | Notes |
+| --- | --- |
+| `TableCaption` | Provides the accessible name for the table. Always include one, or use `aria-label` on `Table` when no caption is present. |
+| `TableHead` (`<th>`) | Maps to `role="columnheader"` automatically — no extra ARIA needed for simple tables. |
+| `scope="col"` | Add to `TableHead` for explicit column scoping in complex or multi-level header tables. |
+| `sortDirection` | Sets `aria-sort="ascending"` / `"descending"` / `"none"` on `<th>` automatically. |
+| `selectable` | Sets `aria-selected` on `<tr>` automatically when combined with `selected`. |
+| `aria-label` | Use on `Table` when `TableCaption` is omitted. |
+| Keyboard | Rows with `selectable` + `onClick` are pointer-activated only — add `onKeyDown` or `role="button"` for full keyboard support. |
+
+## Playground
+
+<Canvas of={TableStories.Default} />
+
+<Controls of={TableStories.Default} />
+
+## Sub-component reference
+
+| Component | Element | Key props |
+| --- | --- | --- |
+| `Table` | `<table>` | `size`, `striped`, `bordered`, `fixed` |
+| `TableHeader` | `<thead>` | — |
+| `TableBody` | `<tbody>` | — |
+| `TableFooter` | `<tfoot>` | — |
+| `TableRow` | `<tr>` | `hoverable`, `selectable`, `selected`, `intent` |
+| `TableHead` | `<th>` | `align`, `sortable`, `sortDirection` |
+| `TableCell` | `<td>` | `align`, `numeric`, `truncate` |
+| `TableCaption` | `<caption>` | — |
+| `TableColGroup` | `<colgroup>` | — |
+| `TableCol` | `<col>` | `width`, `minWidth`, `maxWidth` |
