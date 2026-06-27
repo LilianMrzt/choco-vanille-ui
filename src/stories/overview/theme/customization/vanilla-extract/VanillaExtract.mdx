@@ -1,0 +1,102 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Theme/Customization/Vanilla Extract" />
+
+# Vanilla Extract
+
+This is how the kit itself is built, and the only approach that gives you **fully typed, autocompleted** access to every token. If you author styles with Vanilla Extract, you get compile-time safety: typos in token names become TypeScript errors.
+
+> Requires `@vanilla-extract/css` in your project (it's the kit's styling engine).
+
+---
+
+## 1. Consume tokens via the typed `vars` object
+
+Import `vars` from the kit and reference tokens directly — full autocomplete, no magic strings.
+
+<Source language="ts" code={`// MyCard.css.ts
+import { style } from '@vanilla-extract/css';
+import { vars } from '@my-org/ui-kit';
+
+export const card = style({
+  background:   vars.color.card,
+  color:        vars.color.cardForeground,
+  padding:      vars.space.lg,
+  borderRadius: vars.radius.md,
+  boxShadow:    vars.shadow.sm,
+});`} />
+
+`vars` is the typed contract — `vars.color.card` compiles to `var(--color-card)`, so your styles stay in sync with the kit and react to dark mode / scoped overrides automatically.
+
+---
+
+## 2. Type-safe override helpers
+
+The kit exports two helpers for colour overrides:
+
+- **`overrideColors(selector, colors)`** — scopes a set of colour tokens to any CSS selector.
+- **`setColorToken(token, value)`** — patches a single token on `:root`.
+
+Both accept only **valid token names** — a typo is a compile-time error.
+
+<Source language="ts" code={`// brand.css.ts  ← must be a .css.ts file
+import { overrideColors, setColorToken } from '@my-org/ui-kit';
+
+// Override a set of colour tokens scoped to a CSS selector.
+// Every component inside [data-brand="acme"] uses these values.
+overrideColors('[data-brand="acme"]', {
+  primary:           'oklch(0.58 0.18 185)',
+  primaryHover:      'oklch(0.52 0.18 185)',
+  primaryForeground: 'oklch(1 0 0)',
+  ring:              'oklch(0.58 0.18 185)',
+});
+
+// Override a single token on :root.
+setColorToken('ring', 'oklch(0.58 0.22 290)');`} />
+
+Then wrap the section in React with the matching attribute:
+
+<Source language="tsx" code={`<div data-brand="acme">
+  {/* all kit components here use the overridden colours */}
+  <Button variant="contained" color="primary" label="Acme action" />
+</div>`} />
+
+---
+
+## ⚠️ Must live in a `*.css.ts` file
+
+These helpers call Vanilla Extract's `globalStyle` internally. Vanilla Extract captures style side-effects at **build time** by scanning `*.css.ts` files.
+
+> Calling `overrideColors` / `setColorToken` from a plain `.ts` or `.tsx` file has **no effect** — the styles are never emitted. Always put them in a `*.css.ts` file (and make sure that file is imported somewhere in your bundle).
+
+---
+
+## Dark mode
+
+Dark mode is just another scope. Because `vars.color.*` compiles to `var(--color-*)`, any style that consumes `vars` reacts to `[data-theme="dark"]` automatically — no conditional logic needed.
+
+To give a token a **dark-specific** value, target the dark scope with `overrideColors`:
+
+<Source language="ts" code={`// brand.css.ts
+import { overrideColors } from '@my-org/ui-kit';
+
+// Applies only inside the dark scope.
+overrideColors('[data-theme="dark"]', {
+  primary: 'oklch(0.70 0.16 185)',
+});`} />
+
+<Source language="tsx" code={`<div data-theme="dark">…</div>   {/* force dark   */}
+<div data-theme="light">…</div>  {/* force light  */}
+{/* no attribute → follow the OS (prefers-color-scheme) */}`} />
+
+---
+
+## When to use this
+
+- ✅ You author styles with Vanilla Extract and want typed tokens.
+- ✅ You want the compiler to catch token typos.
+- ✅ You're building reusable themed components on top of the kit.
+
+If you don't use Vanilla Extract, the **Plain CSS** page achieves the same overrides with raw CSS variables and zero tooling.
+
+

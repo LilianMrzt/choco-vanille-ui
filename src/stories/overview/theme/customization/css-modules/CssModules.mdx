@@ -1,0 +1,129 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Theme/Customization/CSS Modules" />
+
+# CSS Modules
+
+CSS Modules scope **class names** by default, but **CSS custom properties are not scoped** — they cascade through the DOM like any other inherited property. This means you can read any kit token inside a `.module.css` file with plain `var()`, and override tokens from a module by writing a scoped rule on a wrapper element.
+
+> See **Theme / CSS Variables** for the full list of token names.
+
+---
+
+## 1. Consume tokens in a component's module
+
+Reference any kit variable with `var()` in your `.module.css` file — no imports needed.
+
+<Source language="css" code={`/* MyCard.module.css */
+.card {
+  background:    var(--color-card);
+  color:         var(--color-cardForeground);
+  padding:       var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow:    var(--shadow-sm);
+  font-size:     var(--fontSize-sm);
+}
+
+.title {
+  color:       var(--color-foreground);
+  font-weight: var(--fontWeight-semibold);
+  line-height: var(--lineHeight-tight);
+}
+
+.badge {
+  background: var(--color-primary);
+  color:      var(--color-primaryForeground);
+  padding:    var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+}`} />
+
+<Source language="tsx" code={`// MyCard.tsx
+import styles from './MyCard.module.css';
+
+export const MyCard = ({ title }: { title: string }) => (
+  <div className={styles.card}>
+    <span className={styles.badge}>New</span>
+    <h2 className={styles.title}>{title}</h2>
+  </div>
+);`} />
+
+---
+
+## 2. Scoped override from a module
+
+To re-skin a subtree, write a global rule that sets the variables on a wrapper element. Use `:global()` to escape CSS Modules' scoping for the selector, while keeping the class name itself local.
+
+<Source language="css" code={`/* AcmeSection.module.css */
+.wrapper {
+  /* Declare this class on the wrapper element. */
+  /* The variables cascade to every kit component inside. */
+}
+
+/* Use :global() so CSS Modules does not mangle the var names. */
+:global(.acme-scope) {
+  --color-primary:           oklch(0.55 0.22 130); /* green */
+  --color-primaryHover:      oklch(0.49 0.22 130);
+  --color-primaryForeground: oklch(1 0 0);
+  --radius-md:               0.25rem; /* square corners */
+}`} />
+
+<Source language="tsx" code={`// AcmeSection.tsx
+import styles from './AcmeSection.module.css';
+
+export const AcmeSection = ({ children }: { children: React.ReactNode }) => (
+  // Combine the local class with the global scope class.
+  <div className={\`\${styles.wrapper} acme-scope\`}>
+    {children}
+  </div>
+);`} />
+
+> **Tip:** If you don't need a global class, use a `data-*` attribute instead — it keeps markup semantic and avoids class-name collisions:
+
+<Source language="css" code={`/* AcmeSection.module.css */
+.wrapper[data-brand="acme"] {
+  --color-primary: oklch(0.55 0.22 130);
+}`} />
+
+<Source language="tsx" code={`<div className={styles.wrapper} data-brand="acme">
+  {/* all kit components here use the overridden tokens */}
+</div>`} />
+
+---
+
+## 3. Composing with kit class utilities
+
+If the kit exposes utility classes (e.g. a `themeClass` export), you can compose them with `:composes`:
+
+<Source language="css" code={`/* MyComponent.module.css */
+.root {
+  composes: dark-surface from global; /* apply a global kit utility class */
+  padding: var(--space-md);
+}`} />
+
+---
+
+## Dark mode
+
+CSS custom properties cascade normally, so dark mode needs **no extra CSS Modules config**. Toggling `data-theme="dark"` on any ancestor automatically flips all `var(--color-*)` values inside your module's rules.
+
+<Source language="css" code={`/* MyCard.module.css — dark-specific override (optional) */
+
+/* Target the dark scope and override specific tokens only if needed. */
+:global([data-theme="dark"]) .card {
+  box-shadow: var(--shadow-md); /* use a stronger shadow in dark mode */
+}`} />
+
+<Source language="tsx" code={`<div data-theme="dark">
+  <MyCard title="Dark mode card" />
+</div>`} />
+
+---
+
+## When to use this
+
+- ✅ Your project uses CSS Modules (Next.js app router, Vite with `?module`, CRA).
+- ✅ You want component-scoped styles **plus** access to the kit's design tokens.
+- ✅ Zero runtime overhead — everything resolves at the CSS level.
+
+For **typed** token access with autocomplete, see the **Vanilla Extract** page. For **utility classes** mapped to tokens, see the **Tailwind** page.
+

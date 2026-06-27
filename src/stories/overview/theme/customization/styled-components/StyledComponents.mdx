@@ -1,0 +1,186 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Theme/Customization/Styled Components & Emotion" />
+
+# Styled Components & Emotion
+
+Both [Styled Components](https://styled-components.com/) and [Emotion](https://emotion.sh/) let you write CSS-in-JS with tagged template literals or object styles. Since the kit exposes plain CSS custom properties, you reference them with `var()` — **exactly as in plain CSS**. No special plugin or integration is required.
+
+> The examples below use Styled Components syntax. Emotion's `styled` API is identical; swap the import and everything works the same way.
+
+---
+
+## 1. Consume tokens in a styled component
+
+<Source language="tsx" code={`// Styled Components
+import styled from 'styled-components';
+
+export const Card = styled.div\`
+  background:    var(--color-card);
+  color:         var(--color-cardForeground);
+  padding:       var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow:    var(--shadow-sm);
+  font-family:   var(--fontFamily-sans);
+\`;
+
+export const PrimaryButton = styled.button\`
+  background:  var(--color-primary);
+  color:       var(--color-primaryForeground);
+  padding:     var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: var(--fontWeight-semibold);
+
+  &:hover {
+    background: var(--color-primaryHover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+\`;`} />
+
+<Source language="tsx" code={`// Emotion (same API, different import)
+import styled from '@emotion/styled';
+
+export const Card = styled.div\`
+  background:    var(--color-card);
+  color:         var(--color-cardForeground);
+  padding:       var(--space-lg);
+  border-radius: var(--radius-md);
+\`;`} />
+
+---
+
+## 2. Object-style syntax
+
+Both libraries also accept style objects. Use `var()` as a plain string value.
+
+<Source language="tsx" code={`import styled from 'styled-components'; // or '@emotion/styled'
+
+export const Badge = styled.span({
+  background:    'var(--color-primary)',
+  color:         'var(--color-primaryForeground)',
+  padding:       \`var(--space-xs) var(--space-sm)\`,
+  borderRadius:  'var(--radius-full)',
+  fontSize:      'var(--fontSize-xs)',
+  fontWeight:    'var(--fontWeight-semibold)',
+});`} />
+
+---
+
+## 3. Global override with createGlobalStyle / Global
+
+To override tokens globally (rebrand the whole app), inject a `createGlobalStyle` rule **after** importing the kit's stylesheet.
+
+<Source language="tsx" code={`// Styled Components
+import { createGlobalStyle } from 'styled-components';
+
+export const BrandOverride = createGlobalStyle\`
+  :root {
+    --color-primary:           oklch(0.58 0.18 185);
+    --color-primaryHover:      oklch(0.52 0.18 185);
+    --color-primaryForeground: oklch(1 0 0);
+    --color-ring:              oklch(0.58 0.18 185);
+    --radius-md:               0.75rem;
+  }
+\`;
+
+// App.tsx
+export const App = () => (
+  <>
+    <BrandOverride />
+    {/* rest of your app */}
+  </>
+);`} />
+
+<Source language="tsx" code={`// Emotion — use the Global component instead
+import { Global, css } from '@emotion/react';
+
+export const BrandOverride = () => (
+  <Global styles={css\`
+    :root {
+      --color-primary:           oklch(0.58 0.18 185);
+      --color-primaryHover:      oklch(0.52 0.18 185);
+      --color-primaryForeground: oklch(1 0 0);
+      --radius-md:               0.75rem;
+    }
+  \`} />
+);`} />
+
+---
+
+## 4. Scoped override
+
+Override tokens on a wrapper component to re-skin a subtree without affecting the rest of the app.
+
+<Source language="tsx" code={`import styled from 'styled-components'; // or '@emotion/styled'
+
+// The CSS variables are set on this wrapper; all kit components inside inherit them.
+const AcmeScope = styled.div\`
+  --color-primary:           oklch(0.55 0.22 130);
+  --color-primaryHover:      oklch(0.49 0.22 130);
+  --color-primaryForeground: oklch(1 0 0);
+  --radius-md:               0.25rem;
+\`;
+
+export const AcmeSection = ({ children }: { children: React.ReactNode }) => (
+  <AcmeScope>
+    {children}
+  </AcmeScope>
+);`} />
+
+---
+
+## 5. Theming with props
+
+You can drive token values from props — handy for dynamic palettes without a full CSS-in-JS theme system.
+
+<Source language="tsx" code={`import styled from 'styled-components';
+
+type SurfaceProps = { $elevated?: boolean };
+
+export const Surface = styled.div<SurfaceProps>\`
+  background:  var(--color-card);
+  box-shadow:  \${({ $elevated }) =>
+    $elevated ? 'var(--shadow-lg)' : 'var(--shadow-sm)'};
+  padding:     var(--space-md);
+  border-radius: var(--radius-md);
+\`;
+
+// Usage:
+// <Surface $elevated>…</Surface>`} />
+
+---
+
+## Dark mode
+
+Since styled components / emotion output resolves to regular CSS, dark mode works automatically via `[data-theme="dark"]` — exactly like plain CSS.
+
+<Source language="tsx" code={`<div data-theme="dark">
+  {/* Card reads var(--color-card) which the kit flips for dark mode */}
+  <Card>Dark-aware card</Card>
+</div>`} />
+
+To inject a **dark-specific override** from a styled component, use a global style targeting the dark scope:
+
+<Source language="tsx" code={`// Styled Components
+import { createGlobalStyle } from 'styled-components';
+
+export const DarkBrandOverride = createGlobalStyle\`
+  [data-theme="dark"] {
+    --color-primary: oklch(0.70 0.16 185);
+  }
+\`;`} />
+
+---
+
+## When to use this
+
+- ✅ Your project is already Styled Components or Emotion based.
+- ✅ You want to write component styles with `var()` references and keep dark mode for free.
+- ✅ You need prop-driven style variations layered on top of the kit's tokens.
+
+For **utility-class** approaches, see **Tailwind**. For **zero-runtime typed** tokens, see **Vanilla Extract**.
+

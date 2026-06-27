@@ -1,5 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks'
 import { CopyThemeButton } from './components/copy-theme-button'
+import { CopyPlainCssButton } from './components/copy-plain-css-button'
+import { CopyTailwindButton } from './components/copy-tailwind-button'
+import { CopyVanillaExtractButton } from './components/copy-vanilla-extract-button'
+import { CopyMuiButton } from './components/copy-mui-button'
 import { VarTable } from './components/var-table'
 import {
   colorRows, shadowRows, dropShadowRows,
@@ -20,6 +24,10 @@ All values are read directly from the theme source — this page updates automat
 Color and shadow tokens are **theme-dependent** (Light / Dark columns). All other tokens are identical across themes.
 
 <CopyThemeButton />
+<CopyPlainCssButton />
+<CopyTailwindButton />
+<CopyVanillaExtractButton />
+<CopyMuiButton />
 
 ---
 
