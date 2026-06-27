@@ -3,13 +3,15 @@ import * as RadixTooltip from '@radix-ui/react-tooltip'
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
 import { tooltipArrowClass, tooltipContentClass } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { cn } from '@utils/cn.ts'
+import { parsePosition } from '@components/overlay/tooltip/types/Tooltip.types.ts'
 import type {FC} from "react";
 
 const Tooltip: FC<TooltipProps> = ({
     children,
     content,
-    side = 'top',
-    align = 'center',
+    position,
+    side: sideProp = 'top',
+    align: alignProp = 'center',
     delayDuration = 300,
     disabled = false,
     className,
@@ -19,6 +21,10 @@ const Tooltip: FC<TooltipProps> = ({
     if (disabled) {
         return <>{children}</>
     }
+
+    const { side, align } = position
+        ? parsePosition(position)
+        : { side: sideProp, align: alignProp }
 
     return (
         <RadixTooltip.Provider>
@@ -50,3 +56,4 @@ const Tooltip: FC<TooltipProps> = ({
 Tooltip.displayName = 'Tooltip'
 
 export default Tooltip
+

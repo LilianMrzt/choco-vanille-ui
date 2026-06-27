@@ -14,7 +14,7 @@ import * as TooltipStories from './Tooltip.stories';
 <Title />
 
 <Subtitle>
-  Accessible tooltip overlay — controlled or uncontrolled, four sides, animated transitions, and full keyboard support.
+  Accessible tooltip overlay — controlled or uncontrolled, 12 positions, animated transitions, and full keyboard support.
 </Subtitle>
 
 Wrap any focusable element with `<Tooltip>` and provide the `content` prop to display contextual information on hover or focus.
@@ -55,25 +55,10 @@ Wrap any focusable element with `<Tooltip>` and provide the `content` prop to di
 
 <Controls of={TooltipStories.Default} />
 
-## All sides
+## All positions
 
-<Canvas of={TooltipStories.AllSides} />
+<Canvas of={TooltipStories.AllPositions} />
 
 ## Always open (controlled)
 
 <Canvas of={TooltipStories.AlwaysOpen} />
-
-## API reference
-
-| Prop            | Type                                    | Default    | Description                                                  |
-| --------------- | --------------------------------------- | ---------- | ------------------------------------------------------------ |
-| `children`      | `ReactNode`                             | —          | The trigger element (must be a single, focusable element).   |
-| `content`       | `ReactNode`                             | —          | Content rendered inside the tooltip bubble.                  |
-| `side`          | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'`   | Which side of the trigger to display the tooltip on.         |
-| `align`         | `'start' \| 'center' \| 'end'`         | `'center'` | Alignment along the trigger's axis.                          |
-| `delayDuration` | `number`                                | `300`      | Delay in ms before the tooltip opens.                        |
-| `disabled`      | `boolean`                               | `false`    | When `true`, the tooltip is not rendered.                    |
-| `open`          | `boolean`                               | —          | Controlled open state.                                       |
-| `onOpenChange`  | `(open: boolean) => void`               | —          | Callback fired when the open state changes.                  |
-| `className`     | `string`                                | —          | Extra CSS classes applied to the tooltip content element.    |
-

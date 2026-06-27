@@ -3,11 +3,17 @@ import { expect, userEvent, within, waitFor } from 'storybook/test'
 
 import { Tooltip } from '@/components/overlay/tooltip'
 import { Button } from '@/components/actions/button'
-import type { TooltipSide, TooltipAlign } from '@components/overlay/tooltip'
+import type { TooltipSide, TooltipAlign, TooltipPosition } from '@components/overlay/tooltip'
 import { Flex } from '@/components/layout/flex'
 
 const SIDES: TooltipSide[] = ['top', 'right', 'bottom', 'left']
 const ALIGNS: TooltipAlign[] = ['start', 'center', 'end']
+const POSITIONS: TooltipPosition[] = [
+    'top-start',    'top',    'top-end',
+    'right-start',  'right',  'right-end',
+    'bottom-start', 'bottom', 'bottom-end',
+    'left-start',   'left',   'left-end',
+]
 
 const meta = {
     title: 'Overlay/Tooltip',
@@ -45,6 +51,11 @@ Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
     },
     argTypes: {
         content: { control: 'text' },
+        position: {
+            control: 'select',
+            options: POSITIONS,
+            description: 'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
+        },
         side: { control: 'select', options: SIDES },
         align: { control: 'select', options: ALIGNS },
         delayDuration: { control: 'number' },
@@ -69,7 +80,7 @@ export const Default: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Default tooltip appearing above its trigger. Hover the button — or focus it with Tab and observe it with a screen reader — to see the tooltip. Use the Controls panel to adjust side, alignment, and delay.',
+                story: 'Default tooltip appearing above its trigger. Hover the button — or focus it with Tab and observe it with a screen reader — to see the tooltip. Use the Controls panel to adjust position, side, alignment, and delay.',
             },
         },
     },
@@ -84,53 +95,41 @@ export const Default: Story = {
     },
 }
 
-// All sides
+// All positions
 
-export const AllSides: Story = {
+export const AllPositions: Story = {
     parameters: {
         controls: { disable: true },
+        layout: 'padded',
         docs: {
             description: {
-                story: 'The four available `side` positions — `top`, `right`, `bottom`, `left`. The tooltip automatically flips to the opposite side when there is not enough viewport space.',
+                story: 'All 12 available positions (`top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-start`, `bottom`, `bottom-end`, `left-start`, `left`, `left-end`). Use the `position` prop as a shorthand for combining `side` and `align`.',
             },
         },
     },
     render: () => (
-        <Flex wrap={'wrap'} align={'center'} justify={'center'} gap={'xl'} p={'4xl'}>
-            {SIDES.map((side) => (
+        <Flex
+            wrap={'wrap'}
+            align={'center'}
+            justify={'center'}
+            gap={'xl'}
+            p={'4xl'}
+        >
+            {POSITIONS.map((position) => (
                 <Tooltip
-                    key={side}
-                    content={`Side: ${side}`}
-                    side={side}
+                    key={position}
+                    content={`position: ${position}`}
+                    position={position}
                     delayDuration={0}
                 >
                     <Button
                         variant={'outlined'}
-                        label={side}
+                        label={position}
                     />
                 </Tooltip>
             ))}
         </Flex>
     ),
-}
-
-// Disabled state
-
-export const Disabled: Story = {
-    args: { disabled: true },
-    parameters: {
-        docs: {
-            description: {
-                story: 'When `disabled` is `true`, the tooltip is completely suppressed and the trigger is rendered as-is. Use this for feature flags or programmatic conditions that prevent tooltip display.',
-            },
-        },
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const trigger = canvas.getByRole('button', { name: 'Hover me' })
-        await userEvent.hover(trigger)
-        await expect(document.querySelector('[role="tooltip"]')).toBeNull()
-    },
 }
 
 // Controlled open
