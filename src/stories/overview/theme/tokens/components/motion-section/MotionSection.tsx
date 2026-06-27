@@ -32,14 +32,17 @@ export const MotionSection = () => {
     return (
         <TokenSection
             title={'Motion'}
-            subtitle={"Animation tokens: durations and easing curves for consistent transitions."}
+            subtitle={'Animation tokens: durations and easing curves for consistent transitions.'}
         >
             <div style={contentStyle}>
                 <div style={subGroupStyle}>
                     <h3 style={subGroupTitleStyle}>{'Duration'}</h3>
                     <div style={durationListStyle}>
                         {(Object.entries(duration) as [string, string][]).map(([name, value]) => (
-                            <div key={name} style={durationRowStyle}>
+                            <div
+                                key={name}
+                                style={durationRowStyle}
+                            >
                                 <span style={durationNameStyle}>{name}</span>
                                 <span style={durationValueStyle}>{value}</span>
                                 <div style={durationBarStyle(value)} />
@@ -53,21 +56,20 @@ export const MotionSection = () => {
                     <h3 style={subGroupTitleStyle}>{'Easing — click a card to preview the animation'}</h3>
                     <div style={gridStyle}>
                         {(Object.entries(easing) as [string, string][]).map(([name, value]) => (
-                            <div
-                                key={name}
-                                role={'button'}
-                                tabIndex={0}
-                                onClick={() => triggerAnimation(name)}
-                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { triggerAnimation(name) } }}
-                                style={{ cursor: 'pointer' }}
-                            >
+                            <div key={name}>
                                 <TokenCard
                                     name={`easing.${name}`}
                                     value={value}
                                     preview={
-                                        <div style={easingTrackStyle}>
-                                            <div style={easingDotStyle(animating === name, value)} />
-                                        </div>
+                                        <button
+                                            onClick={() => triggerAnimation(name)}
+                                            style={{ all: 'unset', display: 'block', width: '100%', cursor: 'pointer' }}
+                                            aria-label={`Preview ${name} easing animation`}
+                                        >
+                                            <div style={easingTrackStyle}>
+                                                <div style={easingDotStyle(animating === name, value)} />
+                                            </div>
+                                        </button>
                                     }
                                 />
                             </div>

@@ -110,6 +110,19 @@ export const Default: Story = {
                 story: 'A comprehensive example showcasing every available building block: regular items with icons and keyboard shortcuts, a nested sub-menu, checkbox items, a radio group, and a destructive item.',
             },
         },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Radix UI wraps the page in aria-hidden when the menu is open (modal=true),
+                        // which causes the trigger button to appear inside an aria-hidden container.
+                        // This is intentional Radix behavior — focus moves into the menu portal.
+                        id: 'aria-hidden-focus',
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
     render: () => (
         <DropdownMenu>

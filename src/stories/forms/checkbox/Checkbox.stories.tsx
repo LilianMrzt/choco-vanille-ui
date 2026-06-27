@@ -78,7 +78,7 @@ export const Default: Story = {
 // Without label
 
 export const WithoutLabel: Story = {
-    args: { label: undefined },
+    args: { label: undefined, 'aria-label': 'Select row' },
     parameters: {
         docs: {
             description: {
@@ -147,7 +147,12 @@ export const AllStates: Story = {
         },
     },
     render: () => (
-        <Flex direction={'column'} align={'stretch'} gap={'lg'} p={'lg'}>
+        <Flex
+            direction={'column'}
+            align={'stretch'}
+            gap={'lg'}
+            p={'lg'}
+        >
             <Checkbox label={'Unchecked'} />
             <Checkbox
                 label={'Checked'}
@@ -180,7 +185,11 @@ export const Controlled: Story = {
     render: () => {
         const [checked, setChecked] = useState(false)
         return (
-            <Flex direction={'column'} align={'start'} gap={'md'}>
+            <Flex
+                direction={'column'}
+                align={'start'}
+                gap={'md'}
+            >
                 <Checkbox
                     label={checked ? 'Checked ✓' : 'Unchecked'}
                     checked={checked}
