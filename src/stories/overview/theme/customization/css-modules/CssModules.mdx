@@ -113,6 +113,8 @@ The kit does **not** ship named utility classes — all of its styling is token-
 
 CSS custom properties cascade normally, so dark mode needs **no extra CSS Modules config**. Toggling `data-theme="dark"` on any ancestor automatically flips all `var(--color-*)` values inside your module's rules.
 
+> **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your module's `var()` rules respond to it automatically, no changes needed. See the **ThemeProvider** page.
+
 <Source language="css" code={`/* MyCard.module.css — dark-specific override (optional) */
 
 /* Target the dark scope and override specific tokens only if needed. */
@@ -131,6 +133,7 @@ CSS custom properties cascade normally, so dark mode needs **no extra CSS Module
 - ✅ Your project uses CSS Modules (Next.js app router, Vite with `?module`, CRA).
 - ✅ You want component-scoped styles **plus** access to the kit's design tokens.
 - ✅ Zero runtime overhead — everything resolves at the CSS level.
+- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your module styles are unchanged.
 
-For **typed** token access with autocomplete, see the **Vanilla Extract** page. For **utility classes** mapped to tokens, see the **Tailwind** page.
+For **typed** token access with autocomplete, see the **Vanilla Extract** page. For **utility classes** mapped to tokens, see the **Tailwind** page. For **React-driven** theme management, see the **ThemeProvider** page.
 

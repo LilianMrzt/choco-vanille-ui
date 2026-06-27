@@ -87,6 +87,19 @@ This is handy if other parts of your app already consume `--mui-*` variables and
 
 You do **not** need MUI's `palette.mode: 'dark'` machinery for the kit's tokens. Since the MUI palette references `var(--color-*)`, simply toggling the kit's `data-theme` re-colours MUI too:
 
+> **React app?** If you need programmatic theme switching, wrap both providers with the kit's `<ThemeProvider>` — it manages `data-theme` via React state and MUI's palette continues reading the same `var(--color-*)` variables unchanged.
+
+<Source language="tsx" code={`import { ThemeProvider as KitThemeProvider } from '@my-org/ui-kit';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { muiTheme } from './theme';
+
+<KitThemeProvider defaultTheme="system">
+  {/* MUI palette reads var(--color-*) — it follows the kit's data-theme */}
+  <MuiThemeProvider theme={muiTheme}>
+    <App />
+  </MuiThemeProvider>
+</KitThemeProvider>`} />
+
 <Source language="tsx" code={`<div data-theme="dark">
   <ThemeProvider theme={muiTheme}>
     <Button variant="contained">Follows the kit's dark mode</Button>
@@ -101,5 +114,5 @@ If you also rely on MUI's own light/dark components (e.g. its `mode`-aware defau
 
 - ✅ Your app mixes MUI components **and** kit components and you want one consistent palette.
 - ✅ You want MUI to inherit the kit's dark mode and scoped overrides for free.
-- ❌ You expected MUI's theme to restyle the kit's components — it can't; the kit doesn't read MUI's theme. Use **Plain CSS** or **Vanilla Extract** to change the kit itself.
+- ✅ Combine with the kit's **ThemeProvider** for React-driven theme switching — MUI follows the kit's `data-theme` automatically since its palette reads `var(--color-*)`; no changes to your MUI theme object.- ❌ You expected MUI's theme to restyle the kit's components — it can't; the kit doesn't read MUI's theme. Use **Plain CSS** or **Vanilla Extract** to change the kit itself.
 

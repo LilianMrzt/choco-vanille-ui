@@ -1,0 +1,169 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+
+<Meta title="Overview/Theme/Customization/ThemeProvider" />
+
+# ThemeProvider
+
+> **`ThemeProvider` is not a new customization method.** It is a React convenience wrapper that manages the `data-theme` attribute on a DOM element for you. The kit's components still read the exact same CSS custom properties they always did — nothing about that contract changes.
+
+Use it when your project is React-based and you want **programmatic theme switching** (dark mode toggle, OS preference tracking, `useTheme` hook) without writing DOM manipulation code yourself. Your existing CSS customization approach — Plain CSS, CSS Modules, Tailwind, Vanilla Extract, or any other — stays exactly as-is alongside it.
+
+---
+
+## What it does (and what it doesn't)
+
+| What `ThemeProvider` does | What it does **not** do |
+|---|---|
+| Sets `data-theme="light\|dark"` on a wrapper `<div>` | Change how kit components read tokens |
+| Tracks `prefers-color-scheme` and updates on OS change | Replace Plain CSS / Tailwind / Vanilla Extract overrides |
+| Exposes `{ theme, resolvedTheme, setTheme }` via React context | Introduce a new styling engine or token format |
+| Injects `tokens` prop values as inline CSS custom properties | Prevent any other `data-theme` management strategy from working |
+
+---
+
+## Quick start
+
+<Source language="tsx" code={`import { ThemeProvider } from '@my-org/ui-kit'
+
+// Wrap your whole app — follows the OS preference by default.
+export default function App() {
+  return (
+    <ThemeProvider defaultTheme="system">
+      <YourApp />
+    </ThemeProvider>
+  )
+}`} />
+
+That's it. Every kit component inside the tree now automatically switches between light and dark following the OS setting, and you can change it programmatically at any time via the `useTheme` hook.
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `defaultTheme` | `'light' \| 'dark' \| 'system'` | `'system'` | Initial mode (uncontrolled). |
+| `theme` | `'light' \| 'dark' \| 'system'` | — | Controlled mode. Pair with `onThemeChange`. |
+| `onThemeChange` | `(theme: ThemeMode) => void` | — | Fired whenever a child calls `setTheme`. |
+| `tokens` | `Partial<Record<ThemeColor, string>>` | — | Runtime color-token overrides. |
+| `...divProps` | `React.HTMLAttributes<HTMLDivElement>` | — | All standard `<div>` props (`className`, `style`, `id`, …). |
+
+---
+
+## useTheme hook
+
+`useTheme` reads the nearest `ThemeProvider` context.
+
+<Source language="tsx" code={`import { useTheme } from '@my-org/ui-kit'
+
+function DarkModeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  return (
+    <button onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>
+      Switch to {resolvedTheme === 'dark' ? 'light' : 'dark'} mode
+    </button>
+  )
+}`} />
+
+| Value | Type | Description |
+|---|---|---|
+| `theme` | `ThemeMode` | Active mode, including `'system'` if that's what was set. |
+| `resolvedTheme` | `'light' \| 'dark'` | Concrete mode — never `'system'`. Safe for conditional rendering. |
+| `setTheme` | `(theme: ThemeMode) => void` | Change the active mode. |
+
+> `useTheme` is safe to call **outside** a `ThemeProvider` — it returns `{ theme: 'system', resolvedTheme: 'light', setTheme: noop }` as a fallback.
+
+---
+
+## Uncontrolled vs controlled
+
+### Uncontrolled (default)
+
+The provider owns the state. Use `defaultTheme` to seed it and `useTheme().setTheme` to change it from anywhere in the tree.
+
+<Source language="tsx" code={`<ThemeProvider defaultTheme="dark">
+  {/* starts dark; DarkModeToggle can switch it at runtime */}
+  <DarkModeToggle />
+  <App />
+</ThemeProvider>`} />
+
+### Controlled
+
+The parent owns the state. Pass `theme` and handle `onThemeChange` to stay in sync.
+
+<Source language="tsx" code={`const [mode, setMode] = useState<ThemeMode>('system')
+
+<ThemeProvider theme={mode} onThemeChange={setMode}>
+  <App />
+</ThemeProvider>`} />
+
+---
+
+## Runtime token overrides
+
+The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and injects them as `--color-*` inline styles on the wrapper element. This is the zero-build-step alternative to the Vanilla Extract `overrideColors` helper — no `.css.ts` file required.
+
+<Source language="tsx" code={`<ThemeProvider
+  tokens={{
+    primary:           'oklch(0.55 0.2 180)',
+    primaryHover:      'oklch(0.49 0.2 180)',
+    primaryForeground: 'oklch(1 0 0)',
+    ring:              'oklch(0.55 0.2 180)',
+  }}
+>
+  {/* Every kit component here uses the teal primary */}
+  <Button variant="contained" color="primary" label="Acme action" />
+</ThemeProvider>`} />
+
+> **Tip.** `tokens` overrides apply on top of whichever theme is active. You can combine them with `theme="dark"` to create a fully custom dark-mode variant.
+
+---
+
+## Scoped theming
+
+Because `ThemeProvider` renders a `<div>`, you can nest several providers to create independent theme zones inside the same page.
+
+<Source language="tsx" code={`<ThemeProvider defaultTheme="light">
+  {/* default light zone */}
+  <Header />
+
+  <ThemeProvider theme="dark" tokens={{ primary: 'oklch(0.70 0.16 185)' }}>
+    {/* dark zone with a custom primary */}
+    <Sidebar />
+  </ThemeProvider>
+
+  <Main />
+</ThemeProvider>`} />
+
+---
+
+## Global (app-level) theming
+
+Render `ThemeProvider` at the very top of your React tree to apply the theme globally. Its `<div>` wrapper then covers the entire viewport.
+
+<Source language="tsx" code={`// main.tsx
+import { ThemeProvider } from '@my-org/ui-kit'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+
+createRoot(document.getElementById('root')!).render(
+  <ThemeProvider defaultTheme="system" style={{ minHeight: '100dvh' }}>
+    <App />
+  </ThemeProvider>
+)`} />
+
+---
+
+## Comparison with other approaches
+
+| | ThemeProvider | Plain CSS | Vanilla Extract |
+|---|---|---|---|
+| Build step needed | ❌ | ❌ | ✅ |
+| Runtime switching | ✅ | Manual DOM manipulation | ❌ (build-time) |
+| `useTheme` hook | ✅ | ❌ | ❌ |
+| Fully typed tokens | Via `ThemeColor` | ❌ | ✅ |
+| Works in any framework | React only | ✅ | ✅ |
+
+Use `ThemeProvider` when you need **React-driven** theme switching or want to inject token overrides at runtime. For static builds or non-React projects, the Plain CSS or Vanilla Extract pages are the right tool.
+

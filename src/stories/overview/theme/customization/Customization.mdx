@@ -10,9 +10,19 @@ Every token is a plain **CSS custom property** on `:root`, so you can re-skin th
 
 ---
 
+## How it works in one minute
+
+1. The kit ships a single stylesheet (`@my-org/ui-kit/styles.css`) that declares every token as a CSS custom property on `:root` (plus a dark variant under `[data-theme="dark"]`).
+2. Components read those variables — they never hard-code colours, spacing, or radii.
+3. To customize, you **redefine the variable** in a scope (global `:root` or a scoped selector). The cascade does the rest.
+
+This is a one-way contract: change the **CSS variable**, and every component in that scope follows. That single rule is what makes all the approaches in this section interchangeable.
+
+---
+
 ## Pick the approach that matches your stack
 
-Each method has its own detailed page in this section. They all manipulate the **same** underlying CSS variables — choose the one that fits your tooling.
+Each method manipulates the **same** underlying CSS variables. Choose the one that fits your tooling.
 
 | Page | When to use it |
 |---|---|
@@ -23,14 +33,19 @@ Each method has its own detailed page in this section. They all manipulate the *
 | **Styled Components & Emotion** | CSS-in-JS template literals or object styles referencing kit tokens. |
 | **MUI** | You also render Material UI components and want them to share the kit's tokens. |
 
-> **Dark mode** isn't a separate page — it's just another scope. Each method page above ends with a short **Dark mode** section showing how that approach targets `[data-theme="dark"]`.
-
 ---
 
-## How it works in one minute
+## React integration layer: ThemeProvider
 
-1. The kit ships a single stylesheet (`@my-org/ui-kit/styles.css`) that declares every token as a CSS custom property on `:root` (plus a dark variant under `[data-theme="dark"]`).
-2. Components read those variables — they never hard-code colours, spacing, or radii.
-3. To customize, you **redefine the variable** in a scope (global `:root` or a scoped selector). The cascade does the rest.
+`ThemeProvider` is **not** an alternative customization method — it is a React convenience wrapper that sits **on top of** whichever CSS approach you already use.
 
-This is a one-way contract: change the **CSS variable**, and every component in that scope follows. That single rule is what makes all the approaches in this section interchangeable.
+It doesn't change how the kit reads tokens or how you override them. What it does:
+
+- Manages the `data-theme` attribute on a wrapper element for you (the same attribute Plain CSS / Tailwind / Vanilla Extract all rely on).
+- Follows `prefers-color-scheme` in `'system'` mode and updates reactively when the OS preference changes.
+- Exposes a `setTheme` / `useTheme` hook so any React component can toggle the theme without touching the DOM directly.
+- Accepts a `tokens` prop that injects CSS custom properties as inline styles — still the same CSS variables, just set at runtime instead of in a stylesheet.
+
+In short: **you keep your existing customization approach unchanged; `ThemeProvider` only adds React state management around the `data-theme` attribute**. Use it if your project is React-based and you need programmatic theme switching. Skip it if you manage `data-theme` another way (server-rendered attribute, a state manager, a URL param, etc.).
+
+See the **ThemeProvider** page for the full API and usage examples.

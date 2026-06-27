@@ -1,6 +1,9 @@
 export { vars } from '@theme'
 export type { ThemeVars, ThemeColor } from '@theme'
 
+// ThemeProvider — re-exported here for discoverability alongside the theme types
+export type { ThemeMode, ThemeContextValue } from '@components/theme-provider'
+
 // Utilities
 export { cn } from '@utils/cn.ts'
 

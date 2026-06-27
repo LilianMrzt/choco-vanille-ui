@@ -158,6 +158,8 @@ export const Surface = styled.div<SurfaceProps>\`
 
 Since styled components / emotion output resolves to regular CSS, dark mode works automatically via `[data-theme="dark"]` — exactly like plain CSS.
 
+> **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your styled components and Emotion styles resolve through the same CSS variables so they respond automatically, with no changes to your existing styled code. See the **ThemeProvider** page.
+
 <Source language="tsx" code={`<div data-theme="dark">
   {/* Card reads var(--color-card) which the kit flips for dark mode */}
   <Card>Dark-aware card</Card>
@@ -181,6 +183,7 @@ export const DarkBrandOverride = createGlobalStyle\`
 - ✅ Your project is already Styled Components or Emotion based.
 - ✅ You want to write component styles with `var()` references and keep dark mode for free.
 - ✅ You need prop-driven style variations layered on top of the kit's tokens.
+- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your styled components are unchanged.
 
-For **utility-class** approaches, see **Tailwind**. For **zero-runtime typed** tokens, see **Vanilla Extract**.
+For **utility-class** approaches, see **Tailwind**. For **zero-runtime typed** tokens, see **Vanilla Extract**. For **React-driven** theme management, see the **ThemeProvider** page.
 

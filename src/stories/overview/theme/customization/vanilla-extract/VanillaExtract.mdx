@@ -75,6 +75,8 @@ These helpers call Vanilla Extract's `globalStyle` internally. Vanilla Extract c
 
 Dark mode is just another scope. Because `vars.color.*` compiles to `var(--color-*)`, any style that consumes `vars` reacts to `[data-theme="dark"]` automatically — no conditional logic needed.
 
+> **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your Vanilla Extract styles read the same `var(--color-*)` variables so they respond automatically. See the **ThemeProvider** page.
+
 To give a token a **dark-specific** value, target the dark scope with `overrideColors`:
 
 <Source language="ts" code={`// brand.css.ts
@@ -98,7 +100,8 @@ overrideColors('[data-theme="dark"]', {
 - ✅ You author styles with Vanilla Extract and want typed tokens.
 - ✅ You want the compiler to catch token typos.
 - ✅ You're building reusable themed components on top of the kit.
+- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your Vanilla Extract styles and `overrideColors` calls are unchanged.
 
-If you don't use Vanilla Extract, the **Plain CSS** page achieves the same overrides with raw CSS variables and zero tooling.
+If you don't use Vanilla Extract, the **Plain CSS** page achieves the same overrides with raw CSS variables and zero tooling. For **React-driven** theme management, see the **ThemeProvider** page.
 
 

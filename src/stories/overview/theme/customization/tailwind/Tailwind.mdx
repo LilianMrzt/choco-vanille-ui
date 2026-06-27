@@ -67,6 +67,8 @@ If you copied hard-coded colours into the Tailwind config instead, you'd lose al
 
 Because the utilities resolve through `var(...)` at runtime, dark mode needs **no extra Tailwind config** — flip `[data-theme="dark"]` and `bg-brand` follows the variable. To give the Tailwind aliases dark-specific values, override the underlying kit variable in the dark scope:
 
+> **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your Tailwind utilities resolve through the same `var(--color-*)` so they follow for free. See the **ThemeProvider** page.
+
 <Source language="css" code={`/* app.css — only affects dark mode */
 [data-theme="dark"] {
   --color-primary: oklch(0.70 0.16 185); /* bg-brand picks this up automatically */
@@ -86,7 +88,8 @@ Because the utilities resolve through `var(...)` at runtime, dark mode needs **n
 
 - ✅ Your app is already Tailwind-based.
 - ✅ You want to mix raw Tailwind markup with kit components and share one palette.
+- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your Tailwind utilities are unchanged.
 
-For projects without Tailwind, the **Plain CSS** page achieves the same result with no tooling.
+For projects without Tailwind, the **Plain CSS** page achieves the same result with no tooling. For **React-driven** theme management, see the **ThemeProvider** page.
 
 

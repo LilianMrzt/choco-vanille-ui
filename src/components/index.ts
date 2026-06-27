@@ -1,3 +1,4 @@
+export * from '@components/theme-provider'
 export * from '@components/data-display'
 export * from '@components/actions/button'
 export * from '@components/actions/icon-button'

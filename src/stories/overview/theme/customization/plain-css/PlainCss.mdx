@@ -64,6 +64,8 @@ Because CSS variables cascade, you can nest scopes and even override a single to
 
 `:root` is **light** by default; when no `data-theme` is set it follows the OS automatically. Apply `[data-theme="dark"]` to **any** element to force dark for that subtree, and scope dark-only overrides by targeting `[data-theme="dark"]`.
 
+> **React app?** If you need programmatic theme switching (OS tracking, a toggle button), the kit's `<ThemeProvider>` sets `data-theme` for you via React state — your CSS overrides work unchanged underneath it. See the **ThemeProvider** page.
+
 <Source language="css" code={`/* A brand override that only applies in dark mode */
 [data-theme="dark"] {
   --color-primary: oklch(0.70 0.16 185);
@@ -88,7 +90,8 @@ Because CSS variables cascade, you can nest scopes and even override a single to
 - ✅ Any project — React, Vue, server-rendered, plain HTML.
 - ✅ You want the least amount of tooling possible.
 - ✅ Quick theming or a one-off rebrand.
+- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your CSS overrides are unchanged.
 
-For **typed** overrides with autocomplete, see the **Vanilla Extract** page. For **Tailwind utilities** mapped to these tokens, see the **Tailwind** page.
+For **typed** overrides with autocomplete, see the **Vanilla Extract** page. For **Tailwind utilities** mapped to these tokens, see the **Tailwind** page. For **React-driven** theme management, see the **ThemeProvider** page.
 
 
