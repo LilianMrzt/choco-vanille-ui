@@ -2,14 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 import type { ComponentProps } from 'react'
 
-import { Card, CardHeader, CardBody, CardFooter } from '@components/layout/card'
 import type { BoxRecipeVariants } from '@components/layout/box'
-import { Button } from '@components/actions/button'
-import { IconButton } from '@components/actions/icon-button'
-import { Flex } from '@components/layout/flex'
-import { Typography } from '@components/foundation/typography'
+import type { TypographyProps } from '@components/foundation/typography'
 
-// ── Shared option lists ───────────────────────────────────────────────────────
+import { Button, Card, CardBody, CardFooter, CardHeader, Flex, IconButton, Typography } from '@components'
+
+// Shared option lists
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 const SPACING = [undefined, 'none', 'px', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const
 const ROUNDED = [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] as const
@@ -27,7 +25,10 @@ type CardPlaygroundArgs = ComponentProps<typeof Card> & {
     headerAs?: 'div' | 'header'
     title?: string
     titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    titleFontSize?: TypographyProps['fontSize']
+    titleFontWeight?: TypographyProps['fontWeight']
     description?: string
+    descriptionFontSize?: TypographyProps['fontSize']
     bodyAs?: 'div' | 'section'
     bodyPadding?: BoxRecipeVariants['p']
     footerAs?: 'div' | 'footer'
@@ -46,7 +47,7 @@ const meta: Meta<CardPlaygroundArgs> = {
 A surface container with consistent background, border, shadow and rounded corners.
 Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
 
-\`CardHeader\` accepts **props** for title, description and actions — no separate \`CardTitle\` / \`CardDescription\` sub-components needed.
+\`CardHeader\` accepts **props** for title, description and actions directly — no separate sub-components needed. Customize the typography via \`titleProps\` and \`descriptionProps\`.
 
 **Usage**
 \`\`\`tsx
@@ -54,6 +55,8 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
   <CardHeader
     title="Account settings"
     description="Manage your profile."
+    titleAs="h3"
+    titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
     actions={<IconButton icon="mdi:dots-vertical" aria-label="More" variant="ghost" color="primary" />}
   />
   <CardBody>…</CardBody>
@@ -67,7 +70,7 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
         },
     },
     argTypes: {
-        // ── Card ──────────────────────────────────────────────────────────────
+        // Card
         as: {
             control: 'select',
             options: ['div', 'section', 'article', 'aside'],
@@ -92,7 +95,7 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
             description: '**Card** — Padding override (all sides).',
             table: { category: 'Card' },
         },
-        // ── CardHeader ────────────────────────────────────────────────────────
+        // CardHeader
         headerAs: {
             control: 'select',
             options: ['div', 'header'],
@@ -110,12 +113,30 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
             description: '**CardHeader** — Heading level.',
             table: { category: 'CardHeader' },
         },
+        titleFontSize: {
+            control: 'select',
+            options: [undefined, 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'],
+            description: '**CardHeader** — Title font-size override (`titleProps.fontSize`).',
+            table: { category: 'CardHeader' },
+        },
+        titleFontWeight: {
+            control: 'select',
+            options: [undefined, 'thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'],
+            description: '**CardHeader** — Title font-weight override (`titleProps.fontWeight`).',
+            table: { category: 'CardHeader' },
+        },
         description: {
             control: 'text',
             description: '**CardHeader** — Description text.',
             table: { category: 'CardHeader' },
         },
-        // ── CardBody ──────────────────────────────────────────────────────────
+        descriptionFontSize: {
+            control: 'select',
+            options: [undefined, 'xs', 'sm', 'base', 'lg', 'xl', '2xl'],
+            description: '**CardHeader** — Description font-size override (`descriptionProps.fontSize`).',
+            table: { category: 'CardHeader' },
+        },
+        // CardBody
         bodyAs: {
             control: 'select',
             options: ['div', 'section'],
@@ -128,7 +149,7 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
             description: '**CardBody** — Padding override.',
             table: { category: 'CardBody' },
         },
-        // ── CardFooter ────────────────────────────────────────────────────────
+        // CardFooter
         footerAs: {
             control: 'select',
             options: ['div', 'footer'],
@@ -154,7 +175,10 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
         headerAs: 'div',
         title: 'Account settings',
         titleAs: 'h3',
+        titleFontSize: undefined,
+        titleFontWeight: undefined,
         description: 'Manage your profile and preferences.',
+        descriptionFontSize: undefined,
         bodyAs: 'div',
         bodyPadding: undefined,
         footerAs: 'div',
@@ -167,7 +191,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-// ── Playground ────────────────────────────────────────────────────────────────
+// Playground
 
 export const Playground: Story = {
     parameters: {
@@ -185,7 +209,10 @@ export const Playground: Story = {
         headerAs,
         title,
         titleAs,
+        titleFontSize,
+        titleFontWeight,
         description,
+        descriptionFontSize,
         bodyAs,
         bodyPadding,
         footerAs,
@@ -203,7 +230,9 @@ export const Playground: Story = {
                 as={headerAs}
                 title={title}
                 titleAs={titleAs}
+                titleProps={titleFontSize || titleFontWeight ? { fontSize: titleFontSize, fontWeight: titleFontWeight } : undefined}
                 description={description}
+                descriptionProps={descriptionFontSize ? { fontSize: descriptionFontSize } : undefined}
                 actions={(
                     <IconButton
                         icon={'mdi:dots-vertical'}
@@ -250,7 +279,7 @@ export const Playground: Story = {
     },
 }
 
-// ── With actions ──────────────────────────────────────────────────────────────
+// With actions
 
 export const WithActions: Story = {
     name: 'Header with actions',
@@ -290,7 +319,7 @@ export const WithActions: Story = {
     ),
 }
 
-// ── Full composition ──────────────────────────────────────────────────────────
+// Full composition
 
 export const FullComposition: Story = {
     name: 'Full composition',
@@ -344,7 +373,7 @@ export const FullComposition: Story = {
     ),
 }
 
-// ── Card grid ─────────────────────────────────────────────────────────────────
+// Card grid
 
 export const CardGrid: Story = {
     name: 'Card grid',
@@ -400,7 +429,7 @@ export const CardGrid: Story = {
     ),
 }
 
-// ── Semantic elements ─────────────────────────────────────────────────────────
+// Semantic elements
 
 export const SemanticElements: Story = {
     name: 'Semantic HTML elements',

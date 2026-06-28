@@ -1,6 +1,6 @@
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { FlexProps } from '@components/layout/flex'
 
-export type CardFooterProps = Omit<BoxProps, 'as'> & {
+export type CardFooterProps = Omit<FlexProps, 'as'> & {
   /** The HTML element to render. @default 'div' */
   as?: 'div' | 'footer'
 }

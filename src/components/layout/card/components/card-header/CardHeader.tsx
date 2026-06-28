@@ -1,11 +1,10 @@
 import { type FC } from 'react'
 
-import { cn } from '@utils/cn.ts'
+import { vars } from '@theme/contract.css.ts'
+import { Flex } from '@components/layout/flex'
+import { Typography } from '@components/foundation/typography'
 import {
-    cardHeaderClass,
     cardHeaderContentClass,
-    cardTitleClass,
-    cardDescriptionClass,
     cardHeaderActionsClass,
 } from '@components/layout/card/components/card-header/CardHeader.css.ts'
 import type { CardHeaderProps } from '@components/layout/card/components/card-header/types/CardHeader.props.ts'
@@ -29,40 +28,71 @@ import type { CardHeaderProps } from '@components/layout/card/components/card-he
 const CardHeader: FC<CardHeaderProps> = ({
     as: Element = 'div',
     title,
-    titleAs: TitleElement = 'h3',
+    titleAs,
+    titleProps,
     description,
+    descriptionProps,
     actions,
     className,
     children,
     ...props
 }) => (
-    <Element
-        className={cn(cardHeaderClass, className)}
+    <Flex
+        as={Element}
+        direction={'row'}
+        align={'start'}
+        justify={'between'}
+        gap={'md'}
+        p={'md'}
+        pb={'none'}
+        className={className}
         {...props}
     >
         {(title || description) && (
-            <div className={cardHeaderContentClass}>
+            <Flex
+                direction={'column'}
+                align={'start'}
+                gap={'xs'}
+                className={cardHeaderContentClass}
+            >
                 {title && (
-                    <TitleElement className={cardTitleClass}>
+                    <Typography
+                        as={titleAs ?? 'h3'}
+                        fontSize={'lg'}
+                        fontWeight={'semibold'}
+                        color={'cardForeground'}
+                        style={{ lineHeight: vars.lineHeight.tight }}
+                        {...titleProps}
+                    >
                         {title}
-                    </TitleElement>
+                    </Typography>
                 )}
                 {description && (
-                    <p className={cardDescriptionClass}>
+                    <Typography
+                        as={'p'}
+                        fontSize={'sm'}
+                        color={'mutedForeground'}
+                        style={{ lineHeight: vars.lineHeight.normal }}
+                        {...descriptionProps}
+                    >
                         {description}
-                    </p>
+                    </Typography>
                 )}
-            </div>
+            </Flex>
         )}
 
         {children}
 
         {actions && (
-            <div className={cardHeaderActionsClass}>
+            <Flex
+                align={'center'}
+                gap={'xs'}
+                className={cardHeaderActionsClass}
+            >
                 {actions}
-            </div>
+            </Flex>
         )}
-    </Element>
+    </Flex>
 )
 
 CardHeader.displayName = 'CardHeader'

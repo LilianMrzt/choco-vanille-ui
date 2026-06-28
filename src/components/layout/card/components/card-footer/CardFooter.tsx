@@ -1,15 +1,16 @@
 import { type FC } from 'react'
 
-import { Box } from '@components/layout/box'
-import { cn } from '@utils/cn.ts'
-import { cardFooterClass } from '@components/layout/card/components/card-footer/CardFooter.css.ts'
+import { Flex } from '@components/layout/flex'
 import type { CardFooterProps } from '@components/layout/card/components/card-footer/types/CardFooter.props.ts'
 
 /** Footer area of a `Card` — a flex row for action buttons. */
-const CardFooter: FC<CardFooterProps> = ({ as = 'div', className, ...props }) => (
-    <Box
+const CardFooter: FC<CardFooterProps> = ({ as = 'div', ...props }) => (
+    <Flex
         as={as}
-        className={cn(cardFooterClass, className)}
+        align={'center'}
+        gap={'sm'}
+        p={'md'}
+        pt={'none'}
         {...props}
     />
 )
