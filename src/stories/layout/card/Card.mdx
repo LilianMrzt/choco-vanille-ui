@@ -1,0 +1,107 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Source,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks';
+
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+<Title />
+
+<Subtitle>
+  Composable surface container built on `Box` — provides consistent background, border, shadow and rounded corners with named sub-components for structured layouts.
+</Subtitle>
+
+`Card` is a layout primitive for grouping related content into a distinct visual surface.
+Compose it with `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, and `CardFooter` to build structured layouts.
+
+<Source
+  language="tsx"
+  code={`import {
+  Card, CardHeader, CardTitle, CardDescription,
+  CardBody, CardFooter,
+} from '@my-org/ui-kit';
+
+<Card>
+  <CardHeader>
+    <CardTitle>Account settings</CardTitle>
+    <CardDescription>Manage your profile and preferences.</CardDescription>
+  </CardHeader>
+  <CardBody>
+    <p>Your content goes here.</p>
+  </CardBody>
+  <CardFooter>
+    <Button label="Save changes" variant="contained" color="primary" />
+  </CardFooter>
+</Card>`}
+/>
+
+## Accessibility
+
+| Prop / Attribute | Required | Notes |
+| ---------------- | -------- | ----- |
+| `as` | No | Use `article` for self-contained content, `section` for themed groups, `aside` for supplementary content. Defaults to `div`. |
+| `aria-label` / `aria-labelledby` | Conditional | Required on landmark elements (`section`, `aside`) when multiple instances co-exist on a page. |
+
+`CardTitle` renders as `<h3>` by default. Override via the `as` prop to maintain correct heading hierarchy on the page.
+
+## Playground
+
+<Canvas of={CardStories.Playground} />
+
+<Controls of={CardStories.Playground} />
+
+## Full composition
+
+<Canvas of={CardStories.FullComposition} />
+
+## Card grid
+
+<Canvas of={CardStories.CardGrid} />
+
+## Semantic elements
+
+<Canvas of={CardStories.SemanticElements} />
+
+## API reference
+
+### Card
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `as` | `'div' \| 'section' \| 'article' \| 'aside'` | `'div'` | HTML element to render. |
+| `className` | `string` | — | Additional CSS classes merged onto the root element. |
+| All `BoxProps` | — | — | All spacing, sizing, background and layout props from `Box` are available. |
+
+### CardHeader
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `as` | `'div' \| 'header'` | `'div'` | HTML element to render. |
+
+### CardTitle
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `as` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'` | `'h3'` | Heading level. Adjust to maintain correct document outline. |
+
+### CardDescription
+
+Renders as `<p>`. Accepts all standard `HTMLParagraphElement` attributes.
+
+### CardBody
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `as` | `'div' \| 'section'` | `'div'` | HTML element to render. |
+
+### CardFooter
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `as` | `'div' \| 'footer'` | `'div'` | HTML element to render. |
