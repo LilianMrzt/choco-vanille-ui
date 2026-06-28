@@ -4,20 +4,120 @@ import { Meta, Source } from '@storybook/addon-docs/blocks'
 
 # Tailwind
 
-If your app already uses Tailwind, expose the kit's CSS variables as **Tailwind tokens** so you can use them through utilities like `bg-brand` or `rounded-card`. The kit's components keep reading their own variables — you are only adding Tailwind aliases on top.
+Already using Tailwind? You can do two things with the kit's tokens:
 
-> Use **distinct names** (e.g. `brand`, not `primary`) so your Tailwind tokens don't clash with the kit's own variable names.
+- **Override** the kit's colors globally (e.g. make `primary` red) — affects every kit component.
+- **Expose** the kit's variables as Tailwind utilities (`bg-primary`, `rounded-md`, …).
+
+Both work because every kit component reads its colours through `var(--color-*)` at runtime.
 
 ---
 
-## Tailwind v4 (CSS-first `@theme`)
+## 1. Setup
 
-In v4 the theme lives in CSS. Map the kit's variables into the `@theme` block.
+Install Tailwind v4 and add its Vite plugin.
 
-<Source language="css" code={`/* app.css */
+<Source language="bash" code={`npm install tailwindcss @tailwindcss/vite`} />
+
+<Source language="ts" code={`// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [tailwindcss(), react()],
+})`} />
+
+Then import Tailwind and the kit stylesheet in your main CSS file. **Import the kit *before* your
+own rules** so your overrides come later in source order and win (both target `:root`, so the last
+declaration wins).
+
+<Source language="css" code={`/* index.css */
 @import 'tailwindcss';
 @import '@my-org/ui-kit/styles.css';
 
+/* ↓ your overrides / @theme go below this line */`} />
+
+> The kit does **not** auto-inject its CSS — you import `styles.css` yourself, exactly once, here.
+> That single import point is what makes the override order predictable.
+
+---
+
+## 2. Override the kit's colours
+
+Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` for dark mode). Place them
+**after** the `@import` above.
+
+<Source language="css" code={`/* index.css — after the imports */
+
+/* Light */
+:root {
+  --color-primary:                 oklch(54.5% .26 25);
+  --color-primaryHover:            oklch(48.8% .24 25);
+  --color-primaryActive:           oklch(42.4% .21 25);
+  --color-primaryForeground:       oklch(100% 0 0);
+  --color-primarySubtle:           oklch(97.1% .015 25);
+  --color-primarySubtleHover:      oklch(93.6% .04 25);
+  --color-primarySubtleActive:     oklch(88.5% .08 25);
+  --color-primarySubtleForeground: oklch(48.8% .24 25);
+  --color-primarySubtleBorder:     oklch(88.5% .08 25);
+  --color-ring:                    oklch(54.5% .26 25);
+}
+
+/* Dark — matches the kit's [data-theme="dark"] selector */
+[data-theme="dark"] {
+  --color-primary:                 oklch(62.3% .23 25);
+  --color-primaryHover:            oklch(70.7% .19 25);
+  --color-primaryActive:           oklch(80.8% .13 25);
+  --color-primaryForeground:       oklch(14.3% .008 264);
+  --color-primarySubtle:           oklch(28.2% .1 25);
+  --color-primarySubtleHover:      oklch(37.9% .15 25);
+  --color-primarySubtleActive:     oklch(42.4% .2 25);
+  --color-primarySubtleForeground: oklch(88.5% .062 25);
+  --color-primarySubtleBorder:     oklch(42.4% .2 25);
+  --color-ring:                    oklch(62.3% .23 25);
+}`} />
+
+That's it — every kit component (`<Button>`, `<Checkbox>`, …) now uses your colours. No component
+changes, no config.
+
+---
+
+## 3. Use kit tokens as Tailwind utilities
+
+Optional. If you also want Tailwind classes backed by the kit's tokens, add a `@theme` block.
+
+### `@theme inline` — keep the kit's names (`bg-primary`)
+
+Generates utilities that inline `var(...)` directly, **without** creating new variables. Best when you
+want Tailwind classes that share the kit's token names — they also follow your overrides above.
+
+<Source language="css" code={`/* index.css */
+@theme inline {
+  --color-primary:           var(--color-primary);
+  --color-primaryForeground: var(--color-primaryForeground);
+  --color-secondary:         var(--color-secondary);
+  --color-background:        var(--color-background);
+  --color-foreground:        var(--color-foreground);
+  --color-muted:             var(--color-muted);
+  --color-border:            var(--color-border);
+  --color-ring:              var(--color-ring);
+
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius-md);
+  --radius-lg:   var(--radius-lg);
+  --radius-full: var(--radius-full);
+}`} />
+
+<Source language="tsx" code={`<button className="bg-primary text-primaryForeground rounded-md px-4 py-2">
+  Uses kit tokens
+</button>`} />
+
+### `@theme` — use your own names (`bg-brand`)
+
+Use this when your app has a different naming convention. Tailwind creates a new variable and utility.
+
+<Source language="css" code={`/* index.css */
 @theme {
   --color-brand:    var(--color-primary);
   --color-brand-fg: var(--color-primaryForeground);
@@ -25,16 +125,22 @@ In v4 the theme lives in CSS. Map the kit's variables into the `@theme` block.
   --radius-card:    var(--radius-md);
 }`} />
 
-<Source language="tsx" code={`// Now use the generated utilities anywhere:
-<button className="bg-brand text-brand-fg rounded-card px-4 py-2">
+<Source language="tsx" code={`<button className="bg-brand text-brand-fg rounded-card px-4 py-2">
   Branded button
 </button>`} />
 
+> | | `@theme` | `@theme inline` |
+> |---|---|---|
+> | Creates a new CSS variable | ✅ yes | ❌ no |
+> | Token name in utility | new name (`bg-brand`) | same as kit (`bg-primary`) |
+> | Use when | you need distinct names | you want to reuse kit names |
+
 ---
 
-## Tailwind v3 (`tailwind.config.js`)
+## Tailwind v3
 
-In v3, extend the theme in the config file and point each token at the kit's CSS variable.
+Same rule — import the kit stylesheet before your overrides — then point config tokens at the kit's
+variables.
 
 <Source language="js" code={`// tailwind.config.js
 export default {
@@ -52,44 +158,15 @@ export default {
 
 ---
 
-## Why reference the variables (not copy the values)?
+## Why `var(...)` and not hard-coded values?
 
-Because the utilities resolve at **runtime** through `var(...)`, they automatically pick up:
+Because utilities resolve at **runtime**, they automatically follow:
 
-- **Dark mode** — when `[data-theme="dark"]` flips the variable, `bg-brand` follows.
-- **Scoped overrides** — a `[data-brand="acme"]` block (see **Plain CSS**) re-colours `bg-brand` inside that subtree with zero extra config.
+- **Dark mode** — `[data-theme="dark"]` flips the variable, your utilities follow. No `dark:` variant needed.
+- **Overrides** — your `:root` block re-colours kit components *and* Tailwind utilities at once.
+- **Scoped theming** — a `[data-brand="acme"]` wrapper re-themes its subtree for free.
 
-If you copied hard-coded colours into the Tailwind config instead, you'd lose all of that.
+> **React app?** The kit's `<ThemeProvider>` toggles `data-theme` via React state; your utilities
+> resolve through the same `var(--color-*)` chain, so they follow automatically. See **ThemeProvider**.
 
----
-
-## Dark mode
-
-Because the utilities resolve through `var(...)` at runtime, dark mode needs **no extra Tailwind config** — flip `[data-theme="dark"]` and `bg-brand` follows the variable. To give the Tailwind aliases dark-specific values, override the underlying kit variable in the dark scope:
-
-> **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your Tailwind utilities resolve through the same `var(--color-*)` so they follow for free. See the **ThemeProvider** page.
-
-<Source language="css" code={`/* app.css — only affects dark mode */
-[data-theme="dark"] {
-  --color-primary: oklch(0.70 0.16 185); /* bg-brand picks this up automatically */
-}`} />
-
-<Source language="tsx" code={`<div data-theme="dark">
-  <button className="bg-brand text-brand-fg rounded-card px-4 py-2">
-    Dark-aware branded button
-  </button>
-</div>`} />
-
-> Avoid Tailwind's own `dark:` variant for kit tokens — it would double-manage theming. Let the kit's `data-theme` scope drive the variables and Tailwind utilities inherit for free.
-
----
-
-## When to use this
-
-- ✅ Your app is already Tailwind-based.
-- ✅ You want to mix raw Tailwind markup with kit components and share one palette.
-- ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your Tailwind utilities are unchanged.
-
-For projects without Tailwind, the **Plain CSS** page achieves the same result with no tooling. For **React-driven** theme management, see the **ThemeProvider** page.
-
-
+For projects without Tailwind, see **Plain CSS** — same result, no tooling.

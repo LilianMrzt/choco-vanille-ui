@@ -6,6 +6,12 @@ import react from '@vitejs/plugin-react';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+// vite-plugin-lib-inject-css intentionally removed:
+// The kit already exports ./styles.css via package.json "exports".
+// Auto-injecting the CSS import into the JS bundle causes import-order issues
+// in consumer apps — the kit's CSS would be re-injected after any consumer
+// overrides, silently winning at equal (:root) specificity.
+// Consumers must import the stylesheet explicitly:  @import '@my-org/ui-kit/styles.css'
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 

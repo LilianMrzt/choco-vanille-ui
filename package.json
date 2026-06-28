@@ -1,6 +1,6 @@
 {
   "name": "@aurora-ds/lib-test",
-  "version": "0.0.1-dev.1",
+  "version": "0.0.3-dev.1",
   "description": "A React 19 UI kit built with Radix primitives and a Vanilla Extract design system.",
   "type": "module",
   "license": "MIT",
@@ -87,6 +87,7 @@
     "typescript-eslint": "8.62.0",
     "vite": "8.1.0",
     "vite-plugin-dts": "5.0.3",
+    "vite-plugin-lib-inject-css": "^2.2.2",
     "vitest": "^4.1.9"
   },
   "publishConfig": {
