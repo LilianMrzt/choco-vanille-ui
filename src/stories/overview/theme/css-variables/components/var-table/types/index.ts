@@ -1,7 +1,7 @@
-import type { VarRow } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
+import type { VarRow } from '@stories/overview/theme/css-variables/types'
 
 export interface VarTableProps {
     rows: VarRow[]
-    /** Show a colour swatch next to values */
+    /** Show a color swatch next to values */
     showSwatch?: boolean
 }
