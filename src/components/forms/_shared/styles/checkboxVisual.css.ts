@@ -3,21 +3,25 @@ import { style, globalStyle } from '@vanilla-extract/css'
 import { vars } from '@theme/contract.css.ts'
 
 /**
- * Shared visual style for the radio control.
+ * Shared visual style for the checkbox control.
  *
  * Works in two contexts:
- *  1. **Standalone** – applied directly on `RadioGroup.Item` (a `<button>`).
+ *  1. **Standalone** – applied directly on `Checkbox.Root` (a `<button>`).
  *     The root itself carries `data-state` / `data-disabled`, so `&[data-state="checked"]`
  *     and `&:hover` selectors apply.
- *  2. **Dropdown** – applied on a `<span>` inside `DropdownMenu.RadioItem`.
+ *  2. **Dropdown** – applied on a `<span>` inside `DropdownMenu.CheckboxItem`.
  *     The parent item carries `data-state` / `data-highlighted`, so
  *     `[data-state="checked"] &` and `[data-highlighted] &` selectors apply.
+ *
+ * Both selector sets coexist without conflict because:
+ *  - In the standalone context there is no `[data-highlighted]` ancestor.
+ *  - In the dropdown context the span itself never has `data-state`.
  */
-export const radioVisualClass = style({
+export const checkboxVisualClass = style({
     flexShrink: 0,
     width: '1rem',
     height: '1rem',
-    borderRadius: vars.radius.full,
+    borderRadius: vars.radius.xs,
     border: `1.5px solid ${vars.color.input}`,
     padding: 0,
     display: 'flex',
@@ -35,7 +39,7 @@ export const radioVisualClass = style({
     ].join(', '),
 
     selectors: {
-        /* ── Standalone root selectors ──────────────────────────── */
+        /* Standalone root selectors */
         '&:hover': {
             borderColor: vars.color.primary,
         },
@@ -57,7 +61,7 @@ export const radioVisualClass = style({
             opacity: 0.45,
         },
 
-        /* ── Dropdown child-span selectors ──────────────────────── */
+        /* Dropdown child-span selectors */
         '[data-highlighted] &': {
             borderColor: vars.color.primary,
         },
@@ -73,8 +77,8 @@ export const radioVisualClass = style({
     },
 })
 
-globalStyle(`${radioVisualClass} svg`, {
-    width: '0.5rem',
-    height: '0.5rem',
+globalStyle(`${checkboxVisualClass} svg`, {
+    width: '0.625rem',
+    height: '0.625rem',
     pointerEvents: 'none',
 })

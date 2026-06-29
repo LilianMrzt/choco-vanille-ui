@@ -3,25 +3,21 @@ import { style, globalStyle } from '@vanilla-extract/css'
 import { vars } from '@theme/contract.css.ts'
 
 /**
- * Shared visual style for the checkbox control.
+ * Shared visual style for the radio control.
  *
  * Works in two contexts:
- *  1. **Standalone** – applied directly on `Checkbox.Root` (a `<button>`).
+ *  1. **Standalone** – applied directly on `RadioGroup.Item` (a `<button>`).
  *     The root itself carries `data-state` / `data-disabled`, so `&[data-state="checked"]`
  *     and `&:hover` selectors apply.
- *  2. **Dropdown** – applied on a `<span>` inside `DropdownMenu.CheckboxItem`.
+ *  2. **Dropdown** – applied on a `<span>` inside `DropdownMenu.RadioItem`.
  *     The parent item carries `data-state` / `data-highlighted`, so
  *     `[data-state="checked"] &` and `[data-highlighted] &` selectors apply.
- *
- * Both selector sets coexist without conflict because:
- *  - In the standalone context there is no `[data-highlighted]` ancestor.
- *  - In the dropdown context the span itself never has `data-state`.
  */
-export const checkboxVisualClass = style({
+export const radioVisualClass = style({
     flexShrink: 0,
     width: '1rem',
     height: '1rem',
-    borderRadius: vars.radius.xs,
+    borderRadius: vars.radius.full,
     border: `1.5px solid ${vars.color.input}`,
     padding: 0,
     display: 'flex',
@@ -39,7 +35,7 @@ export const checkboxVisualClass = style({
     ].join(', '),
 
     selectors: {
-        /* ── Standalone root selectors ──────────────────────────── */
+        /* Standalone root selectors */
         '&:hover': {
             borderColor: vars.color.primary,
         },
@@ -61,7 +57,7 @@ export const checkboxVisualClass = style({
             opacity: 0.45,
         },
 
-        /* ── Dropdown child-span selectors ──────────────────────── */
+        /* Dropdown child-span selectors */
         '[data-highlighted] &': {
             borderColor: vars.color.primary,
         },
@@ -77,8 +73,8 @@ export const checkboxVisualClass = style({
     },
 })
 
-globalStyle(`${checkboxVisualClass} svg`, {
-    width: '0.625rem',
-    height: '0.625rem',
+globalStyle(`${radioVisualClass} svg`, {
+    width: '0.5rem',
+    height: '0.5rem',
     pointerEvents: 'none',
 })

@@ -1,35 +1,20 @@
-import * as RadixLabel from '@radix-ui/react-label'
-import { useId, useRef, useState, type FC } from 'react'
+import { type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { Icon } from '@components/foundation/icon'
 import { IconButton } from '@components/actions/icon-button'
+import { Flex } from '@components/layout/flex'
 import {
-    textFieldWrapperClass,
-    textFieldFieldClass,
-    textFieldStartIconClass,
-    textFieldEndActionClass,
-    textFieldLabelClass,
     textFieldInputRecipe,
-    textFieldHelperClass,
-    textFieldErrorClass,
 } from '@components/forms/text-field/TextField.css.ts'
+import {
+    TextFieldLabel,
+    TextFieldStartIcon,
+    TextFieldEndAction,
+} from '@components/forms/text-field/components/index.ts'
 import type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
-import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-
-/** Maps field size to the icon size rendered in the start slot. */
-const fieldSizeToIconSize: Record<NonNullable<TextFieldSize>, 'xs' | 'sm'> = {
-    sm: 'xs',
-    md: 'xs',
-    lg: 'sm',
-}
-
-/** Maps field size to the IconButton size used in the end-action slot. */
-const fieldSizeToActionSize: Record<NonNullable<TextFieldSize>, 'sm' | 'md'> = {
-    sm: 'sm',
-    md: 'sm',
-    lg: 'md',
-}
+import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
+import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 
 /**
  * A styled text input built with a native `<input>` and `@radix-ui/react-label`.
@@ -39,7 +24,7 @@ const fieldSizeToActionSize: Record<NonNullable<TextFieldSize>, 'sm' | 'md'> = {
  * - `type="password"` — auto-shows an eye-toggle `IconButton` (overrides `endAction`).
  * - `width` — overrides the default `100%` wrapper width.
  *
- * Focus ring behaviour: visible only on keyboard navigation (Tab). A click on the
+ * Focus ring behavior: visible only on keyboard navigation (Tab). A click on the
  * input shows the primary border without the ring halo, detected via `onMouseDown`
  * and a `data-mouse-focus` attribute.
  *
@@ -51,57 +36,24 @@ const fieldSizeToActionSize: Record<NonNullable<TextFieldSize>, 'sm' | 'md'> = {
  * <TextField label="Amount" width="12rem" />
  * ```
  */
-const TextField: FC<TextFieldProps> = ({
-    label,
-    helperText,
-    error,
-    size = 'md',
-    id,
-    className,
-    disabled,
-    ref,
-    startIcon,
-    endAction,
-    width,
-    type,
-    onMouseDown,
-    onFocus,
-    onBlur,
-    ...props
-}) => {
-    const generatedId = useId()
-    const inputId = id ?? (label ? generatedId : undefined)
-    const helperId = `${generatedId}-helper`
-    const hasError = Boolean(error)
-    const isPassword = type === 'password'
+const TextField: FC<TextFieldProps> = (props) => {
+    const {
+        inputId,
+        helperId,
+        hasError,
+        hasStartIcon,
+        hasEndAction,
+        handleMouseDown,
+        handleFocus,
+        handleBlur,
+        resolvedType,
+        isPassword,
+        showPassword,
+        setShowPassword,
+    } = useTextField(props)
 
-    const [showPassword, setShowPassword] = useState(false)
-
-    // ── Click-focus detection (suppresses the ring on mouse click) ────────────
-    const pointerDownRef = useRef(false)
-
-    const handleMouseDown = (e: React.MouseEvent<HTMLInputElement>) => {
-        pointerDownRef.current = true
-        onMouseDown?.(e)
-    }
-
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (pointerDownRef.current) {
-            e.currentTarget.setAttribute('data-mouse-focus', '')
-            pointerDownRef.current = false
-        }
-        onFocus?.(e)
-    }
-
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        pointerDownRef.current = false
-        e.currentTarget.removeAttribute('data-mouse-focus')
-        onBlur?.(e)
-    }
-
-    // ── Derived values ────────────────────────────────────────────────────────
-    const hasStartIcon = Boolean(startIcon)
-    const hasEndAction = isPassword || Boolean(endAction)
+    const { disabled, startIcon, className, width, error, helperText } = props
+    const size = props.size ?? 'md'
 
     const resolvedEndAction = isPassword ? (
         <IconButton
@@ -112,39 +64,41 @@ const TextField: FC<TextFieldProps> = ({
             size={fieldSizeToActionSize[size]}
             type={'button'}
             tabIndex={-1}
-            onClick={() => setShowPassword((prev) => !prev)}
+            onClick={() => setShowPassword(!showPassword)}
         />
-    ) : endAction
-
-    const resolvedType = isPassword ? (showPassword ? 'text' : 'password') : type
+    ) : props.endAction
 
     return (
-        <div
-            className={textFieldWrapperClass}
+        <Flex
+            direction={'column'}
+            gap={'xs'}
+            w={'full'}
+            align={'start'}
             style={width !== undefined ? { width } : undefined}
         >
-            {label && (
-                <RadixLabel.Root
+            {props.label && (
+                <TextFieldLabel
                     htmlFor={inputId}
-                    className={textFieldLabelClass}
-                    data-disabled={disabled ? '' : undefined}
+                    disabled={disabled}
                 >
-                    {label}
-                </RadixLabel.Root>
+                    {props.label}
+                </TextFieldLabel>
             )}
 
-            <div className={textFieldFieldClass}>
+            <Flex
+                position={'relative'}
+                w={'full'}
+                gap={'none'}
+            >
                 {startIcon && (
-                    <span className={textFieldStartIconClass}>
-                        <Icon
-                            icon={startIcon}
-                            size={fieldSizeToIconSize[size]}
-                        />
-                    </span>
+                    <TextFieldStartIcon
+                        icon={startIcon}
+                        size={size}
+                    />
                 )}
 
                 <input
-                    ref={ref}
+                    ref={props.ref}
                     id={inputId}
                     type={resolvedType}
                     disabled={disabled}
@@ -157,25 +111,29 @@ const TextField: FC<TextFieldProps> = ({
                         textFieldInputRecipe({ size, hasError, hasStartIcon, hasEndAction }),
                         className,
                     )}
-                    {...props}
+                    placeholder={props.placeholder}
+                    value={props.value}
+                    onChange={props.onChange}
+                    onKeyDown={props.onKeyDown}
+                    onKeyUp={props.onKeyUp}
                 />
 
                 {hasEndAction && (
-                    <span className={textFieldEndActionClass}>
+                    <TextFieldEndAction>
                         {resolvedEndAction}
-                    </span>
+                    </TextFieldEndAction>
                 )}
-            </div>
+            </Flex>
 
             {(error || helperText) && (
-                <span
+                <HelperText
                     id={helperId}
-                    className={error ? textFieldErrorClass : textFieldHelperClass}
+                    error={hasError}
                 >
                     {error ?? helperText}
-                </span>
+                </HelperText>
             )}
-        </div>
+        </Flex>
     )
 }
 
