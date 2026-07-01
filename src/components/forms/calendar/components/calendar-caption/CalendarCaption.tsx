@@ -3,8 +3,8 @@ import type { ReactElement } from 'react'
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
-import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/calendarCaption/CalendarCaption.css.ts'
-import { useCalendarCaption } from '@components/forms/calendar/components/calendarCaption/hooks/useCalendarCaption.hook.ts'
+import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/calendar-caption/CalendarCaption.css.ts'
+import { useCalendarCaption } from '@components/forms/calendar/components/calendar-caption/hooks/useCalendarCaption.hook.ts'
 import Flex from '@components/layout/flex/Flex.tsx'
 
 /**

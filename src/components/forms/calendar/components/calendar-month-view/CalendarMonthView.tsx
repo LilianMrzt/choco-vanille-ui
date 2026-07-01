@@ -1,8 +1,8 @@
 import type { ReactElement } from 'react'
 
-import { CALENDAR_MONTH_VIEW_STYLES } from '@components/forms/calendar/components/calendarMonthView/CalendarMonthView.css.ts'
-import { MONTH_LABELS } from '@components/forms/calendar/components/calendarMonthView/constants'
-import { useCalendarMonthView } from '@components/forms/calendar/components/calendarMonthView/hooks/useCalendarMonthView.hook.ts'
+import { CALENDAR_MONTH_VIEW_STYLES } from '@components/forms/calendar/components/calendar-month-view/CalendarMonthView.css.ts'
+import { MONTH_LABELS } from '@components/forms/calendar/components/calendar-month-view/constants'
+import { useCalendarMonthView } from '@components/forms/calendar/components/calendar-month-view/hooks/useCalendarMonthView.hook.ts'
 import Grid from '@components/layout/grid/Grid.tsx'
 import { cn } from '@utils/cn.ts'
 

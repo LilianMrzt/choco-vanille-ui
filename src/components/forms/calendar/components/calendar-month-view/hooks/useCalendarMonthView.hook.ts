@@ -1,18 +1,16 @@
 import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
 
-import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
-import { GRID_COLS } from '@components/forms/calendar/components/calendarYearView/constants'
-import { getDecadeStart } from '@components/forms/calendar/utils/decadeStart.utils.ts'
+import { GRID_COLS } from '@components/forms/calendar/components/calendar-month-view/constants'
 
-export const useCalendarYearView = () => {
+export const useCalendarMonthView = () => {
     const { currentMonth, setCurrentMonth, setView, startYear, endYear } = useCalendarContext()
 
     const today = new Date()
     const year = currentMonth.getFullYear()
-    const decadeStart = getDecadeStart(year)
+    const selectedMonth = currentMonth.getMonth()
 
-    const [focusedIndex, setFocusedIndex] = useState(year - decadeStart)
+    const [focusedIndex, setFocusedIndex] = useState(selectedMonth)
     const buttonRefs = useRef<Array<HTMLButtonElement | null>>([])
 
     useEffect(() => {
@@ -21,9 +19,9 @@ export const useCalendarYearView = () => {
 
     const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
         let next: number
-        if (event.key === 'ArrowRight') {next = Math.min(index + 1, YEARS_PER_PAGE - 1)}
+        if (event.key === 'ArrowRight') {next = Math.min(index + 1, 11)}
         else if (event.key === 'ArrowLeft') {next = Math.max(index - 1, 0)}
-        else if (event.key === 'ArrowDown') {next = Math.min(index + GRID_COLS, YEARS_PER_PAGE - 1)}
+        else if (event.key === 'ArrowDown') {next = Math.min(index + GRID_COLS, 11)}
         else if (event.key === 'ArrowUp') {next = Math.max(index - GRID_COLS, 0)}
         else {return}
 
@@ -31,17 +29,20 @@ export const useCalendarYearView = () => {
         setFocusedIndex(next)
     }
 
-    const handleSelect = (selectedYear: number) => {
-        setCurrentMonth(new Date(selectedYear, currentMonth.getMonth(), 1))
-        setView('month')
+    const handleSelect = (monthIndex: number) => {
+        setCurrentMonth(new Date(year, monthIndex, 1))
+        setView('day')
     }
 
-    const isDisabled = (selectedYear: number) => selectedYear < startYear || selectedYear > endYear
-    const isToday = (selectedYear: number) => today.getFullYear() === selectedYear
+    const isDisabled = (monthIndex: number) =>
+        (year === startYear && monthIndex < 0) || (year === endYear && monthIndex > 11)
+
+    const isToday = (monthIndex: number) =>
+        today.getFullYear() === year && today.getMonth() === monthIndex
 
     return {
         year,
-        decadeStart,
+        selectedMonth,
         focusedIndex,
         buttonRefs,
         handleKeyDown,

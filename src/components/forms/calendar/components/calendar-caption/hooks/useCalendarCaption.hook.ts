@@ -1,7 +1,7 @@
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { getDecadeStart } from '@components/forms/calendar/utils/decadeStart.utils.ts'
-import { capitalizeMonth } from '@components/forms/calendar/components/calendarCaption/utils/capitalizeMonth.utils.ts'
+import { capitalizeMonth } from '@components/forms/calendar/components/calendar-caption/utils/capitalizeMonth.utils.ts'
 
 export const useCalendarCaption = () => {
     const { view, setView, currentMonth, setCurrentMonth, startYear, endYear } = useCalendarContext()
