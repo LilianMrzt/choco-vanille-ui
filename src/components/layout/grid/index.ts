@@ -1,5 +1,5 @@
 export { default as Grid } from '@components/layout/grid/Grid.tsx'
-export { gridRecipe } from '@components/layout/grid/Grid.css.ts'
+export { GRID_STYLES } from '@components/layout/grid/Grid.css.ts'
 export type { GridRecipeVariants } from '@components/layout/grid/Grid.css.ts'
 export type { GridProps } from '@components/layout/grid/types/Grid.props.ts'
 export type { GridColumns, GridAutoRows, GridFlow, GridAlign, GridJustifyItems, GridAlignContent, GridJustifyContent } from '@components/layout/grid/types/Grid.types.ts'

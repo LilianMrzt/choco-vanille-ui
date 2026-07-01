@@ -1,14 +1,12 @@
 import type { FC, ReactNode } from 'react'
-import {
-    textFieldEndActionClass
-} from '@components/forms/text-field/components/text-field-end-action/TextFieldEndAction.css.ts'
+import { TEXT_FIELD_END_ACTION_STYLES } from '@components/forms/text-field/components/text-field-end-action/TextFieldEndAction.css.ts'
 
 type TextFieldEndActionProps = {
     children: ReactNode
 }
 
 const TextFieldEndAction: FC<TextFieldEndActionProps> = ({ children }) => (
-    <span className={textFieldEndActionClass}>
+    <span className={TEXT_FIELD_END_ACTION_STYLES.root}>
         {children}
     </span>
 )

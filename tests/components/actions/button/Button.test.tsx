@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Button, buttonRecipe, type ButtonVariant, type ButtonColor, type ButtonSize } from '@components/actions/button'
+import { Button, BUTTON_STYLES, type ButtonVariant, type ButtonColor, type ButtonSize } from '@components/actions/button'
 
 // Helper
 
@@ -40,11 +40,11 @@ describe('Button', () => {
 
         it('falls back to the contained variant when none is provided', () => {
             const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toBe(buttonRecipe({ variant: 'contained', size: 'md' }))
+            expect(getFirstChild(container).className).toBe(BUTTON_STYLES.recipe({ variant: 'contained', size: 'md' }))
         })
 
         it('produces distinct class names for each variant', () => {
-            const classNames = variants.map((variant) => buttonRecipe({ variant }))
+            const classNames = variants.map((variant) => BUTTON_STYLES.recipe({ variant }))
             expect(new Set(classNames).size).toBe(variants.length)
         })
     })
@@ -58,7 +58,7 @@ describe('Button', () => {
         })
 
         it('produces distinct class names for each color', () => {
-            const classNames = colors.map((color) => buttonRecipe({ color }))
+            const classNames = colors.map((color) => BUTTON_STYLES.recipe({ color }))
             expect(new Set(classNames).size).toBe(colors.length)
         })
     })
@@ -72,7 +72,7 @@ describe('Button', () => {
         })
 
         it('produces distinct class names for each size', () => {
-            const classNames = sizes.map((size) => buttonRecipe({ size }))
+            const classNames = sizes.map((size) => BUTTON_STYLES.recipe({ size }))
             expect(new Set(classNames).size).toBe(sizes.length)
         })
     })
@@ -85,7 +85,7 @@ describe('Button', () => {
 
         it('applies every base recipe class on the rendered element', () => {
             const { container } = render(<Button label={'btn'} />)
-            for (const cls of buttonRecipe({}).split(' ')) {
+            for (const cls of BUTTON_STYLES.recipe({}).split(' ')) {
                 expect(getFirstChild(container).className).toContain(cls)
             }
         })

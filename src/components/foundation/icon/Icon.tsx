@@ -1,6 +1,6 @@
 import { Icon as Iconify } from '@iconify/react'
 
-import { iconRecipe } from '@components/foundation/icon/Icon.css.ts'
+import { ICON_STYLES } from '@components/foundation/icon/Icon.css.ts'
 import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
@@ -24,7 +24,7 @@ const Icon: FC<IconProps> = ({
             aria-hidden={isDecorative}
             aria-label={ariaLabel}
             role={isDecorative ? undefined : 'img'}
-            className={cn(iconRecipe({ size, spin }), className)}
+            className={cn(ICON_STYLES.recipe({ size, spin }), className)}
             style={color ? { color: vars.color[color], ...style } : style}
             {...props}
         />

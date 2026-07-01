@@ -1,6 +1,6 @@
 import * as RadixLabel from '@radix-ui/react-label'
 import type { FC } from 'react'
-import { textFieldLabelClass } from '@components/forms/text-field/components/text-field-label/TextFieldLabel.css.ts'
+import { TEXT_FIELD_LABEL_STYLES } from '@components/forms/text-field/components/text-field-label/TextFieldLabel.css.ts'
 import type {
     TextFieldLabelProps
 } from '@components/forms/text-field/components/text-field-label/types/TextFieldLabel.props.ts'
@@ -8,7 +8,7 @@ import type {
 const TextFieldLabel: FC<TextFieldLabelProps> = ({ htmlFor, disabled, children }) => (
     <RadixLabel.Root
         htmlFor={htmlFor}
-        className={textFieldLabelClass}
+        className={TEXT_FIELD_LABEL_STYLES.root}
         data-disabled={disabled ? '' : undefined}
     >
         {children}

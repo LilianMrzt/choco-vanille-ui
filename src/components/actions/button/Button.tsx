@@ -1,4 +1,4 @@
-import { buttonRecipe } from '@components/actions/button/Button.css.ts'
+import { BUTTON_STYLES } from '@components/actions/button/Button.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
@@ -23,7 +23,7 @@ const Button: FC<ButtonProps> = ({
     return (
         <button
             ref={ref}
-            className={cn(buttonRecipe({ variant, color, size }), className)}
+            className={cn(BUTTON_STYLES.recipe({ variant, color, size }), className)}
             {...props}
         >
             {startIcon && (

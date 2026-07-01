@@ -1,6 +1,6 @@
 import { cn } from '@utils/cn.ts'
 import { Flex } from '@components/layout/flex'
-import { dropdownMenuShortcutClass } from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.css.ts'
+import { DROPDOWN_MENU_SHORTCUT_STYLES } from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.css.ts'
 import type { DropdownMenuShortcutProps } from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/types/DropdownMenuShortcut.props.ts'
 
 /**
@@ -11,7 +11,7 @@ const DropdownMenuShortcut = ({ className, ...props }: DropdownMenuShortcutProps
     <Flex
         as={'span'}
         inline
-        className={cn(dropdownMenuShortcutClass, className)}
+        className={cn(DROPDOWN_MENU_SHORTCUT_STYLES.root, className)}
         aria-hidden
         {...props}
     />

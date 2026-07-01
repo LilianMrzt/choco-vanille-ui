@@ -5,11 +5,7 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import {
-    checkboxRootClass,
-    checkboxIndicatorClass,
-    checkboxLabelClass,
-} from '@components/forms/checkbox/Checkbox.css.ts'
+import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.props.ts'
 
 /**
@@ -35,10 +31,10 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
         >
             <RadixCheckbox.Root
                 id={checkboxId}
-                className={cn(checkboxRootClass, className)}
+                className={cn(CHECKBOX_STYLES.root, className)}
                 {...props}
             >
-                <RadixCheckbox.Indicator className={checkboxIndicatorClass}>
+                <RadixCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
                         icon={'mdi:check'}
                         size={'xs'}
@@ -52,7 +48,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
                     variant={'label'}
                     color={'foreground'}
                     htmlFor={checkboxId}
-                    className={checkboxLabelClass}
+                    className={CHECKBOX_STYLES.label}
                 >
                     {label}
                 </Typography>

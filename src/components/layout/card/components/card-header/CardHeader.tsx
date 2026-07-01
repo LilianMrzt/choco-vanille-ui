@@ -3,10 +3,7 @@ import { type FC } from 'react'
 import { vars } from '@theme/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
-import {
-    cardHeaderContentClass,
-    cardHeaderActionsClass,
-} from '@components/layout/card/components/card-header/CardHeader.css.ts'
+import { CARD_HEADER_STYLES } from '@components/layout/card/components/card-header/CardHeader.css.ts'
 import type { CardHeaderProps } from '@components/layout/card/components/card-header/types/CardHeader.props.ts'
 
 /**
@@ -53,7 +50,7 @@ const CardHeader: FC<CardHeaderProps> = ({
                 direction={'column'}
                 align={'start'}
                 gap={'xs'}
-                className={cardHeaderContentClass}
+                className={CARD_HEADER_STYLES.content}
             >
                 {title && (
                     <Typography
@@ -87,7 +84,7 @@ const CardHeader: FC<CardHeaderProps> = ({
             <Flex
                 align={'center'}
                 gap={'xs'}
-                className={cardHeaderActionsClass}
+                className={CARD_HEADER_STYLES.actions}
             >
                 {actions}
             </Flex>

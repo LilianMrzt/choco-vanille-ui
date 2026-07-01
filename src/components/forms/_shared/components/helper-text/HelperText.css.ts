@@ -8,12 +8,13 @@ const base = {
     lineHeight: vars.lineHeight.normal,
 }
 
-export const helperTextClass = style({
-    ...base,
-    color: vars.color.mutedForeground,
-})
-
-export const helperTextErrorClass = style({
-    ...base,
-    color: vars.color.destructive,
-})
+export const HELPER_TEXT_STYLES = {
+    root: style({
+        ...base,
+        color: vars.color.mutedForeground,
+    }),
+    error: style({
+        ...base,
+        color: vars.color.destructive,
+    }),
+}

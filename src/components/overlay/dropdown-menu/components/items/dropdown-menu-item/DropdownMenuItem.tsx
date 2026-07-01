@@ -1,11 +1,7 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { cn } from '@utils/cn.ts'
-import {
-    dropdownMenuItemClass,
-    dropdownMenuItemDestructiveClass,
-    dropdownMenuItemIconClass,
-} from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
+import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
@@ -37,13 +33,13 @@ const DropdownMenuItem = ({
         <Flex
             gap={'sm'}
             className={cn(
-                dropdownMenuItemClass,
-                destructive && dropdownMenuItemDestructiveClass,
+                DROPDOWN_MENU_ITEM_STYLES.root,
+                destructive && DROPDOWN_MENU_ITEM_STYLES.destructive,
                 className,
             )}
         >
             {startIcon && (
-                <Flex as={'span'} justify={'center'} className={dropdownMenuItemIconClass} aria-hidden>
+                <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_ITEM_STYLES.icon} aria-hidden>
                     <Icon icon={startIcon} size={'xs'} />
                 </Flex>
             )}
@@ -52,7 +48,7 @@ const DropdownMenuItem = ({
                 <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>
             )}
             {endIcon && (
-                <Flex as={'span'} justify={'center'} className={dropdownMenuItemIconClass} aria-hidden>
+                <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_ITEM_STYLES.icon} aria-hidden>
                     <Icon icon={endIcon} size={'xs'} />
                 </Flex>
             )}

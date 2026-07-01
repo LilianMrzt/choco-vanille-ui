@@ -1,10 +1,4 @@
-import {
-    tableRecipe,
-    tableWrapperClass,
-    tableStripedClass,
-    tableBorderedClass,
-    tableFixedClass,
-} from '@components/data-display/table/Table.css.ts'
+import { TABLE_STYLES } from '@components/data-display/table/Table.css.ts'
 import TableBody from '@components/data-display/table/components/table-body/TableBody.tsx'
 import TableCaption from '@components/data-display/table/components/table-caption/TableCaption.tsx'
 import TableCell from '@components/data-display/table/components/table-cell/TableCell.tsx'
@@ -19,7 +13,7 @@ import { cn } from '@utils/cn.ts'
 
 const Table = (({ size, striped, bordered, fixed, className, ref, ...props }) => (
     <div
-        className={tableWrapperClass}
+        className={TABLE_STYLES.wrapper}
         // Scrollable overflow containers must be keyboard-reachable so users
         // can scroll them without a mouse (WCAG 2.1 SC 2.1.1).
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
@@ -28,10 +22,10 @@ const Table = (({ size, striped, bordered, fixed, className, ref, ...props }) =>
         <table
             ref={ref}
             className={cn(
-                tableRecipe({ size }),
-                striped && tableStripedClass,
-                bordered && tableBorderedClass,
-                fixed && tableFixedClass,
+                TABLE_STYLES.recipe({ size }),
+                striped && TABLE_STYLES.striped,
+                bordered && TABLE_STYLES.bordered,
+                fixed && TABLE_STYLES.fixed,
                 className,
             )}
             {...props}

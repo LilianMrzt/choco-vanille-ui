@@ -2,14 +2,15 @@ import { globalStyle, style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 
-export const tableBodyClass = style({})
+export const TABLE_BODY_STYLES = {
+    root: style({}),
+    striped: style({}),
+}
 
-globalStyle(`${tableBodyClass} tr:last-child`, {
+globalStyle(`${TABLE_BODY_STYLES.root} tr:last-child`, {
     borderBottom: 'none',
 })
 
-export const tableBodyStripedClass = style({})
-
-globalStyle(`${tableBodyStripedClass} tr:nth-child(even)`, {
+globalStyle(`${TABLE_BODY_STYLES.striped} tr:nth-child(even)`, {
     backgroundColor: vars.color.muted,
 })

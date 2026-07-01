@@ -1,13 +1,7 @@
 import type { FC, KeyboardEvent } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import {
-    tableHeadRecipe,
-    tableHeadSortableClass,
-    tableHeadSortWrapperClass,
-    tableHeadSortIconClass,
-    tableHeadSortIconActiveClass,
-} from '@components/data-display/table/components/table-head/TableHead.css.ts'
+import { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/TableHead.css.ts'
 import type { TableHeadProps, TableSortDirection } from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
 import { cn } from '@utils/cn.ts'
 
@@ -53,20 +47,20 @@ const TableHead: FC<TableHeadProps> = ({
             aria-sort={sortDirection ? ariaSortMap[sortDirection] : undefined}
             onKeyDown={sortable || onKeyDown ? handleKeyDown : undefined}
             className={cn(
-                tableHeadRecipe({ align }),
-                sortable && tableHeadSortableClass,
+                TABLE_HEAD_STYLES.recipe({ align }),
+                sortable && TABLE_HEAD_STYLES.sortable,
                 className,
             )}
         >
             {sortDirection !== undefined ? (
-                <span className={tableHeadSortWrapperClass}>
+                <span className={TABLE_HEAD_STYLES.sortWrapper}>
                     {children}
                     <Icon
                         icon={SORT_ICONS[sortDirection]}
                         size={'xs'}
                         className={cn(
-                            tableHeadSortIconClass,
-                            isActiveSort && tableHeadSortIconActiveClass,
+                            TABLE_HEAD_STYLES.sortIcon,
+                            isActiveSort && TABLE_HEAD_STYLES.sortIconActive,
                         )}
                     />
                 </span>

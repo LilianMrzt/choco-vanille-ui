@@ -6,13 +6,15 @@ import { vars } from '@theme/contract.css.ts'
  * Non-interactive section heading — small, muted, uppercase.
  * Typically paired with DropdownMenuGroup for semantic grouping.
  */
-export const dropdownMenuLabelClass = style({
-    paddingBlock: vars.space.xs2,
-    paddingInline: vars.space.sm,
-    fontSize: vars.fontSize.xs,
-    fontWeight: vars.fontWeight.semibold,
-    fontFamily: vars.fontFamily.sans,
-    color: vars.color.mutedForeground,
-    letterSpacing: vars.letterSpacing.wider,
-    textTransform: 'uppercase',
-})
+export const DROPDOWN_MENU_LABEL_STYLES = {
+    root: style({
+        paddingBlock: vars.space.xs2,
+        paddingInline: vars.space.sm,
+        fontSize: vars.fontSize.xs,
+        fontWeight: vars.fontWeight.semibold,
+        fontFamily: vars.fontFamily.sans,
+        color: vars.color.mutedForeground,
+        letterSpacing: vars.letterSpacing.wider,
+        textTransform: 'uppercase',
+    }),
+}

@@ -1,7 +1,7 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { cn } from '@utils/cn.ts'
-import { dropdownMenuSubContentClass } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/DropdownMenuSubContent.css.ts'
+import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/DropdownMenuSubContent.css.ts'
 import type { DropdownMenuSubContentProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/types/DropdownMenuSubContent.props.ts'
 import { useViewportShift } from '@hooks'
 
@@ -20,7 +20,7 @@ const DropdownMenuSubContent = ({ className, collisionPadding = 8, ...props }: D
             <RadixDropdownMenu.SubContent
                 ref={contentRef}
                 sideOffset={6}
-                className={cn(dropdownMenuSubContentClass, className)}
+                className={cn(DROPDOWN_MENU_SUB_CONTENT_STYLES.root, className)}
                 {...props}
                 // Disable Radix's flip/shift — our hook handles collision instead.
                 avoidCollisions={false}

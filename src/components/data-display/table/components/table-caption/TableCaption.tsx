@@ -1,13 +1,13 @@
 import type { FC } from 'react'
 
-import { tableCaptionClass } from '@components/data-display/table/components/table-caption/TableCaption.css.ts'
+import { TABLE_CAPTION_STYLES } from '@components/data-display/table/components/table-caption/TableCaption.css.ts'
 import type { TableCaptionProps } from '@components/data-display/table/components/table-caption/types/TableCaption.props.ts'
 import { cn } from '@utils/cn.ts'
 
 const TableCaption: FC<TableCaptionProps> = ({ className, ref, ...props }) => (
     <caption
         ref={ref}
-        className={cn(tableCaptionClass, className)}
+        className={cn(TABLE_CAPTION_STYLES.root, className)}
         {...props}
     />
 )

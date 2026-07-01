@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Table, tableRecipe, type TableSize } from '@components/data-display/table'
+import { Table, TABLE_STYLES, type TableSize } from '@components/data-display/table'
 
 // Helpers
 
@@ -77,7 +77,7 @@ describe('Table', () => {
         })
 
         it('produces distinct class names for each size', () => {
-            const classNames = sizes.map((size) => tableRecipe({ size }))
+            const classNames = sizes.map((size) => TABLE_STYLES.recipe({ size }))
             expect(new Set(classNames).size).toBe(sizes.length)
         })
     })

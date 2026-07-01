@@ -1,7 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
-import { tooltipArrowClass, tooltipContentClass } from '@components/overlay/tooltip/Tooltip.css.ts'
+import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/tooltip/types/Tooltip.types.ts'
 import type {FC} from "react";
@@ -41,11 +41,11 @@ const Tooltip: FC<TooltipProps> = ({
                     <RadixTooltip.Content
                         side={side}
                         align={align}
-                        className={cn(tooltipContentClass, className)}
+                        className={cn(TOOLTIP_STYLES.content, className)}
                         sideOffset={6}
                     >
                         {content}
-                        <RadixTooltip.Arrow className={tooltipArrowClass} />
+                        <RadixTooltip.Arrow className={TOOLTIP_STYLES.arrow} />
                     </RadixTooltip.Content>
                 </RadixTooltip.Portal>
             </RadixTooltip.Root>

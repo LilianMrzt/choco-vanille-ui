@@ -1,5 +1,5 @@
 import { Box } from '@components/layout/box'
-import { cardClass } from '@components/layout/card/Card.css.ts'
+import { CARD_STYLES } from '@components/layout/card/Card.css.ts'
 import CardBody from '@components/layout/card/components/card-body/CardBody.tsx'
 import CardFooter from '@components/layout/card/components/card-footer/CardFooter.tsx'
 import CardHeader from '@components/layout/card/components/card-header/CardHeader.tsx'
@@ -29,7 +29,7 @@ import { cn } from '@utils/cn.ts'
 const Card = (({ as = 'div', className, ...props }) => (
     <Box
         as={as}
-        className={cn(cardClass, className)}
+        className={cn(CARD_STYLES.root, className)}
         {...props}
     />
 )) as CardCompound

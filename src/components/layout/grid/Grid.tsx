@@ -1,4 +1,4 @@
-import { gridRecipe } from '@components/layout/grid/Grid.css.ts'
+import { GRID_STYLES } from '@components/layout/grid/Grid.css.ts'
 import type { GridProps } from '@components/layout/grid/types/Grid.props.ts'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
@@ -21,7 +21,7 @@ const Grid: FC<GridProps> = ({
         <Box
             gap={gap}
             className={cn(
-                gridRecipe({ columns, autoRows, flow, align, justifyItems, alignContent, justifyContent }),
+                GRID_STYLES.recipe({ columns, autoRows, flow, align, justifyItems, alignContent, justifyContent }),
                 className,
             )}
             {...props}

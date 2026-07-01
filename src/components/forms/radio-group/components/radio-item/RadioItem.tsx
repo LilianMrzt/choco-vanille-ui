@@ -5,11 +5,7 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import {
-    radioItemRootClass,
-    radioIndicatorClass,
-    radioItemLabelClass,
-} from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
+import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
 import type { RadioItemProps } from '@components/forms/radio-group/components/radio-item/types/RadioItem.props.ts'
 
 /**
@@ -34,10 +30,10 @@ const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }
             <RadixRadioGroup.Item
                 id={radioId}
                 value={value}
-                className={cn(radioItemRootClass, className)}
+                className={cn(RADIO_ITEM_STYLES.root, className)}
                 {...props}
             >
-                <RadixRadioGroup.Indicator className={radioIndicatorClass}>
+                <RadixRadioGroup.Indicator className={RADIO_ITEM_STYLES.indicator}>
                     <Icon
                         icon={'mdi:circle'}
                         size={'xs'}
@@ -51,7 +47,7 @@ const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }
                     variant={'label'}
                     color={'foreground'}
                     htmlFor={radioId}
-                    className={radioItemLabelClass}
+                    className={RADIO_ITEM_STYLES.label}
                 >
                     {label}
                 </Typography>

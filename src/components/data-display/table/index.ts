@@ -1,22 +1,12 @@
 export { default as Table } from '@components/data-display/table/Table.tsx'
-export { tableRecipe, tableStripedClass, tableBorderedClass, tableFixedClass } from '@components/data-display/table/Table.css.ts'
-export { tableHeaderClass } from '@components/data-display/table/components/table-header/TableHeader.css.ts'
-export { tableBodyClass } from '@components/data-display/table/components/table-body/TableBody.css.ts'
-export { tableFooterClass } from '@components/data-display/table/components/table-footer/TableFooter.css.ts'
-export { tableRowRecipe } from '@components/data-display/table/components/table-row/TableRow.css.ts'
-export {
-    tableHeadRecipe,
-    tableHeadSortableClass,
-    tableHeadSortWrapperClass,
-    tableHeadSortIconClass,
-    tableHeadSortIconActiveClass,
-} from '@components/data-display/table/components/table-head/TableHead.css.ts'
-export {
-    tableCellRecipe,
-    tableCellTruncateClass,
-    tableCellNumericClass,
-} from '@components/data-display/table/components/table-cell/TableCell.css.ts'
-export { tableCaptionClass } from '@components/data-display/table/components/table-caption/TableCaption.css.ts'
+export { TABLE_STYLES } from '@components/data-display/table/Table.css.ts'
+export { TABLE_HEADER_STYLES } from '@components/data-display/table/components/table-header/TableHeader.css.ts'
+export { TABLE_BODY_STYLES } from '@components/data-display/table/components/table-body/TableBody.css.ts'
+export { TABLE_FOOTER_STYLES } from '@components/data-display/table/components/table-footer/TableFooter.css.ts'
+export { TABLE_ROW_STYLES } from '@components/data-display/table/components/table-row/TableRow.css.ts'
+export { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/TableHead.css.ts'
+export { TABLE_CELL_STYLES } from '@components/data-display/table/components/table-cell/TableCell.css.ts'
+export { TABLE_CAPTION_STYLES } from '@components/data-display/table/components/table-caption/TableCaption.css.ts'
 export type { TableProps } from '@components/data-display/table/types/Table.props.ts'
 export type { TableSize, TableCellAlign } from '@components/data-display/table/types/Table.types.ts'
 export type { TableHeaderProps } from '@components/data-display/table/components/table-header/types/TableHeader.props.ts'

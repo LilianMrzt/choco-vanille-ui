@@ -1,7 +1,7 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { Typography, typographyRecipe, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
+import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
 
 // Helpers
 
@@ -15,16 +15,16 @@ const onlyIn = (a: string, b: string): string[] => {
 }
 
 const variantClass = (variant: TypographyVariant): string =>
-    onlyIn(typographyRecipe({ variant }), typographyRecipe({ variant: 'span' }))[0]
+    onlyIn(TYPOGRAPHY_STYLES.recipe({ variant }), TYPOGRAPHY_STYLES.recipe({ variant: 'span' }))[0]
 
 const fontSizeClass = (fontSize: 'xl' | 'sm'): string =>
-    onlyIn(typographyRecipe({ fontSize }), typographyRecipe({}))[0]
+    onlyIn(TYPOGRAPHY_STYLES.recipe({ fontSize }), TYPOGRAPHY_STYLES.recipe({}))[0]
 
 const fontWeightClass = (fontWeight: 'bold'): string =>
-    onlyIn(typographyRecipe({ fontWeight }), typographyRecipe({}))[0]
+    onlyIn(TYPOGRAPHY_STYLES.recipe({ fontWeight }), TYPOGRAPHY_STYLES.recipe({}))[0]
 
 const ellipsisClass = (): string =>
-    onlyIn(typographyRecipe({ ellipsis: true }), typographyRecipe({}))[0]
+    onlyIn(TYPOGRAPHY_STYLES.recipe({ ellipsis: true }), TYPOGRAPHY_STYLES.recipe({}))[0]
 
 // Suites
 

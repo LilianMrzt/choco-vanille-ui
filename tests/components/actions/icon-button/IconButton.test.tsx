@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { IconButton, iconButtonRecipe, type IconButtonVariant, type IconButtonColor, type IconButtonSize } from '@components/actions/icon-button'
+import { IconButton, ICON_BUTTON_STYLES, type IconButtonVariant, type IconButtonColor, type IconButtonSize } from '@components/actions/icon-button'
 
 // Helper
 
@@ -39,11 +39,11 @@ describe('IconButton', () => {
 
         it('falls back to the contained variant when none is provided', () => {
             const { container } = render(<IconButton icon={'mdi:pencil'} aria-label={'btn'} />)
-            expect(getFirstChild(container).className).toBe(iconButtonRecipe({ variant: 'contained', size: 'md' }))
+            expect(getFirstChild(container).className).toBe(ICON_BUTTON_STYLES.recipe({ variant: 'contained', size: 'md' }))
         })
 
         it('produces distinct class names for each variant', () => {
-            const classNames = variants.map((variant) => iconButtonRecipe({ variant }))
+            const classNames = variants.map((variant) => ICON_BUTTON_STYLES.recipe({ variant }))
             expect(new Set(classNames).size).toBe(variants.length)
         })
     })
@@ -57,7 +57,7 @@ describe('IconButton', () => {
         })
 
         it('produces distinct class names for each color', () => {
-            const classNames = colors.map((color) => iconButtonRecipe({ color }))
+            const classNames = colors.map((color) => ICON_BUTTON_STYLES.recipe({ color }))
             expect(new Set(classNames).size).toBe(colors.length)
         })
     })
@@ -71,7 +71,7 @@ describe('IconButton', () => {
         })
 
         it('produces distinct class names for each size', () => {
-            const classNames = sizes.map((size) => iconButtonRecipe({ size }))
+            const classNames = sizes.map((size) => ICON_BUTTON_STYLES.recipe({ size }))
             expect(new Set(classNames).size).toBe(sizes.length)
         })
     })
@@ -84,7 +84,7 @@ describe('IconButton', () => {
 
         it('applies every base recipe class on the rendered element', () => {
             const { container } = render(<IconButton icon={'mdi:pencil'} aria-label={'btn'} />)
-            for (const cls of iconButtonRecipe({}).split(' ')) {
+            for (const cls of ICON_BUTTON_STYLES.recipe({}).split(' ')) {
                 expect(getFirstChild(container).className).toContain(cls)
             }
         })

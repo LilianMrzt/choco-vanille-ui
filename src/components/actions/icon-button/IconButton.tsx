@@ -1,4 +1,4 @@
-import { iconButtonRecipe } from '@components/actions/icon-button/IconButton.css.ts'
+import { ICON_BUTTON_STYLES } from '@components/actions/icon-button/IconButton.css.ts'
 import { Icon } from '@components/foundation/icon'
 import type { IconButtonProps } from '@components/actions/icon-button/types/IconButton.props.ts'
 import { cn } from '@utils/cn.ts'
@@ -19,7 +19,7 @@ const IconButton: FC<IconButtonProps> = ({
     return (
         <button
             ref={ref}
-            className={cn(iconButtonRecipe({ variant, color, size }), className)}
+            className={cn(ICON_BUTTON_STYLES.recipe({ variant, color, size }), className)}
             {...props}
         >
             <Icon

@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react'
 
-import { helperTextClass, helperTextErrorClass } from '@components/forms/_shared/components/helper-text/HelperText.css.ts'
+import { HELPER_TEXT_STYLES } from '@components/forms/_shared/components/helper-text/HelperText.css.ts'
 
 export type HelperTextProps = {
     /** Unique id so the associated input can reference it via `aria-describedby`. */
@@ -18,7 +18,7 @@ export type HelperTextProps = {
 const HelperText: FC<HelperTextProps> = ({ id, error = false, children }) => (
     <span
         id={id}
-        className={error ? helperTextErrorClass : helperTextClass}
+        className={error ? HELPER_TEXT_STYLES.error : HELPER_TEXT_STYLES.root}
     >
         {children}
     </span>
