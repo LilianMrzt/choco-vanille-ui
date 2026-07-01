@@ -1,7 +1,33 @@
 export { default as Table } from '@components/data-display/table/Table.tsx'
 export { tableRecipe, tableStripedClass, tableBorderedClass, tableFixedClass } from '@components/data-display/table/Table.css.ts'
-
-export * from '@components/data-display/table/components'
-
+export { tableHeaderClass } from '@components/data-display/table/components/table-header/TableHeader.css.ts'
+export { tableBodyClass } from '@components/data-display/table/components/table-body/TableBody.css.ts'
+export { tableFooterClass } from '@components/data-display/table/components/table-footer/TableFooter.css.ts'
+export { tableRowRecipe } from '@components/data-display/table/components/table-row/TableRow.css.ts'
+export {
+    tableHeadRecipe,
+    tableHeadSortableClass,
+    tableHeadSortWrapperClass,
+    tableHeadSortIconClass,
+    tableHeadSortIconActiveClass,
+} from '@components/data-display/table/components/table-head/TableHead.css.ts'
+export {
+    tableCellRecipe,
+    tableCellTruncateClass,
+    tableCellNumericClass,
+} from '@components/data-display/table/components/table-cell/TableCell.css.ts'
+export { tableCaptionClass } from '@components/data-display/table/components/table-caption/TableCaption.css.ts'
 export type { TableProps } from '@components/data-display/table/types/Table.props.ts'
 export type { TableSize, TableCellAlign } from '@components/data-display/table/types/Table.types.ts'
+export type { TableHeaderProps } from '@components/data-display/table/components/table-header/types/TableHeader.props.ts'
+export type { TableBodyProps } from '@components/data-display/table/components/table-body/types/TableBody.props.ts'
+export type { TableFooterProps } from '@components/data-display/table/components/table-footer/types/TableFooter.props.ts'
+export type { TableRowProps } from '@components/data-display/table/components/table-row/types/TableRow.props.ts'
+export type {
+    TableHeadProps,
+    TableSortDirection,
+} from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
+export type { TableCellProps } from '@components/data-display/table/components/table-cell/types/TableCell.props.ts'
+export type { TableCaptionProps } from '@components/data-display/table/components/table-caption/types/TableCaption.props.ts'
+export type { TableColGroupProps } from '@components/data-display/table/components/table-col-group/types/TableColGroup.props.ts'
+export type { TableColProps } from '@components/data-display/table/components/table-col/types/TableCol.props.ts'

@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { RadioGroup, RadioItem } from '@components/forms/radio-group'
+import { RadioGroup } from '@components/forms/radio-group'
 
 // Helpers
 
 const renderGroup = (defaultValue?: string, disabled?: boolean) =>
     render(
         <RadioGroup defaultValue={defaultValue} disabled={disabled} aria-label={'Test group'}>
-            <RadioItem value={'a'} label={'Option A'} />
-            <RadioItem value={'b'} label={'Option B'} />
-            <RadioItem value={'c'} label={'Option C'} />
+            <RadioGroup.Item value={'a'} label={'Option A'} />
+            <RadioGroup.Item value={'b'} label={'Option B'} />
+            <RadioGroup.Item value={'c'} label={'Option C'} />
         </RadioGroup>,
     )
 
@@ -39,7 +39,7 @@ describe('RadioGroup', () => {
         })
 
         it('RadioItem displayName is "RadioItem"', () => {
-            expect(RadioItem.displayName).toBe('RadioItem')
+            expect(RadioGroup.Item.displayName).toBe('RadioItem')
         })
     })
 })
@@ -49,7 +49,7 @@ describe('RadioItem', () => {
         it('renders a radio button', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} />
+                    <RadioGroup.Item value={'x'} />
                 </RadioGroup>,
             )
             expect(screen.getByRole('radio')).toBeTruthy()
@@ -58,7 +58,7 @@ describe('RadioItem', () => {
         it('renders a label when label prop is provided', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} label={'My option'} />
+                    <RadioGroup.Item value={'x'} label={'My option'} />
                 </RadioGroup>,
             )
             expect(screen.getByText('My option')).toBeTruthy()
@@ -68,7 +68,7 @@ describe('RadioItem', () => {
         it('associates label with the radio via htmlFor / id', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} label={'My option'} />
+                    <RadioGroup.Item value={'x'} label={'My option'} />
                 </RadioGroup>,
             )
             const label = screen.getByText('My option') as HTMLLabelElement
@@ -79,7 +79,7 @@ describe('RadioItem', () => {
         it('renders without label when label prop is omitted', () => {
             const { container } = render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} aria-label={'Option x'} />
+                    <RadioGroup.Item value={'x'} aria-label={'Option x'} />
                 </RadioGroup>,
             )
             expect(container.querySelector('label')).toBeNull()
@@ -97,8 +97,8 @@ describe('RadioItem', () => {
             const handler = vi.fn()
             render(
                 <RadioGroup defaultValue={'a'} onValueChange={handler} aria-label={'group'}>
-                    <RadioItem value={'a'} label={'A'} />
-                    <RadioItem value={'b'} label={'B'} />
+                    <RadioGroup.Item value={'a'} label={'A'} />
+                    <RadioGroup.Item value={'b'} label={'B'} />
                 </RadioGroup>,
             )
             await userEvent.click(screen.getByRole('radio', { name: 'B' }))
@@ -109,8 +109,8 @@ describe('RadioItem', () => {
             const handler = vi.fn()
             render(
                 <RadioGroup defaultValue={'a'} onValueChange={handler} aria-label={'group'}>
-                    <RadioItem value={'a'} label={'A'} />
-                    <RadioItem value={'b'} label={'B'} />
+                    <RadioGroup.Item value={'a'} label={'A'} />
+                    <RadioGroup.Item value={'b'} label={'B'} />
                 </RadioGroup>,
             )
             await userEvent.click(screen.getByRole('radio', { name: 'A' }))
@@ -129,8 +129,8 @@ describe('RadioItem', () => {
         it('disables only the targeted item', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'a'} label={'A'} />
-                    <RadioItem value={'b'} label={'B'} disabled />
+                    <RadioGroup.Item value={'a'} label={'A'} />
+                    <RadioGroup.Item value={'b'} label={'B'} disabled />
                 </RadioGroup>,
             )
             expect(isDisabled(screen.getByRole('radio', { name: 'A' }))).toBe(false)
@@ -141,7 +141,7 @@ describe('RadioItem', () => {
             const handler = vi.fn()
             render(
                 <RadioGroup onValueChange={handler} aria-label={'group'}>
-                    <RadioItem value={'a'} label={'A'} disabled />
+                    <RadioGroup.Item value={'a'} label={'A'} disabled />
                 </RadioGroup>,
             )
             await userEvent.click(screen.getByRole('radio', { name: 'A' }))
@@ -153,7 +153,7 @@ describe('RadioItem', () => {
         it('merges a custom className onto the radio item', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} className={'my-radio'} aria-label={'x'} />
+                    <RadioGroup.Item value={'x'} className={'my-radio'} aria-label={'x'} />
                 </RadioGroup>,
             )
             expect(screen.getByRole('radio').className).toContain('my-radio')
@@ -164,7 +164,7 @@ describe('RadioItem', () => {
         it('forwards aria-label', () => {
             render(
                 <RadioGroup aria-label={'group'}>
-                    <RadioItem value={'x'} aria-label={'Custom label'} />
+                    <RadioGroup.Item value={'x'} aria-label={'Custom label'} />
                 </RadioGroup>,
             )
             expect(screen.getByRole('radio', { name: 'Custom label' })).toBeTruthy()

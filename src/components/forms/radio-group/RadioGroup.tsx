@@ -1,22 +1,22 @@
 import * as RadixRadioGroup from '@radix-ui/react-radio-group'
-import type { FC } from 'react'
 
+import RadioItem from '@components/forms/radio-group/components/radio-item/RadioItem.tsx'
+import type { RadioGroupCompound } from '@components/forms/radio-group/types'
 import { Flex } from '@components/layout/flex'
-import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioGroup.props.ts'
 
 /**
- * The root container for a group of `RadioItem` components.
+ * The root container for a group of `RadioGroup.Item` components.
  * Manages the single-selection state.
  *
  * @example
  * ```tsx
  * <RadioGroup value={value} onValueChange={setValue}>
- *   <RadioItem value="a" label="Option A" />
- *   <RadioItem value="b" label="Option B" />
+ *   <RadioGroup.Item value="a" label="Option A" />
+ *   <RadioGroup.Item value="b" label="Option B" />
  * </RadioGroup>
  * ```
  */
-const RadioGroup: FC<RadioGroupProps> = ({ className, children, ...props }) => (
+const RadioGroup = (({ className, children, ...props }) => (
     <RadixRadioGroup.Root
         asChild
         {...props}
@@ -30,8 +30,9 @@ const RadioGroup: FC<RadioGroupProps> = ({ className, children, ...props }) => (
             {children}
         </Flex>
     </RadixRadioGroup.Root>
-)
+)) as RadioGroupCompound
 
 RadioGroup.displayName = 'RadioGroup'
+RadioGroup.Item = RadioItem
 
 export default RadioGroup

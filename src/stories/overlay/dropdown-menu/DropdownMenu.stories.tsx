@@ -2,21 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within, waitFor } from 'storybook/test'
 import { Button } from '@/components/actions/button'
 
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuCheckboxItem,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubTrigger,
-    DropdownMenuSubContent,
-} from '@/components/overlay/dropdown-menu'
+import { DropdownMenu } from '@/components/overlay/dropdown-menu'
 import { Flex } from '@/components/layout/flex'
 
 const meta = {
@@ -33,20 +19,20 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 **Composition**
 \`\`\`tsx
 <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenu.Trigger asChild>
     <Button label="Options" endIcon="mdi:chevron-down" />
-  </DropdownMenuTrigger>
+  </DropdownMenu.Trigger>
 
-  <DropdownMenuContent>
-    <DropdownMenuLabel label="Account" />
-    <DropdownMenuSeparator />
-    <DropdownMenuGroup>
-      <DropdownMenuItem label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
-      <DropdownMenuItem label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
-    </DropdownMenuGroup>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem label="Log out" startIcon="mdi:logout" destructive />
-  </DropdownMenuContent>
+  <DropdownMenu.Content>
+    <DropdownMenu.Label label="Account" />
+    <DropdownMenu.Separator />
+    <DropdownMenu.Group>
+      <DropdownMenu.Item label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
+      <DropdownMenu.Item label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
+    </DropdownMenu.Group>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Item label="Log out" startIcon="mdi:logout" destructive />
+  </DropdownMenu.Content>
 </DropdownMenu>
 \`\`\`
 
@@ -54,9 +40,9 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`DropdownMenuTrigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
-| \`shortcut\` (on \`DropdownMenuItem\`) | No | \`string\` | Purely decorative — wire actual \`keydown\` handlers in your application. |
-| \`destructive\` (on \`DropdownMenuItem\`) | No | \`boolean\` | Applies danger color to visually warn users before an irreversible action. |
+| Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`DropdownMenu.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
+| \`shortcut\` (on \`DropdownMenu.Item\`) | No | \`string\` | Purely decorative — wire actual \`keydown\` handlers in your application. |
+| \`destructive\` (on \`DropdownMenu.Item\`) | No | \`boolean\` | Applies danger color to visually warn users before an irreversible action. |
 | \`disabled\` (on any item) | No | \`boolean\` | Marks the item as unavailable; it remains visible and announced by screen readers. |
 
 - The menu renders with \`role="menu"\`; items receive \`role="menuitem"\`, \`role="menuitemcheckbox"\`, or \`role="menuitemradio"\` automatically.
@@ -67,18 +53,18 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 | Sub-component | Description |
 |---|---|
 | \`DropdownMenu\` | Root context provider — wraps the entire menu. |
-| \`DropdownMenuTrigger\` | The element that opens the menu on click. Use \`asChild\` to delegate to your own button. |
-| \`DropdownMenuContent\` | The floating panel containing menu items. Handles positioning, animations and keyboard trapping. |
-| \`DropdownMenuGroup\` | Logical grouping of related items with no visual separator. Used purely for organization. |
-| \`DropdownMenuItem\` | A single actionable item with optional \`startIcon\`, \`endIcon\`, and \`shortcut\` hint. |
-| \`DropdownMenuCheckboxItem\` | A toggleable item that renders a checkmark indicator when \`checked\`. |
-| \`DropdownMenuRadioGroup\` | Container for mutually exclusive radio items; holds the current \`value\`. |
-| \`DropdownMenuRadioItem\` | A single radio option inside a \`DropdownMenuRadioGroup\`; selected when its \`value\` matches the group's. |
-| \`DropdownMenuLabel\` | Non-interactive section heading used to name a group of items. |
-| \`DropdownMenuSeparator\` | A horizontal dividing line between sections. |
-| \`DropdownMenuSub\` | Root for a nested sub-menu; wraps \`DropdownMenuSubTrigger\` and \`DropdownMenuSubContent\`. |
-| \`DropdownMenuSubTrigger\` | An item that reveals the nested sub-menu on hover or keyboard focus. |
-| \`DropdownMenuSubContent\` | The floating panel for the nested sub-menu content. |
+| \`DropdownMenu.Trigger\` | The element that opens the menu on click. Use \`asChild\` to delegate to your own button. |
+| \`DropdownMenu.Content\` | The floating panel containing menu items. Handles positioning, animations and keyboard trapping. |
+| \`DropdownMenu.Group\` | Logical grouping of related items with no visual separator. Used purely for organization. |
+| \`DropdownMenu.Item\` | A single actionable item with optional \`startIcon\`, \`endIcon\`, and \`shortcut\` hint. |
+| \`DropdownMenu.CheckboxItem\` | A toggleable item that renders a checkmark indicator when \`checked\`. |
+| \`DropdownMenu.RadioGroup\` | Container for mutually exclusive radio items; holds the current \`value\`. |
+| \`DropdownMenu.RadioItem\` | A single radio option inside a \`DropdownMenu.RadioGroup\`; selected when its \`value\` matches the group's. |
+| \`DropdownMenu.Label\` | Non-interactive section heading used to name a group of items. |
+| \`DropdownMenu.Separator\` | A horizontal dividing line between sections. |
+| \`DropdownMenu.Sub\` | Root for a nested sub-menu; wraps \`DropdownMenu.SubTrigger\` and \`DropdownMenu.SubContent\`. |
+| \`DropdownMenu.SubTrigger\` | An item that reveals the nested sub-menu on hover or keyboard focus. |
+| \`DropdownMenu.SubContent\` | The floating panel for the nested sub-menu content. |
                 `,
             },
         },
@@ -126,105 +112,105 @@ export const Default: Story = {
     },
     render: () => (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenu.Trigger asChild>
                 <Button
                     label={'Open menu'}
                     endIcon={'mdi:chevron-down'}
                 />
-            </DropdownMenuTrigger>
+            </DropdownMenu.Trigger>
 
-            <DropdownMenuContent>
+            <DropdownMenu.Content>
 
                 {/* Regular items with icons & shortcuts */}
-                <DropdownMenuLabel label={'Account'} />
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                    <DropdownMenuItem
+                <DropdownMenu.Label label={'Account'} />
+                <DropdownMenu.Separator />
+                <DropdownMenu.Group>
+                    <DropdownMenu.Item
                         label={'Profile'}
                         startIcon={'mdi:account-outline'}
                         shortcut={'⇧⌘P'}
                     />
-                    <DropdownMenuItem
+                    <DropdownMenu.Item
                         label={'Settings'}
                         startIcon={'mdi:cog-outline'}
                         shortcut={'⌘S'}
                     />
                     {/* Sub-menu */}
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
+                    <DropdownMenu.Sub>
+                        <DropdownMenu.SubTrigger
                             label={'Invite users'}
                             startIcon={'mdi:account-plus-outline'}
                         />
-                        <DropdownMenuSubContent>
-                            <DropdownMenuItem
+                        <DropdownMenu.SubContent>
+                            <DropdownMenu.Item
                                 label={'Email'}
                                 startIcon={'mdi:email-outline'}
                             />
-                            <DropdownMenuItem
+                            <DropdownMenu.Item
                                 label={'Message'}
                                 startIcon={'mdi:message-outline'}
                             />
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem
+                            <DropdownMenu.Separator />
+                            <DropdownMenu.Item
                                 label={'More…'}
                                 startIcon={'mdi:dots-horizontal'}
                             />
-                        </DropdownMenuSubContent>
-                    </DropdownMenuSub>
+                        </DropdownMenu.SubContent>
+                    </DropdownMenu.Sub>
                     {/* Disabled item */}
-                    <DropdownMenuItem
+                    <DropdownMenu.Item
                         label={'API (unavailable)'}
                         startIcon={'mdi:cloud-off-outline'}
                         disabled
                     />
-                </DropdownMenuGroup>
+                </DropdownMenu.Group>
 
                 {/* Checkbox items */}
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel label={'Appearance'} />
-                <DropdownMenuCheckboxItem
+                <DropdownMenu.Separator />
+                <DropdownMenu.Label label={'Appearance'} />
+                <DropdownMenu.CheckboxItem
                     label={'Show status bar'}
                     checked
                 />
-                <DropdownMenuCheckboxItem
+                <DropdownMenu.CheckboxItem
                     label={'Show activity bar'}
                     checked={false}
                 />
 
                 {/* Radio group */}
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel label={'Panel position'} />
-                <DropdownMenuRadioGroup value={'bottom'}>
-                    <DropdownMenuRadioItem
+                <DropdownMenu.Separator />
+                <DropdownMenu.Label label={'Panel position'} />
+                <DropdownMenu.RadioGroup value={'bottom'}>
+                    <DropdownMenu.RadioItem
                         label={'Top'}
                         value={'top'}
                     />
-                    <DropdownMenuRadioItem
+                    <DropdownMenu.RadioItem
                         label={'Bottom'}
                         value={'bottom'}
                     />
-                    <DropdownMenuRadioItem
+                    <DropdownMenu.RadioItem
                         label={'Right'}
                         value={'right'}
                     />
-                </DropdownMenuRadioGroup>
+                </DropdownMenu.RadioGroup>
 
                 {/* Destructive + disabled destructive */}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item
                     label={'Delete (unavailable)'}
                     startIcon={'mdi:trash-can-outline'}
                     shortcut={'⌫'}
                     destructive
                     disabled
                 />
-                <DropdownMenuItem
+                <DropdownMenu.Item
                     label={'Log out'}
                     startIcon={'mdi:logout'}
                     destructive
                 />
 
-            </DropdownMenuContent>
+            </DropdownMenu.Content>
         </DropdownMenu>
     ),
     play: async ({ canvasElement }) => {

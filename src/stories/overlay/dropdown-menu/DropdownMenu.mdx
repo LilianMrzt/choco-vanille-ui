@@ -16,38 +16,30 @@ import * as DropdownMenuStories from './DropdownMenu.stories';
   Fully accessible dropdown menu — supports items, checkboxes, radio groups, sub-menus, separators, labels and keyboard shortcuts, with fluid entrance/exit animations.
 </Subtitle>
 
-The `DropdownMenu` is a **compound component**: import each building block you need and compose them freely.
+The `DropdownMenu` is a **compound component**: import `DropdownMenu` and access each building block via dot notation.
 
 <Source
   language="tsx"
-  code={`import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from '@my-org/ui-kit';
+  code={`import { DropdownMenu } from '@my-org/ui-kit';
 
 <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenu.Trigger asChild>
     <Button label="Open" endIcon="mdi:chevron-down" />
-  </DropdownMenuTrigger>
+  </DropdownMenu.Trigger>
 
-  <DropdownMenuContent>
-    <DropdownMenuLabel label="My Account" />
-    <DropdownMenuSeparator />
+  <DropdownMenu.Content>
+    <DropdownMenu.Label label="My Account" />
+    <DropdownMenu.Separator />
 
-    <DropdownMenuGroup>
-      <DropdownMenuItem label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
-      <DropdownMenuItem label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
-    </DropdownMenuGroup>
+    <DropdownMenu.Group>
+      <DropdownMenu.Item label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
+      <DropdownMenu.Item label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
+    </DropdownMenu.Group>
 
-    <DropdownMenuSeparator />
+    <DropdownMenu.Separator />
 
-    <DropdownMenuItem label="Log out" startIcon="mdi:logout" destructive shortcut="⇧⌘Q" />
-  </DropdownMenuContent>
+    <DropdownMenu.Item label="Log out" startIcon="mdi:logout" destructive shortcut="⇧⌘Q" />
+  </DropdownMenu.Content>
 </DropdownMenu>`}
 />
 
@@ -55,30 +47,30 @@ The `DropdownMenu` is a **compound component**: import each building block you n
 
 | Prop / Attribute | Required | Notes |
 | ---------------- | -------- | ----- |
-| Focusable trigger | ✅ Required | Use `asChild` on `DropdownMenuTrigger` to forward behaviour to your own `Button` or `IconButton`. |
-| `shortcut` (on `DropdownMenuItem`) | No | Purely decorative — wire actual `keydown` handlers separately in your application. |
-| `destructive` (on `DropdownMenuItem`) | No | Applies a danger color to warn users before irreversible actions. |
+| Focusable trigger | ✅ Required | Use `asChild` on `DropdownMenu.Trigger` to forward behaviour to your own `Button` or `IconButton`. |
+| `shortcut` (on `DropdownMenu.Item`) | No | Purely decorative — wire actual `keydown` handlers separately in your application. |
+| `destructive` (on `DropdownMenu.Item`) | No | Applies a danger color to warn users before irreversible actions. |
 | `disabled` (on any item) | No | Marks the item as unavailable; it remains visible and announced by screen readers. |
 
 Keyboard navigation is built in: **Enter** / **Space** to open, **Arrow keys** to navigate, **Escape** to close.
 
 ## Sub-components
 
-| Sub-component | What it is |
-| ------------- | ---------- |
-| `DropdownMenu` | Root context provider for the entire menu. |
-| `DropdownMenuTrigger` | The element that toggles the menu open / closed. |
-| `DropdownMenuContent` | The floating panel that contains menu items. |
-| `DropdownMenuGroup` | A logical grouping wrapper for related items. |
-| `DropdownMenuItem` | A single actionable item with optional `startIcon`, `endIcon` (Iconify ids) and `shortcut` hint. |
-| `DropdownMenuCheckboxItem` | A toggleable item that shows a checkmark indicator when checked. |
-| `DropdownMenuRadioGroup` | Container for a set of mutually exclusive radio items. |
-| `DropdownMenuRadioItem` | A single radio option inside a `DropdownMenuRadioGroup`. |
-| `DropdownMenuLabel` | A non-interactive section heading for a group of items. |
-| `DropdownMenuSeparator` | A horizontal line that visually separates sections. |
-| `DropdownMenuSub` | Root wrapper for a nested sub-menu. |
-| `DropdownMenuSubTrigger` | An item that reveals a nested sub-menu on hover or keyboard focus. |
-| `DropdownMenuSubContent` | The floating panel for a nested sub-menu. |
+| Sub-component | What it is | Place inside |
+| ------------- | ---------- | ------------ |
+| `DropdownMenu` | Root — manages open/close state and provides context to all children. | Top level |
+| `DropdownMenu.Trigger` | The element that toggles the menu open / closed. Use `asChild` to delegate to your own button. | `DropdownMenu` |
+| `DropdownMenu.Content` | The floating panel that contains menu items. | `DropdownMenu` |
+| `DropdownMenu.Label` | A non-interactive section heading that names the group below it. | `DropdownMenu.Content` |
+| `DropdownMenu.Separator` | A horizontal line that visually separates sections. | `DropdownMenu.Content` |
+| `DropdownMenu.Group` | A logical grouping wrapper for related items — no visual output. | `DropdownMenu.Content` |
+| `DropdownMenu.Item` | A single actionable item with optional `startIcon`, `endIcon` and `shortcut`. | `DropdownMenu.Content` or `DropdownMenu.Group` |
+| `DropdownMenu.CheckboxItem` | A toggleable item that shows a checkmark when `checked`. | `DropdownMenu.Content` or `DropdownMenu.Group` |
+| `DropdownMenu.RadioGroup` | Container for mutually exclusive radio options; holds the current `value`. | `DropdownMenu.Content` |
+| `DropdownMenu.RadioItem` | A single radio option; selected when its `value` matches the parent `DropdownMenu.RadioGroup`. | `DropdownMenu.RadioGroup` |
+| `DropdownMenu.Sub` | Root wrapper for a nested sub-menu — wraps `SubTrigger` + `SubContent`. | `DropdownMenu.Content` or `DropdownMenu.Group` |
+| `DropdownMenu.SubTrigger` | An item that reveals the nested sub-menu on hover or keyboard focus. | `DropdownMenu.Sub` |
+| `DropdownMenu.SubContent` | The floating panel for the nested sub-menu content. | `DropdownMenu.Sub` |
 
 ## Demo
 

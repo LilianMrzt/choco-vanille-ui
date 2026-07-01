@@ -1,17 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { within, expect } from 'storybook/test'
 
-import {
-    Table,
-    TableHeader,
-    TableBody,
-    TableFooter,
-    TableRow,
-    TableHead,
-    TableCell,
-    TableCaption,
-    type TableSize,
-} from '@/components/data-display/table'
+import { Table, type TableSize } from '@/components/data-display/table'
 
 const INVOICES = [
     { invoice: 'INV-001', status: 'Paid', method: 'Credit card', amount: 250.00 },
@@ -39,42 +29,38 @@ const meta = {
                     '**Usage**',
                     '',
                     '```tsx',
-                    'import {',
-                    '  Table, TableHeader, TableBody, TableFooter,',
-                    '  TableRow, TableHead, TableCell, TableCaption,',
-                    '  TableColGroup, TableCol,',
-                    "} from '@my-org/ui-kit'",
+                    "import { Table } from '@my-org/ui-kit'",
                     '',
                     '<Table size="md" striped fixed>',
-                    '  <TableColGroup>',
-                    '    <TableCol width="60px" />',
-                    '    <TableCol width="15%" />',
-                    '    <TableCol />',
-                    '    <TableCol width="10rem" />',
-                    '  </TableColGroup>',
-                    '  <TableCaption>Recent invoices.</TableCaption>',
-                    '  <TableHeader>',
-                    '    <TableRow>',
-                    '      <TableHead align="center">#</TableHead>',
-                    '      <TableHead sortable sortDirection="asc" onClick={handleSort}>Status</TableHead>',
-                    '      <TableHead>Description</TableHead>',
-                    '      <TableHead align="right">Amount</TableHead>',
-                    '    </TableRow>',
-                    '  </TableHeader>',
-                    '  <TableBody>',
-                    '    <TableRow selectable selected={isSelected} onClick={handleSelect} intent="success">',
-                    '      <TableCell align="center">1</TableCell>',
-                    '      <TableCell>Paid</TableCell>',
-                    '      <TableCell truncate>Long description...</TableCell>',
-                    '      <TableCell numeric>$250.00</TableCell>',
-                    '    </TableRow>',
-                    '  </TableBody>',
-                    '  <TableFooter>',
-                    '    <TableRow>',
-                    '      <TableCell colSpan={3}>Total</TableCell>',
-                    '      <TableCell numeric>$250.00</TableCell>',
-                    '    </TableRow>',
-                    '  </TableFooter>',
+                    '  <Table.ColGroup>',
+                    '    <Table.Col width="60px" />',
+                    '    <Table.Col width="15%" />',
+                    '    <Table.Col />',
+                    '    <Table.Col width="10rem" />',
+                    '  </Table.ColGroup>',
+                    '  <Table.Caption>Recent invoices.</Table.Caption>',
+                    '  <Table.Header>',
+                    '    <Table.Row>',
+                    '      <Table.Head align="center">#</Table.Head>',
+                    '      <Table.Head sortable sortDirection="asc" onClick={handleSort}>Status</Table.Head>',
+                    '      <Table.Head>Description</Table.Head>',
+                    '      <Table.Head align="right">Amount</Table.Head>',
+                    '    </Table.Row>',
+                    '  </Table.Header>',
+                    '  <Table.Body>',
+                    '    <Table.Row selectable selected={isSelected} onClick={handleSelect} intent="success">',
+                    '      <Table.Cell align="center">1</Table.Cell>',
+                    '      <Table.Cell>Paid</Table.Cell>',
+                    '      <Table.Cell truncate>Long description...</Table.Cell>',
+                    '      <Table.Cell numeric>$250.00</Table.Cell>',
+                    '    </Table.Row>',
+                    '  </Table.Body>',
+                    '  <Table.Footer>',
+                    '    <Table.Row>',
+                    '      <Table.Cell colSpan={3}>Total</Table.Cell>',
+                    '      <Table.Cell numeric>$250.00</Table.Cell>',
+                    '    </Table.Row>',
+                    '  </Table.Footer>',
                     '</Table>',
                     '```',
                     '',
@@ -82,12 +68,12 @@ const meta = {
                     '',
                     '| Element / Prop | Notes |',
                     '|---|---|',
-                    '| `TableCaption` | Provides the accessible name for the table. Always include one, or use `aria-label` when no caption is present. |',
-                    '| `TableHead` (`<th>`) | Maps to `role="columnheader"` automatically — no extra ARIA needed for simple tables. |',
-                    '| `scope="col"` | Add to `TableHead` for explicit column scoping in complex or multi-level header tables. |',
+                    '| `Table.Caption` | Provides the accessible name for the table. Always include one, or use `aria-label` when no caption is present. |',
+                    '| `Table.Head` (`<th>`) | Maps to `role="columnheader"` automatically — no extra ARIA needed for simple tables. |',
+                    '| `scope="col"` | Add to `Table.Head` for explicit column scoping in complex or multi-level header tables. |',
                     '| `sortDirection` | Sets `aria-sort="ascending"` / `"descending"` / `"none"` on `<th>` automatically. |',
                     '| `selectable` | Sets `aria-selected` on `<tr>` automatically when combined with `selected`. |',
-                    '| `aria-label` | Use on `Table` when `TableCaption` is omitted. |',
+                    '| `aria-label` | Use on `Table` when `Table.Caption` is omitted. |',
                     '| Keyboard | `selectable` rows are pointer-activated only — add `onKeyDown` for full keyboard support. |',
                 ].join('\n'),
             },
@@ -112,7 +98,7 @@ const meta = {
         },
         fixed: {
             control: 'boolean',
-            description: 'Sets `table-layout: fixed`. Required for `TableColGroup` / `TableCol` widths to take effect reliably.',
+            description: 'Sets `table-layout: fixed`. Required for `Table.ColGroup` / `Table.Col` widths to take effect reliably.',
             table: { category: 'Table', defaultValue: { summary: 'false' } },
         },
     },
@@ -200,54 +186,54 @@ export const Default: Story = {
 
         return (
             <Table {...tableArgs}>
-                <TableCaption>A list of your recent invoices.</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead
+                <Table.Caption>A list of your recent invoices.</Table.Caption>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.Head
                             align={headerAlign}
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
                             Invoice
-                        </TableHead>
-                        <TableHead
+                        </Table.Head>
+                        <Table.Head
                             align={headerAlign}
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
                             Status
-                        </TableHead>
-                        <TableHead
+                        </Table.Head>
+                        <Table.Head
                             align={headerAlign}
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
                             Method
-                        </TableHead>
-                        <TableHead align={'right'}>Amount</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
+                        </Table.Head>
+                        <Table.Head align={'right'}>Amount</Table.Head>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
                     {INVOICES.map((row) => (
-                        <TableRow
+                        <Table.Row
                             key={row.invoice}
                             hoverable={hoverable}
                             selectable={selectable}
                             intent={rowIntent}
                         >
-                            <TableCell>{row.invoice}</TableCell>
-                            <TableCell>{row.status}</TableCell>
-                            <TableCell>{row.method}</TableCell>
-                            <TableCell numeric>{fmt(row.amount)}</TableCell>
-                        </TableRow>
+                            <Table.Cell>{row.invoice}</Table.Cell>
+                            <Table.Cell>{row.status}</Table.Cell>
+                            <Table.Cell>{row.method}</Table.Cell>
+                            <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                        </Table.Row>
                     ))}
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TableCell colSpan={3}>Total</TableCell>
-                        <TableCell numeric>{fmt(total)}</TableCell>
-                    </TableRow>
-                </TableFooter>
+                </Table.Body>
+                <Table.Footer>
+                    <Table.Row>
+                        <Table.Cell colSpan={3}>Total</Table.Cell>
+                        <Table.Cell numeric>{fmt(total)}</Table.Cell>
+                    </Table.Row>
+                </Table.Footer>
             </Table>
         )
     },

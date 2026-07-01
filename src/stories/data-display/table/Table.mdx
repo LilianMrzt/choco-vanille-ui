@@ -19,42 +19,38 @@ import * as TableStories from './Table.stories'
 
 <Source
   language="tsx"
-  code={`import {
-  Table, TableHeader, TableBody, TableFooter,
-  TableRow, TableHead, TableCell, TableCaption,
-  TableColGroup, TableCol,
-} from '@my-org/ui-kit'
+  code={`import { Table } from '@my-org/ui-kit'
 
 <Table size="md" striped fixed>
-  <TableColGroup>
-    <TableCol width="60px" />
-    <TableCol width="15%" />
-    <TableCol />
-    <TableCol width="10rem" />
-  </TableColGroup>
-  <TableCaption>Recent invoices.</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableHead align="center">#</TableHead>
-      <TableHead sortable sortDirection="asc" onClick={handleSort}>Status</TableHead>
-      <TableHead>Description</TableHead>
-      <TableHead align="right">Amount</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow selectable selected={isSelected} onClick={handleSelect} intent="success">
-      <TableCell align="center">1</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell truncate>Long description that overflows…</TableCell>
-      <TableCell numeric>$250.00</TableCell>
-    </TableRow>
-  </TableBody>
-  <TableFooter>
-    <TableRow>
-      <TableCell colSpan={3}>Total</TableCell>
-      <TableCell numeric>$250.00</TableCell>
-    </TableRow>
-  </TableFooter>
+  <Table.ColGroup>
+    <Table.Col width="60px" />
+    <Table.Col width="15%" />
+    <Table.Col />
+    <Table.Col width="10rem" />
+  </Table.ColGroup>
+  <Table.Caption>Recent invoices.</Table.Caption>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head align="center">#</Table.Head>
+      <Table.Head sortable sortDirection="asc" onClick={handleSort}>Status</Table.Head>
+      <Table.Head>Description</Table.Head>
+      <Table.Head align="right">Amount</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row selectable selected={isSelected} onClick={handleSelect} intent="success">
+      <Table.Cell align="center">1</Table.Cell>
+      <Table.Cell>Paid</Table.Cell>
+      <Table.Cell truncate>Long description that overflows…</Table.Cell>
+      <Table.Cell numeric>$250.00</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+  <Table.Footer>
+    <Table.Row>
+      <Table.Cell colSpan={3}>Total</Table.Cell>
+      <Table.Cell numeric>$250.00</Table.Cell>
+    </Table.Row>
+  </Table.Footer>
 </Table>`}
 />
 
@@ -62,12 +58,12 @@ import * as TableStories from './Table.stories'
 
 | Element / Prop | Notes |
 | --- | --- |
-| `TableCaption` | Provides the accessible name for the table. Always include one, or use `aria-label` on `Table` when no caption is present. |
-| `TableHead` (`<th>`) | Maps to `role="columnheader"` automatically — no extra ARIA needed for simple tables. |
-| `scope="col"` | Add to `TableHead` for explicit column scoping in complex or multi-level header tables. |
+| `Table.Caption` | Provides the accessible name for the table. Always include one, or use `aria-label` on `Table` when no caption is present. |
+| `Table.Head` (`<th>`) | Maps to `role="columnheader"` automatically — no extra ARIA needed for simple tables. |
+| `scope="col"` | Add to `Table.Head` for explicit column scoping in complex or multi-level header tables. |
 | `sortDirection` | Sets `aria-sort="ascending"` / `"descending"` / `"none"` on `<th>` automatically. |
 | `selectable` | Sets `aria-selected` on `<tr>` automatically when combined with `selected`. |
-| `aria-label` | Use on `Table` when `TableCaption` is omitted. |
+| `aria-label` | Use on `Table` when `Table.Caption` is omitted. |
 | Keyboard | Rows with `selectable` + `onClick` are pointer-activated only — add `onKeyDown` or `role="button"` for full keyboard support. |
 
 ## Playground
@@ -78,15 +74,15 @@ import * as TableStories from './Table.stories'
 
 ## Sub-component reference
 
-| Component | Element | Key props |
-| --- | --- | --- |
-| `Table` | `<table>` | `size`, `striped`, `bordered`, `fixed` |
-| `TableHeader` | `<thead>` | — |
-| `TableBody` | `<tbody>` | — |
-| `TableFooter` | `<tfoot>` | — |
-| `TableRow` | `<tr>` | `hoverable`, `selectable`, `selected`, `intent` |
-| `TableHead` | `<th>` | `align`, `sortable`, `sortDirection` |
-| `TableCell` | `<td>` | `align`, `numeric`, `truncate` |
-| `TableCaption` | `<caption>` | — |
-| `TableColGroup` | `<colgroup>` | — |
-| `TableCol` | `<col>` | `width`, `minWidth`, `maxWidth` |
+| Component | Element | Key props | Role in compound |
+| --- | --- | --- | --- |
+| `Table` | `<table>` | `size`, `striped`, `bordered`, `fixed` | Root — configures size, striping and layout for all descendant cells. |
+| `Table.Caption` | `<caption>` | — | Accessible name for the table — always include one (or use `aria-label` on `Table`). |
+| `Table.ColGroup` | `<colgroup>` | — | Optional column width declarations; requires `fixed` on `Table` to take effect. |
+| `Table.Col` | `<col>` | `width`, `minWidth`, `maxWidth` | Defines the width of a single column inside `Table.ColGroup`. |
+| `Table.Header` | `<thead>` | — | Groups all header rows; place one or more `Table.Row` with `Table.Head` cells inside. |
+| `Table.Body` | `<tbody>` | — | Groups the data rows; place `Table.Row` with `Table.Cell` cells inside. |
+| `Table.Footer` | `<tfoot>` | — | Groups summary rows (e.g. totals); place `Table.Row` with `Table.Cell` cells inside. |
+| `Table.Row` | `<tr>` | `hoverable`, `selectable`, `selected`, `intent` | A single row — use inside `Table.Header`, `Table.Body` or `Table.Footer`. |
+| `Table.Head` | `<th>` | `align`, `sortable`, `sortDirection` | A column header cell — use inside a `Table.Row` within `Table.Header`. |
+| `Table.Cell` | `<td>` | `align`, `numeric`, `truncate` | A data cell — use inside a `Table.Row` within `Table.Body` or `Table.Footer`. |

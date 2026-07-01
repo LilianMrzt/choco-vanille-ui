@@ -1,28 +1,26 @@
-import { type FC } from 'react'
-
-import { cn } from '@utils/cn.ts'
 import { IconButton } from '@components/actions/icon-button'
-import { Flex } from '@components/layout/flex'
-import {
-    textFieldInputRecipe,
-} from '@components/forms/text-field/TextField.css.ts'
 import {
     TextFieldLabel,
     TextFieldStartIcon,
     TextFieldEndAction,
 } from '@components/forms/text-field/components/index.ts'
-import type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
+import {
+    textFieldInputRecipe,
+} from '@components/forms/text-field/TextField.css.ts'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
+import type { TextFieldCompound } from '@components/forms/text-field/types'
+import { Flex } from '@components/layout/flex'
+import { cn } from '@utils/cn.ts'
 
 /**
  * A styled text input built with a native `<input>` and `@radix-ui/react-label`.
  *
- * - `startIcon` — Iconify icon name rendered on the left.
- * - `endAction` — any ReactNode (e.g. `<IconButton>`) rendered on the right.
- * - `type="password"` — auto-shows an eye-toggle `IconButton` (overrides `endAction`).
- * - `width` — overrides the default `100%` wrapper width.
+ * - `startIcon` - Iconify icon name rendered on the left.
+ * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
+ * - `type="password"` - auto-shows an eye-toggle `IconButton` (overrides `endAction`).
+ * - `width` - overrides the default `100%` wrapper width.
  *
  * Focus ring behavior: visible only on keyboard navigation (Tab). A click on the
  * input shows the primary border without the ring halo, detected via `onMouseDown`
@@ -36,7 +34,7 @@ import { useTextField } from '@components/forms/text-field/hooks/useTextfield.ho
  * <TextField label="Amount" width="12rem" />
  * ```
  */
-const TextField: FC<TextFieldProps> = (props) => {
+const TextField = ((props) => {
     const {
         inputId,
         helperId,
@@ -135,8 +133,11 @@ const TextField: FC<TextFieldProps> = (props) => {
             )}
         </Flex>
     )
-}
+}) as TextFieldCompound
 
 TextField.displayName = 'TextField'
+TextField.Label = TextFieldLabel
+TextField.StartIcon = TextFieldStartIcon
+TextField.EndAction = TextFieldEndAction
 
 export default TextField

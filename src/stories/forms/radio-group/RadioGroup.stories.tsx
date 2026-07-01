@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { RadioGroup } from '@/components/forms/radio-group'
-import { RadioItem } from '@/components/forms/radio-group'
 import { Box } from '@/components/layout/box'
 import { Flex } from '@/components/layout/flex'
 
@@ -16,23 +15,23 @@ const meta = {
             description: {
                 component: `
 A group of mutually exclusive radio options built on top of [\`@radix-ui/react-radio-group\`](https://www.radix-ui.com/docs/primitives/components/radio-group).
-Compose \`RadioGroup\` with one or more \`RadioItem\` children. Each item renders a radio control with an optional visible label.
+Compose \`RadioGroup\` with one or more \`RadioGroup.Item\` children. Each item renders a radio control with an optional visible label.
 
 **Usage**
 \`\`\`tsx
 // Uncontrolled
 <RadioGroup defaultValue="system">
-  <RadioItem value="light" label="Light" />
-  <RadioItem value="dark"  label="Dark" />
-  <RadioItem value="system" label="System" />
+  <RadioGroup.Item value="light" label="Light" />
+  <RadioGroup.Item value="dark"  label="Dark" />
+  <RadioGroup.Item value="system" label="System" />
 </RadioGroup>
 
 // Controlled
 const [theme, setTheme] = useState('system')
 <RadioGroup value={theme} onValueChange={setTheme}>
-  <RadioItem value="light"  label="Light" />
-  <RadioItem value="dark"   label="Dark" />
-  <RadioItem value="system" label="System" />
+  <RadioGroup.Item value="light"  label="Light" />
+  <RadioGroup.Item value="dark"   label="Dark" />
+  <RadioGroup.Item value="system" label="System" />
 </RadioGroup>
 \`\`\`
 
@@ -41,8 +40,8 @@ const [theme, setTheme] = useState('system')
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
 | \`aria-label\` / \`aria-labelledby\` on \`RadioGroup\` | ✅ Yes | \`string\` | Announces the group purpose to screen readers when no visible group label is present. |
-| \`label\` on \`RadioItem\` | Conditional | \`string\` | Visible label for the option; auto-associated via a generated \`id\`. |
-| \`aria-label\` on \`RadioItem\` | Conditional | \`string\` | Required when \`label\` is omitted to give each option an accessible name. |
+| \`label\` on \`RadioGroup.Item\` | Conditional | \`string\` | Visible label for the option; auto-associated via a generated \`id\`. |
+| \`aria-label\` on \`RadioGroup.Item\` | Conditional | \`string\` | Required when \`label\` is omitted to give each option an accessible name. |
 | \`disabled\` (item) | No | \`boolean\` | Marks a single option as unavailable; skipped by keyboard navigation. |
 | \`disabled\` (group) | No | \`boolean\` | Disables every child item at once. |
 | \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Informs assistive technology of layout; affects expected arrow-key direction. |
@@ -54,7 +53,10 @@ const [theme, setTheme] = useState('system')
     },
     decorators: [
         (Story) => (
-            <Box p={'lg'} style={{ minWidth: '12rem' }}>
+            <Box
+                p={'lg'}
+                style={{ minWidth: '12rem' }}
+            >
                 <Story />
             </Box>
         ),
@@ -70,15 +72,15 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
     render: () => (
         <RadioGroup defaultValue={'system'}>
-            <RadioItem
+            <RadioGroup.Item
                 value={'light'}
                 label={'Light'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'dark'}
                 label={'Dark'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'system'}
                 label={'System'}
             />
@@ -107,15 +109,15 @@ export const WithoutLabels: Story = {
             defaultValue={'b'}
             aria-label={'Pick option'}
         >
-            <RadioItem
+            <RadioGroup.Item
                 value={'a'}
                 aria-label={'Option A'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'b'}
                 aria-label={'Option B'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'c'}
                 aria-label={'Option C'}
             />
@@ -124,7 +126,7 @@ export const WithoutLabels: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'When no visible label is rendered for each item, provide an `aria-label` on every `RadioItem` and an `aria-label` on the `RadioGroup` itself to give screen readers full context.',
+                story: 'When no visible label is rendered for each item, provide an `aria-label` on every `RadioGroup.Item` and an `aria-label` on the `RadioGroup` itself to give screen readers full context.',
             },
         },
     },
@@ -139,15 +141,15 @@ export const Horizontal: Story = {
             orientation={'horizontal'}
             style={{ flexDirection: 'row', gap: '1.5rem' }}
         >
-            <RadioItem
+            <RadioGroup.Item
                 value={'sm'}
                 label={'Small'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'md'}
                 label={'Medium'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'lg'}
                 label={'Large'}
             />
@@ -167,15 +169,15 @@ export const Horizontal: Story = {
 export const WithDisabledItem: Story = {
     render: () => (
         <RadioGroup defaultValue={'enabled'}>
-            <RadioItem
+            <RadioGroup.Item
                 value={'enabled'}
                 label={'Enabled'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'also-enabled'}
                 label={'Also enabled'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'unavailable'}
                 label={'Unavailable (disabled)'}
                 disabled
@@ -203,11 +205,11 @@ export const Disabled: Story = {
             defaultValue={'a'}
             disabled
         >
-            <RadioItem
+            <RadioGroup.Item
                 value={'a'}
                 label={'Option A'}
             />
-            <RadioItem
+            <RadioGroup.Item
                 value={'b'}
                 label={'Option B'}
             />
@@ -236,20 +238,24 @@ export const Controlled: Story = {
     render: () => {
         const [value, setValue] = useState('standard')
         return (
-            <Flex direction={'column'} align={'stretch'} gap={'md'}>
+            <Flex
+                direction={'column'}
+                align={'stretch'}
+                gap={'md'}
+            >
                 <RadioGroup
                     value={value}
                     onValueChange={setValue}
                 >
-                    <RadioItem
+                    <RadioGroup.Item
                         value={'free'}
                         label={'Free'}
                     />
-                    <RadioItem
+                    <RadioGroup.Item
                         value={'standard'}
                         label={'Standard'}
                     />
-                    <RadioItem
+                    <RadioGroup.Item
                         value={'premium'}
                         label={'Premium'}
                     />

@@ -2,18 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import {
-    Table,
-    TableHeader,
-    TableBody,
-    TableFooter,
-    TableRow,
-    TableHead,
-    TableCell,
-    TableCaption,
-    tableRecipe,
-    type TableSize,
-} from '@components/data-display/table'
+import { Table, tableRecipe, type TableSize } from '@components/data-display/table'
 
 // Helpers
 
@@ -21,29 +10,29 @@ import {
 const renderTable = (props: React.ComponentProps<typeof Table> = {}) =>
     render(
         <Table {...props}>
-            <TableCaption>Test caption</TableCaption>
-            <TableHeader>
-                <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead align={'right'}>Amount</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                    <TableCell>Row 1</TableCell>
-                    <TableCell align={'right'}>$100</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Row 2</TableCell>
-                    <TableCell align={'right'}>$200</TableCell>
-                </TableRow>
-            </TableBody>
-            <TableFooter>
-                <TableRow>
-                    <TableCell>Total</TableCell>
-                    <TableCell align={'right'}>$300</TableCell>
-                </TableRow>
-            </TableFooter>
+            <Table.Caption>Test caption</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>Name</Table.Head>
+                    <Table.Head align={'right'}>Amount</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell>Row 1</Table.Cell>
+                    <Table.Cell align={'right'}>$100</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell>Row 2</Table.Cell>
+                    <Table.Cell align={'right'}>$200</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+            <Table.Footer>
+                <Table.Row>
+                    <Table.Cell>Total</Table.Cell>
+                    <Table.Cell align={'right'}>$300</Table.Cell>
+                </Table.Row>
+            </Table.Footer>
         </Table>,
     )
 
@@ -128,17 +117,17 @@ describe('Table', () => {
     })
 })
 
-// TableHeader
+// Table.Header
 
-describe('TableHeader', () => {
+describe('Table.Header', () => {
     it('renders a <thead> element', () => {
         render(
             <table>
-                <TableHeader>
+                <Table.Header>
                     <tr>
                         <th>Col</th>
                     </tr>
-                </TableHeader>
+                </Table.Header>
             </table>,
         )
         expect(document.querySelector('thead')).toBeTruthy()
@@ -147,65 +136,65 @@ describe('TableHeader', () => {
     it('merges custom className', () => {
         render(
             <table>
-                <TableHeader className={'custom-header'}>
+                <Table.Header className={'custom-header'}>
                     <tr><th>H</th></tr>
-                </TableHeader>
+                </Table.Header>
             </table>,
         )
         expect(document.querySelector('thead')!.className).toContain('custom-header')
     })
 
     it('displayName is "TableHeader"', () => {
-        expect(TableHeader.displayName).toBe('TableHeader')
+        expect(Table.Header.displayName).toBe('TableHeader')
     })
 })
 
-// TableBody
+// Table.Body
 
-describe('TableBody', () => {
+describe('Table.Body', () => {
     it('renders a <tbody> element', () => {
         render(
             <table>
-                <TableBody>
+                <Table.Body>
                     <tr><td>Cell</td></tr>
-                </TableBody>
+                </Table.Body>
             </table>,
         )
         expect(document.querySelector('tbody')).toBeTruthy()
     })
 
     it('displayName is "TableBody"', () => {
-        expect(TableBody.displayName).toBe('TableBody')
+        expect(Table.Body.displayName).toBe('TableBody')
     })
 })
 
-// TableFooter
+// Table.Footer
 
-describe('TableFooter', () => {
+describe('Table.Footer', () => {
     it('renders a <tfoot> element', () => {
         render(
             <table>
-                <TableFooter>
+                <Table.Footer>
                     <tr><td>Total</td></tr>
-                </TableFooter>
+                </Table.Footer>
             </table>,
         )
         expect(document.querySelector('tfoot')).toBeTruthy()
     })
 
     it('displayName is "TableFooter"', () => {
-        expect(TableFooter.displayName).toBe('TableFooter')
+        expect(Table.Footer.displayName).toBe('TableFooter')
     })
 })
 
-// TableRow
+// Table.Row
 
-describe('TableRow', () => {
+describe('Table.Row', () => {
     it('renders a <tr> element', () => {
         render(
             <table>
                 <tbody>
-                    <TableRow><td>Cell</td></TableRow>
+                    <Table.Row><td>Cell</td></Table.Row>
                 </tbody>
             </table>,
         )
@@ -216,7 +205,7 @@ describe('TableRow', () => {
         render(
             <table>
                 <tbody>
-                    <TableRow hoverable><td>Cell</td></TableRow>
+                    <Table.Row hoverable><td>Cell</td></Table.Row>
                 </tbody>
             </table>,
         )
@@ -227,7 +216,7 @@ describe('TableRow', () => {
         render(
             <table>
                 <tbody>
-                    <TableRow selected><td>Cell</td></TableRow>
+                    <Table.Row selected><td>Cell</td></Table.Row>
                 </tbody>
             </table>,
         )
@@ -238,7 +227,7 @@ describe('TableRow', () => {
         render(
             <table>
                 <tbody>
-                    <TableRow className={'custom-row'}><td>Cell</td></TableRow>
+                    <Table.Row className={'custom-row'}><td>Cell</td></Table.Row>
                 </tbody>
             </table>,
         )
@@ -246,19 +235,19 @@ describe('TableRow', () => {
     })
 
     it('displayName is "TableRow"', () => {
-        expect(TableRow.displayName).toBe('TableRow')
+        expect(Table.Row.displayName).toBe('TableRow')
     })
 })
 
-// TableHead
+// Table.Head
 
-describe('TableHead', () => {
+describe('Table.Head', () => {
     it('renders a <th> element', () => {
         render(
             <table>
                 <thead>
                     <tr>
-                        <TableHead>Header</TableHead>
+                        <Table.Head>Header</Table.Head>
                     </tr>
                 </thead>
             </table>,
@@ -271,7 +260,7 @@ describe('TableHead', () => {
             <table>
                 <thead>
                     <tr>
-                        <TableHead scope={'col'}>Header</TableHead>
+                        <Table.Head scope={'col'}>Header</Table.Head>
                     </tr>
                 </thead>
             </table>,
@@ -280,19 +269,19 @@ describe('TableHead', () => {
     })
 
     it('displayName is "TableHead"', () => {
-        expect(TableHead.displayName).toBe('TableHead')
+        expect(Table.Head.displayName).toBe('TableHead')
     })
 })
 
-// TableCell
+// Table.Cell
 
-describe('TableCell', () => {
+describe('Table.Cell', () => {
     it('renders a <td> element', () => {
         render(
             <table>
                 <tbody>
                     <tr>
-                        <TableCell>Data</TableCell>
+                        <Table.Cell>Data</Table.Cell>
                     </tr>
                 </tbody>
             </table>,
@@ -305,7 +294,7 @@ describe('TableCell', () => {
             <table>
                 <tbody>
                     <tr>
-                        <TableCell colSpan={3}>Spanning</TableCell>
+                        <Table.Cell colSpan={3}>Spanning</Table.Cell>
                     </tr>
                 </tbody>
             </table>,
@@ -314,17 +303,17 @@ describe('TableCell', () => {
     })
 
     it('displayName is "TableCell"', () => {
-        expect(TableCell.displayName).toBe('TableCell')
+        expect(Table.Cell.displayName).toBe('TableCell')
     })
 })
 
-// TableCaption
+// Table.Caption
 
-describe('TableCaption', () => {
+describe('Table.Caption', () => {
     it('renders a <caption> element', () => {
         render(
             <table>
-                <TableCaption>My table caption</TableCaption>
+                <Table.Caption>My table caption</Table.Caption>
             </table>,
         )
         expect(screen.getByText('My table caption').tagName.toLowerCase()).toBe('caption')
@@ -333,13 +322,13 @@ describe('TableCaption', () => {
     it('merges custom className', () => {
         render(
             <table>
-                <TableCaption className={'custom-caption'}>Cap</TableCaption>
+                <Table.Caption className={'custom-caption'}>Cap</Table.Caption>
             </table>,
         )
         expect(screen.getByText('Cap').className).toContain('custom-caption')
     })
 
     it('displayName is "TableCaption"', () => {
-        expect(TableCaption.displayName).toBe('TableCaption')
+        expect(Table.Caption.displayName).toBe('TableCaption')
     })
 })

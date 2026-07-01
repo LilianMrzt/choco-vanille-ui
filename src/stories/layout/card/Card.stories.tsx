@@ -5,7 +5,7 @@ import type { ComponentProps } from 'react'
 import type { BoxRecipeVariants } from '@components/layout/box'
 import type { TypographyProps } from '@components/foundation/typography'
 
-import { Button, Card, CardBody, CardFooter, CardHeader, Flex, IconButton, Typography } from '@components'
+import { Button, Card, Flex, IconButton, Typography } from '@components'
 
 // Shared option lists
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
@@ -45,24 +45,24 @@ const meta: Meta<CardPlaygroundArgs> = {
             description: {
                 component: `
 A surface container with consistent background, border, shadow and rounded corners.
-Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
+Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\`.
 
-\`CardHeader\` accepts **props** for title, description and actions directly — no separate sub-components needed. Customize the typography via \`titleProps\` and \`descriptionProps\`.
+\`Card.Header\` accepts **props** for title, description and actions directly — no separate sub-components needed. Customize the typography via \`titleProps\` and \`descriptionProps\`.
 
 **Usage**
 \`\`\`tsx
 <Card>
-  <CardHeader
+  <Card.Header
     title="Account settings"
     description="Manage your profile."
     titleAs="h3"
     titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
     actions={<IconButton icon="mdi:dots-vertical" aria-label="More" variant="ghost" color="primary" />}
   />
-  <CardBody>…</CardBody>
-  <CardFooter>
+  <Card.Body>…</Card.Body>
+  <Card.Footer>
     <Button label="Save" variant="contained" color="primary" />
-  </CardFooter>
+  </Card.Footer>
 </Card>
 \`\`\`
                 `,
@@ -95,76 +95,76 @@ Built on \`Box\`. Compose with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
             description: '**Card** — Padding override (all sides).',
             table: { category: 'Card' },
         },
-        // CardHeader
+        // Card.Header
         headerAs: {
             control: 'select',
             options: ['div', 'header'],
-            description: '**CardHeader** — HTML element.',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — HTML element.',
+            table: { category: 'Card.Header' },
         },
         title: {
             control: 'text',
-            description: '**CardHeader** — Title text.',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Title text.',
+            table: { category: 'Card.Header' },
         },
         titleAs: {
             control: 'select',
             options: HEADING_LEVELS,
-            description: '**CardHeader** — Heading level.',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Heading level.',
+            table: { category: 'Card.Header' },
         },
         titleFontSize: {
             control: 'select',
             options: [undefined, 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'],
-            description: '**CardHeader** — Title font-size override (`titleProps.fontSize`).',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Title font-size override (`titleProps.fontSize`).',
+            table: { category: 'Card.Header' },
         },
         titleFontWeight: {
             control: 'select',
             options: [undefined, 'thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black'],
-            description: '**CardHeader** — Title font-weight override (`titleProps.fontWeight`).',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Title font-weight override (`titleProps.fontWeight`).',
+            table: { category: 'Card.Header' },
         },
         description: {
             control: 'text',
-            description: '**CardHeader** — Description text.',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Description text.',
+            table: { category: 'Card.Header' },
         },
         descriptionFontSize: {
             control: 'select',
             options: [undefined, 'xs', 'sm', 'base', 'lg', 'xl', '2xl'],
-            description: '**CardHeader** — Description font-size override (`descriptionProps.fontSize`).',
-            table: { category: 'CardHeader' },
+            description: '**Card.Header** — Description font-size override (`descriptionProps.fontSize`).',
+            table: { category: 'Card.Header' },
         },
-        // CardBody
+        // Card.Body
         bodyAs: {
             control: 'select',
             options: ['div', 'section'],
-            description: '**CardBody** — HTML element.',
-            table: { category: 'CardBody' },
+            description: '**Card.Body** — HTML element.',
+            table: { category: 'Card.Body' },
         },
         bodyPadding: {
             control: 'select',
             options: SPACING,
-            description: '**CardBody** — Padding override.',
-            table: { category: 'CardBody' },
+            description: '**Card.Body** — Padding override.',
+            table: { category: 'Card.Body' },
         },
-        // CardFooter
+        // Card.Footer
         footerAs: {
             control: 'select',
             options: ['div', 'footer'],
-            description: '**CardFooter** — HTML element.',
-            table: { category: 'CardFooter' },
+            description: '**Card.Footer** — HTML element.',
+            table: { category: 'Card.Footer' },
         },
         showFooter: {
             control: 'boolean',
-            description: '**CardFooter** — Show or hide the footer.',
-            table: { category: 'CardFooter' },
+            description: '**Card.Footer** — Show or hide the footer.',
+            table: { category: 'Card.Footer' },
         },
         footerActionLabel: {
             control: 'text',
-            description: '**CardFooter** — Primary action button label.',
-            table: { category: 'CardFooter' },
+            description: '**Card.Footer** — Primary action button label.',
+            table: { category: 'Card.Footer' },
         },
     },
     args: {
@@ -226,7 +226,7 @@ export const Playground: Story = {
             p={p}
             style={{ width: '22rem' }}
         >
-            <CardHeader
+            <Card.Header
                 as={headerAs}
                 title={title}
                 titleAs={titleAs}
@@ -243,7 +243,7 @@ export const Playground: Story = {
                     />
                 )}
             />
-            <CardBody
+            <Card.Body
                 as={bodyAs}
                 p={bodyPadding}
             >
@@ -254,9 +254,9 @@ export const Playground: Story = {
                 >
                     {'Your content goes here.'}
                 </Typography>
-            </CardBody>
+            </Card.Body>
             {showFooter && (
-                <CardFooter as={footerAs}>
+                <Card.Footer as={footerAs}>
                     <Button
                         label={footerActionLabel ?? 'Save changes'}
                         variant={'contained'}
@@ -269,7 +269,7 @@ export const Playground: Story = {
                         color={'primary'}
                         size={'sm'}
                     />
-                </CardFooter>
+                </Card.Footer>
             )}
         </Card>
     ),
@@ -287,13 +287,13 @@ export const WithActions: Story = {
         controls: { disable: true },
         docs: {
             description: {
-                story: 'The `actions` prop on `CardHeader` renders any `ReactNode` in the trailing corner — typically an `IconButton` or a row of buttons.',
+                story: 'The `actions` prop on `Card.Header` renders any `ReactNode` in the trailing corner — typically an `IconButton` or a row of buttons.',
             },
         },
     },
     render: () => (
         <Card style={{ width: '22rem' }}>
-            <CardHeader
+            <Card.Header
                 title={'Team members'}
                 description={'Invite and manage your team.'}
                 actions={(
@@ -306,7 +306,7 @@ export const WithActions: Story = {
                     />
                 )}
             />
-            <CardBody>
+            <Card.Body>
                 <Typography
                     variant={'p'}
                     fontSize={'sm'}
@@ -314,7 +314,7 @@ export const WithActions: Story = {
                 >
                     {'3 members · 1 pending invitation'}
                 </Typography>
-            </CardBody>
+            </Card.Body>
         </Card>
     ),
 }
@@ -327,13 +327,13 @@ export const FullComposition: Story = {
         controls: { disable: true },
         docs: {
             description: {
-                story: '`CardHeader` (title + description + actions), `CardBody` and `CardFooter` composed together.',
+                story: '`Card.Header` (title + description + actions), `Card.Body` and `Card.Footer` composed together.',
             },
         },
     },
     render: () => (
         <Card style={{ width: '22rem' }}>
-            <CardHeader
+            <Card.Header
                 title={'Account settings'}
                 description={'Manage your profile and preferences.'}
                 actions={(
@@ -346,7 +346,7 @@ export const FullComposition: Story = {
                     />
                 )}
             />
-            <CardBody>
+            <Card.Body>
                 <Typography
                     variant={'p'}
                     fontSize={'sm'}
@@ -354,8 +354,8 @@ export const FullComposition: Story = {
                 >
                     {'Your content goes here. Add form fields, lists, or any other elements.'}
                 </Typography>
-            </CardBody>
-            <CardFooter>
+            </Card.Body>
+            <Card.Footer>
                 <Button
                     label={'Save changes'}
                     variant={'contained'}
@@ -368,7 +368,7 @@ export const FullComposition: Story = {
                     color={'primary'}
                     size={'sm'}
                 />
-            </CardFooter>
+            </Card.Footer>
         </Card>
     ),
 }
@@ -396,7 +396,7 @@ export const CardGrid: Story = {
                     key={plan}
                     style={{ width: '16rem' }}
                 >
-                    <CardHeader
+                    <Card.Header
                         title={plan}
                         description={
                             plan === 'Starter' ? 'Perfect for side projects.' :
@@ -404,7 +404,7 @@ export const CardGrid: Story = {
                                     'Custom solutions at scale.'
                         }
                     />
-                    <CardBody>
+                    <Card.Body>
                         <Typography
                             variant={'p'}
                             fontSize={'sm'}
@@ -414,15 +414,15 @@ export const CardGrid: Story = {
                             {plan === 'Pro' && '$12 / seat / month.'}
                             {plan === 'Enterprise' && 'Contact us for pricing.'}
                         </Typography>
-                    </CardBody>
-                    <CardFooter>
+                    </Card.Body>
+                    <Card.Footer>
                         <Button
                             label={'Get started'}
                             variant={plan === 'Pro' ? 'contained' : 'outlined'}
                             color={'primary'}
                             size={'sm'}
                         />
-                    </CardFooter>
+                    </Card.Footer>
                 </Card>
             ))}
         </Flex>
@@ -437,7 +437,7 @@ export const SemanticElements: Story = {
         controls: { disable: true },
         docs: {
             description: {
-                story: 'Use the `as` prop on `Card` (and `CardHeader`, `CardBody`, `CardFooter`) to render the semantically correct HTML element.',
+                story: 'Use the `as` prop on `Card` (and `Card.Header`, `Card.Body`, `Card.Footer`) to render the semantically correct HTML element.',
             },
         },
     },
@@ -452,7 +452,7 @@ export const SemanticElements: Story = {
                     as={tag}
                     style={{ width: '12rem' }}
                 >
-                    <CardBody>
+                    <Card.Body>
                         <Typography
                             variant={'p'}
                             fontSize={'sm'}
@@ -461,7 +461,7 @@ export const SemanticElements: Story = {
                         >
                             {`<${tag}>`}
                         </Typography>
-                    </CardBody>
+                    </Card.Body>
                 </Card>
             ))}
         </Flex>
