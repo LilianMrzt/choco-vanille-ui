@@ -82,6 +82,9 @@ const DatePicker = ({
                             type={'button'}
                             tabIndex={-1}
                             disabled={disabled}
+                            onMouseDown={(event) => {
+                                event.preventDefault()
+                            }}
                             onClick={(event) => {
                                 event.stopPropagation()
                                 setOpen(true)
@@ -96,6 +99,9 @@ const DatePicker = ({
                 align={'start'}
                 className={DATE_PICKER_STYLES.content}
                 aria-label={calendarAriaLabel}
+                onOpenAutoFocus={(event) => {
+                    event.preventDefault()
+                }}
             >
                 <Calendar
                     mode={'single'}

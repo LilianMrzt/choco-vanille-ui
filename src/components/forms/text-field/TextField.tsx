@@ -64,7 +64,7 @@ const TextField = ((props) => {
         onKeyDown,
         onKeyUp,
         ref,
-        type,
+        type: _type,
         ...inputProps
     } = props
     const size = sizeProp ?? 'md'
@@ -114,6 +114,7 @@ const TextField = ((props) => {
                 <input
                     ref={ref}
                     id={inputId}
+                    // `type` is resolved by useTextField for password toggling.
                     type={resolvedType}
                     disabled={disabled}
                     aria-invalid={hasError || undefined}
@@ -131,8 +132,6 @@ const TextField = ((props) => {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     {...inputProps}
-                    // `type` is resolved by useTextField for password toggling.
-                    type={resolvedType}
                 />
 
                 {hasEndAction && (
