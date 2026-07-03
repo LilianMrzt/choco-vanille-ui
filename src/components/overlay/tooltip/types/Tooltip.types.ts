@@ -1,8 +1,10 @@
+import type { OverlayAlign, OverlayPosition, OverlaySide } from '@components/overlay/_shared/types'
+
 /** Side position of the tooltip relative to its trigger. */
-export type TooltipSide = 'top' | 'right' | 'bottom' | 'left';
+export type TooltipSide = OverlaySide
 
 /** Alignment of the tooltip relative to its trigger. */
-export type TooltipAlign = 'start' | 'center' | 'end';
+export type TooltipAlign = OverlayAlign
 
 /**
  * Combined position of the tooltip — shorthand that sets both `side` and `align`
@@ -23,16 +25,4 @@ export type TooltipAlign = 'start' | 'center' | 'end';
  * | `left`          | left     | center   |
  * | `left-end`      | left     | end      |
  */
-export type TooltipPosition =
-    | 'top-start'    | 'top'    | 'top-end'
-    | 'right-start'  | 'right'  | 'right-end'
-    | 'bottom-start' | 'bottom' | 'bottom-end'
-    | 'left-start'   | 'left'   | 'left-end';
-
-/** Parses a `TooltipPosition` string into its `side` and `align` parts. */
-export const parsePosition = (position: TooltipPosition): { side: TooltipSide; align: TooltipAlign } => {
-    const parts = position.split('-') as [TooltipSide, TooltipAlign?]
-    const side   = parts[0]
-    const align  = parts[1] ?? 'center'
-    return { side, align }
-}
+export type TooltipPosition = OverlayPosition

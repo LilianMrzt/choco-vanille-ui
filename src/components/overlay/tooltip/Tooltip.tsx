@@ -3,8 +3,9 @@ import * as RadixTooltip from '@radix-ui/react-tooltip'
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
 import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { cn } from '@utils/cn.ts'
-import { parsePosition } from '@components/overlay/tooltip/types/Tooltip.types.ts'
-import type {FC} from "react";
+import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
+
+import type { FC } from 'react';
 
 const Tooltip: FC<TooltipProps> = ({
     children,
