@@ -1,5 +1,6 @@
 export * from '@components/forms/calendar'
 export * from '@components/forms/checkbox'
+export * from '@components/forms/date-picker'
 export * from '@components/forms/radio-group'
 export * from '@components/forms/text-field'
 export * from '@components/forms/_shared'
