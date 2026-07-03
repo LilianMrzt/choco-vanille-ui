@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/CSS Modules" />
 
@@ -111,19 +112,24 @@ The kit does **not** ship named utility classes — all of its styling is token-
 
 ## Dark mode
 
-CSS custom properties cascade normally, so dark mode needs **no extra CSS Modules config**. Toggling `data-theme="dark"` on any ancestor automatically flips all `var(--color-*)` values inside your module's rules.
+CSS custom properties cascade normally, so dark mode needs **no extra CSS Modules config**. Toggling `data-theme="dark"` or `.${THEME_DARK_CLASS}` on any ancestor automatically flips all `var(--color-*)` values inside your module's rules.
 
 > **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your module's `var()` rules respond to it automatically, no changes needed. See the **ThemeProvider** page.
 
 <Source language="css" code={`/* MyCard.module.css — dark-specific override (optional) */
 
 /* Target the dark scope and override specific tokens only if needed. */
-:global([data-theme="dark"]) .card {
+:global([data-theme="dark"]) .card,
+:global(.${THEME_DARK_CLASS}) .card {
   box-shadow: var(--shadow-md); /* use a stronger shadow in dark mode */
 }`} />
 
 <Source language="tsx" code={`<div data-theme="dark">
   <MyCard title="Dark mode card" />
+</div>
+
+<div className="${THEME_DARK_CLASS}">
+  <MyCard title="Also dark mode" />
 </div>`} />
 
 ---

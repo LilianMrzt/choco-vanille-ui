@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS, THEME_LAYER } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/Plain CSS" />
 
@@ -26,6 +27,8 @@ Override variables on `:root` to change the look of **every** component in the a
 }`} />
 
 > **Import order matters.** Your overrides must come **after** the kit's stylesheet, otherwise the kit's own `:root` block wins by source order.
+>
+> **Cascade layers.** The kit's tokens live in `@layer ${THEME_LAYER}`. Any normal unlayered rule in your stylesheet wins automatically, so you do not need `!important` or higher specificity.
 
 ---
 
@@ -62,26 +65,28 @@ Because CSS variables cascade, you can nest scopes and even override a single to
 
 ## Dark mode
 
-`:root` is **light** by default; when no `data-theme` is set it follows the OS automatically. Apply `[data-theme="dark"]` to **any** element to force dark for that subtree, and scope dark-only overrides by targeting `[data-theme="dark"]`.
+`:root` is **light** by default; when no `data-theme` is set it follows the OS automatically. Apply `[data-theme="dark"]` or the class `.${THEME_DARK_CLASS}` to **any** element to force dark for that subtree, and scope dark-only overrides by targeting `[data-theme="dark"]`.
 
 > **React app?** If you need programmatic theme switching (OS tracking, a toggle button), the kit's `<ThemeProvider>` sets `data-theme` for you via React state — your CSS overrides work unchanged underneath it. See the **ThemeProvider** page.
 
 <Source language="css" code={`/* A brand override that only applies in dark mode */
-[data-theme="dark"] {
+[data-theme="dark"],
+.${THEME_DARK_CLASS} {
   --color-primary: oklch(0.70 0.16 185);
 }`} />
 
-<Source language="tsx" code={`<div data-theme="dark">…</div>    {/* force dark for this subtree            */}
-<html data-theme="light">…</html> {/* opt the whole app out of OS dark        */}
+<Source language="tsx" code={`<div data-theme="dark">…</div>                 {/* force dark for this subtree     */}
+<div className="${THEME_DARK_CLASS}">…</div>  {/* same, using a class             */}
+<html data-theme="light">…</html>             {/* opt the whole app out of OS dark */}
 {/* no attribute → follow the OS (prefers-color-scheme) */}`} />
 
 | Selector | Result |
 |---|---|
-| `:root` (no `data-theme`) | Light, unless the OS prefers dark |
-| `[data-theme="dark"]` | Always dark — works on any element / subtree |
-| `[data-theme="light"]` (at the root) | Forces light by opting the root out of the OS dark preference |
+| `:root` (no `data-theme` / no class) | Light, unless the OS prefers dark |
+| `[data-theme="dark"]` or `.${THEME_DARK_CLASS}` | Always dark — works on any element / subtree |
+| `[data-theme="light"]` or `.${THEME_LIGHT_CLASS}` | Always light — works on any element / subtree, even inside a dark scope |
 
-> **Note on `data-theme="light"`.** The kit defines the light tokens only on `:root` — there is **no** `[data-theme="light"]` rule. So `data-theme="light"` works at the **root** (to opt out of the OS dark preference) but does **not** re-assert light *inside* a dark subtree. To switch a nested subtree back to light, set it on an ancestor that isn't inside a dark scope, or override the specific tokens you need.
+> **Note on `data-theme="light"`.** The kit now defines an explicit light rule, so `data-theme="light"` and `.${THEME_LIGHT_CLASS}` re-assert light tokens *inside* a dark subtree as well.
 
 ---
 

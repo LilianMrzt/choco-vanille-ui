@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/Styled Components & Emotion" />
 
@@ -156,22 +157,28 @@ export const Surface = styled.div<SurfaceProps>\`
 
 ## Dark mode
 
-Since styled components / emotion output resolves to regular CSS, dark mode works automatically via `[data-theme="dark"]` — exactly like plain CSS.
+Since styled components / emotion output resolves to regular CSS, dark mode works automatically via `[data-theme="dark"]` or `.${THEME_DARK_CLASS}` — exactly like plain CSS.
 
 > **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your styled components and Emotion styles resolve through the same CSS variables so they respond automatically, with no changes to your existing styled code. See the **ThemeProvider** page.
 
 <Source language="tsx" code={`<div data-theme="dark">
   {/* Card reads var(--color-card) which the kit flips for dark mode */}
   <Card>Dark-aware card</Card>
+</div>
+
+<div className="${THEME_DARK_CLASS}">
+  <Card>Also dark-aware</Card>
 </div>`} />
 
 To inject a **dark-specific override** from a styled component, use a global style targeting the dark scope:
 
 <Source language="tsx" code={`// Styled Components
 import { createGlobalStyle } from 'styled-components';
+import { THEME_DARK_CLASS } from '@my-org/ui-kit';
 
 export const DarkBrandOverride = createGlobalStyle\`
-  [data-theme="dark"] {
+  [data-theme="dark"],
+  .${THEME_DARK_CLASS} {
     --color-primary: oklch(0.70 0.16 185);
   }
 \`;`} />

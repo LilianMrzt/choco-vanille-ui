@@ -1,4 +1,5 @@
-import { Meta } from '@storybook/addon-docs/blocks'
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS, THEME_LAYER, RESET_LAYER } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/Overview" />
 
@@ -12,7 +13,7 @@ Every token is a plain **CSS custom property** on `:root`, so you can re-skin th
 
 ## How it works in one minute
 
-1. The kit ships a single stylesheet (`@my-org/ui-kit/styles.css`) that declares every token as a CSS custom property on `:root` (plus a dark variant under `[data-theme="dark"]`).
+1. The kit ships a single stylesheet (`@my-org/ui-kit/styles.css`) that declares every token as a CSS custom property on `:root`.
 2. Components read those variables — they never hard-code colours, spacing, or radii.
 3. To customize, you **redefine the variable** in a scope (global `:root` or a scoped selector). The cascade does the rest.
 
@@ -49,3 +50,25 @@ It doesn't change how the kit reads tokens or how you override them. What it doe
 In short: **you keep your existing customization approach unchanged; `ThemeProvider` only adds React state management around the `data-theme` attribute**. Use it if your project is React-based and you need programmatic theme switching. Skip it if you manage `data-theme` another way (server-rendered attribute, a state manager, a URL param, etc.).
 
 See the **ThemeProvider** page for the full API and usage examples.
+
+---
+
+## Important: the kit uses CSS cascade layers
+
+The kit's token variables and reset styles live in named CSS layers:
+
+<Source language="css" code={`@layer ${THEME_LAYER} { /* design tokens */ }
+@layer ${RESET_LAYER} { /* box-sizing, body defaults */ }`} />
+
+This means your overrides do **not** need to fight specificity. A normal unlayered rule in your own stylesheet will win over the kit's defaults, as long as it targets the same element. Keep your overrides outside any `@layer` (or place them in a layer you declare *after* the kit's layers) to guarantee they take precedence.
+
+## Theme classes
+
+The kit exposes two class constants for scoped theming:
+
+| Constant | Value | Use |
+|---|---|---|
+| `THEME_DARK_CLASS` | `'${THEME_DARK_CLASS}'` | Force dark mode on any ancestor |
+| `THEME_LIGHT_CLASS` | `'${THEME_LIGHT_CLASS}'` | Force light mode on any ancestor, even inside a dark scope |
+
+Import them from the kit and use them in JSX or CSS selectors instead of hard-coding the class name.

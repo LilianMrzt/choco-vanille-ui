@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS, THEME_LAYER } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/Tailwind" />
 
@@ -45,7 +46,7 @@ declaration wins).
 
 ## 2. Override the kit's colours
 
-Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` for dark mode). Place them
+Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` / `.${THEME_DARK_CLASS}` for dark mode). Place them
 **after** the `@import` above.
 
 <Source language="css" code={`/* index.css — after the imports */
@@ -64,8 +65,9 @@ Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` for da
   --color-ring:                    oklch(54.5% .26 25);
 }
 
-/* Dark — matches the kit's [data-theme="dark"] selector */
-[data-theme="dark"] {
+/* Dark — matches the kit's dark selectors */
+[data-theme="dark"],
+.${THEME_DARK_CLASS} {
   --color-primary:                 oklch(62.3% .23 25);
   --color-primaryHover:            oklch(70.7% .19 25);
   --color-primaryActive:           oklch(80.8% .13 25);
@@ -77,6 +79,8 @@ Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` for da
   --color-primarySubtleBorder:     oklch(42.4% .2 25);
   --color-ring:                    oklch(62.3% .23 25);
 }`} />
+
+> The kit's tokens live in `@layer ${THEME_LAYER}`, so these unlayered overrides win without needing `!important`.
 
 That's it — every kit component (`<Button>`, `<Checkbox>`, …) now uses your colours. No component
 changes, no config.
@@ -162,11 +166,13 @@ export default {
 
 Because utilities resolve at **runtime**, they automatically follow:
 
-- **Dark mode** — `[data-theme="dark"]` flips the variable, your utilities follow. No `dark:` variant needed.
+- **Dark mode** — `[data-theme="dark"]` or `.${THEME_DARK_CLASS}` flips the variable, your utilities follow. No `dark:` variant needed.
 - **Overrides** — your `:root` block re-colours kit components *and* Tailwind utilities at once.
 - **Scoped theming** — a `[data-brand="acme"]` wrapper re-themes its subtree for free.
 
 > **React app?** The kit's `<ThemeProvider>` toggles `data-theme` via React state; your utilities
 > resolve through the same `var(--color-*)` chain, so they follow automatically. See **ThemeProvider**.
+
+> **Cascade layers.** Because the kit's variables are in `@layer ${THEME_LAYER}`, your Tailwind `@theme` / `@theme inline` utilities (which are unlayered by default) take precedence automatically.
 
 For projects without Tailwind, see **Plain CSS** — same result, no tooling.

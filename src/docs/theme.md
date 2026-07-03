@@ -1,3 +1,5 @@
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS, THEME_LAYER, RESET_LAYER } from '@constants/theme'
+
 # Theme System
 
 The design system is built on a **three-layer token architecture** — the same approach used by Tailwind v4, Radix Colors and shadcn/ui.
@@ -25,7 +27,7 @@ The design system is built on a **three-layer token architecture** — the same 
 ```
 src/theme/
 ├── contract.css.ts          CSS variable contract + light/dark registration
-├── globalStyles.css.ts      Reset + themed body defaults
+├── globalStyles.css.ts      Reset + themed body defaults (in @layer ${RESET_LAYER})
 ├── index.ts                 Public API
 ├── override.ts              Typed override helpers
 ├── colors/
@@ -130,15 +132,21 @@ Every leaf maps: `vars.color.primaryHover` → `--color-primary-hover`.
 
 ### Theme registration
 
-Three rules, in priority order:
+All token variables live in the low-specificity `@layer ${THEME_LAYER}` so host apps can override them predictably.
+
+Four rules, in priority order:
 
 ```
-[data-theme="dark"]              explicit dark (highest priority)
-[data-theme="light"]             explicit light
-:root:not([data-theme]) +
+[data-theme="dark"]              explicit dark on any ancestor (legacy)
+.${THEME_DARK_CLASS}             explicit dark on any ancestor
+[data-theme="light"]             explicit light on any ancestor
+.${THEME_LIGHT_CLASS}            explicit light on any ancestor
+:root:not([data-theme]):not(.${THEME_DARK_CLASS}):not(.${THEME_LIGHT_CLASS}) +
   @media (prefers-color-scheme)  automatic — follows the OS
 :root                            light (default)
 ```
+
+The `.${THEME_DARK_CLASS}` class is the recommended way to opt a page or a widget into dark mode without forcing a global `data-theme` attribute onto the host document. Because CSS variables inherit, wrapping any subtree in `.${THEME_DARK_CLASS}` is enough to theme the kit components inside it. Use `.${THEME_LIGHT_CLASS}` to force light mode inside a dark-scoped subtree.
 
 Only `color.*` and `shadow.*` are reassigned for dark; spacing, radii, typography, z-index and motion tokens are emitted once on `:root`.
 

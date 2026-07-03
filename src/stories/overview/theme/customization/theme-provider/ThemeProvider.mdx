@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/ThemeProvider" />
 
@@ -7,6 +8,8 @@ import { Meta, Source } from '@storybook/addon-docs/blocks'
 > **`ThemeProvider` is not a new customization method.** It is a React convenience wrapper that manages the `data-theme` attribute on a DOM element for you. The kit's components still read the exact same CSS custom properties they always did — nothing about that contract changes.
 
 Use it when your project is React-based and you want **programmatic theme switching** (dark mode toggle, OS preference tracking, `useTheme` hook) without writing DOM manipulation code yourself. Your existing CSS customization approach — Plain CSS, CSS Modules, Tailwind, Vanilla Extract, or any other — stays exactly as-is alongside it.
+
+> If you need to theme a subtree without touching the host document's `data-theme` attribute, use the `.${THEME_DARK_CLASS}` or `.${THEME_LIGHT_CLASS}` class directly on any ancestor. `ThemeProvider` uses `data-theme` for React state management, but the underlying CSS responds to both forms.
 
 ---
 
@@ -117,6 +120,8 @@ The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and 
 </ThemeProvider>`} />
 
 > **Tip.** `tokens` overrides apply on top of whichever theme is active. You can combine them with `theme="dark"` to create a fully custom dark-mode variant.
+>
+> **Cascade layers.** Inline styles are not affected by `@layer` ordering, so `tokens` always wins over stylesheet overrides unless another inline style is present.
 
 ---
 

@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_DARK_CLASS } from '@constants/theme'
 
 <Meta title="Overview/Theme/Customization/MUI" />
 
@@ -85,7 +86,7 @@ This is handy if other parts of your app already consume `--mui-*` variables and
 
 ## Dark mode
 
-You do **not** need MUI's `palette.mode: 'dark'` machinery for the kit's tokens. Since the MUI palette references `var(--color-*)`, simply toggling the kit's `data-theme` re-colours MUI too:
+You do **not** need MUI's `palette.mode: 'dark'` machinery for the kit's tokens. Since the MUI palette references `var(--color-*)`, simply toggling the kit's `data-theme` or `.${THEME_DARK_CLASS}` class re-colours MUI too:
 
 > **React app?** If you need programmatic theme switching, wrap both providers with the kit's `<ThemeProvider>` — it manages `data-theme` via React state and MUI's palette continues reading the same `var(--color-*)` variables unchanged.
 
@@ -103,6 +104,12 @@ import { muiTheme } from './theme';
 <Source language="tsx" code={`<div data-theme="dark">
   <ThemeProvider theme={muiTheme}>
     <Button variant="contained">Follows the kit's dark mode</Button>
+  </ThemeProvider>
+</div>
+
+<div className="${THEME_DARK_CLASS}">
+  <ThemeProvider theme={muiTheme}>
+    <Button variant="contained">Also follows the kit's dark mode</Button>
   </ThemeProvider>
 </div>`} />
 
