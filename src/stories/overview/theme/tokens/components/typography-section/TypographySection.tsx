@@ -72,7 +72,10 @@ export const TypographySection = () => (
     >
         <div style={groupsWrapperStyle}>
             {GROUPS.map(({ label, subtitle, prefix, entries, getPreviewStyle }) => (
-                <div key={label} style={groupStyle}>
+                <div
+                    key={label}
+                    style={groupStyle}
+                >
                     <div>
                         <h3 style={groupTitleStyle}>{label}</h3>
                         <p style={groupSubtitleStyle}>{subtitle}</p>

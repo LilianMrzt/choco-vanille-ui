@@ -12,7 +12,10 @@ export const TokenCard = ({ name, value, preview }: TokenCardProps) => (
         <p style={nameStyle}>{name}</p>
         {preview}
         <div style={valueRowStyle}>
-            <p style={valueStyle} title={value}>{value}</p>
+            <p
+                style={valueStyle}
+                title={value}
+            >{value}</p>
             <CopyBadge value={value} />
         </div>
     </div>

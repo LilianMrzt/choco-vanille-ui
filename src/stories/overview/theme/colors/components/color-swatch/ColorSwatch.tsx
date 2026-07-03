@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import {colorSwatchStyles} from "@stories/overview/theme/colors/components/color-swatch/ColorSwatch.styles.ts";
-import type {ColorSwatchProps} from "@stories/overview/theme/colors/components/color-swatch/types";
+import { colorSwatchStyles } from '@stories/overview/theme/colors/components/color-swatch/ColorSwatch.styles.ts'
+import type { ColorSwatchProps } from '@stories/overview/theme/colors/components/color-swatch/types'
 
-
-export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
+export const ColorSwatch = ({ name, value, dark = false }: ColorSwatchProps) => {
     const [copied, setCopied] = useState(false)
 
     const handleCopy = () => {
@@ -14,6 +13,7 @@ export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
     }
 
     return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div
             style={colorSwatchStyles.wrapper()}
             onClick={handleCopy}
@@ -22,13 +22,13 @@ export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
             <div
                 style={colorSwatchStyles.swatch(value, dark)}
                 onMouseEnter={(e) => {
-                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1.03)'
+                    (e.currentTarget as HTMLDivElement).style.transform = 'scale(1.03)'
                     ;(e.currentTarget as HTMLDivElement).style.boxShadow = dark
                         ? '0 4px 12px rgba(0,0,0,0.5)'
                         : '0 4px 12px rgba(0,0,0,0.15)'
                 }}
                 onMouseLeave={(e) => {
-                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1)'
+                    (e.currentTarget as HTMLDivElement).style.transform = 'scale(1)'
                     ;(e.currentTarget as HTMLDivElement).style.boxShadow = dark
                         ? '0 1px 3px rgba(0,0,0,0.4)'
                         : '0 1px 3px rgba(0,0,0,0.08)'
@@ -40,4 +40,3 @@ export function ColorSwatch({ name, value, dark = false }: ColorSwatchProps) {
         </div>
     )
 }
-

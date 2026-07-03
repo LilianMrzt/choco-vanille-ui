@@ -18,11 +18,14 @@ const SORTED_ENTRIES = (Object.entries(zIndex) as [string, string][]).sort(
 export const ZIndexSection = () => (
     <TokenSection
         title={'Z-Index'}
-        subtitle={"Stacking scale to prevent layer conflicts in the interface."}
+        subtitle={'Stacking scale to prevent layer conflicts in the interface.'}
     >
         <div style={listStyle}>
             {SORTED_ENTRIES.map(([name, value]) => (
-                <div key={name} style={rowStyle}>
+                <div
+                    key={name}
+                    style={rowStyle}
+                >
                     <span style={nameStyle}>{name}</span>
                     <span style={numericStyle}>{value}</span>
                     {Number(value) > 0

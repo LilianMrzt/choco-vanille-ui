@@ -17,13 +17,16 @@ import { toPx } from '@stories/overview/theme/tokens/components/spacing-section/
 export const SpacingSection = () => (
     <TokenSection
         title={'Spacing'}
-        subtitle={"Spacing scale based on a 4 px grid, used for padding, margin and gap."}
+        subtitle={'Spacing scale based on a 4 px grid, used for padding, margin and gap.'}
     >
         <div style={listStyle}>
             {(Object.entries(space) as [string, string][]).map(([name, value]) => {
                 const px = toPx(value)
                 return (
-                    <div key={name} style={rowStyle}>
+                    <div
+                        key={name}
+                        style={rowStyle}
+                    >
                         <span style={nameStyle}>{name}</span>
                         {value !== '0'
                             ? <div style={barStyle(value)} />

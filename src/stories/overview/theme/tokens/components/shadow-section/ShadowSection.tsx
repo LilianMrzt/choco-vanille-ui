@@ -29,7 +29,10 @@ export const ShadowSection = () => (
     >
         <div style={variantsWrapperStyle}>
             {SHADOW_VARIANTS.map(({ label, tokens, prefix }) => (
-                <div key={label} style={subGroupStyle}>
+                <div
+                    key={label}
+                    style={subGroupStyle}
+                >
                     <h3 style={subGroupTitleStyle}>{label}</h3>
                     <div style={gridStyle}>
                         {(Object.entries(tokens) as [string, string][]).map(([name, value]) => (
@@ -45,7 +48,10 @@ export const ShadowSection = () => (
             ))}
 
             {DROP_SHADOW_VARIANTS.map(({ label, tokens, prefix }) => (
-                <div key={label} style={subGroupStyle}>
+                <div
+                    key={label}
+                    style={subGroupStyle}
+                >
                     <h3 style={subGroupTitleStyle}>{label}</h3>
                     <div style={gridStyle}>
                         {(Object.entries(tokens) as [string, string][]).map(([name, value]) => (

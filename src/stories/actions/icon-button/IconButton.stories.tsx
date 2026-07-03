@@ -86,7 +86,12 @@ export const AllVariants: Story = {
         },
     },
     render: () => (
-        <Flex wrap={'wrap'} align={'center'} gap={'md'} p={'lg'}>
+        <Flex
+            wrap={'wrap'}
+            align={'center'}
+            gap={'md'}
+            p={'lg'}
+        >
             {VARIANTS.map((variant) => (
                 <IconButton
                     key={variant}
@@ -111,7 +116,12 @@ export const AllColors: Story = {
         },
     },
     render: () => (
-        <Flex direction={'column'} align={'stretch'} gap={'lg'} p={'lg'}>
+        <Flex
+            direction={'column'}
+            align={'stretch'}
+            gap={'lg'}
+            p={'lg'}
+        >
             {VARIANTS.map((variant) => (
                 <Flex
                     key={variant}
@@ -146,7 +156,12 @@ export const AllSizes: Story = {
         },
     },
     render: () => (
-        <Flex wrap={'wrap'} align={'end'} gap={'md'} p={'lg'}>
+        <Flex
+            wrap={'wrap'}
+            align={'end'}
+            gap={'md'}
+            p={'lg'}
+        >
             {SIZES.map((size) => (
                 <Flex
                     key={size}
