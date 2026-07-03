@@ -31,6 +31,7 @@ const DatePicker = ({
     disabled,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
+    calendarAriaLabel = 'Calendar',
     onKeyDown,
     ...textFieldProps
 }: DatePickerProps) => {
@@ -70,7 +71,7 @@ const DatePicker = ({
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
                     aria-haspopup={'dialog'}
-                    aria-expanded={open}
+                    aria-expanded={undefined}
                     endAction={(
                         <IconButton
                             icon={'mdi:calendar-month'}
@@ -94,6 +95,7 @@ const DatePicker = ({
                 side={'bottom'}
                 align={'start'}
                 className={DATE_PICKER_STYLES.content}
+                aria-label={calendarAriaLabel}
             >
                 <Calendar
                     mode={'single'}

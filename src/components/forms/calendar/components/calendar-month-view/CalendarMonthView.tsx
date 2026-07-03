@@ -36,6 +36,7 @@ const CalendarMonthView = (): ReactElement => {
                         ref={el => { buttonRefs.current[i] = el }}
                         tabIndex={i === focusedIndex ? 0 : -1}
                         disabled={isDisabled(i)}
+                        aria-pressed={isSelected}
                         className={cn(
                             CALENDAR_MONTH_VIEW_STYLES.item,
                             isToday(i) && !isSelected && CALENDAR_MONTH_VIEW_STYLES.itemToday,

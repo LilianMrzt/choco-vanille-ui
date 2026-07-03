@@ -13,4 +13,10 @@ export type DatePickerProps = Omit<
     onChange?: (date: Date | undefined) => void
     /** Props forwarded to the calendar popover panel. */
     calendarProps?: Omit<CalendarProps, 'mode' | 'selected' | 'onSelect'>
+    /**
+     * Accessible name for the calendar popover dialog.
+     * Override for i18n.
+     * @default 'Calendar'
+     */
+    calendarAriaLabel?: string
 }

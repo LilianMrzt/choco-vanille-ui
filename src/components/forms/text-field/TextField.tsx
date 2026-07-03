@@ -48,8 +48,26 @@ const TextField = ((props) => {
         setShowPassword,
     } = useTextField(props)
 
-    const { disabled, startIcon, className, width, error, helperText } = props
-    const size = props.size ?? 'md'
+    const {
+        disabled,
+        startIcon,
+        className,
+        width,
+        error,
+        helperText,
+        label,
+        endAction,
+        size: sizeProp,
+        placeholder,
+        value,
+        onChange,
+        onKeyDown,
+        onKeyUp,
+        ref,
+        type,
+        ...inputProps
+    } = props
+    const size = sizeProp ?? 'md'
 
     const resolvedEndAction = isPassword ? (
         <IconButton
@@ -62,7 +80,7 @@ const TextField = ((props) => {
             tabIndex={-1}
             onClick={() => setShowPassword(!showPassword)}
         />
-    ) : props.endAction
+    ) : endAction
 
     return (
         <Flex
@@ -72,12 +90,12 @@ const TextField = ((props) => {
             align={'start'}
             style={width !== undefined ? { width } : undefined}
         >
-            {props.label && (
+            {label && (
                 <TextFieldLabel
                     htmlFor={inputId}
                     disabled={disabled}
                 >
-                    {props.label}
+                    {label}
                 </TextFieldLabel>
             )}
 
@@ -94,7 +112,7 @@ const TextField = ((props) => {
                 )}
 
                 <input
-                    ref={props.ref}
+                    ref={ref}
                     id={inputId}
                     type={resolvedType}
                     disabled={disabled}
@@ -107,11 +125,14 @@ const TextField = ((props) => {
                         TEXT_FIELD_STYLES.recipe({ size, hasError, hasStartIcon, hasEndAction }),
                         className,
                     )}
-                    placeholder={props.placeholder}
-                    value={props.value}
-                    onChange={props.onChange}
-                    onKeyDown={props.onKeyDown}
-                    onKeyUp={props.onKeyUp}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                    {...inputProps}
+                    // `type` is resolved by useTextField for password toggling.
+                    type={resolvedType}
                 />
 
                 {hasEndAction && (

@@ -38,6 +38,7 @@ const CalendarYearView = (): ReactElement => {
                         ref={el => { buttonRefs.current[i] = el }}
                         tabIndex={i === focusedIndex ? 0 : -1}
                         disabled={isDisabled(y)}
+                        aria-pressed={isSelected}
                         className={cn(
                             CALENDAR_YEAR_VIEW_STYLES.item,
                             isToday(y) && !isSelected && CALENDAR_YEAR_VIEW_STYLES.itemToday,

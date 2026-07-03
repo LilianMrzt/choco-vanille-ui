@@ -1,11 +1,13 @@
-import type { ReactElement } from 'react'
+import type { FC, ReactElement } from 'react'
 
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
 import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/calendar-caption/CalendarCaption.css.ts'
 import { useCalendarCaption } from '@components/forms/calendar/components/calendar-caption/hooks/useCalendarCaption.hook.ts'
+import type { CalendarCaptionProps } from '@components/forms/calendar/components/calendar-caption/types/CalendarCaption.props.ts'
 import Flex from '@components/layout/flex/Flex.tsx'
+import { DEFAULT_CALENDAR_CAPTION_LABELS } from '@components/forms/calendar/components/calendar-caption/constants'
 
 /**
  * Calendar header row: [← IconButton] [caption center] [→ IconButton]
@@ -19,7 +21,7 @@ import Flex from '@components/layout/flex/Flex.tsx'
  * - Month view: navigate by year
  * - Year view: navigate by page (12 years)
  */
-const CalendarCaption = (): ReactElement => {
+const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElement => {
     const {
         view,
         setView,
@@ -33,6 +35,20 @@ const CalendarCaption = (): ReactElement => {
         isNextDisabled,
     } = useCalendarCaption()
 
+    const mergedLabels = { ...DEFAULT_CALENDAR_CAPTION_LABELS, ...labels }
+
+    const prevLabel = view === 'day'
+        ? mergedLabels.previousMonth
+        : view === 'month'
+            ? mergedLabels.previousYear
+            : mergedLabels.previousYears
+
+    const nextLabel = view === 'day'
+        ? mergedLabels.nextMonth
+        : view === 'month'
+            ? mergedLabels.nextYear
+            : mergedLabels.nextYears
+
     return (
         <Flex
             align={'center'}
@@ -42,7 +58,7 @@ const CalendarCaption = (): ReactElement => {
         >
             <IconButton
                 icon={'mdi:chevron-left'}
-                aria-label={'Previous'}
+                aria-label={prevLabel}
                 variant={'ghost'}
                 color={'secondary'}
                 size={'sm'}
@@ -84,16 +100,14 @@ const CalendarCaption = (): ReactElement => {
                         fontWeight={'semibold'}
                         className={CALENDAR_CAPTION_STYLES.captionLabel}
                     >
-                        {decadeStart}
-                        {' '}
-                        -{decadeEnd}
+                        {`${decadeStart} -${decadeEnd}`}
                     </Typography>
                 )}
             </Flex>
 
             <IconButton
                 icon={'mdi:chevron-right'}
-                aria-label={'Next'}
+                aria-label={nextLabel}
                 variant={'ghost'}
                 color={'secondary'}
                 size={'sm'}

@@ -32,4 +32,10 @@ export type PopoverContentProps = React.ComponentPropsWithoutRef<
   collisionPadding?:
     | number
     | { top?: number; right?: number; bottom?: number; left?: number };
+  /**
+   * Accessible name used when neither `aria-label` nor `aria-labelledby` is
+   * provided. Override this for i18n.
+   * @default 'Popover'
+   */
+  defaultAriaLabel?: string;
 };

@@ -23,6 +23,9 @@ const PopoverContent = ({
     align: alignProp = 'center',
     sideOffset = 6,
     collisionPadding = 8,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    defaultAriaLabel = 'Popover',
     ...props
 }: PopoverContentProps) => {
     const contentRef = useViewportShift(collisionPadding)
@@ -30,6 +33,11 @@ const PopoverContent = ({
     const { side, align } = position
         ? parsePosition(position)
         : { side: sideProp, align: alignProp }
+
+    // A role="dialog" element must have an accessible name (axe aria-dialog-name).
+    // Consumers can override via aria-label or aria-labelledby; otherwise we fall
+    // back to defaultAriaLabel so it can be localized.
+    const accessibleName = ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
 
     return (
         <RadixPopover.Portal>
@@ -39,6 +47,8 @@ const PopoverContent = ({
                 align={align}
                 sideOffset={sideOffset}
                 className={cn(POPOVER_CONTENT_STYLES.root, className)}
+                aria-label={accessibleName}
+                aria-labelledby={ariaLabelledBy}
                 {...props}
                 // Disable Radix's flip/shift — our hook handles collision instead.
                 avoidCollisions={false}

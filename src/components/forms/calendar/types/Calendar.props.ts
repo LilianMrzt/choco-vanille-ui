@@ -1,5 +1,7 @@
 import type { DayPickerProps } from 'react-day-picker'
 
+import type { CalendarCaptionLabels } from '@components/forms/calendar/components/calendar-caption/types/CalendarCaption.props.ts'
+
 export type CalendarProps = DayPickerProps & {
     /** Additional CSS class applied to the root element. */
     className?: string
@@ -15,4 +17,6 @@ export type CalendarProps = DayPickerProps & {
      * Defaults to 10 years after the current year.
      */
     endYear?: number
+    /** Localized labels for the caption navigation buttons. */
+    captionLabels?: CalendarCaptionLabels
 }

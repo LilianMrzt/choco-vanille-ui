@@ -50,6 +50,7 @@ const Calendar: FC<CalendarProps> = ({
     endYear,
     weekStartsOn = 1,
     showOutsideDays = true,
+    captionLabels,
     ...props
 }) => {
     const {
@@ -86,7 +87,7 @@ const Calendar: FC<CalendarProps> = ({
                     direction={'column'}
                     gap={'md'}
                 >
-                    <CalendarCaption />
+                    <CalendarCaption labels={captionLabels} />
 
                     <Box className={CALENDAR_ROOT_STYLES.calendarContent}>
                         {view === 'day' && (
