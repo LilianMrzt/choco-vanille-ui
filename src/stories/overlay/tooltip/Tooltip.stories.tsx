@@ -3,16 +3,28 @@ import { expect, userEvent, within, waitFor } from 'storybook/test'
 
 import { Tooltip } from '@/components/overlay/tooltip'
 import { Button } from '@/components/actions/button'
-import type { TooltipSide, TooltipAlign, TooltipPosition } from '@components/overlay/tooltip'
-import { Flex } from '@/components/layout/flex'
+import type {
+    TooltipSide,
+    TooltipAlign,
+    TooltipPosition,
+} from '@components/overlay/tooltip'
+import { md } from '@stories/utils/markdown'
 
 const SIDES: TooltipSide[] = ['top', 'right', 'bottom', 'left']
 const ALIGNS: TooltipAlign[] = ['start', 'center', 'end']
 const POSITIONS: TooltipPosition[] = [
-    'top-start',    'top',    'top-end',
-    'right-start',  'right',  'right-end',
-    'bottom-start', 'bottom', 'bottom-end',
-    'left-start',   'left',   'left-end',
+    'top-start',
+    'top',
+    'top-end',
+    'right-start',
+    'right',
+    'right-end',
+    'bottom-start',
+    'bottom',
+    'bottom-end',
+    'left-start',
+    'left',
+    'left-end',
 ]
 
 const meta = {
@@ -22,11 +34,12 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: `
-A contextual tooltip that appears on hover or keyboard focus, built on top of [\`@radix-ui/react-tooltip\`](https://www.radix-ui.com/docs/primitives/components/tooltip).
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+A contextual tooltip that appears on hover or keyboard focus, built on top of \`@radix-ui/react-tooltip\`.
 Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
 
 **Usage**
+
 \`\`\`tsx
 <Tooltip content="Edit this item">
   <IconButton icon="mdi:pencil" aria-label="Edit" />
@@ -53,13 +66,15 @@ Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
         content: { control: 'text' },
         position: {
             control: 'select',
-            options: POSITIONS,
-            description: 'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
+            options: [undefined, ...POSITIONS],
+            description:
+        'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
         },
         side: { control: 'select', options: SIDES },
         align: { control: 'select', options: ALIGNS },
         delayDuration: { control: 'number' },
         disabled: { control: 'boolean' },
+        open: { control: 'boolean' },
     },
     args: {
         content: 'Tooltip content',
@@ -74,13 +89,12 @@ export default meta
 
 type Story = StoryObj<typeof meta>;
 
-// Default
-
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Default tooltip appearing above its trigger. Hover the button — or focus it with Tab and observe it with a screen reader — to see the tooltip. Use the Controls panel to adjust position, side, alignment, and delay.',
+                story:
+          'Interactive playground — use the Controls panel to adjust content, position, side, alignment, delay, and disabled state.',
             },
         },
     },
@@ -92,55 +106,5 @@ export const Default: Story = {
         await waitFor(() =>
             expect(document.querySelector('[role="tooltip"]')).toBeTruthy(),
         )
-    },
-}
-
-// All positions
-
-export const AllPositions: Story = {
-    parameters: {
-        controls: { disable: true },
-        layout: 'padded',
-        docs: {
-            description: {
-                story: 'All 12 available positions (`top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-start`, `bottom`, `bottom-end`, `left-start`, `left`, `left-end`). Use the `position` prop as a shorthand for combining `side` and `align`.',
-            },
-        },
-    },
-    render: () => (
-        <Flex
-            wrap={'wrap'}
-            align={'center'}
-            justify={'center'}
-            gap={'xl'}
-            p={'4xl'}
-        >
-            {POSITIONS.map((position) => (
-                <Tooltip
-                    key={position}
-                    content={`position: ${position}`}
-                    position={position}
-                    delayDuration={0}
-                >
-                    <Button
-                        variant={'outlined'}
-                        label={position}
-                    />
-                </Tooltip>
-            ))}
-        </Flex>
-    ),
-}
-
-// Controlled open
-
-export const AlwaysOpen: Story = {
-    args: { open: true },
-    parameters: {
-        docs: {
-            description: {
-                story: 'Controlled open state via the `open` prop. Pass `onOpenChange` alongside `open` to implement custom show/hide logic, such as keeping the tooltip visible while the user is filling in a nearby field.',
-            },
-        },
     },
 }

@@ -5,7 +5,7 @@ import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
 
-import type { FC } from 'react';
+import type { FC } from 'react'
 
 const Tooltip: FC<TooltipProps> = ({
     children,
@@ -57,4 +57,3 @@ const Tooltip: FC<TooltipProps> = ({
 Tooltip.displayName = 'Tooltip'
 
 export default Tooltip
-

@@ -29,7 +29,10 @@ const DropdownMenuItem = ({
     label,
     ...props
 }: DropdownMenuItemProps) => (
-    <RadixDropdownMenu.Item asChild {...props}>
+    <RadixDropdownMenu.Item
+        asChild
+        {...props}
+    >
         <Flex
             gap={'sm'}
             className={cn(
@@ -39,17 +42,37 @@ const DropdownMenuItem = ({
             )}
         >
             {startIcon && (
-                <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_ITEM_STYLES.icon} aria-hidden>
-                    <Icon icon={startIcon} size={'xs'} />
+                <Flex
+                    as={'span'}
+                    justify={'center'}
+                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
+                    aria-hidden
+                >
+                    <Icon
+                        icon={startIcon}
+                        size={'xs'}
+                    />
                 </Flex>
             )}
-            <Typography as={'span'} variant={'span'} style={{ flex: 1 }}>{label}</Typography>
+            <Typography
+                as={'span'}
+                variant={'span'}
+                style={{ flex: 1 }}
+            >{label}</Typography>
             {shortcut && (
                 <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>
             )}
             {endIcon && (
-                <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_ITEM_STYLES.icon} aria-hidden>
-                    <Icon icon={endIcon} size={'xs'} />
+                <Flex
+                    as={'span'}
+                    justify={'center'}
+                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
+                    aria-hidden
+                >
+                    <Icon
+                        icon={endIcon}
+                        size={'xs'}
+                    />
                 </Flex>
             )}
         </Flex>

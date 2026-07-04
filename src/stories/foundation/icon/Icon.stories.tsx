@@ -3,9 +3,9 @@ import { expect } from 'storybook/test'
 
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
-import { Flex } from '@/components/layout/flex'
 import { lightColors } from '@theme/colors/light.ts'
 import type { ThemeColor } from '@theme'
+import { md } from '@stories/utils/markdown'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
@@ -17,13 +17,14 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: `
-A thin wrapper around [\`@iconify/react\`](https://iconify.design/) that maps design-token sizes and theme colors onto any Iconify icon.
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+A thin wrapper around \`@iconify/react\` that maps design-token sizes and theme colors onto any Iconify icon.
 
 Pass any valid Iconify icon name as the \`icon\` prop (e.g. \`"mdi:home"\`, \`"lucide:check"\`, \`"ph:warning"\`).
 Browse all available icons at [icones.js.org](https://icones.js.org).
 
 **Usage**
+
 \`\`\`tsx
 // Decorative icon (hidden from assistive technology)
 <Icon icon="mdi:home" size="md" />
@@ -46,6 +47,7 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
         },
     },
     argTypes: {
+        icon: { control: 'text' },
         size: { control: 'select', options: SIZES },
         color: { control: 'select', options: [undefined, ...THEME_COLORS] },
         spin: { control: 'boolean' },
@@ -53,20 +55,20 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
     },
     args: {
         icon: 'mdi:home',
+        size: 'md',
     },
 } satisfies Meta<typeof Icon>
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-// Default
-
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Default icon at the `md` size, treated as decorative (`aria-hidden`). Use the Controls panel to change the icon name, size, color, and spin animation.',
+                story:
+          'Interactive playground — use the Controls panel to change the icon name, size, color, and spin animation.',
             },
         },
     },
@@ -74,39 +76,4 @@ export const Default: Story = {
         const svg = canvasElement.querySelector('svg')
         await expect(svg).toBeInTheDocument()
     },
-}
-
-// All sizes
-
-export const AllSizes: Story = {
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'The six available size tokens from `xs` (12 px) to `2xl` (40 px). Match the icon size to the surrounding text size or the component it appears in.',
-            },
-        },
-    },
-    render: () => (
-        <Flex
-            align={'center'}
-            gap={'xl'}
-            p={'lg'}
-        >
-            {SIZES.map((size) => (
-                <Flex
-                    key={size}
-                    direction={'column'}
-                    align={'center'}
-                    gap={'sm'}
-                >
-                    <Icon
-                        icon={'mdi:home'}
-                        size={size}
-                    />
-                    <span style={{ fontSize: '0.75rem', color: 'black' }}>{size}</span>
-                </Flex>
-            ))}
-        </Flex>
-    ),
 }

@@ -13,4 +13,6 @@ export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
     color?: ThemeColor;
     /** Associates the element with a form control — forwarded as the native `for` attribute (use with `as="label"`). */
     htmlFor?: string;
+    /** Additional data attributes forwarded to the rendered element. */
+    [key: `data-${string}`]: string | undefined;
   };

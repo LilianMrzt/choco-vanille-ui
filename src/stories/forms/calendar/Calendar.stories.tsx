@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, within } from 'storybook/test'
 import type { DateRange } from 'react-day-picker'
 
 import { Calendar } from '@/components/forms/calendar'
-import { Flex } from '@/components/layout/flex'
-import { Typography } from '@/components/foundation/typography'
+import { md } from '@stories/utils/markdown'
+
+const MODES = ['single', 'multiple', 'range'] as const
 
 const meta = {
     title: 'Forms/Calendar',
@@ -13,14 +15,15 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: `
-A date-picker calendar built on top of [\`react-day-picker\`](https://daypicker.dev).
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+A date-picker calendar built on top of \`react-day-picker\`.
 
 Supports **single**, **multiple**, and **range** selection modes.
 
 The header shows **[← Month Year →]** in day view. Clicking **Month** opens a 3×4 month picker; clicking **Year** opens a 3×4 year picker with decade pagination — no scrolling required.
 
 **Usage**
+
 \`\`\`tsx
 // Single date
 const [date, setDate] = useState<Date>()
@@ -31,221 +34,86 @@ const [range, setRange] = useState<DateRange>()
 <Calendar mode="range" selected={range} onSelect={setRange} />
 \`\`\`
 
-**Props**
+**Accessibility**
 
-| Prop | Notes |
-|---|---|
-| \`mode\` | \`"single"\` \| \`"multiple"\` \| \`"range"\`. Determines selection behaviour. |
-| \`startYear\` | Earliest year in the year picker. Defaults to 100 years before today. |
-| \`endYear\` | Latest year in the year picker. Defaults to 10 years after today. |
-| \`disabled\` | Accepts a \`Date\`, array of dates, or a matcher function. |
-| \`showOutsideDays\` | Shows days from adjacent months (enabled by default). |
-`,
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`mode\` | ✅ Yes | \`'single' \\| 'multiple' \\| 'range'\` | Determines selection behaviour and ARIA semantics. |
+| \`aria-label\` | No | \`string\` | Accessible name for the calendar region. |
+| \`disabled\` | No | \`Date \\| Date[] \\| matcher\` | Prevents selection of matching dates. |
+| \`showOutsideDays\` | No | \`boolean\` | Shows days from adjacent months (default \`true\`). |
+
+- Day grid cells are native buttons and are keyboard operable.
+- Selected days are exposed via \`aria-pressed\` / \`aria-selected\` by react-day-picker.
+                `,
             },
         },
     },
     argTypes: {
-        mode: {
-            control: 'select',
-            options: ['single', 'multiple', 'range'],
-        },
+        mode: { control: 'select', options: MODES },
+        showOutsideDays: { control: 'boolean' },
+        weekStartsOn: { control: 'select', options: [0, 1, 2, 3, 4, 5, 6] },
+        startYear: { control: 'number' },
+        endYear: { control: 'number' },
+    },
+    args: {
+        mode: 'single',
+        showOutsideDays: true,
+        weekStartsOn: 1,
     },
 } satisfies Meta<typeof Calendar>
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-// Default — single selection
-
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Single-date selection mode. Click a day to select it; click again to deselect.',
+                story:
+          'Interactive playground — use the Controls panel to switch selection mode, toggle outside days, and adjust the year range.',
             },
         },
     },
-    render: () => {
-        const [date, setDate] = useState<Date | undefined>()
-        return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
-                <Calendar
-                    mode={'single'}
-                    selected={date}
-                    onSelect={setDate}
-                />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {date ? `Selected: ${date.toLocaleDateString()}` : 'No date selected'}
-                </Typography>
-            </Flex>
-        )
-    },
-}
-
-// Multiple selection
-
-export const MultipleSelection: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Multiple-date selection mode. Click days to toggle their selection.',
-            },
-        },
-    },
-    render: () => {
-        const [dates, setDates] = useState<Date[] | undefined>()
-        return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
-                <Calendar
-                    mode={'multiple'}
-                    selected={dates}
-                    onSelect={setDates}
-                />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {dates && dates.length > 0
-                        ? `${dates.length} date(s) selected`
-                        : 'No dates selected'}
-                </Typography>
-            </Flex>
-        )
-    },
-}
-
-// Range selection
-
-export const RangeSelection: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Range selection mode. Click a start date, then an end date to select a span.',
-            },
-        },
-    },
-    render: () => {
+    render: ({ mode, ...args }) => {
+        const [single, setSingle] = useState<Date | undefined>()
+        const [multiple, setMultiple] = useState<Date[] | undefined>()
         const [range, setRange] = useState<DateRange | undefined>()
-        return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
+
+        if (mode === 'range') {
+            return (
                 <Calendar
+                    {...args}
                     mode={'range'}
                     selected={range}
                     onSelect={setRange}
                 />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {range?.from && range?.to
-                        ? `${range.from.toLocaleDateString()} → ${range.to.toLocaleDateString()}`
-                        : range?.from
-                            ? `From: ${range.from.toLocaleDateString()}`
-                            : 'No range selected'}
-                </Typography>
-            </Flex>
-        )
-    },
-}
+            )
+        }
 
-// With disabled dates
+        if (mode === 'multiple') {
+            return (
+                <Calendar
+                    {...args}
+                    mode={'multiple'}
+                    selected={multiple}
+                    onSelect={setMultiple}
+                />
+            )
+        }
 
-export const WithDisabledDates: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Dates before today and weekends are disabled. Pass a matcher function or array to `disabled`.',
-            },
-        },
-    },
-    render: () => {
-        const [date, setDate] = useState<Date | undefined>()
-        const today = new Date()
         return (
             <Calendar
+                {...args}
                 mode={'single'}
-                selected={date}
-                onSelect={setDate}
-                disabled={[
-                    { before: today },
-                    { dayOfWeek: [0, 6] },
-                ]}
+                selected={single}
+                onSelect={setSingle}
             />
         )
     },
-}
-
-// Without outside days
-
-export const WithoutOutsideDays: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Outside days (days from adjacent months) are hidden by setting `showOutsideDays={false}`.',
-            },
-        },
-    },
-    render: () => (
-        <Calendar
-            mode={'single'}
-            showOutsideDays={false}
-        />
-    ),
-}
-
-// Date of birth picker — extended year range
-
-export const DateOfBirth: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Date-of-birth use case: `startYear={1900}` gives a century of years in the picker, all paginated in 12-year grids. Future dates are disabled.',
-            },
-        },
-    },
-    render: () => {
-        const [date, setDate] = useState<Date | undefined>()
-        return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
-                <Calendar
-                    mode={'single'}
-                    startYear={1900}
-                    endYear={new Date().getFullYear()}
-                    disabled={{ after: new Date() }}
-                    selected={date}
-                    onSelect={setDate}
-                />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {date ? `Date of birth: ${date.toLocaleDateString()}` : 'Select your date of birth'}
-                </Typography>
-            </Flex>
-        )
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        await expect(canvas.getByRole('grid')).toBeInTheDocument()
     },
 }

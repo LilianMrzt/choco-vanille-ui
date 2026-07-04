@@ -48,7 +48,9 @@ const reactRules = {
   'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'always' }],
   'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
   'react/jsx-closing-bracket-location': ['error', 'tag-aligned'],
-  'react/jsx-one-expression-per-line': ['error'],
+  // Disabled because eslint-plugin-react <8 relies on the ESLint 8 API
+  // `SourceCode#isSpaceBetweenTokens`, which was removed in ESLint 10.
+  'react/jsx-one-expression-per-line': 'off',
   'react/react-in-jsx-scope': 'off',
   'react/prop-types': 'off',
   'react-hooks/rules-of-hooks': 'error',
@@ -80,7 +82,7 @@ const a11yRules = {
 }
 
 export default [js.configs.recommended, {
-  ignores: ['dist/**', 'node_modules/**', '*.config.js', '*.config.mjs', '*.config.ts'],
+  ignores: ['dist/**', 'node_modules/**', 'storybook-static/**', 'coverage/**', '*.config.js', '*.config.mjs', '*.config.ts'],
 },
   {
     files: ['src/**/*.{ts,tsx}'],
@@ -111,6 +113,7 @@ export default [js.configs.recommended, {
       'import/order': 'off',
       'import/newline-after-import': 'off',
       'react/jsx-one-expression-per-line': 'off',
+      'react-hooks/rules-of-hooks': 'off',
       'no-restricted-imports': 'off',
     },
   },

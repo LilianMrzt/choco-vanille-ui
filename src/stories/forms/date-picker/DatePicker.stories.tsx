@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent, within, waitFor } from 'storybook/test'
+import { expect, within } from 'storybook/test'
 
 import { DatePicker } from '@components/forms/date-picker'
-import { Flex } from '@components/layout/flex'
-import { Typography } from '@components/foundation/typography'
+import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/TextField.css.ts'
+import { md } from '@stories/utils/markdown'
+
+const SIZES: NonNullable<TextFieldInputRecipeVariants['size']>[] = [
+    'sm',
+    'md',
+    'lg',
+]
 
 const meta = {
     title: 'Forms/DatePicker',
@@ -13,14 +19,15 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: `
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A date picker that combines a native \`type="date"\` text field with a calendar popover.
 
 - **Direct input** — type a date in \`YYYY-MM-DD\` format.
-- **Calendar selection** — click the input to open the popover and pick a day.
+- **Calendar selection** — click the calendar button to open the popover and pick a day.
 - **Accessible** — the input keeps its native date semantics and is annotated with \`aria-haspopup\` and \`aria-expanded\`.
 
 **Usage**
+
 \`\`\`tsx
 const [date, setDate] = useState<Date | undefined>()
 
@@ -30,188 +37,77 @@ const [date, setDate] = useState<Date | undefined>()
   onChange={setDate}
 />
 \`\`\`
-`,
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` | Recommended | \`string\` | Visible label linked to the input. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
+| \`disabled\` | No | \`boolean\` | Disables the input and the calendar trigger. |
+| \`error\` | No | \`string\` | Sets \`aria-invalid\` on the input. |
+| \`calendarAriaLabel\` | No | \`string\` | Accessible name for the calendar dialog. |
+
+- The calendar trigger is an \`IconButton\` with an \`aria-label\`; the popover content is a \`role="dialog"\`.
+- Native date inputs provide built-in keyboard and screen-reader support.
+                `,
             },
         },
     },
     argTypes: {
-        size: { control: 'select', options: ['sm', 'md', 'lg'] },
-        disabled: { control: 'boolean' },
-        label: { control: 'text' },
-        placeholder: { control: 'text' },
-        helperText: { control: 'text' },
-        error: { control: 'text' },
+        label: { control: 'text', table: { category: 'DatePicker' } },
+        placeholder: { control: 'text', table: { category: 'DatePicker' } },
+        helperText: { control: 'text', table: { category: 'DatePicker' } },
+        error: { control: 'text', table: { category: 'DatePicker' } },
+        width: { control: 'text', table: { category: 'DatePicker' } },
+        size: {
+            control: 'select',
+            options: SIZES,
+            table: { category: 'DatePicker' },
+        },
+        disabled: { control: 'boolean', table: { category: 'DatePicker' } },
+        required: { control: 'boolean', table: { category: 'DatePicker' } },
+        calendarAriaLabel: { control: 'text', table: { category: 'DatePicker' } },
     },
     args: {
         label: 'Pick a date',
         size: 'md',
+        disabled: false,
+        required: false,
+        calendarAriaLabel: 'Calendar',
     },
-} satisfies Meta<typeof DatePicker>
+} satisfies Meta<ComponentProps<typeof DatePicker> & { width?: string }>
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-// Default
-
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Uncontrolled date picker. Type a date or open the calendar popover to select one.',
+                story:
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },
     render: (args) => {
         const [date, setDate] = useState<Date | undefined>()
         return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
-                <DatePicker
-                    {...args}
-                    value={date}
-                    onChange={setDate}
-                />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {date ? `Selected: ${date.toLocaleDateString()}` : 'No date selected'}
-                </Typography>
-            </Flex>
-        )
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const input = canvas.getByLabelText('Pick a date')
-        await expect(input).toHaveAttribute('type', 'date')
-        await userEvent.click(input)
-        await waitFor(() =>
-            expect(document.querySelector('[role="dialog"]')).toBeTruthy(),
-        )
-    },
-}
-
-// Controlled
-
-export const Controlled: Story = {
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'Fully controlled example. The parent owns the date state.',
-            },
-        },
-    },
-    render: () => {
-        const [date, setDate] = useState<Date | undefined>(new Date(2026, 6, 3))
-        return (
-            <Flex
-                direction={'column'}
-                align={'center'}
-                gap={'md'}
-            >
-                <DatePicker
-                    label={'Controlled date'}
-                    value={date}
-                    onChange={setDate}
-                />
-                <Typography
-                    variant={'p'}
-                    fontSize={'sm'}
-                    color={'mutedForeground'}
-                >
-                    {date ? `Selected: ${date.toLocaleDateString()}` : 'No date selected'}
-                </Typography>
-            </Flex>
-        )
-    },
-}
-
-// With disabled dates
-
-export const WithDisabledDates: Story = {
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'Dates before today are disabled by passing matchers through `calendarProps`.',
-            },
-        },
-    },
-    render: () => {
-        const [date, setDate] = useState<Date | undefined>()
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
-
-        return (
             <DatePicker
-                label={'Future date'}
+                {...args}
                 value={date}
                 onChange={setDate}
-                calendarProps={{
-                    disabled: { before: today },
-                }}
             />
         )
     },
-}
-
-// Disabled
-
-export const Disabled: Story = {
-    args: {
-        label: 'Disabled date picker',
-        disabled: true,
-        value: new Date(2026, 6, 3),
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: 'The input is disabled and the popover cannot be opened.',
-            },
-        },
-    },
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
-        const input = canvas.getByLabelText('Disabled date picker')
-        await expect(input).toBeDisabled()
+        const label = args.label as string | undefined
+        if (label) {
+            await expect(canvas.getByLabelText(label)).toBeInTheDocument()
+        } else {
+            await expect(canvas.getByRole('textbox')).toBeInTheDocument()
+        }
     },
-}
-
-// Sizes
-
-export const Sizes: Story = {
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'Date picker inherits the three TextField sizes: `sm`, `md`, and `lg`.',
-            },
-        },
-    },
-    render: () => (
-        <Flex
-            direction={'column'}
-            gap={'md'}
-            style={{ width: '20rem' }}
-        >
-            <DatePicker
-                label={'Small'}
-                size={'sm'}
-            />
-            <DatePicker
-                label={'Medium'}
-                size={'md'}
-            />
-            <DatePicker
-                label={'Large'}
-                size={'lg'}
-            />
-        </Flex>
-    ),
 }

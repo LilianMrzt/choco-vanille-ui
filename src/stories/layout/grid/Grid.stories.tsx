@@ -1,7 +1,102 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, within } from 'storybook/test'
 
 import { Grid } from '@components/layout/grid'
 import { Box } from '@components/layout/box'
+import { md } from '@stories/utils/markdown'
+
+const COLUMNS = [
+    undefined,
+    'none',
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+] as const
+const AUTO_ROWS = [undefined, 'auto', 'min', 'max', 'fr'] as const
+const FLOW = [
+    undefined,
+    'row',
+    'column',
+    'dense',
+    'row-dense',
+    'column-dense',
+] as const
+const ALIGN = [
+    undefined,
+    'start',
+    'end',
+    'center',
+    'stretch',
+    'baseline',
+] as const
+const JUSTIFY_ITEMS = [undefined, 'start', 'end', 'center', 'stretch'] as const
+const ALIGN_CONTENT = [
+    undefined,
+    'start',
+    'end',
+    'center',
+    'stretch',
+    'between',
+    'around',
+    'evenly',
+] as const
+const JUSTIFY_CONTENT = [
+    undefined,
+    'start',
+    'end',
+    'center',
+    'stretch',
+    'between',
+    'around',
+    'evenly',
+] as const
+const SPACING = [
+    undefined,
+    'none',
+    'px',
+    'xxs',
+    'xs',
+    'xs2',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+] as const
+const ROUNDED = [
+    undefined,
+    'none',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    'full',
+] as const
+const BG = [
+    undefined,
+    'transparent',
+    'background',
+    'card',
+    'muted',
+    'primary',
+    'primarySubtle',
+    'secondary',
+    'secondarySubtle',
+] as const
 
 const meta = {
     title: 'Layout/Grid',
@@ -10,10 +105,11 @@ const meta = {
         layout: 'padded',
         docs: {
             description: {
-                component: `
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A layout primitive that renders a \`<div>\` with \`display: grid\` and token-based props for columns, gap, auto-flow, alignment, padding, background, and border-radius.
 
 **Usage**
+
 \`\`\`tsx
 // 3-column card grid with a gap
 <Grid columns={3} gap="md">
@@ -36,16 +132,17 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
         },
     },
     argTypes: {
-        columns: { control: 'select', options: [undefined, 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-        autoRows: { control: 'select', options: [undefined, 'auto', 'min', 'max', 'fr'] },        flow: { control: 'select', options: [undefined, 'row', 'column', 'dense', 'row-dense', 'column-dense'] },
-        align: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'baseline'] },
-        justifyItems: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch'] },
-        justifyContent: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'between', 'around', 'evenly'] },
-        alignContent: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'between', 'around', 'evenly'] },
-        gap: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        p: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        rounded: { control: 'select', options: [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] },
-        bg: { control: 'select', options: [undefined, 'transparent', 'background', 'card', 'muted', 'primary', 'primarySubtle'] },
+        columns: { control: 'select', options: COLUMNS },
+        autoRows: { control: 'select', options: AUTO_ROWS },
+        flow: { control: 'select', options: FLOW },
+        align: { control: 'select', options: ALIGN },
+        justifyItems: { control: 'select', options: JUSTIFY_ITEMS },
+        justifyContent: { control: 'select', options: JUSTIFY_CONTENT },
+        alignContent: { control: 'select', options: ALIGN_CONTENT },
+        gap: { control: 'select', options: SPACING },
+        p: { control: 'select', options: SPACING },
+        rounded: { control: 'select', options: ROUNDED },
+        bg: { control: 'select', options: BG },
     },
     args: {
         columns: 3,
@@ -55,7 +152,7 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 const Cell = ({ label }: { label: string }) => (
     <Box
@@ -68,11 +165,12 @@ const Cell = ({ label }: { label: string }) => (
     </Box>
 )
 
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Interactive playground. Adjust `columns`, `gap`, `flow`, `align`, and other props in the Controls panel to explore the full Grid API.',
+                story:
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -86,111 +184,8 @@ export const Default: Story = {
             ))}
         </Grid>
     ),
-}
-
-export const ColumnVariants: Story = {
-    name: 'Column counts',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'The `columns` prop accepts values from `1` to `12`. Choose the count that best fits your content density — 2–4 columns for cards, 6–12 for fine-grained layouts.',
-            },
-        },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        await expect(canvas.getByText('Cell 1')).toBeInTheDocument()
     },
-    render: () => (
-        <Box
-            display={'flex'}
-            gap={'xl'}
-            style={{ flexDirection: 'column' }}
-        >
-            {([1, 2, 3, 4, 6] as const).map(n => (
-                <Box key={n}>
-                    <Box
-                        mb={'xs'}
-                        style={{ fontSize: '0.75rem', fontWeight: 600 }}
-                    >{`columns={${n}}`}</Box>
-                    <Grid
-                        columns={n}
-                        gap={'sm'}
-                    >
-                        {Array.from({ length: n * 2 }, (_, i) => (
-                            <Cell
-                                key={i}
-                                label={`${i + 1}`}
-                            />
-                        ))}
-                    </Grid>
-                </Box>
-            ))}
-        </Box>
-    ),
-}
-
-export const ResponsiveCard: Story = {
-    name: 'Card grid',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'A typical card layout using `columns={3}` with a muted background and rounded container. Combine with CSS media queries or container queries to make it responsive.',
-            },
-        },
-    },
-    render: () => (
-        <Grid
-            columns={3}
-            gap={'md'}
-            p={'md'}
-            rounded={'md'}
-            bg={'muted'}
-        >
-            {Array.from({ length: 6 }, (_, i) => (
-                <Box
-                    key={i}
-                    p={'lg'}
-                    rounded={'md'}
-                    bg={'card'}
-                    style={{ fontSize: '0.875rem' }}
-                >
-                    <Box
-                        mb={'xs'}
-                        style={{ fontWeight: 600 }}
-                    >{`Card ${i + 1}`}</Box>
-                    <Box style={{ color: 'var(--color-muted-foreground)', fontSize: '0.75rem' }}>
-                        Some description text for this card.
-                    </Box>
-                </Box>
-            ))}
-        </Grid>
-    ),
-}
-
-export const AutoFlow: Story = {
-    name: 'Auto flow — column dense',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: '`flow="column-dense"` packs items into columns first and back-fills gaps. Useful for masonry-style layouts or dashboards with variable-size widgets.',
-            },
-        },
-    },
-    render: () => (
-        <Grid
-            columns={4}
-            flow={'column-dense'}
-            gap={'sm'}
-            p={'md'}
-            rounded={'md'}
-            bg={'muted'}
-        >
-            {Array.from({ length: 8 }, (_, i) => (
-                <Cell
-                    key={i}
-                    label={`${i + 1}`}
-                />
-            ))}
-        </Grid>
-    ),
 }

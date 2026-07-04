@@ -1,13 +1,99 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, within } from 'storybook/test'
 
 import { Box, type BoxVariant } from '@components/layout/box'
+import { md } from '@stories/utils/markdown'
 
 const BOX_VARIANTS: BoxVariant[] = [
-    'div', 'section', 'article', 'aside', 'main',
-    'header', 'footer', 'nav', 'ul', 'ol', 'li',
-    'form', 'fieldset', 'figure', 'figcaption',
-    'details', 'summary', 'dialog', 'address', 'span',
+    'div',
+    'section',
+    'article',
+    'aside',
+    'main',
+    'header',
+    'footer',
+    'nav',
+    'ul',
+    'ol',
+    'li',
+    'form',
+    'fieldset',
+    'figure',
+    'figcaption',
+    'details',
+    'summary',
+    'dialog',
+    'address',
+    'span',
 ]
+
+const DISPLAY = [
+    'block',
+    'flex',
+    'inline-flex',
+    'inline',
+    'inline-block',
+    'grid',
+    'inline-grid',
+    'none',
+    'contents',
+    'flow-root',
+] as const
+const SPACING = [
+    undefined,
+    'none',
+    'px',
+    'xxs',
+    'xs',
+    'xs2',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+] as const
+const ROUNDED = [
+    undefined,
+    'none',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    'full',
+] as const
+const BG = [
+    undefined,
+    'transparent',
+    'background',
+    'card',
+    'muted',
+    'primary',
+    'primarySubtle',
+    'secondary',
+    'secondarySubtle',
+] as const
+const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
+const OVERFLOW = [
+    undefined,
+    'visible',
+    'hidden',
+    'auto',
+    'scroll',
+    'clip',
+] as const
+const POSITION = [
+    undefined,
+    'static',
+    'relative',
+    'absolute',
+    'fixed',
+    'sticky',
+] as const
 
 const meta = {
     title: 'Layout/Box',
@@ -16,12 +102,13 @@ const meta = {
         layout: 'padded',
         docs: {
             description: {
-                component: `
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A polymorphic layout primitive that renders as any HTML element and exposes design-token-based props for display, padding, margin, gap, background, border-radius, width, height, overflow, and position.
 
 It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their respective display constraints.
 
 **Usage**
+
 \`\`\`tsx
 // Default div with padding, background and rounded corners
 <Box p="lg" bg="card" rounded="md">
@@ -48,18 +135,18 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
     },
     argTypes: {
         as: { control: 'select', options: BOX_VARIANTS },
-        display: { control: 'select', options: ['block', 'flex', 'inline-flex', 'inline', 'inline-block', 'grid', 'inline-grid', 'none', 'contents', 'flow-root'] },
-        p: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        px: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        py: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        m: { control: 'select', options: [undefined, 'auto', 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        gap: { control: 'select', options: [undefined, 'none', 'px', 'xxs', 'xs', 'xs2', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'] },
-        rounded: { control: 'select', options: [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] },
-        bg: { control: 'select', options: [undefined, 'transparent', 'background', 'card', 'muted', 'primary', 'primarySubtle', 'secondary', 'secondarySubtle'] },
-        w: { control: 'select', options: [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] },
-        h: { control: 'select', options: [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] },
-        overflow: { control: 'select', options: [undefined, 'visible', 'hidden', 'auto', 'scroll', 'clip'] },
-        position: { control: 'select', options: [undefined, 'static', 'relative', 'absolute', 'fixed', 'sticky'] },
+        display: { control: 'select', options: DISPLAY },
+        p: { control: 'select', options: SPACING },
+        px: { control: 'select', options: SPACING },
+        py: { control: 'select', options: SPACING },
+        m: { control: 'select', options: [...SPACING, 'auto'] },
+        gap: { control: 'select', options: SPACING },
+        rounded: { control: 'select', options: ROUNDED },
+        bg: { control: 'select', options: BG },
+        w: { control: 'select', options: WH },
+        h: { control: 'select', options: WH },
+        overflow: { control: 'select', options: OVERFLOW },
+        position: { control: 'select', options: POSITION },
     },
     args: {
         children: 'Box content',
@@ -72,110 +159,19 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'A `<div>` with padding, a muted background and rounded corners. Use the Controls panel to experiment with every available prop.',
+                story:
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },
-}
-
-export const AsSemantic: Story = {
-    name: 'Semantic HTML elements',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'The `as` prop accepts any valid HTML element or React component. Using the correct semantic element improves screen-reader navigation and SEO — prefer `<section>`, `<article>`, `<nav>` over plain `<div>` where applicable.',
-            },
-        },
+    play: async ({ canvasElement, args }) => {
+        const canvas = within(canvasElement)
+        await expect(canvas.getByText(args.children as string)).toBeInTheDocument()
     },
-    render: () => (
-        <Box
-            display={'flex'}
-            gap={'md'}
-            p={'lg'}
-        >
-            {(['div', 'section', 'article', 'aside', 'main', 'header', 'footer', 'nav'] as BoxVariant[]).map(tag => (
-                <Box
-                    key={tag}
-                    as={tag}
-                    p={'md'}
-                    rounded={'sm'}
-                    bg={'muted'}
-                    style={{ minWidth: '6rem', textAlign: 'center', fontSize: '0.75rem' }}
-                >
-                    {`<${tag}>`}
-                </Box>
-            ))}
-        </Box>
-    ),
-}
-
-export const Spacing: Story = {
-    name: 'Spacing scale',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'The full spacing scale used by `p`, `px`, `py`, `pt`, `pb`, `pl`, `pr`, `m`, `mx`, `my`, `mt`, `mb`, `ml`, `mr`, and `gap`. All values map to design tokens, ensuring consistency across the UI.',
-            },
-        },
-    },
-    render: () => (
-        <Box
-            display={'flex'}
-            gap={'md'}
-            p={'lg'}
-            overflow={'auto'}
-        >
-            {(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const).map(size => (
-                <Box
-                    key={size}
-                    p={size}
-                    bg={'primarySubtle'}
-                    rounded={'sm'}
-                    style={{ fontSize: '0.75rem', whiteSpace: 'nowrap' }}
-                >
-                    {`p="${size}"`}
-                </Box>
-            ))}
-        </Box>
-    ),
-}
-
-export const BackgroundColors: Story = {
-    name: 'Background colors',
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story: 'All available `bg` tokens. Semantic tokens (`card`, `muted`, `primary`…) automatically adapt between light and dark themes — prefer them over hard-coded color values.',
-            },
-        },
-    },
-    render: () => (
-        <Box
-            display={'grid'}
-            gap={'sm'}
-            p={'lg'}
-            style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}
-        >
-            {(['background', 'card', 'muted', 'primary', 'primarySubtle', 'secondary', 'secondarySubtle', 'successSubtle', 'warningSubtle', 'infoSubtle', 'destructiveSubtle'] as const).map(bg => (
-                <Box
-                    key={bg}
-                    bg={bg}
-                    p={'md'}
-                    rounded={'md'}
-                    style={{ fontSize: '0.75rem', textAlign: 'center' }}
-                >
-                    {bg}
-                </Box>
-            ))}
-        </Box>
-    ),
 }

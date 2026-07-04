@@ -194,7 +194,7 @@ describe('Table.Row', () => {
     })
 
     it('forwards the ref to the <tr> element', () => {
-        const ref = createRef<HTMLTable.RowElement>()
+        const ref = createRef<HTMLTableRowElement>()
         render(
             <table>
                 <tbody>

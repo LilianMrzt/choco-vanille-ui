@@ -10,6 +10,7 @@ import {
     TypographySection,
     ZIndexSection,
 } from '@stories/overview/theme/tokens/components'
+import { md } from '@stories/utils/markdown'
 
 //  Styles de page
 
@@ -17,7 +18,8 @@ const pageStyle: CSSProperties = {
     padding: '40px 32px',
     backgroundColor: '#f8fafc',
     minHeight: '100vh',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontFamily:
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     display: 'flex',
     flexDirection: 'column',
     gap: 48,
@@ -33,7 +35,7 @@ const meta = {
         docs: {
             canvas: { sourceState: 'hidden' },
             description: {
-                component: `
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 Design tokens are the single source of truth for all visual decisions in this UI kit: spacing, border radii, font sizes, shadows, z-indices, and motion durations.
 
 Each token maps to a CSS custom property and is consumed by component styles through the Vanilla Extract theme contract.
@@ -46,7 +48,7 @@ Prefer token values over hard-coded CSS — this ensures visual consistency and 
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 //  Story
 
@@ -55,7 +57,8 @@ export const AllTokens: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'A complete reference of every non-color design token: spacing scale, border-radius scale, font-size / font-weight / line-height scale, box-shadow levels, z-index layers, and motion (transition duration + easing) presets.',
+                story:
+          'A complete reference of every non-color design token: spacing scale, border-radius scale, font-size / font-weight / line-height scale, box-shadow levels, z-index layers, and motion (transition duration + easing) presets.',
             },
         },
     },

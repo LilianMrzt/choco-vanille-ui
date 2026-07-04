@@ -14,7 +14,10 @@ const DropdownMenuLabel = ({ className, label, ...props }: DropdownMenuLabelProp
         className={cn(DROPDOWN_MENU_LABEL_STYLES.root, className)}
         {...props}
     >
-        <Typography as={'span'} variant={'span'}>{label}</Typography>
+        <Typography
+            as={'span'}
+            variant={'span'}
+        >{label}</Typography>
     </RadixDropdownMenu.Label>
 )
 

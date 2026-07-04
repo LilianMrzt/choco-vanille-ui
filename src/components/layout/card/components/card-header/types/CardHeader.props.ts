@@ -11,11 +11,11 @@ export type CardHeaderProps = Omit<FlexProps, 'as'> & {
   /** Heading level for the title element. @default 'h3' */
   titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   /** Extra props forwarded to the title `<Typography>` element. */
-  titleProps?: Omit<TypographyProps, 'children'>
+  titleProps?: TypographyProps
   /** Muted description text rendered below the title. */
   description?: string
   /** Extra props forwarded to the description `<Typography>` element. */
-  descriptionProps?: Omit<TypographyProps, 'children'>
+  descriptionProps?: TypographyProps
   /** Content rendered in the trailing corner — e.g. an `<IconButton>` or `<Button>`. */
   actions?: React.ReactNode
 }

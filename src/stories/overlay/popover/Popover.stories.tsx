@@ -1,25 +1,10 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within, waitFor } from 'storybook/test'
 
 import { Popover } from '@/components/overlay/popover'
 import { Button } from '@/components/actions/button'
-import type { PopoverPosition } from '@components/overlay/popover'
-import { Flex } from '@/components/layout/flex'
-
-const POSITIONS: PopoverPosition[] = [
-    'top-start',
-    'top',
-    'top-end',
-    'right-start',
-    'right',
-    'right-end',
-    'bottom-start',
-    'bottom',
-    'bottom-end',
-    'left-start',
-    'left',
-    'left-end',
-]
+import { md } from '@stories/utils/markdown'
 
 const meta = {
     title: 'Overlay/Popover',
@@ -28,11 +13,12 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: `
-A composable popover overlay built on top of [\`@radix-ui/react-popover\`](https://www.radix-ui.com/docs/primitives/components/popover).
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+A composable popover overlay built on top of \`@radix-ui/react-popover\`.
 Use it to display rich content, forms, or actions attached to a trigger element.
 
-**Composition**
+**Usage**
+
 \`\`\`tsx
 <Popover>
   <Popover.Trigger asChild>
@@ -51,8 +37,8 @@ Use it to display rich content, forms, or actions attached to a trigger element.
 |---|---|---|---|
 | Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`Popover.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
 | \`open\` | No | \`boolean\` | Controlled open state; pair with \`onOpenChange\`. |
+| \`defaultOpen\` | No | \`boolean\` | Uncontrolled initial open state. |
 | \`modal\` | No | \`boolean\` | @default \`true\`. When \`true\`, interaction outside the popover is blocked and the rest of the page is aria-hidden. |
-| \`position\` | No | \`PopoverPosition\` | Shorthand combining \`side\` + \`align\`. Takes precedence when set. |
 
 - The popover renders with \`role="dialog"\` and traps focus when modal.
 - Keyboard navigation: **Enter** / **Space** to open, **Escape** to close, **Tab** cycles inside the content.
@@ -74,45 +60,55 @@ Use it to display rich content, forms, or actions attached to a trigger element.
         defaultOpen: { control: 'boolean' },
         modal: { control: 'boolean' },
     },
+    args: {
+        modal: true,
+        defaultOpen: false,
+    },
 } satisfies Meta<typeof Popover>
 
 export default meta
 
 type Story = StoryObj<typeof meta>;
 
-// Default
-
-export const Default: Story = {
+export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Default popover appearing below its trigger. Click the button to open the panel and view the content.',
+          'Interactive playground — use the Controls panel to toggle controlled, default-open, and modal behaviour.',
             },
         },
     },
-    render: () => (
-        <Popover>
-            <Popover.Trigger asChild>
-                <Button label={'Open popover'} />
-            </Popover.Trigger>
+    render: (args) => {
+        const [open, setOpen] = useState(args.open ?? args.defaultOpen ?? false)
+        return (
+            <Popover
+                {...args}
+                open={open}
+                onOpenChange={setOpen}
+            >
+                <Popover.Trigger asChild>
+                    <Button label={'Open popover'} />
+                </Popover.Trigger>
 
-            <Popover.Content style={{ width: '20rem' }}>
-                <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-                    Popover title
-                </h4>
-                <p
-                    style={{
-                        margin: '0.5rem 0 0',
-                        fontSize: '0.875rem',
-                        color: 'var(--color-muted-foreground)',
-                    }}
-                >
-                    You can put any content here: text, images, forms, or action buttons.
-                </p>
-            </Popover.Content>
-        </Popover>
-    ),
+                <Popover.Content style={{ width: '20rem' }}>
+                    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
+                        Popover title
+                    </h4>
+                    <p
+                        style={{
+                            margin: '0.5rem 0 0',
+                            fontSize: '0.875rem',
+                            color: 'var(--color-muted-foreground)',
+                        }}
+                    >
+                        You can put any content here: text, images, forms, or action
+                        buttons.
+                    </p>
+                </Popover.Content>
+            </Popover>
+        )
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         const trigger = canvas.getByRole('button', { name: 'Open popover' })
@@ -122,102 +118,4 @@ export const Default: Story = {
             expect(document.querySelector('[role="dialog"]')).toBeTruthy(),
         )
     },
-}
-
-// All positions
-
-export const AllPositions: Story = {
-    parameters: {
-        controls: { disable: true },
-        layout: 'padded',
-        docs: {
-            description: {
-                story:
-          'All 12 available positions (`top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-start`, `bottom`, `bottom-end`, `left-start`, `left`, `left-end`). Use the `position` prop as a shorthand for combining `side` and `align`.',
-            },
-        },
-    },
-    render: () => (
-        <Flex
-            wrap={'wrap'}
-            align={'center'}
-            justify={'center'}
-            gap={'xl'}
-            p={'4xl'}
-        >
-            {POSITIONS.map((position) => (
-                <Popover key={position}>
-                    <Popover.Trigger asChild>
-                        <Button
-                            variant={'outlined'}
-                            label={position}
-                        />
-                    </Popover.Trigger>
-
-                    <Popover.Content
-                        position={position}
-                        style={{ width: '12rem' }}
-                    >
-                        <p style={{ margin: 0, fontSize: '0.875rem' }}>
-                            Position: <strong>{position}</strong>
-                        </p>
-                    </Popover.Content>
-                </Popover>
-            ))}
-        </Flex>
-    ),
-}
-
-// Controlled open
-
-export const AlwaysOpen: Story = {
-    args: { open: true },
-    parameters: {
-        controls: { disable: true },
-        docs: {
-            description: {
-                story:
-          'Controlled open state via the `open` prop. Pass `onOpenChange` alongside `open` to implement custom show/hide logic.',
-            },
-        },
-    },
-    render: () => (
-        <Popover open>
-            <Popover.Trigger asChild>
-                <Button label={'Controlled trigger'} />
-            </Popover.Trigger>
-
-            <Popover.Content style={{ width: '18rem' }}>
-                <p style={{ margin: 0, fontSize: '0.875rem' }}>
-                    This popover is controlled and stays open for the story.
-                </p>
-            </Popover.Content>
-        </Popover>
-    ),
-}
-
-// Non-modal
-
-export const NonModal: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'A non-modal popover allows interacting with the rest of the page while the popover is open.',
-            },
-        },
-    },
-    render: () => (
-        <Popover modal={false}>
-            <Popover.Trigger asChild>
-                <Button label={'Open non-modal'} />
-            </Popover.Trigger>
-
-            <Popover.Content style={{ width: '18rem' }}>
-                <p style={{ margin: 0, fontSize: '0.875rem' }}>
-                    Focus is not trapped here — you can tab back to the page.
-                </p>
-            </Popover.Content>
-        </Popover>
-    ),
 }

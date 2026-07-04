@@ -123,7 +123,7 @@ describe('Table.Cell', () => {
     })
 
     it('forwards the ref to the <td> element', () => {
-        const ref = createRef<HTMLTable.CellElement>()
+        const ref = createRef<HTMLTableCellElement>()
         render(
             <table>
                 <tbody>

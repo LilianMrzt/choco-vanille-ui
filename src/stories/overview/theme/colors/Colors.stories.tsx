@@ -7,6 +7,7 @@ import { lightColors } from '@theme/colors/light.ts'
 
 import type { ColorGroup } from '@stories/overview/theme/colors/components'
 import { ColorPaletteSection } from '@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection'
+import { md } from '@stories/utils/markdown'
 
 // Groupes de couleurs
 
@@ -28,7 +29,8 @@ const colorGroups: ColorGroup[] = [
     },
     {
         label: 'Primary',
-        description: 'Brand colour. Solid family + subtle family, all states included.',
+        description:
+      'Brand colour. Solid family + subtle family, all states included.',
         tokens: [
             'primary',
             'primaryHover',
@@ -138,7 +140,7 @@ const meta = {
         docs: {
             canvas: { sourceState: 'hidden' },
             description: {
-                component: `
+                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 Semantic color tokens form the color system of this UI kit. Each token carries intent rather than a raw hex value, making the palette fully adaptable to light and dark themes without changing component code.
 
 **Token families**
@@ -164,7 +166,7 @@ Click any swatch to copy its current value.
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 // Styles de page
 
@@ -173,7 +175,7 @@ const pageLight: CSSProperties = {
     backgroundColor: '#f8fafc',
     minHeight: '100vh',
     fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 }
 
 const pageDark: CSSProperties = {
@@ -181,7 +183,7 @@ const pageDark: CSSProperties = {
     backgroundColor: '#0f1117',
     minHeight: '100vh',
     fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
 }
 
 // Stories
@@ -191,7 +193,8 @@ export const LightTheme: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'All semantic color tokens resolved in the light theme. Click a swatch to copy its CSS custom property value.',
+                story:
+          'All semantic color tokens resolved in the light theme. Click a swatch to copy its CSS custom property value.',
             },
         },
     },
@@ -199,7 +202,9 @@ export const LightTheme: Story = {
         <div style={pageLight}>
             <ColorPaletteSection
                 title={'Light Theme'}
-                subtitle={'Semantic tokens of the light theme. Click a swatch to copy its value.'}
+                subtitle={
+                    'Semantic tokens of the light theme. Click a swatch to copy its value.'
+                }
                 colors={lightColors as unknown as Record<string, string>}
                 colorGroups={colorGroups}
                 dark={false}
@@ -213,7 +218,8 @@ export const DarkTheme: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'All semantic color tokens resolved in the dark theme. The same token names are used as in the light theme — only the underlying values change.',
+                story:
+          'All semantic color tokens resolved in the dark theme. The same token names are used as in the light theme — only the underlying values change.',
             },
         },
     },
@@ -221,7 +227,9 @@ export const DarkTheme: Story = {
         <div style={pageDark}>
             <ColorPaletteSection
                 title={'Dark Theme'}
-                subtitle={'Semantic tokens of the dark theme. Click a swatch to copy its value.'}
+                subtitle={
+                    'Semantic tokens of the dark theme. Click a swatch to copy its value.'
+                }
                 colors={darkColors as unknown as Record<string, string>}
                 colorGroups={colorGroups}
                 dark={true}

@@ -28,6 +28,7 @@ addIcon('mdi:pencil', {
 });
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     options: {
       storySort: {

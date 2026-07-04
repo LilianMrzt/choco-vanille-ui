@@ -18,16 +18,42 @@ const DropdownMenuSubTrigger = ({
     label,
     ...props
 }: DropdownMenuSubTriggerProps) => (
-    <RadixDropdownMenu.SubTrigger asChild {...props}>
-        <Flex gap={'sm'} className={cn(DROPDOWN_MENU_SUB_TRIGGER_STYLES.root, className)}>
+    <RadixDropdownMenu.SubTrigger
+        asChild
+        {...props}
+    >
+        <Flex
+            gap={'sm'}
+            className={cn(DROPDOWN_MENU_SUB_TRIGGER_STYLES.root, className)}
+        >
             {startIcon && (
-                <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_ITEM_STYLES.icon} aria-hidden>
-                    <Icon icon={startIcon} size={'xs'} />
+                <Flex
+                    as={'span'}
+                    justify={'center'}
+                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
+                    aria-hidden
+                >
+                    <Icon
+                        icon={startIcon}
+                        size={'xs'}
+                    />
                 </Flex>
             )}
-            <Typography as={'span'} variant={'span'} style={{ flex: 1 }}>{label}</Typography>
-            <Flex as={'span'} justify={'center'} className={DROPDOWN_MENU_SUB_TRIGGER_STYLES.chevron} aria-hidden>
-                <Icon icon={'mdi:chevron-right'} size={'xs'} />
+            <Typography
+                as={'span'}
+                variant={'span'}
+                style={{ flex: 1 }}
+            >{label}</Typography>
+            <Flex
+                as={'span'}
+                justify={'center'}
+                className={DROPDOWN_MENU_SUB_TRIGGER_STYLES.chevron}
+                aria-hidden
+            >
+                <Icon
+                    icon={'mdi:chevron-right'}
+                    size={'xs'}
+                />
             </Flex>
         </Flex>
     </RadixDropdownMenu.SubTrigger>
@@ -36,4 +62,3 @@ const DropdownMenuSubTrigger = ({
 DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger'
 
 export default DropdownMenuSubTrigger
-

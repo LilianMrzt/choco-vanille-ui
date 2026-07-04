@@ -24,7 +24,7 @@ describe('Table.Col', () => {
                 </colgroup>
             </table>,
         )
-        const col = container.querySelector('col') as HTMLTable.ColElement
+        const col = container.querySelector('col') as HTMLTableColElement
         expect(col.style.width).toBe('200px')
         expect(col.style.minWidth).toBe('100px')
         expect(col.style.maxWidth).toBe('300px')
@@ -38,7 +38,7 @@ describe('Table.Col', () => {
                 </colgroup>
             </table>,
         )
-        const col = container.querySelector('col') as HTMLTable.ColElement
+        const col = container.querySelector('col') as HTMLTableColElement
         expect(col.style.width).toBe('50%')
         expect(col.style.backgroundColor).toBe('red')
     })
@@ -55,7 +55,7 @@ describe('Table.Col', () => {
     })
 
     it('forwards the ref to the <col> element', () => {
-        const ref = createRef<HTMLTable.ColElement>()
+        const ref = createRef<HTMLTableColElement>()
         render(
             <table>
                 <colgroup>

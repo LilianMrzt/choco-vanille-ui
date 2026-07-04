@@ -1,11 +1,11 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { watchRepositions } from '@hooks/use-viewport-shift/helpers/watchRepositions.helper.ts'
 
 describe('watchRepositions', () => {
     let content: HTMLElement
     let wrapper: HTMLElement
-    let correct: ReturnType<typeof vi.fn>
+    let correct: Mock<() => void>
     let cleanup: () => void
     let mutationCallback: (() => void) | null = null
     let resizeCallback: (() => void) | null = null
@@ -18,7 +18,7 @@ describe('watchRepositions', () => {
         correct = vi.fn()
 
         class MockMutationObserver {
-            constructor(private callback: () => void) {
+            constructor(callback: () => void) {
                 mutationCallback = callback
             }
 
@@ -32,7 +32,7 @@ describe('watchRepositions', () => {
         }
 
         class MockResizeObserver {
-            constructor(private callback: () => void) {
+            constructor(callback: () => void) {
                 resizeCallback = callback
             }
 
