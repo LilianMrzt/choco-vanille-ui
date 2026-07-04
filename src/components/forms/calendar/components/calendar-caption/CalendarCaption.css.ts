@@ -3,7 +3,7 @@ import { vars } from '@theme/contract.css.ts'
 
 export const CALENDAR_CAPTION_STYLES = {
     monthCaption: style({
-        paddingInline: vars.space.xxs,
+        width: '100%',
     }),
 
     captionCenter: style({

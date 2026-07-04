@@ -26,6 +26,8 @@ export const CALENDAR_GRID_STYLES = {
     }),
 
     day: style({
+        width: '2.25rem',
+        height: '2.25rem',
         padding: '1px',
         textAlign: 'center',
     }),
