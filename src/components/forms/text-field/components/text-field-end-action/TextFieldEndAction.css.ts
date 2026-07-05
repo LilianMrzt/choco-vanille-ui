@@ -8,11 +8,14 @@ import { globalStyle, style } from '@vanilla-extract/css'
 export const TEXT_FIELD_END_ACTION_STYLES = {
     root: style({
         position: 'absolute',
-        right: '0.375rem',
-        top: '50%',
-        transform: 'translateY(-50%)',
+        right: '0.625rem',
+        top: 0,
+        bottom: 0,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
+        width: '1.75rem',
+        marginBlock: 'auto',
     }),
 }
 

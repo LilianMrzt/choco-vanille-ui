@@ -92,10 +92,10 @@ export const TEXT_FIELD_STYLES = {
             { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            // End action: push text left
-            { variants: { size: 'sm', hasEndAction: true }, style: { paddingRight: '2.375rem' } },
-            { variants: { size: 'md', hasEndAction: true }, style: { paddingRight: '2.375rem' } },
-            { variants: { size: 'lg', hasEndAction: true }, style: { paddingRight: '2.375rem' } },
+            // End action: push text left (slot width 1.75rem + right offset 0.625rem)
+            { variants: { size: 'sm', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: 'md', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: 'lg', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
         ],
         defaultVariants: {
             size: 'md',
