@@ -76,7 +76,7 @@ export const BOX_STYLES = {
             },
 
             // Border Radius
-            rounded: {
+            radius: {
                 none: { borderRadius: vars.radius.none },
                 xs: { borderRadius: vars.radius.xs },
                 sm: { borderRadius: vars.radius.sm },

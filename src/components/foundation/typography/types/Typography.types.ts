@@ -27,6 +27,7 @@ export type TypographyVariant =
 
 /** Font-size scale exposed as a prop. */
 export type TypographySize =
+  | '2xs'
   | 'xs'
   | 'sm'
   | 'base'

@@ -124,7 +124,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
             options: ['div', 'section', 'article', 'aside'],
             table: { category: 'Card' },
         },
-        rounded: {
+        radius: {
             control: 'select',
             options: ROUNDED,
             table: { category: 'Card' },
@@ -221,6 +221,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     },
     args: {
         as: 'div',
+        radius: 'lg',
         headerAs: 'div',
         title: 'Account settings',
         titleAs: 'h3',
@@ -248,7 +249,7 @@ export const Playground: Story = {
     },
     render: ({
         as,
-        rounded,
+        radius,
         bg,
         p,
         headerAs,
@@ -266,7 +267,7 @@ export const Playground: Story = {
     }) => (
         <Card
             as={as}
-            rounded={rounded}
+            radius={radius}
             bg={bg}
             p={p}
             style={{ width: '22rem' }}

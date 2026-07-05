@@ -86,6 +86,72 @@ export const darkColors: Record<keyof LightColors, string> = {
     destructiveSubtleForeground: palette.red[200],
     destructiveSubtleBorder: palette.red[800],
 
+    /* Accent: purple  */
+    purple: palette.purple[500],
+    purpleHover: palette.purple[400],
+    purpleActive: palette.purple[300],
+    purpleForeground: palette.neutral[950],
+    purpleSubtle: palette.purple[950],
+    purpleSubtleHover: palette.purple[900],
+    purpleSubtleActive: palette.purple[800],
+    purpleSubtleForeground: palette.purple[200],
+    purpleSubtleBorder: palette.purple[800],
+
+    /* Accent: pink  */
+    pink: palette.pink[500],
+    pinkHover: palette.pink[400],
+    pinkActive: palette.pink[300],
+    pinkForeground: palette.neutral[950],
+    pinkSubtle: palette.pink[950],
+    pinkSubtleHover: palette.pink[900],
+    pinkSubtleActive: palette.pink[800],
+    pinkSubtleForeground: palette.pink[200],
+    pinkSubtleBorder: palette.pink[800],
+
+    /* Accent: orange  */
+    orange: palette.orange[500],
+    orangeHover: palette.orange[400],
+    orangeActive: palette.orange[300],
+    orangeForeground: palette.neutral[950],
+    orangeSubtle: palette.orange[950],
+    orangeSubtleHover: palette.orange[900],
+    orangeSubtleActive: palette.orange[800],
+    orangeSubtleForeground: palette.orange[200],
+    orangeSubtleBorder: palette.orange[800],
+
+    /* Accent: teal  */
+    teal: palette.teal[500],
+    tealHover: palette.teal[400],
+    tealActive: palette.teal[300],
+    tealForeground: palette.neutral[950],
+    tealSubtle: palette.teal[950],
+    tealSubtleHover: palette.teal[900],
+    tealSubtleActive: palette.teal[800],
+    tealSubtleForeground: palette.teal[200],
+    tealSubtleBorder: palette.teal[800],
+
+    /* Accent: cyan  */
+    cyan: palette.cyan[500],
+    cyanHover: palette.cyan[400],
+    cyanActive: palette.cyan[300],
+    cyanForeground: palette.neutral[950],
+    cyanSubtle: palette.cyan[950],
+    cyanSubtleHover: palette.cyan[900],
+    cyanSubtleActive: palette.cyan[800],
+    cyanSubtleForeground: palette.cyan[200],
+    cyanSubtleBorder: palette.cyan[800],
+
+    /* Accent: indigo  */
+    indigo: palette.indigo[500],
+    indigoHover: palette.indigo[400],
+    indigoActive: palette.indigo[300],
+    indigoForeground: palette.neutral[950],
+    indigoSubtle: palette.indigo[950],
+    indigoSubtleHover: palette.indigo[900],
+    indigoSubtleActive: palette.indigo[800],
+    indigoSubtleForeground: palette.indigo[200],
+    indigoSubtleBorder: palette.indigo[800],
+
     /* Lines, fields & focus  */
     border: palette.neutral[800],
     borderStrong: palette.neutral[700],

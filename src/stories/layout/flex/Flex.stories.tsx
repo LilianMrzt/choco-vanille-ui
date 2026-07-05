@@ -112,7 +112,7 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
         inline: { control: 'boolean' },
         gap: { control: 'select', options: SPACING },
         p: { control: 'select', options: SPACING },
-        rounded: { control: 'select', options: ROUNDED },
+        radius: { control: 'select', options: ROUNDED },
         bg: { control: 'select', options: BG },
     },
     args: {
@@ -129,7 +129,7 @@ type Story = StoryObj<typeof meta>;
 const Item = ({ label }: { label: string }) => (
     <Box
         p={'md'}
-        rounded={'sm'}
+        radius={'sm'}
         bg={'primarySubtle'}
         style={{ fontSize: '0.875rem' }}
     >

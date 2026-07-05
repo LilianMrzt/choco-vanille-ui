@@ -141,7 +141,7 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
         alignContent: { control: 'select', options: ALIGN_CONTENT },
         gap: { control: 'select', options: SPACING },
         p: { control: 'select', options: SPACING },
-        rounded: { control: 'select', options: ROUNDED },
+        radius: { control: 'select', options: ROUNDED },
         bg: { control: 'select', options: BG },
     },
     args: {
@@ -157,7 +157,7 @@ type Story = StoryObj<typeof meta>;
 const Cell = ({ label }: { label: string }) => (
     <Box
         p={'md'}
-        rounded={'sm'}
+        radius={'sm'}
         bg={'primarySubtle'}
         style={{ fontSize: '0.875rem', textAlign: 'center' }}
     >

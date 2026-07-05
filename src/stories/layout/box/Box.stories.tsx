@@ -111,7 +111,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 
 \`\`\`tsx
 // Default div with padding, background and rounded corners
-<Box p="lg" bg="card" rounded="md">
+<Box p="lg" bg="card" radius="md">
   Content
 </Box>
 
@@ -141,7 +141,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         py: { control: 'select', options: SPACING },
         m: { control: 'select', options: [...SPACING, 'auto'] },
         gap: { control: 'select', options: SPACING },
-        rounded: { control: 'select', options: ROUNDED },
+        radius: { control: 'select', options: ROUNDED },
         bg: { control: 'select', options: BG },
         w: { control: 'select', options: WH },
         h: { control: 'select', options: WH },
@@ -153,7 +153,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         as: 'div',
         p: 'lg',
         bg: 'muted',
-        rounded: 'md',
+        radius: 'md',
     },
 } satisfies Meta<typeof Box>
 
