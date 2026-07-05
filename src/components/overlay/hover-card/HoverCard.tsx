@@ -1,7 +1,7 @@
 import * as RadixHoverCard from '@radix-ui/react-hover-card'
 
-import HoverCardContent from '@components/overlay/hover-card/components/content/hover-card-content/HoverCardContent.tsx'
-import HoverCardTrigger from '@components/overlay/hover-card/components/trigger/hover-card-trigger/HoverCardTrigger.tsx'
+import HoverCardContent from '@components/overlay/hover-card/components/content/HoverCardContent.tsx'
+import HoverCardTrigger from '@components/overlay/hover-card/components/trigger/HoverCardTrigger.tsx'
 import type { HoverCardCompound } from '@components/overlay/hover-card/types'
 
 /**

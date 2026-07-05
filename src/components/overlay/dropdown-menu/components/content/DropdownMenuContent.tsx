@@ -1,8 +1,8 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { cn } from '@utils/cn.ts'
-import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/dropdown-menu-content/DropdownMenuContent.css.ts'
-import type { DropdownMenuContentProps } from '@components/overlay/dropdown-menu/components/content/dropdown-menu-content/types/DropdownMenuContent.props.ts'
+import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/DropdownMenuContent.css.ts'
+import type { DropdownMenuContentProps } from '@components/overlay/dropdown-menu/components/content/types/DropdownMenuContent.props.ts'
 import { useViewportShift } from '@hooks'
 
 /**

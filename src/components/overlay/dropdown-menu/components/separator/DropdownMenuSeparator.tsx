@@ -1,8 +1,8 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { cn } from '@utils/cn.ts'
-import { DROPDOWN_MENU_SEPARATOR_STYLES } from '@components/overlay/dropdown-menu/components/separator/dropdown-menu-separator/DropdownMenuSeparator.css.ts'
-import type { DropdownMenuSeparatorProps } from '@components/overlay/dropdown-menu/components/separator/dropdown-menu-separator/types/DropdownMenuSeparator.props.ts'
+import { DROPDOWN_MENU_SEPARATOR_STYLES } from '@components/overlay/dropdown-menu/components/separator/DropdownMenuSeparator.css.ts'
+import type { DropdownMenuSeparatorProps } from '@components/overlay/dropdown-menu/components/separator/types/DropdownMenuSeparator.props.ts'
 
 /**
  * A thin horizontal rule used to visually divide groups of items.

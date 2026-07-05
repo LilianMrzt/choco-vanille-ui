@@ -2,28 +2,24 @@ import { style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 import {
-    slideDownIn,
-    slideDownOut,
-    slideUpIn,
-    slideUpOut,
-    slideRightIn,
-    slideRightOut,
-    slideLeftIn,
-    slideLeftOut,
-} from '@constants/animations/index.ts'
+    slideDownIn, slideDownOut,
+    slideUpIn, slideUpOut,
+    slideRightIn, slideRightOut,
+    slideLeftIn, slideLeftOut,
+} from '@constants/animations'
 
-export const POPOVER_CONTENT_STYLES = {
+export const DROPDOWN_MENU_CONTENT_STYLES = {
     root: style({
-        zIndex: vars.zIndex.popover,
+        zIndex: vars.zIndex.dropdown,
         minWidth: '11rem',
         overflow: 'hidden',
         borderRadius: vars.radius.lg,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.popover,
         color: vars.color.popoverForeground,
-        padding: vars.space.md,
+        padding: vars.space.xs,
         boxShadow: vars.shadow.lg,
-        transformOrigin: 'var(--radix-popover-content-transform-origin)',
+        transformOrigin: 'var(--radix-dropdown-menu-content-transform-origin)',
 
         selectors: {
             '&[data-state="open"][data-side="bottom"]': {

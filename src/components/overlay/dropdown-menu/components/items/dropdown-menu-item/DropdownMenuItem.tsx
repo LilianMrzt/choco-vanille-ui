@@ -5,7 +5,7 @@ import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/com
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
-import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/dropdown-menu-shortcut/DropdownMenuShortcut.tsx'
+import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/DropdownMenuShortcut.tsx'
 import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types/DropdownMenuItem.props.ts'
 
 /**

@@ -1,6 +1,6 @@
 import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
 
-import type { DropdownMenuTriggerProps } from '@components/overlay/dropdown-menu/components/trigger/dropdown-menu-trigger/types/DropdownMenuTrigger.props.ts'
+import type { DropdownMenuTriggerProps } from '@components/overlay/dropdown-menu/components/trigger/types/DropdownMenuTrigger.props.ts'
 
 /**
  * The element that opens the dropdown.

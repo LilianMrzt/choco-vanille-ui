@@ -1,6 +1,6 @@
 import * as RadixPopover from '@radix-ui/react-popover'
 
-import type { PopoverAnchorProps } from '@components/overlay/popover/components/anchor/popover-anchor/types/PopoverAnchor.props.ts'
+import type { PopoverAnchorProps } from '@components/overlay/popover/components/anchor/types/PopoverAnchor.props.ts'
 
 /**
  * Optional anchor element used to position the popover content.

@@ -1,6 +1,6 @@
 import * as RadixPopover from '@radix-ui/react-popover'
 
-import type { PopoverTriggerProps } from '@components/overlay/popover/components/trigger/popover-trigger/types/PopoverTrigger.props.ts'
+import type { PopoverTriggerProps } from '@components/overlay/popover/components/trigger/types/PopoverTrigger.props.ts'
 
 /**
  * The element that opens the popover.

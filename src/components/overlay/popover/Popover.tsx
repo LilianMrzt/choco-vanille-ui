@@ -1,8 +1,8 @@
 import * as RadixPopover from '@radix-ui/react-popover'
 
-import PopoverAnchor from '@components/overlay/popover/components/anchor/popover-anchor/PopoverAnchor.tsx'
-import PopoverContent from '@components/overlay/popover/components/content/popover-content/PopoverContent.tsx'
-import PopoverTrigger from '@components/overlay/popover/components/trigger/popover-trigger/PopoverTrigger.tsx'
+import PopoverAnchor from '@components/overlay/popover/components/anchor/PopoverAnchor.tsx'
+import PopoverContent from '@components/overlay/popover/components/content/PopoverContent.tsx'
+import PopoverTrigger from '@components/overlay/popover/components/trigger/PopoverTrigger.tsx'
 import type { PopoverCompound } from '@components/overlay/popover/types'
 
 /**
