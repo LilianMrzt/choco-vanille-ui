@@ -77,6 +77,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         placeholder: 'you@example.com',
         size: 'md',
         type: 'text',
+        width: '300px',
     },
 } satisfies Meta<typeof TextField>
 

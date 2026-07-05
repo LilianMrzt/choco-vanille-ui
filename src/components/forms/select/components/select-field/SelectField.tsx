@@ -1,14 +1,8 @@
-import * as RadixSelect from '@radix-ui/react-select'
 import { useId, useState, type FC } from 'react'
 
-import { Icon } from '@components/foundation/icon'
 import { Flex } from '@components/layout/flex'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
-import {
-    TextFieldEndAction,
-    TextFieldLabel,
-    TextFieldStartIcon,
-} from '@components/forms/text-field/components'
+import { TextFieldLabel } from '@components/forms/text-field/components'
 import Select from '@components/forms/select/Select.tsx'
 import type { SelectFieldProps } from '@components/forms/select/types/Select.props.ts'
 
@@ -105,25 +99,12 @@ const SelectField: FC<SelectFieldProps> = ({
                 <Select.Trigger
                     id={triggerId}
                     placeholder={placeholder}
+                    startIcon={startIcon}
                     size={size}
                     hasError={hasError}
                     aria-describedby={error || helperText ? helperId : undefined}
                     aria-invalid={hasError || undefined}
-                >
-                    {startIcon && (
-                        <TextFieldStartIcon
-                            icon={startIcon}
-                            size={size}
-                        />
-                    )}
-                    <RadixSelect.Value placeholder={placeholder} />
-                    <TextFieldEndAction>
-                        <Icon
-                            icon={'mdi:chevron-down'}
-                            size={'md'}
-                        />
-                    </TextFieldEndAction>
-                </Select.Trigger>
+                />
                 <Select.Content listboxAriaLabel={listboxAriaLabel}>
                     <Select.Viewport>
                         {options.map((option, index) => {

@@ -1,6 +1,26 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
+
+/**
+ * Chevron slot for the trigger.
+ *
+ * Unlike TextField's end-action (which holds clickable IconButtons and needs a
+ * wide hit area), the Select chevron is decorative, so the slot is sized to the
+ * icon and sits close to the right edge.
+ */
+export const SELECT_TRIGGER_END_ICON = style({
+    position: 'absolute',
+    right: '0.5rem',
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBlock: 'auto',
+    pointerEvents: 'none',
+})
 
 /**
  * Trigger styled to look like a TextField input.
@@ -12,6 +32,9 @@ import { vars } from '@theme/contract.css.ts'
 export const SELECT_TRIGGER_STYLES = {
     recipe: recipe({
         base: {
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
             width: '100%',
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
@@ -28,8 +51,9 @@ export const SELECT_TRIGGER_STYLES = {
                 `background-color ${vars.duration.fast} ${vars.easing.standard}`,
             ].join(', '),
             selectors: {
-                '&:hover:not(:disabled):not([data-disabled])': {
-                    borderColor: vars.color.primaryHover,
+                // Open state: primary border, mirrors TextField's mouse-focus appearance.
+                '&[data-state="open"]': {
+                    borderColor: vars.color.primary,
                 },
                 '&:focus-visible': {
                     outline: 'none',
@@ -72,6 +96,9 @@ export const SELECT_TRIGGER_STYLES = {
                         '&:hover:not(:disabled):not([data-disabled])': {
                             borderColor: vars.color.destructive,
                         },
+                        '&[data-state="open"]': {
+                            borderColor: vars.color.destructive,
+                        },
                         '&:focus-visible': {
                             borderColor: vars.color.destructive,
                             boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
@@ -98,10 +125,10 @@ export const SELECT_TRIGGER_STYLES = {
             { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            // End icon: push text left (slot width 1.75rem + right offset 0.625rem)
-            { variants: { size: 'sm', hasEndIcon: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'md', hasEndIcon: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'lg', hasEndIcon: true }, style: { paddingRight: '2.625rem' } },
+            // End icon: push text left (chevron slot ~1rem + right offset 0.5rem)
+            { variants: { size: 'sm', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
+            { variants: { size: 'md', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
+            { variants: { size: 'lg', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
         ],
         defaultVariants: {
             size: 'md',

@@ -1,4 +1,4 @@
-import { useState, type ComponentProps } from 'react'
+import { useState, type ComponentProps, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
@@ -42,13 +42,14 @@ const GROUPED_OPTIONS = [
     },
 ]
 
-type SelectPlaygroundArgs = ComponentProps<typeof SelectField> & {
+type SelectPlaygroundArgs = Omit<ComponentProps<typeof SelectField>, 'options'> & {
+    options?: ComponentProps<typeof SelectField>['options']
     optionsType?: 'flat' | 'grouped'
 }
 
 const meta = {
     title: 'Forms/Select',
-    component: SelectField,
+    component: SelectField as ComponentType<SelectPlaygroundArgs>,
     parameters: {
         layout: 'centered',
         docs: {
@@ -156,6 +157,7 @@ const [value, setValue] = useState('')
         required: false,
         listboxAriaLabel: 'Fruits',
         optionsType: 'flat',
+        width: '300px',
     },
 } satisfies Meta<SelectPlaygroundArgs>
 

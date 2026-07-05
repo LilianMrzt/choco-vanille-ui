@@ -100,6 +100,13 @@ const [theme, setTheme] = useState('system')
         labelTwo: 'Dark',
         labelThree: 'System',
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '300px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
 
 export default meta

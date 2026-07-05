@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { type ComponentType, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 import type { DateRange } from 'react-day-picker'
@@ -8,9 +8,17 @@ import { md } from '@stories/utils/markdown'
 
 const MODES = ['single', 'multiple', 'range'] as const
 
+type CalendarArgs = {
+    mode?: (typeof MODES)[number]
+    showOutsideDays?: boolean
+    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+    startYear?: number
+    endYear?: number
+}
+
 const meta = {
     title: 'Forms/Calendar',
-    component: Calendar,
+    component: Calendar as ComponentType<CalendarArgs>,
     parameters: {
         layout: 'centered',
         docs: {
@@ -61,7 +69,14 @@ const [range, setRange] = useState<DateRange>()
         showOutsideDays: true,
         weekStartsOn: 1,
     },
-} satisfies Meta<typeof Calendar>
+    decorators: [
+        (Story) => (
+            <div style={{ width: '300px' }}>
+                <Story />
+            </div>
+        ),
+    ],
+} satisfies Meta<CalendarArgs>
 
 export default meta
 
@@ -76,7 +91,7 @@ export const Playground: Story = {
             },
         },
     },
-    render: ({ mode, ...args }) => {
+    render: ({ mode, ...args }: CalendarArgs) => {
         const [single, setSingle] = useState<Date | undefined>()
         const [multiple, setMultiple] = useState<Date[] | undefined>()
         const [range, setRange] = useState<DateRange | undefined>()

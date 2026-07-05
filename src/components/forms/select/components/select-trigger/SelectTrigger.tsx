@@ -2,11 +2,12 @@ import * as RadixSelect from '@radix-ui/react-select'
 import { useRef, type FC, type MouseEventHandler } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { Box } from '@components/layout/box'
+import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import {
-    TextFieldEndAction,
-    TextFieldStartIcon,
-} from '@components/forms/text-field/components'
-import { SELECT_TRIGGER_STYLES } from '@components/forms/select/components/select-trigger/SelectTrigger.css.ts'
+    SELECT_TRIGGER_STYLES,
+    SELECT_TRIGGER_END_ICON,
+} from '@components/forms/select/components/select-trigger/SelectTrigger.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
 
@@ -76,12 +77,13 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
             {children ?? (
                 <RadixSelect.Value placeholder={placeholder} />
             )}
-            <TextFieldEndAction>
+            <Box className={SELECT_TRIGGER_END_ICON}>
                 <Icon
                     icon={'mdi:chevron-down'}
                     size={'md'}
+                    color={'mutedForeground'}
                 />
-            </TextFieldEndAction>
+            </Box>
         </RadixSelect.Trigger>
     )
 }

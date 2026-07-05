@@ -57,6 +57,13 @@ const [accepted, setAccepted] = useState(false)
     args: {
         label: 'Accept terms and conditions',
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '300px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 } satisfies Meta<typeof Checkbox>
 
 export default meta

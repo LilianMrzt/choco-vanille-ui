@@ -75,6 +75,7 @@ const [date, setDate] = useState<Date | undefined>()
         disabled: false,
         required: false,
         calendarAriaLabel: 'Calendar',
+        width: '300px',
     },
 } satisfies Meta<ComponentProps<typeof DatePicker> & { width?: string }>
 
