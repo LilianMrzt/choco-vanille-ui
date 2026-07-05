@@ -1,0 +1,8 @@
+export { default as DialogBody } from '@components/overlay/dialog/components/dialog-body/DialogBody.tsx'
+export { default as DialogClose } from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
+export { default as DialogContent } from '@components/overlay/dialog/components/dialog-content/DialogContent.tsx'
+export { default as DialogDescription } from '@components/overlay/dialog/components/dialog-description/DialogDescription.tsx'
+export { default as DialogFooter } from '@components/overlay/dialog/components/dialog-footer/DialogFooter.tsx'
+export { default as DialogHeader } from '@components/overlay/dialog/components/dialog-header/DialogHeader.tsx'
+export { default as DialogTitle } from '@components/overlay/dialog/components/dialog-title/DialogTitle.tsx'
+export { default as DialogTrigger } from '@components/overlay/dialog/components/dialog-trigger/DialogTrigger.tsx'
