@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Tabs } from '@/components/navigation/tabs'
+import type { TabsVariant } from '@components/navigation/tabs'
 import { md } from '@stories/utils/markdown'
 
-const meta = {
+type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
+  listVariant?: TabsVariant;
+  billingDisabled?: boolean;
+};
+
+const VARIANTS: TabsVariant[] = ['default', 'pills']
+
+const meta: Meta<TabsPlaygroundArgs> = {
     title: 'Navigation/Tabs',
     component: Tabs,
     parameters: {
@@ -16,10 +24,8 @@ const meta = {
 <!--suppress HtmlUnknownAttribute -->
 
 A styled tab interface built on top of \`@radix-ui/react-tabs\`.
-
-Composes \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
-Supports controlled (\`value\` + \`onValueChange\`) and uncontrolled (\`defaultValue\`) modes,
-disabled triggers, and keyboard navigation.
+Use it to switch between related panels of content without leaving the page.
+Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 
 **Usage**
 
@@ -34,15 +40,6 @@ disabled triggers, and keyboard navigation.
 </Tabs>
 ~~~
 
-**Sub-components**
-
-| Sub-component    | Description                                              |
-| ---------------- | -------------------------------------------------------- |
-| \`Tabs\`          | Root context provider that manages the active tab state. |
-| \`Tabs.List\`     | Container for tab triggers. Requires an accessible name. |
-| \`Tabs.Trigger\`  | Activates its associated tab panel.                      |
-| \`Tabs.Content\`  | Panel shown when its trigger is active.                  |
-
 **Accessibility**
 
 | Prop / Attribute                 | Required    | Type      | Notes                                                   |
@@ -50,10 +47,19 @@ disabled triggers, and keyboard navigation.
 | \`aria-label\` / \`aria-labelledby\` | Yes         | \`string\`  | Required on \`Tabs.List\` to describe the tab set.        |
 | \`value\`                          | Conditional | \`string\`  | Controlled active tab value; pair with \`onValueChange\`. |
 | \`defaultValue\`                   | Conditional | \`string\`  | Uncontrolled initial active tab value.                  |
-| \`disabled\`                       | No          | \`boolean\` | Prevents a trigger from being activated.                |
+| \`disabled\` on \`Tabs.Trigger\`     | No          | \`boolean\` | Prevents a trigger from being activated.                |
 
 - Keyboard: \`ArrowLeft\` / \`ArrowRight\` moves focus between tabs; \`Home\` / \`End\` jump to first / last tab; \`Space\` / \`Enter\` activates the focused tab.
 - Active state is exposed to assistive technology via Radix's built-in ARIA semantics.
+
+**Sub-components**
+
+| Sub-component  | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| \`Tabs\`         | Root context provider that manages the active tab state. |
+| \`Tabs.List\`    | Container for tab triggers. Requires an accessible name. Accepts a \`variant\`. |
+| \`Tabs.Trigger\` | Activates its associated tab panel.                      |
+| \`Tabs.Content\` | Panel shown when its trigger is active.                  |
         `,
             },
         },
@@ -69,11 +75,22 @@ disabled triggers, and keyboard navigation.
             control: 'select',
             options: ['automatic', 'manual'],
         },
+        listVariant: {
+            control: 'select',
+            options: VARIANTS,
+            table: { category: 'Tabs.List' },
+        },
+        billingDisabled: {
+            control: 'boolean',
+            table: { category: 'Tabs.Trigger' },
+        },
     },
     args: {
         defaultValue: 'account',
         orientation: 'horizontal',
         activationMode: 'automatic',
+        listVariant: 'default',
+        billingDisabled: true,
     },
     decorators: [
         (Story) => (
@@ -82,7 +99,7 @@ disabled triggers, and keyboard navigation.
             </div>
         ),
     ],
-} satisfies Meta<typeof Tabs>
+}
 
 export default meta
 
@@ -93,11 +110,11 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with orientation and activation mode.',
+          'Interactive playground — use the Controls panel to experiment with orientation, activation mode, the list variant, and the disabled state of the Billing trigger.',
             },
         },
     },
-    render: (args) => {
+    render: ({ listVariant, billingDisabled, ...args }) => {
         const [value, setValue] = useState(args.defaultValue as string)
 
         return (
@@ -106,12 +123,15 @@ export const Playground: Story = {
                 value={value}
                 onValueChange={setValue}
             >
-                <Tabs.List aria-label={'User settings'}>
+                <Tabs.List
+                    variant={listVariant}
+                    aria-label={'User settings'}
+                >
                     <Tabs.Trigger value={'account'}>Account</Tabs.Trigger>
                     <Tabs.Trigger value={'password'}>Password</Tabs.Trigger>
                     <Tabs.Trigger
                         value={'billing'}
-                        disabled
+                        disabled={billingDisabled}
                     >
                         Billing
                     </Tabs.Trigger>
@@ -132,6 +152,7 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         const accountTab = canvas.getByRole('tab', { name: 'Account' })
         const passwordTab = canvas.getByRole('tab', { name: 'Password' })
+        const billingTab = canvas.getByRole('tab', { name: 'Billing' })
 
         await expect(accountTab).toBeInTheDocument()
         await expect(accountTab).toHaveAttribute('data-state', 'active')
@@ -142,52 +163,9 @@ export const Playground: Story = {
         await expect(
             canvas.getByText('Update your password and security settings.'),
         ).toBeInTheDocument()
-    },
-}
 
-export const Uncontrolled: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Tabs manage their own state using `defaultValue`.',
-            },
-        },
+        await expect(billingTab).toHaveAttribute('data-disabled')
+        await userEvent.click(billingTab)
+        await expect(passwordTab).toHaveAttribute('data-state', 'active')
     },
-    render: () => (
-        <Tabs defaultValue={'password'}>
-            <Tabs.List aria-label={'Uncontrolled tabs'}>
-                <Tabs.Trigger value={'account'}>Account</Tabs.Trigger>
-                <Tabs.Trigger value={'password'}>Password</Tabs.Trigger>
-            </Tabs.List>
-            <Tabs.Content value={'account'}>Account settings</Tabs.Content>
-            <Tabs.Content value={'password'}>Password settings</Tabs.Content>
-        </Tabs>
-    ),
-}
-
-export const DisabledTrigger: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'A disabled trigger cannot be activated by click or keyboard.',
-            },
-        },
-    },
-    render: () => (
-        <Tabs defaultValue={'account'}>
-            <Tabs.List aria-label={'Tabs with disabled item'}>
-                <Tabs.Trigger value={'account'}>Account</Tabs.Trigger>
-                <Tabs.Trigger value={'password'}>Password</Tabs.Trigger>
-                <Tabs.Trigger
-                    value={'billing'}
-                    disabled
-                >
-                    Billing
-                </Tabs.Trigger>
-            </Tabs.List>
-            <Tabs.Content value={'account'}>Account settings</Tabs.Content>
-            <Tabs.Content value={'password'}>Password settings</Tabs.Content>
-            <Tabs.Content value={'billing'}>Billing settings</Tabs.Content>
-        </Tabs>
-    ),
 }
