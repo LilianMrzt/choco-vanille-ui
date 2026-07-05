@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css'
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
@@ -101,5 +102,14 @@ export const TABS_TRIGGER_STYLES = {
         },
     }),
 }
+
+export const tabsTriggerLabel = style({
+    fontWeight: vars.fontWeight.medium,
+    selectors: {
+        '[data-state="active"] &': {
+            fontWeight: vars.fontWeight.semibold,
+        },
+    },
+})
 
 export type TabsTriggerRecipeVariants = NonNullable<RecipeVariants<typeof TABS_TRIGGER_STYLES.recipe>>

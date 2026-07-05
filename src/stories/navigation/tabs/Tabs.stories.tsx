@@ -8,7 +8,11 @@ import { md } from '@stories/utils/markdown'
 
 type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
   listVariant?: TabsVariant;
+  listBordered?: boolean;
   billingDisabled?: boolean;
+  billingWidth?: string;
+  billingStartIcon?: string;
+  billingEndIcon?: string;
 };
 
 const VARIANTS: TabsVariant[] = ['default', 'pills']
@@ -32,8 +36,8 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 ~~~tsx
 <Tabs defaultValue="account">
   <Tabs.List aria-label="User settings">
-    <Tabs.Trigger value="account">Account</Tabs.Trigger>
-    <Tabs.Trigger value="password">Password</Tabs.Trigger>
+    <Tabs.Trigger value="account" label="Account" />
+    <Tabs.Trigger value="password" label="Password" />
   </Tabs.List>
   <Tabs.Content value="account">Account settings</Tabs.Content>
   <Tabs.Content value="password">Password settings</Tabs.Content>
@@ -48,6 +52,9 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 | \`value\`                          | Conditional | \`string\`  | Controlled active tab value; pair with \`onValueChange\`. |
 | \`defaultValue\`                   | Conditional | \`string\`  | Uncontrolled initial active tab value.                  |
 | \`disabled\` on \`Tabs.Trigger\`     | No          | \`boolean\` | Prevents a trigger from being activated.                |
+| \`bordered\` on \`Tabs.List\`       | No          | \`boolean\` | Shows a bottom divider under the list (\`default\` variant only). |
+| \`width\` on \`Tabs.Trigger\`       | No          | \`string\`  | Overrides the trigger's default content-based width.    |
+| \`startIcon\` / \`endIcon\` on \`Tabs.Trigger\` | No | \`string\` | Iconify icon name rendered before/after the label. |
 
 - Keyboard: \`ArrowLeft\` / \`ArrowRight\` moves focus between tabs; \`Home\` / \`End\` jump to first / last tab; \`Space\` / \`Enter\` activates the focused tab.
 - Active state is exposed to assistive technology via Radix's built-in ARIA semantics.
@@ -80,8 +87,24 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
             options: VARIANTS,
             table: { category: 'Tabs.List' },
         },
+        listBordered: {
+            control: 'boolean',
+            table: { category: 'Tabs.List' },
+        },
         billingDisabled: {
             control: 'boolean',
+            table: { category: 'Tabs.Trigger' },
+        },
+        billingWidth: {
+            control: 'text',
+            table: { category: 'Tabs.Trigger' },
+        },
+        billingStartIcon: {
+            control: 'text',
+            table: { category: 'Tabs.Trigger' },
+        },
+        billingEndIcon: {
+            control: 'text',
             table: { category: 'Tabs.Trigger' },
         },
     },
@@ -90,7 +113,11 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
         orientation: 'horizontal',
         activationMode: 'automatic',
         listVariant: 'default',
+        listBordered: false,
         billingDisabled: true,
+        billingWidth: '',
+        billingStartIcon: 'mdi:credit-card-outline',
+        billingEndIcon: '',
     },
     decorators: [
         (Story) => (
@@ -110,11 +137,11 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with orientation, activation mode, the list variant, and the disabled state of the Billing trigger.',
+          'Interactive playground — use the Controls panel to experiment with orientation, activation mode, the list variant, its bottom divider, and the Billing trigger\'s disabled state, width, and icons.',
             },
         },
     },
-    render: ({ listVariant, billingDisabled, ...args }) => {
+    render: ({ listVariant, listBordered, billingDisabled, billingWidth, billingStartIcon, billingEndIcon, ...args }) => {
         const [value, setValue] = useState(args.defaultValue as string)
 
         return (
@@ -125,16 +152,25 @@ export const Playground: Story = {
             >
                 <Tabs.List
                     variant={listVariant}
+                    bordered={listBordered}
                     aria-label={'User settings'}
                 >
-                    <Tabs.Trigger value={'account'}>Account</Tabs.Trigger>
-                    <Tabs.Trigger value={'password'}>Password</Tabs.Trigger>
+                    <Tabs.Trigger
+                        value={'account'}
+                        label={'Account'}
+                    />
+                    <Tabs.Trigger
+                        value={'password'}
+                        label={'Password'}
+                    />
                     <Tabs.Trigger
                         value={'billing'}
+                        label={'Billing'}
                         disabled={billingDisabled}
-                    >
-                        Billing
-                    </Tabs.Trigger>
+                        width={billingWidth || undefined}
+                        startIcon={billingStartIcon || undefined}
+                        endIcon={billingEndIcon || undefined}
+                    />
                 </Tabs.List>
                 <Tabs.Content value={'account'}>
                     <p>Manage your account details and preferences.</p>

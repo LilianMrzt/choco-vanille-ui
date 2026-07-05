@@ -16,8 +16,8 @@ import type { TabsCompound } from '@components/navigation/tabs/types'
  * ```tsx
  * <Tabs defaultValue="account">
  *   <Tabs.List aria-label="User settings">
- *     <Tabs.Trigger value="account">Account</Tabs.Trigger>
- *     <Tabs.Trigger value="password">Password</Tabs.Trigger>
+ *     <Tabs.Trigger value="account" label="Account" />
+ *     <Tabs.Trigger value="password" label="Password" />
  *   </Tabs.List>
  *   <Tabs.Content value="account">Account settings</Tabs.Content>
  *   <Tabs.Content value="password">Password settings</Tabs.Content>

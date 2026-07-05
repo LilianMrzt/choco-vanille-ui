@@ -8,11 +8,9 @@ import { Tabs } from '@components/navigation/tabs'
 const TestTabs = (props: React.ComponentProps<typeof Tabs>) => (
     <Tabs {...props}>
         <Tabs.List aria-label="User settings">
-            <Tabs.Trigger value="account">Account</Tabs.Trigger>
-            <Tabs.Trigger value="password">Password</Tabs.Trigger>
-            <Tabs.Trigger value="billing" disabled>
-        Billing
-            </Tabs.Trigger>
+            <Tabs.Trigger value="account" label="Account" />
+            <Tabs.Trigger value="password" label="Password" />
+            <Tabs.Trigger value="billing" label="Billing" disabled />
         </Tabs.List>
         <Tabs.Content value="account">Account settings content</Tabs.Content>
         <Tabs.Content value="password">Password settings content</Tabs.Content>
@@ -114,9 +112,7 @@ describe('Tabs', () => {
             render(
                 <Tabs defaultValue="account">
                     <Tabs.List>
-                        <Tabs.Trigger value="account" className="my-trigger">
-              Account
-                        </Tabs.Trigger>
+                        <Tabs.Trigger value="account" label="Account" className="my-trigger" />
                     </Tabs.List>
                 </Tabs>,
             )
@@ -146,9 +142,7 @@ describe('Tabs', () => {
             render(
                 <Tabs defaultValue="account">
                     <Tabs.List aria-label="User settings">
-                        <Tabs.Trigger ref={ref} value="account">
-                            Account
-                        </Tabs.Trigger>
+                        <Tabs.Trigger ref={ref} value="account" label="Account" />
                     </Tabs.List>
                 </Tabs>,
             )
