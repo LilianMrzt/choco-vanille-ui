@@ -7,10 +7,10 @@ import type { CardFooterProps } from '@components/layout/card/components/card-fo
 const CardFooter: FC<CardFooterProps> = ({ as = 'div', ...props }) => (
     <Flex
         as={as}
-        align={'center'}
+        alignItems={'center'}
         gap={'sm'}
-        p={'md'}
-        pt={'none'}
+        padding={'md'}
+        paddingTop={'none'}
         {...props}
     />
 )

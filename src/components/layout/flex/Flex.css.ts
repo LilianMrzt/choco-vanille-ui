@@ -11,20 +11,20 @@ export const FLEX_STYLES = {
                 true: { display: 'inline-flex' },
             },
 
-            direction: {
+            flexDirection: {
                 row: { flexDirection: 'row' },
                 column: { flexDirection: 'column' },
                 'row-reverse': { flexDirection: 'row-reverse' },
                 'column-reverse': { flexDirection: 'column-reverse' },
             },
 
-            wrap: {
+            flexWrap: {
                 nowrap: { flexWrap: 'nowrap' },
                 wrap: { flexWrap: 'wrap' },
                 'wrap-reverse': { flexWrap: 'wrap-reverse' },
             },
 
-            align: {
+            alignItems: {
                 start: { alignItems: 'flex-start' },
                 end: { alignItems: 'flex-end' },
                 center: { alignItems: 'center' },
@@ -32,7 +32,7 @@ export const FLEX_STYLES = {
                 baseline: { alignItems: 'baseline' },
             },
 
-            justify: {
+            justifyContent: {
                 start: { justifyContent: 'flex-start' },
                 end: { justifyContent: 'flex-end' },
                 center: { justifyContent: 'center' },
@@ -44,8 +44,8 @@ export const FLEX_STYLES = {
         },
 
         defaultVariants: {
-            direction: 'row',
-            align: 'center',
+            flexDirection: 'row',
+            alignItems: 'center',
         },
     }),
 }

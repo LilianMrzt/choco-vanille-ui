@@ -29,7 +29,7 @@ const DropdownMenuSubTrigger = ({
             {startIcon && (
                 <Flex
                     as={'span'}
-                    justify={'center'}
+                    justifyContent={'center'}
                     className={DROPDOWN_MENU_ITEM_STYLES.icon}
                     aria-hidden
                 >
@@ -46,7 +46,7 @@ const DropdownMenuSubTrigger = ({
             >{label}</Typography>
             <Flex
                 as={'span'}
-                justify={'center'}
+                justifyContent={'center'}
                 className={DROPDOWN_MENU_SUB_TRIGGER_STYLES.chevron}
                 aria-hidden
             >

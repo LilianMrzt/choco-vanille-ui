@@ -18,31 +18,31 @@ const Badge: FC<BadgeProps> = ({
     ref,
     // Box layout props — forwarded to the underlying Box.
     display,
-    w,
-    h,
+    width,
+    height,
     overflow,
     overflowX,
     overflowY,
     position,
-    radius = 'sm',
-    p,
-    px,
-    py,
-    pt,
-    pr,
-    pb,
-    pl,
-    m,
-    mx,
-    my,
-    mt,
-    mr,
-    mb,
-    ml,
+    borderRadius = 'sm',
+    padding,
+    paddingX,
+    paddingY,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    margin,
+    marginX,
+    marginY,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
     gap,
-    gapX,
-    gapY,
-    bg,
+    columnGap,
+    rowGap,
+    backgroundColor,
     ...props
 }) => {
     return (
@@ -50,31 +50,31 @@ const Badge: FC<BadgeProps> = ({
             as={'span'}
             ref={ref}
             display={display ?? 'inline-flex'}
-            w={w}
-            h={h}
+            width={width}
+            height={height}
             overflow={overflow}
             overflowX={overflowX}
             overflowY={overflowY}
             position={position}
-            radius={radius}
-            p={p}
-            px={px}
-            py={py}
-            pt={pt}
-            pr={pr}
-            pb={pb}
-            pl={pl}
-            m={m}
-            mx={mx}
-            my={my}
-            mt={mt}
-            mr={mr}
-            mb={mb}
-            ml={ml}
+            borderRadius={borderRadius}
+            padding={padding}
+            paddingX={paddingX}
+            paddingY={paddingY}
+            paddingTop={paddingTop}
+            paddingRight={paddingRight}
+            paddingBottom={paddingBottom}
+            paddingLeft={paddingLeft}
+            margin={margin}
+            marginX={marginX}
+            marginY={marginY}
+            marginTop={marginTop}
+            marginRight={marginRight}
+            marginBottom={marginBottom}
+            marginLeft={marginLeft}
             gap={gap}
-            gapX={gapX}
-            gapY={gapY}
-            bg={bg}
+            columnGap={columnGap}
+            rowGap={rowGap}
+            backgroundColor={backgroundColor}
             className={cn(BADGE_STYLES.recipe({ variant, color, size }), className)}
             {...props}
         >

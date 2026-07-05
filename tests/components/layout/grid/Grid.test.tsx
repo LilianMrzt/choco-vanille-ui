@@ -51,7 +51,7 @@ describe('Grid', () => {
         it('applies non-empty classes for autoRows variants', () => {
             const autoRows = ['auto', 'min', 'max', 'fr'] as const
             autoRows.forEach((value) => {
-                const { container } = render(<Grid autoRows={value}>content</Grid>)
+                const { container } = render(<Grid gridAutoRows={value}>content</Grid>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })
@@ -59,7 +59,7 @@ describe('Grid', () => {
         it('applies non-empty classes for flow variants', () => {
             const flows = ['row', 'column', 'dense', 'row-dense', 'column-dense'] as const
             flows.forEach((flow) => {
-                const { container } = render(<Grid flow={flow}>content</Grid>)
+                const { container } = render(<Grid gridAutoFlow={flow}>content</Grid>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })
@@ -67,7 +67,7 @@ describe('Grid', () => {
         it('applies non-empty classes for align variants', () => {
             const aligns = ['start', 'end', 'center', 'stretch', 'baseline'] as const
             aligns.forEach((align) => {
-                const { container } = render(<Grid align={align}>content</Grid>)
+                const { container } = render(<Grid alignItems={align}>content</Grid>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })

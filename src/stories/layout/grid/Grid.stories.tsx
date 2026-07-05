@@ -133,16 +133,16 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
     },
     argTypes: {
         columns: { control: 'select', options: COLUMNS },
-        autoRows: { control: 'select', options: AUTO_ROWS },
-        flow: { control: 'select', options: FLOW },
-        align: { control: 'select', options: ALIGN },
+        gridAutoRows: { control: 'select', options: AUTO_ROWS },
+        gridAutoFlow: { control: 'select', options: FLOW },
+        alignItems: { control: 'select', options: ALIGN },
         justifyItems: { control: 'select', options: JUSTIFY_ITEMS },
         justifyContent: { control: 'select', options: JUSTIFY_CONTENT },
         alignContent: { control: 'select', options: ALIGN_CONTENT },
         gap: { control: 'select', options: SPACING },
-        p: { control: 'select', options: SPACING },
-        radius: { control: 'select', options: ROUNDED },
-        bg: { control: 'select', options: BG },
+        padding: { control: 'select', options: SPACING },
+        borderRadius: { control: 'select', options: ROUNDED },
+        backgroundColor: { control: 'select', options: BG },
     },
     args: {
         columns: 3,
@@ -156,9 +156,9 @@ type Story = StoryObj<typeof meta>;
 
 const Cell = ({ label }: { label: string }) => (
     <Box
-        p={'md'}
-        radius={'sm'}
-        bg={'primarySubtle'}
+        padding={'md'}
+        borderRadius={'sm'}
+        backgroundColor={'primarySubtle'}
         style={{ fontSize: '0.875rem', textAlign: 'center' }}
     >
         {label}

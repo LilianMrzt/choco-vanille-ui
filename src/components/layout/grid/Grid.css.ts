@@ -25,7 +25,7 @@ export const GRID_STYLES = {
             },
 
             // Auto Rows
-            autoRows: {
+            gridAutoRows: {
                 auto: { gridAutoRows: 'auto' },
                 min: { gridAutoRows: 'min-content' },
                 max: { gridAutoRows: 'max-content' },
@@ -33,7 +33,7 @@ export const GRID_STYLES = {
             },
 
             // Auto Flow
-            flow: {
+            gridAutoFlow: {
                 row: { gridAutoFlow: 'row' },
                 column: { gridAutoFlow: 'column' },
                 dense: { gridAutoFlow: 'dense' },
@@ -42,7 +42,7 @@ export const GRID_STYLES = {
             },
 
             // Align Items
-            align: {
+            alignItems: {
                 start: { alignItems: 'start' },
                 end: { alignItems: 'end' },
                 center: { alignItems: 'center' },

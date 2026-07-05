@@ -22,7 +22,7 @@ export const BOX_STYLES = {
             },
 
             // Width
-            w: {
+            width: {
                 full: { width: '100%' },
                 screen: { width: '100vw' },
                 fit: { width: 'fit-content' },
@@ -32,7 +32,7 @@ export const BOX_STYLES = {
             },
 
             // Height
-            h: {
+            height: {
                 full: { height: '100%' },
                 screen: { height: '100vh' },
                 fit: { height: 'fit-content' },
@@ -76,7 +76,7 @@ export const BOX_STYLES = {
             },
 
             // Border Radius
-            radius: {
+            borderRadius: {
                 none: { borderRadius: vars.radius.none },
                 xs: { borderRadius: vars.radius.xs },
                 sm: { borderRadius: vars.radius.sm },
@@ -88,7 +88,7 @@ export const BOX_STYLES = {
             },
 
             // Padding
-            p: {
+            padding: {
                 none: { padding: vars.space.none },
                 px: { padding: vars.space.px },
                 xxs: { padding: vars.space.xxs },
@@ -104,7 +104,7 @@ export const BOX_STYLES = {
                 '5xl': { padding: vars.space['5xl'] },
             },
 
-            px: {
+            paddingX: {
                 none: { paddingInline: vars.space.none },
                 px: { paddingInline: vars.space.px },
                 xxs: { paddingInline: vars.space.xxs },
@@ -120,7 +120,7 @@ export const BOX_STYLES = {
                 '5xl': { paddingInline: vars.space['5xl'] },
             },
 
-            py: {
+            paddingY: {
                 none: { paddingBlock: vars.space.none },
                 px: { paddingBlock: vars.space.px },
                 xxs: { paddingBlock: vars.space.xxs },
@@ -136,7 +136,7 @@ export const BOX_STYLES = {
                 '5xl': { paddingBlock: vars.space['5xl'] },
             },
 
-            pt: {
+            paddingTop: {
                 none: { paddingTop: vars.space.none },
                 px: { paddingTop: vars.space.px },
                 xxs: { paddingTop: vars.space.xxs },
@@ -152,7 +152,7 @@ export const BOX_STYLES = {
                 '5xl': { paddingTop: vars.space['5xl'] },
             },
 
-            pr: {
+            paddingRight: {
                 none: { paddingRight: vars.space.none },
                 px: { paddingRight: vars.space.px },
                 xxs: { paddingRight: vars.space.xxs },
@@ -168,7 +168,7 @@ export const BOX_STYLES = {
                 '5xl': { paddingRight: vars.space['5xl'] },
             },
 
-            pb: {
+            paddingBottom: {
                 none: { paddingBottom: vars.space.none },
                 px: { paddingBottom: vars.space.px },
                 xxs: { paddingBottom: vars.space.xxs },
@@ -184,7 +184,7 @@ export const BOX_STYLES = {
                 '5xl': { paddingBottom: vars.space['5xl'] },
             },
 
-            pl: {
+            paddingLeft: {
                 none: { paddingLeft: vars.space.none },
                 px: { paddingLeft: vars.space.px },
                 xxs: { paddingLeft: vars.space.xxs },
@@ -201,7 +201,7 @@ export const BOX_STYLES = {
             },
 
             // Margin
-            m: {
+            margin: {
                 auto: { margin: 'auto' },
                 none: { margin: vars.space.none },
                 px: { margin: vars.space.px },
@@ -218,7 +218,7 @@ export const BOX_STYLES = {
                 '5xl': { margin: vars.space['5xl'] },
             },
 
-            mx: {
+            marginX: {
                 auto: { marginInline: 'auto' },
                 none: { marginInline: vars.space.none },
                 px: { marginInline: vars.space.px },
@@ -235,7 +235,7 @@ export const BOX_STYLES = {
                 '5xl': { marginInline: vars.space['5xl'] },
             },
 
-            my: {
+            marginY: {
                 auto: { marginBlock: 'auto' },
                 none: { marginBlock: vars.space.none },
                 px: { marginBlock: vars.space.px },
@@ -252,7 +252,7 @@ export const BOX_STYLES = {
                 '5xl': { marginBlock: vars.space['5xl'] },
             },
 
-            mt: {
+            marginTop: {
                 auto: { marginTop: 'auto' },
                 none: { marginTop: vars.space.none },
                 px: { marginTop: vars.space.px },
@@ -269,7 +269,7 @@ export const BOX_STYLES = {
                 '5xl': { marginTop: vars.space['5xl'] },
             },
 
-            mr: {
+            marginRight: {
                 auto: { marginRight: 'auto' },
                 none: { marginRight: vars.space.none },
                 px: { marginRight: vars.space.px },
@@ -286,7 +286,7 @@ export const BOX_STYLES = {
                 '5xl': { marginRight: vars.space['5xl'] },
             },
 
-            mb: {
+            marginBottom: {
                 auto: { marginBottom: 'auto' },
                 none: { marginBottom: vars.space.none },
                 px: { marginBottom: vars.space.px },
@@ -303,7 +303,7 @@ export const BOX_STYLES = {
                 '5xl': { marginBottom: vars.space['5xl'] },
             },
 
-            ml: {
+            marginLeft: {
                 auto: { marginLeft: 'auto' },
                 none: { marginLeft: vars.space.none },
                 px: { marginLeft: vars.space.px },
@@ -337,7 +337,7 @@ export const BOX_STYLES = {
                 '5xl': { gap: vars.space['5xl'] },
             },
 
-            gapX: {
+            columnGap: {
                 none: { columnGap: vars.space.none },
                 px: { columnGap: vars.space.px },
                 xxs: { columnGap: vars.space.xxs },
@@ -353,7 +353,7 @@ export const BOX_STYLES = {
                 '5xl': { columnGap: vars.space['5xl'] },
             },
 
-            gapY: {
+            rowGap: {
                 none: { rowGap: vars.space.none },
                 px: { rowGap: vars.space.px },
                 xxs: { rowGap: vars.space.xxs },
@@ -370,7 +370,7 @@ export const BOX_STYLES = {
             },
 
             // Background Color
-            bg: {
+            backgroundColor: {
                 transparent: { background: 'transparent' },
                 background: { background: vars.color.background },
                 card: { background: vars.color.card },

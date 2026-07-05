@@ -51,8 +51,8 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElemen
 
     return (
         <Flex
-            align={'center'}
-            justify={'between'}
+            alignItems={'center'}
+            justifyContent={'between'}
             gap={'xs'}
             className={CALENDAR_CAPTION_STYLES.monthCaption}
         >
@@ -67,8 +67,8 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElemen
             />
 
             <Flex
-                align={'center'}
-                justify={'center'}
+                alignItems={'center'}
+                justifyContent={'center'}
                 gap={'xxs'}
                 className={CALENDAR_CAPTION_STYLES.captionCenter}
             >

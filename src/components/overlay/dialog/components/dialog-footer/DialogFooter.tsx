@@ -4,14 +4,14 @@ import { Flex } from '@components/layout/flex'
 import type { DialogFooterProps } from '@components/overlay/dialog/components/dialog-footer/types/DialogFooter.props.ts'
 
 /** Footer area of a `Dialog` — a flex row for action buttons. */
-const DialogFooter: FC<DialogFooterProps> = ({ as = 'div', justify = 'end', gap = 'sm', p = 'lg', pt = 'none', ...props }) => (
+const DialogFooter: FC<DialogFooterProps> = ({ as = 'div', justifyContent = 'end', gap = 'sm', padding = 'lg', paddingTop = 'none', ...props }) => (
     <Flex
         as={as}
-        align={'center'}
-        justify={justify}
+        alignItems={'center'}
+        justifyContent={justifyContent}
         gap={gap}
-        p={p}
-        pt={pt}
+        padding={padding}
+        paddingTop={paddingTop}
         {...props}
     />
 )

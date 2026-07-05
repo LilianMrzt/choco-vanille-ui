@@ -80,13 +80,13 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
 
 \`\`\`tsx
 // Horizontal row with centered items and a gap
-<Flex align="center" gap="md">
+<Flex alignItems="center" gap="md">
   <Avatar />
   <Typography variant="span">Jane Doe</Typography>
 </Flex>
 
 // Vertical column with stretch alignment
-<Flex direction="column" align="stretch" gap="lg">
+<Flex flexDirection="column" alignItems="stretch" gap="lg">
   <Card />
   <Card />
 </Flex>
@@ -105,19 +105,19 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
         },
     },
     argTypes: {
-        direction: { control: 'select', options: DIRECTION },
-        wrap: { control: 'select', options: WRAP },
-        align: { control: 'select', options: ALIGN },
-        justify: { control: 'select', options: JUSTIFY },
+        flexDirection: { control: 'select', options: DIRECTION },
+        flexWrap: { control: 'select', options: WRAP },
+        alignItems: { control: 'select', options: ALIGN },
+        justifyContent: { control: 'select', options: JUSTIFY },
         inline: { control: 'boolean' },
         gap: { control: 'select', options: SPACING },
-        p: { control: 'select', options: SPACING },
-        radius: { control: 'select', options: ROUNDED },
-        bg: { control: 'select', options: BG },
+        padding: { control: 'select', options: SPACING },
+        borderRadius: { control: 'select', options: ROUNDED },
+        backgroundColor: { control: 'select', options: BG },
     },
     args: {
-        direction: 'row',
-        align: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
         gap: 'sm',
     },
 } satisfies Meta<typeof Flex>
@@ -128,9 +128,9 @@ type Story = StoryObj<typeof meta>;
 
 const Item = ({ label }: { label: string }) => (
     <Box
-        p={'md'}
-        radius={'sm'}
-        bg={'primarySubtle'}
+        padding={'md'}
+        borderRadius={'sm'}
+        backgroundColor={'primarySubtle'}
         style={{ fontSize: '0.875rem' }}
     >
         {label}

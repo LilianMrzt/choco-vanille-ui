@@ -10,7 +10,7 @@ import type { VarTableProps } from '@stories/overview/theme/css-variables/compon
 const ValueCell = ({ value, showSwatch }: { value: string; showSwatch?: boolean }) => (
     <td className={td}>
         <Flex
-            align={'center'}
+            alignItems={'center'}
             gap={'xs'}
         >
             {showSwatch && (
@@ -39,7 +39,7 @@ export const VarTable = ({ rows, showSwatch }: VarTableProps) => {
     return (
         <Box
             overflowX={'auto'}
-            mb={'2xl'}
+            marginBottom={'2xl'}
         >
             <table className={table}>
                 <thead>

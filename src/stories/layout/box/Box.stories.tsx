@@ -111,12 +111,12 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 
 \`\`\`tsx
 // Default div with padding, background and rounded corners
-<Box p="lg" bg="card" radius="md">
+<Box padding="lg" backgroundColor="card" borderRadius="md">
   Content
 </Box>
 
 // Polymorphic: rendered as a <section> with a muted background
-<Box as="section" p="xl" bg="muted">
+<Box as="section" padding="xl" backgroundColor="muted">
   <Typography variant="h2">Section title</Typography>
 </Box>
 \`\`\`
@@ -136,24 +136,24 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
     argTypes: {
         as: { control: 'select', options: BOX_VARIANTS },
         display: { control: 'select', options: DISPLAY },
-        p: { control: 'select', options: SPACING },
-        px: { control: 'select', options: SPACING },
-        py: { control: 'select', options: SPACING },
-        m: { control: 'select', options: [...SPACING, 'auto'] },
+        padding: { control: 'select', options: SPACING },
+        paddingX: { control: 'select', options: SPACING },
+        paddingY: { control: 'select', options: SPACING },
+        margin: { control: 'select', options: [...SPACING, 'auto'] },
         gap: { control: 'select', options: SPACING },
-        radius: { control: 'select', options: ROUNDED },
-        bg: { control: 'select', options: BG },
-        w: { control: 'select', options: WH },
-        h: { control: 'select', options: WH },
+        borderRadius: { control: 'select', options: ROUNDED },
+        backgroundColor: { control: 'select', options: BG },
+        width: { control: 'select', options: WH },
+        height: { control: 'select', options: WH },
         overflow: { control: 'select', options: OVERFLOW },
         position: { control: 'select', options: POSITION },
     },
     args: {
         children: 'Box content',
         as: 'div',
-        p: 'lg',
-        bg: 'muted',
-        radius: 'md',
+        padding: 'lg',
+        backgroundColor: 'muted',
+        borderRadius: 'md',
     },
 } satisfies Meta<typeof Box>
 

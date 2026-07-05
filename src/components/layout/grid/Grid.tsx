@@ -7,9 +7,9 @@ import Box from '@components/layout/box/Box.tsx'
 
 const Grid: FC<GridProps> = ({
     columns,
-    autoRows,
-    flow,
-    align,
+    gridAutoRows,
+    gridAutoFlow,
+    alignItems,
     justifyItems,
     alignContent,
     justifyContent,
@@ -21,7 +21,15 @@ const Grid: FC<GridProps> = ({
         <Box
             gap={gap}
             className={cn(
-                GRID_STYLES.recipe({ columns, autoRows, flow, align, justifyItems, alignContent, justifyContent }),
+                GRID_STYLES.recipe({
+                    columns,
+                    gridAutoRows,
+                    gridAutoFlow,
+                    alignItems,
+                    justifyItems,
+                    alignContent,
+                    justifyContent,
+                }),
                 className,
             )}
             {...props}

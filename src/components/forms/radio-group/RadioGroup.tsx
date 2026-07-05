@@ -22,9 +22,9 @@ const RadioGroup = (({ className, children, ...props }) => (
         {...props}
     >
         <Flex
-            direction={'column'}
+            flexDirection={'column'}
             gap={'sm'}
-            align={'start'}
+            alignItems={'start'}
             className={className}
         >
             {children}

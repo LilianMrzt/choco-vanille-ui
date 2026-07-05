@@ -36,19 +36,19 @@ const CardHeader: FC<CardHeaderProps> = ({
 }) => (
     <Flex
         as={Element}
-        direction={'row'}
-        align={'start'}
-        justify={'between'}
+        flexDirection={'row'}
+        alignItems={'start'}
+        justifyContent={'between'}
         gap={'md'}
-        p={'md'}
-        pb={'none'}
+        padding={'md'}
+        paddingBottom={'none'}
         className={className}
         {...props}
     >
         {(title || description) && (
             <Flex
-                direction={'column'}
-                align={'start'}
+                flexDirection={'column'}
+                alignItems={'start'}
                 gap={'xs'}
                 className={CARD_HEADER_STYLES.content}
             >
@@ -82,7 +82,7 @@ const CardHeader: FC<CardHeaderProps> = ({
 
         {actions && (
             <Flex
-                align={'center'}
+                alignItems={'center'}
                 gap={'xs'}
                 className={CARD_HEADER_STYLES.actions}
             >

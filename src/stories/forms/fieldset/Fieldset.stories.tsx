@@ -165,9 +165,9 @@ export const CheckboxGroup: Story = {
             <Fieldset>
                 <Legend>Notification preferences</Legend>
                 <Flex
-                    direction={'column'}
+                    flexDirection={'column'}
                     gap={'sm'}
-                    align={'start'}
+                    alignItems={'start'}
                 >
                     <Checkbox
                         label={'Email'}

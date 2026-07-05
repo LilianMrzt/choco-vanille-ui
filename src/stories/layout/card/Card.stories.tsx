@@ -16,7 +16,7 @@ type CardPlaygroundArgs = ComponentProps<typeof Card> & {
   description?: string;
   descriptionFontSize?: TypographyProps['fontSize'];
   bodyAs?: 'div' | 'section';
-  bodyPadding?: BoxRecipeVariants['p'];
+  bodyPadding?: BoxRecipeVariants['padding'];
   footerAs?: 'div' | 'footer';
   showFooter?: boolean;
   footerActionLabel?: string;
@@ -124,17 +124,17 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
             options: ['div', 'section', 'article', 'aside'],
             table: { category: 'Card' },
         },
-        radius: {
+        borderRadius: {
             control: 'select',
             options: ROUNDED,
             table: { category: 'Card' },
         },
-        bg: {
+        backgroundColor: {
             control: 'select',
             options: BG_COLORS,
             table: { category: 'Card' },
         },
-        p: {
+        padding: {
             control: 'select',
             options: SPACING,
             table: { category: 'Card' },
@@ -221,7 +221,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     },
     args: {
         as: 'div',
-        radius: 'lg',
+        borderRadius: 'lg',
         headerAs: 'div',
         title: 'Account settings',
         titleAs: 'h3',
@@ -249,9 +249,9 @@ export const Playground: Story = {
     },
     render: ({
         as,
-        radius,
-        bg,
-        p,
+        borderRadius,
+        backgroundColor,
+        padding,
         headerAs,
         title,
         titleAs,
@@ -267,9 +267,9 @@ export const Playground: Story = {
     }) => (
         <Card
             as={as}
-            radius={radius}
-            bg={bg}
-            p={p}
+            borderRadius={borderRadius}
+            backgroundColor={backgroundColor}
+            padding={padding}
             style={{ width: '22rem' }}
         >
             <Card.Header
@@ -297,7 +297,7 @@ export const Playground: Story = {
             />
             <Card.Body
                 as={bodyAs}
-                p={bodyPadding}
+                padding={bodyPadding}
             >
                 <Typography
                     variant={'p'}

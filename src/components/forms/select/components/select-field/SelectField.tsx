@@ -58,10 +58,10 @@ const SelectField: FC<SelectFieldProps> = ({
 
     return (
         <Flex
-            direction={'column'}
+            flexDirection={'column'}
             gap={'xs'}
-            w={'full'}
-            align={'start'}
+            width={'full'}
+            alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
             className={className}
         >

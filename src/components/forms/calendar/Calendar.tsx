@@ -84,7 +84,7 @@ const Calendar: FC<CalendarProps> = ({
         >
             <Box className={cn(CALENDAR_ROOT_STYLES.root, className)}>
                 <Flex
-                    direction={'column'}
+                    flexDirection={'column'}
                     gap={'md'}
                 >
                     <CalendarCaption labels={captionLabels} />

@@ -29,19 +29,19 @@ const DialogHeader: FC<DialogHeaderProps> = ({
 }) => (
     <Flex
         as={Element}
-        direction={'row'}
-        align={'start'}
-        justify={'between'}
+        flexDirection={'row'}
+        alignItems={'start'}
+        justifyContent={'between'}
         gap={'md'}
-        p={'lg'}
-        pb={'none'}
+        padding={'lg'}
+        paddingBottom={'none'}
         className={className}
         {...props}
     >
         {(title || description) && (
             <Flex
-                direction={'column'}
-                align={'start'}
+                flexDirection={'column'}
+                alignItems={'start'}
                 gap={'xs'}
                 className={DIALOG_HEADER_STYLES.content}
             >
@@ -74,7 +74,7 @@ const DialogHeader: FC<DialogHeaderProps> = ({
 
         {actions ? (
             <Flex
-                align={'center'}
+                alignItems={'center'}
                 gap={'xs'}
                 className={DIALOG_HEADER_STYLES.actions}
             >
@@ -83,7 +83,7 @@ const DialogHeader: FC<DialogHeaderProps> = ({
         ) : (
             showCloseButton && (
                 <Flex
-                    align={'center'}
+                    alignItems={'center'}
                     className={DIALOG_HEADER_STYLES.actions}
                 >
                     <DialogClose asChild>

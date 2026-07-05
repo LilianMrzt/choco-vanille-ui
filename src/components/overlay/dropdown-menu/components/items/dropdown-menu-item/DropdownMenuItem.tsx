@@ -44,7 +44,7 @@ const DropdownMenuItem = ({
             {startIcon && (
                 <Flex
                     as={'span'}
-                    justify={'center'}
+                    justifyContent={'center'}
                     className={DROPDOWN_MENU_ITEM_STYLES.icon}
                     aria-hidden
                 >
@@ -65,7 +65,7 @@ const DropdownMenuItem = ({
             {endIcon && (
                 <Flex
                     as={'span'}
-                    justify={'center'}
+                    justifyContent={'center'}
                     className={DROPDOWN_MENU_ITEM_STYLES.icon}
                     aria-hidden
                 >

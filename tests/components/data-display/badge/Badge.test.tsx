@@ -138,12 +138,12 @@ describe('Badge', () => {
 
     describe('Box prop passthrough', () => {
         it('forwards radius prop to Box', () => {
-            const { container } = render(<Badge radius={'md'} label={'badge'} />)
+            const { container } = render(<Badge borderRadius={'md'} label={'badge'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
         it('forwards width prop to Box', () => {
-            const { container } = render(<Badge w={'fit'} label={'badge'} />)
+            const { container } = render(<Badge width={'fit'} label={'badge'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 

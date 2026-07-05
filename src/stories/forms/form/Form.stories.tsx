@@ -99,9 +99,9 @@ export const Playground: Story = {
                 }}
             >
                 <Flex
-                    direction={'column'}
+                    flexDirection={'column'}
                     gap={'md'}
-                    align={'start'}
+                    alignItems={'start'}
                 >
                     <TextField
                         label={'Email'}

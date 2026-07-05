@@ -43,7 +43,7 @@ describe('Flex', () => {
         it('applies non-empty classes for direction variants', () => {
             const directions = ['row', 'column', 'row-reverse', 'column-reverse'] as const
             directions.forEach((direction) => {
-                const { container } = render(<Flex direction={direction}>content</Flex>)
+                const { container } = render(<Flex flexDirection={direction}>content</Flex>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })
@@ -51,7 +51,7 @@ describe('Flex', () => {
         it('applies non-empty classes for align variants', () => {
             const aligns = ['start', 'end', 'center', 'stretch', 'baseline'] as const
             aligns.forEach((align) => {
-                const { container } = render(<Flex align={align}>content</Flex>)
+                const { container } = render(<Flex alignItems={align}>content</Flex>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })
@@ -59,7 +59,7 @@ describe('Flex', () => {
         it('applies non-empty classes for justify variants', () => {
             const justifies = ['start', 'end', 'center', 'between', 'around', 'evenly', 'stretch'] as const
             justifies.forEach((justify) => {
-                const { container } = render(<Flex justify={justify}>content</Flex>)
+                const { container } = render(<Flex justifyContent={justify}>content</Flex>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })
@@ -67,7 +67,7 @@ describe('Flex', () => {
         it('applies non-empty classes for wrap variants', () => {
             const wraps = ['nowrap', 'wrap', 'wrap-reverse'] as const
             wraps.forEach((wrap) => {
-                const { container } = render(<Flex wrap={wrap}>content</Flex>)
+                const { container } = render(<Flex flexWrap={wrap}>content</Flex>)
                 expect(getFirstChild(container).className.length).toBeGreaterThan(0)
             })
         })

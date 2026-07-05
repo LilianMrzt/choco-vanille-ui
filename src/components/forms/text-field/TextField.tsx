@@ -84,10 +84,10 @@ const TextField = ((props) => {
 
     return (
         <Flex
-            direction={'column'}
+            flexDirection={'column'}
             gap={'xs'}
-            w={'full'}
-            align={'start'}
+            width={'full'}
+            alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
         >
             {label && (
@@ -101,7 +101,7 @@ const TextField = ((props) => {
 
             <Flex
                 position={'relative'}
-                w={'full'}
+                width={'full'}
                 gap={'none'}
             >
                 {startIcon && (
