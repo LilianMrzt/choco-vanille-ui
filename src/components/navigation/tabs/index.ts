@@ -1,0 +1,8 @@
+export { default as Tabs } from '@components/navigation/tabs/Tabs.tsx'
+export { TABS_CONTENT_STYLES } from '@components/navigation/tabs/components/tabs-content/TabsContent.css.ts'
+export { TABS_LIST_STYLES } from '@components/navigation/tabs/components/tabs-list/TabsList.css.ts'
+export { TABS_TRIGGER_STYLES } from '@components/navigation/tabs/components/tabs-trigger/TabsTrigger.css.ts'
+export type { TabsProps } from '@components/navigation/tabs/types/Tabs.props.ts'
+export type { TabsContentProps } from '@components/navigation/tabs/components/tabs-content/types/TabsContent.props.ts'
+export type { TabsListProps } from '@components/navigation/tabs/components/tabs-list/types/TabsList.props.ts'
+export type { TabsTriggerProps } from '@components/navigation/tabs/components/tabs-trigger/types/TabsTrigger.props.ts'
