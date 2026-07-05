@@ -10,20 +10,20 @@ import type { HelperTextProps } from '@components/forms/_shared/components/helpe
  */
 const HelperText: FC<HelperTextProps> = ({
     id,
-    error = false,
+    hasError = false,
     role: roleProp,
     'aria-live': ariaLiveProp,
     children,
 }) => {
-    const role = roleProp ?? (error ? 'alert' : 'status')
-    const ariaLive = ariaLiveProp ?? (error ? 'assertive' : 'polite')
+    const role = roleProp ?? (hasError ? 'alert' : 'status')
+    const ariaLive = ariaLiveProp ?? (hasError ? 'assertive' : 'polite')
 
     return (
         <span
             id={id}
             role={role}
             aria-live={ariaLive}
-            className={error ? HELPER_TEXT_STYLES.error : HELPER_TEXT_STYLES.root}
+            className={hasError ? HELPER_TEXT_STYLES.error : HELPER_TEXT_STYLES.root}
         >
             {children}
         </span>

@@ -78,6 +78,17 @@ const BG = [
     'secondarySubtle',
 ] as const
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
+const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
+const FLEX = [undefined, '1', 'auto', 'initial', 'none'] as const
+const ALIGN_SELF = [
+    undefined,
+    'auto',
+    'start',
+    'end',
+    'center',
+    'stretch',
+    'baseline',
+] as const
 const OVERFLOW = [
     undefined,
     'visible',
@@ -145,6 +156,12 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         backgroundColor: { control: 'select', options: BG },
         width: { control: 'select', options: WH },
         height: { control: 'select', options: WH },
+        minWidth: { control: 'select', options: MIN_MAX },
+        maxWidth: { control: 'select', options: MIN_MAX },
+        minHeight: { control: 'select', options: MIN_MAX },
+        maxHeight: { control: 'select', options: MIN_MAX },
+        flex: { control: 'select', options: FLEX },
+        alignSelf: { control: 'select', options: ALIGN_SELF },
         overflow: { control: 'select', options: OVERFLOW },
         position: { control: 'select', options: POSITION },
     },

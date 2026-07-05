@@ -31,6 +31,24 @@ export const BOX_STYLES = {
                 auto: { width: 'auto' },
             },
 
+            minWidth: {
+                none: { minWidth: 0 },
+                full: { minWidth: '100%' },
+                screen: { minWidth: '100vw' },
+                fit: { minWidth: 'fit-content' },
+                min: { minWidth: 'min-content' },
+                max: { minWidth: 'max-content' },
+            },
+
+            maxWidth: {
+                none: { maxWidth: 'none' },
+                full: { maxWidth: '100%' },
+                screen: { maxWidth: '100vw' },
+                fit: { maxWidth: 'fit-content' },
+                min: { maxWidth: 'min-content' },
+                max: { maxWidth: 'max-content' },
+            },
+
             // Height
             height: {
                 full: { height: '100%' },
@@ -39,6 +57,24 @@ export const BOX_STYLES = {
                 min: { height: 'min-content' },
                 max: { height: 'max-content' },
                 auto: { height: 'auto' },
+            },
+
+            minHeight: {
+                none: { minHeight: 0 },
+                full: { minHeight: '100%' },
+                screen: { minHeight: '100vh' },
+                fit: { minHeight: 'fit-content' },
+                min: { minHeight: 'min-content' },
+                max: { minHeight: 'max-content' },
+            },
+
+            maxHeight: {
+                none: { maxHeight: 'none' },
+                full: { maxHeight: '100%' },
+                screen: { maxHeight: '100vh' },
+                fit: { maxHeight: 'fit-content' },
+                min: { maxHeight: 'min-content' },
+                max: { maxHeight: 'max-content' },
             },
 
             // Overflow
@@ -73,6 +109,23 @@ export const BOX_STYLES = {
                 absolute: { position: 'absolute' },
                 fixed: { position: 'fixed' },
                 sticky: { position: 'sticky' },
+            },
+
+            // Flex child
+            flex: {
+                '1': { flex: '1 1 0%' },
+                auto: { flex: '1 1 auto' },
+                initial: { flex: '0 1 auto' },
+                none: { flex: 'none' },
+            },
+
+            alignSelf: {
+                auto: { alignSelf: 'auto' },
+                start: { alignSelf: 'flex-start' },
+                end: { alignSelf: 'flex-end' },
+                center: { alignSelf: 'center' },
+                stretch: { alignSelf: 'stretch' },
+                baseline: { alignSelf: 'baseline' },
             },
 
             // Border Radius

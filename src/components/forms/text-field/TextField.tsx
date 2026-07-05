@@ -144,7 +144,7 @@ const TextField = ((props) => {
             {(error || helperText) && (
                 <HelperText
                     id={helperId}
-                    error={hasError}
+                    hasError={hasError}
                 >
                     {error ?? helperText}
                 </HelperText>

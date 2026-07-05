@@ -12,7 +12,7 @@ describe('HelperText', () => {
     })
 
     it('renders as an assertive alert region for errors', () => {
-        render(<HelperText id={'helper'} error>This field is required</HelperText>)
+        render(<HelperText id={'helper'} hasError>This field is required</HelperText>)
         const el = screen.getByText('This field is required')
         expect(el.getAttribute('role')).toBe('alert')
         expect(el.getAttribute('aria-live')).toBe('assertive')

@@ -134,7 +134,7 @@ const SelectField: FC<SelectFieldProps> = ({
             {(error || helperText) && (
                 <HelperText
                     id={helperId}
-                    error={hasError}
+                    hasError={hasError}
                 >
                     {error ?? helperText}
                 </HelperText>

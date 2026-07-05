@@ -1,6 +1,6 @@
 import { useState, type ComponentProps, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import { SelectField } from '@components/forms/select'
 import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/TextField.css.ts'
@@ -192,7 +192,11 @@ export const Playground: Story = {
         await expect(trigger).toBeInTheDocument()
         await expect(trigger).toHaveTextContent(args.placeholder ?? '')
         await userEvent.click(trigger)
-        const listbox = await canvas.findByRole('listbox')
+        const listbox = await screen.findByRole('listbox')
         await expect(listbox).toBeInTheDocument()
+        // Close the listbox so the a11y audit runs against a stable, valid DOM
+        // (Radix marks the rest of the page `aria-hidden` while the Select is open).
+        await userEvent.keyboard('{Escape}')
+        await waitFor(() => expect(screen.queryByRole('listbox')).not.toBeInTheDocument())
     },
 }
