@@ -1,10 +1,11 @@
-import { useId, useState, type FC } from 'react'
+import { type FC } from 'react'
 
 import { Flex } from '@components/layout/flex'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { TextFieldLabel } from '@components/forms/text-field/components'
 import Select from '@components/forms/select/Select.tsx'
 import type { SelectFieldProps } from '@components/forms/select/types/Select.props.ts'
+import useSelectField from '@components/forms/select/components/select-field/hooks/useSelectField.hook.ts'
 
 /**
  * Convenience wrapper around `Select` that provides a TextField-like API:
@@ -48,23 +49,12 @@ const SelectField: FC<SelectFieldProps> = ({
     autoComplete,
     ...props
 }) => {
-    const generatedId = useId()
-    const triggerId = `${generatedId}-trigger`
-    const helperId = `${generatedId}-helper`
-    const hasError = Boolean(error)
-    const [internalValue, setInternalValue] = useState<string | undefined>(
-        defaultValue ?? (value !== undefined ? String(value) : undefined),
-    )
-
-    const isControlled = value !== undefined
-    const selectedValue = isControlled ? String(value) : internalValue
-
-    const handleValueChange = (nextValue: string) => {
-        if (!isControlled) {
-            setInternalValue(nextValue)
-        }
-        onValueChange?.(nextValue)
-    }
+    const { triggerId, helperId, hasError, selectedValue, handleValueChange } = useSelectField({
+        error,
+        value,
+        defaultValue,
+        onValueChange,
+    })
 
     return (
         <Flex

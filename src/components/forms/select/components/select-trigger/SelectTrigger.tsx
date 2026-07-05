@@ -1,5 +1,5 @@
 import * as RadixSelect from '@radix-ui/react-select'
-import { useRef, type FC, type MouseEventHandler } from 'react'
+import { type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Box } from '@components/layout/box'
@@ -10,6 +10,7 @@ import {
 } from '@components/forms/select/components/select-trigger/SelectTrigger.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
+import useSelectTrigger from '@components/forms/select/components/select-trigger/hooks/useSelectTrigger.hook.ts'
 
 /**
  * The trigger button that opens the listbox.
@@ -31,26 +32,11 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
     style,
     ...props
 }) => {
-    const pointerDownRef = useRef(false)
-
-    const handleMouseDown: MouseEventHandler<HTMLButtonElement> = (event) => {
-        pointerDownRef.current = true
-        onMouseDown?.(event)
-    }
-
-    const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
-        if (pointerDownRef.current) {
-            event.currentTarget.setAttribute('data-mouse-focus', '')
-            pointerDownRef.current = false
-        }
-    }
-
-    const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
-        pointerDownRef.current = false
-        event.currentTarget.removeAttribute('data-mouse-focus')
-    }
-
-    const mergedStyle = width !== undefined ? { ...style, width } : style
+    const { handleMouseDown, handleFocus, handleBlur, mergedStyle } = useSelectTrigger({
+        width,
+        style,
+        onMouseDown,
+    })
 
     return (
         <RadixSelect.Trigger
