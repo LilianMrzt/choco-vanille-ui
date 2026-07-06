@@ -44,7 +44,7 @@ const Callout = (({
                     flexDirection={'column'}
                     alignItems={'start'}
                     gap={'xs'}
-                    minWidth={'none'}
+                    minWidth={0}
                 >
                     {title && <CalloutTitle>{title}</CalloutTitle>}
                     {description && (

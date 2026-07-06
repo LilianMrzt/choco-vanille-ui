@@ -38,6 +38,7 @@ const Box: FC<BoxProps> = ({
     rowGap,
     backgroundColor,
     className,
+    style,
     ref,
     ...props
 }) => {
@@ -47,12 +48,6 @@ const Box: FC<BoxProps> = ({
             className={cn(
                 BOX_STYLES.recipe({
                     display,
-                    width,
-                    minWidth,
-                    maxWidth,
-                    height,
-                    minHeight,
-                    maxHeight,
                     overflow,
                     overflowX,
                     overflowY,
@@ -81,6 +76,15 @@ const Box: FC<BoxProps> = ({
                 }),
                 className,
             )}
+            style={{
+                width,
+                minWidth,
+                maxWidth,
+                height,
+                minHeight,
+                maxHeight,
+                ...style,
+            }}
             {...props}
         />
     )

@@ -21,62 +21,6 @@ export const BOX_STYLES = {
                 'flow-root': { display: 'flow-root' },
             },
 
-            // Width
-            width: {
-                full: { width: '100%' },
-                screen: { width: '100vw' },
-                fit: { width: 'fit-content' },
-                min: { width: 'min-content' },
-                max: { width: 'max-content' },
-                auto: { width: 'auto' },
-            },
-
-            minWidth: {
-                none: { minWidth: 0 },
-                full: { minWidth: '100%' },
-                screen: { minWidth: '100vw' },
-                fit: { minWidth: 'fit-content' },
-                min: { minWidth: 'min-content' },
-                max: { minWidth: 'max-content' },
-            },
-
-            maxWidth: {
-                none: { maxWidth: 'none' },
-                full: { maxWidth: '100%' },
-                screen: { maxWidth: '100vw' },
-                fit: { maxWidth: 'fit-content' },
-                min: { maxWidth: 'min-content' },
-                max: { maxWidth: 'max-content' },
-            },
-
-            // Height
-            height: {
-                full: { height: '100%' },
-                screen: { height: '100vh' },
-                fit: { height: 'fit-content' },
-                min: { height: 'min-content' },
-                max: { height: 'max-content' },
-                auto: { height: 'auto' },
-            },
-
-            minHeight: {
-                none: { minHeight: 0 },
-                full: { minHeight: '100%' },
-                screen: { minHeight: '100vh' },
-                fit: { minHeight: 'fit-content' },
-                min: { minHeight: 'min-content' },
-                max: { minHeight: 'max-content' },
-            },
-
-            maxHeight: {
-                none: { maxHeight: 'none' },
-                full: { maxHeight: '100%' },
-                screen: { maxHeight: '100vh' },
-                fit: { maxHeight: 'fit-content' },
-                min: { maxHeight: 'min-content' },
-                max: { maxHeight: 'max-content' },
-            },
-
             // Overflow
             overflow: {
                 visible: { overflow: 'visible' },

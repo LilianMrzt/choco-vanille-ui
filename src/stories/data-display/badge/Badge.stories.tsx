@@ -40,7 +40,7 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
 <Badge label="New" />
 <Badge label="Verified" variant="solid" color="success" />
 <Badge label="Draft" variant="outline" color="secondary" size="sm" />
-<Badge label="Custom" borderRadius="md" width="fit" />
+<Badge label="Custom" borderRadius="md" width="fit-content" />
 \`\`\`
 
 **Accessibility**
@@ -61,7 +61,7 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         borderRadius: { control: 'select', options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] },
-        width: { control: 'select', options: ['full', 'screen', 'fit', 'min', 'max', 'auto'] },
+        width: { control: 'text' },
         startIcon: { control: 'text' },
         endIcon: { control: 'text' },
     },

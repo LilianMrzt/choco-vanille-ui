@@ -18,7 +18,7 @@ const ToastActions: FC<ToastActionsProps> = ({
             gap={'sm'}
             justifyContent={'end'}
             className={cn(TOAST_ACTIONS_STYLES.actions, className)}
-            width={'full'}
+            width={'100%'}
             {...props}
         >
             {children}

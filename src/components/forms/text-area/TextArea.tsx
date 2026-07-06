@@ -103,7 +103,7 @@ const TextArea = ((props) => {
         <Flex
             flexDirection={'column'}
             gap={'xs'}
-            width={'full'}
+            width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
         >
@@ -118,7 +118,7 @@ const TextArea = ((props) => {
 
             <Flex
                 position={'relative'}
-                width={'full'}
+                width={'100%'}
                 gap={'none'}
             >
                 {startIcon && (
