@@ -1,8 +1,9 @@
-import * as RadixRadioGroup from '@radix-ui/react-radio-group'
+import { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group'
 
 import RadioItem from '@components/forms/radio-group/components/radio-item/RadioItem.tsx'
 import type { RadioGroupCompound } from '@components/forms/radio-group/types'
 import { Flex } from '@components/layout/flex'
+import { cn } from '@utils/cn.ts'
 
 /**
  * The root container for a group of `RadioGroup.Item` components.
@@ -16,20 +17,20 @@ import { Flex } from '@components/layout/flex'
  * </RadioGroup>
  * ```
  */
-const RadioGroup = (({ className, children, ...props }) => (
-    <RadixRadioGroup.Root
-        asChild
+const RadioGroup = (({ className, children, onValueChange, ...props }) => (
+    <BaseRadioGroup
+        className={cn(className)}
+        onValueChange={(value) => onValueChange?.(value)}
         {...props}
     >
         <Flex
             flexDirection={'column'}
             gap={'sm'}
             alignItems={'start'}
-            className={className}
         >
             {children}
         </Flex>
-    </RadixRadioGroup.Root>
+    </BaseRadioGroup>
 )) as RadioGroupCompound
 
 RadioGroup.displayName = 'RadioGroup'

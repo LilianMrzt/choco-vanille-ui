@@ -1,4 +1,3 @@
-import type * as React from 'react'
-import type * as RadixRadioGroup from '@radix-ui/react-radio-group'
+import type { RadioGroup } from '@base-ui/react/radio-group'
 
-export type RadioGroupProps = React.ComponentPropsWithoutRef<typeof RadixRadioGroup.Root>
+export type RadioGroupProps = RadioGroup.Props

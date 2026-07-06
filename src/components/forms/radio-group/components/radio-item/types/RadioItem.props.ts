@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixRadioGroup from '@radix-ui/react-radio-group'
+import type { Radio } from '@base-ui/react/radio'
 
-export type RadioItemProps = React.ComponentPropsWithoutRef<typeof RadixRadioGroup.Item> & {
+export type RadioItemProps = Radio.Root.Props & {
     /** Text label rendered beside the radio button. */
     label?: string
 }

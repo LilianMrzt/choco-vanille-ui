@@ -19,7 +19,7 @@ const meta: Meta<RadioGroupPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A group of mutually exclusive radio options built on top of \`@radix-ui/react-radio-group\`.
+A group of mutually exclusive radio options built on top of \`@base-ui/react/radio-group\` and \`@base-ui/react/radio\`.
 Compose \`RadioGroup\` with one or more \`RadioGroup.Item\` children. Each item renders a radio control with an optional visible label.
 
 **Usage**
@@ -50,7 +50,7 @@ const [theme, setTheme] = useState('system')
 | \`aria-label\` on \`RadioGroup.Item\` | Conditional | \`string\` | Required when \`label\` is omitted to give each option an accessible name. |
 | \`disabled\` (item) | No | \`boolean\` | Marks a single option as unavailable; skipped by keyboard navigation. |
 | \`disabled\` (group) | No | \`boolean\` | Disables every child item at once. |
-| \`orientation\` | No | \`'horizontal' \\| 'vertical'\` | Informs assistive technology of layout; affects expected arrow-key direction. |
+| \`orientation\` | No | \`'horizontal' \\| 'vertical'\` | Informs assistive technology of layout; affects expected arrow-key direction. (Set \`aria-orientation\` yourself; Base UI RadioGroup does not expose an orientation prop.) |
 
 - Keyboard navigation is handled automatically: **Arrow keys** move between options; **Space** selects the focused option.
 
@@ -65,11 +65,6 @@ const [theme, setTheme] = useState('system')
         },
     },
     argTypes: {
-        orientation: {
-            control: 'select',
-            options: ['vertical', 'horizontal'],
-            table: { category: 'RadioGroup' },
-        },
         disabled: {
             control: 'boolean',
             table: { category: 'RadioGroup' },
@@ -93,7 +88,6 @@ const [theme, setTheme] = useState('system')
     },
     args: {
         defaultValue: 'system',
-        orientation: 'vertical',
         disabled: false,
         required: false,
         labelOne: 'Light',
@@ -123,7 +117,6 @@ export const Playground: Story = {
         },
     },
     render: ({
-        orientation,
         disabled,
         required,
         labelOne,
@@ -137,7 +130,6 @@ export const Playground: Story = {
                 {...args}
                 value={value}
                 onValueChange={setValue}
-                orientation={orientation}
                 disabled={disabled}
                 required={required}
                 aria-label={'Theme preference'}
@@ -162,5 +154,25 @@ export const Playground: Story = {
         const radios = canvas.getAllByRole('radio')
         await expect(radios).toHaveLength(3)
         await expect(canvas.getByRole('radio', { name: 'System' })).toBeChecked()
+    },
+}
+
+export const Horizontal: Story = {
+    render: (args) => {
+        const [value, setValue] = useState(args.defaultValue as string)
+        return (
+            <RadioGroup
+                {...args}
+                value={value}
+                onValueChange={setValue}
+                aria-label={'Theme preference'}
+            >
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <RadioGroup.Item value={'light'}>{args.labelOne}</RadioGroup.Item>
+                    <RadioGroup.Item value={'dark'}>{args.labelTwo}</RadioGroup.Item>
+                    <RadioGroup.Item value={'system'}>{args.labelThree}</RadioGroup.Item>
+                </div>
+            </RadioGroup>
+        )
     },
 }

@@ -1,4 +1,4 @@
-import * as RadixRadioGroup from '@radix-ui/react-radio-group'
+import { Radio } from '@base-ui/react/radio'
 import { useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
@@ -34,19 +34,19 @@ const RadioItem: FC<RadioItemProps> = ({
             inline
             gap={'sm'}
         >
-            <RadixRadioGroup.Item
+            <Radio.Root
                 id={radioId}
                 value={value}
                 className={cn(RADIO_ITEM_STYLES.root, className)}
                 {...props}
             >
-                <RadixRadioGroup.Indicator className={RADIO_ITEM_STYLES.indicator}>
+                <Radio.Indicator className={RADIO_ITEM_STYLES.indicator}>
                     <Icon
                         icon={IconRegistry.radioIndicator}
                         size={'xs'}
                     />
-                </RadixRadioGroup.Indicator>
-            </RadixRadioGroup.Item>
+                </Radio.Indicator>
+            </Radio.Root>
 
             {label && (
                 <Typography
