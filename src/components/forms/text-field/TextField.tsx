@@ -14,7 +14,7 @@ import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
 
 /**
-  * A styled text input built with a native `<input>` and `@radix-ui/react-label`.
+  * A styled text input built with a native `<input>` and `<label>`.
   *
   * - `startIcon` - Iconify icon name rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.

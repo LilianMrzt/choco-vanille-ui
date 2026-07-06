@@ -23,7 +23,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A styled text input built with a native \`<input>\` and \`@radix-ui/react-label\` for accessible label binding.
+A styled text input built with a native \`<input>\` and \`<label>\` for accessible label binding.
 
 Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, password toggle and custom width.
 

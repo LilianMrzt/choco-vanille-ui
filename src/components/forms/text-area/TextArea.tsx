@@ -13,7 +13,7 @@ import { cn } from '@utils/cn.ts'
 import { useCallback, useRef } from 'react'
 
 /**
-  * A styled textarea built with a native `<textarea>` and `@radix-ui/react-label`.
+  * A styled textarea built with a native `<textarea>` and `<label>`.
   *
   * - `startIcon` - Iconify icon name rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
