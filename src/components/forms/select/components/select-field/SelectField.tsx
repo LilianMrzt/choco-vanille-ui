@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
@@ -6,6 +6,7 @@ import { TextFieldLabel } from '@components/forms/text-field/components'
 import Select from '@components/forms/select/Select.tsx'
 import type { SelectFieldProps } from '@components/forms/select/types/Select.props.ts'
 import useSelectField from '@components/forms/select/components/select-field/hooks/useSelectField.hook.ts'
+import { flattenItems } from '@components/forms/select/components/select-field/utils/flattenItems.utils.ts'
 
 /**
  * Convenience wrapper around `Select` that provides a TextField-like API:
@@ -46,8 +47,6 @@ const SelectField: FC<SelectFieldProps> = ({
     defaultOpen,
     onOpenChange,
     name,
-    autoComplete,
-    ...props
 }) => {
     const { triggerId, helperId, hasError, selectedValue, handleValueChange } = useSelectField({
         error,
@@ -55,6 +54,8 @@ const SelectField: FC<SelectFieldProps> = ({
         defaultValue,
         onValueChange,
     })
+
+    const items = useMemo(() => flattenItems(options), [options])
 
     return (
         <Flex
@@ -76,15 +77,14 @@ const SelectField: FC<SelectFieldProps> = ({
 
             <Select
                 value={selectedValue}
-                onValueChange={handleValueChange}
+                onValueChange={(v) => { if (v !== null) {handleValueChange(v)} }}
                 disabled={disabled}
                 required={required}
                 open={open}
                 defaultOpen={defaultOpen}
                 onOpenChange={onOpenChange}
                 name={name}
-                autoComplete={autoComplete}
-                {...props}
+                items={items}
             >
                 <Select.Trigger
                     id={triggerId}

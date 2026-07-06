@@ -52,7 +52,7 @@ export const SELECT_TRIGGER_STYLES = {
             ].join(', '),
             selectors: {
                 // Open state: primary border, mirrors TextField's mouse-focus appearance.
-                '&[data-state="open"]': {
+                '&[data-popup-open]': {
                     borderColor: vars.color.primary,
                 },
                 '&:focus-visible': {
@@ -96,7 +96,7 @@ export const SELECT_TRIGGER_STYLES = {
                         '&:hover:not(:disabled):not([data-disabled])': {
                             borderColor: vars.color.destructive,
                         },
-                        '&[data-state="open"]': {
+                        '&[data-popup-open]': {
                             borderColor: vars.color.destructive,
                         },
                         '&:focus-visible': {

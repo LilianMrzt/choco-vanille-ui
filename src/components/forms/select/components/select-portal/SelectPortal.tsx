@@ -1,11 +1,11 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
  * Portal wrapper for the listbox popup.
  */
-const SelectPortal: FC<RadixSelect.SelectPortalProps> = (props) => (
-    <RadixSelect.Portal {...props} />
+const SelectPortal: FC<BaseSelect.Portal.Props> = (props) => (
+    <BaseSelect.Portal {...props} />
 )
 
 SelectPortal.displayName = 'SelectPortal'

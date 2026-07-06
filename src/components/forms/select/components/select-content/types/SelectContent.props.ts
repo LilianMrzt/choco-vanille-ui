@@ -1,7 +1,15 @@
-import type * as RadixSelect from '@radix-ui/react-select'
+import type * as React from 'react'
+import type { Select as BaseSelect } from '@base-ui/react/select'
 
 /** Props for the styled content (listbox popup). */
-export type SelectContentProps = RadixSelect.SelectContentProps & {
+export type SelectContentProps = Pick<
+    BaseSelect.Positioner.Props,
+    'side' | 'align' | 'sideOffset'
+> & {
+    className?: string
+    children?: React.ReactNode
+    /** Collision margin in px passed to `useViewportShift`. */
+    collisionPadding?: number
     /** Accessible name for the select listbox popup. */
     listboxAriaLabel?: string
 }

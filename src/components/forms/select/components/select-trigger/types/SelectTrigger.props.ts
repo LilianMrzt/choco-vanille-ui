@@ -1,10 +1,10 @@
 import type * as React from 'react'
-import type * as RadixSelect from '@radix-ui/react-select'
+import type { Select as BaseSelect } from '@base-ui/react/select'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 
 /** Props for the styled trigger subcomponent. */
-export type SelectTriggerProps = RadixSelect.SelectTriggerProps & {
+export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     /** Placeholder shown when no option is selected. */
     placeholder?: string
     /** Iconify icon name rendered on the left side of the trigger. */

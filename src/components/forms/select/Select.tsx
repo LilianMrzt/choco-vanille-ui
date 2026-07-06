@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 
 import {
     SelectContent,
@@ -24,9 +24,9 @@ export { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-
 export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/select-separator/SelectSeparator.css.ts'
 
 /**
- * A styled select control built on top of `@radix-ui/react-select`.
+ * A styled select control built on top of `@base-ui/react/select`.
  *
- * Exposes the full Radix Select API as compound subcomponents, all styled to
+ * Exposes the full Base UI Select API as compound subcomponents, all styled to
  * match the library's design tokens. The trigger looks and behaves like a
  * TextField, and the listbox popup follows the same visual language as the
  * DropdownMenu and Popover components.
@@ -47,7 +47,7 @@ export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/sel
  * </Select>
  * ```
  */
-const Select = ((props) => <RadixSelect.Root {...props} />) as SelectCompound
+const Select = ((props) => <BaseSelect.Root {...props} />) as SelectCompound
 
 Select.displayName = 'Select'
 

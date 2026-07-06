@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import { type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
@@ -36,12 +36,12 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
     const { handleMouseDown, handleFocus, handleBlur, mergedStyle } =
         useSelectTrigger({
             width,
-            style,
+            style: style as React.CSSProperties | undefined,
             onMouseDown,
         })
 
     return (
-        <RadixSelect.Trigger
+        <BaseSelect.Trigger
             className={cn(
                 SELECT_TRIGGER_STYLES.recipe({
                     size,
@@ -62,7 +62,7 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
                     size={size}
                 />
             )}
-            {children ?? <RadixSelect.Value placeholder={placeholder} />}
+            {children ?? <BaseSelect.Value placeholder={placeholder} />}
             <Box className={SELECT_TRIGGER_END_ICON}>
                 <Icon
                     icon={IconRegistry.chevronDown}
@@ -70,7 +70,7 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
                     color={'mutedForeground'}
                 />
             </Box>
-        </RadixSelect.Trigger>
+        </BaseSelect.Trigger>
     )
 }
 

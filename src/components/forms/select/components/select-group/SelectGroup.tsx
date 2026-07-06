@@ -1,11 +1,11 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
  * Semantic group of items, optionally paired with `Select.Label`.
  */
-const SelectGroup: FC<RadixSelect.SelectGroupProps> = (props) => (
-    <RadixSelect.Group {...props} />
+const SelectGroup: FC<BaseSelect.Group.Props> = (props) => (
+    <BaseSelect.Group {...props} />
 )
 
 SelectGroup.displayName = 'SelectGroup'

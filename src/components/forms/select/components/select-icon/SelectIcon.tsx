@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
@@ -6,8 +6,8 @@ import type { FC } from 'react'
  * Usually provided automatically by `Select.Trigger`; exposed for advanced
  * composition.
  */
-const SelectIcon: FC<RadixSelect.SelectIconProps> = (props) => (
-    <RadixSelect.Icon {...props} />
+const SelectIcon: FC<BaseSelect.Icon.Props> = (props) => (
+    <BaseSelect.Icon {...props} />
 )
 
 SelectIcon.displayName = 'SelectIcon'

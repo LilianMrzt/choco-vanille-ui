@@ -18,8 +18,8 @@ import {
 export const SELECT_CONTENT_STYLES = {
     root: style({
         zIndex: vars.zIndex.dropdown,
-        minWidth: 'var(--radix-select-trigger-width)',
-        maxHeight: 'var(--radix-select-content-available-height)',
+        minWidth: 'var(--anchor-width)',
+        maxHeight: 'var(--available-height)',
         overflow: 'hidden',
         borderRadius: vars.radius.lg,
         border: `1px solid ${vars.color.border}`,
@@ -27,31 +27,31 @@ export const SELECT_CONTENT_STYLES = {
         color: vars.color.popoverForeground,
         padding: vars.space.xs,
         boxShadow: vars.shadow.lg,
-        transformOrigin: 'var(--radix-select-content-transform-origin)',
+        transformOrigin: 'var(--transform-origin)',
 
         selectors: {
-            '&[data-state="open"][data-side="bottom"]': {
+            '&[data-open][data-side="bottom"]': {
                 animation: `${slideDownIn} 0.18s ${vars.easing.out} both`,
             },
-            '&[data-state="closed"][data-side="bottom"]': {
+            '&[data-closed][data-side="bottom"]': {
                 animation: `${slideDownOut} 0.12s ${vars.easing.in} both`,
             },
-            '&[data-state="open"][data-side="top"]': {
+            '&[data-open][data-side="top"]': {
                 animation: `${slideUpIn} 0.18s ${vars.easing.out} both`,
             },
-            '&[data-state="closed"][data-side="top"]': {
+            '&[data-closed][data-side="top"]': {
                 animation: `${slideUpOut} 0.12s ${vars.easing.in} both`,
             },
-            '&[data-state="open"][data-side="right"]': {
+            '&[data-open][data-side="right"]': {
                 animation: `${slideRightIn} 0.18s ${vars.easing.out} both`,
             },
-            '&[data-state="closed"][data-side="right"]': {
+            '&[data-closed][data-side="right"]': {
                 animation: `${slideRightOut} 0.12s ${vars.easing.in} both`,
             },
-            '&[data-state="open"][data-side="left"]': {
+            '&[data-open][data-side="left"]': {
                 animation: `${slideLeftIn} 0.18s ${vars.easing.out} both`,
             },
-            '&[data-state="closed"][data-side="left"]': {
+            '&[data-closed][data-side="left"]': {
                 animation: `${slideLeftOut} 0.12s ${vars.easing.in} both`,
             },
         },

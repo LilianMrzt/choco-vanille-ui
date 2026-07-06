@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
@@ -6,8 +6,8 @@ import type { FC } from 'react'
  * Usually provided automatically by `Select.Item`; exposed for advanced
  * composition.
  */
-const SelectItemIndicator: FC<RadixSelect.SelectItemIndicatorProps> = (props) => (
-    <RadixSelect.ItemIndicator {...props} />
+const SelectItemIndicator: FC<BaseSelect.ItemIndicator.Props> = (props) => (
+    <BaseSelect.ItemIndicator {...props} />
 )
 
 SelectItemIndicator.displayName = 'SelectItemIndicator'

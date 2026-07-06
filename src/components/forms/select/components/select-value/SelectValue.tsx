@@ -1,11 +1,11 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
  * The selected value text rendered inside the trigger.
  */
-const SelectValue: FC<RadixSelect.SelectValueProps> = (props) => (
-    <RadixSelect.Value {...props} />
+const SelectValue: FC<BaseSelect.Value.Props> = (props) => (
+    <BaseSelect.Value {...props} />
 )
 
 SelectValue.displayName = 'SelectValue'

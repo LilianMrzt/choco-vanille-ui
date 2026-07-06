@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
@@ -16,20 +16,20 @@ const SelectItem: FC<SelectItemProps> = ({
     children,
     ...props
 }) => (
-    <RadixSelect.Item
+    <BaseSelect.Item
         className={cn(SELECT_ITEM_STYLES.root, className)}
         {...props}
     >
         <span className={SELECT_ITEM_STYLES.indicator}>
-            <RadixSelect.ItemIndicator asChild>
+            <BaseSelect.ItemIndicator>
                 <Icon
                     icon={IconRegistry.check}
                     size={'xs'}
                 />
-            </RadixSelect.ItemIndicator>
+            </BaseSelect.ItemIndicator>
         </span>
-        <RadixSelect.ItemText>{label ?? children}</RadixSelect.ItemText>
-    </RadixSelect.Item>
+        <BaseSelect.ItemText>{label ?? children}</BaseSelect.ItemText>
+    </BaseSelect.Item>
 )
 
 SelectItem.displayName = 'SelectItem'

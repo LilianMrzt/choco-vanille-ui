@@ -1,5 +1,4 @@
 import type * as React from 'react'
-import type * as RadixSelect from '@radix-ui/react-select'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 
@@ -10,10 +9,21 @@ import type { TextFieldSize } from '@components/forms/text-field/types/TextField
  * width, startIcon, disabled) and adds select-specific props (value,
  * defaultValue, onValueChange, placeholder, options).
  */
-export type SelectFieldProps = Omit<
-    RadixSelect.SelectProps,
-    'dir' | 'required' | 'disabled' | 'className'
-> & {
+export type SelectFieldProps = {
+    /** Controlled value. */
+    value?: string
+    /** Default uncontrolled value. */
+    defaultValue?: string
+    /** Called when the selected value changes. */
+    onValueChange?: (value: string) => void
+    /** Controlled open state. */
+    open?: boolean
+    /** Default uncontrolled open state. */
+    defaultOpen?: boolean
+    /** Called when the open state changes. */
+    onOpenChange?: (open: boolean) => void
+    /** HTML name attribute for form submission. */
+    name?: string
     /** Additional class name for the outer wrapper. */
     className?: string
     /** Text label rendered above the trigger, linked to it for accessibility. */

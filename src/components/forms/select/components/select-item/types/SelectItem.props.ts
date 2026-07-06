@@ -1,7 +1,7 @@
-import type * as RadixSelect from '@radix-ui/react-select'
+import type { Select as BaseSelect } from '@base-ui/react/select'
 
 /** Props for a styled select item. */
-export type SelectItemProps = RadixSelect.SelectItemProps & {
+export type SelectItemProps = BaseSelect.Item.Props & {
     /** Visible label for the item. */
     label?: string
 }

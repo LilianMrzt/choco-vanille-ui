@@ -55,7 +55,7 @@ const meta = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A styled select control built on top of \`@radix-ui/react-select\`.
+A styled select control built on top of \`@base-ui/react/select\`.
 
 Use it to let users choose one option from a collapsible list. It provides a
 field-style wrapper (\`SelectField\`) for common forms use cases, and a full

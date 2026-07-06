@@ -1,11 +1,11 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 /**
- * Scrollable viewport inside the popup.
+ * Scrollable list of items inside the popup.
  */
-const SelectViewport: FC<RadixSelect.SelectViewportProps> = (props) => (
-    <RadixSelect.Viewport {...props} />
+const SelectViewport: FC<BaseSelect.List.Props> = (props) => (
+    <BaseSelect.List {...props} />
 )
 
 SelectViewport.displayName = 'SelectViewport'

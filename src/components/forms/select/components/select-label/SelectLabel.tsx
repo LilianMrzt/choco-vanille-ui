@@ -1,4 +1,4 @@
-import * as RadixSelect from '@radix-ui/react-select'
+import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
@@ -6,10 +6,11 @@ import { cn } from '@utils/cn.ts'
 import { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-label/SelectLabel.css.ts'
 
 /**
- * Non-interactive section heading inside the listbox.
+ * Non-interactive section heading inside a `Select.Group`.
+ * Maps to Base UI's `Select.GroupLabel`.
  */
-const SelectLabel: FC<RadixSelect.SelectLabelProps> = ({ className, children, ...props }) => (
-    <RadixSelect.Label
+const SelectLabel: FC<BaseSelect.GroupLabel.Props> = ({ className, children, ...props }) => (
+    <BaseSelect.GroupLabel
         className={cn(SELECT_LABEL_STYLES.root, className)}
         {...props}
     >
@@ -19,7 +20,7 @@ const SelectLabel: FC<RadixSelect.SelectLabelProps> = ({ className, children, ..
         >
             {children}
         </Typography>
-    </RadixSelect.Label>
+    </BaseSelect.GroupLabel>
 )
 
 SelectLabel.displayName = 'SelectLabel'
