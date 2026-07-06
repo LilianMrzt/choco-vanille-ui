@@ -14,7 +14,7 @@ const meta = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A hover-activated overlay built on top of \`@radix-ui/react-hover-card\`.
+A hover-activated overlay built on top of \`@base-ui/react/preview-card\`.
 Use it to display rich content when the user hovers over a trigger element.
 It reuses the popover visual styles for consistency.
 
@@ -22,7 +22,7 @@ It reuses the popover visual styles for consistency.
 
 \`\`\`tsx
 <HoverCard>
-  <HoverCard.Trigger asChild>
+  <HoverCard.Trigger>
     <Button label="Open hover card" />
   </HoverCard.Trigger>
 
@@ -36,7 +36,7 @@ It reuses the popover visual styles for consistency.
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`HoverCard.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
+| Trigger (focusable element) | ✅ Yes | — | Pass your own \`Button\` or \`IconButton\` as children of \`HoverCard.Trigger\`. |
 | \`open\` | No | \`boolean\` | Controlled open state; pair with \`onOpenChange\`. |
 | \`defaultOpen\` | No | \`boolean\` | Uncontrolled initial open state. |
 | \`openDelay\` | No | \`number\` | Delay in ms before opening. @default \`700\`. |
@@ -47,7 +47,7 @@ It reuses the popover visual styles for consistency.
 | Sub-component | Description |
 |---|---|
 | \`HoverCard\` | Root context provider — wraps the entire hover card. |
-| \`HoverCard.Trigger\` | The element that opens the hover card on hover. Use \`asChild\` to delegate to your own button. |
+| \`HoverCard.Trigger\` | The element that opens the hover card on hover. Pass your own button as children. |
 | \`HoverCard.Content\` | The floating panel containing the hover card content. Handles positioning and viewport shifting. |
                 `,
             },
@@ -56,13 +56,9 @@ It reuses the popover visual styles for consistency.
     argTypes: {
         open: { control: 'boolean' },
         defaultOpen: { control: 'boolean' },
-        openDelay: { control: 'number' },
-        closeDelay: { control: 'number' },
     },
     args: {
         defaultOpen: false,
-        openDelay: 0,
-        closeDelay: 300,
     },
 } satisfies Meta<typeof HoverCard>
 
@@ -81,7 +77,7 @@ export const Playground: Story = {
     },
     render: (args) => (
         <HoverCard {...args}>
-            <HoverCard.Trigger asChild>
+            <HoverCard.Trigger>
                 <Button label={'Hover me'} />
             </HoverCard.Trigger>
 

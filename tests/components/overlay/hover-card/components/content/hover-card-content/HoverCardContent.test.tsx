@@ -8,7 +8,7 @@ describe('HoverCardContent', () => {
     it('renders content when the hover card is open by default', () => {
         render(
             <HoverCard defaultOpen>
-                <HoverCard.Trigger asChild>
+                <HoverCard.Trigger>
                     <Button label={'Hover me'} />
                 </HoverCard.Trigger>
                 <HoverCard.Content>Hover card content</HoverCard.Content>

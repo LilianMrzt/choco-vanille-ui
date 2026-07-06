@@ -1,7 +1,4 @@
-import type * as React from 'react'
-import type * as RadixHoverCard from '@radix-ui/react-hover-card'
+import type { PreviewCard } from '@base-ui/react/preview-card'
 
 /** Props for the root `HoverCard` wrapper. */
-export type HoverCardProps = React.ComponentPropsWithoutRef<
-  typeof RadixHoverCard.Root
->;
+export type HoverCardProps = PreviewCard.Root.Props;

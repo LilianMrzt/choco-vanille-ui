@@ -1,4 +1,4 @@
-import * as RadixHoverCard from '@radix-ui/react-hover-card'
+import { PreviewCard } from '@base-ui/react/preview-card'
 
 import { cn } from '@utils/cn.ts'
 import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
@@ -11,14 +11,14 @@ import { useViewportShift } from '@hooks'
  * Rendered inside a portal by default for correct stacking.
  *
  * Reuses the popover visual styles so hover cards look identical to popovers.
- * Radix's built-in `avoidCollisions` is disabled here: it would flip the panel
+ * Base UI's built-in collision avoidance is disabled here: it would flip the panel
  * to the opposite side when space is tight, which is jarring.
  * Instead, `useViewportShift` detects any overflow after positioning and
  * shifts the panel inward by exactly the overflowing amount — keeping the
  * original side and never cropping the content.
  *
  * Unlike `PopoverContent`, this intentionally omits the `defaultAriaLabel`
- * accessible-name fallback: a Radix hover-card panel is non-modal and exposes
+ * accessible-name fallback: a Base UI preview-card panel is non-modal and exposes
  * no `dialog` role, so it needs no required accessible name. Any `aria-label` /
  * `aria-labelledby` a consumer passes is still forwarded via `...props`.
  */
@@ -38,18 +38,22 @@ const HoverCardContent = ({
         : { side: sideProp, align: alignProp }
 
     return (
-        <RadixHoverCard.Portal>
-            <RadixHoverCard.Content
-                ref={contentRef}
+        <PreviewCard.Portal>
+            <PreviewCard.Positioner
                 side={side}
                 align={align}
                 sideOffset={sideOffset}
-                className={cn(POPOVER_CONTENT_STYLES.root, className)}
-                {...props}
-                // Disable Radix's flip/shift — our hook handles collision instead.
-                avoidCollisions={false}
-            />
-        </RadixHoverCard.Portal>
+                className={'isolate'}
+                // Disable Base UI's flip/shift — our hook handles collision instead.
+                collisionAvoidance={{ side: 'none', align: 'none', fallbackAxisSide: 'none' }}
+            >
+                <PreviewCard.Popup
+                    ref={contentRef}
+                    className={cn(POPOVER_CONTENT_STYLES.root, className)}
+                    {...props}
+                />
+            </PreviewCard.Positioner>
+        </PreviewCard.Portal>
     )
 }
 

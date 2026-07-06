@@ -1,13 +1,17 @@
-import * as RadixHoverCard from '@radix-ui/react-hover-card'
+import { PreviewCard } from '@base-ui/react/preview-card'
 
 import type { HoverCardTriggerProps } from '@components/overlay/hover-card/components/trigger/types/HoverCardTrigger.props.ts'
 
 /**
  * The element that opens the hover card.
- * Use `asChild` to forward the trigger behaviour to your own element.
+ * Use `render` to forward the trigger behaviour to your own element.
  */
-const HoverCardTrigger = (props: HoverCardTriggerProps) => (
-    <RadixHoverCard.Trigger {...props} />
+const HoverCardTrigger = ({ children, delay = 0, ...props }: HoverCardTriggerProps) => (
+    <PreviewCard.Trigger
+        {...props}
+        delay={delay}
+        render={children}
+    />
 )
 
 HoverCardTrigger.displayName = 'HoverCardTrigger'

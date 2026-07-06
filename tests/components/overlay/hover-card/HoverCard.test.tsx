@@ -7,7 +7,7 @@ describe('HoverCard', () => {
     it('renders the trigger', () => {
         render(
             <HoverCard>
-                <HoverCard.Trigger asChild>
+                <HoverCard.Trigger>
                     <button type={'button'}>Hover me</button>
                 </HoverCard.Trigger>
                 <HoverCard.Content>Hover card content</HoverCard.Content>

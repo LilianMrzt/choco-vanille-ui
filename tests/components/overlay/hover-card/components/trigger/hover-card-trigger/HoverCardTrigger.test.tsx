@@ -7,7 +7,7 @@ describe('HoverCardTrigger', () => {
     it('renders the trigger inside the hover card root', () => {
         render(
             <HoverCard>
-                <HoverCard.Trigger asChild>
+                <HoverCard.Trigger>
                     <button type={'button'}>Hover me</button>
                 </HoverCard.Trigger>
             </HoverCard>,
@@ -16,10 +16,10 @@ describe('HoverCardTrigger', () => {
         expect(screen.getByRole('button', { name: 'Hover me' })).toBeTruthy()
     })
 
-    it('forwards the asChild prop to the underlying Radix trigger', () => {
+    it('forwards the children to the underlying Base UI trigger render prop', () => {
         render(
             <HoverCard>
-                <HoverCard.Trigger asChild>
+                <HoverCard.Trigger>
                     <button type={'button'}>Hover me</button>
                 </HoverCard.Trigger>
             </HoverCard>,

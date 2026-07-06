@@ -1,6 +1,7 @@
-import type * as React from 'react'
-import type * as RadixHoverCard from '@radix-ui/react-hover-card'
+import type { PreviewCard } from '@base-ui/react/preview-card'
+import type { ReactElement } from 'react'
 
-export type HoverCardTriggerProps = React.ComponentPropsWithoutRef<
-  typeof RadixHoverCard.Trigger
->;
+export type HoverCardTriggerProps = Omit<PreviewCard.Trigger.Props, 'render' | 'children'> & {
+  /** The element that triggers the hover card — forwarded to Base UI's `render` prop. */
+  children: ReactElement;
+};
