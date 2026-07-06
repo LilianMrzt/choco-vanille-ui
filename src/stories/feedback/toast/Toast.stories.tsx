@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
+import { Button } from '@components/actions/button'
+import type { ButtonColor, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
 import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
 import { md } from '@stories/utils/markdown'
@@ -19,6 +21,10 @@ type ToastPlaygroundArgs = {
     showTitle?: boolean
     showDescription?: boolean
     showClose?: boolean
+    showActions?: boolean
+    actionLabel?: string
+    actionVariant?: ButtonVariant
+    actionColor?: ButtonColor
     className?: string
 }
 
@@ -32,7 +38,7 @@ const meta: Meta<ToastPlaygroundArgs> = {
                 component: md /* language=markdown */ `
 A toast component for surfacing brief, non-blocking notifications.
 
-It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`error\` — each with a default icon and color scheme. Render it with the convenient \`title\` / \`description\` / \`onClose\` props, or compose it manually with \`Toast.Icon\`, \`Toast.Title\`, \`Toast.Description\`, and \`Toast.Close\`.
+It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`error\` — each with a default icon and color scheme. Render it with the convenient \`title\` / \`description\` / \`onClose\` props, or compose it manually with \`Toast.Icon\`, \`Toast.Title\`, \`Toast.Description\`, \`Toast.Actions\`, and \`Toast.Close\`.
 
 **Usage**
 
@@ -50,6 +56,9 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
   <Toast.Icon icon="mdi:alert-outline" />
   <Toast.Title>Heads up</Toast.Title>
   <Toast.Description>Your session will expire soon.</Toast.Description>
+  <Toast.Actions>
+    <Button size="sm" onClick={() => extendSession()}>Extend</Button>
+  </Toast.Actions>
   <Toast.Close aria-label="Dismiss warning" onClick={() => dismiss()} />
 </Toast>
 ~~~
@@ -77,6 +86,7 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
 | \`Toast.Icon\` | Optional icon. Defaults to the variant icon when omitted in prop mode. |
 | \`Toast.Title\` | Bold title rendered above the description. |
 | \`Toast.Description\` | Main message content. |
+| \`Toast.Actions\` | Horizontal container for action buttons or links. |
 | \`Toast.Close\` | Dismiss button. Requires an \`aria-label\` and an \`onClick\` handler. |
         `,
             },
@@ -125,6 +135,24 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
             control: 'boolean',
             table: { category: 'Toast.Close' },
         },
+        actionLabel: {
+            control: 'text',
+            table: { category: 'Toast.Actions' },
+        },
+        showActions: {
+            control: 'boolean',
+            table: { category: 'Toast.Actions' },
+        },
+        actionVariant: {
+            control: 'select',
+            options: ['contained', 'outlined', 'ghost'],
+            table: { category: 'Toast.Actions' },
+        },
+        actionColor: {
+            control: 'select',
+            options: ['primary', 'secondary', 'destructive', 'success', 'warning', 'info'],
+            table: { category: 'Toast.Actions' },
+        },
     },
     args: {
         variant: 'info',
@@ -135,6 +163,10 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
         showTitle: true,
         showDescription: true,
         showClose: true,
+        showActions: false,
+        actionLabel: 'Learn more',
+        actionVariant: 'ghost',
+        actionColor: 'primary',
     },
 }
 
@@ -161,18 +193,37 @@ export const Playground: Story = {
         showTitle,
         showDescription,
         showClose,
+        showActions,
+        actionLabel,
+        actionVariant,
+        actionColor,
         className,
     }) => (
         <Toast
             variant={variant}
             role={role}
             icon={icon}
-            title={showTitle ? title : undefined}
-            description={showDescription ? description : undefined}
-            closeLabel={closeLabel}
-            onClose={showClose ? () => {} : undefined}
             className={className}
-        />
+        >
+            {showTitle && <Toast.Title>{title}</Toast.Title>}
+            {showDescription && <Toast.Description>{description}</Toast.Description>}
+            {showActions && (
+                <Toast.Actions>
+                    <Button
+                        size={'sm'}
+                        variant={actionVariant}
+                        color={actionColor}
+                        label={actionLabel}
+                    />
+                </Toast.Actions>
+            )}
+            {showClose && closeLabel && (
+                <Toast.Close
+                    aria-label={closeLabel}
+                    onClick={() => {}}
+                />
+            )}
+        </Toast>
     ),
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
@@ -182,6 +233,12 @@ export const Playground: Story = {
         if (args.showClose) {
             await expect(
                 canvas.getByRole('button', { name: args.closeLabel })
+            ).toBeInTheDocument()
+        }
+
+        if (args.showActions) {
+            await expect(
+                canvas.getByRole('button', { name: args.actionLabel })
             ).toBeInTheDocument()
         }
     },

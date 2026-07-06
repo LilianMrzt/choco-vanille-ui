@@ -130,4 +130,26 @@ describe('Toast', () => {
             expect(Toast.displayName).toBe('Toast')
         })
     })
+
+    describe('compound composition', () => {
+        it('renders Toast.Actions children inside the toast', () => {
+            render(
+                <Toast>
+                    <Toast.Title>Heads up</Toast.Title>
+                    <Toast.Description>Something happened</Toast.Description>
+                    <Toast.Actions>
+                        <button type="button">Undo</button>
+                        <button type="button">Retry</button>
+                    </Toast.Actions>
+                </Toast>,
+            )
+            expect(screen.getByText('Undo')).toBeTruthy()
+            expect(screen.getByText('Retry')).toBeTruthy()
+        })
+
+        it('exposes Toast.Actions on the compound component', () => {
+            expect(Toast.Actions).toBeDefined()
+            expect(Toast.Actions.displayName).toBe('Toast.Actions')
+        })
+    })
 })

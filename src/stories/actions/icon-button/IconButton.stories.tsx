@@ -19,7 +19,7 @@ const COLORS: IconButtonColor[] = [
     'warning',
     'info',
 ]
-const SIZES: IconButtonSize[] = ['sm', 'md', 'lg']
+const SIZES: IconButtonSize[] = ['xs', 'sm', 'md', 'lg']
 
 const meta = {
     title: 'Actions/IconButton',

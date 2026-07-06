@@ -16,6 +16,10 @@ export const ICON_BUTTON_STYLES = {
             variant: BUTTON_SHARED_STYLES.variantVariants,
             color: BUTTON_SHARED_STYLES.colorVariants,
             size: {
+                xs: {
+                    height: '2rem',
+                    width: '2rem',
+                },
                 sm: {
                     height: '2.25rem',
                     width: '2.25rem',

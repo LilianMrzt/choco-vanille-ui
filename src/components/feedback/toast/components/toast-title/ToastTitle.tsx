@@ -1,5 +1,6 @@
 import { ToastContext } from '@components/feedback/toast/context/Toast.context.ts'
 import { VARIANT_TO_COLOR } from '@components/feedback/toast/constants'
+import { TOAST_TITLE_STYLES } from '@components/feedback/toast/components/toast-title/ToastTitle.css.ts'
 import type { ToastTitleProps } from '@components/feedback/toast/components/toast-title/types/ToastTitle.props.ts'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
@@ -21,7 +22,7 @@ const ToastTitle: FC<ToastTitleProps> = ({
             fontSize={'sm'}
             fontWeight={'semibold'}
             color={VARIANT_TO_COLOR[variant]}
-            className={cn(className)}
+            className={cn(TOAST_TITLE_STYLES.title, className)}
             {...props}
         >
             {children}
