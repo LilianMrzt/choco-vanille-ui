@@ -1,4 +1,4 @@
-import * as RadixDialog from '@radix-ui/react-dialog'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
 import { DIALOG_STYLES } from '@components/overlay/dialog/Dialog.css.ts'
 import type { DialogContentProps } from '@components/overlay/dialog/components/dialog-content/types/DialogContent.props.ts'
@@ -23,17 +23,17 @@ const DialogContent = ({
     const accessibleName = ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
 
     return (
-        <RadixDialog.Portal>
-            <RadixDialog.Overlay className={DIALOG_STYLES.overlay} />
-            <RadixDialog.Content
+        <BaseDialog.Portal>
+            <BaseDialog.Backdrop className={DIALOG_STYLES.overlay} />
+            <BaseDialog.Popup
                 className={cn(DIALOG_STYLES.content, DIALOG_STYLES.contentSize[size], className)}
                 aria-label={accessibleName}
                 aria-labelledby={ariaLabelledBy}
                 {...props}
             >
                 {children}
-            </RadixDialog.Content>
-        </RadixDialog.Portal>
+            </BaseDialog.Popup>
+        </BaseDialog.Portal>
     )
 }
 

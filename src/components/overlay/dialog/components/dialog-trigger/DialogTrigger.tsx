@@ -1,13 +1,16 @@
-import * as RadixDialog from '@radix-ui/react-dialog'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
 import type { DialogTriggerProps } from '@components/overlay/dialog/components/dialog-trigger/types/DialogTrigger.props.ts'
 
 /**
  * The element that opens the dialog.
- * Use `asChild` to forward the trigger behaviour to your own element.
+ * Pass your own element as `children` (e.g. `<Button />`) to use it as the trigger.
  */
-const DialogTrigger = (props: DialogTriggerProps) => (
-    <RadixDialog.Trigger {...props} />
+const DialogTrigger = ({ children, ...props }: DialogTriggerProps) => (
+    <BaseDialog.Trigger
+        {...props}
+        render={children}
+    />
 )
 
 DialogTrigger.displayName = 'DialogTrigger'

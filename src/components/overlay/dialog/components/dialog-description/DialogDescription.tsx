@@ -1,4 +1,4 @@
-import * as RadixDialog from '@radix-ui/react-dialog'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
 import { Typography } from '@components/foundation/typography'
 import type { DialogDescriptionProps } from '@components/overlay/dialog/components/dialog-description/types/DialogDescription.props.ts'
@@ -8,18 +8,19 @@ import { cn } from '@utils/cn.ts'
  * Accessible description for the dialog.
  * Provides additional context to the title.
  */
-const DialogDescription = ({ className, children, color: _color, ...props }: DialogDescriptionProps) => (
-    <RadixDialog.Description asChild>
+const DialogDescription = ({ className, children, ...props }: DialogDescriptionProps) => (
+    <BaseDialog.Description
+        className={cn(className)}
+        {...props}
+    >
         <Typography
             as={'p'}
             fontSize={'sm'}
             color={'mutedForeground'}
-            className={cn(className)}
-            {...props}
         >
             {children}
         </Typography>
-    </RadixDialog.Description>
+    </BaseDialog.Description>
 )
 
 DialogDescription.displayName = 'DialogDescription'

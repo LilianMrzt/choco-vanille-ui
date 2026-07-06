@@ -87,7 +87,7 @@ const DialogHeader: FC<DialogHeaderProps> = ({
                     alignItems={'center'}
                     className={DIALOG_HEADER_STYLES.actions}
                 >
-                    <DialogClose asChild>
+                    <DialogClose>
                         <IconButton
                             icon={IconRegistry.close}
                             aria-label={'Close dialog'}

@@ -1,7 +1,4 @@
-import type * as React from 'react'
-import type * as RadixDialog from '@radix-ui/react-dialog'
+import type { Dialog } from '@base-ui/react/dialog'
 
 /** Props for `Dialog.Description`. */
-export type DialogDescriptionProps = React.ComponentPropsWithoutRef<
-  typeof RadixDialog.Description
->
+export type DialogDescriptionProps = Dialog.Description.Props

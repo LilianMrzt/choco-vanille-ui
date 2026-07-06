@@ -10,10 +10,10 @@ export const DIALOG_STYLES = {
         zIndex: vars.zIndex.overlay,
         backgroundColor: vars.color.overlay,
         selectors: {
-            '&[data-state="open"]': {
+            '&[data-open]': {
                 animation: `${fadeIn} ${vars.duration.normal} ${vars.easing.out} both`,
             },
-            '&[data-state="closed"]': {
+            '&[data-closed]': {
                 animation: `${fadeOut} ${vars.duration.fast} ${vars.easing.in} both`,
             },
         },
@@ -36,11 +36,11 @@ export const DIALOG_STYLES = {
         boxShadow: vars.shadow['2xl'],
         transform: 'translate(-50%, -50%)',
         selectors: {
-            '&[data-state="open"]': {
+            '&[data-open]': {
                 display: 'flex',
                 animation: `${fadeIn} ${vars.duration.normal} ${vars.easing.out} both`,
             },
-            '&[data-state="closed"]': {
+            '&[data-closed]': {
                 animation: `${fadeOut} ${vars.duration.fast} ${vars.easing.in} both`,
             },
         },

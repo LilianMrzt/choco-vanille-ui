@@ -66,7 +66,7 @@ describe('Dialog', () => {
         it('opens the dialog when the trigger is clicked', async () => {
             render(
                 <Dialog>
-                    <Dialog.Trigger asChild>
+                    <Dialog.Trigger>
                         <Button label="Open" />
                     </Dialog.Trigger>
                     <Dialog.Content>

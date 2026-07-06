@@ -1,13 +1,16 @@
-import * as RadixDialog from '@radix-ui/react-dialog'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
 import type { DialogCloseProps } from '@components/overlay/dialog/components/dialog-close/types/DialogClose.props.ts'
 
 /**
  * Closes the dialog when clicked.
- * Use `asChild` to render your own button.
+ * Pass your own element as `children` (e.g. `<Button />`) to use it as the close button.
  */
-const DialogClose = (props: DialogCloseProps) => (
-    <RadixDialog.Close {...props} />
+const DialogClose = ({ children, ...props }: DialogCloseProps) => (
+    <BaseDialog.Close
+        {...props}
+        render={children}
+    />
 )
 
 DialogClose.displayName = 'DialogClose'

@@ -1,4 +1,4 @@
-import * as RadixDialog from '@radix-ui/react-dialog'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
 import DialogBody from '@components/overlay/dialog/components/dialog-body/DialogBody.tsx'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
@@ -11,7 +11,7 @@ import DialogTrigger from '@components/overlay/dialog/components/dialog-trigger/
 import type { DialogCompound } from '@components/overlay/dialog/types'
 
 /**
- * A modal dialog built on Radix Dialog.
+ * A modal dialog built on Base UI Dialog.
  *
  * Compose with the named sub-components for a complete, accessible modal:
  * `Dialog.Trigger`, `Dialog.Content`, `Dialog.Header`, `Dialog.Body`,
@@ -20,7 +20,7 @@ import type { DialogCompound } from '@components/overlay/dialog/types'
  * @example
  * ```tsx
  * <Dialog>
- *   <Dialog.Trigger asChild>
+ *   <Dialog.Trigger>
  *     <Button label="Open dialog" variant="contained" color="primary" />
  *   </Dialog.Trigger>
  *   <Dialog.Content>
@@ -32,7 +32,7 @@ import type { DialogCompound } from '@components/overlay/dialog/types'
  *       <Typography>Your content goes here.</Typography>
  *     </Dialog.Body>
  *     <Dialog.Footer>
- *       <Dialog.Close asChild>
+ *       <Dialog.Close>
  *         <Button label="Cancel" variant="outlined" color="primary" />
  *       </Dialog.Close>
  *       <Button label="Save" variant="contained" color="primary" />
@@ -42,7 +42,7 @@ import type { DialogCompound } from '@components/overlay/dialog/types'
  * ```
  */
 const Dialog = ((props) => (
-    <RadixDialog.Root {...props} />
+    <BaseDialog.Root {...props} />
 )) as DialogCompound
 
 Dialog.displayName = 'Dialog'

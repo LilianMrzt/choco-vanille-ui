@@ -1,12 +1,9 @@
-import type * as React from 'react'
-import type * as RadixDialog from '@radix-ui/react-dialog'
+import type { Dialog } from '@base-ui/react/dialog'
 
 import type { DialogSize } from '@components/overlay/dialog/types/Dialog.types.ts'
 
 /** Props for `Dialog.Content`. */
-export type DialogContentProps = React.ComponentPropsWithoutRef<
-  typeof RadixDialog.Content
-> & {
+export type DialogContentProps = Dialog.Popup.Props & {
     /**
      * Predefined max-width for the dialog.
      * @default 'md'

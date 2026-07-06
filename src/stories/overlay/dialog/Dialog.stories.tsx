@@ -26,7 +26,7 @@ const meta: Meta<DialogPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A modal dialog built on Radix Dialog.
+A modal dialog built on Base UI Dialog.
 
 Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog.Body\`, \`Dialog.Footer\`, \`Dialog.Title\`, \`Dialog.Description\` and \`Dialog.Close\`.
 
@@ -34,7 +34,7 @@ Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog
 
 \`\`\`tsx
 <Dialog>
-  <Dialog.Trigger asChild>
+  <Dialog.Trigger>
     <Button label="Open dialog" variant="contained" color="primary" />
   </Dialog.Trigger>
   <Dialog.Content>
@@ -46,7 +46,7 @@ Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog
       <Typography>Your content goes here.</Typography>
     </Dialog.Body>
     <Dialog.Footer>
-      <Dialog.Close asChild>
+      <Dialog.Close>
         <Button label="Cancel" variant="outlined" color="primary" />
       </Dialog.Close>
       <Button label="Save" variant="contained" color="primary" />
@@ -168,7 +168,7 @@ export const Playground: Story = {
             defaultOpen={defaultOpen}
             modal={modal}
         >
-            <Dialog.Trigger asChild>
+            <Dialog.Trigger>
                 <Button
                     label={'Open dialog'}
                     variant={'contained'}
@@ -192,7 +192,7 @@ export const Playground: Story = {
                 </Dialog.Body>
                 {showFooter && (
                     <Dialog.Footer>
-                        <Dialog.Close asChild>
+                        <Dialog.Close>
                             <Button
                                 label={cancelLabel ?? 'Cancel'}
                                 variant={'outlined'}
