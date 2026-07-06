@@ -1,4 +1,4 @@
-import * as RadixTabs from '@radix-ui/react-tabs'
+import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
 import { TABS_LIST_STYLES } from '@components/navigation/tabs/components/tabs-list/TabsList.css.ts'
 import type { TabsListProps } from '@components/navigation/tabs/components/tabs-list/types/TabsList.props.ts'
@@ -10,10 +10,11 @@ import { cn } from '@utils/cn.ts'
  * or `aria-labelledby`. The `variant` prop is shared with `Tabs.Trigger`
  * via context so triggers automatically match the list's visual style.
  */
-const TabsList = ({ className, variant = 'default', bordered = false, ...props }: TabsListProps) => (
+const TabsList = ({ className, variant = 'default', bordered = false, activationMode, ...props }: TabsListProps) => (
     <TabsVariantContext.Provider value={{ variant }}>
-        <RadixTabs.List
+        <BaseTabs.List
             className={cn(TABS_LIST_STYLES.recipe({ variant, bordered }), className)}
+            activateOnFocus={activationMode === 'automatic'}
             {...props}
         />
     </TabsVariantContext.Provider>

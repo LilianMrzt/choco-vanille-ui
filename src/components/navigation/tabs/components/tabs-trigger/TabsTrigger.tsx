@@ -1,4 +1,4 @@
-import * as RadixTabs from '@radix-ui/react-tabs'
+import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
 import { TABS_TRIGGER_STYLES, tabsTriggerLabel } from '@components/navigation/tabs/components/tabs-trigger/TabsTrigger.css.ts'
 import type { TabsTriggerProps } from '@components/navigation/tabs/components/tabs-trigger/types/TabsTrigger.props.ts'
@@ -16,7 +16,7 @@ const TabsTrigger = ({ className, style, width, label, startIcon, endIcon, value
     const { variant } = useTabsVariant()
 
     return (
-        <RadixTabs.Trigger
+        <BaseTabs.Tab
             value={value}
             className={cn(TABS_TRIGGER_STYLES.recipe({ variant }), className)}
             style={width !== undefined ? { ...style, width } : style}
@@ -44,7 +44,7 @@ const TabsTrigger = ({ className, style, width, label, startIcon, endIcon, value
                     size={'sm'}
                 />
             )}
-        </RadixTabs.Trigger>
+        </BaseTabs.Tab>
     )
 }
 

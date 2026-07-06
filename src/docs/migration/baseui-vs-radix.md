@@ -85,7 +85,7 @@ de l'effort **en gardant le style et l'implémentation compound actuels**.
 | `@radix-ui/react-popover` | `Popover`, `PopoverTrigger`, `PopoverAnchor`, `PopoverContent` | `Popover` | 🟢 Faible | Petit composant (4 fichiers), API très proche. Bon candidat pour un premier essai/POC. |
 | `@radix-ui/react-hover-card` | `HoverCard`, `HoverCardTrigger`, `HoverCardContent` | `PreviewCard` (renommé, pas de `HoverCard` dans Base UI) | 🟢 Faible | Renommage conceptuel (`HoverCard`→`PreviewCard`). API publique non figée : on peut renommer directement notre composant en `PreviewCard` sans se soucier de compatibilité. API proche sinon. |
 | `@radix-ui/react-tooltip` | `Tooltip`, `TooltipProvider` | `Tooltip` | 🟢 Faible | ✅ Migré. API quasi identique (`Root/Trigger/Portal/Positioner/Popup/Arrow`, `Provider` conservé). |
-| `@radix-ui/react-tabs` | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | `Tabs` | 🟢 Faible | API quasi identique. |
+| `@radix-ui/react-tabs` | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | `Tabs` | 🟢 Faible | ✅ Migré. API quasi identique. |
 | `@radix-ui/react-checkbox` | `Checkbox` | `Checkbox` | 🟢 Faible | API proche, attention au changement de comportement "unchecked state" natif (breaking change signalé dans le changelog Base UI) à valider avec nos tests. |
 | `@radix-ui/react-switch` | `Switch` | `Switch` | 🟢 Faible | API quasi identique. Même remarque que `Checkbox` sur l'état "unchecked". |
 | `@radix-ui/react-radio-group` | `RadioGroup`, `RadioItem` | `RadioGroup` | 🟢 Faible | API très proche (`Root`/`Item`/`Indicator`). |

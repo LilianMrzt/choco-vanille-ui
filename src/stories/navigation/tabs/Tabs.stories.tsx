@@ -14,6 +14,7 @@ type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
     billingWidth?: string
     billingStartIcon?: string
     billingEndIcon?: string
+    activationMode?: 'automatic' | 'manual'
 }
 
 const VARIANTS: TabsVariant[] = ['default', 'pills']
@@ -28,7 +29,7 @@ const meta: Meta<TabsPlaygroundArgs> = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A styled tab interface built on top of \`@radix-ui/react-tabs\`.
+A styled tab interface built on top of \`@base-ui/react/tabs\`.
 Use it to switch between related panels of content without leaving the page.
 Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 
@@ -112,7 +113,7 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
     args: {
         defaultValue: 'account',
         orientation: 'horizontal',
-        activationMode: 'automatic',
+        activationMode: 'automatic' as const,
         listVariant: 'default',
         listBordered: false,
         billingDisabled: true,
@@ -200,17 +201,17 @@ export const Playground: Story = {
         const billingTab = canvas.getByRole('tab', { name: 'Billing' })
 
         await expect(accountTab).toBeInTheDocument()
-        await expect(accountTab).toHaveAttribute('data-state', 'active')
-        await expect(passwordTab).toHaveAttribute('data-state', 'inactive')
+        await expect(accountTab).toHaveAttribute('data-active')
+        await expect(passwordTab).not.toHaveAttribute('data-active')
 
         await userEvent.click(passwordTab)
-        await expect(passwordTab).toHaveAttribute('data-state', 'active')
+        await expect(passwordTab).toHaveAttribute('data-active')
         await expect(
             canvas.getByText('Update your password and security settings.'),
         ).toBeInTheDocument()
 
         await expect(billingTab).toHaveAttribute('data-disabled')
         await userEvent.click(billingTab)
-        await expect(passwordTab).toHaveAttribute('data-state', 'active')
+        await expect(passwordTab).toHaveAttribute('data-active')
     },
 }

@@ -47,19 +47,19 @@ export const TABS_TRIGGER_STYLES = {
                     borderBottom: `2px solid transparent`,
                     borderRadius: `${vars.radius.sm} ${vars.radius.sm} 0 0`,
                     selectors: {
-                        '&:not([data-disabled]):not([data-state="active"]):hover': {
+                        '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.secondarySubtle,
                             color: vars.color.foreground,
                         },
-                        '&:not([data-disabled]):not([data-state="active"]):active': {
+                        '&:not([data-disabled]):not([data-active]):active': {
                             backgroundColor: vars.color.secondarySubtleActive,
                             color: vars.color.foreground,
                         },
-                        '&[data-state="active"]': {
+                        '&[data-active]': {
                             borderBottomColor: vars.color.primary,
                             color: vars.color.primary,
                         },
-                        '&[data-state="active"][data-disabled]': {
+                        '&[data-active][data-disabled]': {
                             borderBottomColor: vars.color.primary,
                             color: vars.color.primary,
                         },
@@ -68,27 +68,27 @@ export const TABS_TRIGGER_STYLES = {
                 pills: {
                     borderRadius: vars.radius.sm,
                     selectors: {
-                        '&:not([data-disabled]):not([data-state="active"]):hover': {
+                        '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.secondarySubtle,
                             color: vars.color.foreground,
                         },
-                        '&:not([data-disabled]):not([data-state="active"]):active': {
+                        '&:not([data-disabled]):not([data-active]):active': {
                             backgroundColor: vars.color.secondarySubtleActive,
                             color: vars.color.foreground,
                         },
-                        '&[data-state="active"]': {
+                        '&[data-active]': {
                             backgroundColor: vars.color.primary,
                             color: vars.color.primaryForeground,
                         },
-                        '&:not([data-disabled])[data-state="active"]:hover': {
+                        '&:not([data-disabled])[data-active]:hover': {
                             backgroundColor: vars.color.primaryHover,
                             color: vars.color.primaryForeground,
                         },
-                        '&:not([data-disabled])[data-state="active"]:active': {
+                        '&:not([data-disabled])[data-active]:active': {
                             backgroundColor: vars.color.primaryActive,
                             color: vars.color.primaryForeground,
                         },
-                        '&[data-state="active"][data-disabled]': {
+                        '&[data-active][data-disabled]': {
                             backgroundColor: vars.color.primary,
                             color: vars.color.primaryForeground,
                         },
@@ -106,7 +106,7 @@ export const TABS_TRIGGER_STYLES = {
 export const tabsTriggerLabel = style({
     fontWeight: vars.fontWeight.medium,
     selectors: {
-        '[data-state="active"] &': {
+        '[data-active] &': {
             fontWeight: vars.fontWeight.semibold,
         },
     },

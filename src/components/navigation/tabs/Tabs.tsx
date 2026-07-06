@@ -1,4 +1,4 @@
-import * as RadixTabs from '@radix-ui/react-tabs'
+import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
 import TabsContent from '@components/navigation/tabs/components/tabs-content/TabsContent.tsx'
 import TabsList from '@components/navigation/tabs/components/tabs-list/TabsList.tsx'
@@ -6,7 +6,7 @@ import TabsTrigger from '@components/navigation/tabs/components/tabs-trigger/Tab
 import type { TabsCompound } from '@components/navigation/tabs/types'
 
 /**
- * A styled tab interface built on top of `@radix-ui/react-tabs`.
+ * A styled tab interface built on top of `@base-ui/react/tabs`.
  *
  * Composes `Tabs`, `Tabs.List`, `Tabs.Trigger`, and `Tabs.Content`.
  * Supports controlled (`value` + `onValueChange`) and uncontrolled
@@ -25,7 +25,7 @@ import type { TabsCompound } from '@components/navigation/tabs/types'
  * ```
  */
 const Tabs = ((props) => (
-    <RadixTabs.Root {...props} />
+    <BaseTabs.Root {...props} />
 )) as TabsCompound
 
 Tabs.displayName = 'Tabs'

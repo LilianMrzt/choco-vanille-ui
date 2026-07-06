@@ -1,4 +1,3 @@
-import type * as React from 'react'
-import type * as RadixTabs from '@radix-ui/react-tabs'
+import type { Tabs } from '@base-ui/react/tabs'
 
-export type TabsProps = React.ComponentPropsWithRef<typeof RadixTabs.Root>
+export type TabsProps = Tabs.Root.Props
