@@ -7,6 +7,11 @@ export const darkColors: Record<keyof LightColors, string> = {
     background: palette.neutral[950],
     foreground: palette.neutral[100],
 
+    /* Text hierarchy */
+    text: palette.neutral[100],
+    textSecondary: palette.neutral[300],
+    textTertiary: palette.neutral[500],
+
     /* Elevated surfaces — a hair lighter than the page for depth */
     card: palette.neutral[900],
     cardForeground: palette.neutral[100],

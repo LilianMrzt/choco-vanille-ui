@@ -28,6 +28,11 @@ export const lightColors = {
     background: palette.neutral[50],
     foreground: palette.neutral[950],
 
+    /* Text hierarchy */
+    text: palette.neutral[950],
+    textSecondary: palette.neutral[700],
+    textTertiary: palette.neutral[500],
+
     /* Elevated surfaces */
     card: palette.neutral[0],
     cardForeground: palette.neutral[950],
