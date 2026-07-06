@@ -17,7 +17,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A styled switch control built on top of \`@radix-ui/react-switch\`.
+A styled switch control built on top of \`@base-ui/react/switch\`.
 Supports both controlled (\`checked\` + \`onCheckedChange\`) and uncontrolled (\`defaultChecked\`) modes, and renders an optional accessible inline label.
 
 **Usage**

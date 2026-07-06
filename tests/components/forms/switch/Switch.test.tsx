@@ -18,7 +18,7 @@ describe('Switch', () => {
 
         it('is unchecked by default', () => {
             render(<Switch />)
-            expect(getSwitch().getAttribute('data-state')).toBe('unchecked')
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
         })
 
         it('renders without a label when label prop is omitted', () => {
@@ -47,19 +47,19 @@ describe('Switch', () => {
     describe('controlled checked state', () => {
         it('is checked when checked={true}', () => {
             render(<Switch checked onCheckedChange={() => undefined} />)
-            expect(getSwitch().getAttribute('data-state')).toBe('checked')
+            expect(getSwitch().getAttribute('data-checked')).toBe('')
         })
 
         it('is unchecked when checked={false}', () => {
             render(<Switch checked={false} onCheckedChange={() => undefined} />)
-            expect(getSwitch().getAttribute('data-state')).toBe('unchecked')
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
         })
     })
 
     describe('uncontrolled checked state', () => {
         it('starts checked when defaultChecked is true', () => {
             render(<Switch defaultChecked />)
-            expect(getSwitch().getAttribute('data-state')).toBe('checked')
+            expect(getSwitch().getAttribute('data-checked')).toBe('')
         })
     })
 
@@ -87,11 +87,11 @@ describe('Switch', () => {
 
         it('toggles checked state on click (uncontrolled)', async () => {
             render(<Switch />)
-            expect(getSwitch().getAttribute('data-state')).toBe('unchecked')
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
             await userEvent.click(getSwitch())
-            expect(getSwitch().getAttribute('data-state')).toBe('checked')
+            expect(getSwitch().getAttribute('data-checked')).toBe('')
             await userEvent.click(getSwitch())
-            expect(getSwitch().getAttribute('data-state')).toBe('unchecked')
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
         })
     })
 

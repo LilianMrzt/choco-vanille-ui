@@ -36,13 +36,13 @@ export const SWITCH_STYLES = {
                     outline: 'none',
                     boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
                 },
-                '&[data-state="checked"]': {
+                '&[data-checked]': {
                     backgroundColor: vars.color.primary,
                 },
-                '&[data-state="checked"]:not([data-disabled]):hover': {
+                '&[data-checked]:not([data-disabled]):hover': {
                     backgroundColor: vars.color.primaryHover,
                 },
-                '&[data-state="checked"]:not([data-disabled]):active': {
+                '&[data-checked]:not([data-disabled]):active': {
                     backgroundColor: vars.color.primaryActive,
                 },
                 '&[data-disabled]': {
@@ -79,13 +79,13 @@ export const SWITCH_STYLES = {
                             outline: 'none',
                             boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
                         },
-                        '&[data-state="checked"]': {
+                        '&[data-checked]': {
                             backgroundColor: vars.color.primary,
                         },
-                        '&[data-state="checked"]:not([data-disabled]):hover': {
+                        '&[data-checked]:not([data-disabled]):hover': {
                             backgroundColor: vars.color.primaryHover,
                         },
-                        '&[data-state="checked"]:not([data-disabled]):active': {
+                        '&[data-checked]:not([data-disabled]):active': {
                             backgroundColor: vars.color.primaryActive,
                         },
                     },
@@ -112,7 +112,7 @@ export const SWITCH_STYLES = {
                 `background-color ${vars.duration.fast} ${vars.easing.standard}`,
             ].join(', '),
             selectors: {
-                '&[data-state="checked"]': {
+                '&[data-checked]': {
                     backgroundColor: vars.color.primaryForeground,
                 },
             },
@@ -123,7 +123,7 @@ export const SWITCH_STYLES = {
                     width: '1rem',
                     height: '1rem',
                     selectors: {
-                        '&[data-state="checked"]': {
+                        '&[data-checked]': {
                             transform: 'translateX(1rem)',
                         },
                     },
@@ -132,7 +132,7 @@ export const SWITCH_STYLES = {
                     width: '1.25rem',
                     height: '1.25rem',
                     selectors: {
-                        '&[data-state="checked"]': {
+                        '&[data-checked]': {
                             transform: 'translateX(1.25rem)',
                         },
                     },
@@ -141,7 +141,7 @@ export const SWITCH_STYLES = {
                     width: '1.5rem',
                     height: '1.5rem',
                     selectors: {
-                        '&[data-state="checked"]': {
+                        '&[data-checked]': {
                             transform: 'translateX(1.5rem)',
                         },
                     },

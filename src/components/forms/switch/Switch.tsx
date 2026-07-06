@@ -1,4 +1,4 @@
-import * as RadixSwitch from '@radix-ui/react-switch'
+import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import { useId, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
@@ -9,7 +9,7 @@ import { SWITCH_STYLES } from '@components/forms/switch/Switch.css.ts'
 import type { SwitchProps } from '@components/forms/switch/types/Switch.props.ts'
 
 /**
- * A styled switch control built on top of `@radix-ui/react-switch`.
+ * A styled switch control built on top of `@base-ui/react/switch`.
  *
  * Supports controlled (`checked` + `onCheckedChange`) and uncontrolled
  * (`defaultChecked`) modes, plus an optional inline `label`.
@@ -19,7 +19,7 @@ import type { SwitchProps } from '@components/forms/switch/types/Switch.props.ts
  * <Switch label="Airplane mode" checked={enabled} onCheckedChange={setEnabled} />
  * ```
  */
-const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disabled, size = 'md', ...props }) => {
+const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disabled, size = 'md', onCheckedChange, ...props }) => {
     const generatedId = useId()
     const switchId = id ?? (label ? generatedId : undefined)
     const hasError = Boolean(error)
@@ -40,16 +40,17 @@ const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disa
                 gap={'sm'}
                 alignItems={'center'}
             >
-                <RadixSwitch.Root
+                <BaseSwitch.Root
                     id={switchId}
                     disabled={disabled}
                     aria-describedby={helperId}
                     aria-invalid={hasError || undefined}
                     className={cn(SWITCH_STYLES.root({ size, error: hasError }), className)}
+                    onCheckedChange={(checked) => onCheckedChange?.(checked, { reason: 'none' } as never)}
                     {...props}
                 >
-                    <RadixSwitch.Thumb className={SWITCH_STYLES.thumb({ size })} />
-                </RadixSwitch.Root>
+                    <BaseSwitch.Thumb className={SWITCH_STYLES.thumb({ size })} />
+                </BaseSwitch.Root>
 
                 {label && (
                     <Typography
