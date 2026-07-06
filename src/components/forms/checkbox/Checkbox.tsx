@@ -1,4 +1,4 @@
-import * as RadixCheckbox from '@radix-ui/react-checkbox'
+import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import { useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
@@ -10,7 +10,7 @@ import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.props.ts'
 
 /**
-  * A styled checkbox control built on top of `@radix-ui/react-checkbox`.
+  * A styled checkbox control built on top of `@base-ui/react/checkbox`.
   *
   * Supports controlled (`checked` + `onCheckedChange`) and uncontrolled
   * (`defaultChecked`) modes, plus an optional inline `label`.
@@ -20,7 +20,7 @@ import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.pr
   * <Checkbox label="Accept terms" checked={accepted} onCheckedChange={setAccepted} />
   * ```
   */
-const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
+const Checkbox: FC<CheckboxProps> = ({ label, id, className, onCheckedChange, ...props }) => {
     const generatedId = useId()
     const checkboxId = id ?? (label ? generatedId : undefined)
 
@@ -30,18 +30,19 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, ...props }) => {
             inline
             gap={'sm'}
         >
-            <RadixCheckbox.Root
+            <BaseCheckbox.Root
                 id={checkboxId}
                 className={cn(CHECKBOX_STYLES.root, className)}
+                onCheckedChange={(checked) => onCheckedChange?.(checked, { reason: 'none' } as never)}
                 {...props}
             >
-                <RadixCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
+                <BaseCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
                         icon={IconRegistry.check}
                         size={'xs'}
                     />
-                </RadixCheckbox.Indicator>
-            </RadixCheckbox.Root>
+                </BaseCheckbox.Indicator>
+            </BaseCheckbox.Root>
 
             {label && (
                 <Typography

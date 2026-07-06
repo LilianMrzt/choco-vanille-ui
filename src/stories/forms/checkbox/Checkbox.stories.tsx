@@ -13,7 +13,7 @@ const meta = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A styled checkbox control built on top of \`@radix-ui/react-checkbox\`.
+A styled checkbox control built on top of \`@base-ui/react/checkbox\`.
 Supports both controlled (\`checked\` + \`onCheckedChange\`) and uncontrolled (\`defaultChecked\`) modes, and renders an optional accessible inline label.
 
 **Usage**
@@ -39,7 +39,8 @@ const [accepted, setAccepted] = useState(false)
 | \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted to maintain an accessible name. |
 | \`disabled\` | No | \`boolean\` | Keeps the checkbox visible and announced; do not hide unavailable options. |
 | \`required\` | No | \`boolean\` | Marks the field as required for native form validation. |
-| \`checked\` | No | \`boolean \\| 'indeterminate'\` | Controlled checked state; pair with \`onCheckedChange\`. |
+| \`checked\` | No | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`. |
+| \`indeterminate\` | No | \`boolean\` | Whether the checkbox is in a mixed state. |
 | \`defaultChecked\` | No | \`boolean\` | Uncontrolled initial checked state. |
 
 - Keyboard: \`Space\` toggles the checkbox when focused.
@@ -85,7 +86,7 @@ export const Playground: Story = {
             <Checkbox
                 {...args}
                 checked={checked}
-                onCheckedChange={(value) => setChecked(value === true)}
+                onCheckedChange={setChecked}
             />
         )
     },

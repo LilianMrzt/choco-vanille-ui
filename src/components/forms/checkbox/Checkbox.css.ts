@@ -52,20 +52,26 @@ export const CHECKBOX_STYLES = {
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
             /* Standalone: checked */
-            '&[data-state="checked"]': {
+            '&[data-checked]': {
                 backgroundColor: vars.color.primary,
                 borderColor: vars.color.primary,
                 color: vars.color.primaryForeground,
             },
             /* Standalone: checked + hover (only when NOT disabled) */
-            '&[data-state="checked"]:not([data-disabled]):hover': {
+            '&[data-checked]:not([data-disabled]):hover': {
                 backgroundColor: vars.color.primaryHover,
                 borderColor: vars.color.primaryHover,
             },
             /* Standalone: checked + active (only when NOT disabled) */
-            '&[data-state="checked"]:not([data-disabled]):active': {
+            '&[data-checked]:not([data-disabled]):active': {
                 backgroundColor: vars.color.primaryActive,
                 borderColor: vars.color.primaryActive,
+            },
+            /* Standalone: indeterminate */
+            '&[data-indeterminate]': {
+                backgroundColor: vars.color.primary,
+                borderColor: vars.color.primary,
+                color: vars.color.primaryForeground,
             },
             /* Standalone: disabled */
             '&[data-disabled]': {
@@ -78,15 +84,21 @@ export const CHECKBOX_STYLES = {
                 backgroundColor: vars.color.primarySubtle,
             },
             /* Dropdown: checked parent */
-            '[data-state="checked"] &': {
+            '[data-checked] &': {
                 backgroundColor: vars.color.primary,
                 borderColor: vars.color.primary,
                 color: vars.color.primaryForeground,
             },
             /* Dropdown: checked + highlighted parent */
-            '[data-state="checked"][data-highlighted] &': {
+            '[data-checked][data-highlighted] &': {
                 backgroundColor: vars.color.primaryHover,
                 borderColor: vars.color.primaryHover,
+            },
+            /* Dropdown: indeterminate parent */
+            '[data-indeterminate] &': {
+                backgroundColor: vars.color.primary,
+                borderColor: vars.color.primary,
+                color: vars.color.primaryForeground,
             },
             /* Dropdown: disabled parent — neutralize hover on span */
             '[data-disabled] &': {
