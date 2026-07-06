@@ -1,11 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { isValidElement, type ReactElement } from 'react'
 
-import { CalloutIcon } from '@components/feedback/callout/components/callout-icon'
-import {
-    extractIconChild,
-    hasIconChild,
-} from '@components/feedback/callout/utils/hasIconChild.utils.ts'
+import { createIconChildUtils } from '@utils/createIconChildUtils.ts'
+
+const Icon = () => <span>icon</span>
+const { hasIconChild, extractIconChild } = createIconChildUtils(Icon)
 
 const Dummy = () => <span>dummy</span>
 
@@ -27,14 +26,14 @@ describe('hasIconChild', () => {
         expect(hasIconChild(<div>content</div>)).toBe(false)
     })
 
-    it('returns true when a CalloutIcon is present', () => {
-        expect(hasIconChild(<CalloutIcon icon="lucide:info" />)).toBe(true)
+    it('returns true when the icon component is present', () => {
+        expect(hasIconChild(<Icon />)).toBe(true)
     })
 
-    it('returns true when a CalloutIcon is mixed with other children', () => {
+    it('returns true when the icon component is mixed with other children', () => {
         expect(
             hasIconChild([
-                <CalloutIcon key="icon" icon="lucide:info" />,
+                <Icon key="icon" />,
                 <span key="text">content</span>,
             ]),
         ).toBe(true)
@@ -59,26 +58,26 @@ describe('extractIconChild', () => {
         expect(remaining).toHaveLength(2)
     })
 
-    it('extracts the CalloutIcon and keeps the remaining children', () => {
+    it('extracts the icon and keeps the remaining children', () => {
         const { node, remaining } = extractIconChild([
-            <CalloutIcon key="icon" icon="lucide:info" />,
+            <Icon key="icon" />,
             <span key="text">content</span>,
         ])
 
         expect(isValidElement(node)).toBe(true)
-        expect((node as ReactElement).type).toBe(CalloutIcon)
+        expect((node as ReactElement).type).toBe(Icon)
         expect(remaining).toHaveLength(1)
     })
 
-    it('only extracts the first CalloutIcon when multiple are present', () => {
+    it('only extracts the first icon when multiple are present', () => {
         const { node, remaining } = extractIconChild([
-            <CalloutIcon key="icon1" icon="lucide:info" />,
-            <CalloutIcon key="icon2" icon="lucide:check" />,
+            <Icon key="icon1" />,
+            <Icon key="icon2" />,
             <span key="text">content</span>,
         ])
 
         expect(isValidElement(node)).toBe(true)
-        expect((node as ReactElement).type).toBe(CalloutIcon)
+        expect((node as ReactElement).type).toBe(Icon)
         expect(remaining).toHaveLength(2)
     })
 })

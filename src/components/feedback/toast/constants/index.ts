@@ -1,0 +1,17 @@
+import type { ToastVariant } from '@components/feedback/toast/types/Toast.types.ts'
+import { IconRegistry } from '@constants/icons'
+import type { ThemeColor } from '@theme'
+
+export const VARIANT_TO_ICON: Record<ToastVariant, string> = {
+    info: IconRegistry.info,
+    success: IconRegistry.success,
+    warning: IconRegistry.warning,
+    error: IconRegistry.error,
+}
+
+export const VARIANT_TO_COLOR: Record<ToastVariant, ThemeColor> = {
+    info: 'info',
+    success: 'success',
+    warning: 'warning',
+    error: 'destructive',
+}

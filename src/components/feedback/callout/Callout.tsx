@@ -4,9 +4,11 @@ import { CalloutDescription } from '@components/feedback/callout/components/call
 import { CalloutIcon } from '@components/feedback/callout/components/callout-icon'
 import { CalloutTitle } from '@components/feedback/callout/components/callout-title'
 import type { CalloutCompound } from '@components/feedback/callout/types'
-import { extractIconChild, hasIconChild } from '@components/feedback/callout/utils/hasIconChild.utils.ts'
 import { Flex } from '@components/layout/flex'
+import { createIconChildUtils } from '@utils/createIconChildUtils.ts'
 import { cn } from '@utils/cn.ts'
+
+const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
 const Callout = (({
     variant = 'info',
