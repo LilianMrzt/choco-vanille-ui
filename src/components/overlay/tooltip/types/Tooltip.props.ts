@@ -1,12 +1,12 @@
-import type * as React from 'react'
+import type { ReactElement, ReactNode } from 'react'
 
 import type { TooltipSide, TooltipAlign, TooltipPosition } from '@components/overlay/tooltip/types/Tooltip.types.ts'
 
 export type TooltipProps = {
   /** The element that triggers the tooltip (must be a single React element that can receive a ref). */
-  children: React.ReactNode;
+  children: ReactElement;
   /** Content rendered inside the tooltip bubble. */
-  content: React.ReactNode;
+  content: ReactNode;
   /**
    * Shorthand position combining side and alignment in a single value.
    * Takes precedence over `side` and `align` when provided.

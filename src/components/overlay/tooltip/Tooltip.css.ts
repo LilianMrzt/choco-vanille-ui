@@ -24,17 +24,14 @@ export const TOOLTIP_STYLES = {
         fontSize: vars.fontSize.xs,
         lineHeight: vars.lineHeight.normal,
         filter: vars.dropShadow.sm,
-        transformOrigin: 'var(--radix-tooltip-content-transform-origin)',
+        transformOrigin: 'var(--transform-origin)',
         selectors: {
-            '&[data-state="delayed-open"], &[data-state="instant-open"]': {
+            '&[data-open]': {
                 animation: `${fadeZoomIn} 0.15s ease-out`,
             },
-            '&[data-state="closed"]': {
+            '&[data-closed]': {
                 animation: `${fadeZoomOut} 0.15s ease-in`,
             },
         },
-    }),
-    arrow: style({
-        fill: vars.color.popover,
     }),
 }

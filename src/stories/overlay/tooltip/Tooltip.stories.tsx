@@ -37,7 +37,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A contextual tooltip that appears on hover or keyboard focus, built on top of \`@radix-ui/react-tooltip\`.
+A contextual tooltip that appears on hover or keyboard focus, built on top of \`@base-ui/react/tooltip\`.
 Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
 
 **Usage**

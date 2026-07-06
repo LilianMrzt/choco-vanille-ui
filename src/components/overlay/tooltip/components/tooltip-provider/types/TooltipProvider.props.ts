@@ -10,9 +10,4 @@ export type TooltipProviderProps = {
    * next tooltip instantly, skipping `delayDuration`. @default 300
    */
   skipDelayDuration?: number;
-  /**
-   * When `true`, the tooltip content closes as soon as the pointer leaves the
-   * trigger, even if it moves onto the content. @default false
-   */
-  disableHoverableContent?: boolean;
 }

@@ -1,4 +1,4 @@
-import * as RadixTooltip from '@radix-ui/react-tooltip'
+import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
 import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
@@ -31,34 +31,35 @@ const Tooltip: FC<TooltipProps> = ({
     }
 
     const root = (
-        <RadixTooltip.Root
-            delayDuration={delayDuration}
+        <BaseTooltip.Root
             open={open}
-            onOpenChange={onOpenChange}
+            onOpenChange={(isOpen) => onOpenChange?.(isOpen)}
         >
-            <RadixTooltip.Trigger asChild>
-                {children}
-            </RadixTooltip.Trigger>
+            <BaseTooltip.Trigger
+                delay={delayDuration}
+                render={children}
+            />
 
-            <RadixTooltip.Portal>
-                <RadixTooltip.Content
+            <BaseTooltip.Portal>
+                <BaseTooltip.Positioner
                     side={side}
                     align={align}
-                    className={cn(TOOLTIP_STYLES.content, className)}
                     sideOffset={6}
+                    className={'isolate'}
                 >
-                    {content}
-                    <RadixTooltip.Arrow className={TOOLTIP_STYLES.arrow} />
-                </RadixTooltip.Content>
-            </RadixTooltip.Portal>
-        </RadixTooltip.Root>
+                    <BaseTooltip.Popup className={cn(TOOLTIP_STYLES.content, className)}>
+                        {content}
+                    </BaseTooltip.Popup>
+                </BaseTooltip.Positioner>
+            </BaseTooltip.Portal>
+        </BaseTooltip.Root>
     )
 
     // Prefer the shared provider (mounted by `ThemeProvider` or a consumer's
-    // `TooltipProvider`) so timing — notably `skipDelayDuration` between
+    // `TooltipProvider`) so timing — notably the skip-delay timeout between
     // adjacent triggers — is shared. Fall back to a local provider so a
     // standalone `Tooltip` still works without any setup.
-    return hasProvider ? root : <RadixTooltip.Provider>{root}</RadixTooltip.Provider>
+    return hasProvider ? root : <BaseTooltip.Provider delay={delayDuration}>{root}</BaseTooltip.Provider>
 }
 
 Tooltip.displayName = 'Tooltip'
