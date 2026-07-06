@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconRegistry } from '@constants/icons'
 
 import { buildThemeCSS } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
 
@@ -21,7 +22,7 @@ export const CopyThemeButton = () => {
             variant={'outlined'}
             color={copied ? 'success' : 'secondary'}
             label={copied ? 'Copied!' : 'Copy full theme CSS'}
-            startIcon={copied ? 'lucide:check' : 'lucide:clipboard'}
+            startIcon={copied ? IconRegistry.check : IconRegistry.clipboard}
             onClick={handleClick}
         />
     )

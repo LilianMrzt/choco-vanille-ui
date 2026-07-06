@@ -34,27 +34,29 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A contextual tooltip that appears on hover or keyboard focus, built on top of \`@radix-ui/react-tooltip\`.
 Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <Tooltip content="Edit this item">
-  <IconButton icon="mdi:pencil" aria-label="Edit" />
+    <IconButton icon="lucide:pencil" aria-label="Edit" />
 </Tooltip>
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`content\` | ✅ Yes | \`ReactNode\` | Must be supplementary — never put task-critical information exclusively in a tooltip. |
-| \`children\` | ✅ Yes | Focusable element | Must be a single focusable element; add \`tabIndex={0}\` when wrapping a non-focusable node. |
-| \`delayDuration\` | No | \`number\` (ms) | Set to \`0\` in tests or for persistent labels (e.g. alongside an \`IconButton\`). |
-| \`disabled\` | No | \`boolean\` | Suppresses the tooltip entirely when \`true\`. |
-| \`open\` | No | \`boolean\` | Controlled open state; pair with \`onOpenChange\` for custom show/hide logic. |
+| Prop / Attribute | Required | Type              | Notes                                                                                      |
+| ---------------- | -------- | ----------------- | ------------------------------------------------------------------------------------------ |
+| \`content\`        | ✅ Yes   | \`ReactNode\`       | Must be supplementary — never put task-critical information exclusively in a tooltip.      |
+| \`children\`       | ✅ Yes   | Focusable element | Must be a single focusable element; add \`tabIndex={0}\` when wrapping a non-focusable node. |
+| \`delayDuration\`  | No       | \`number\` (ms)     | Set to \`0\` in tests or for persistent labels (e.g. alongside an \`IconButton\`).             |
+| \`disabled\`       | No       | \`boolean\`         | Suppresses the tooltip entirely when \`true\`.                                               |
+| \`open\`           | No       | \`boolean\`         | Controlled open state; pair with \`onOpenChange\` for custom show/hide logic.                |
 
 - The tooltip is shown on both **hover** and **keyboard focus**, ensuring keyboard-only users are not excluded.
 - Avoid interactive content (buttons, links) inside \`content\` — tooltips are not keyboard-reachable once open.
@@ -68,7 +70,7 @@ Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
             control: 'select',
             options: [undefined, ...POSITIONS],
             description:
-        'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
+                'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
         },
         side: { control: 'select', options: SIDES },
         align: { control: 'select', options: ALIGNS },
@@ -87,14 +89,14 @@ Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to adjust content, position, side, alignment, delay, and disabled state.',
+                    'Interactive playground — use the Controls panel to adjust content, position, side, alignment, delay, and disabled state.',
             },
         },
     },

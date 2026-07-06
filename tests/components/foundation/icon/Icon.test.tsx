@@ -6,7 +6,7 @@ import { Icon } from '@components/foundation/icon'
 
 // Preload a test icon so Iconify renders synchronously in JSDOM
 beforeAll(() => {
-    addIcon('mdi:home', {
+    addIcon('lucide:home', {
         body: '<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>',
         width: 24,
         height: 24,
@@ -23,21 +23,25 @@ beforeAll(() => {
 describe('Icon', () => {
     describe('accessibility — decorative icon (no label)', () => {
         it('sets aria-hidden="true"', () => {
-            const { container } = render(<Icon icon={'mdi:home'} />)
-            expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true')
+            const { container } = render(<Icon icon={'lucide:home'} />)
+            expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe(
+                'true',
+            )
         })
     })
 
     describe('accessibility — semantic icon (with label)', () => {
         it('removes aria-hidden', () => {
-            const { container } = render(<Icon icon={'mdi:home'} aria-label={'Home'} />)
+            const { container } = render(
+                <Icon icon={'lucide:home'} aria-label={'Home'} />,
+            )
             const svg = container.querySelector('svg')
             // aria-hidden must be absent or "false" — never "true"
             expect(svg?.getAttribute('aria-hidden')).not.toBe('true')
         })
 
         it('sets role="img" and aria-label', () => {
-            render(<Icon icon={'mdi:home'} aria-label={'Home'} />)
+            render(<Icon icon={'lucide:home'} aria-label={'Home'} />)
             // getByRole throws if not found, so finding the element is the assertion
             expect(screen.getByRole('img', { name: 'Home' })).toBeTruthy()
         })

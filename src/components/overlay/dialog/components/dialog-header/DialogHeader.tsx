@@ -5,15 +5,16 @@ import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
 import { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/DialogHeader.css.ts'
+import { IconRegistry } from '@constants/icons'
 import type { DialogHeaderProps } from '@components/overlay/dialog/components/dialog-header/types/DialogHeader.props.ts'
 
 /**
- * Header section of a `Dialog`. Renders an optional title, description and
- * a close button in the trailing corner.
- *
- * `children` can be used for fully custom header content alongside or instead
- * of the `title` / `description` props.
- */
+  * Header section of a `Dialog`. Renders an optional title, description and
+  * a close button in the trailing corner.
+  *
+  * `children` can be used for fully custom header content alongside or instead
+  * of the `title` / `description` props.
+  */
 const DialogHeader: FC<DialogHeaderProps> = ({
     as: Element = 'div',
     title,
@@ -88,7 +89,7 @@ const DialogHeader: FC<DialogHeaderProps> = ({
                 >
                     <DialogClose asChild>
                         <IconButton
-                            icon={'mdi:close'}
+                            icon={IconRegistry.close}
                             aria-label={'Close dialog'}
                             variant={'ghost'}
                             color={'primary'}

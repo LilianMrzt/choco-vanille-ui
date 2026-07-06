@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconRegistry } from '@constants/icons'
 
 import { buildTailwindTheme } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
 
@@ -21,7 +22,7 @@ export const CopyTailwindButton = () => {
             variant={'outlined'}
             color={copied ? 'success' : 'secondary'}
             label={copied ? 'Copied!' : 'Copy Tailwind @theme snippet'}
-            startIcon={copied ? 'lucide:check' : 'lucide:clipboard-list'}
+            startIcon={copied ? IconRegistry.check : IconRegistry.clipboardList}
             onClick={handleClick}
         />
     )

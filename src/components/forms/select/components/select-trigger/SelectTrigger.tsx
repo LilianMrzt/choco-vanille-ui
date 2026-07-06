@@ -2,6 +2,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import { type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { Box } from '@components/layout/box'
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import {
@@ -13,13 +14,13 @@ import type { SelectTriggerProps } from '@components/forms/select/components/sel
 import useSelectTrigger from '@components/forms/select/components/select-trigger/hooks/useSelectTrigger.hook.ts'
 
 /**
- * The trigger button that opens the listbox.
- *
- * Looks exactly like a TextField input: same height, padding, border, focus
- * ring and disabled state. A chevron icon is rendered in the end-action slot
- * (mirroring TextField's endAction pattern). Supports `size`, `startIcon`,
- * `placeholder`, `hasError` and `width`.
- */
+  * The trigger button that opens the listbox.
+  *
+  * Looks exactly like a TextField input: same height, padding, border, focus
+  * ring and disabled state. A chevron icon is rendered in the end-action slot
+  * (mirroring TextField's endAction pattern). Supports `size`, `startIcon`,
+  * `placeholder`, `hasError` and `width`.
+  */
 const SelectTrigger: FC<SelectTriggerProps> = ({
     className,
     placeholder,
@@ -32,11 +33,12 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
     style,
     ...props
 }) => {
-    const { handleMouseDown, handleFocus, handleBlur, mergedStyle } = useSelectTrigger({
-        width,
-        style,
-        onMouseDown,
-    })
+    const { handleMouseDown, handleFocus, handleBlur, mergedStyle } =
+        useSelectTrigger({
+            width,
+            style,
+            onMouseDown,
+        })
 
     return (
         <RadixSelect.Trigger
@@ -60,12 +62,10 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
                     size={size}
                 />
             )}
-            {children ?? (
-                <RadixSelect.Value placeholder={placeholder} />
-            )}
+            {children ?? <RadixSelect.Value placeholder={placeholder} />}
             <Box className={SELECT_TRIGGER_END_ICON}>
                 <Icon
-                    icon={'mdi:chevron-down'}
+                    icon={IconRegistry.chevronDown}
                     size={'md'}
                     color={'mutedForeground'}
                 />

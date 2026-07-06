@@ -2,6 +2,7 @@ import * as RadixRadioGroup from '@radix-ui/react-radio-group'
 import { useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
@@ -9,15 +10,21 @@ import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radi
 import type { RadioItemProps } from '@components/forms/radio-group/components/radio-item/types/RadioItem.props.ts'
 
 /**
- * A single radio button inside a `RadioGroup`.
- * Renders a circular indicator that fills with the primary colour when selected.
- *
- * @example
- * ```tsx
- * <RadioItem value="dark" label="Dark mode" />
- * ```
- */
-const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }) => {
+  * A single radio button inside a `RadioGroup`.
+  * Renders a circular indicator that fills with the primary colour when selected.
+  *
+  * @example
+  * ```tsx
+  * <RadioItem value="dark" label="Dark mode" />
+  * ```
+  */
+const RadioItem: FC<RadioItemProps> = ({
+    label,
+    id,
+    className,
+    value,
+    ...props
+}) => {
     const generatedId = useId()
     const radioId = id ?? (label ? generatedId : undefined)
 
@@ -35,7 +42,7 @@ const RadioItem: FC<RadioItemProps> = ({ label, id, className, value, ...props }
             >
                 <RadixRadioGroup.Indicator className={RADIO_ITEM_STYLES.indicator}>
                     <Icon
-                        icon={'mdi:circle'}
+                        icon={IconRegistry.radioIndicator}
                         size={'xs'}
                     />
                 </RadixRadioGroup.Indicator>

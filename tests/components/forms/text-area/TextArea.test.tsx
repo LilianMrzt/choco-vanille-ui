@@ -7,7 +7,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { TextArea } from '@components/forms/text-area'
 
 beforeAll(() => {
-    addIcon('mdi:comment', {
+    addIcon('lucide:message-square', {
         body: '<path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/>',
         width: 24,
         height: 24,
@@ -43,7 +43,7 @@ describe('TextArea', () => {
         })
 
         it('renders a start icon', () => {
-            render(<TextArea startIcon={'mdi:comment'} />)
+            render(<TextArea startIcon={'lucide:message-square'} />)
             expect(document.querySelector('svg')).toBeTruthy()
         })
 
@@ -72,14 +72,15 @@ describe('TextArea', () => {
     describe('auto-resize', () => {
         it('adjusts height based on content when minRows and maxRows are provided', async () => {
             const originalGetComputedStyle = window.getComputedStyle
-            window.getComputedStyle = vi.fn(() =>
-                ({
-                    lineHeight: '20px',
-                    paddingTop: '8px',
-                    paddingBottom: '8px',
-                    borderTopWidth: '1px',
-                    borderBottomWidth: '1px',
-                }) as CSSStyleDeclaration
+            window.getComputedStyle = vi.fn(
+                () =>
+                    ({
+                        lineHeight: '20px',
+                        paddingTop: '8px',
+                        paddingBottom: '8px',
+                        borderTopWidth: '1px',
+                        borderBottomWidth: '1px',
+                    }) as CSSStyleDeclaration,
             ) as typeof window.getComputedStyle
 
             render(<TextArea minRows={2} maxRows={4} />)
@@ -119,7 +120,9 @@ describe('TextArea', () => {
     describe('states', () => {
         it('disables the textarea when disabled is true', () => {
             render(<TextArea disabled />)
-            expect((screen.getByRole('textbox') as HTMLTextAreaElement).disabled).toBe(true)
+            expect(
+                (screen.getByRole('textbox') as HTMLTextAreaElement).disabled,
+            ).toBe(true)
         })
 
         it('applies a custom width to the wrapper', () => {

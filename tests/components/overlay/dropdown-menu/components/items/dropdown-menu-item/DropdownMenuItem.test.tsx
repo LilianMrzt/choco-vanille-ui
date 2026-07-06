@@ -44,7 +44,11 @@ describe('DropdownMenuItem', () => {
                     <button type={'button'}>Open</button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
-                    <DropdownMenu.Item label={'Edit'} startIcon={'mdi:pencil'} endIcon={'mdi:arrow-right'} />
+                    <DropdownMenu.Item
+                        label={'Edit'}
+                        startIcon={'lucide:pencil'}
+                        endIcon={'lucide:arrow-right'}
+                    />
                 </DropdownMenu.Content>
             </DropdownMenu>,
         )

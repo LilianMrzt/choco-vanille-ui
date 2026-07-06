@@ -3,16 +3,22 @@ import { render, screen } from '@testing-library/react'
 import { addIcon } from '@iconify/react'
 import { beforeAll, describe, expect, it } from 'vitest'
 
-import { Badge, BADGE_STYLES, type BadgeColor, type BadgeSize, type BadgeVariant } from '@components/data-display/badge'
+import {
+    Badge,
+    BADGE_STYLES,
+    type BadgeColor,
+    type BadgeSize,
+    type BadgeVariant,
+} from '@components/data-display/badge'
 
 // Preload a test icon so Iconify renders synchronously in JSDOM
 beforeAll(() => {
-    addIcon('mdi:check', {
+    addIcon('lucide:check', {
         body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
         width: 24,
         height: 24,
     })
-    addIcon('mdi:close', {
+    addIcon('lucide:x', {
         body: '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>',
         width: 24,
         height: 24,
@@ -40,17 +46,27 @@ describe('Badge', () => {
         })
 
         it('renders a start icon when startIcon is provided', () => {
-            const { container } = render(<Badge label={'Beta'} startIcon={'mdi:check'} />)
+            const { container } = render(
+                <Badge label={'Beta'} startIcon={'lucide:check'} />,
+            )
             expect(container.querySelectorAll('svg')).toHaveLength(1)
         })
 
         it('renders an end icon when endIcon is provided', () => {
-            const { container } = render(<Badge label={'Beta'} endIcon={'mdi:close'} />)
+            const { container } = render(
+                <Badge label={'Beta'} endIcon={'lucide:x'} />,
+            )
             expect(container.querySelectorAll('svg')).toHaveLength(1)
         })
 
         it('renders both icons when both are provided', () => {
-            const { container } = render(<Badge label={'Beta'} startIcon={'mdi:check'} endIcon={'mdi:close'} />)
+            const { container } = render(
+                <Badge
+                    label={'Beta'}
+                    startIcon={'lucide:check'}
+                    endIcon={'lucide:x'}
+                />,
+            )
             expect(container.querySelectorAll('svg')).toHaveLength(2)
         })
 
@@ -63,10 +79,15 @@ describe('Badge', () => {
     describe('variant styling', () => {
         const variants: BadgeVariant[] = ['solid', 'subtle', 'outline']
 
-        it.each(variants)('applies a non-empty class for variant="%s"', (variant) => {
-            const { container } = render(<Badge variant={variant} label={'badge'} />)
-            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
-        })
+        it.each(variants)(
+            'applies a non-empty class for variant="%s"',
+            (variant) => {
+                const { container } = render(
+                    <Badge variant={variant} label={'badge'} />,
+                )
+                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+            },
+        )
 
         it('falls back to the subtle variant when none is provided', () => {
             const { container } = render(<Badge label={'badge'} />)
@@ -76,7 +97,9 @@ describe('Badge', () => {
         })
 
         it('produces distinct class names for each variant', () => {
-            const classNames = variants.map((variant) => BADGE_STYLES.recipe({ variant }))
+            const classNames = variants.map((variant) =>
+                BADGE_STYLES.recipe({ variant }),
+            )
             expect(new Set(classNames).size).toBe(variants.length)
         })
     })
@@ -124,7 +147,9 @@ describe('Badge', () => {
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = render(<Badge className={'my-custom-class'} label={'badge'} />)
+            const { container } = render(
+                <Badge className={'my-custom-class'} label={'badge'} />,
+            )
             expect(getFirstChild(container).className).toContain('my-custom-class')
         })
 
@@ -138,7 +163,9 @@ describe('Badge', () => {
 
     describe('Box prop passthrough', () => {
         it('forwards radius prop to Box', () => {
-            const { container } = render(<Badge borderRadius={'md'} label={'badge'} />)
+            const { container } = render(
+                <Badge borderRadius={'md'} label={'badge'} />,
+            )
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
@@ -148,8 +175,12 @@ describe('Badge', () => {
         })
 
         it('forwards data-* attributes', () => {
-            const { container } = render(<Badge data-testid={'my-badge'} label={'badge'} />)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('my-badge')
+            const { container } = render(
+                <Badge data-testid={'my-badge'} label={'badge'} />,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'my-badge',
+            )
         })
     })
 

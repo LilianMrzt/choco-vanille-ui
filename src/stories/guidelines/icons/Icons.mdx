@@ -1,16 +1,12 @@
-import {
-    Meta,
-    Source,
-    Subtitle,
-    Title,
-} from '@storybook/addon-docs/blocks'
+import { Meta, Source, Subtitle, Title } from '@storybook/addon-docs/blocks'
 
 <Meta title="Guidelines/Icons" />
 
 <Title />
 
 <Subtitle>
-  How to define and correctly use icons in your project with the <code>Icon</code> component and a centralised <strong>IconRegistry</strong>.
+    How to define and correctly use icons in your project with the{' '}
+    <code>Icon</code> component and a centralised <strong>IconRegistry</strong>.
 </Subtitle>
 
 ---
@@ -20,81 +16,85 @@ import {
 The `Icon` component gives access to over 200,000 icons from 150+ icon sets. Simply pass an Iconify identifier to the `icon` prop.
 
 <Source
-  language="tsx"
-  code={`import { Icon } from '@my-org/ui-kit';
+    language="tsx"
+    code={`import { Icon } from '@my-org/ui-kit'
 
 // Decorative icon — hidden from screen readers
-<Icon icon="mdi:home" />
+
+<Icon icon="lucide:home" />
 
 // Semantic icon — announced with an accessible label
-<Icon icon="mdi:alert-circle" aria-label="Warning" />`}
+
+<Icon icon="lucide:triangle-alert" aria-label="Warning" />`}
 />
 
 ---
 
 ## 2 — Defining an `IconRegistry` in your project
 
-Rather than scattering Iconify strings (`"mdi:home"`, `"ph:gear"`, …) throughout your components, **centralise them in a registry**.
+Rather than scattering Iconify strings (`"lucide:home"`, `"ph:gear"`, …) throughout your components, **centralise them in a registry**.
 
 This gives you:
 
-| Benefit | Details |
-| --- | --- |
-| 🔄 **Maintainability** | Switching icon sets? Only one file to update. |
-| 🔒 **Type-safety** | TypeScript restricts the allowed values. |
-| 📖 **Consistency** | Developers always know where to find available icons. |
-| 🔍 **Traceability** | Easily find where an icon is used. |
+| Benefit                | Details                                               |
+| ---------------------- | ----------------------------------------------------- |
+| 🔄 **Maintainability** | Switching icon sets? Only one file to update.         |
+| 🔒 **Type-safety**     | TypeScript restricts the allowed values.              |
+| 📖 **Consistency**     | Developers always know where to find available icons. |
+| 🔍 **Traceability**    | Easily find where an icon is used.                    |
 
 ### Creating the registry
 
 Create a `src/icons/registry.ts` file in your application:
 
 <Source
-  language="ts"
-  code={`// src/icons/registry.ts
+    language="ts"
+    code={`// src/icons/registry.ts
 
-/**
- * IconRegistry — maps a semantic name to its Iconify identifier.
- *
- * Iconify format: "<set>:<icon>"
- * Browse available sets at https://icon-sets.iconify.design/
- *
- * Conventions:
- *  - camelCase for keys  →  arrowRight, not arrow-right
- *  - Group by functional domain if the registry grows large
- */
-export const IconRegistry = {
-    // Navigation
-    home:       'mdi:home',
-    arrowRight: 'mdi:arrow-right',
-    arrowLeft:  'mdi:arrow-left',
-    close:      'mdi:close',
+/\*\*
 
-    // Actions
-    settings:   'mdi:cog',
-    edit:       'mdi:pencil',
-    delete:     'mdi:trash-can',
-    add:        'mdi:plus',
-    search:     'mdi:magnify',
+- IconRegistry — maps a semantic name to its Iconify identifier.
+-
+- Iconify format: "<set>:<icon>"
+- Browse available sets at https://icon-sets.iconify.design/
+-
+- Conventions:
+- - camelCase for keys → arrowRight, not arrow-right
+- - Group by functional domain if the registry grows large
+        \*/
+        export const IconRegistry = {
+        // Navigation
+        home: 'lucide:home',
+        arrowRight: 'lucide:arrow-right',
+        arrowLeft: 'lucide:arrow-left',
+        close: 'lucide:x',
 
-    // Feedback
-    success:    'mdi:check-circle',
-    warning:    'mdi:alert',
-    error:      'mdi:alert-circle',
-    info:       'mdi:information',
+                // Actions
+                settings:   'lucide:settings',
+                edit:       'lucide:pencil',
+                delete:     'lucide:trash-2',
+                add:        'lucide:plus',
+                search:     'lucide:search',
 
-    // State
-    loading:    'mdi:loading',
-} as const`}
-/>
+                // Feedback
+                success:    'lucide:circle-check',
+                warning:    'lucide:triangle-alert',
+                error:      'lucide:circle-x',
+                info:       'lucide:info',
+
+                // State
+                loading:    'lucide:loader-circle',
+
+        } as const`}
+        />
 
 ### Using it in your components
 
 Simply use the `Icon` component directly with a value from the registry:
 
 <Source
-  language="tsx"
-  code={`import { Icon } from '@my-org/ui-kit'
+    language="tsx"
+    code={`import { Icon } from '@my-org/ui-kit'
 import { IconRegistry } from '@/icons/registry'
 
 <Icon icon={IconRegistry.home} />
@@ -108,10 +108,10 @@ import { IconRegistry } from '@/icons/registry'
 
 ### Accessibility
 
-| Situation | Recommendation |
-| --- | --- |
+| Situation                                         | Recommendation                                                |
+| ------------------------------------------------- | ------------------------------------------------------------- |
 | **Decorative** icon (accompanied by a text label) | Omit `aria-label` → `aria-hidden="true"` is set automatically |
-| **Standalone** meaningful icon | Pass `aria-label` with an explicit description |
+| **Standalone** meaningful icon                    | Pass `aria-label` with an explicit description                |
 
 ### Choosing the right icon set
 
@@ -127,4 +127,3 @@ Browse available sets at [icon-sets.iconify.design](https://icon-sets.iconify.de
 ```
 
 Use **camelCase** and **semantic names** (what the icon represents) rather than descriptive names (its shape).
-

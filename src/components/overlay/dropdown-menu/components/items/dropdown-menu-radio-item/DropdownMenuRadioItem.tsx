@@ -6,6 +6,7 @@ import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
 import type { FC } from 'react'
@@ -18,7 +19,10 @@ const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
 }) => (
     <RadixDropdownMenu.RadioItem
         asChild
-        onSelect={(e) => { e.preventDefault(); onSelect?.(e) }}
+        onSelect={(e) => {
+            e.preventDefault()
+            onSelect?.(e)
+        }}
         {...props}
     >
         <Flex
@@ -29,9 +33,11 @@ const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
                 as={'span'}
                 className={RADIO_ITEM_STYLES.root}
             >
-                <RadixDropdownMenu.ItemIndicator className={RADIO_ITEM_STYLES.indicator}>
+                <RadixDropdownMenu.ItemIndicator
+                    className={RADIO_ITEM_STYLES.indicator}
+                >
                     <Icon
-                        icon={'mdi:circle'}
+                        icon={IconRegistry.radioIndicator}
                         size={'xs'}
                     />
                 </RadixDropdownMenu.ItemIndicator>
@@ -39,7 +45,9 @@ const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
             <Typography
                 as={'span'}
                 variant={'span'}
-            >{label}</Typography>
+            >
+                {label}
+            </Typography>
         </Flex>
     </RadixDropdownMenu.RadioItem>
 )

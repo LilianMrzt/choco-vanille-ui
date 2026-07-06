@@ -6,6 +6,7 @@ import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types/DropdownMenuCheckboxItem.props.ts'
 import type { FC } from 'react'
@@ -20,7 +21,10 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = ({
     <RadixDropdownMenu.CheckboxItem
         asChild
         checked={checked}
-        onSelect={(e) => { e.preventDefault(); onSelect?.(e) }}
+        onSelect={(e) => {
+            e.preventDefault()
+            onSelect?.(e)
+        }}
         {...props}
     >
         <Flex
@@ -33,7 +37,7 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = ({
             >
                 <RadixDropdownMenu.ItemIndicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
-                        icon={'mdi:check'}
+                        icon={IconRegistry.check}
                         size={'xs'}
                     />
                 </RadixDropdownMenu.ItemIndicator>
@@ -41,7 +45,9 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = ({
             <Typography
                 as={'span'}
                 variant={'span'}
-            >{label}</Typography>
+            >
+                {label}
+            </Typography>
         </Flex>
     </RadixDropdownMenu.CheckboxItem>
 )

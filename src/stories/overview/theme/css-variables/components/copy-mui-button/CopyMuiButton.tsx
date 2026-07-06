@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconRegistry } from '@constants/icons'
 
 import { buildMuiThemeSnippet } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
 
@@ -21,7 +22,7 @@ export const CopyMuiButton = () => {
             variant={'outlined'}
             color={copied ? 'success' : 'secondary'}
             label={copied ? 'Copied!' : 'Copy MUI createTheme snippet'}
-            startIcon={copied ? 'lucide:check' : 'lucide:clipboard-list'}
+            startIcon={copied ? IconRegistry.check : IconRegistry.clipboardList}
             onClick={handleClick}
         />
     )

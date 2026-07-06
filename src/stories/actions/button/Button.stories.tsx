@@ -27,24 +27,26 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A versatile button component that triggers an action when clicked or activated with the keyboard.
 It supports three visual variants, six semantic color intents, and three sizes, and can display an optional start or end icon.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <Button label="Save" variant="contained" color="primary" />
-<Button label="Delete" variant="outlined" color="destructive" startIcon="mdi:trash-can-outline" />
-\`\`\`
+<Button label="Delete" variant="outlined" color="destructive" startIcon="lucide:trash-2" />
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | ✅ Yes | \`string\` | Becomes the button's accessible name — always provide a meaningful value. |
-| \`disabled\` | No | \`boolean\` | Keeps the button visible and announced by screen readers. |
-| \`aria-*\` | No | — | All native \`<button>\` ARIA attributes are forwarded to the underlying element. |
+| Prop / Attribute | Required | Type      | Notes                                                                          |
+| ---------------- | -------- | --------- | ------------------------------------------------------------------------------ |
+| \`label\`          | ✅ Yes   | \`string\`  | Becomes the button's accessible name — always provide a meaningful value.      |
+| \`disabled\`       | No       | \`boolean\` | Keeps the button visible and announced by screen readers.                      |
+| \`aria-*\`         | No       | —         | All native \`<button>\` ARIA attributes are forwarded to the underlying element. |
 
 - The underlying element is a native \`<button>\`, ensuring keyboard operability (Space / Enter) and correct ARIA role out of the box.
 - Avoid using only an icon without a label; use \`IconButton\` with a mandatory \`aria-label\` instead.
@@ -68,14 +70,14 @@ It supports three visual variants, six semantic color intents, and three sizes, 
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+                    'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },

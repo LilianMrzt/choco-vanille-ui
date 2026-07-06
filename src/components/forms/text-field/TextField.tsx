@@ -10,28 +10,29 @@ import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldCompound } from '@components/forms/text-field/types'
 import { Flex } from '@components/layout/flex'
+import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
 
 /**
- * A styled text input built with a native `<input>` and `@radix-ui/react-label`.
- *
- * - `startIcon` - Iconify icon name rendered on the left.
- * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
- * - `type="password"` - auto-shows an eye-toggle `IconButton` (overrides `endAction`).
- * - `width` - overrides the default `100%` wrapper width.
- *
- * Focus ring behavior: visible only on keyboard navigation (Tab). A click on the
- * input shows the primary border without the ring halo, detected via `onMouseDown`
- * and a `data-mouse-focus` attribute.
- *
- * @example
- * ```tsx
- * <TextField label="Email" startIcon="mdi:email" placeholder="you@example.com" />
- * <TextField label="Password" type="password" />
- * <TextField label="Search" endAction={<IconButton icon="mdi:magnify" aria-label="Search" variant="ghost" color="primary" />} />
- * <TextField label="Amount" width="12rem" />
- * ```
- */
+  * A styled text input built with a native `<input>` and `@radix-ui/react-label`.
+  *
+  * - `startIcon` - Iconify icon name rendered on the left.
+  * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
+  * - `type="password"` - auto-shows an eye-toggle `IconButton` (overrides `endAction`).
+  * - `width` - overrides the default `100%` wrapper width.
+  *
+  * Focus ring behavior: visible only on keyboard navigation (Tab). A click on the
+  * input shows the primary border without the ring halo, detected via `onMouseDown`
+  * and a `data-mouse-focus` attribute.
+  *
+  * @example
+  * ```tsx
+  * <TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
+  * <TextField label="Password" type="password" />
+  * <TextField label="Search" endAction={<IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />} />
+  * <TextField label="Amount" width="12rem" />
+  * ```
+  */
 const TextField = ((props) => {
     const {
         inputId,
@@ -71,7 +72,7 @@ const TextField = ((props) => {
 
     const resolvedEndAction = isPassword ? (
         <IconButton
-            icon={showPassword ? 'mdi:eye-off' : 'mdi:eye'}
+            icon={showPassword ? IconRegistry.eyeOff : IconRegistry.eye}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
             variant={'ghost'}
             color={'primary'}
@@ -80,7 +81,9 @@ const TextField = ((props) => {
             tabIndex={-1}
             onClick={() => setShowPassword(!showPassword)}
         />
-    ) : endAction
+    ) : (
+        endAction
+    )
 
     return (
         <Flex
@@ -123,7 +126,12 @@ const TextField = ((props) => {
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     className={cn(
-                        TEXT_FIELD_STYLES.recipe({ size, hasError, hasStartIcon, hasEndAction }),
+                        TEXT_FIELD_STYLES.recipe({
+                            size,
+                            hasError,
+                            hasStartIcon,
+                            hasEndAction,
+                        }),
                         className,
                     )}
                     placeholder={placeholder}
@@ -135,9 +143,7 @@ const TextField = ((props) => {
                 />
 
                 {hasEndAction && (
-                    <TextFieldEndAction>
-                        {resolvedEndAction}
-                    </TextFieldEndAction>
+                    <TextFieldEndAction>{resolvedEndAction}</TextFieldEndAction>
                 )}
             </Flex>
 

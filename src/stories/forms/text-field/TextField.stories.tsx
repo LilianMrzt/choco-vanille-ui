@@ -20,39 +20,41 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A styled text input built with a native \`<input>\` and \`@radix-ui/react-label\` for accessible label binding.
 
 Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, password toggle and custom width.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 // With start icon
-<TextField label="Email" startIcon="mdi:email" placeholder="you@example.com" />
+<TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
 
 // Password field — toggle auto-injected
 <TextField label="Password" type="password" />
 
 // Custom end action
 <TextField
-  label="Search"
-  endAction={
-    <IconButton icon="mdi:magnify" aria-label="Search" variant="ghost" color="primary" />
-  }
+    label="Search"
+    endAction={
+        <IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />
+    }
 />
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label linked to the input via \`htmlFor\`. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`error\` | No | \`string\` | Sets \`aria-invalid="true"\` and replaces helper text in \`aria-describedby\`. |
-| \`helperText\` | No | \`string\` | Described by the input when no error is present. |
-| \`disabled\` | No | \`boolean\` | Native disabled state, announced by screen readers. |
-| \`required\` | No | \`boolean\` | Native required state for form validation. |
+| Prop / Attribute                 | Required    | Type      | Notes                                                                      |
+| -------------------------------- | ----------- | --------- | -------------------------------------------------------------------------- |
+| \`label\`                          | Recommended | \`string\`  | Visible label linked to the input via \`htmlFor\`.                           |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\`  | Required when \`label\` is omitted.                                          |
+| \`error\`                          | No          | \`string\`  | Sets \`aria-invalid="true"\` and replaces helper text in \`aria-describedby\`. |
+| \`helperText\`                     | No          | \`string\`  | Described by the input when no error is present.                           |
+| \`disabled\`                       | No          | \`boolean\` | Native disabled state, announced by screen readers.                        |
+| \`required\`                       | No          | \`boolean\` | Native required state for form validation.                                 |
 
 - The underlying element is a native \`<input>\`, so it is fully keyboard operable.
 - Do not rely on placeholder text alone as a label.
@@ -83,14 +85,14 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+                    'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },

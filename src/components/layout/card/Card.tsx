@@ -7,25 +7,25 @@ import type { CardCompound } from '@components/layout/card/types'
 import { cn } from '@utils/cn.ts'
 
 /**
- * A surface container with a consistent background, border, shadow and
- * rounded corners. Compose with the named sub-components for a structured
- * layout.
- *
- * @example
- * ```tsx
- * <Card>
- *   <Card.Header
- *     title="Account settings"
- *     description="Manage your profile."
- *     actions={<IconButton icon="mdi:dots-vertical" aria-label="More" />}
- *   />
- *   <Card.Body>Content goes here</Card.Body>
- *   <Card.Footer>
- *     <Button label="Save" variant="contained" color="primary" />
- *   </Card.Footer>
- * </Card>
- * ```
- */
+  * A surface container with a consistent background, border, shadow and
+  * rounded corners. Compose with the named sub-components for a structured
+  * layout.
+  *
+  * @example
+  * ```tsx
+  * <Card>
+  *   <Card.Header
+  *     title="Account settings"
+  *     description="Manage your profile."
+  *     actions={<IconButton icon="lucide:ellipsis-vertical" aria-label="More" />}
+  *   />
+  *   <Card.Body>Content goes here</Card.Body>
+  *   <Card.Footer>
+  *     <Button label="Save" variant="contained" color="primary" />
+  *   </Card.Footer>
+  * </Card>
+  * ```
+  */
 const Card = (({ as = 'div', className, ...props }) => (
     <Box
         as={as}

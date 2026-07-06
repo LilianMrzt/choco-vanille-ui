@@ -4,6 +4,7 @@ import { expect, userEvent, within, waitFor } from 'storybook/test'
 
 import { DropdownMenu } from '@/components/overlay/dropdown-menu'
 import { Button } from '@/components/actions/button'
+import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
 const meta = {
@@ -13,61 +14,75 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A fully composable dropdown menu built on top of \`@radix-ui/react-dropdown-menu\`.
 It supports regular items with icons and keyboard shortcuts, checkbox items, radio groups, separators, labels, and nested sub-menus.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <DropdownMenu>
-  <DropdownMenu.Trigger asChild>
-    <Button label="Options" endIcon="mdi:chevron-down" />
-  </DropdownMenu.Trigger>
+    <DropdownMenu.Trigger asChild>
+        <Button label="Options" endIcon={IconRegistry.chevronDown} />
+    </DropdownMenu.Trigger>
 
-  <DropdownMenu.Content>
-    <DropdownMenu.Label label="Account" />
-    <DropdownMenu.Separator />
-    <DropdownMenu.Group>
-      <DropdownMenu.Item label="Profile" startIcon="mdi:account-outline" shortcut="⇧⌘P" />
-      <DropdownMenu.Item label="Settings" startIcon="mdi:cog-outline" shortcut="⌘S" />
-    </DropdownMenu.Group>
-    <DropdownMenu.Separator />
-    <DropdownMenu.Item label="Log out" startIcon="mdi:logout" destructive />
-  </DropdownMenu.Content>
+    <DropdownMenu.Content>
+        <DropdownMenu.Label label="Account" />
+        <DropdownMenu.Separator />
+        <DropdownMenu.Group>
+            <DropdownMenu.Item
+                label="Profile"
+                startIcon={IconRegistry.user}
+                shortcut="⇧⌘P"
+            />
+            <DropdownMenu.Item
+                label="Settings"
+                startIcon={IconRegistry.settings}
+                shortcut="⌘S"
+            />
+        </DropdownMenu.Group>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Item
+            label="Log out"
+            startIcon={IconRegistry.logOut}
+            destructive
+        />
+    </DropdownMenu.Content>
 </DropdownMenu>
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`DropdownMenu.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
-| \`shortcut\` (on \`DropdownMenu.Item\`) | No | \`string\` | Purely decorative — wire actual \`keydown\` handlers in your application. |
-| \`destructive\` (on \`DropdownMenu.Item\`) | No | \`boolean\` | Applies danger color to visually warn users before an irreversible action. |
-| \`disabled\` (on any item) | No | \`boolean\` | Marks the item as unavailable; it remains visible and announced by screen readers. |
-| \`modal\` (on \`DropdownMenu\`) | No | \`boolean\` | @default \`true\`. Blocks outside interaction and hides the page with \`aria-hidden\` when open. |
+| Prop / Attribute                       | Required | Type      | Notes                                                                                            |
+| -------------------------------------- | -------- | --------- | ------------------------------------------------------------------------------------------------ |
+| Trigger (focusable element)            | ✅ Yes   | —         | Use \`asChild\` on \`DropdownMenu.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
+| \`shortcut\` (on \`DropdownMenu.Item\`)    | No       | \`string\`  | Purely decorative — wire actual \`keydown\` handlers in your application.                          |
+| \`destructive\` (on \`DropdownMenu.Item\`) | No       | \`boolean\` | Applies danger color to visually warn users before an irreversible action.                       |
+| \`disabled\` (on any item)               | No       | \`boolean\` | Marks the item as unavailable; it remains visible and announced by screen readers.               |
+| \`modal\` (on \`DropdownMenu\`)            | No       | \`boolean\` | @default \`true\`. Blocks outside interaction and hides the page with \`aria-hidden\` when open.     |
 
 - The menu renders with \`role="menu"\`; items receive \`role="menuitem"\`, \`role="menuitemcheckbox"\`, or \`role="menuitemradio"\` automatically.
 - Keyboard navigation is built in: **Enter** / **Space** to open, **Arrow keys** to navigate, **Escape** to close, **Tab** closes and moves focus forward.
 
 **Sub-components**
 
-| Sub-component | Description |
-|---|---|
-| \`DropdownMenu\` | Root context provider — wraps the entire menu. |
-| \`DropdownMenu.Trigger\` | The element that opens the menu on click. Use \`asChild\` to delegate to your own button. |
-| \`DropdownMenu.Content\` | The floating panel containing menu items. Handles positioning, animations and keyboard trapping. |
-| \`DropdownMenu.Group\` | Logical grouping of related items with no visual separator. |
-| \`DropdownMenu.Item\` | A single actionable item with optional \`startIcon\`, \`endIcon\`, and \`shortcut\` hint. |
-| \`DropdownMenu.CheckboxItem\` | A toggleable item that renders a checkmark indicator when \`checked\`. |
-| \`DropdownMenu.RadioGroup\` | Container for mutually exclusive radio items; holds the current \`value\`. |
-| \`DropdownMenu.RadioItem\` | A single radio option inside a \`DropdownMenu.RadioGroup\`. |
-| \`DropdownMenu.Label\` | Non-interactive section heading used to name a group of items. |
-| \`DropdownMenu.Separator\` | A horizontal dividing line between sections. |
-| \`DropdownMenu.Sub\` | Root for a nested sub-menu. |
-| \`DropdownMenu.SubTrigger\` | An item that reveals the nested sub-menu on hover or keyboard focus. |
-| \`DropdownMenu.SubContent\` | The floating panel for the nested sub-menu content. |
+| Sub-component               | Description                                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------------------------ |
+| \`DropdownMenu\`              | Root context provider — wraps the entire menu.                                                   |
+| \`DropdownMenu.Trigger\`      | The element that opens the menu on click. Use \`asChild\` to delegate to your own button.          |
+| \`DropdownMenu.Content\`      | The floating panel containing menu items. Handles positioning, animations and keyboard trapping. |
+| \`DropdownMenu.Group\`        | Logical grouping of related items with no visual separator.                                      |
+| \`DropdownMenu.Item\`         | A single actionable item with optional \`startIcon\`, \`endIcon\`, and \`shortcut\` hint.              |
+| \`DropdownMenu.CheckboxItem\` | A toggleable item that renders a checkmark indicator when \`checked\`.                             |
+| \`DropdownMenu.RadioGroup\`   | Container for mutually exclusive radio items; holds the current \`value\`.                         |
+| \`DropdownMenu.RadioItem\`    | A single radio option inside a \`DropdownMenu.RadioGroup\`.                                        |
+| \`DropdownMenu.Label\`        | Non-interactive section heading used to name a group of items.                                   |
+| \`DropdownMenu.Separator\`    | A horizontal dividing line between sections.                                                     |
+| \`DropdownMenu.Sub\`          | Root for a nested sub-menu.                                                                      |
+| \`DropdownMenu.SubTrigger\`   | An item that reveals the nested sub-menu on hover or keyboard focus.                             |
+| \`DropdownMenu.SubContent\`   | The floating panel for the nested sub-menu content.                                              |
                 `,
             },
         },
@@ -84,14 +99,14 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — this example showcases every available building block: regular items, a nested sub-menu, checkbox items, a radio group, and a destructive item.',
+                    'Interactive playground — this example showcases every available building block: regular items, a nested sub-menu, checkbox items, a radio group, and a destructive item.',
             },
         },
         a11y: {
@@ -118,7 +133,7 @@ export const Playground: Story = {
                 <DropdownMenu.Trigger asChild>
                     <Button
                         label={'Open menu'}
-                        endIcon={'mdi:chevron-down'}
+                        endIcon={IconRegistry.chevronDown}
                     />
                 </DropdownMenu.Trigger>
 
@@ -128,38 +143,38 @@ export const Playground: Story = {
                     <DropdownMenu.Group>
                         <DropdownMenu.Item
                             label={'Profile'}
-                            startIcon={'mdi:account-outline'}
+                            startIcon={IconRegistry.user}
                             shortcut={'⇧⌘P'}
                         />
                         <DropdownMenu.Item
                             label={'Settings'}
-                            startIcon={'mdi:cog-outline'}
+                            startIcon={IconRegistry.settings}
                             shortcut={'⌘S'}
                         />
                         <DropdownMenu.Sub>
                             <DropdownMenu.SubTrigger
                                 label={'Invite users'}
-                                startIcon={'mdi:account-plus-outline'}
+                                startIcon={IconRegistry.userPlus}
                             />
                             <DropdownMenu.SubContent>
                                 <DropdownMenu.Item
                                     label={'Email'}
-                                    startIcon={'mdi:email-outline'}
+                                    startIcon={IconRegistry.mail}
                                 />
                                 <DropdownMenu.Item
                                     label={'Message'}
-                                    startIcon={'mdi:message-outline'}
+                                    startIcon={IconRegistry.message}
                                 />
                                 <DropdownMenu.Separator />
                                 <DropdownMenu.Item
                                     label={'More…'}
-                                    startIcon={'mdi:dots-horizontal'}
+                                    startIcon={IconRegistry.ellipsisHorizontal}
                                 />
                             </DropdownMenu.SubContent>
                         </DropdownMenu.Sub>
                         <DropdownMenu.Item
                             label={'API (unavailable)'}
-                            startIcon={'mdi:cloud-off-outline'}
+                            startIcon={IconRegistry.cloudOff}
                             disabled
                         />
                     </DropdownMenu.Group>
@@ -169,12 +184,12 @@ export const Playground: Story = {
                     <DropdownMenu.CheckboxItem
                         label={'Show status bar'}
                         checked={showStatus}
-                        onCheckedChange={(value) => setShowStatus(value === true)}
+                        onCheckedChange={(value) => setShowStatus(value)}
                     />
                     <DropdownMenu.CheckboxItem
                         label={'Show activity bar'}
                         checked={showActivity}
-                        onCheckedChange={(value) => setShowActivity(value === true)}
+                        onCheckedChange={(value) => setShowActivity(value)}
                     />
 
                     <DropdownMenu.Separator />
@@ -200,14 +215,14 @@ export const Playground: Story = {
                     <DropdownMenu.Separator />
                     <DropdownMenu.Item
                         label={'Delete (unavailable)'}
-                        startIcon={'mdi:trash-can-outline'}
+                        startIcon={IconRegistry.trash}
                         shortcut={'⌫'}
                         destructive
                         disabled
                     />
                     <DropdownMenu.Item
                         label={'Log out'}
-                        startIcon={'mdi:logout'}
+                        startIcon={IconRegistry.logOut}
                         destructive
                     />
                 </DropdownMenu.Content>

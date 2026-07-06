@@ -1,14 +1,18 @@
 import type { FC, KeyboardEvent } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/TableHead.css.ts'
-import type { TableHeadProps, TableSortDirection } from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
+import type {
+    TableHeadProps,
+    TableSortDirection,
+} from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
 import { cn } from '@utils/cn.ts'
 
 const SORT_ICONS: Record<TableSortDirection, string> = {
-    none: 'lucide:arrow-up-down',
-    asc: 'lucide:arrow-up',
-    desc: 'lucide:arrow-down',
+    none: IconRegistry.sort,
+    asc: IconRegistry.sortAsc,
+    desc: IconRegistry.sortDesc,
 }
 
 const ariaSortMap = {

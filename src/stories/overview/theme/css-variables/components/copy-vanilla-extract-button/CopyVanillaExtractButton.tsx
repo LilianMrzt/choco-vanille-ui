@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconRegistry } from '@constants/icons'
 
 import { buildVanillaExtractSnippet } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
 
@@ -10,10 +11,12 @@ export const CopyVanillaExtractButton = () => {
     const [copied, setCopied] = useState(false)
 
     const handleClick = () => {
-        void navigator.clipboard.writeText(buildVanillaExtractSnippet()).then(() => {
-            setCopied(true)
-            setTimeout(() => setCopied(false), 2000)
-        })
+        void navigator.clipboard
+            .writeText(buildVanillaExtractSnippet())
+            .then(() => {
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2000)
+            })
     }
 
     return (
@@ -21,7 +24,7 @@ export const CopyVanillaExtractButton = () => {
             variant={'outlined'}
             color={copied ? 'success' : 'secondary'}
             label={copied ? 'Copied!' : 'Copy Vanilla Extract snippet'}
-            startIcon={copied ? 'lucide:check' : 'lucide:clipboard-list'}
+            startIcon={copied ? IconRegistry.check : IconRegistry.clipboardList}
             onClick={handleClick}
         />
     )

@@ -5,13 +5,14 @@ import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-m
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
+import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types/DropdownMenuSubTrigger.props.ts'
 
 /**
- * The item that opens the nested sub-menu on hover/focus.
- * A chevron icon is automatically appended on the right.
- */
+  * The item that opens the nested sub-menu on hover/focus.
+  * A chevron icon is automatically appended on the right.
+  */
 const DropdownMenuSubTrigger = ({
     className,
     startIcon,
@@ -43,7 +44,9 @@ const DropdownMenuSubTrigger = ({
                 as={'span'}
                 variant={'span'}
                 style={{ flex: 1 }}
-            >{label}</Typography>
+            >
+                {label}
+            </Typography>
             <Flex
                 as={'span'}
                 justifyContent={'center'}
@@ -51,7 +54,7 @@ const DropdownMenuSubTrigger = ({
                 aria-hidden
             >
                 <Icon
-                    icon={'mdi:chevron-right'}
+                    icon={IconRegistry.chevronRight}
                     size={'xs'}
                 />
             </Flex>

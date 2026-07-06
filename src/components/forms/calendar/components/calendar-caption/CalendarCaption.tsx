@@ -7,21 +7,24 @@ import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/c
 import { useCalendarCaption } from '@components/forms/calendar/components/calendar-caption/hooks/useCalendarCaption.hook.ts'
 import type { CalendarCaptionProps } from '@components/forms/calendar/components/calendar-caption/types/CalendarCaption.props.ts'
 import Flex from '@components/layout/flex/Flex.tsx'
+import { IconRegistry } from '@constants/icons'
 import { DEFAULT_CALENDAR_CAPTION_LABELS } from '@components/forms/calendar/components/calendar-caption/constants'
 
 /**
- * Calendar header row: [← IconButton] [caption center] [→ IconButton]
- *
- * - **Day view**  — `[← ] [January] [2025] [→]`  (month & year are clickable chips)
- * - **Month view** — `[← ] [2025 ▸] [→]`  (year chip opens year picker)
- * - **Year view** — `[← ] [2024 — 2035] [→]`  (plain decade range label)
- *
- * Arrow semantics:
- * - Day view: navigate by month
- * - Month view: navigate by year
- * - Year view: navigate by page (12 years)
- */
-const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElement => {
+  * Calendar header row: [← IconButton] [caption center] [→ IconButton]
+  *
+  * - **Day view**  — `[← ] [January] [2025] [→]`  (month & year are clickable chips)
+  * - **Month view** — `[← ] [2025 ▸] [→]`  (year chip opens year picker)
+  * - **Year view** — `[← ] [2024 — 2035] [→]`  (plain decade range label)
+  *
+  * Arrow semantics:
+  * - Day view: navigate by month
+  * - Month view: navigate by year
+  * - Year view: navigate by page (12 years)
+  */
+const CalendarCaption: FC<CalendarCaptionProps> = ({
+    labels = {},
+}): ReactElement => {
     const {
         view,
         setView,
@@ -37,17 +40,19 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElemen
 
     const mergedLabels = { ...DEFAULT_CALENDAR_CAPTION_LABELS, ...labels }
 
-    const prevLabel = view === 'day'
-        ? mergedLabels.previousMonth
-        : view === 'month'
-            ? mergedLabels.previousYear
-            : mergedLabels.previousYears
+    const prevLabel =
+        view === 'day'
+            ? mergedLabels.previousMonth
+            : view === 'month'
+                ? mergedLabels.previousYear
+                : mergedLabels.previousYears
 
-    const nextLabel = view === 'day'
-        ? mergedLabels.nextMonth
-        : view === 'month'
-            ? mergedLabels.nextYear
-            : mergedLabels.nextYears
+    const nextLabel =
+        view === 'day'
+            ? mergedLabels.nextMonth
+            : view === 'month'
+                ? mergedLabels.nextYear
+                : mergedLabels.nextYears
 
     return (
         <Flex
@@ -57,7 +62,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElemen
             className={CALENDAR_CAPTION_STYLES.monthCaption}
         >
             <IconButton
-                icon={'mdi:chevron-left'}
+                icon={IconRegistry.chevronLeft}
                 aria-label={prevLabel}
                 variant={'ghost'}
                 color={'secondary'}
@@ -106,7 +111,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({ labels = {} }): ReactElemen
             </Flex>
 
             <IconButton
-                icon={'mdi:chevron-right'}
+                icon={IconRegistry.chevronRight}
                 aria-label={nextLabel}
                 variant={'ghost'}
                 color={'secondary'}

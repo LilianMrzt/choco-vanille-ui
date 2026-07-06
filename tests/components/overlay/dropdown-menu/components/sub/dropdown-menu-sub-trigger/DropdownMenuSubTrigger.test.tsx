@@ -32,7 +32,10 @@ describe('DropdownMenuSubTrigger', () => {
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
-                        <DropdownMenu.SubTrigger label={'More'} startIcon={'mdi:chevron-right'} />
+                        <DropdownMenu.SubTrigger
+                            label={'More'}
+                            startIcon={'lucide:chevron-right'}
+                        />
                         <DropdownMenu.SubContent>
                             <DropdownMenu.Item label={'Nested'} />
                         </DropdownMenu.SubContent>

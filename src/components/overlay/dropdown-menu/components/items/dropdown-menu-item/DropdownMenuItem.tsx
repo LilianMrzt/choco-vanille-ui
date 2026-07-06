@@ -9,17 +9,17 @@ import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/s
 import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types/DropdownMenuItem.props.ts'
 
 /**
- * A single actionable item inside the dropdown.
- *
- * @example
- * ```tsx
- * <DropdownMenuItem
- *     label={'Edit'}
- *     startIcon={'mdi:pencil'}
- *     shortcut={'⌘E'}
- * />
- * ```
- */
+  * A single actionable item inside the dropdown.
+  *
+  * @example
+  * ```tsx
+  * <DropdownMenuItem
+  *     label={'Edit'}
+  *     startIcon={'lucide:pencil'}
+  *     shortcut={'⌘E'}
+  * />
+  * ```
+  */
 const DropdownMenuItem = ({
     className,
     destructive = false,
@@ -58,10 +58,10 @@ const DropdownMenuItem = ({
                 as={'span'}
                 variant={'span'}
                 style={{ flex: 1 }}
-            >{label}</Typography>
-            {shortcut && (
-                <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>
-            )}
+            >
+                {label}
+            </Typography>
+            {shortcut && <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>}
             {endIcon && (
                 <Flex
                     as={'span'}

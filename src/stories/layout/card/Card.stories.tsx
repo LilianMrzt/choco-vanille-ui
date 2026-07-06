@@ -5,22 +5,23 @@ import type { ComponentProps } from 'react'
 import { Button, Card, IconButton, Typography } from '@components'
 import type { BoxRecipeVariants } from '@components/layout/box'
 import type { TypographyProps } from '@components/foundation/typography'
+import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
 type CardPlaygroundArgs = ComponentProps<typeof Card> & {
-  headerAs?: 'div' | 'header';
-  title?: string;
-  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  titleFontSize?: TypographyProps['fontSize'];
-  titleFontWeight?: TypographyProps['fontWeight'];
-  description?: string;
-  descriptionFontSize?: TypographyProps['fontSize'];
-  bodyAs?: 'div' | 'section';
-  bodyPadding?: BoxRecipeVariants['padding'];
-  footerAs?: 'div' | 'footer';
-  showFooter?: boolean;
-  footerActionLabel?: string;
-};
+    headerAs?: 'div' | 'header'
+    title?: string
+    titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    titleFontSize?: TypographyProps['fontSize']
+    titleFontWeight?: TypographyProps['fontWeight']
+    description?: string
+    descriptionFontSize?: TypographyProps['fontSize']
+    bodyAs?: 'div' | 'section'
+    bodyPadding?: BoxRecipeVariants['padding']
+    footerAs?: 'div' | 'footer'
+    showFooter?: boolean
+    footerActionLabel?: string
+}
 
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 const SPACING = [
@@ -70,7 +71,9 @@ const meta: Meta<CardPlaygroundArgs> = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A surface container with consistent background, border, shadow and rounded corners.
 Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\`.
 
@@ -78,42 +81,49 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <Card>
-  <Card.Header
-    title="Account settings"
-    description="Manage your profile."
-    titleAs="h3"
-    titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
-    actions={<IconButton icon="mdi:dots-vertical" aria-label="More" variant="ghost" color="primary" />}
-  />
-  <Card.Body>…</Card.Body>
-  <Card.Footer>
-    <Button label="Save" variant="contained" color="primary" />
-  </Card.Footer>
+    <Card.Header
+        title="Account settings"
+        description="Manage your profile."
+        titleAs="h3"
+        titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
+        actions={
+            <IconButton
+                icon={IconRegistry.ellipsisVertical}
+                aria-label="More"
+                variant="ghost"
+                color="primary"
+            />
+        }
+    />
+    <Card.Body>…</Card.Body>
+    <Card.Footer>
+        <Button label="Save" variant="contained" color="primary" />
+    </Card.Footer>
 </Card>
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`title\` on \`Card.Header\` | Recommended | \`string\` | Provides an accessible heading for the card content. |
-| \`titleAs\` on \`Card.Header\` | No | \`h1\` – \`h6\` | Choose the heading level that fits the page outline. |
-| \`as\` on \`Card\` | No | \`div\` \\| \`section\` \\| \`article\` \\| \`aside\` | Use the semantically correct landmark element. |
-| \`as\` on \`Card.Footer\` | No | \`div\` \\| \`footer\` | Renders a native \`<footer>\` when set. |
+| Prop / Attribute           | Required    | Type        | Notes                                                |
+| -------------------------- | ----------- | ----------- | ---------------------------------------------------- | ------------------------------------- | ------- | ---------------------------------------------- |
+| \`title\` on \`Card.Header\`   | Recommended | \`string\`    | Provides an accessible heading for the card content. |
+| \`titleAs\` on \`Card.Header\` | No          | \`h1\` – \`h6\` | Choose the heading level that fits the page outline. |
+| \`as\` on \`Card\`             | No          | \`div\` \\    | \`section\` \\                                         | \`article\` \\                          | \`aside\` | Use the semantically correct landmark element. |
+| \`as\` on \`Card.Footer\`      | No          | \`div\` \\    | \`footer\`                                             | Renders a native \`<footer>\` when set. |
 
 - Prefer \`article\` for self-contained content and \`aside\` for tangential content.
 - Maintain a logical heading order across cards on the same page.
 
 **Sub-components**
 
-| Sub-component | Description |
-|---|---|
-| \`Card\` | Root surface container. |
+| Sub-component | Description                               |
+| ------------- | ----------------------------------------- |
+| \`Card\`        | Root surface container.                   |
 | \`Card.Header\` | Title, description, and optional actions. |
-| \`Card.Body\` | Main content area. |
-| \`Card.Footer\` | Bottom area for actions or metadata. |
+| \`Card.Body\`   | Main content area.                        |
+| \`Card.Footer\` | Bottom area for actions or metadata.      |
                 `,
             },
         },
@@ -236,14 +246,14 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
+                    'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
             },
         },
     },
@@ -287,7 +297,7 @@ export const Playground: Story = {
                 }
                 actions={
                     <IconButton
-                        icon={'mdi:dots-vertical'}
+                        icon={IconRegistry.ellipsisVertical}
                         aria-label={'More options'}
                         variant={'ghost'}
                         color={'primary'}

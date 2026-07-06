@@ -7,21 +7,21 @@ import { CARD_HEADER_STYLES } from '@components/layout/card/components/card-head
 import type { CardHeaderProps } from '@components/layout/card/components/card-header/types/CardHeader.props.ts'
 
 /**
- * Header section of a `Card`. Renders an optional title, description and
- * an actions slot in the trailing corner — all via props.
- *
- * `children` can be used for fully custom header content alongside or instead
- * of the `title` / `description` props.
- *
- * @example
- * ```tsx
- * <CardHeader
- *   title="Account settings"
- *   description="Manage your profile and preferences."
- *   actions={<IconButton icon="mdi:dots-vertical" aria-label="More" variant="ghost" color="primary" />}
- * />
- * ```
- */
+  * Header section of a `Card`. Renders an optional title, description and
+  * an actions slot in the trailing corner — all via props.
+  *
+  * `children` can be used for fully custom header content alongside or instead
+  * of the `title` / `description` props.
+  *
+  * @example
+  * ```tsx
+  * <CardHeader
+  *   title="Account settings"
+  *   description="Manage your profile and preferences."
+  *   actions={<IconButton icon="lucide:ellipsis-vertical" aria-label="More" variant="ghost" color="primary" />}
+  * />
+  * ```
+  */
 const CardHeader: FC<CardHeaderProps> = ({
     as: Element = 'div',
     title,

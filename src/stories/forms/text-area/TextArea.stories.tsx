@@ -6,11 +6,7 @@ import { TextArea } from '@components/forms/text-area'
 import type { TextAreaRecipeVariants } from '@components/forms/text-area/TextArea.css.ts'
 import { md } from '@stories/utils/markdown'
 
-const SIZES: NonNullable<TextAreaRecipeVariants['size']>[] = [
-    'sm',
-    'md',
-    'lg',
-]
+const SIZES: NonNullable<TextAreaRecipeVariants['size']>[] = ['sm', 'md', 'lg']
 
 const meta = {
     title: 'Forms/TextArea',
@@ -19,39 +15,41 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A styled textarea built with a native \`<textarea>\` and \`@radix-ui/react-label\` for accessible label binding.
 
 Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, custom width and native \`rows\`.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 // Basic
 <TextArea label="Description" placeholder="Tell us more…" rows={4} />
 
 // With start icon
-<TextArea label="Comment" startIcon="mdi:comment" />
+<TextArea label="Comment" startIcon="lucide:message-square" />
 
 // Custom end action
 <TextArea
-  label="Bio"
-  endAction={
-    <IconButton icon="mdi:close" aria-label="Clear" variant="ghost" color="primary" />
-  }
+    label="Bio"
+    endAction={
+        <IconButton icon="lucide:x" aria-label="Clear" variant="ghost" color="primary" />
+    }
 />
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label linked to the textarea via \`htmlFor\`. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`error\` | No | \`string\` | Sets \`aria-invalid="true"\` and replaces helper text in \`aria-describedby\`. |
-| \`helperText\` | No | \`string\` | Described by the textarea when no error is present. |
-| \`disabled\` | No | \`boolean\` | Native disabled state, announced by screen readers. |
-| \`required\` | No | \`boolean\` | Native required state for form validation. |
+| Prop / Attribute                 | Required    | Type      | Notes                                                                      |
+| -------------------------------- | ----------- | --------- | -------------------------------------------------------------------------- |
+| \`label\`                          | Recommended | \`string\`  | Visible label linked to the textarea via \`htmlFor\`.                        |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\`  | Required when \`label\` is omitted.                                          |
+| \`error\`                          | No          | \`string\`  | Sets \`aria-invalid="true"\` and replaces helper text in \`aria-describedby\`. |
+| \`helperText\`                     | No          | \`string\`  | Described by the textarea when no error is present.                        |
+| \`disabled\`                       | No          | \`boolean\` | Native disabled state, announced by screen readers.                        |
+| \`required\`                       | No          | \`boolean\` | Native required state for form validation.                                 |
 
 - The underlying element is a native \`<textarea>\`, so it is fully keyboard operable.
 - Do not rely on placeholder text alone as a label.
@@ -86,14 +84,14 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+                    'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },

@@ -7,7 +7,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { TextField } from '@components/forms/text-field'
 
 beforeAll(() => {
-    addIcon('mdi:email', {
+    addIcon('lucide:mail', {
         body: '<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>',
         width: 24,
         height: 24,
@@ -29,7 +29,12 @@ describe('TextField', () => {
         })
 
         it('renders helper text linked via aria-describedby', () => {
-            render(<TextField label={'Email'} helperText={'We will never share your email.'} />)
+            render(
+                <TextField
+                    label={'Email'}
+                    helperText={'We will never share your email.'}
+                />,
+            )
             const input = screen.getByRole('textbox')
             expect(screen.getByText('We will never share your email.')).toBeTruthy()
             expect(input.getAttribute('aria-describedby')).toBeTruthy()
@@ -43,7 +48,7 @@ describe('TextField', () => {
         })
 
         it('renders a start icon', () => {
-            render(<TextField startIcon={'mdi:email'} />)
+            render(<TextField startIcon={'lucide:mail'} />)
             expect(document.querySelector('svg')).toBeTruthy()
         })
 
@@ -54,7 +59,9 @@ describe('TextField', () => {
 
         it('renders a password toggle when type is password', () => {
             render(<TextField label={'Password'} type={'password'} />)
-            expect(screen.getByRole('button', { name: 'Show password' })).toBeTruthy()
+            expect(
+                screen.getByRole('button', { name: 'Show password' }),
+            ).toBeTruthy()
         })
     })
 
@@ -63,9 +70,13 @@ describe('TextField', () => {
             render(<TextField label={'Password'} type={'password'} />)
             const input = screen.getByLabelText('Password') as HTMLInputElement
             expect(input.type).toBe('password')
-            await userEvent.click(screen.getByRole('button', { name: 'Show password' }))
+            await userEvent.click(
+                screen.getByRole('button', { name: 'Show password' }),
+            )
             expect(input.type).toBe('text')
-            await userEvent.click(screen.getByRole('button', { name: 'Hide password' }))
+            await userEvent.click(
+                screen.getByRole('button', { name: 'Hide password' }),
+            )
             expect(input.type).toBe('password')
         })
 
@@ -89,7 +100,9 @@ describe('TextField', () => {
     describe('states', () => {
         it('disables the input when disabled is true', () => {
             render(<TextField disabled />)
-            expect((screen.getByRole('textbox') as HTMLInputElement).disabled).toBe(true)
+            expect((screen.getByRole('textbox') as HTMLInputElement).disabled).toBe(
+                true,
+            )
         })
 
         it('applies a custom width to the wrapper', () => {

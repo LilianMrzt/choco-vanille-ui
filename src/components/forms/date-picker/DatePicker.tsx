@@ -4,24 +4,25 @@ import { Popover } from '@components/overlay/popover'
 import { IconButton } from '@components/actions/icon-button'
 import { useDatePicker } from '@components/forms/date-picker/hooks/useDatePicker.hook.ts'
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/DatePicker.css.ts'
+import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
 
 /**
- * A date picker that combines a native `type="date"` text field with a
- * calendar popover.
- *
- * - Typing a valid `YYYY-MM-DD` date updates the calendar and calls `onChange`.
- * - Selecting a day in the calendar updates the input and closes the popover.
- * - Invalid or incomplete typed values are kept in the input but do not update
- *   the selected date until they become valid.
- *
- * @example
- * ```tsx
- * const [date, setDate] = useState<Date | undefined>()
- * <DatePicker label="Pick a date" value={date} onChange={setDate} />
- * ```
- */
+  * A date picker that combines a native `type="date"` text field with a
+  * calendar popover.
+  *
+  * - Typing a valid `YYYY-MM-DD` date updates the calendar and calls `onChange`.
+  * - Selecting a day in the calendar updates the input and closes the popover.
+  * - Invalid or incomplete typed values are kept in the input but do not update
+  *   the selected date until they become valid.
+  *
+  * @example
+  * ```tsx
+  * const [date, setDate] = useState<Date | undefined>()
+  * <DatePicker label="Pick a date" value={date} onChange={setDate} />
+  * ```
+  */
 const DatePicker = ({
     value,
     defaultValue,
@@ -51,7 +52,8 @@ const DatePicker = ({
         onKeyDown?.(event)
     }
 
-    const { className: calendarClassName, ...restCalendarProps } = calendarProps ?? {}
+    const { className: calendarClassName, ...restCalendarProps } =
+        calendarProps ?? {}
 
     return (
         <Popover
@@ -72,9 +74,9 @@ const DatePicker = ({
                     aria-labelledby={ariaLabelledBy}
                     aria-haspopup={'dialog'}
                     aria-expanded={undefined}
-                    endAction={(
+                    endAction={
                         <IconButton
-                            icon={'mdi:calendar-month'}
+                            icon={IconRegistry.calendar}
                             aria-label={'Open calendar'}
                             variant={'ghost'}
                             color={'primary'}
@@ -90,7 +92,7 @@ const DatePicker = ({
                                 setOpen(true)
                             }}
                         />
-                    )}
+                    }
                 />
             </Popover.Trigger>
 
