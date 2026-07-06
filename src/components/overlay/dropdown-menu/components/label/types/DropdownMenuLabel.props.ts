@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuLabelProps = Omit<React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.Label>, 'children'> & {
+export type DropdownMenuLabelProps = Omit<Menu.GroupLabel.Props, 'children'> & {
     /** Text label of the section heading. */
     label: string
 }

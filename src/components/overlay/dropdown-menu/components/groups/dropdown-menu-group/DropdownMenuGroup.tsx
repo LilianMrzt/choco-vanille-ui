@@ -1,14 +1,17 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
+import { DropdownMenuGroupProvider } from '@components/overlay/dropdown-menu/components/groups/DropdownMenuGroupContext.tsx'
 import type { DropdownMenuGroupProps } from '@components/overlay/dropdown-menu/components/groups/dropdown-menu-group/types/DropdownMenuGroup.props.ts'
 
 /**
  * Groups related items together semantically. Pair with `DropdownMenuLabel`.
  */
 const DropdownMenuGroup = (props: DropdownMenuGroupProps) => (
-    <RadixDropdownMenu.Group {...props} />
+    <DropdownMenuGroupProvider value={true}>
+        <BaseMenu.Group {...props} />
+    </DropdownMenuGroupProvider>
 )
 
-DropdownMenuGroup.displayName = 'DropdownMenuGroup'
+DropdownMenuGroup.displayName = 'DropdownMenu.Group'
 
 export default DropdownMenuGroup

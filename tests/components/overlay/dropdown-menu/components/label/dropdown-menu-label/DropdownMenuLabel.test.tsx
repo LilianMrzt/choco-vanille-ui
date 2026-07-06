@@ -7,12 +7,12 @@ describe('DropdownMenuLabel', () => {
     it('renders a label inside an open menu', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
-                    <DropdownMenu.Label label={'Section'} />
-                    <DropdownMenu.Item label={'Item'} />
+                    <DropdownMenu.Group>
+                        <DropdownMenu.Label label={'Section'} />
+                        <DropdownMenu.Item label={'Item'} />
+                    </DropdownMenu.Group>
                 </DropdownMenu.Content>
             </DropdownMenu>,
         )
@@ -21,6 +21,6 @@ describe('DropdownMenuLabel', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Label.displayName).toBe('DropdownMenuLabel')
+        expect(DropdownMenu.Label.displayName).toBe('DropdownMenu.Label')
     })
 })

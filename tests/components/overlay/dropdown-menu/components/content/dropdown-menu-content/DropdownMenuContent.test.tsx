@@ -8,9 +8,7 @@ describe('DropdownMenuContent', () => {
     it('renders content when the menu is open by default', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Item'} />
                 </DropdownMenu.Content>
@@ -24,9 +22,7 @@ describe('DropdownMenuContent', () => {
     it('does not render content when the menu is closed', () => {
         render(
             <DropdownMenu>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Item'} />
                 </DropdownMenu.Content>
@@ -39,9 +35,7 @@ describe('DropdownMenuContent', () => {
     it('opens and closes via the trigger', async () => {
         render(
             <DropdownMenu>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Item'} />
                 </DropdownMenu.Content>
@@ -59,9 +53,7 @@ describe('DropdownMenuContent', () => {
         const onOpenChange = vi.fn()
         render(
             <DropdownMenu onOpenChange={onOpenChange}>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Item'} />
                 </DropdownMenu.Content>
@@ -73,6 +65,6 @@ describe('DropdownMenuContent', () => {
     }, 10000)
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Content.displayName).toBe('DropdownMenuContent')
+        expect(DropdownMenu.Content.displayName).toBe('DropdownMenu.Content')
     })
 })

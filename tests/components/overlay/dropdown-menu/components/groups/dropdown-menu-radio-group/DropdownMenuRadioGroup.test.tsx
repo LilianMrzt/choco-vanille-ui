@@ -7,9 +7,7 @@ describe('DropdownMenuRadioGroup', () => {
     it('renders radio items and enforces a single selection', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.RadioGroup value={'b'}>
                         <DropdownMenu.RadioItem value={'a'} label={'Option A'} />
@@ -26,6 +24,6 @@ describe('DropdownMenuRadioGroup', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.RadioGroup.displayName).toBe('DropdownMenuRadioGroup')
+        expect(DropdownMenu.RadioGroup.displayName).toBe('DropdownMenu.RadioGroup')
     })
 })

@@ -7,9 +7,7 @@ describe('DropdownMenuGroup', () => {
     it('renders grouped items inside an open menu', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Group>
                         <DropdownMenu.Item label={'Item 1'} />
@@ -24,6 +22,6 @@ describe('DropdownMenuGroup', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Group.displayName).toBe('DropdownMenuGroup')
+        expect(DropdownMenu.Group.displayName).toBe('DropdownMenu.Group')
     })
 })

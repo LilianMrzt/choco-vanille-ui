@@ -8,7 +8,7 @@ describe('DropdownMenu', () => {
     it('renders the trigger and opens the menu', async () => {
         render(
             <DropdownMenu>
-                <DropdownMenu.Trigger asChild>
+                <DropdownMenu.Trigger>
                     <button type={'button'}>Open</button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
@@ -27,7 +27,7 @@ describe('DropdownMenu', () => {
         const onOpenChange = vi.fn()
         render(
             <DropdownMenu open={false} onOpenChange={onOpenChange}>
-                <DropdownMenu.Trigger asChild>
+                <DropdownMenu.Trigger>
                     <button type={'button'}>Open</button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
@@ -43,18 +43,18 @@ describe('DropdownMenu', () => {
 
     it('exposes all compound sub-components', () => {
         expect(DropdownMenu.displayName).toBe('DropdownMenu')
-        expect(DropdownMenu.Trigger.displayName).toBe('DropdownMenuTrigger')
-        expect(DropdownMenu.Content.displayName).toBe('DropdownMenuContent')
-        expect(DropdownMenu.Group.displayName).toBe('DropdownMenuGroup')
-        expect(DropdownMenu.RadioGroup.displayName).toBe('DropdownMenuRadioGroup')
-        expect(DropdownMenu.Item.displayName).toBe('DropdownMenuItem')
-        expect(DropdownMenu.CheckboxItem.displayName).toBe('DropdownMenuCheckboxItem')
-        expect(DropdownMenu.RadioItem.displayName).toBe('DropdownMenuRadioItem')
-        expect(DropdownMenu.Label.displayName).toBe('DropdownMenuLabel')
-        expect(DropdownMenu.Separator.displayName).toBe('DropdownMenuSeparator')
-        expect(DropdownMenu.Shortcut.displayName).toBe('DropdownMenuShortcut')
-        expect(DropdownMenu.Sub.displayName).toBe('DropdownMenuSub')
-        expect(DropdownMenu.SubTrigger.displayName).toBe('DropdownMenuSubTrigger')
-        expect(DropdownMenu.SubContent.displayName).toBe('DropdownMenuSubContent')
+        expect(DropdownMenu.Trigger.displayName).toBe('DropdownMenu.Trigger')
+        expect(DropdownMenu.Content.displayName).toBe('DropdownMenu.Content')
+        expect(DropdownMenu.Group.displayName).toBe('DropdownMenu.Group')
+        expect(DropdownMenu.RadioGroup.displayName).toBe('DropdownMenu.RadioGroup')
+        expect(DropdownMenu.Item.displayName).toBe('DropdownMenu.Item')
+        expect(DropdownMenu.CheckboxItem.displayName).toBe('DropdownMenu.CheckboxItem')
+        expect(DropdownMenu.RadioItem.displayName).toBe('DropdownMenu.RadioItem')
+        expect(DropdownMenu.Label.displayName).toBe('DropdownMenu.Label')
+        expect(DropdownMenu.Separator.displayName).toBe('DropdownMenu.Separator')
+        expect(DropdownMenu.Shortcut.displayName).toBe('DropdownMenu.Shortcut')
+        expect(DropdownMenu.Sub.displayName).toBe('DropdownMenu.Sub')
+        expect(DropdownMenu.SubTrigger.displayName).toBe('DropdownMenu.SubTrigger')
+        expect(DropdownMenu.SubContent.displayName).toBe('DropdownMenu.SubContent')
     })
 })

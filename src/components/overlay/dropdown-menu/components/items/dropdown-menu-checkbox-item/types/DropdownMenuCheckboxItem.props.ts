@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuCheckboxItemProps = Omit<React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.CheckboxItem>, 'children'> & {
+export type DropdownMenuCheckboxItemProps = Omit<Menu.CheckboxItem.Props, 'children'> & {
     /** Text label of the item. */
     label: string
 }

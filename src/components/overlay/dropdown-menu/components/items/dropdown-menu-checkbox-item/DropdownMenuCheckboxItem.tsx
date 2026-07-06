@@ -1,9 +1,8 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Box } from '@components/layout/box'
-import { Flex } from '@components/layout/flex'
 import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -15,43 +14,35 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = ({
     className,
     label,
     checked,
-    onSelect,
+    onCheckedChange,
     ...props
 }) => (
-    <RadixDropdownMenu.CheckboxItem
-        asChild
+    <BaseMenu.CheckboxItem
+        className={cn(DROPDOWN_MENU_ITEM_STYLES.root, className)}
         checked={checked}
-        onSelect={(e) => {
-            e.preventDefault()
-            onSelect?.(e)
-        }}
+        onCheckedChange={(value, eventDetails) => onCheckedChange?.(value, eventDetails)}
         {...props}
     >
-        <Flex
-            gap={'sm'}
-            className={cn(DROPDOWN_MENU_ITEM_STYLES.root, className)}
+        <Box
+            as={'span'}
+            className={CHECKBOX_STYLES.root}
         >
-            <Box
-                as={'span'}
-                className={CHECKBOX_STYLES.root}
-            >
-                <RadixDropdownMenu.ItemIndicator className={CHECKBOX_STYLES.indicator}>
-                    <Icon
-                        icon={IconRegistry.check}
-                        size={'xs'}
-                    />
-                </RadixDropdownMenu.ItemIndicator>
-            </Box>
-            <Typography
-                as={'span'}
-                variant={'span'}
-            >
-                {label}
-            </Typography>
-        </Flex>
-    </RadixDropdownMenu.CheckboxItem>
+            <BaseMenu.CheckboxItemIndicator className={CHECKBOX_STYLES.indicator}>
+                <Icon
+                    icon={IconRegistry.check}
+                    size={'xs'}
+                />
+            </BaseMenu.CheckboxItemIndicator>
+        </Box>
+        <Typography
+            as={'span'}
+            variant={'span'}
+        >
+            {label}
+        </Typography>
+    </BaseMenu.CheckboxItem>
 )
 
-DropdownMenuCheckboxItem.displayName = 'DropdownMenuCheckboxItem'
+DropdownMenuCheckboxItem.displayName = 'DropdownMenu.CheckboxItem'
 
 export default DropdownMenuCheckboxItem

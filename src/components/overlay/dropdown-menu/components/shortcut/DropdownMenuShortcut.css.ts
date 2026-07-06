@@ -27,7 +27,7 @@ export const DROPDOWN_MENU_SHORTCUT_STYLES = {
         ].join(', '),
 
         selectors: {
-            '[data-highlighted] &': {
+            ':not([data-disabled])[data-highlighted] &': {
                 backgroundColor: vars.color.primarySubtleHover,
                 borderColor: vars.color.primary,
                 color: vars.color.primarySubtleForeground,

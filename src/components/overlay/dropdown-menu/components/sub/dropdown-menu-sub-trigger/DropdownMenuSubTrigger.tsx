@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.css.ts'
@@ -19,49 +19,44 @@ const DropdownMenuSubTrigger = ({
     label,
     ...props
 }: DropdownMenuSubTriggerProps) => (
-    <RadixDropdownMenu.SubTrigger
-        asChild
+    <BaseMenu.SubmenuTrigger
+        className={cn(DROPDOWN_MENU_SUB_TRIGGER_STYLES.root, className)}
         {...props}
     >
-        <Flex
-            gap={'sm'}
-            className={cn(DROPDOWN_MENU_SUB_TRIGGER_STYLES.root, className)}
-        >
-            {startIcon && (
-                <Flex
-                    as={'span'}
-                    justifyContent={'center'}
-                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
-                    aria-hidden
-                >
-                    <Icon
-                        icon={startIcon}
-                        size={'xs'}
-                    />
-                </Flex>
-            )}
-            <Typography
-                as={'span'}
-                variant={'span'}
-                style={{ flex: 1 }}
-            >
-                {label}
-            </Typography>
+        {startIcon && (
             <Flex
                 as={'span'}
                 justifyContent={'center'}
-                className={DROPDOWN_MENU_SUB_TRIGGER_STYLES.chevron}
+                className={DROPDOWN_MENU_ITEM_STYLES.icon}
                 aria-hidden
             >
                 <Icon
-                    icon={IconRegistry.chevronRight}
+                    icon={startIcon}
                     size={'xs'}
                 />
             </Flex>
+        )}
+        <Typography
+            as={'span'}
+            variant={'span'}
+            style={{ flex: 1 }}
+        >
+            {label}
+        </Typography>
+        <Flex
+            as={'span'}
+            justifyContent={'center'}
+            className={DROPDOWN_MENU_SUB_TRIGGER_STYLES.chevron}
+            aria-hidden
+        >
+            <Icon
+                icon={IconRegistry.chevronRight}
+                size={'xs'}
+            />
         </Flex>
-    </RadixDropdownMenu.SubTrigger>
+    </BaseMenu.SubmenuTrigger>
 )
 
-DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger'
+DropdownMenuSubTrigger.displayName = 'DropdownMenu.SubTrigger'
 
 export default DropdownMenuSubTrigger

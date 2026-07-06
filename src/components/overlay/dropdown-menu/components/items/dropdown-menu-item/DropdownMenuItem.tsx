@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
@@ -29,56 +29,51 @@ const DropdownMenuItem = ({
     label,
     ...props
 }: DropdownMenuItemProps) => (
-    <RadixDropdownMenu.Item
-        asChild
+    <BaseMenu.Item
+        className={cn(
+            DROPDOWN_MENU_ITEM_STYLES.root,
+            destructive && DROPDOWN_MENU_ITEM_STYLES.destructive,
+            className,
+        )}
         {...props}
     >
-        <Flex
-            gap={'sm'}
-            className={cn(
-                DROPDOWN_MENU_ITEM_STYLES.root,
-                destructive && DROPDOWN_MENU_ITEM_STYLES.destructive,
-                className,
-            )}
-        >
-            {startIcon && (
-                <Flex
-                    as={'span'}
-                    justifyContent={'center'}
-                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
-                    aria-hidden
-                >
-                    <Icon
-                        icon={startIcon}
-                        size={'xs'}
-                    />
-                </Flex>
-            )}
-            <Typography
+        {startIcon && (
+            <Flex
                 as={'span'}
-                variant={'span'}
-                style={{ flex: 1 }}
+                justifyContent={'center'}
+                className={DROPDOWN_MENU_ITEM_STYLES.icon}
+                aria-hidden
             >
-                {label}
-            </Typography>
-            {shortcut && <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>}
-            {endIcon && (
-                <Flex
-                    as={'span'}
-                    justifyContent={'center'}
-                    className={DROPDOWN_MENU_ITEM_STYLES.icon}
-                    aria-hidden
-                >
-                    <Icon
-                        icon={endIcon}
-                        size={'xs'}
-                    />
-                </Flex>
-            )}
-        </Flex>
-    </RadixDropdownMenu.Item>
+                <Icon
+                    icon={startIcon}
+                    size={'xs'}
+                />
+            </Flex>
+        )}
+        <Typography
+            as={'span'}
+            variant={'span'}
+            style={{ flex: 1 }}
+        >
+            {label}
+        </Typography>
+        {shortcut && <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>}
+        {endIcon && (
+            <Flex
+                as={'span'}
+                justifyContent={'center'}
+                className={DROPDOWN_MENU_ITEM_STYLES.icon}
+                aria-hidden
+            >
+                <Icon
+                    icon={endIcon}
+                    size={'xs'}
+                />
+            </Flex>
+        )}
+    </BaseMenu.Item>
 )
 
-DropdownMenuItem.displayName = 'DropdownMenuItem'
+DropdownMenuItem.displayName = 'DropdownMenu.Item'
 
 export default DropdownMenuItem

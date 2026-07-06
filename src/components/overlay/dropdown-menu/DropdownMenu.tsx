@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import DropdownMenuContent from '@components/overlay/dropdown-menu/components/content/DropdownMenuContent.tsx'
 import DropdownMenuGroup from '@components/overlay/dropdown-menu/components/groups/dropdown-menu-group/DropdownMenuGroup.tsx'
@@ -17,10 +17,10 @@ import type { DropdownMenuCompound } from '@components/overlay/dropdown-menu/typ
 
 /**
  * The root wrapper that manages open/close state.
- * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Radix.
+ * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Base UI Menu.
  */
 const DropdownMenu = ((props) => (
-    <RadixDropdownMenu.Root {...props} />
+    <BaseMenu.Root {...props} />
 )) as DropdownMenuCompound
 
 DropdownMenu.displayName = 'DropdownMenu'

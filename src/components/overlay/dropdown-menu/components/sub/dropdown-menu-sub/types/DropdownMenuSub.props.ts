@@ -1,3 +1,3 @@
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuSubProps = React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.Sub>
+export type DropdownMenuSubProps = Menu.SubmenuRoot.Props

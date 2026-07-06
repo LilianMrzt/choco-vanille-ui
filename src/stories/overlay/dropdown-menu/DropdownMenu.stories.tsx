@@ -17,21 +17,20 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A fully composable dropdown menu built on top of \`@radix-ui/react-dropdown-menu\`.
+A fully composable dropdown menu built on top of \`@base-ui/react/menu\`.
 It supports regular items with icons and keyboard shortcuts, checkbox items, radio groups, separators, labels, and nested sub-menus.
 
 **Usage**
 
 ~~~tsx
 <DropdownMenu>
-    <DropdownMenu.Trigger asChild>
+    <DropdownMenu.Trigger>
         <Button label="Options" endIcon={IconRegistry.chevronDown} />
     </DropdownMenu.Trigger>
 
     <DropdownMenu.Content>
-        <DropdownMenu.Label label="Account" />
-        <DropdownMenu.Separator />
         <DropdownMenu.Group>
+            <DropdownMenu.Label label="Account" />
             <DropdownMenu.Item
                 label="Profile"
                 startIcon={IconRegistry.user}
@@ -57,7 +56,7 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 
 | Prop / Attribute                       | Required | Type      | Notes                                                                                            |
 | -------------------------------------- | -------- | --------- | ------------------------------------------------------------------------------------------------ |
-| Trigger (focusable element)            | ✅ Yes   | —         | Use \`asChild\` on \`DropdownMenu.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
+| Trigger (focusable element)            | ✅ Yes   | —         | Pass your own \`Button\` or \`IconButton\` as \`children\` of \`DropdownMenu.Trigger\`. |
 | \`shortcut\` (on \`DropdownMenu.Item\`)    | No       | \`string\`  | Purely decorative — wire actual \`keydown\` handlers in your application.                          |
 | \`destructive\` (on \`DropdownMenu.Item\`) | No       | \`boolean\` | Applies danger color to visually warn users before an irreversible action.                       |
 | \`disabled\` (on any item)               | No       | \`boolean\` | Marks the item as unavailable; it remains visible and announced by screen readers.               |
@@ -71,7 +70,7 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 | Sub-component               | Description                                                                                      |
 | --------------------------- | ------------------------------------------------------------------------------------------------ |
 | \`DropdownMenu\`              | Root context provider — wraps the entire menu.                                                   |
-| \`DropdownMenu.Trigger\`      | The element that opens the menu on click. Use \`asChild\` to delegate to your own button.          |
+| \`DropdownMenu.Trigger\`      | The element that opens the menu on click. Pass your own button as \`children\`.          |
 | \`DropdownMenu.Content\`      | The floating panel containing menu items. Handles positioning, animations and keyboard trapping. |
 | \`DropdownMenu.Group\`        | Logical grouping of related items with no visual separator.                                      |
 | \`DropdownMenu.Item\`         | A single actionable item with optional \`startIcon\`, \`endIcon\`, and \`shortcut\` hint.              |
@@ -113,9 +112,9 @@ export const Playground: Story = {
             config: {
                 rules: [
                     {
-                        // Radix UI wraps the page in aria-hidden when the menu is open (modal=true),
+                        // Base UI wraps the page in aria-hidden when the menu is open (modal=true),
                         // which causes the trigger button to appear inside an aria-hidden container.
-                        // This is intentional Radix behavior — focus moves into the menu portal.
+                        // This is intentional Base UI behavior — focus moves into the menu portal.
                         id: 'aria-hidden-focus',
                         enabled: false,
                     },
@@ -130,7 +129,7 @@ export const Playground: Story = {
 
         return (
             <DropdownMenu {...args}>
-                <DropdownMenu.Trigger asChild>
+                <DropdownMenu.Trigger>
                     <Button
                         label={'Open menu'}
                         endIcon={IconRegistry.chevronDown}
@@ -138,9 +137,8 @@ export const Playground: Story = {
                 </DropdownMenu.Trigger>
 
                 <DropdownMenu.Content>
-                    <DropdownMenu.Label label={'Account'} />
-                    <DropdownMenu.Separator />
                     <DropdownMenu.Group>
+                        <DropdownMenu.Label label={'Account'} />
                         <DropdownMenu.Item
                             label={'Profile'}
                             startIcon={IconRegistry.user}
@@ -180,24 +178,26 @@ export const Playground: Story = {
                     </DropdownMenu.Group>
 
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Label label={'Appearance'} />
-                    <DropdownMenu.CheckboxItem
-                        label={'Show status bar'}
-                        checked={showStatus}
-                        onCheckedChange={(value) => setShowStatus(value)}
-                    />
-                    <DropdownMenu.CheckboxItem
-                        label={'Show activity bar'}
-                        checked={showActivity}
-                        onCheckedChange={(value) => setShowActivity(value)}
-                    />
+                    <DropdownMenu.Group>
+                        <DropdownMenu.Label label={'Appearance'} />
+                        <DropdownMenu.CheckboxItem
+                            label={'Show status bar'}
+                            checked={showStatus}
+                            onCheckedChange={setShowStatus}
+                        />
+                        <DropdownMenu.CheckboxItem
+                            label={'Show activity bar'}
+                            checked={showActivity}
+                            onCheckedChange={setShowActivity}
+                        />
+                    </DropdownMenu.Group>
 
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Label label={'Panel position'} />
                     <DropdownMenu.RadioGroup
                         value={position}
-                        onValueChange={setPosition}
+                        onValueChange={(value) => setPosition(value)}
                     >
+                        <DropdownMenu.Label label={'Panel position'} />
                         <DropdownMenu.RadioItem
                             label={'Top'}
                             value={'top'}
@@ -213,18 +213,20 @@ export const Playground: Story = {
                     </DropdownMenu.RadioGroup>
 
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Item
-                        label={'Delete (unavailable)'}
-                        startIcon={IconRegistry.trash}
-                        shortcut={'⌫'}
-                        destructive
-                        disabled
-                    />
-                    <DropdownMenu.Item
-                        label={'Log out'}
-                        startIcon={IconRegistry.logOut}
-                        destructive
-                    />
+                    <DropdownMenu.Group>
+                        <DropdownMenu.Item
+                            label={'Delete (unavailable)'}
+                            startIcon={IconRegistry.trash}
+                            shortcut={'⌫'}
+                            destructive
+                            disabled
+                        />
+                        <DropdownMenu.Item
+                            label={'Log out'}
+                            startIcon={IconRegistry.logOut}
+                            destructive
+                        />
+                    </DropdownMenu.Group>
                 </DropdownMenu.Content>
             </DropdownMenu>
         )

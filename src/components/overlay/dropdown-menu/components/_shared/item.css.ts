@@ -9,6 +9,9 @@ import { vars } from '@theme/contract.css.ts'
 export const DROPDOWN_MENU_ITEM_STYLES = {
     root: style({
         position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        gap: vars.space.sm,
         borderRadius: vars.radius.sm,
         paddingBlock: vars.space.xs2,
         paddingInline: vars.space.sm,
@@ -25,13 +28,17 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
         ].join(', '),
 
         selectors: {
-            '&[data-highlighted]': {
+            '&:not([data-disabled])[data-highlighted]': {
                 backgroundColor: vars.color.primarySubtle,
                 color: vars.color.primarySubtleForeground,
             },
             // pressed / active — slightly stronger blue tint
-            '&[data-highlighted]:active': {
+            '&:not([data-disabled])[data-highlighted]:active': {
                 backgroundColor: vars.color.primarySubtleActive,
+            },
+            '&:focus-visible': {
+                outline: 'none',
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',
@@ -46,12 +53,16 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
     destructive: style({
         color: vars.color.destructive,
         selectors: {
-            '&[data-highlighted]': {
+            '&:not([data-disabled])[data-highlighted]': {
                 backgroundColor: vars.color.destructiveSubtle,
                 color: vars.color.destructiveSubtleForeground,
             },
-            '&[data-highlighted]:active': {
+            '&:not([data-disabled])[data-highlighted]:active': {
                 backgroundColor: vars.color.destructiveSubtleHover,
+            },
+            '&:focus-visible': {
+                outline: 'none',
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
         },
     }),

@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/DropdownMenuContent.css.ts'
@@ -9,7 +9,7 @@ import { useViewportShift } from '@hooks'
  * The panel that pops out from the trigger.
  * Rendered inside a portal by default for correct stacking.
  *
- * Radix's built-in `avoidCollisions` is disabled here: it would flip the menu
+ * Base UI's built-in collision handling is disabled here: it would flip the menu
  * to the opposite side when space is tight, which is jarring.
  * Instead, `useViewportShift` detects any overflow after positioning and
  * shifts the panel inward by exactly the overflowing amount — keeping the
@@ -26,21 +26,26 @@ const DropdownMenuContent = ({
     const contentRef = useViewportShift(collisionPadding)
 
     return (
-        <RadixDropdownMenu.Portal>
-            <RadixDropdownMenu.Content
-                ref={contentRef}
+        <BaseMenu.Portal>
+            <BaseMenu.Positioner
                 side={side}
                 align={align}
                 sideOffset={sideOffset}
-                className={cn(DROPDOWN_MENU_CONTENT_STYLES.root, className)}
+                // Disable Base UI's flip/shift — our hook handles collision instead.
+                collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
-                // Disable Radix's flip/shift — our hook handles collision instead.
-                avoidCollisions={false}
-            />
-        </RadixDropdownMenu.Portal>
+            >
+                <BaseMenu.Popup
+                    ref={contentRef}
+                    className={cn(DROPDOWN_MENU_CONTENT_STYLES.root, className)}
+                >
+                    {props.children}
+                </BaseMenu.Popup>
+            </BaseMenu.Positioner>
+        </BaseMenu.Portal>
     )
 }
 
-DropdownMenuContent.displayName = 'DropdownMenuContent'
+DropdownMenuContent.displayName = 'DropdownMenu.Content'
 
 export default DropdownMenuContent

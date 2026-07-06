@@ -8,9 +8,7 @@ describe('DropdownMenuRadioItem', () => {
     it('renders a radio menu item', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.RadioGroup value={'a'}>
                         <DropdownMenu.RadioItem value={'a'} label={'Option A'} />
@@ -26,9 +24,7 @@ describe('DropdownMenuRadioItem', () => {
         const onSelect = vi.fn()
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.RadioGroup value={'a'}>
                         <DropdownMenu.RadioItem value={'a'} label={'Option A'} onSelect={onSelect} />
@@ -42,6 +38,6 @@ describe('DropdownMenuRadioItem', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.RadioItem.displayName).toBe('DropdownMenuRadioItem')
+        expect(DropdownMenu.RadioItem.displayName).toBe('DropdownMenu.RadioItem')
     })
 })

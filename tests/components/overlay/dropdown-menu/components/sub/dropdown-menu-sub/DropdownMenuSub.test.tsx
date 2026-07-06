@@ -7,9 +7,7 @@ describe('DropdownMenuSub', () => {
     it('renders a nested sub-menu structure', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
                         <DropdownMenu.SubTrigger label={'More'} />
@@ -25,6 +23,6 @@ describe('DropdownMenuSub', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Sub.displayName).toBe('DropdownMenuSub')
+        expect(DropdownMenu.Sub.displayName).toBe('DropdownMenu.Sub')
     })
 })

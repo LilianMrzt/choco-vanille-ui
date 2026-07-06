@@ -7,9 +7,7 @@ describe('DropdownMenuTrigger', () => {
     it('renders the trigger inside the dropdown root', () => {
         render(
             <DropdownMenu>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
             </DropdownMenu>,
         )
 
@@ -19,9 +17,7 @@ describe('DropdownMenuTrigger', () => {
     it('forwards the asChild prop to the underlying Radix trigger', () => {
         render(
             <DropdownMenu>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
             </DropdownMenu>,
         )
 
@@ -29,6 +25,6 @@ describe('DropdownMenuTrigger', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Trigger.displayName).toBe('DropdownMenuTrigger')
+        expect(DropdownMenu.Trigger.displayName).toBe('DropdownMenu.Trigger')
     })
 })

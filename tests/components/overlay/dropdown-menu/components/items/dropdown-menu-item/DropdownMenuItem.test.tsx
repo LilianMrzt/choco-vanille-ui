@@ -8,9 +8,7 @@ describe('DropdownMenuItem', () => {
     it('renders an actionable menu item', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Edit'} />
                 </DropdownMenu.Content>
@@ -24,9 +22,7 @@ describe('DropdownMenuItem', () => {
         const onSelect = vi.fn()
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Edit'} onSelect={onSelect} />
                 </DropdownMenu.Content>
@@ -40,9 +36,7 @@ describe('DropdownMenuItem', () => {
     it('renders start and end icons', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item
                         label={'Edit'}
@@ -57,6 +51,6 @@ describe('DropdownMenuItem', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Item.displayName).toBe('DropdownMenuItem')
+        expect(DropdownMenu.Item.displayName).toBe('DropdownMenu.Item')
     })
 })

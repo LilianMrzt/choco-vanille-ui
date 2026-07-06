@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import type { DropdownMenuSubProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub/types/DropdownMenuSub.props.ts'
 
@@ -7,9 +7,9 @@ import type { DropdownMenuSubProps } from '@components/overlay/dropdown-menu/com
  * Use with `DropdownMenuSubTrigger` and `DropdownMenuSubContent`.
  */
 const DropdownMenuSub = (props: DropdownMenuSubProps) => (
-    <RadixDropdownMenu.Sub {...props} />
+    <BaseMenu.SubmenuRoot {...props} />
 )
 
-DropdownMenuSub.displayName = 'DropdownMenuSub'
+DropdownMenuSub.displayName = 'DropdownMenu.Sub'
 
 export default DropdownMenuSub

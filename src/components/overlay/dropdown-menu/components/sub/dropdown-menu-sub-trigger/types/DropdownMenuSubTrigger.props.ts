@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuSubTriggerProps = Omit<React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.SubTrigger>, 'children'> & {
+export type DropdownMenuSubTriggerProps = Omit<Menu.SubmenuTrigger.Props, 'children'> & {
     /** Text label of the trigger. */
     label: string
     /** Iconify icon identifier rendered on the left side. */

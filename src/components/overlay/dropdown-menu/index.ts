@@ -1,7 +1,9 @@
 export { default as DropdownMenu } from '@components/overlay/dropdown-menu/DropdownMenu.tsx'
 
-/** Re-export Radix Portal for advanced use-cases. */
-export { Portal as DropdownMenuPortal } from '@radix-ui/react-dropdown-menu'
+/** Re-export Base UI Portal for advanced use-cases. */
+import { Menu as BaseMenu } from '@base-ui/react/menu'
+
+export const DropdownMenuPortal = BaseMenu.Portal
 
 export type { DropdownMenuProps } from '@components/overlay/dropdown-menu/types/DropdownMenu.props.ts'
 export type { DropdownMenuAlign, DropdownMenuSide } from '@components/overlay/dropdown-menu/types/DropdownMenu.types.ts'

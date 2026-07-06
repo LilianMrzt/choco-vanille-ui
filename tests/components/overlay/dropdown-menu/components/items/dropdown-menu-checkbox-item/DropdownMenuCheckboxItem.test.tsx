@@ -8,9 +8,7 @@ describe('DropdownMenuCheckboxItem', () => {
     it('renders a checkbox menu item', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.CheckboxItem label={'Show'} />
                 </DropdownMenu.Content>
@@ -23,9 +21,7 @@ describe('DropdownMenuCheckboxItem', () => {
     it('reflects the checked state', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.CheckboxItem label={'Show'} checked />
                 </DropdownMenu.Content>
@@ -39,9 +35,7 @@ describe('DropdownMenuCheckboxItem', () => {
         const onSelect = vi.fn()
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.CheckboxItem label={'Show'} onSelect={onSelect} />
                 </DropdownMenu.Content>
@@ -53,6 +47,6 @@ describe('DropdownMenuCheckboxItem', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.CheckboxItem.displayName).toBe('DropdownMenuCheckboxItem')
+        expect(DropdownMenu.CheckboxItem.displayName).toBe('DropdownMenu.CheckboxItem')
     })
 })

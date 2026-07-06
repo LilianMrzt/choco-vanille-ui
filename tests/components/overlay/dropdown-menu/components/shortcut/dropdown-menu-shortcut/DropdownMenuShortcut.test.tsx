@@ -7,9 +7,7 @@ describe('DropdownMenuShortcut', () => {
     it('renders shortcut text inside an item', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Edit'} shortcut={'⌘E'} />
                 </DropdownMenu.Content>
@@ -20,6 +18,6 @@ describe('DropdownMenuShortcut', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.Shortcut.displayName).toBe('DropdownMenuShortcut')
+        expect(DropdownMenu.Shortcut.displayName).toBe('DropdownMenu.Shortcut')
     })
 })

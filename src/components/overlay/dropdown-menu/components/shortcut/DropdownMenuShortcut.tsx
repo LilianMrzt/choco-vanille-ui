@@ -17,6 +17,6 @@ const DropdownMenuShortcut = ({ className, ...props }: DropdownMenuShortcutProps
     />
 )
 
-DropdownMenuShortcut.displayName = 'DropdownMenuShortcut'
+DropdownMenuShortcut.displayName = 'DropdownMenu.Shortcut'
 
 export default DropdownMenuShortcut

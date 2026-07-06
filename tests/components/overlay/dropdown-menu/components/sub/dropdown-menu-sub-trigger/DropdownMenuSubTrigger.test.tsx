@@ -7,9 +7,7 @@ describe('DropdownMenuSubTrigger', () => {
     it('renders a sub-menu trigger', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
                         <DropdownMenu.SubTrigger label={'More'} />
@@ -27,9 +25,7 @@ describe('DropdownMenuSubTrigger', () => {
     it('renders a start icon when provided', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger asChild>
-                    <button type={'button'}>Open</button>
-                </DropdownMenu.Trigger>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
                         <DropdownMenu.SubTrigger
@@ -48,6 +44,6 @@ describe('DropdownMenuSubTrigger', () => {
     })
 
     it('is attached to the DropdownMenu compound component', () => {
-        expect(DropdownMenu.SubTrigger.displayName).toBe('DropdownMenuSubTrigger')
+        expect(DropdownMenu.SubTrigger.displayName).toBe('DropdownMenu.SubTrigger')
     })
 })

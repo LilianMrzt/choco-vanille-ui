@@ -1,3 +1,3 @@
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Separator } from '@base-ui/react/separator'
 
-export type DropdownMenuSeparatorProps = React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.Separator>
+export type DropdownMenuSeparatorProps = Separator.Props

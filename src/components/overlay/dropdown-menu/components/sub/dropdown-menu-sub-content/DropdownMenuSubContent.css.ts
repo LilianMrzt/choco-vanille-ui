@@ -14,10 +14,10 @@ export const DROPDOWN_MENU_SUB_CONTENT_STYLES = {
         DROPDOWN_MENU_CONTENT_STYLES.root,
         {
             selectors: {
-                '&[data-state="open"]': {
+                '&[data-open]': {
                     animation: `${fadeIn} 0.15s ${vars.easing.out} both`,
                 },
-                '&[data-state="closed"]': {
+                '&[data-closed]': {
                     animation: `${fadeOut} 0.10s ${vars.easing.in} both`,
                 },
             },

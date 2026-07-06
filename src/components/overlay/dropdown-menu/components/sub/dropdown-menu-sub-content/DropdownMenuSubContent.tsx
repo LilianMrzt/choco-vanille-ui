@@ -1,4 +1,4 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/DropdownMenuSubContent.css.ts'
@@ -10,25 +10,30 @@ import { useViewportShift } from '@hooks'
  * Rendered in a portal for correct stacking.
  *
  * Same viewport-shift strategy as DropdownMenuContent:
- * Radix's side-flipping is disabled and replaced by an offset correction.
+ * Base UI's side-flipping is disabled and replaced by an offset correction.
  */
 const DropdownMenuSubContent = ({ className, collisionPadding = 8, ...props }: DropdownMenuSubContentProps) => {
     const contentRef = useViewportShift(collisionPadding)
 
     return (
-        <RadixDropdownMenu.Portal>
-            <RadixDropdownMenu.SubContent
-                ref={contentRef}
+        <BaseMenu.Portal>
+            <BaseMenu.Positioner
                 sideOffset={6}
-                className={cn(DROPDOWN_MENU_SUB_CONTENT_STYLES.root, className)}
+                // Disable Base UI's flip/shift — our hook handles collision instead.
+                collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
-                // Disable Radix's flip/shift — our hook handles collision instead.
-                avoidCollisions={false}
-            />
-        </RadixDropdownMenu.Portal>
+            >
+                <BaseMenu.Popup
+                    ref={contentRef}
+                    className={cn(DROPDOWN_MENU_SUB_CONTENT_STYLES.root, className)}
+                >
+                    {props.children}
+                </BaseMenu.Popup>
+            </BaseMenu.Positioner>
+        </BaseMenu.Portal>
     )
 }
 
-DropdownMenuSubContent.displayName = 'DropdownMenuSubContent'
+DropdownMenuSubContent.displayName = 'DropdownMenu.SubContent'
 
 export default DropdownMenuSubContent

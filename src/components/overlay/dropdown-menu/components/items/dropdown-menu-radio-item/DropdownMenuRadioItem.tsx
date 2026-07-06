@@ -1,9 +1,8 @@
-import * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Box } from '@components/layout/box'
-import { Flex } from '@components/layout/flex'
 import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -14,44 +13,34 @@ import type { FC } from 'react'
 const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
     className,
     label,
-    onSelect,
     ...props
 }) => (
-    <RadixDropdownMenu.RadioItem
-        asChild
-        onSelect={(e) => {
-            e.preventDefault()
-            onSelect?.(e)
-        }}
+    <BaseMenu.RadioItem
+        className={cn(DROPDOWN_MENU_ITEM_STYLES.root, className)}
         {...props}
     >
-        <Flex
-            gap={'sm'}
-            className={cn(DROPDOWN_MENU_ITEM_STYLES.root, className)}
+        <Box
+            as={'span'}
+            className={RADIO_ITEM_STYLES.root}
         >
-            <Box
-                as={'span'}
-                className={RADIO_ITEM_STYLES.root}
+            <BaseMenu.RadioItemIndicator
+                className={RADIO_ITEM_STYLES.indicator}
             >
-                <RadixDropdownMenu.ItemIndicator
-                    className={RADIO_ITEM_STYLES.indicator}
-                >
-                    <Icon
-                        icon={IconRegistry.radioIndicator}
-                        size={'xs'}
-                    />
-                </RadixDropdownMenu.ItemIndicator>
-            </Box>
-            <Typography
-                as={'span'}
-                variant={'span'}
-            >
-                {label}
-            </Typography>
-        </Flex>
-    </RadixDropdownMenu.RadioItem>
+                <Icon
+                    icon={IconRegistry.radioIndicator}
+                    size={'xs'}
+                />
+            </BaseMenu.RadioItemIndicator>
+        </Box>
+        <Typography
+            as={'span'}
+            variant={'span'}
+        >
+            {label}
+        </Typography>
+    </BaseMenu.RadioItem>
 )
 
-DropdownMenuRadioItem.displayName = 'DropdownMenuRadioItem'
+DropdownMenuRadioItem.displayName = 'DropdownMenu.RadioItem'
 
 export default DropdownMenuRadioItem

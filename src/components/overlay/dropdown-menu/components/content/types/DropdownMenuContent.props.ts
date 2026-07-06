@@ -1,9 +1,8 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
 import type { DropdownMenuAlign, DropdownMenuSide } from '@components/overlay/dropdown-menu/types/DropdownMenu.types.ts'
 
-export type DropdownMenuContentProps = React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.Content> & {
+export type DropdownMenuContentProps = Menu.Positioner.Props & {
     /** Side of the trigger to render the content. @default 'bottom' */
     side?: DropdownMenuSide
     /** Alignment along the trigger axis. @default 'start' */

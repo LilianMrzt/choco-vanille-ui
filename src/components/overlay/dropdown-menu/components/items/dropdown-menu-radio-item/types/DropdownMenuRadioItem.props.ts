@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuRadioItemProps = Omit<React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.RadioItem>, 'children'> & {
+export type DropdownMenuRadioItemProps = Omit<Menu.RadioItem.Props, 'children'> & {
     /** Text label of the item. */
     label: string
 }

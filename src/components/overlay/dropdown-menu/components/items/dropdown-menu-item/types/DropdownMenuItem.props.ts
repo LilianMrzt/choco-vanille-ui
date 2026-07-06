@@ -1,7 +1,6 @@
-import type * as React from 'react'
-import type * as RadixDropdownMenu from '@radix-ui/react-dropdown-menu'
+import type { Menu } from '@base-ui/react/menu'
 
-export type DropdownMenuItemProps = Omit<React.ComponentPropsWithoutRef<typeof RadixDropdownMenu.Item>, 'children'> & {
+export type DropdownMenuItemProps = Omit<Menu.Item.Props, 'children'> & {
     /** Text label of the item. */
     label: string
     /** Renders the item with a destructive (danger) visual style. */

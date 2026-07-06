@@ -12,7 +12,7 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
         DROPDOWN_MENU_ITEM_STYLES.root,
         {
             selectors: {
-                '&[data-state="open"]': {
+                '&[data-open]': {
                     backgroundColor: vars.color.primarySubtle,
                     color: vars.color.primarySubtleForeground,
                 },
@@ -35,7 +35,7 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
         ].join(', '),
 
         selectors: {
-            '[data-state="open"] &': {
+            '[data-open] &': {
                 color: vars.color.primarySubtleForeground,
             },
             '[data-highlighted] &': {
