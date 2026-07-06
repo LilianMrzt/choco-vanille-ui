@@ -182,6 +182,10 @@ export const lightColors = {
     /* Highlight (Typography <mark>)  */
     highlight: palette.amber[200],
     highlightForeground: palette.amber[900],
+
+    /* Skeleton loading placeholders  */
+    skeleton: palette.neutral[200],
+    skeletonForeground: palette.neutral[300],
 } as const
 
 export type LightColors = typeof lightColors

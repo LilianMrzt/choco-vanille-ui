@@ -161,4 +161,8 @@ export const darkColors: Record<keyof LightColors, string> = {
     /* Highlight  */
     highlight: palette.amber[400],
     highlightForeground: palette.neutral[950],
+
+    /* Skeleton loading placeholders  */
+    skeleton: palette.neutral[800],
+    skeletonForeground: palette.neutral[700],
 }

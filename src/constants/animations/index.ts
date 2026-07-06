@@ -1,5 +1,6 @@
 export { fadeIn } from '@constants/animations/fade/fadeIn.css.ts'
 export { fadeOut } from '@constants/animations/fade/fadeOut.css.ts'
+export { pulseAnimation } from '@constants/animations/pulse/pulseAnimation.css.ts'
 export { slideDownIn } from '@constants/animations/slide/slideDownIn.css.ts'
 export { slideDownOut } from '@constants/animations/slide/slideDownOut.css.ts'
 export { slideUpIn } from '@constants/animations/slide/slideUpIn.css.ts'
