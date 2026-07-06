@@ -12,7 +12,7 @@ const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
 const Callout = (({
     variant = 'info',
-    role = 'alert',
+    role = 'status',
     icon,
     title,
     description,

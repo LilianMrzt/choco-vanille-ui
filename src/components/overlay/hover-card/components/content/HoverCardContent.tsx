@@ -16,6 +16,11 @@ import { useViewportShift } from '@hooks'
  * Instead, `useViewportShift` detects any overflow after positioning and
  * shifts the panel inward by exactly the overflowing amount — keeping the
  * original side and never cropping the content.
+ *
+ * Unlike `PopoverContent`, this intentionally omits the `defaultAriaLabel`
+ * accessible-name fallback: a Radix hover-card panel is non-modal and exposes
+ * no `dialog` role, so it needs no required accessible name. Any `aria-label` /
+ * `aria-labelledby` a consumer passes is still forwarded via `...props`.
  */
 const HoverCardContent = ({
     className,

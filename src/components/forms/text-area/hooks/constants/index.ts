@@ -1,0 +1,2 @@
+export const FALLBACK_LINE_HEIGHT = 20
+export const FALLBACK_LINE_HEIGHT_RATIO = 1.2

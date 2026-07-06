@@ -57,12 +57,12 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
 
 **Accessibility**
 
-| Prop / Attribute               | Required | Type                          | Notes                                                       |
-| ------------------------------ | -------- | ----------------------------- | ----------------------------------------------------------- |
-| \`role\` on root                 | No       | \`alert\` \| \`status\` \| \`none\` | Defaults to \`alert\`. Use \`status\` for non-critical updates. |
-| \`aria-label\` on \`Callout.Icon\` | No       | \`string\`                      | Provide when the icon conveys meaning on its own.           |
+| Prop / Attribute               | Required | Type                          | Notes                                                                                      |
+| ------------------------------ | -------- | ----------------------------- | ------------------------------------------------------------------------------------------ |
+| \`role\` on root                 | No       | \`alert\` \| \`status\` \| \`none\` | Defaults to \`status\` (polite). Use \`alert\` for critical, time-sensitive messages that must interrupt the screen reader. |
+| \`aria-label\` on \`Callout.Icon\` | No       | \`string\`                      | Provide when the icon conveys meaning on its own.                                          |
 
-- Keep the message concise; the callout is announced as a live region because of \`role="alert"\` by default.
+- The callout is a polite live region by default (\`role="status"\`), so updates are announced without interrupting the user; switch to \`role="alert"\` only for urgent messages.
 
 **Sub-components**
 
@@ -99,7 +99,7 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
     },
     args: {
         variant: 'info',
-        role: 'alert',
+        role: 'status',
         icon: IconRegistry.info,
         title: 'Did you know?',
         description: 'Callouts are great for inline status messages.',
@@ -144,6 +144,6 @@ export const Playground: Story = {
     ),
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
-        await expect(canvas.getByRole('alert')).toBeInTheDocument()
+        await expect(canvas.getByRole('status')).toBeInTheDocument()
     },
 }

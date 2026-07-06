@@ -45,14 +45,14 @@ describe('Callout', () => {
             expect(getFirstChild(container).tagName.toLowerCase()).toBe('div')
         })
 
-        it('sets role="alert" on the root element by default', () => {
+        it('sets role="status" on the root element by default', () => {
             const { container } = render(<Callout />)
-            expect(getFirstChild(container).getAttribute('role')).toBe('alert')
+            expect(getFirstChild(container).getAttribute('role')).toBe('status')
         })
 
         it('allows overriding the role', () => {
-            const { container } = render(<Callout role={'status'} />)
-            expect(getFirstChild(container).getAttribute('role')).toBe('status')
+            const { container } = render(<Callout role={'alert'} />)
+            expect(getFirstChild(container).getAttribute('role')).toBe('alert')
         })
 
         it('renders title and description from convenience props', () => {

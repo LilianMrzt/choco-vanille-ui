@@ -88,6 +88,7 @@ const TextArea = ((props) => {
         {
             minRows: minRows ?? rows,
             maxRows,
+            value,
         },
     )
 

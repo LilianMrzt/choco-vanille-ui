@@ -24,7 +24,7 @@ A date picker that combines a native \`type="date"\` text field with a calendar 
 
 - **Direct input** — type a date in \`YYYY-MM-DD\` format.
 - **Calendar selection** — click the calendar button to open the popover and pick a day.
-- **Accessible** — the input keeps its native date semantics and is annotated with \`aria-haspopup\` and \`aria-expanded\`.
+- **Accessible** — the input keeps its native date semantics and is annotated with \`aria-haspopup="dialog"\` to signal the calendar popover.
 
 **Usage**
 

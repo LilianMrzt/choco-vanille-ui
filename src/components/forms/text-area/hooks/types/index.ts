@@ -12,4 +12,14 @@ export type UseTextAreaReturn = {
 export type UseAutoResizeTextAreaOptions = {
     minRows?: number
     maxRows?: number
+    /**
+     * Current textarea value. Used only as a dependency so the height
+     * recalculates when a controlled value changes programmatically.
+     */
+    value?: unknown
+}
+
+export type TextAreaHeightOptions = {
+    minRows?: number
+    maxRows?: number
 }

@@ -1,4 +1,5 @@
 import { type FC, useEffect, useMemo, useState } from 'react'
+import { TooltipProvider } from '@components/overlay/tooltip'
 import { ThemeContext } from '@components/theme-provider/ThemeProvider.context.ts'
 import type { ThemeMode, ThemeProviderProps } from '@components/theme-provider/types/ThemeProvider.props.ts'
 import { getSystemTheme } from '@components/theme-provider/utils/getSystemTheme.utils.ts'
@@ -91,7 +92,9 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
                 style={{ ...tokenStyles, ...style }}
                 {...divProps}
             >
-                {children}
+                <TooltipProvider>
+                    {children}
+                </TooltipProvider>
             </div>
         </ThemeContext.Provider>
     )
