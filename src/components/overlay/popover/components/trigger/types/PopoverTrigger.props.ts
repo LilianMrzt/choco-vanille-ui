@@ -1,6 +1,14 @@
-import type * as React from 'react'
-import type * as RadixPopover from '@radix-ui/react-popover'
+import type { Popover as BasePopover } from '@base-ui/react/popover'
+import type { ReactElement } from 'react'
 
-export type PopoverTriggerProps = React.ComponentPropsWithoutRef<
-  typeof RadixPopover.Trigger
->;
+/**
+ * Props for the `PopoverTrigger` wrapper.
+ *
+ * Unlike Base UI's own `Popover.Trigger` (which uses a `render` prop), this wrapper
+ * keeps the familiar `children` API: pass your own element as `children` and it is
+ * forwarded to Base UI's `render` prop internally.
+ */
+export type PopoverTriggerProps = Omit<BasePopover.Trigger.Props, 'render' | 'children'> & {
+  /** The element that triggers the popover — forwarded to Base UI's `render` prop. */
+  children: ReactElement;
+};

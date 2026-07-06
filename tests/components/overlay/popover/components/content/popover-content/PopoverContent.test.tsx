@@ -8,7 +8,7 @@ describe('PopoverContent', () => {
     it('renders content when the popover is open by default', () => {
         render(
             <Popover defaultOpen>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
                 <Popover.Content>Content</Popover.Content>
@@ -22,7 +22,7 @@ describe('PopoverContent', () => {
     it('does not render content when the popover is closed', () => {
         render(
             <Popover>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
                 <Popover.Content>Content</Popover.Content>
@@ -35,7 +35,7 @@ describe('PopoverContent', () => {
     it('opens and closes via the trigger', async () => {
         render(
             <Popover>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
                 <Popover.Content>Content</Popover.Content>
@@ -53,7 +53,7 @@ describe('PopoverContent', () => {
         const onOpenChange = vi.fn()
         render(
             <Popover onOpenChange={onOpenChange}>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
                 <Popover.Content>Content</Popover.Content>
@@ -61,7 +61,7 @@ describe('PopoverContent', () => {
         )
 
         await userEvent.click(screen.getByRole('button', { name: 'Open' }))
-        expect(onOpenChange).toHaveBeenLastCalledWith(true)
+        expect(onOpenChange).toHaveBeenCalledWith(true, expect.anything())
     }, 10000)
 
     it('is attached to the Popover compound component', () => {

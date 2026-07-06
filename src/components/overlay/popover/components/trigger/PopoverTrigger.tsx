@@ -1,13 +1,16 @@
-import * as RadixPopover from '@radix-ui/react-popover'
+import { Popover as BasePopover } from '@base-ui/react/popover'
 
 import type { PopoverTriggerProps } from '@components/overlay/popover/components/trigger/types/PopoverTrigger.props.ts'
 
 /**
  * The element that opens the popover.
- * Use `asChild` to forward the trigger behaviour to your own element.
+ * Pass your own element as `children` (e.g. `<Button />`) to use it as the trigger.
  */
-const PopoverTrigger = (props: PopoverTriggerProps) => (
-    <RadixPopover.Trigger {...props} />
+const PopoverTrigger = ({ children, ...props }: PopoverTriggerProps) => (
+    <BasePopover.Trigger
+        {...props}
+        render={children}
+    />
 )
 
 PopoverTrigger.displayName = 'PopoverTrigger'

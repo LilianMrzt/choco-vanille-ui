@@ -1,21 +1,19 @@
-import * as RadixPopover from '@radix-ui/react-popover'
+import { Popover as BasePopover } from '@base-ui/react/popover'
 
-import PopoverAnchor from '@components/overlay/popover/components/anchor/PopoverAnchor.tsx'
 import PopoverContent from '@components/overlay/popover/components/content/PopoverContent.tsx'
 import PopoverTrigger from '@components/overlay/popover/components/trigger/PopoverTrigger.tsx'
 import type { PopoverCompound } from '@components/overlay/popover/types'
 
 /**
  * The root wrapper that manages open/close state.
- * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Radix.
+ * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Base UI.
  */
 const Popover = ((props) => (
-    <RadixPopover.Root {...props} />
+    <BasePopover.Root {...props} />
 )) as PopoverCompound
 
 Popover.displayName = 'Popover'
 Popover.Trigger = PopoverTrigger
 Popover.Content = PopoverContent
-Popover.Anchor = PopoverAnchor
 
 export default Popover

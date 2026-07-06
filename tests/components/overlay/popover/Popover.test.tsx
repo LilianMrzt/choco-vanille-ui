@@ -9,7 +9,7 @@ describe('Popover', () => {
         it('gives the dialog a default accessible name', async () => {
             render(
                 <Popover defaultOpen>
-                    <Popover.Trigger asChild>
+                    <Popover.Trigger>
                         <Button label={'Open'} />
                     </Popover.Trigger>
                     <Popover.Content>Content</Popover.Content>
@@ -22,7 +22,7 @@ describe('Popover', () => {
         it('allows the default accessible name to be customized for i18n', async () => {
             render(
                 <Popover defaultOpen>
-                    <Popover.Trigger asChild>
+                    <Popover.Trigger>
                         <Button label={'Open'} />
                     </Popover.Trigger>
                     <Popover.Content defaultAriaLabel={'Options'}>Content</Popover.Content>
@@ -35,7 +35,7 @@ describe('Popover', () => {
         it('prefers aria-label over the default', async () => {
             render(
                 <Popover defaultOpen>
-                    <Popover.Trigger asChild>
+                    <Popover.Trigger>
                         <Button label={'Open'} />
                     </Popover.Trigger>
                     <Popover.Content aria-label={'Custom label'}>Content</Popover.Content>
@@ -48,7 +48,7 @@ describe('Popover', () => {
         it('supports aria-labelledby', async () => {
             render(
                 <Popover defaultOpen>
-                    <Popover.Trigger asChild>
+                    <Popover.Trigger>
                         <Button label={'Open'} />
                     </Popover.Trigger>
                     <Popover.Content aria-labelledby={'title-id'}>

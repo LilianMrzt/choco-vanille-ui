@@ -60,7 +60,7 @@ const DatePicker = ({
             open={open}
             onOpenChange={setOpen}
         >
-            <Popover.Trigger asChild>
+            <Popover.Trigger nativeButton={false}>
                 <TextField
                     {...textFieldProps}
                     id={inputId}
@@ -101,9 +101,7 @@ const DatePicker = ({
                 align={'start'}
                 className={DATE_PICKER_STYLES.content}
                 aria-label={calendarAriaLabel}
-                onOpenAutoFocus={(event) => {
-                    event.preventDefault()
-                }}
+                initialFocus={false}
             >
                 <Calendar
                     mode={'single'}

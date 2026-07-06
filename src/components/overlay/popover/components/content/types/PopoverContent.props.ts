@@ -1,5 +1,4 @@
-import type * as React from 'react'
-import type * as RadixPopover from '@radix-ui/react-popover'
+import type { Popover as BasePopover } from '@base-ui/react/popover'
 
 import type {
     PopoverAlign,
@@ -7,9 +6,9 @@ import type {
     PopoverSide,
 } from '@components/overlay/popover/types/Popover.types.ts'
 
-export type PopoverContentProps = React.ComponentPropsWithoutRef<
-  typeof RadixPopover.Content
-> & {
+export type PopoverContentProps = Omit<BasePopover.Popup.Props, 'className'> & {
+  /** CSS class name applied to the panel. Vanilla Extract style, plain string only. */
+  className?: string;
   /**
    * Shorthand position combining side and alignment in a single value.
    * Takes precedence over `side` and `align` when provided.

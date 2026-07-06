@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 
-import type PopoverAnchor from '@components/overlay/popover/components/anchor/PopoverAnchor.tsx'
 import type PopoverContent from '@components/overlay/popover/components/content/PopoverContent.tsx'
 import type PopoverTrigger from '@components/overlay/popover/components/trigger/PopoverTrigger.tsx'
 import type { PopoverProps } from '@components/overlay/popover/types/Popover.props.ts'
@@ -8,5 +7,4 @@ import type { PopoverProps } from '@components/overlay/popover/types/Popover.pro
 export type PopoverCompound = FC<PopoverProps> & {
   Trigger: typeof PopoverTrigger;
   Content: typeof PopoverContent;
-  Anchor: typeof PopoverAnchor;
 };

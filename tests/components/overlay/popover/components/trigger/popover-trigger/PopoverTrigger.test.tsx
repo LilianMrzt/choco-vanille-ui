@@ -7,7 +7,7 @@ describe('PopoverTrigger', () => {
     it('renders the trigger inside the popover root', () => {
         render(
             <Popover>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
             </Popover>,
@@ -16,10 +16,10 @@ describe('PopoverTrigger', () => {
         expect(screen.getByRole('button', { name: 'Open' })).toBeTruthy()
     })
 
-    it('forwards the asChild prop to the underlying Radix trigger', () => {
+    it('forwards children as the underlying Base UI trigger element', () => {
         render(
             <Popover>
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
             </Popover>,

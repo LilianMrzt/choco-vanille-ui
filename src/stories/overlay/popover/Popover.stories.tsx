@@ -14,14 +14,14 @@ const meta = {
         docs: {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A composable popover overlay built on top of \`@radix-ui/react-popover\`.
+A composable popover overlay built on top of \`@base-ui/react/popover\`.
 Use it to display rich content, forms, or actions attached to a trigger element.
 
 **Usage**
 
 \`\`\`tsx
 <Popover>
-  <Popover.Trigger asChild>
+  <Popover.Trigger>
     <Button label="Open popover" />
   </Popover.Trigger>
 
@@ -35,7 +35,7 @@ Use it to display rich content, forms, or actions attached to a trigger element.
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| Trigger (focusable element) | ✅ Yes | — | Use \`asChild\` on \`Popover.Trigger\` to forward the ref to your own \`Button\` or \`IconButton\`. |
+| Trigger (focusable element) | ✅ Yes | — | Pass your own \`Button\` or \`IconButton\` as \`children\` of \`Popover.Trigger\`. |
 | \`open\` | No | \`boolean\` | Controlled open state; pair with \`onOpenChange\`. |
 | \`defaultOpen\` | No | \`boolean\` | Uncontrolled initial open state. |
 | \`modal\` | No | \`boolean\` | @default \`true\`. When \`true\`, interaction outside the popover is blocked and the rest of the page is aria-hidden. |
@@ -48,9 +48,8 @@ Use it to display rich content, forms, or actions attached to a trigger element.
 | Sub-component | Description |
 |---|---|
 | \`Popover\` | Root context provider — wraps the entire popover. |
-| \`Popover.Trigger\` | The element that opens the popover on click. Use \`asChild\` to delegate to your own button. |
+| \`Popover.Trigger\` | The element that opens the popover on click. Pass your own button as \`children\`. |
 | \`Popover.Content\` | The floating panel containing the popover content. Handles positioning, animations and focus management. |
-| \`Popover.Anchor\` | Optional element used to position the content. Defaults to the trigger. |
                 `,
             },
         },
@@ -87,7 +86,7 @@ export const Playground: Story = {
                 open={open}
                 onOpenChange={setOpen}
             >
-                <Popover.Trigger asChild>
+                <Popover.Trigger>
                     <Button label={'Open popover'} />
                 </Popover.Trigger>
 

@@ -1,4 +1,4 @@
-import * as RadixPopover from '@radix-ui/react-popover'
+import { Popover as BasePopover } from '@base-ui/react/popover'
 
 import { cn } from '@utils/cn.ts'
 import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
@@ -10,7 +10,7 @@ import { useViewportShift } from '@hooks'
  * The panel that pops out from the trigger.
  * Rendered inside a portal by default for correct stacking.
  *
- * Radix's built-in `avoidCollisions` is disabled here: it would flip the popover
+ * Base UI's built-in collision avoidance is disabled here: it would flip the popover
  * to the opposite side when space is tight, which is jarring.
  * Instead, `useViewportShift` detects any overflow after positioning and
  * shifts the panel inward by exactly the overflowing amount — keeping the
@@ -40,20 +40,23 @@ const PopoverContent = ({
     const accessibleName = ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
 
     return (
-        <RadixPopover.Portal>
-            <RadixPopover.Content
-                ref={contentRef}
+        <BasePopover.Portal>
+            <BasePopover.Positioner
                 side={side}
                 align={align}
                 sideOffset={sideOffset}
-                className={cn(POPOVER_CONTENT_STYLES.root, className)}
-                aria-label={accessibleName}
-                aria-labelledby={ariaLabelledBy}
-                {...props}
-                // Disable Radix's flip/shift — our hook handles collision instead.
-                avoidCollisions={false}
-            />
-        </RadixPopover.Portal>
+                // Disable Base UI's flip/shift — our hook handles collision instead.
+                collisionAvoidance={{ side: 'none', align: 'none', fallbackAxisSide: 'none' }}
+            >
+                <BasePopover.Popup
+                    ref={contentRef}
+                    className={cn(POPOVER_CONTENT_STYLES.root, className)}
+                    aria-label={accessibleName}
+                    aria-labelledby={ariaLabelledBy}
+                    {...props}
+                />
+            </BasePopover.Positioner>
+        </BasePopover.Portal>
     )
 }
 
