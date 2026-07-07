@@ -10,7 +10,6 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const config: StorybookConfig = {
   stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-vitest',
     '@storybook/addon-a11y',
     {
       name: '@storybook/addon-docs',
