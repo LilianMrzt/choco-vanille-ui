@@ -43,7 +43,7 @@ const VARIANTS: TypographyVariant[] = [
 const SIZES: TypographySize[] = [
     'xs',
     'sm',
-    'base',
+    'md',
     'lg',
     'xl',
     '2xl',

@@ -6,7 +6,7 @@ import type { IconSize } from '@components/foundation/icon'
 import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
 import { md } from '@stories/utils/markdown'
 
-const FONT_SIZES: TypographySize[] = ['2xs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']
+const FONT_SIZES: TypographySize[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']
 const FONT_WEIGHTS: TypographyWeight[] = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black']
 const ICON_SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 

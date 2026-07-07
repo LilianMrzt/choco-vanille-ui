@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { TABLE_HEADER_STYLES } from '@components/data-display/table/components/table-header/TableHeader.css.ts'
+import { TABLE_HEADER_STYLES } from '@components/data-display/table/components/table-header/styles/TableHeader.css.ts'
 import type { TableHeaderProps } from '@components/data-display/table/components/table-header/types/TableHeader.props.ts'
 import { cn } from '@utils/cn.ts'
 

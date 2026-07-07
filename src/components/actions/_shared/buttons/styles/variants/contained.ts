@@ -1,4 +1,5 @@
 import { vars } from '@theme/contract.css.ts'
+import { BUTTON_COLORS, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 
 /**
  * Compound variants for the "contained" (solid) visual variant.
@@ -6,7 +7,7 @@ import { vars } from '@theme/contract.css.ts'
  */
 export const containedCompoundVariants = [
     {
-        variants: { variant: 'contained', color: 'primary' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.primary },
         style: {
             backgroundColor: vars.color.primary,
             color: vars.color.primaryForeground,
@@ -17,7 +18,7 @@ export const containedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'contained', color: 'secondary' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.secondary },
         style: {
             backgroundColor: vars.color.secondary,
             color: vars.color.secondaryForeground,
@@ -28,7 +29,7 @@ export const containedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'contained', color: 'destructive' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.destructive },
         style: {
             backgroundColor: vars.color.destructive,
             color: vars.color.destructiveForeground,
@@ -39,7 +40,7 @@ export const containedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'contained', color: 'success' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.success },
         style: {
             backgroundColor: vars.color.success,
             color: vars.color.successForeground,
@@ -50,7 +51,7 @@ export const containedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'contained', color: 'warning' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.warning },
         style: {
             backgroundColor: vars.color.warning,
             color: vars.color.warningForeground,
@@ -61,7 +62,7 @@ export const containedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'contained', color: 'info' },
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.info },
         style: {
             backgroundColor: vars.color.info,
             color: vars.color.infoForeground,

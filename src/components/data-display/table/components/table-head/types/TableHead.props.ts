@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TableHeadRecipeVariants } from '@components/data-display/table/components/table-head/TableHead.css.ts'
+import type { TableHeadRecipeVariants } from '@components/data-display/table/components/table-head/styles/TableHead.css.ts'
 
 export type TableSortDirection = 'asc' | 'desc' | 'none'
 

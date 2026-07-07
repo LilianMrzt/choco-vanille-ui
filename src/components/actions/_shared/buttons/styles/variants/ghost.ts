@@ -1,11 +1,12 @@
 import { vars } from '@theme/contract.css.ts'
+import { BUTTON_COLORS, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 
 /**
  * Compound variants for the "ghost" visual variant.
  */
 export const ghostCompoundVariants = [
     {
-        variants: { variant: 'ghost', color: 'primary' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.primary },
         style: {
             color: vars.color.primarySubtleForeground,
             selectors: {
@@ -15,7 +16,7 @@ export const ghostCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'ghost', color: 'secondary' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.secondary },
         style: {
             color: vars.color.secondaryForeground,
             selectors: {
@@ -25,7 +26,7 @@ export const ghostCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'ghost', color: 'destructive' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.destructive },
         style: {
             color: vars.color.destructiveSubtleForeground,
             selectors: {
@@ -35,7 +36,7 @@ export const ghostCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'ghost', color: 'success' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.success },
         style: {
             color: vars.color.successSubtleForeground,
             selectors: {
@@ -45,7 +46,7 @@ export const ghostCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'ghost', color: 'warning' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.warning },
         style: {
             color: vars.color.warningSubtleForeground,
             selectors: {
@@ -55,7 +56,7 @@ export const ghostCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'ghost', color: 'info' },
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.info },
         style: {
             color: vars.color.infoSubtleForeground,
             selectors: {

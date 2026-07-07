@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { IconButtonRecipeVariants } from '@components/actions/icon-button/IconButton.css.ts'
+import type { IconButtonRecipeVariants } from '@components/actions/icon-button/styles/IconButton.css.ts'
 
 export type IconButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,

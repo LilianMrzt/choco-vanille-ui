@@ -174,7 +174,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
                 undefined,
                 'xs',
                 'sm',
-                'base',
+                'md',
                 'lg',
                 'xl',
                 '2xl',
@@ -207,7 +207,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
         },
         descriptionFontSize: {
             control: 'select',
-            options: [undefined, 'xs', 'sm', 'base', 'lg', 'xl', '2xl'],
+            options: [undefined, 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
             table: { category: 'Card.Header' },
         },
         bodyAs: {

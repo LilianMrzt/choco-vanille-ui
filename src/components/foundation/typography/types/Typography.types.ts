@@ -30,7 +30,7 @@ export type TypographySize =
   | '2xs'
   | 'xs'
   | 'sm'
-  | 'base'
+  | 'md'
   | 'lg'
   | 'xl'
   | '2xl'

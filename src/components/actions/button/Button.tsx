@@ -1,16 +1,17 @@
-import { BUTTON_STYLES } from '@components/actions/button/Button.css.ts'
+import { BUTTON_STYLES } from '@components/actions/button/styles/Button.css.ts'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
-import { buttonSizeToFontSize, buttonSizeToIconSize } from '@components/actions/button/constants'
+import { BUTTON_SIZE_TO_FONT_SIZE, buttonSizeToIconSize } from '@components/actions/button/constants'
+import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 
 const Button: FC<ButtonProps> = ({
     variant,
     color,
-    size = 'md',
+    size = BUTTON_SIZES.md,
     className,
     label,
     startIcon,
@@ -19,7 +20,7 @@ const Button: FC<ButtonProps> = ({
     ...props
 }) => {
     const iconSize = buttonSizeToIconSize[size]
-    const textSize = buttonSizeToFontSize[size]
+    const textSize = BUTTON_SIZE_TO_FONT_SIZE[size]
 
     return (
         <button

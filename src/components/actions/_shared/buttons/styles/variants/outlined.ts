@@ -1,11 +1,12 @@
 import { vars } from '@theme/contract.css.ts'
+import { BUTTON_COLORS, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 
 /**
  * Compound variants for the "outlined" visual variant.
  */
 export const outlinedCompoundVariants = [
     {
-        variants: { variant: 'outlined', color: 'primary' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.primary },
         style: {
             borderColor: vars.color.primary,
             color: vars.color.primarySubtleForeground,
@@ -16,7 +17,7 @@ export const outlinedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'outlined', color: 'secondary' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.secondary },
         style: {
             borderColor: vars.color.input,
             color: vars.color.secondaryForeground,
@@ -27,7 +28,7 @@ export const outlinedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'outlined', color: 'destructive' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.destructive },
         style: {
             borderColor: vars.color.destructive,
             color: vars.color.destructiveSubtleForeground,
@@ -38,7 +39,7 @@ export const outlinedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'outlined', color: 'success' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.success },
         style: {
             borderColor: vars.color.success,
             color: vars.color.successSubtleForeground,
@@ -49,7 +50,7 @@ export const outlinedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'outlined', color: 'warning' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.warning },
         style: {
             borderColor: vars.color.warning,
             color: vars.color.warningSubtleForeground,
@@ -60,7 +61,7 @@ export const outlinedCompoundVariants = [
         },
     },
     {
-        variants: { variant: 'outlined', color: 'info' },
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.info },
         style: {
             borderColor: vars.color.info,
             color: vars.color.infoSubtleForeground,

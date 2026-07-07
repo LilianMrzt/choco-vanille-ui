@@ -1,36 +1,41 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
+import { ICON_BUTTON_SIZES } from '@components/actions/icon-button/constants'
 
-export const BUTTON_STYLES = {
+export const ICON_BUTTON_STYLES = {
     recipe: recipe({
         base: {
             ...BUTTON_SHARED_STYLES.base,
-            gap: vars.space.sm,
-            whiteSpace: 'nowrap',
+            flexShrink: 0,
         },
+
         variants: {
             variant: BUTTON_SHARED_STYLES.variantVariants,
             color: BUTTON_SHARED_STYLES.colorVariants,
             size: {
-                sm: {
+                [ICON_BUTTON_SIZES.xs]: {
+                    height: '2rem',
+                    width: '2rem',
+                },
+                [ICON_BUTTON_SIZES.sm]: {
                     height: '2.25rem',
-                    paddingInline: vars.space.md,
+                    width: '2.25rem',
                 },
-                md: {
+                [ICON_BUTTON_SIZES.md]: {
                     height: '2.5rem',
-                    paddingInline: vars.space.lg,
+                    width: '2.5rem',
                 },
-                lg: {
+                [ICON_BUTTON_SIZES.lg]: {
                     height: '2.75rem',
-                    paddingInline: vars.space['2xl'],
+                    width: '2.75rem',
                 },
             },
         },
+
         compoundVariants: BUTTON_SHARED_STYLES.compoundVariants,
         defaultVariants: BUTTON_SHARED_STYLES.defaultVariants,
     }),
 }
 
-export type ButtonRecipeVariants = NonNullable<RecipeVariants<typeof BUTTON_STYLES.recipe>>
+export type IconButtonRecipeVariants = NonNullable<RecipeVariants<typeof ICON_BUTTON_STYLES.recipe>>

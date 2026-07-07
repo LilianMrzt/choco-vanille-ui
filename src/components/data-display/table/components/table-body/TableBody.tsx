@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { TABLE_BODY_STYLES } from '@components/data-display/table/components/table-body/TableBody.css.ts'
+import { TABLE_BODY_STYLES } from '@components/data-display/table/components/table-body/styles/TableBody.css.ts'
 import type { TableBodyProps } from '@components/data-display/table/components/table-body/types/TableBody.props.ts'
 import { cn } from '@utils/cn.ts'
 

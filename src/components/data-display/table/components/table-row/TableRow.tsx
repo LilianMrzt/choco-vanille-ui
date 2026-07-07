@@ -1,6 +1,6 @@
 import type { FC, KeyboardEvent } from 'react'
 
-import { TABLE_ROW_STYLES } from '@components/data-display/table/components/table-row/TableRow.css.ts'
+import { TABLE_ROW_STYLES } from '@components/data-display/table/components/table-row/styles/TableRow.css.ts'
 import type { TableRowProps } from '@components/data-display/table/components/table-row/types/TableRow.props.ts'
 import { cn } from '@utils/cn.ts'
 

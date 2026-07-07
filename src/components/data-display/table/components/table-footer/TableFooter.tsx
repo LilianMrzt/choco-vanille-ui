@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { TABLE_FOOTER_STYLES } from '@components/data-display/table/components/table-footer/TableFooter.css.ts'
+import { TABLE_FOOTER_STYLES } from '@components/data-display/table/components/table-footer/styles/TableFooter.css.ts'
 import type { TableFooterProps } from '@components/data-display/table/components/table-footer/types/TableFooter.props.ts'
 import { cn } from '@utils/cn.ts'
 

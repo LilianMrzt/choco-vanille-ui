@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TableRecipeVariants } from '@components/data-display/table/Table.css.ts'
+import type { TableRecipeVariants } from '@components/data-display/table/styles/Table.css.ts'
 
 export type TableProps = React.HTMLAttributes<HTMLTableElement> &
     React.RefAttributes<HTMLTableElement> &

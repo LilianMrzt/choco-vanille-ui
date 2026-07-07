@@ -13,7 +13,7 @@ const Link: React.FC<LinkProps> = ({
     label,
     startIcon,
     endIcon,
-    fontSize = 'base',
+    fontSize = 'md',
     fontWeight = 'medium',
     iconSize = 'md',
     ...props

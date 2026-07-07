@@ -1,4 +1,4 @@
-import { TABLE_STYLES } from '@components/data-display/table/Table.css.ts'
+import { TABLE_STYLES } from '@components/data-display/table/styles/Table.css.ts'
 import TableBody from '@components/data-display/table/components/table-body/TableBody.tsx'
 import TableCaption from '@components/data-display/table/components/table-caption/TableCaption.tsx'
 import TableCell from '@components/data-display/table/components/table-cell/TableCell.tsx'

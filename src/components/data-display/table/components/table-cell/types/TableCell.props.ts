@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TableCellRecipeVariants } from '@components/data-display/table/components/table-cell/TableCell.css.ts'
+import type { TableCellRecipeVariants } from '@components/data-display/table/components/table-cell/styles/TableCell.css.ts'
 
 export type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> &
     React.RefAttributes<HTMLTableCellElement> &

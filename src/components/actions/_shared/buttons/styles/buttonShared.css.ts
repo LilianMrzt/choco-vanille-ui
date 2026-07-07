@@ -1,6 +1,7 @@
 import { style, type StyleRule } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
+import { BUTTON_COLORS, BUTTON_SIZES, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 import { containedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/contained.ts'
 import { outlinedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/outlined.ts'
 import { ghostCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/ghost.ts'
@@ -45,23 +46,23 @@ export const BUTTON_SHARED_STYLES = {
 
     /** Variant dimension shared by Button and IconButton. */
     variantVariants: {
-        contained: {},
-        outlined: {
+        [BUTTON_VARIANTS.contained]: {},
+        [BUTTON_VARIANTS.outlined]: {
             backgroundColor: 'transparent',
         },
-        ghost: {
+        [BUTTON_VARIANTS.ghost]: {
             backgroundColor: 'transparent',
         },
     } satisfies Record<string, StyleRule>,
 
     /** Color dimension shared by Button and IconButton. */
     colorVariants: {
-        primary: {},
-        secondary: {},
-        destructive: {},
-        success: {},
-        warning: {},
-        info: {},
+        [BUTTON_COLORS.primary]: {},
+        [BUTTON_COLORS.secondary]: {},
+        [BUTTON_COLORS.destructive]: {},
+        [BUTTON_COLORS.success]: {},
+        [BUTTON_COLORS.warning]: {},
+        [BUTTON_COLORS.info]: {},
     } satisfies Record<string, StyleRule>,
 
     /** Compound variants shared by Button and IconButton (variant × color). */
@@ -73,8 +74,8 @@ export const BUTTON_SHARED_STYLES = {
 
     /** Default variants shared by Button and IconButton. */
     defaultVariants: {
-        variant: 'contained' as const,
-        color: 'primary' as const,
-        size: 'md' as const,
+        variant: BUTTON_VARIANTS.contained,
+        color: BUTTON_COLORS.primary,
+        size: BUTTON_SIZES.md,
     },
 }

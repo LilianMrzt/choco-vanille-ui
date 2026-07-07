@@ -1,10 +1,1 @@
-import type { IconButtonSize } from '@components/actions/icon-button/types/IconButton.types.ts'
-import type { IconSize } from '@components/foundation/icon'
-
-/** Size-to-icon-size mapping for IconButton. Extends the shared Button mapping with `xs`. */
-export const iconButtonSizeToIconSize: Record<NonNullable<IconButtonSize>, IconSize> = {
-    xs: 'xs',
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
-}
+export { ICON_BUTTON_SIZE_TO_ICON_SIZE, ICON_BUTTON_SIZES, ICON_BUTTON_SIZES_ARRAY } from '@components/actions/icon-button/constants/iconButtonSizes.const.ts'

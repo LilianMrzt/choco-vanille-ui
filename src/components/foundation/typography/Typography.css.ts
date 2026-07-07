@@ -140,7 +140,7 @@ export const TYPOGRAPHY_STYLES = {
                 '2xs': { fontSize: vars.fontSize['2xs'] },
                 xs: { fontSize: vars.fontSize.xs },
                 sm: { fontSize: vars.fontSize.sm },
-                base: { fontSize: vars.fontSize.base },
+                md: { fontSize: vars.fontSize.base },
                 lg: { fontSize: vars.fontSize.lg },
                 xl: { fontSize: vars.fontSize.xl },
                 '2xl': { fontSize: vars.fontSize['2xl'] },
