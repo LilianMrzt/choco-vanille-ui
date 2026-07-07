@@ -28,6 +28,14 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (viteConfig) => {
+
+    viteConfig.optimizeDeps ??= {}
+
+    viteConfig.optimizeDeps.exclude = [
+      ...(viteConfig.optimizeDeps.exclude ?? []),
+      '@base-ui/react',
+    ]
+
     viteConfig.plugins = [...(viteConfig.plugins ?? []), vanillaExtractPlugin()];
     viteConfig.resolve = {
       ...viteConfig.resolve,
