@@ -26,7 +26,7 @@ const CollapsibleTrigger = ({
             <Flex
                 as={'span'}
                 alignItems={'center'}
-                gap={'xs'}
+                gap={'sm'}
             >
                 {startIcon && (
                     <Icon

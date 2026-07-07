@@ -9,8 +9,10 @@ export const COLLAPSIBLE_TRIGGER_STYLES = {
         justifyContent: 'space-between',
         gap: vars.space.sm,
         width: '100%',
-        padding: `${vars.space.md} 0`,
+        boxSizing: 'border-box',
+        padding: `${vars.space.sm} ${vars.space.sm}`,
         border: 'none',
+        borderRadius: vars.radius.sm,
         backgroundColor: 'transparent',
         color: vars.color.foreground,
         fontFamily: 'inherit',
@@ -26,8 +28,12 @@ export const COLLAPSIBLE_TRIGGER_STYLES = {
             `box-shadow ${vars.duration.normal} ${vars.easing.standard}`,
         ].join(', '),
         selectors: {
-            '&:hover': {
-                color: vars.color.primary,
+            '&:not([data-disabled]):hover': {
+                backgroundColor: vars.color.primarySubtle,
+                color: vars.color.primarySubtleForeground,
+            },
+            '&:not([data-disabled]):active': {
+                backgroundColor: vars.color.primarySubtleActive,
             },
             '&:focus-visible': {
                 outline: 'none',

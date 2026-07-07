@@ -25,7 +25,7 @@ const AccordionTrigger = ({
     endIcon,
     ...props
 }: AccordionTriggerProps) => (
-    <BaseAccordion.Header>
+    <BaseAccordion.Header style={{ margin: 0 }}>
         <BaseAccordion.Trigger
             className={cn(ACCORDION_TRIGGER_STYLES.root, className)}
             {...props}

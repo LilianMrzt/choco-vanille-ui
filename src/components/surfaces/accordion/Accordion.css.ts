@@ -7,6 +7,7 @@ export const ACCORDION_STYLES = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
+        gap: 0,
         width: '100%',
         color: vars.color.foreground,
     }),

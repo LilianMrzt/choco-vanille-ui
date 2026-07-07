@@ -2,7 +2,6 @@ import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
 import { ACCORDION_CONTENT_STYLES } from '@components/surfaces/accordion/components/accordion-content/AccordionContent.css.ts'
 import type { AccordionContentProps } from '@components/surfaces/accordion/components/accordion-content/types/AccordionContent.props.ts'
-import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -10,7 +9,6 @@ import { cn } from '@utils/cn.ts'
  */
 const AccordionContent = ({
     className,
-    padding = 'md',
     keepMounted = true,
     children,
     ...props
@@ -18,7 +16,6 @@ const AccordionContent = ({
     <BaseAccordion.Panel
         keepMounted={keepMounted}
         className={cn(ACCORDION_CONTENT_STYLES.root, className)}
-        style={{ paddingBottom: vars.space[padding] }}
         {...props}
     >
         <div className={ACCORDION_CONTENT_STYLES.inner}>{children}</div>

@@ -30,5 +30,6 @@ export const ACCORDION_CONTENT_STYLES = {
     }),
     inner: style({
         overflow: 'hidden',
+        paddingBlock: vars.space.xs,
     }),
 }
