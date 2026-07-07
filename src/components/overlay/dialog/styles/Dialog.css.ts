@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
-import { fadeIn, fadeOut } from '@constants/animations/index.ts'
+import { fadeIn, fadeOut } from '@constants/animations'
 
 export const DIALOG_STYLES = {
     overlay: style({

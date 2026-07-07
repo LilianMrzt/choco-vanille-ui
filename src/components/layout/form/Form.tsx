@@ -1,4 +1,4 @@
-import { FORM_STYLES } from '@components/layout/form/Form.css.ts'
+import { FORM_STYLES } from '@components/layout/form/styles/Form.css.ts'
 import type { FormProps } from '@components/layout/form/types/Form.props.ts'
 import { cn } from '@utils/cn.ts'
 import { forwardRef } from 'react'

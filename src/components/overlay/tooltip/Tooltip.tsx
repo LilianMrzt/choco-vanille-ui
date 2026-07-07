@@ -1,7 +1,7 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
-import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
+import { TOOLTIP_STYLES } from '@components/overlay/tooltip/styles/Tooltip.css.ts'
 import { TooltipProviderContext } from '@components/overlay/tooltip/context/TooltipProvider.context.ts'
 import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'

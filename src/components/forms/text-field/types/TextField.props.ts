@@ -1,7 +1,7 @@
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/TextField.css.ts'
+import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
 
 export type TextFieldProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,

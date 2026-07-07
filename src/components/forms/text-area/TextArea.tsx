@@ -3,7 +3,7 @@ import {
     TextAreaStartIcon,
     TextAreaEndAction,
 } from '@components/forms/text-area/components/index.ts'
-import { TEXT_AREA_STYLES } from '@components/forms/text-area/TextArea.css.ts'
+import { TEXT_AREA_STYLES } from '@components/forms/text-area/styles/TextArea.css.ts'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { useAutoResizeTextArea } from '@components/forms/text-area/hooks/useAutoResizeTextArea.hook.tsx'
 import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.tsx'

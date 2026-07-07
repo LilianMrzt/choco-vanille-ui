@@ -10,7 +10,7 @@ import {
     slideRightOut,
     slideLeftIn,
     slideLeftOut,
-} from '@constants/animations/index.ts'
+} from '@constants/animations'
 
 /**
  * Listbox popup — visually identical to the DropdownMenu panel.

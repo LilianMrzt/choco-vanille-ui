@@ -1,6 +1,6 @@
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
-import { TABS_LIST_STYLES } from '@components/navigation/tabs/components/tabs-list/TabsList.css.ts'
+import { TABS_LIST_STYLES } from '@components/navigation/tabs/components/tabs-list/styles/TabsList.css.ts'
 import type { TabsListProps } from '@components/navigation/tabs/components/tabs-list/types/TabsList.props.ts'
 import { TabsVariantContext } from '@components/navigation/tabs/context/TabsVariant.context.ts'
 import { cn } from '@utils/cn.ts'

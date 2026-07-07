@@ -1,6 +1,6 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 
-import { DIALOG_STYLES } from '@components/overlay/dialog/Dialog.css.ts'
+import { DIALOG_STYLES } from '@components/overlay/dialog/styles/Dialog.css.ts'
 import type { DialogContentProps } from '@components/overlay/dialog/components/dialog-content/types/DialogContent.props.ts'
 import { cn } from '@utils/cn.ts'
 

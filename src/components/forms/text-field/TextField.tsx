@@ -4,7 +4,7 @@ import {
     TextFieldStartIcon,
     TextFieldEndAction,
 } from '@components/forms/text-field/components/index.ts'
-import { TEXT_FIELD_STYLES } from '@components/forms/text-field/TextField.css.ts'
+import { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField.css.ts'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'

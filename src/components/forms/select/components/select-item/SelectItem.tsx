@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
-import { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/SelectItem.css.ts'
+import { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/styles/SelectItem.css.ts'
 import type { SelectItemProps } from '@components/forms/select/components/select-item/types/SelectItem.props.ts'
 
 /**

@@ -1,6 +1,6 @@
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
-import { TABS_TRIGGER_STYLES, tabsTriggerLabel } from '@components/navigation/tabs/components/tabs-trigger/TabsTrigger.css.ts'
+import { TABS_TRIGGER_STYLES, tabsTriggerLabel } from '@components/navigation/tabs/components/tabs-trigger/styles/TabsTrigger.css.ts'
 import type { TabsTriggerProps } from '@components/navigation/tabs/components/tabs-trigger/types/TabsTrigger.props.ts'
 import { useTabsVariant } from '@components/navigation/tabs/context/TabsVariant.context.ts'
 import { Icon } from '@components/foundation/icon'

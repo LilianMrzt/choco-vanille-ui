@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { TEXT_AREA_END_ACTION_STYLES } from '@components/forms/text-area/components/text-area-end-action/TextAreaEndAction.css.ts'
+import { TEXT_AREA_END_ACTION_STYLES } from '@components/forms/text-area/components/text-area-end-action/styles/TextAreaEndAction.css.ts'
 import { Box } from '@components/layout/box'
 import type {
     TextAreaEndActionProps

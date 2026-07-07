@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
-import { CALENDAR_YEAR_VIEW_STYLES } from '@components/forms/calendar/components/calendar-year-view/CalendarYearView.css.ts'
+import { CALENDAR_YEAR_VIEW_STYLES } from '@components/forms/calendar/components/calendar-year-view/styles/CalendarYearView.css.ts'
 import { useCalendarYearView } from '@components/forms/calendar/components/calendar-year-view/hooks/useCalendarYearView.hook.ts'
 import Grid from '@components/layout/grid/Grid.tsx'
 import { cn } from '@utils/cn.ts'

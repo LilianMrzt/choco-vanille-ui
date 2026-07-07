@@ -1,6 +1,6 @@
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
-import { ACCORDION_CONTENT_STYLES } from '@components/surfaces/accordion/components/accordion-content/AccordionContent.css.ts'
+import { ACCORDION_CONTENT_STYLES } from '@components/surfaces/accordion/components/accordion-content/styles/AccordionContent.css.ts'
 import type { AccordionContentProps } from '@components/surfaces/accordion/components/accordion-content/types/AccordionContent.props.ts'
 import { cn } from '@utils/cn.ts'
 

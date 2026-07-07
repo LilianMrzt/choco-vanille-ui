@@ -8,7 +8,7 @@ import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import {
     SELECT_TRIGGER_STYLES,
     SELECT_TRIGGER_END_ICON,
-} from '@components/forms/select/components/select-trigger/SelectTrigger.css.ts'
+} from '@components/forms/select/components/select-trigger/styles/SelectTrigger.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
 import useSelectTrigger from '@components/forms/select/components/select-trigger/hooks/useSelectTrigger.hook.ts'

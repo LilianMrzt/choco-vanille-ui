@@ -1,7 +1,7 @@
 import { PreviewCard } from '@base-ui/react/preview-card'
 
 import { cn } from '@utils/cn.ts'
-import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
+import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
 import type { HoverCardContentProps } from '@components/overlay/hover-card/components/content/types/HoverCardContent.props.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
 import { useViewportShift } from '@hooks'

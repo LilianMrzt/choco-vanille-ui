@@ -3,7 +3,7 @@ import type { FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-label/SelectLabel.css.ts'
+import { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-label/styles/SelectLabel.css.ts'
 
 /**
  * Non-interactive section heading inside a `Select.Group`.

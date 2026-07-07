@@ -1,7 +1,7 @@
 import { Popover as BasePopover } from '@base-ui/react/popover'
 
 import { cn } from '@utils/cn.ts'
-import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
+import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
 import type { PopoverContentProps } from '@components/overlay/popover/components/content/types/PopoverContent.props.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
 import { useViewportShift } from '@hooks'

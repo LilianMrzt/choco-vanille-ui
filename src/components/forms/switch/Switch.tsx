@@ -5,7 +5,7 @@ import { Typography } from '@components/foundation/typography'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import { SWITCH_STYLES } from '@components/forms/switch/Switch.css.ts'
+import { SWITCH_STYLES } from '@components/forms/switch/styles/Switch.css.ts'
 import type { SwitchProps } from '@components/forms/switch/types/Switch.props.ts'
 
 /**

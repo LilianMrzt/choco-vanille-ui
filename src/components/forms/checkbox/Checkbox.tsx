@@ -6,7 +6,7 @@ import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
+import { CHECKBOX_STYLES } from '@components/forms/checkbox/styles/Checkbox.css.ts'
 import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.props.ts'
 
 /**

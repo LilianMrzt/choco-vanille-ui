@@ -1,6 +1,6 @@
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
-import { ACCORDION_ITEM_STYLES } from '@components/surfaces/accordion/components/accordion-item/AccordionItem.css.ts'
+import { ACCORDION_ITEM_STYLES } from '@components/surfaces/accordion/components/accordion-item/styles/AccordionItem.css.ts'
 import type { AccordionItemProps } from '@components/surfaces/accordion/components/accordion-item/types/AccordionItem.props.ts'
 import { cn } from '@utils/cn.ts'
 

@@ -1,4 +1,4 @@
-import { GRID_STYLES } from '@components/layout/grid/Grid.css.ts'
+import { GRID_STYLES } from '@components/layout/grid/styles/Grid.css.ts'
 import type { GridProps } from '@components/layout/grid/types/Grid.props.ts'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'

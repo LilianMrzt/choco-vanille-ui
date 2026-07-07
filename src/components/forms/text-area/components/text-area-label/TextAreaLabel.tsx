@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { TEXT_AREA_LABEL_STYLES } from '@components/forms/text-area/components/text-area-label/TextAreaLabel.css.ts'
+import { TEXT_AREA_LABEL_STYLES } from '@components/forms/text-area/components/text-area-label/styles/TextAreaLabel.css.ts'
 import type { TextAreaLabelProps } from '@components/forms/text-area/components/text-area-label/types/TextAreaLabel.props.ts'
 
 const TextAreaLabel: FC<TextAreaLabelProps> = ({ htmlFor, disabled, children }) => (

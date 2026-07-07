@@ -3,7 +3,7 @@ import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 import {
     ACCORDION_TRIGGER_STYLES,
     accordionTriggerChevron,
-} from '@components/surfaces/accordion/components/accordion-trigger/AccordionTrigger.css.ts'
+} from '@components/surfaces/accordion/components/accordion-trigger/styles/AccordionTrigger.css.ts'
 import type { AccordionTriggerProps } from '@components/surfaces/accordion/components/accordion-trigger/types/AccordionTrigger.props.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'

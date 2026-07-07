@@ -1,4 +1,4 @@
-import { LINK_STYLES } from '@components/navigation/link/Link.css.ts'
+import { LINK_STYLES } from '@components/navigation/link/styles/Link.css.ts'
 import type { LinkProps } from '@components/navigation/link/types/Link.props.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'

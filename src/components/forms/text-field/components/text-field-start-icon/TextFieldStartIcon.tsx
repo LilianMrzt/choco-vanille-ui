@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { TEXT_FIELD_START_ICON_STYLES } from '@components/forms/text-field/components/text-field-start-icon/TextFieldStartIcon.css.ts'
+import { TEXT_FIELD_START_ICON_STYLES } from '@components/forms/text-field/components/text-field-start-icon/styles/TextFieldStartIcon.css.ts'
 import type {
     TextFieldStartIconProps
 } from '@components/forms/text-field/components/text-field-start-icon/types/TextFieldStartIcon.types.ts'

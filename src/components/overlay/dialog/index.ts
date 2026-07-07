@@ -1,6 +1,6 @@
 export { Dialog } from '@components/overlay/dialog/Dialog.tsx'
-export { DIALOG_STYLES } from '@components/overlay/dialog/Dialog.css.ts'
-export { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/DialogHeader.css.ts'
+export { DIALOG_STYLES } from '@components/overlay/dialog/styles/Dialog.css.ts'
+export { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/styles/DialogHeader.css.ts'
 export type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.ts'
 export type { DialogSize } from '@components/overlay/dialog/types/Dialog.types.ts'
 export type { DialogTriggerProps } from '@components/overlay/dialog/components/dialog-trigger/types/DialogTrigger.props.ts'

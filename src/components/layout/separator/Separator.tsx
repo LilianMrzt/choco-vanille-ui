@@ -1,5 +1,5 @@
 import Box from '@components/layout/box/Box.tsx'
-import { SEPARATOR_STYLES } from '@components/layout/separator/Separator.css.ts'
+import { SEPARATOR_STYLES } from '@components/layout/separator/styles/Separator.css.ts'
 import type { SeparatorProps } from '@components/layout/separator/types/Separator.props.ts'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'

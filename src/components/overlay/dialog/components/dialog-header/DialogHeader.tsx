@@ -4,7 +4,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
-import { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/DialogHeader.css.ts'
+import { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/styles/DialogHeader.css.ts'
 import { IconRegistry } from '@constants/icons'
 import type { DialogHeaderProps } from '@components/overlay/dialog/components/dialog-header/types/DialogHeader.props.ts'
 

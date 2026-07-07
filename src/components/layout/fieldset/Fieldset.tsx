@@ -1,4 +1,4 @@
-import { FIELDSET_STYLES } from '@components/layout/fieldset/Fieldset.css.ts'
+import { FIELDSET_STYLES } from '@components/layout/fieldset/styles/Fieldset.css.ts'
 import type { FieldsetProps } from '@components/layout/fieldset/types/Fieldset.props.ts'
 import { cn } from '@utils/cn.ts'
 import { forwardRef } from 'react'

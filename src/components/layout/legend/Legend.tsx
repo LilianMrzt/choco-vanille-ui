@@ -1,5 +1,5 @@
 import { Typography } from '@components/foundation/typography'
-import { LEGEND_STYLES } from '@components/layout/legend/Legend.css.ts'
+import { LEGEND_STYLES } from '@components/layout/legend/styles/Legend.css.ts'
 import type { LegendProps } from '@components/layout/legend/types/Legend.props.ts'
 import { cn } from '@utils/cn.ts'
 import { forwardRef } from 'react'

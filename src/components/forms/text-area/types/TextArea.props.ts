@@ -1,7 +1,7 @@
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
-import type { TextAreaRecipeVariants } from '@components/forms/text-area/TextArea.css.ts'
+import type { TextAreaRecipeVariants } from '@components/forms/text-area/styles/TextArea.css.ts'
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,

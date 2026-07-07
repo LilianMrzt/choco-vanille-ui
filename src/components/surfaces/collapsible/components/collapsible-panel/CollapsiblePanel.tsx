@@ -1,6 +1,6 @@
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 
-import { COLLAPSIBLE_PANEL_STYLES } from '@components/surfaces/collapsible/components/collapsible-panel/CollapsiblePanel.css.ts'
+import { COLLAPSIBLE_PANEL_STYLES } from '@components/surfaces/collapsible/components/collapsible-panel/styles/CollapsiblePanel.css.ts'
 import type { CollapsiblePanelProps } from '@components/surfaces/collapsible/components/collapsible-panel/types/CollapsiblePanel.props.ts'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'

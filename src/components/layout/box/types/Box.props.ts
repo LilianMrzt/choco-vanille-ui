@@ -1,7 +1,7 @@
 import type * as React from 'react'
 import type { CSSProperties, HTMLAttributes, RefAttributes } from 'react'
 
-import type { BoxRecipeVariants } from '@components/layout/box/Box.css.ts'
+import type { BoxRecipeVariants } from '@components/layout/box/styles/Box.css.ts'
 import type { BoxVariant } from '@components/layout/box/types/Box.types.ts'
 
 export type BoxProps = HTMLAttributes<HTMLElement> &

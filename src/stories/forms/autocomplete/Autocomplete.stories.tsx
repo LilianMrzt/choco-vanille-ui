@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import { AutocompleteField } from '@components/forms/autocomplete'
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/TextField.css.ts'
+import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
 import { md } from '@stories/utils/markdown'
 
 const SIZES: NonNullable<TextFieldInputRecipeVariants['size']>[] = [

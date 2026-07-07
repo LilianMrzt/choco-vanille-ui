@@ -3,7 +3,7 @@ import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 import {
     COLLAPSIBLE_TRIGGER_STYLES,
     collapsibleTriggerChevron,
-} from '@components/surfaces/collapsible/components/collapsible-trigger/CollapsibleTrigger.css.ts'
+} from '@components/surfaces/collapsible/components/collapsible-trigger/styles/CollapsibleTrigger.css.ts'
 import type { CollapsibleTriggerProps } from '@components/surfaces/collapsible/components/collapsible-trigger/types/CollapsibleTrigger.props.ts'
 import { Icon } from '@components/foundation/icon'
 import { Flex } from '@components/layout/flex'

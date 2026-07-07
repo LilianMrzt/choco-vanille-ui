@@ -6,7 +6,7 @@ import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/RadioItem.css.ts'
+import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/styles/RadioItem.css.ts'
 import type { RadioItemProps } from '@components/forms/radio-group/components/radio-item/types/RadioItem.props.ts'
 
 /**

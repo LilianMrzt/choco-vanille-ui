@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { TEXT_FIELD_LABEL_STYLES } from '@components/forms/text-field/components/text-field-label/TextFieldLabel.css.ts'
+import { TEXT_FIELD_LABEL_STYLES } from '@components/forms/text-field/components/text-field-label/styles/TextFieldLabel.css.ts'
 import type {
     TextFieldLabelProps
 } from '@components/forms/text-field/components/text-field-label/types/TextFieldLabel.props.ts'

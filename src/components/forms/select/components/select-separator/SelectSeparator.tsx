@@ -2,7 +2,7 @@ import { Select as BaseSelect } from '@base-ui/react/select'
 import type { FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/select-separator/SelectSeparator.css.ts'
+import { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/select-separator/styles/SelectSeparator.css.ts'
 
 /**
  * Horizontal divider between groups of items.

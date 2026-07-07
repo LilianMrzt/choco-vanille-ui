@@ -14,7 +14,7 @@ export const TOAST_STYLES = {
             width: '100%',
             maxWidth: '24rem',
             padding: vars.space.md,
-            borderRadius: vars.radius.lg,
+            borderRadius: vars.radius.sm,
             backgroundColor: vars.color.card,
             color: vars.color.cardForeground,
             boxShadow: vars.shadow.sm,

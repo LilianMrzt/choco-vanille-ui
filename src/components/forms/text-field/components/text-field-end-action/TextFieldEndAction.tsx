@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react'
-import { TEXT_FIELD_END_ACTION_STYLES } from '@components/forms/text-field/components/text-field-end-action/TextFieldEndAction.css.ts'
+import { TEXT_FIELD_END_ACTION_STYLES } from '@components/forms/text-field/components/text-field-end-action/styles/TextFieldEndAction.css.ts'
 
 type TextFieldEndActionProps = {
     children: ReactNode

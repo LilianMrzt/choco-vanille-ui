@@ -17,11 +17,11 @@ import {
 import type { SelectCompound } from '@components/forms/select/types/Select.types.ts'
 
 // Re-export styles so consumers can target / extend them.
-export { SELECT_TRIGGER_STYLES } from '@components/forms/select/components/select-trigger/SelectTrigger.css.ts'
-export { SELECT_CONTENT_STYLES } from '@components/forms/select/components/select-content/SelectContent.css.ts'
-export { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/SelectItem.css.ts'
-export { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-label/SelectLabel.css.ts'
-export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/select-separator/SelectSeparator.css.ts'
+export { SELECT_TRIGGER_STYLES } from '@components/forms/select/components/select-trigger/styles/SelectTrigger.css.ts'
+export { SELECT_CONTENT_STYLES } from '@components/forms/select/components/select-content/styles/SelectContent.css.ts'
+export { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/styles/SelectItem.css.ts'
+export { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-label/styles/SelectLabel.css.ts'
+export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/select-separator/styles/SelectSeparator.css.ts'
 
 /**
  * A styled select control built on top of `@base-ui/react/select`.

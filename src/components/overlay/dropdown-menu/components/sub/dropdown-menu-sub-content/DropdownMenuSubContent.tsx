@@ -1,7 +1,7 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
-import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/DropdownMenuSubContent.css.ts'
+import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/styles/DropdownMenuSubContent.css.ts'
 import type { DropdownMenuSubContentProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/types/DropdownMenuSubContent.props.ts'
 import { useViewportShift } from '@hooks'
 

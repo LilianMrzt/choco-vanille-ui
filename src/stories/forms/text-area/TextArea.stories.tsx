@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
 import { TextArea } from '@components/forms/text-area'
-import type { TextAreaRecipeVariants } from '@components/forms/text-area/TextArea.css.ts'
+import type { TextAreaRecipeVariants } from '@components/forms/text-area/styles/TextArea.css.ts'
 import { md } from '@stories/utils/markdown'
 
 const SIZES: NonNullable<TextAreaRecipeVariants['size']>[] = ['sm', 'md', 'lg']

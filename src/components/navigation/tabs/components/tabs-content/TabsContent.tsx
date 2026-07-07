@@ -1,6 +1,6 @@
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
-import { TABS_CONTENT_STYLES } from '@components/navigation/tabs/components/tabs-content/TabsContent.css.ts'
+import { TABS_CONTENT_STYLES } from '@components/navigation/tabs/components/tabs-content/styles/TabsContent.css.ts'
 import type { TabsContentProps } from '@components/navigation/tabs/components/tabs-content/types/TabsContent.props.ts'
 import { cn } from '@utils/cn.ts'
 

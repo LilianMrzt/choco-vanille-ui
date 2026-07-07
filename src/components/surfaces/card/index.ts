@@ -1,6 +1,6 @@
 export { Card } from '@components/surfaces/card/Card.tsx'
-export { CARD_STYLES } from '@components/surfaces/card/Card.css.ts'
-export { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/CardHeader.css.ts'
+export { CARD_STYLES } from '@components/surfaces/card/styles/Card.css.ts'
+export { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/styles/CardHeader.css.ts'
 export type { CardProps } from '@components/surfaces/card/types/Card.props.ts'
 export type { CardHeaderProps } from '@components/surfaces/card/components/card-header/types/CardHeader.props.ts'
 export type { CardBodyProps } from '@components/surfaces/card/components/card-body/types/CardBody.props.ts'

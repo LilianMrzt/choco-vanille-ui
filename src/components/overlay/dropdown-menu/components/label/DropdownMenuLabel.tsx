@@ -1,7 +1,7 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 
 import { cn } from '@utils/cn.ts'
-import { DROPDOWN_MENU_LABEL_STYLES } from '@components/overlay/dropdown-menu/components/label/DropdownMenuLabel.css.ts'
+import { DROPDOWN_MENU_LABEL_STYLES } from '@components/overlay/dropdown-menu/components/label/styles/DropdownMenuLabel.css.ts'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuLabelProps } from '@components/overlay/dropdown-menu/components/label/types/DropdownMenuLabel.props.ts'
 

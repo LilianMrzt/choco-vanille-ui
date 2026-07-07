@@ -1,5 +1,5 @@
 import { Box } from '@components/layout/box'
-import { CARD_STYLES } from '@components/surfaces/card/Card.css.ts'
+import { CARD_STYLES } from '@components/surfaces/card/styles/Card.css.ts'
 import CardBody from '@components/surfaces/card/components/card-body/CardBody.tsx'
 import CardFooter from '@components/surfaces/card/components/card-footer/CardFooter.tsx'
 import CardHeader from '@components/surfaces/card/components/card-header/CardHeader.tsx'

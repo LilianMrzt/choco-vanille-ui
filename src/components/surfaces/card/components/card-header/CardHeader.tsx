@@ -3,7 +3,7 @@ import { type FC } from 'react'
 import { vars } from '@theme/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
-import { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/CardHeader.css.ts'
+import { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/styles/CardHeader.css.ts'
 import type { CardHeaderProps } from '@components/surfaces/card/components/card-header/types/CardHeader.props.ts'
 
 /**
