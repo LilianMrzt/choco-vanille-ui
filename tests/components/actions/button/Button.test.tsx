@@ -24,9 +24,15 @@ describe('Button', () => {
             expect(screen.getByText('Save').tagName.toLowerCase()).toBe('span')
         })
 
-        it('renders nothing inside when label is omitted', () => {
-            const { container } = render(<Button />)
-            expect(getFirstChild(container)!.textContent).toBe('')
+        it('renders start and end icons when provided', () => {
+            const { container } = render(
+                <Button
+                    label="Save"
+                    startIcon="lucide:check"
+                    endIcon="lucide:arrow-right"
+                />,
+            )
+            expect(container.querySelectorAll('svg').length).toBe(2)
         })
     })
 

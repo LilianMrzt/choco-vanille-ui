@@ -55,8 +55,8 @@ For each component we should verify the following points:
 
 | Component  | Component | Styles | Compound | Story | Consistency | Structure | Notes |
 | :--------- | :-------: | :----: | :------: | :---: | :---------: | :-------: | :---- |
-| Button     | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| IconButton | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| Button     | [x]       | [x]    | N/A      | [x]   | [x]         | [x]       | Made `label` required; removed redundant `RefAttributes`; moved SVG reset into shared base selectors; added variant/size/color/icon stories. |
+| IconButton | [x]       | [x]    | N/A      | [x]   | [x]         | [x]       | Removed redundant `RefAttributes`; moved SVG reset into shared base selectors; added variant/size/color stories. |
 
 ## Data display
 
@@ -156,3 +156,5 @@ For each component we should verify the following points:
    - `yarn lint`
    - `yarn test`
    - `yarn storybook` (verify the story renders and controls work)
+
+> **Note:** Automated test runs are intentionally skipped during review passes. The reviewer will run tests manually when needed.

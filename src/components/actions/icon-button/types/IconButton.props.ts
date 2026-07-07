@@ -1,14 +1,14 @@
 import type * as React from 'react'
 
 import type { IconButtonRecipeVariants } from '@components/actions/icon-button/IconButton.css.ts'
-import type { RefAttributes } from 'react'
 
 export type IconButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  'children' | 'aria-label'
+  'children' | 'aria-label' | 'color'
 > &
-  RefAttributes<HTMLButtonElement> &
   IconButtonRecipeVariants & {
+    /** Ref forwarded to the underlying `<button>` element. */
+    ref?: React.Ref<HTMLButtonElement>;
     /** Iconify icon name rendered inside the button. */
     icon: string;
     /** Accessible label for the button (used as aria-label). */

@@ -57,7 +57,7 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
   <Toast.Title>Heads up</Toast.Title>
   <Toast.Description>Your session will expire soon.</Toast.Description>
   <Toast.Actions>
-    <Button size="sm" onClick={() => extendSession()}>Extend</Button>
+    <Button size="sm" label="Extend" onClick={() => extendSession()} />
   </Toast.Actions>
   <Toast.Close aria-label="Dismiss warning" onClick={() => dismiss()} />
 </Toast>
@@ -213,7 +213,7 @@ export const Playground: Story = {
                         size={'sm'}
                         variant={actionVariant}
                         color={actionColor}
-                        label={actionLabel}
+                        label={actionLabel ?? 'Action'}
                     />
                 </Toast.Actions>
             )}

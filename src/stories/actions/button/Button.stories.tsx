@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
-import { Button } from '@/components/actions/button'
-import type {
-    ButtonColor,
-    ButtonSize,
-    ButtonVariant,
+import {
+    Button,
+    type ButtonColor,
+    type ButtonSize,
+    type ButtonVariant,
 } from '@components/actions/button'
 import { md } from '@stories/utils/markdown'
 

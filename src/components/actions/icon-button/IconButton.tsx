@@ -1,4 +1,5 @@
 import { ICON_BUTTON_STYLES } from '@components/actions/icon-button/IconButton.css.ts'
+import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 import { Icon } from '@components/foundation/icon'
 import type { IconButtonProps } from '@components/actions/icon-button/types/IconButton.props.ts'
 import { cn } from '@utils/cn.ts'
@@ -25,6 +26,7 @@ const IconButton: FC<IconButtonProps> = ({
             <Icon
                 icon={icon}
                 size={iconSize}
+                className={BUTTON_SHARED_STYLES.icon}
             />
         </button>
     )

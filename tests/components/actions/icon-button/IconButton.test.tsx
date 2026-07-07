@@ -99,7 +99,7 @@ describe('IconButton', () => {
     })
 
     describe('size styling', () => {
-        const sizes: IconButtonSize[] = ['sm', 'md', 'lg']
+        const sizes: IconButtonSize[] = ['xs', 'sm', 'md', 'lg']
 
         it.each(sizes)('applies a non-empty class for size="%s"', (size) => {
             const { container } = render(

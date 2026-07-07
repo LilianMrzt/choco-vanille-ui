@@ -1,4 +1,4 @@
-import { style, globalStyle, type StyleRule } from '@vanilla-extract/css'
+import { style, type StyleRule } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 import { containedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/contained.ts'
@@ -8,7 +8,13 @@ import { ghostCompoundVariants } from '@components/actions/_shared/buttons/style
 //  Shared recipe building blocks
 
 export const BUTTON_SHARED_STYLES = {
-    iconReset: style({}),
+    /** Reset for icons rendered inside buttons. */
+    icon: style({
+        pointerEvents: 'none',
+        width: vars.fontSize.base,
+        height: vars.fontSize.base,
+        flexShrink: 0,
+    }),
 
     /** Base styles shared by Button and IconButton. */
     base: {
@@ -72,10 +78,3 @@ export const BUTTON_SHARED_STYLES = {
         size: 'md' as const,
     },
 }
-
-globalStyle(`${BUTTON_SHARED_STYLES.iconReset} svg`, {
-    pointerEvents: 'none',
-    width: vars.fontSize.base,
-    height: vars.fontSize.base,
-    flexShrink: 0,
-})

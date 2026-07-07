@@ -1,16 +1,16 @@
 import type * as React from 'react'
 
 import type { ButtonRecipeVariants } from '@components/actions/button/Button.css.ts'
-import type { RefAttributes } from 'react'
 
 export type ButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  'children'
+  'children' | 'color'
 > &
-  RefAttributes<HTMLButtonElement> &
   ButtonRecipeVariants & {
+    /** Ref forwarded to the underlying `<button>` element. */
+    ref?: React.Ref<HTMLButtonElement>;
     /** The text content rendered inside the button via the Typography component. */
-    label?: string;
+    label: string;
     /** Iconify icon name rendered before the label. Size and color are derived from the Button variant and size. */
     startIcon?: string;
     /** Iconify icon name rendered after the label. Size and color are derived from the Button variant and size. */

@@ -4,13 +4,10 @@ import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles
 
 export const ICON_BUTTON_STYLES = {
     recipe: recipe({
-        base: [
-            BUTTON_SHARED_STYLES.iconReset,
-            {
-                ...BUTTON_SHARED_STYLES.base,
-                flexShrink: 0,
-            },
-        ],
+        base: {
+            ...BUTTON_SHARED_STYLES.base,
+            flexShrink: 0,
+        },
 
         variants: {
             variant: BUTTON_SHARED_STYLES.variantVariants,

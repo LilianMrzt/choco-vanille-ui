@@ -14,7 +14,7 @@ import { forwardRef } from 'react'
  * ```tsx
  * <Form onSubmit={handleSubmit}>
  *   <TextField label="Email" />
- *   <Button type="submit">Send</Button>
+ *   <Button type="submit" label="Send" />
  * </Form>
  * ```
  */

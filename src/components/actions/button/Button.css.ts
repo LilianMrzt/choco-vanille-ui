@@ -5,14 +5,11 @@ import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles
 
 export const BUTTON_STYLES = {
     recipe: recipe({
-        base: [
-            BUTTON_SHARED_STYLES.iconReset,
-            {
-                ...BUTTON_SHARED_STYLES.base,
-                gap: vars.space.sm,
-                whiteSpace: 'nowrap',
-            },
-        ],
+        base: {
+            ...BUTTON_SHARED_STYLES.base,
+            gap: vars.space.sm,
+            whiteSpace: 'nowrap',
+        },
         variants: {
             variant: BUTTON_SHARED_STYLES.variantVariants,
             color: BUTTON_SHARED_STYLES.colorVariants,
@@ -24,7 +21,6 @@ export const BUTTON_STYLES = {
                 md: {
                     height: '2.5rem',
                     paddingInline: vars.space.lg,
-                    paddingBlock: vars.space.sm,
                 },
                 lg: {
                     height: '2.75rem',
