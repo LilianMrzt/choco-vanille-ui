@@ -10,6 +10,7 @@ For each component we should verify the following points:
    - Remove dead code, unused props and unnecessary wrappers.
    - Simplify logic, memoize expensive computations when useful.
    - Ensure types are strict and exported correctly.
+   - Add a single-line JSDoc comment on every exported type variable.
 
 2. **Style cleanup**
    - Make style files readable, understandable and easy to modify.
@@ -17,6 +18,7 @@ For each component we should verify the following points:
    - Ensure recipes/variants follow the same pattern everywhere.
    - Keep **one style file per component** (`ComponentName.css.ts`).
    - Style export names must follow `SCREAMING_SNAKE_CASE` (e.g. `BUTTON_STYLES`, `CARD_HEADER_STYLES`).
+   - Avoid `globalStyle` when possible; prefer component-scoped styles.
 
 3. **Compound-component cleanup**
    - Remove compound sub-components that are not useful in this kit.
@@ -44,6 +46,13 @@ For each component we should verify the following points:
    - Shared logic is placed in `hooks/`, `utils/` or `_shared/` as appropriate.
    - Imports use path aliases (`@components/...`, `@theme`, `@utils/...`).
    - Public exports are limited to the component barrel (`index.ts`).
+   - Do not read files in a loop; batch I/O or use explicit imports. (Guideline for the AI reviewer — avoid re-reading files once they have already been processed.)
+
+7. **Accessibility**
+   - Respect color contrast requirements for text and interactive elements.
+   - Ensure full keyboard operability (focus order, focus visibility, keyboard shortcuts).
+   - Use correct semantic HTML tags and ARIA roles/states/properties where needed.
+   - Provide accessible names, descriptions and live regions for screen readers.
 
 ## Legend
 
