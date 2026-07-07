@@ -86,16 +86,12 @@ const [value, setValue] = useState('')
 // Compound API
 <Autocomplete>
   <Autocomplete.Input placeholder="Search a fruit" />
-  <Autocomplete.Portal>
-    <Autocomplete.Positioner>
-      <Autocomplete.Popup>
-        <Autocomplete.List>
-          <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
-          <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
-        </Autocomplete.List>
-      </Autocomplete.Popup>
-    </Autocomplete.Positioner>
-  </Autocomplete.Portal>
+  <Autocomplete.Content>
+    <Autocomplete.List>
+      <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
+      <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
+    </Autocomplete.List>
+  </Autocomplete.Content>
 </Autocomplete>
 \`\`\`
 

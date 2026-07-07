@@ -216,7 +216,7 @@ describe('Select (compound API)', () => {
         expect(Select.Icon).toBeTruthy()
         expect(Select.Portal).toBeTruthy()
         expect(Select.Content).toBeTruthy()
-        expect(Select.Viewport).toBeTruthy()
+        expect(Select.List).toBeTruthy()
         expect(Select.Group).toBeTruthy()
         expect(Select.Label).toBeTruthy()
         expect(Select.Item).toBeTruthy()

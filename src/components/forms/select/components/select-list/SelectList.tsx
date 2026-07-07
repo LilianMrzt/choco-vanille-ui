@@ -4,10 +4,10 @@ import type { FC } from 'react'
 /**
  * Scrollable list of items inside the popup.
  */
-const SelectViewport: FC<BaseSelect.List.Props> = (props) => (
+const SelectList: FC<BaseSelect.List.Props> = (props) => (
     <BaseSelect.List {...props} />
 )
 
-SelectViewport.displayName = 'Select.Viewport'
+SelectList.displayName = 'Select.List'
 
-export default SelectViewport
+export default SelectList

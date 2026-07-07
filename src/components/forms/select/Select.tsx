@@ -8,11 +8,11 @@ import {
     SelectItemIndicator,
     SelectItemText,
     SelectLabel,
+    SelectList,
     SelectPortal,
     SelectSeparator,
     SelectTrigger,
     SelectValue,
-    SelectViewport,
 } from '@components/forms/select/components'
 import type { SelectCompound } from '@components/forms/select/types/Select.types.ts'
 
@@ -39,10 +39,10 @@ export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/sel
  * <Select value={value} onValueChange={setValue}>
  *   <Select.Trigger placeholder="Pick a fruit" />
  *   <Select.Content>
- *     <Select.Viewport>
+ *     <Select.List>
  *       <Select.Item value="apple">Apple</Select.Item>
  *       <Select.Item value="banana">Banana</Select.Item>
- *     </Select.Viewport>
+ *     </Select.List>
  *   </Select.Content>
  * </Select>
  * ```
@@ -56,7 +56,7 @@ Select.Value = SelectValue
 Select.Icon = SelectIcon
 Select.Portal = SelectPortal
 Select.Content = SelectContent
-Select.Viewport = SelectViewport
+Select.List = SelectList
 Select.Group = SelectGroup
 Select.Label = SelectLabel
 Select.Item = SelectItem

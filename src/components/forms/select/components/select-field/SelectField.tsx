@@ -98,7 +98,7 @@ const SelectField: FC<SelectFieldProps> = ({
                     aria-invalid={hasError || undefined}
                 />
                 <Select.Content listboxAriaLabel={listboxAriaLabel}>
-                    <Select.Viewport>
+                    <Select.List>
                         {options.map((option, index) => {
                             if (option.type === 'separator') {
                                 return <Select.Separator key={`sep-${index}`} />
@@ -129,7 +129,7 @@ const SelectField: FC<SelectFieldProps> = ({
                                 />
                             )
                         })}
-                    </Select.Viewport>
+                    </Select.List>
                 </Select.Content>
             </Select>
 

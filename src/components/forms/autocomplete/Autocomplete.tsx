@@ -6,15 +6,10 @@ import {
     AutocompleteInputGroup,
     AutocompleteIcon,
     AutocompleteClear,
-    AutocompletePortal,
-    AutocompleteBackdrop,
-    AutocompletePositioner,
-    AutocompletePopup,
-    AutocompleteArrow,
     AutocompleteContent,
     AutocompleteList,
     AutocompleteGroup,
-    AutocompleteGroupLabel,
+    AutocompleteLabel,
     AutocompleteItem,
     AutocompleteEmpty,
     AutocompleteSeparator,
@@ -45,16 +40,12 @@ export { AUTOCOMPLETE_SEPARATOR_STYLES } from '@components/forms/autocomplete/co
  * ```tsx
  * <Autocomplete>
  *   <Autocomplete.Input placeholder="Search a fruit" />
- *   <Autocomplete.Portal>
- *     <Autocomplete.Positioner>
- *       <Autocomplete.Popup>
- *         <Autocomplete.List>
- *           <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
- *           <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
- *         </Autocomplete.List>
- *       </Autocomplete.Popup>
- *     </Autocomplete.Positioner>
- *   </Autocomplete.Portal>
+ *   <Autocomplete.Content>
+ *     <Autocomplete.List>
+ *       <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
+ *       <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
+ *     </Autocomplete.List>
+ *   </Autocomplete.Content>
  * </Autocomplete>
  * ```
  */
@@ -74,15 +65,10 @@ Autocomplete.Trigger = AutocompleteTrigger
 Autocomplete.InputGroup = AutocompleteInputGroup
 Autocomplete.Icon = AutocompleteIcon
 Autocomplete.Clear = AutocompleteClear
-Autocomplete.Portal = AutocompletePortal
-Autocomplete.Backdrop = AutocompleteBackdrop
-Autocomplete.Positioner = AutocompletePositioner
-Autocomplete.Popup = AutocompletePopup
-Autocomplete.Arrow = AutocompleteArrow
 Autocomplete.Content = AutocompleteContent
 Autocomplete.List = AutocompleteList
 Autocomplete.Group = AutocompleteGroup
-Autocomplete.GroupLabel = AutocompleteGroupLabel
+Autocomplete.Label = AutocompleteLabel
 Autocomplete.Item = AutocompleteItem
 Autocomplete.Empty = AutocompleteEmpty
 Autocomplete.Separator = AutocompleteSeparator

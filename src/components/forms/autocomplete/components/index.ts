@@ -12,16 +12,6 @@ export { default as AutocompleteIcon } from '@components/forms/autocomplete/comp
 
 export { default as AutocompleteClear } from '@components/forms/autocomplete/components/autocomplete-clear/AutocompleteClear.tsx'
 
-export { default as AutocompletePortal } from '@components/forms/autocomplete/components/autocomplete-portal/AutocompletePortal.tsx'
-
-export { default as AutocompleteBackdrop } from '@components/forms/autocomplete/components/autocomplete-backdrop/AutocompleteBackdrop.tsx'
-
-export { default as AutocompletePositioner } from '@components/forms/autocomplete/components/autocomplete-positioner/AutocompletePositioner.tsx'
-
-export { default as AutocompletePopup } from '@components/forms/autocomplete/components/autocomplete-popup/AutocompletePopup.tsx'
-
-export { default as AutocompleteArrow } from '@components/forms/autocomplete/components/autocomplete-arrow/AutocompleteArrow.tsx'
-
 export { default as AutocompleteContent } from '@components/forms/autocomplete/components/autocomplete-content/AutocompleteContent.tsx'
 export type { AutocompleteContentProps } from '@components/forms/autocomplete/components/autocomplete-content/types/AutocompleteContent.props.ts'
 export { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.ts'
@@ -30,7 +20,7 @@ export { default as AutocompleteList } from '@components/forms/autocomplete/comp
 
 export { default as AutocompleteGroup } from '@components/forms/autocomplete/components/autocomplete-group/AutocompleteGroup.tsx'
 
-export { default as AutocompleteGroupLabel } from '@components/forms/autocomplete/components/autocomplete-group-label/AutocompleteGroupLabel.tsx'
+export { default as AutocompleteLabel } from '@components/forms/autocomplete/components/autocomplete-label/AutocompleteLabel.tsx'
 
 export { default as AutocompleteItem } from '@components/forms/autocomplete/components/autocomplete-item/AutocompleteItem.tsx'
 export { AUTOCOMPLETE_ITEM_STYLES } from '@components/forms/autocomplete/components/autocomplete-item/styles/AutocompleteItem.css.ts'

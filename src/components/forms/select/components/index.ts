@@ -12,7 +12,7 @@ export { default as SelectContent } from '@components/forms/select/components/se
 export type { SelectContentProps } from '@components/forms/select/components/select-content/types/SelectContent.props.ts'
 export { SELECT_CONTENT_STYLES } from '@components/forms/select/components/select-content/SelectContent.css.ts'
 
-export { default as SelectViewport } from '@components/forms/select/components/select-viewport/SelectViewport.tsx'
+export { default as SelectList } from '@components/forms/select/components/select-list/SelectList.tsx'
 
 export { default as SelectGroup } from '@components/forms/select/components/select-group/SelectGroup.tsx'
 

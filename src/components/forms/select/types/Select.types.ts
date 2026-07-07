@@ -13,7 +13,7 @@ export type SelectCompound = SelectRoot & {
     Icon: FC<BaseSelect.Icon.Props>
     Portal: FC<BaseSelect.Portal.Props>
     Content: FC<SelectContentProps>
-    Viewport: FC<BaseSelect.List.Props>
+    List: FC<BaseSelect.List.Props>
     Group: FC<BaseSelect.Group.Props>
     Label: FC<BaseSelect.GroupLabel.Props>
     Item: FC<SelectItemProps>

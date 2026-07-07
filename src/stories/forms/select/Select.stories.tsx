@@ -86,10 +86,10 @@ const [value, setValue] = useState('')
 <Select value={value} onValueChange={setValue}>
   <Select.Trigger placeholder="Pick a fruit" />
   <Select.Content>
-    <Select.Viewport>
+    <Select.List>
       <Select.Item value="apple">Apple</Select.Item>
       <Select.Item value="banana">Banana</Select.Item>
-    </Select.Viewport>
+    </Select.List>
   </Select.Content>
 </Select>
 \`\`\`
@@ -117,7 +117,7 @@ const [value, setValue] = useState('')
 | \`Select.Icon\` | Chevron icon slot inside the trigger. |
 | \`Select.Portal\` | Portal wrapper for the listbox popup. |
 | \`Select.Content\` | The floating listbox panel. |
-| \`Select.Viewport\` | Scrollable viewport for the listbox items. |
+| \`Select.List\` | Scrollable list of listbox items. |
 | \`Select.Group\` | Semantic group of items. |
 | \`Select.Label\` | Non-interactive section heading. |
 | \`Select.Item\` | A single selectable option. |

@@ -128,7 +128,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = ({
                                     <Fragment key={`group-${group.label}-${groupIndex}`}>
                                         {groupIndex > 0 && <Autocomplete.Separator />}
                                         <Autocomplete.Group items={group.items}>
-                                            <Autocomplete.GroupLabel>{group.label}</Autocomplete.GroupLabel>
+                                            <Autocomplete.Label>{group.label}</Autocomplete.Label>
                                             <Autocomplete.Collection>
                                                 {(item: { value: string; label: string; disabled?: boolean }) => (
                                                     <Autocomplete.Item

@@ -10,18 +10,13 @@ type AutocompleteRoot = FC<BaseAutocomplete.Root.Props<any>>
 export type AutocompleteCompound = AutocompleteRoot & {
     Input: FC<AutocompleteInputProps>
     Trigger: FC<AutocompleteTriggerProps>
-    Content: FC<AutocompleteContentProps>
     InputGroup: FC<BaseAutocomplete.InputGroup.Props>
     Icon: FC<BaseAutocomplete.Icon.Props>
     Clear: FC<BaseAutocomplete.Clear.Props>
-    Portal: FC<BaseAutocomplete.Portal.Props>
-    Backdrop: FC<BaseAutocomplete.Backdrop.Props>
-    Positioner: FC<BaseAutocomplete.Positioner.Props>
-    Popup: FC<BaseAutocomplete.Popup.Props>
-    Arrow: FC<BaseAutocomplete.Arrow.Props>
+    Content: FC<AutocompleteContentProps>
     List: FC<BaseAutocomplete.List.Props>
     Group: FC<BaseAutocomplete.Group.Props>
-    GroupLabel: FC<BaseAutocomplete.GroupLabel.Props>
+    Label: FC<BaseAutocomplete.GroupLabel.Props>
     Item: FC<BaseAutocomplete.Item.Props>
     Empty: FC<BaseAutocomplete.Empty.Props>
     Separator: FC<BaseAutocomplete.Separator.Props>
