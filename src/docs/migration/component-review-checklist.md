@@ -92,17 +92,17 @@ For each component we should verify the following points:
 ## Forms
 
 | Component    | Component | Styles | Compound | Story | Consistency | Structure | Notes |
-| :----------- | :-------: | :----: | :------: | :---: | :---------: | :-------: | :---- |
-| Autocomplete | [ ]       | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | Many sub-components + `AutocompleteField` — review complexity vs. `Select` |
-| Calendar     | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| Checkbox     | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| DatePicker   | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| RadioGroup   | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| Select       | [ ]       | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | Many sub-components + `SelectField` |
-| Switch       | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| TextArea     | [ ]       | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | `TextArea.Label`, `TextArea.StartIcon`, `TextArea.EndAction` |
-| TextField    | [ ]       | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | `TextField.Label`, `TextField.StartIcon`, `TextField.EndAction` |
-| HelperText   | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| :----------- |:---------:| :----: | :------: | :---: | :---------: | :-------: | :---- |
+| Autocomplete |    [ ]    | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | Many sub-components + `AutocompleteField` — review complexity vs. `Select` |
+| Calendar     |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| Checkbox     |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| DatePicker   |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| RadioGroup   |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| Select       |    [x]    | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | Many sub-components + `SelectField` |
+| Switch       |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
+| TextArea     |    [ ]    | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | `TextArea.Label`, `TextArea.StartIcon`, `TextArea.EndAction` |
+| TextField    |    [ ]    | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       | `TextField.Label`, `TextField.StartIcon`, `TextField.EndAction` |
+| HelperText   |    [ ]    | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
 
 ## Layout
 

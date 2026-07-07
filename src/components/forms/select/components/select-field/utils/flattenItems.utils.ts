@@ -1,4 +1,4 @@
-import type { SelectOption } from '@components'
+import type { SelectOption } from '@components/forms/select/types/Select.props.ts'
 
 /** Flatten options into the `items` format expected by Base UI `Select.Root`. */
 export const flattenItems = (options: SelectOption[]): Array<{ value: string; label: string }> => options.flatMap((option) => {

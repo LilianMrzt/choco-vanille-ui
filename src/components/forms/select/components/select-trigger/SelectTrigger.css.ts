@@ -25,7 +25,7 @@ export const SELECT_TRIGGER_END_ICON = style({
 /**
  * Trigger styled to look like a TextField input.
  *
- * Radix renders it as a `<button>`; we reset button defaults and apply the
+ * Base UI renders it as a `<button>`; we reset button defaults and apply the
  * same sizing, border, focus ring and disabled treatment as TextField.
  * The chevron is rendered in an end-action slot identical to TextField's.
  */
@@ -109,26 +109,19 @@ export const SELECT_TRIGGER_STYLES = {
                         },
                     },
                 },
-                false: {},
             },
             hasStartIcon: {
                 true: {},
-                false: {},
             },
             hasEndIcon: {
                 true: {},
-                false: {},
             },
         },
         compoundVariants: [
             // Start icon: push text right
-            { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             // End icon: push text left (chevron slot ~1rem + right offset 0.5rem)
-            { variants: { size: 'sm', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
-            { variants: { size: 'md', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
-            { variants: { size: 'lg', hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
+            { variants: { hasEndIcon: true }, style: { paddingRight: '1.75rem' } },
         ],
         defaultVariants: {
             size: 'md',

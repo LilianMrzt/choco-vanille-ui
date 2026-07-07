@@ -1,4 +1,4 @@
-import { style, globalStyle } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 
@@ -60,11 +60,6 @@ export const SELECT_ITEM_STYLES = {
         width: '0.75rem',
         height: '0.75rem',
         color: vars.color.primary,
+        pointerEvents: 'none',
     }),
 }
-
-globalStyle(`${SELECT_ITEM_STYLES.indicator} svg`, {
-    width: '0.75rem',
-    height: '0.75rem',
-    pointerEvents: 'none',
-})

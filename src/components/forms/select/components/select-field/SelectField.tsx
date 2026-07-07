@@ -47,6 +47,7 @@ const SelectField: FC<SelectFieldProps> = ({
     defaultOpen,
     onOpenChange,
     name,
+    ...props
 }) => {
     const { triggerId, helperId, hasError, selectedValue, handleValueChange } = useSelectField({
         error,
@@ -65,6 +66,7 @@ const SelectField: FC<SelectFieldProps> = ({
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
             className={className}
+            {...props}
         >
             {label && (
                 <TextFieldLabel
@@ -76,7 +78,7 @@ const SelectField: FC<SelectFieldProps> = ({
             )}
 
             <Select
-                value={selectedValue}
+                value={selectedValue ?? null}
                 onValueChange={(v) => { if (v !== null) {handleValueChange(v)} }}
                 disabled={disabled}
                 required={required}

@@ -1,4 +1,4 @@
-import { useRef, type MouseEventHandler } from 'react'
+import { useRef, type FocusEventHandler, type MouseEventHandler } from 'react'
 import type {
     UseSelectTriggerParams,
     UseSelectTriggerReturn
@@ -8,6 +8,8 @@ const useSelectTrigger = ({
     width,
     style,
     onMouseDown,
+    onFocus,
+    onBlur,
 }: UseSelectTriggerParams): UseSelectTriggerReturn => {
     const pointerDownRef = useRef(false)
 
@@ -16,16 +18,18 @@ const useSelectTrigger = ({
         onMouseDown?.(event)
     }
 
-    const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
+    const handleFocus: FocusEventHandler<HTMLButtonElement> = (event) => {
         if (pointerDownRef.current) {
             event.currentTarget.setAttribute('data-mouse-focus', '')
             pointerDownRef.current = false
         }
+        onFocus?.(event)
     }
 
-    const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
+    const handleBlur: FocusEventHandler<HTMLButtonElement> = (event) => {
         pointerDownRef.current = false
         event.currentTarget.removeAttribute('data-mouse-focus')
+        onBlur?.(event)
     }
 
     const mergedStyle = width !== undefined ? { ...style, width } : style

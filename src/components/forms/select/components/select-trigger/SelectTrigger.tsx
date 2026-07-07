@@ -1,5 +1,5 @@
 import { Select as BaseSelect } from '@base-ui/react/select'
-import { type FC } from 'react'
+import { type CSSProperties, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -30,18 +30,23 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
     width,
     children,
     onMouseDown,
+    onFocus,
+    onBlur,
     style,
     ...props
 }) => {
     const { handleMouseDown, handleFocus, handleBlur, mergedStyle } =
         useSelectTrigger({
             width,
-            style: style as React.CSSProperties | undefined,
+            style: style as CSSProperties | undefined,
             onMouseDown,
+            onFocus,
+            onBlur,
         })
 
     return (
         <BaseSelect.Trigger
+            {...props}
             className={cn(
                 SELECT_TRIGGER_STYLES.recipe({
                     size,
@@ -54,7 +59,6 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
             onMouseDown={handleMouseDown}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            {...props}
         >
             {startIcon && (
                 <TextFieldStartIcon
