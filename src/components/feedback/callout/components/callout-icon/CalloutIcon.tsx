@@ -1,5 +1,5 @@
 import { Icon } from '@components/foundation/icon'
-import { CALLOUT_ICON_STYLES } from '@components/feedback/callout/components/callout-icon/CalloutIcon.css.ts'
+import { CALLOUT_ICON_STYLES } from '@components/feedback/callout/components/callout-icon/styles/CalloutIcon.css.ts'
 import type { CalloutIconProps } from '@components/feedback/callout/components/callout-icon/types/CalloutIcon.props.ts'
 import { VARIANT_TO_COLOR, VARIANT_TO_ICON } from '@components/feedback/callout/constants'
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'

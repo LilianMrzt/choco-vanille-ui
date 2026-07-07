@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { SkeletonRecipeVariants } from '@components/feedback/skeleton/Skeleton.css.ts'
+import type { SkeletonRecipeVariants } from '@components/feedback/skeleton/styles/Skeleton.css.ts'
 import type { RefAttributes } from 'react'
 
 export type SkeletonProps = Omit<

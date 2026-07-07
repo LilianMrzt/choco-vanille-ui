@@ -1,5 +1,5 @@
 import type { ToastDescriptionProps } from '@components/feedback/toast/components/toast-description/types/ToastDescription.props.ts'
-import { TOAST_DESCRIPTION_STYLES } from '@components/feedback/toast/components/toast-description/ToastDescription.css.ts'
+import { TOAST_DESCRIPTION_STYLES } from '@components/feedback/toast/components/toast-description/styles/ToastDescription.css.ts'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'

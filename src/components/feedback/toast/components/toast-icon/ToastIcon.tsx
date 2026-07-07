@@ -3,7 +3,7 @@ import {
     VARIANT_TO_COLOR,
     VARIANT_TO_ICON,
 } from '@components/feedback/toast/constants'
-import { TOAST_ICON_STYLES } from '@components/feedback/toast/components/toast-icon/ToastIcon.css.ts'
+import { TOAST_ICON_STYLES } from '@components/feedback/toast/components/toast-icon/styles/ToastIcon.css.ts'
 import type { ToastIconProps } from '@components/feedback/toast/components/toast-icon/types/ToastIcon.props.ts'
 import { Icon } from '@components/foundation/icon'
 import { cn } from '@utils/cn.ts'

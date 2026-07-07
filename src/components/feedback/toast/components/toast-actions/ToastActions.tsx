@@ -1,5 +1,5 @@
 import type { ToastActionsProps } from '@components/feedback/toast/components/toast-actions/types/ToastActions.props.ts'
-import { TOAST_ACTIONS_STYLES } from '@components/feedback/toast/components/toast-actions/ToastActions.css.ts'
+import { TOAST_ACTIONS_STYLES } from '@components/feedback/toast/components/toast-actions/styles/ToastActions.css.ts'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'

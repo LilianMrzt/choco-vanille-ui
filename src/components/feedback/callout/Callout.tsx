@@ -1,5 +1,5 @@
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'
-import { CALLOUT_STYLES } from '@components/feedback/callout/Callout.css.ts'
+import { CALLOUT_STYLES } from '@components/feedback/callout/styles/Callout.css.ts'
 import { CalloutDescription } from '@components/feedback/callout/components/callout-description'
 import { CalloutIcon } from '@components/feedback/callout/components/callout-icon'
 import { CalloutTitle } from '@components/feedback/callout/components/callout-title'

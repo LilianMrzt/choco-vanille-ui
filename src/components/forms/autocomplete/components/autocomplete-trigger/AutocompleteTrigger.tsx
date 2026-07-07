@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
-import { AUTOCOMPLETE_TRIGGER_STYLES } from '@components/forms/autocomplete/components/autocomplete-trigger/AutocompleteTrigger.css.ts'
+import { AUTOCOMPLETE_TRIGGER_STYLES } from '@components/forms/autocomplete/components/autocomplete-trigger/styles/AutocompleteTrigger.css.ts'
 import type { AutocompleteTriggerProps } from '@components/forms/autocomplete/components/autocomplete-trigger/types/AutocompleteTrigger.props.ts'
 
 /**

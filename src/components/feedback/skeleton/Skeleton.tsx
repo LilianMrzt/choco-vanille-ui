@@ -1,4 +1,4 @@
-import { SKELETON_STYLES } from '@components/feedback/skeleton/Skeleton.css.ts'
+import { SKELETON_STYLES } from '@components/feedback/skeleton/styles/Skeleton.css.ts'
 import type { SkeletonProps } from '@components/feedback/skeleton/types/Skeleton.props.ts'
 import Box from '@components/layout/box/Box.tsx'
 import { cn } from '@utils/cn.ts'

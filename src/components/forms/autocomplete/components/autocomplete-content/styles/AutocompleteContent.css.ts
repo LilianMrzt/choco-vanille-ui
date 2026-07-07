@@ -10,7 +10,7 @@ import {
     slideRightOut,
     slideLeftIn,
     slideLeftOut,
-} from '@constants/animations/index.ts'
+} from '@constants/animations'
 
 /**
  * Autocomplete popup panel — visually identical to the Select content panel.

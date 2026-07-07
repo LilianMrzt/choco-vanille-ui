@@ -1,6 +1,6 @@
 import { IconButton } from '@components/actions/icon-button'
 import type { ToastCloseProps } from '@components/feedback/toast/components/toast-close/types/ToastClose.props.ts'
-import { TOAST_CLOSE_STYLES } from '@components/feedback/toast/components/toast-close/ToastClose.css.ts'
+import { TOAST_CLOSE_STYLES } from '@components/feedback/toast/components/toast-close/styles/ToastClose.css.ts'
 import { IconRegistry } from '@constants/icons'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'

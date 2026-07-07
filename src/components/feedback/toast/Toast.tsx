@@ -1,4 +1,4 @@
-import { TOAST_STYLES } from '@components/feedback/toast/Toast.css.ts'
+import { TOAST_STYLES } from '@components/feedback/toast/styles/Toast.css.ts'
 import { ToastActions } from '@components/feedback/toast/components/toast-actions'
 import { ToastClose } from '@components/feedback/toast/components/toast-close'
 import { ToastDescription } from '@components/feedback/toast/components/toast-description'

@@ -1,6 +1,6 @@
 export { default as Autocomplete } from '@components/forms/autocomplete/Autocomplete.tsx'
 export { AutocompleteField } from '@components/forms/autocomplete/components'
-export { AUTOCOMPLETE_STYLES } from '@components/forms/autocomplete/Autocomplete.css.ts'
+export { AUTOCOMPLETE_STYLES } from '@components/forms/autocomplete/styles/Autocomplete.css.ts'
 export type {
     AutocompleteFieldProps,
     AutocompleteOption,

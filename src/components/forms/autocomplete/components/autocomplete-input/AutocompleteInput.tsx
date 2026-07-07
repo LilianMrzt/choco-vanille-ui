@@ -2,7 +2,7 @@ import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 import { type FC, useRef } from 'react'
 
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
-import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/AutocompleteInput.css.ts'
+import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { AutocompleteInputProps } from '@components/forms/autocomplete/components/autocomplete-input/types/AutocompleteInput.props.ts'
 

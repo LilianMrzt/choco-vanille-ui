@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { ToastRecipeVariants } from '@components/feedback/toast/Toast.css.ts'
+import type { ToastRecipeVariants } from '@components/feedback/toast/styles/Toast.css.ts'
 import type { ToastRole } from '@components/feedback/toast/types/Toast.types.ts'
 import type { RefAttributes } from 'react'
 

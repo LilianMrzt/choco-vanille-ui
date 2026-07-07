@@ -24,11 +24,11 @@ import {
 import type { AutocompleteCompound } from '@components/forms/autocomplete/types/Autocomplete.types.ts'
 
 // Re-export styles so consumers can target / extend them.
-export { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/AutocompleteInput.css.ts'
-export { AUTOCOMPLETE_TRIGGER_STYLES } from '@components/forms/autocomplete/components/autocomplete-trigger/AutocompleteTrigger.css.ts'
-export { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/AutocompleteContent.css.ts'
-export { AUTOCOMPLETE_ITEM_STYLES } from '@components/forms/autocomplete/components/autocomplete-item/AutocompleteItem.css.ts'
-export { AUTOCOMPLETE_SEPARATOR_STYLES } from '@components/forms/autocomplete/components/autocomplete-separator/AutocompleteSeparator.css.ts'
+export { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
+export { AUTOCOMPLETE_TRIGGER_STYLES } from '@components/forms/autocomplete/components/autocomplete-trigger/styles/AutocompleteTrigger.css.ts'
+export { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.ts'
+export { AUTOCOMPLETE_ITEM_STYLES } from '@components/forms/autocomplete/components/autocomplete-item/styles/AutocompleteItem.css.ts'
+export { AUTOCOMPLETE_SEPARATOR_STYLES } from '@components/forms/autocomplete/components/autocomplete-separator/styles/AutocompleteSeparator.css.ts'
 
 /**
  * A styled autocomplete control built on top of `@base-ui/react/autocomplete`.
