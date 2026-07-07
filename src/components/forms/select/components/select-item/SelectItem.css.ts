@@ -33,8 +33,7 @@ export const SELECT_ITEM_STYLES = {
                 color: vars.color.primarySubtleForeground,
             },
             // Only show the ring during keyboard navigation.
-            // When the mouse hovers, :hover is true, so the ring is suppressed.
-            '&[data-highlighted]:not(:hover)': {
+            '&:focus-visible': {
                 outline: `2px solid ${vars.color.ring}`,
                 outlineOffset: '-2px',
             },
