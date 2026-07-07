@@ -71,8 +71,8 @@ For each component we should verify the following points:
 
 | Component | Component | Styles | Compound | Story | Consistency | Structure | Notes |
 | :-------- | :-------: | :----: | :------: | :---: | :---------: | :-------: | :---- |
-| Badge     | [ ]       | [ ]    | N/A      | [ ]   | [ ]         | [ ]       |       |
-| Table     | [ ]       | [ ]    | [ ]      | [ ]   | [ ]         | [ ]       |       |
+| Badge     | [x]       | [x]    | N/A      | [x]   | [x]         | [x]       | Simplified Box prop forwarding; ref typed to `HTMLSpanElement`; deduplicated color/variant compound styles. |
+| Table     | [x]       | [x]    | [x]      | [x]   | [x]         | [x]       | Moved `striped`/`bordered` into recipe; removed unused `TableBody` striped style; removed duplicate `selectable` prop; fixed `TableHead` sort indicator comment. |
 
 ## Feedback
 

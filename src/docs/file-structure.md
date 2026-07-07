@@ -81,13 +81,15 @@ Every public component has its own folder under the relevant category. The folde
 ```
 src/components/actions/button/
 ├── Button.tsx              # React component
-├── Button.css.ts           # Vanilla Extract styles / recipe
 ├── index.ts                # Barrel export
+├── styles/
+│   ├── Button.css.ts       # Vanilla Extract styles / recipe
+│   └── variants/           # Optional: per-variant compound styles
 ├── types/
 │   ├── Button.props.ts     # Public prop types
 │   └── Button.types.ts     # Variant / size / color string unions
 └── constants/
-    └── index.ts            # Component-specific constants and maps
+    └── index.ts            # Barrel export for component constants
 ```
 
 ### Required files
@@ -95,7 +97,7 @@ src/components/actions/button/
 | File | Naming rule | Purpose |
 |---|---|---|
 | Component file | `ComponentName.tsx` | JSX, composition, refs, display name |
-| Styles file | `ComponentName.css.ts` | Vanilla Extract `recipe`, `style`, `globalStyle` |
+| Styles file | `styles/ComponentName.css.ts` | Vanilla Extract `recipe`, `style`, `globalStyle` |
 | Barrel | `index.ts` | Public exports for the component |
 | Props | `types/ComponentName.props.ts` | Public React prop interface |
 | Types | `types/ComponentName.types.ts` | `type Variant = 'a' \| 'b'` unions |
@@ -108,8 +110,79 @@ src/components/actions/button/
 | `hooks/` | Component-specific logic / accessibility hooks |
 | `utils/` | Pure helper functions used only by this component |
 | `constants/` | Maps, lookup tables, or static config used by the component |
+| `styles/` | Vanilla Extract building blocks split out of `ComponentName.css.ts` |
 
-> **Note:** The older `contributing.md` examples reference `ComponentName.styles.css.ts`. The real convention used in the codebase is `ComponentName.css.ts` (no `.styles` segment).
+> **Note:** The older `contributing.md` examples reference `ComponentName.styles.css.ts`. The real convention used in the codebase is `styles/ComponentName.css.ts` (no `.styles` segment).
+
+---
+
+## Component styles folder
+
+When a recipe has many compound variants, keep the main `styles/ComponentName.css.ts` focused on the recipe definition and move the per-variant declarations into a `styles/variants/` folder.
+
+```
+src/components/data-display/badge/
+├── Badge.tsx
+├── styles/
+│   ├── Badge.css.ts
+│   └── variants/
+│       ├── solid.ts
+│       ├── subtle.ts
+│       └── outline.ts
+├── types/
+│   ├── Badge.props.ts
+│   └── Badge.types.ts
+└── constants/
+    ├── index.ts
+    ├── badgeColors.const.ts
+    ├── badgeSizes.const.ts
+    └── badgeVariants.const.ts
+```
+
+Rules for `styles/`:
+
+- The main recipe file lives at `styles/ComponentName.css.ts`.
+- One file per visual variant under `styles/variants/` (e.g. `solid.ts`, `subtle.ts`, `outline.ts`).
+- Each variant file exports a single named array: `{variantName}CompoundVariants`.
+- `styles/ComponentName.css.ts` imports and spreads these arrays into `compoundVariants`.
+- Keep shared base styles, size variants, and the recipe itself in `styles/ComponentName.css.ts`.
+- Do not move types or constants into `styles/`; keep them in their existing `types/` and `constants/` folders.
+- Reference variant and color values through constants (`BADGE_VARIANTS.solid`) instead of hardcoded strings.
+
+---
+
+## Component constants folder
+
+Constants for a component live under `constants/` and are split into focused files by domain. Each file is named `<constantName>.const.ts` and exports both an object enum and a derived array.
+
+```
+src/components/data-display/badge/constants/
+├── index.ts                # Re-exports all constants
+├── badgeColors.const.ts    # BADGE_COLORS object enum + BADGE_COLORS_ARRAY
+├── badgeSizes.const.ts     # BADGE_SIZE_TO_FONT_SIZE + BADGE_SIZE_TO_ICON_SIZE
+└── badgeVariants.const.ts  # BADGE_VARIANTS object enum + BADGE_VARIANTS_ARRAY
+```
+
+Example:
+
+```ts
+// badgeColors.const.ts
+export const BADGE_COLORS = {
+    primary: 'primary',
+    secondary: 'secondary',
+    destructive: 'destructive',
+} as const
+
+export const BADGE_COLORS_ARRAY = Object.values(BADGE_COLORS)
+```
+
+Rules for `constants/`:
+
+- One file per constant group (`badgeColors`, `badgeSizes`, `badgeVariants`).
+- File name: `<constantName>.const.ts`.
+- Export an object enum (`BADGE_COLORS`) for type-safe references and lookups.
+- Export a derived array (`BADGE_COLORS_ARRAY`) for iteration and mapping.
+- Re-export everything from `constants/index.ts` so consumers import from `@components/.../constants`.
 
 ---
 
@@ -126,12 +199,12 @@ src/components/actions/button/
 ### Source files
 
 - **React components**: `PascalCase.tsx`
-- **Vanilla Extract styles**: `PascalCase.css.ts`
+- **Vanilla Extract styles**: `styles/PascalCase.css.ts`
 - **Props**: `PascalCase.props.ts`
 - **Type unions**: `PascalCase.types.ts`
 - **Hooks**: `useComponentName.hook.ts` (or `.tsx` when the hook returns JSX-related logic)
 - **Utils**: `descriptiveName.utils.ts`
-- **Constants**: `index.ts` inside a `constants/` folder, or a descriptive name when exported from `_shared`
+- **Constants**: `<constantName>.const.ts` inside a `constants/` folder, re-exported by `index.ts`
 - **Barrels**: `index.ts`
 
 ### Examples
@@ -139,20 +212,26 @@ src/components/actions/button/
 ```
 button/
 ├── Button.tsx
-├── Button.css.ts
+├── styles/
+│   ├── Button.css.ts
+│   └── variants/
+│       └── contained.ts
 ├── types/
 │   ├── Button.props.ts
 │   └── Button.types.ts
 └── constants/
-    └── index.ts
+    ├── index.ts
+    └── buttonVariants.const.ts
 
 text-field/
 ├── TextField.tsx
-├── TextField.css.ts
+├── styles/
+│   └── TextField.css.ts
 ├── components/
 │   ├── text-field-label/
 │   │   ├── TextFieldLabel.tsx
-│   │   ├── TextFieldLabel.css.ts
+│   │   ├── styles/
+│   │   │   └── TextFieldLabel.css.ts
 │   │   └── types/
 │   │       ├── TextFieldLabel.props.ts
 │   │       └── TextFieldLabel.types.ts
@@ -165,7 +244,8 @@ text-field/
 │   ├── TextField.props.ts
 │   └── TextField.types.ts
 └── constants/
-    └── index.ts
+    ├── index.ts
+    └── textFieldSizes.const.ts
 ```
 
 ---
@@ -423,7 +503,7 @@ Every folder that is imported from outside its own tree contains an `index.ts` b
 ```ts
 // src/components/actions/button/index.ts
 export { default as Button } from '@components/actions/button/Button.tsx'
-export { BUTTON_STYLES } from '@components/actions/button/Button.css.ts'
+export { BUTTON_STYLES } from '@components/actions/button/styles/Button.css.ts'
 export type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
 export type { ButtonVariant, ButtonSize, ButtonColor } from '@components/actions/button/types/Button.types.ts'
 ```
@@ -463,11 +543,12 @@ Rules:
 |---|---|---|
 | Folder | `kebab-case` | `text-field`, `icon-button` |
 | React component file | `PascalCase.tsx` | `Button.tsx` |
-| Styles file | `PascalCase.css.ts` | `Button.css.ts` |
+| Styles file | `styles/PascalCase.css.ts` | `styles/Button.css.ts` |
 | Props file | `PascalCase.props.ts` | `Button.props.ts` |
 | Types file | `PascalCase.types.ts` | `Button.types.ts` |
 | Hook file | `useComponentName.hook.ts` | `useViewportShift.hook.ts` |
 | Utils file | `descriptiveName.utils.ts` | `datePicker.utils.ts` |
+| Constants file | `<constantName>.const.ts` | `badgeColors.const.ts` |
 | Test file | `ComponentName.test.tsx` | `Button.test.tsx` |
 | Story file | `ComponentName.stories.tsx` | `Button.stories.tsx` |
 | Barrel | `index.ts` | `index.ts` |
@@ -480,12 +561,13 @@ Rules:
 
 - [ ] Folder created under the correct category: `src/components/<category>/<component-name>/`
 - [ ] Component file: `ComponentName.tsx`
-- [ ] Styles file: `ComponentName.css.ts`
+- [ ] Styles file: `styles/ComponentName.css.ts`
 - [ ] Props file: `types/ComponentName.props.ts`
 - [ ] Types file: `types/ComponentName.types.ts`
 - [ ] Barrel: `index.ts` exporting component, styles, and public types
 - [ ] Hooks folder: `hooks/useComponentName.hook.ts` (when needed)
 - [ ] Utils folder: `utils/descriptiveName.utils.ts` (when needed)
+- [ ] Constants folder: `constants/<constantName>.const.ts` (when needed)
 - [ ] Added to category `index.ts`
 - [ ] Added to `src/components/index.ts` if it is a new category
 - [ ] Story: `src/stories/<category>/<component-name>/ComponentName.stories.tsx`

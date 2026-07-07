@@ -3,6 +3,7 @@ import { expect, within } from 'storybook/test'
 
 import { Badge } from '@/components/data-display/badge'
 import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-display/badge'
+import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
 const VARIANTS: BadgeVariant[] = ['solid', 'subtle', 'outline']
@@ -31,7 +32,7 @@ const meta = {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A small status indicator built on top of the Box primitive.
-It supports three visual variants, six semantic color intents, and three sizes,
+It supports three visual variants, twelve semantic color intents, and three sizes,
 while inheriting Box layout props so radius, width, padding, and more remain customizable.
 
 **Usage**
@@ -90,4 +91,99 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         await expect(canvas.getByText(args.label as string)).toBeInTheDocument()
     },
+}
+
+export const Variants: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'The three visual variants applied to the primary color.',
+            },
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            {VARIANTS.map((variant) => (
+                <Badge
+                    key={variant}
+                    label={variant}
+                    variant={variant}
+                />
+            ))}
+        </div>
+    ),
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'The three size variants.',
+            },
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            {SIZES.map((size) => (
+                <Badge
+                    key={size}
+                    label={size.toUpperCase()}
+                    size={size}
+                />
+            ))}
+        </div>
+    ),
+}
+
+export const Colors: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'All available color intents in the default subtle variant.',
+            },
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxWidth: '40rem' }}>
+            {COLORS.map((color) => (
+                <Badge
+                    key={color}
+                    label={color}
+                    color={color}
+                />
+            ))}
+        </div>
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Badges can display an optional start or end icon.',
+            },
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            <Badge
+                label={'Start icon'}
+                startIcon={IconRegistry.check}
+                color={'success'}
+            />
+            <Badge
+                label={'End icon'}
+                endIcon={IconRegistry.chevronRight}
+                color={'primary'}
+                variant={'outline'}
+            />
+            <Badge
+                label={'Both icons'}
+                startIcon={IconRegistry.check}
+                endIcon={IconRegistry.chevronRight}
+                color={'info'}
+                variant={'solid'}
+            />
+        </div>
+    ),
 }

@@ -21,11 +21,10 @@ const Table = (({ size, striped, bordered, fixed, className, ref, ...props }) =>
     >
         <table
             ref={ref}
+            data-striped={striped}
+            data-bordered={bordered}
             className={cn(
-                TABLE_STYLES.recipe({ size }),
-                striped && TABLE_STYLES.striped,
-                bordered && TABLE_STYLES.bordered,
-                fixed && TABLE_STYLES.fixed,
+                TABLE_STYLES.recipe({ size, striped, bordered, fixed }),
                 className,
             )}
             {...props}

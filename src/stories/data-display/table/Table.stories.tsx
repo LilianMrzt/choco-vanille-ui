@@ -218,7 +218,7 @@ export const Playground: Story = {
 
         return (
             <Table {...tableArgs}>
-                <Table.Caption>A list of your recent invoices.</Table.Caption>
+                <Table.Caption>{'A list of your recent invoices.'}</Table.Caption>
                 <Table.Header>
                     <Table.Row>
                         <Table.Head
@@ -226,23 +226,23 @@ export const Playground: Story = {
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
-                            Invoice
+                            {'Invoice'}
                         </Table.Head>
                         <Table.Head
                             align={headerAlign}
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
-                            Status
+                            {'Status'}
                         </Table.Head>
                         <Table.Head
                             align={headerAlign}
                             sortable={sortable}
                             sortDirection={resolvedSortDir}
                         >
-                            Method
+                            {'Method'}
                         </Table.Head>
-                        <Table.Head align={'right'}>Amount</Table.Head>
+                        <Table.Head align={'right'}>{'Amount'}</Table.Head>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -262,7 +262,7 @@ export const Playground: Story = {
                 </Table.Body>
                 <Table.Footer>
                     <Table.Row>
-                        <Table.Cell colSpan={3}>Total</Table.Cell>
+                        <Table.Cell colSpan={3}>{'Total'}</Table.Cell>
                         <Table.Cell numeric>{fmt(total)}</Table.Cell>
                     </Table.Row>
                 </Table.Footer>
@@ -273,4 +273,249 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('table')).toBeTruthy()
     },
+}
+
+export const Striped: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Alternating muted background on even body rows.',
+            },
+        },
+    },
+    render: () => (
+        <Table striped>
+            <Table.Caption>{'Recent invoices with striped rows.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>{'Invoice'}</Table.Head>
+                    <Table.Head>{'Status'}</Table.Head>
+                    <Table.Head>{'Method'}</Table.Head>
+                    <Table.Head align={'right'}>{'Amount'}</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {INVOICES.map((row) => (
+                    <Table.Row key={row.invoice}>
+                        <Table.Cell>{row.invoice}</Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{row.method}</Table.Cell>
+                        <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    ),
+}
+
+export const Bordered: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Borders on all four sides of every header and data cell.',
+            },
+        },
+    },
+    render: () => (
+        <Table bordered>
+            <Table.Caption>{'Recent invoices with bordered cells.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>{'Invoice'}</Table.Head>
+                    <Table.Head>{'Status'}</Table.Head>
+                    <Table.Head>{'Method'}</Table.Head>
+                    <Table.Head align={'right'}>{'Amount'}</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {INVOICES.map((row) => (
+                    <Table.Row key={row.invoice}>
+                        <Table.Cell>{row.invoice}</Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{row.method}</Table.Cell>
+                        <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    ),
+}
+
+export const FixedLayout: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Fixed table layout with explicit column widths via `Table.ColGroup`.',
+            },
+        },
+    },
+    render: () => (
+        <Table fixed>
+            <Table.ColGroup>
+                <Table.Col width={'25%'} />
+                <Table.Col width={'25%'} />
+                <Table.Col width={'25%'} />
+                <Table.Col width={'25%'} />
+            </Table.ColGroup>
+            <Table.Caption>{'Recent invoices with fixed column widths.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>{'Invoice'}</Table.Head>
+                    <Table.Head>{'Status'}</Table.Head>
+                    <Table.Head>{'Method'}</Table.Head>
+                    <Table.Head align={'right'}>{'Amount'}</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {INVOICES.map((row) => (
+                    <Table.Row key={row.invoice}>
+                        <Table.Cell>{row.invoice}</Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{row.method}</Table.Cell>
+                        <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    ),
+}
+
+export const Sortable: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Sortable column headers with visual direction indicators.',
+            },
+        },
+    },
+    render: () => (
+        <Table>
+            <Table.Caption>{'Recent invoices with sortable headers.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head
+                        sortable
+                        sortDirection={'asc'}
+                    >
+                        {'Invoice'}
+                    </Table.Head>
+                    <Table.Head
+                        sortable
+                        sortDirection={'none'}
+                    >
+                        {'Status'}
+                    </Table.Head>
+                    <Table.Head
+                        sortable
+                        sortDirection={'none'}
+                    >
+                        {'Method'}
+                    </Table.Head>
+                    <Table.Head
+                        align={'right'}
+                        sortable
+                        sortDirection={'desc'}
+                    >
+                        {'Amount'}
+                    </Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {INVOICES.map((row) => (
+                    <Table.Row key={row.invoice}>
+                        <Table.Cell>{row.invoice}</Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{row.method}</Table.Cell>
+                        <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    ),
+}
+
+export const SelectableRows: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Rows with hover and selection affordances.',
+            },
+        },
+    },
+    render: () => (
+        <Table>
+            <Table.Caption>{'Recent invoices with selectable rows.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>{'Invoice'}</Table.Head>
+                    <Table.Head>{'Status'}</Table.Head>
+                    <Table.Head>{'Method'}</Table.Head>
+                    <Table.Head align={'right'}>{'Amount'}</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {INVOICES.map((row, index) => (
+                    <Table.Row
+                        key={row.invoice}
+                        selectable
+                        selected={index === 0}
+                    >
+                        <Table.Cell>{row.invoice}</Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{row.method}</Table.Cell>
+                        <Table.Cell numeric>{fmt(row.amount)}</Table.Cell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table>
+    ),
+}
+
+export const IntentRows: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Semantic row intents for status or emphasis.',
+            },
+        },
+    },
+    render: () => (
+        <Table>
+            <Table.Caption>{'Recent invoices with semantic row intents.'}</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>{'Invoice'}</Table.Head>
+                    <Table.Head>{'Status'}</Table.Head>
+                    <Table.Head>{'Method'}</Table.Head>
+                    <Table.Head align={'right'}>{'Amount'}</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row intent={'success'}>
+                    <Table.Cell>{'INV-001'}</Table.Cell>
+                    <Table.Cell>{'Paid'}</Table.Cell>
+                    <Table.Cell>{'Credit card'}</Table.Cell>
+                    <Table.Cell numeric>{fmt(250)}</Table.Cell>
+                </Table.Row>
+                <Table.Row intent={'warning'}>
+                    <Table.Cell>{'INV-002'}</Table.Cell>
+                    <Table.Cell>{'Pending'}</Table.Cell>
+                    <Table.Cell>{'PayPal'}</Table.Cell>
+                    <Table.Cell numeric>{fmt(150)}</Table.Cell>
+                </Table.Row>
+                <Table.Row intent={'destructive'}>
+                    <Table.Cell>{'INV-003'}</Table.Cell>
+                    <Table.Cell>{'Unpaid'}</Table.Cell>
+                    <Table.Cell>{'Bank transfer'}</Table.Cell>
+                    <Table.Cell numeric>{fmt(350)}</Table.Cell>
+                </Table.Row>
+                <Table.Row intent={'info'}>
+                    <Table.Cell>{'INV-004'}</Table.Cell>
+                    <Table.Cell>{'Processing'}</Table.Cell>
+                    <Table.Cell>{'Credit card'}</Table.Cell>
+                    <Table.Cell numeric>{fmt(450)}</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+    ),
 }

@@ -13,8 +13,8 @@ export type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement> &
          */
         sortable?: boolean
         /**
-         * Current sort direction. Sets `aria-sort` on the `<th>` and appends
-         * a visual indicator (↑ / ↓ / ↕) via CSS `::after`.
+         * Current sort direction. Sets `aria-sort` on the `<th>` and renders
+         * a visual sort indicator (↑ / ↓ / ↕) next to the cell content.
          */
         sortDirection?: TableSortDirection
     }
