@@ -23,6 +23,6 @@ const SelectLabel: FC<BaseSelect.GroupLabel.Props> = ({ className, children, ...
     </BaseSelect.GroupLabel>
 )
 
-SelectLabel.displayName = 'SelectLabel'
+SelectLabel.displayName = 'Select.Label'
 
 export default SelectLabel

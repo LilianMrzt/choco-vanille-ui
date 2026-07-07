@@ -92,8 +92,8 @@ describe('RadioItem', () => {
     })
 
     describe('displayName', () => {
-        it('is set to "RadioItem"', () => {
-            expect(RadioItem.displayName).toBe('RadioItem')
+        it('is set to "RadioGroup.Item"', () => {
+            expect(RadioItem.displayName).toBe('RadioGroup.Item')
         })
     })
 })

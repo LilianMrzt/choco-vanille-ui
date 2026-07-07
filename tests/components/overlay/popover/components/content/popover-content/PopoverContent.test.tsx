@@ -65,6 +65,6 @@ describe('PopoverContent', () => {
     }, 10000)
 
     it('is attached to the Popover compound component', () => {
-        expect(Popover.Content.displayName).toBe('PopoverContent')
+        expect(Popover.Content.displayName).toBe('Popover.Content')
     })
 })

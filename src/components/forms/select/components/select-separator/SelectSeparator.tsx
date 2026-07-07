@@ -14,6 +14,6 @@ const SelectSeparator: FC<BaseSelect.Separator.Props> = ({ className, ...props }
     />
 )
 
-SelectSeparator.displayName = 'SelectSeparator'
+SelectSeparator.displayName = 'Select.Separator'
 
 export default SelectSeparator

@@ -8,6 +8,6 @@ const SelectGroup: FC<BaseSelect.Group.Props> = (props) => (
     <BaseSelect.Group {...props} />
 )
 
-SelectGroup.displayName = 'SelectGroup'
+SelectGroup.displayName = 'Select.Group'
 
 export default SelectGroup

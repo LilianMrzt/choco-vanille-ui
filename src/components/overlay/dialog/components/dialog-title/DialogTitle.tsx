@@ -24,6 +24,6 @@ const DialogTitle = ({ className, children, ...props }: DialogTitleProps) => (
     </BaseDialog.Title>
 )
 
-DialogTitle.displayName = 'DialogTitle'
+DialogTitle.displayName = 'Dialog.Title'
 
 export default DialogTitle

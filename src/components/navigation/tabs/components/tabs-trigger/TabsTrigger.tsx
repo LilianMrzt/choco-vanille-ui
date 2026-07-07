@@ -48,6 +48,6 @@ const TabsTrigger = ({ className, style, width, label, startIcon, endIcon, value
     )
 }
 
-TabsTrigger.displayName = 'TabsTrigger'
+TabsTrigger.displayName = 'Tabs.Trigger'
 
 export default TabsTrigger

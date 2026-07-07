@@ -14,6 +14,6 @@ const HoverCardTrigger = ({ children, delay = 0, ...props }: HoverCardTriggerPro
     />
 )
 
-HoverCardTrigger.displayName = 'HoverCardTrigger'
+HoverCardTrigger.displayName = 'HoverCard.Trigger'
 
 export default HoverCardTrigger

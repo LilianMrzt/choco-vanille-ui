@@ -12,6 +12,6 @@ const TableCaption: FC<TableCaptionProps> = ({ className, ref, ...props }) => (
     />
 )
 
-TableCaption.displayName = 'TableCaption'
+TableCaption.displayName = 'Table.Caption'
 
 export default TableCaption

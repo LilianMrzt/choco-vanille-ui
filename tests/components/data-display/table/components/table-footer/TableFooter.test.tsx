@@ -61,6 +61,6 @@ describe('Table.Footer', () => {
     })
 
     it('displayName is "TableFooter"', () => {
-        expect(Table.Footer.displayName).toBe('TableFooter')
+        expect(Table.Footer.displayName).toBe('Table.Footer')
     })
 })

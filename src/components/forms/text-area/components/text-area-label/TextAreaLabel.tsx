@@ -12,6 +12,6 @@ const TextAreaLabel: FC<TextAreaLabelProps> = ({ htmlFor, disabled, children }) 
     </label>
 )
 
-TextAreaLabel.displayName = 'TextAreaLabel'
+TextAreaLabel.displayName = 'TextArea.Label'
 
 export default TextAreaLabel

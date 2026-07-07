@@ -92,6 +92,6 @@ const CardHeader: FC<CardHeaderProps> = ({
     </Flex>
 )
 
-CardHeader.displayName = 'CardHeader'
+CardHeader.displayName = 'Card.Header'
 
 export default CardHeader

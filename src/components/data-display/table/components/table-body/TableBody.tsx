@@ -12,6 +12,6 @@ const TableBody: FC<TableBodyProps> = ({ className, ref, ...props }) => (
     />
 )
 
-TableBody.displayName = 'TableBody'
+TableBody.displayName = 'Table.Body'
 
 export default TableBody

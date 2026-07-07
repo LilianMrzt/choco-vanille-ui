@@ -8,6 +8,6 @@ const SelectViewport: FC<BaseSelect.List.Props> = (props) => (
     <BaseSelect.List {...props} />
 )
 
-SelectViewport.displayName = 'SelectViewport'
+SelectViewport.displayName = 'Select.Viewport'
 
 export default SelectViewport

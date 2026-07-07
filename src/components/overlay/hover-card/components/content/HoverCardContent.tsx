@@ -57,6 +57,6 @@ const HoverCardContent = ({
     )
 }
 
-HoverCardContent.displayName = 'HoverCardContent'
+HoverCardContent.displayName = 'HoverCard.Content'
 
 export default HoverCardContent

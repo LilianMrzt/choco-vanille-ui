@@ -75,6 +75,6 @@ const TableHead: FC<TableHeadProps> = ({
     )
 }
 
-TableHead.displayName = 'TableHead'
+TableHead.displayName = 'Table.Head'
 
 export default TableHead

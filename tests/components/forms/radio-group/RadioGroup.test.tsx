@@ -14,7 +14,7 @@ const renderGroup = (defaultValue?: string, disabled?: boolean) =>
         </RadioGroup>,
     )
 
-const isDisabled = (el: HTMLElement) => (el as HTMLButtonElement).disabled === true
+const isDisabled = (el: HTMLElement) => (el as HTMLButtonElement).disabled
 
 // Suites
 
@@ -38,8 +38,8 @@ describe('RadioGroup', () => {
             expect(RadioGroup.displayName).toBe('RadioGroup')
         })
 
-        it('RadioItem displayName is "RadioItem"', () => {
-            expect(RadioGroup.Item.displayName).toBe('RadioItem')
+        it('RadioGroup.Item displayName is "RadioGroup.Item"', () => {
+            expect(RadioGroup.Item.displayName).toBe('RadioGroup.Item')
         })
     })
 })

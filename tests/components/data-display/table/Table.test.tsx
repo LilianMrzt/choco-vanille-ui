@@ -145,7 +145,7 @@ describe('Table.Header', () => {
     })
 
     it('displayName is "TableHeader"', () => {
-        expect(Table.Header.displayName).toBe('TableHeader')
+        expect(Table.Header.displayName).toBe('Table.Header')
     })
 })
 
@@ -164,7 +164,7 @@ describe('Table.Body', () => {
     })
 
     it('displayName is "TableBody"', () => {
-        expect(Table.Body.displayName).toBe('TableBody')
+        expect(Table.Body.displayName).toBe('Table.Body')
     })
 })
 
@@ -183,7 +183,7 @@ describe('Table.Footer', () => {
     })
 
     it('displayName is "TableFooter"', () => {
-        expect(Table.Footer.displayName).toBe('TableFooter')
+        expect(Table.Footer.displayName).toBe('Table.Footer')
     })
 })
 
@@ -235,7 +235,7 @@ describe('Table.Row', () => {
     })
 
     it('displayName is "TableRow"', () => {
-        expect(Table.Row.displayName).toBe('TableRow')
+        expect(Table.Row.displayName).toBe('Table.Row')
     })
 })
 
@@ -269,7 +269,7 @@ describe('Table.Head', () => {
     })
 
     it('displayName is "TableHead"', () => {
-        expect(Table.Head.displayName).toBe('TableHead')
+        expect(Table.Head.displayName).toBe('Table.Head')
     })
 })
 
@@ -303,7 +303,7 @@ describe('Table.Cell', () => {
     })
 
     it('displayName is "TableCell"', () => {
-        expect(Table.Cell.displayName).toBe('TableCell')
+        expect(Table.Cell.displayName).toBe('Table.Cell')
     })
 })
 
@@ -329,6 +329,6 @@ describe('Table.Caption', () => {
     })
 
     it('displayName is "TableCaption"', () => {
-        expect(Table.Caption.displayName).toBe('TableCaption')
+        expect(Table.Caption.displayName).toBe('Table.Caption')
     })
 })

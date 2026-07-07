@@ -223,6 +223,6 @@ describe('Table.Head', () => {
     })
 
     it('displayName is "TableHead"', () => {
-        expect(Table.Head.displayName).toBe('TableHead')
+        expect(Table.Head.displayName).toBe('Table.Head')
     })
 })

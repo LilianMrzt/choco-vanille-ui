@@ -60,6 +60,6 @@ const PopoverContent = ({
     )
 }
 
-PopoverContent.displayName = 'PopoverContent'
+PopoverContent.displayName = 'Popover.Content'
 
 export default PopoverContent

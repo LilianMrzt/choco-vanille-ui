@@ -11,6 +11,6 @@ const TextAreaEndAction: FC<TextAreaEndActionProps> = ({ children }) => (
     </Box>
 )
 
-TextAreaEndAction.displayName = 'TextAreaEndAction'
+TextAreaEndAction.displayName = 'TextArea.EndAction'
 
 export default TextAreaEndAction

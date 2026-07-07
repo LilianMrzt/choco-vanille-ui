@@ -8,6 +8,6 @@ const SelectValue: FC<BaseSelect.Value.Props> = (props) => (
     <BaseSelect.Value {...props} />
 )
 
-SelectValue.displayName = 'SelectValue'
+SelectValue.displayName = 'Select.Value'
 
 export default SelectValue

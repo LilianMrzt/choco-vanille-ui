@@ -10,6 +10,6 @@ const TableCol: FC<TableColProps> = ({ width, minWidth, maxWidth, style, ref, ..
     />
 )
 
-TableCol.displayName = 'TableCol'
+TableCol.displayName = 'Table.Col'
 
 export default TableCol

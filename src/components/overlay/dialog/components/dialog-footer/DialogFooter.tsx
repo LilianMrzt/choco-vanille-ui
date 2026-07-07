@@ -16,6 +16,6 @@ const DialogFooter: FC<DialogFooterProps> = ({ as = 'div', justifyContent = 'end
     />
 )
 
-DialogFooter.displayName = 'DialogFooter'
+DialogFooter.displayName = 'Dialog.Footer'
 
 export default DialogFooter

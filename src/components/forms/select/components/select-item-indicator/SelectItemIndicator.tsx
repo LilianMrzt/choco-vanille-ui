@@ -10,6 +10,6 @@ const SelectItemIndicator: FC<BaseSelect.ItemIndicator.Props> = (props) => (
     <BaseSelect.ItemIndicator {...props} />
 )
 
-SelectItemIndicator.displayName = 'SelectItemIndicator'
+SelectItemIndicator.displayName = 'Select.ItemIndicator'
 
 export default SelectItemIndicator

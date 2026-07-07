@@ -152,9 +152,9 @@ describe('Tabs', () => {
 
     describe('displayName', () => {
         it('is set on compound sub-components', () => {
-            expect(Tabs.List.displayName).toBe('TabsList')
-            expect(Tabs.Trigger.displayName).toBe('TabsTrigger')
-            expect(Tabs.Content.displayName).toBe('TabsContent')
+            expect(Tabs.List.displayName).toBe('Tabs.List')
+            expect(Tabs.Trigger.displayName).toBe('Tabs.Trigger')
+            expect(Tabs.Content.displayName).toBe('Tabs.Content')
         })
     })
 })

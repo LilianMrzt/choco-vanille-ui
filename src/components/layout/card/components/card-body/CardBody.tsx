@@ -12,6 +12,6 @@ const CardBody: FC<CardBodyProps> = ({ as = 'div', padding = 'md', ...props }) =
     />
 )
 
-CardBody.displayName = 'CardBody'
+CardBody.displayName = 'Card.Body'
 
 export default CardBody

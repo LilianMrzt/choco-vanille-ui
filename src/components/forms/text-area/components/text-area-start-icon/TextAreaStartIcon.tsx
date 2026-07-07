@@ -15,6 +15,6 @@ const TextAreaStartIcon: FC<TextAreaStartIconProps> = ({ icon, size }) => (
     </Box>
 )
 
-TextAreaStartIcon.displayName = 'TextAreaStartIcon'
+TextAreaStartIcon.displayName = 'TextArea.StartIcon'
 
 export default TextAreaStartIcon

@@ -61,6 +61,6 @@ describe('Table.Body', () => {
     })
 
     it('displayName is "TableBody"', () => {
-        expect(Table.Body.displayName).toBe('TableBody')
+        expect(Table.Body.displayName).toBe('Table.Body')
     })
 })

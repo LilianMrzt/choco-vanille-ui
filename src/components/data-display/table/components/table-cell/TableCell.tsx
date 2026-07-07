@@ -24,6 +24,6 @@ const TableCell: FC<TableCellProps> = ({
     />
 )
 
-TableCell.displayName = 'TableCell'
+TableCell.displayName = 'Table.Cell'
 
 export default TableCell

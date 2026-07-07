@@ -37,6 +37,6 @@ const DialogContent = ({
     )
 }
 
-DialogContent.displayName = 'DialogContent'
+DialogContent.displayName = 'Dialog.Content'
 
 export default DialogContent

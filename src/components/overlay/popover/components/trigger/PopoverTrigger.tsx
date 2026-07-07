@@ -13,6 +13,6 @@ const PopoverTrigger = ({ children, ...props }: PopoverTriggerProps) => (
     />
 )
 
-PopoverTrigger.displayName = 'PopoverTrigger'
+PopoverTrigger.displayName = 'Popover.Trigger'
 
 export default PopoverTrigger

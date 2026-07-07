@@ -25,6 +25,6 @@ describe('TextFieldLabel', () => {
     })
 
     it('has the expected displayName', () => {
-        expect(TextFieldLabel.displayName).toBe('TextFieldLabel')
+        expect(TextFieldLabel.displayName).toBe('TextField.Label')
     })
 })

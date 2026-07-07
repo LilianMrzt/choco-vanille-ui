@@ -29,6 +29,6 @@ describe('HoverCardTrigger', () => {
     })
 
     it('is attached to the HoverCard compound component', () => {
-        expect(HoverCard.Trigger.displayName).toBe('HoverCardTrigger')
+        expect(HoverCard.Trigger.displayName).toBe('HoverCard.Trigger')
     })
 })

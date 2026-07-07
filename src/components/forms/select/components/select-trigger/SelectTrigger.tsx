@@ -74,6 +74,6 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
     )
 }
 
-SelectTrigger.displayName = 'SelectTrigger'
+SelectTrigger.displayName = 'Select.Trigger'
 
 export default SelectTrigger

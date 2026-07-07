@@ -63,6 +63,6 @@ const RadioItem: FC<RadioItemProps> = ({
     )
 }
 
-RadioItem.displayName = 'RadioItem'
+RadioItem.displayName = 'RadioGroup.Item'
 
 export default RadioItem

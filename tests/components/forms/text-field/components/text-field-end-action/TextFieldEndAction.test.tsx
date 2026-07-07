@@ -14,6 +14,6 @@ describe('TextFieldEndAction', () => {
     })
 
     it('has the expected displayName', () => {
-        expect(TextFieldEndAction.displayName).toBe('TextFieldEndAction')
+        expect(TextFieldEndAction.displayName).toBe('TextField.EndAction')
     })
 })

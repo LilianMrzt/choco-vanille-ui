@@ -67,8 +67,8 @@ describe('CardFooter', () => {
     })
 
     describe('displayName', () => {
-        it('is set to "CardFooter"', () => {
-            expect(CardFooter.displayName).toBe('CardFooter')
+        it('is set to "Card.Footer"', () => {
+            expect(CardFooter.displayName).toBe('Card.Footer')
         })
     })
 })

@@ -19,6 +19,6 @@ describe('TextFieldStartIcon', () => {
     })
 
     it('has the expected displayName', () => {
-        expect(TextFieldStartIcon.displayName).toBe('TextFieldStartIcon')
+        expect(TextFieldStartIcon.displayName).toBe('TextField.StartIcon')
     })
 })

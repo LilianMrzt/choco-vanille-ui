@@ -52,6 +52,6 @@ describe('Table.ColGroup', () => {
     })
 
     it('displayName is "TableColGroup"', () => {
-        expect(Table.ColGroup.displayName).toBe('TableColGroup')
+        expect(Table.ColGroup.displayName).toBe('Table.ColGroup')
     })
 })

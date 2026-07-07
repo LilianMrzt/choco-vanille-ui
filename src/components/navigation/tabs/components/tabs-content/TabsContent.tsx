@@ -14,6 +14,6 @@ const TabsContent = ({ className, ...props }: TabsContentProps) => (
     />
 )
 
-TabsContent.displayName = 'TabsContent'
+TabsContent.displayName = 'Tabs.Content'
 
 export default TabsContent

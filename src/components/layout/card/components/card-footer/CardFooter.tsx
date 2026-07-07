@@ -15,6 +15,6 @@ const CardFooter: FC<CardFooterProps> = ({ as = 'div', ...props }) => (
     />
 )
 
-CardFooter.displayName = 'CardFooter'
+CardFooter.displayName = 'Card.Footer'
 
 export default CardFooter

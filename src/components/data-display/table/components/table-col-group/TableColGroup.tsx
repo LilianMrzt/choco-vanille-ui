@@ -9,6 +9,6 @@ const TableColGroup: FC<TableColGroupProps> = ({ ref, ...props }) => (
     />
 )
 
-TableColGroup.displayName = 'TableColGroup'
+TableColGroup.displayName = 'Table.ColGroup'
 
 export default TableColGroup

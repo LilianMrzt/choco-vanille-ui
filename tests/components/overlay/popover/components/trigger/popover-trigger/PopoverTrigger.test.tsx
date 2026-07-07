@@ -29,6 +29,6 @@ describe('PopoverTrigger', () => {
     })
 
     it('is attached to the Popover compound component', () => {
-        expect(Popover.Trigger.displayName).toBe('PopoverTrigger')
+        expect(Popover.Trigger.displayName).toBe('Popover.Trigger')
     })
 })

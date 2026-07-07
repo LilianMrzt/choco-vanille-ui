@@ -13,6 +13,6 @@ const DialogClose = ({ children, ...props }: DialogCloseProps) => (
     />
 )
 
-DialogClose.displayName = 'DialogClose'
+DialogClose.displayName = 'Dialog.Close'
 
 export default DialogClose

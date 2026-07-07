@@ -12,6 +12,6 @@ const TableFooter: FC<TableFooterProps> = ({ className, ref, ...props }) => (
     />
 )
 
-TableFooter.displayName = 'TableFooter'
+TableFooter.displayName = 'Table.Footer'
 
 export default TableFooter

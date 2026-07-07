@@ -138,6 +138,6 @@ describe('Table.Cell', () => {
     })
 
     it('displayName is "TableCell"', () => {
-        expect(Table.Cell.displayName).toBe('TableCell')
+        expect(Table.Cell.displayName).toBe('Table.Cell')
     })
 })

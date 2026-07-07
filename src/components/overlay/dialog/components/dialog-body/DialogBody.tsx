@@ -13,6 +13,6 @@ const DialogBody: FC<DialogBodyProps> = ({ as = 'div', padding = 'lg', ...props 
     />
 )
 
-DialogBody.displayName = 'DialogBody'
+DialogBody.displayName = 'Dialog.Body'
 
 export default DialogBody

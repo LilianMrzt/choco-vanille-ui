@@ -102,6 +102,6 @@ const DialogHeader: FC<DialogHeaderProps> = ({
     </Flex>
 )
 
-DialogHeader.displayName = 'DialogHeader'
+DialogHeader.displayName = 'Dialog.Header'
 
 export default DialogHeader

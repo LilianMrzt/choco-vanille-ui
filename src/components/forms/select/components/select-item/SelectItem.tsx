@@ -32,6 +32,6 @@ const SelectItem: FC<SelectItemProps> = ({
     </BaseSelect.Item>
 )
 
-SelectItem.displayName = 'SelectItem'
+SelectItem.displayName = 'Select.Item'
 
 export default SelectItem

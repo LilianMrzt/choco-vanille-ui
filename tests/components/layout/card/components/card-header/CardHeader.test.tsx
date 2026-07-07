@@ -116,8 +116,8 @@ describe('CardHeader', () => {
     })
 
     describe('displayName', () => {
-        it('is set to "CardHeader"', () => {
-            expect(CardHeader.displayName).toBe('CardHeader')
+        it('is set to "Card.Header"', () => {
+            expect(CardHeader.displayName).toBe('Card.Header')
         })
     })
 })

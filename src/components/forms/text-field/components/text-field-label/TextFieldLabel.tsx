@@ -14,6 +14,6 @@ const TextFieldLabel: FC<TextFieldLabelProps> = ({ htmlFor, disabled, children }
     </label>
 )
 
-TextFieldLabel.displayName = 'TextFieldLabel'
+TextFieldLabel.displayName = 'TextField.Label'
 
 export default TextFieldLabel

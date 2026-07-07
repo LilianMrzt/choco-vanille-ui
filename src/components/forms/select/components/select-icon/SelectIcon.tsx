@@ -10,6 +10,6 @@ const SelectIcon: FC<BaseSelect.Icon.Props> = (props) => (
     <BaseSelect.Icon {...props} />
 )
 
-SelectIcon.displayName = 'SelectIcon'
+SelectIcon.displayName = 'Select.Icon'
 
 export default SelectIcon

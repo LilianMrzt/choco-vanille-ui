@@ -11,6 +11,6 @@ const TextFieldEndAction: FC<TextFieldEndActionProps> = ({ children }) => (
     </span>
 )
 
-TextFieldEndAction.displayName = 'TextFieldEndAction'
+TextFieldEndAction.displayName = 'TextField.EndAction'
 
 export default TextFieldEndAction

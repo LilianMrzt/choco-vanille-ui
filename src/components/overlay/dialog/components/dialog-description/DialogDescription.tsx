@@ -23,6 +23,6 @@ const DialogDescription = ({ className, children, ...props }: DialogDescriptionP
     </BaseDialog.Description>
 )
 
-DialogDescription.displayName = 'DialogDescription'
+DialogDescription.displayName = 'Dialog.Description'
 
 export default DialogDescription

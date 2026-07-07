@@ -8,6 +8,6 @@ const SelectItemText: FC<BaseSelect.ItemText.Props> = (props) => (
     <BaseSelect.ItemText {...props} />
 )
 
-SelectItemText.displayName = 'SelectItemText'
+SelectItemText.displayName = 'Select.ItemText'
 
 export default SelectItemText

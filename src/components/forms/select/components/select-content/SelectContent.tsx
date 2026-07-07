@@ -49,6 +49,6 @@ const SelectContent: FC<SelectContentProps> = ({
     )
 }
 
-SelectContent.displayName = 'SelectContent'
+SelectContent.displayName = 'Select.Content'
 
 export default SelectContent

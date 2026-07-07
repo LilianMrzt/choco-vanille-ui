@@ -13,6 +13,6 @@ const DialogTrigger = ({ children, ...props }: DialogTriggerProps) => (
     />
 )
 
-DialogTrigger.displayName = 'DialogTrigger'
+DialogTrigger.displayName = 'Dialog.Trigger'
 
 export default DialogTrigger

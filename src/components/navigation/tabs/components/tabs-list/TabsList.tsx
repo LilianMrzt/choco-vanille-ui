@@ -20,6 +20,6 @@ const TabsList = ({ className, variant = 'default', bordered = false, activation
     </TabsVariantContext.Provider>
 )
 
-TabsList.displayName = 'TabsList'
+TabsList.displayName = 'Tabs.List'
 
 export default TabsList

@@ -35,6 +35,6 @@ const TableRow: FC<TableRowProps> = ({
     )
 }
 
-TableRow.displayName = 'TableRow'
+TableRow.displayName = 'Table.Row'
 
 export default TableRow

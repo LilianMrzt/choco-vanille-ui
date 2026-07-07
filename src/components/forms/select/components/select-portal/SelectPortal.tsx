@@ -8,6 +8,6 @@ const SelectPortal: FC<BaseSelect.Portal.Props> = (props) => (
     <BaseSelect.Portal {...props} />
 )
 
-SelectPortal.displayName = 'SelectPortal'
+SelectPortal.displayName = 'Select.Portal'
 
 export default SelectPortal

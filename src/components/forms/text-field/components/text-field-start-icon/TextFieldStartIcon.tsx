@@ -18,6 +18,6 @@ const TextFieldStartIcon: FC<TextFieldStartIconProps> = ({ icon, size }) => (
     </span>
 )
 
-TextFieldStartIcon.displayName = 'TextFieldStartIcon'
+TextFieldStartIcon.displayName = 'TextField.StartIcon'
 
 export default TextFieldStartIcon

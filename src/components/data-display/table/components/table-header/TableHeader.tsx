@@ -12,6 +12,6 @@ const TableHeader: FC<TableHeaderProps> = ({ className, ref, ...props }) => (
     />
 )
 
-TableHeader.displayName = 'TableHeader'
+TableHeader.displayName = 'Table.Header'
 
 export default TableHeader
