@@ -20,7 +20,7 @@ import { cn } from '@utils/cn.ts'
 const RadioGroup = (({ className, children, onValueChange, ...props }) => (
     <BaseRadioGroup
         className={cn(className)}
-        onValueChange={(value) => onValueChange?.(value)}
+        onValueChange={(value, eventDetails) => { onValueChange?.(value, eventDetails) }}
         {...props}
     >
         <Flex

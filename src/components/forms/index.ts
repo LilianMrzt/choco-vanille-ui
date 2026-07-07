@@ -1,3 +1,4 @@
+export * from '@components/forms/autocomplete'
 export * from '@components/forms/calendar'
 export * from '@components/forms/checkbox'
 export * from '@components/forms/date-picker'
