@@ -1,6 +1,6 @@
 import { Icon as Iconify } from '@iconify/react'
 
-import { ICON_STYLES } from '@components/foundation/icon/Icon.css.ts'
+import { ICON_STYLES } from '@components/foundation/icon/styles/Icon.css.ts'
 import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'

@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TypographyRecipeVariants } from '@components/foundation/typography/Typography.css.ts'
+import type { TypographyRecipeVariants } from '@components/foundation/typography/styles/Typography.css.ts'
 import type { RefAttributes } from 'react'
 import type { ThemeColor } from '@theme'
 
