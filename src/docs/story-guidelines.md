@@ -27,7 +27,7 @@ The result is a Docs page that contains:
 src/stories/<group>/<component-name>/ComponentName.stories.tsx
 ```
 
-- `<group>` matches the component category in `src/components/` (`actions`, `data-display`, `forms`, `foundation`, `layout`, `overlay`).
+- `<group>` matches the component category in `src/components/` (`actions`, `data-display`, `forms`, `foundation`, `layout`, `overlay`, `surfaces`).
 - The story `title` follows `Group/ComponentName`.
 
 ```ts
@@ -165,7 +165,7 @@ type CardPlaygroundArgs = ComponentProps<typeof Card> & {
 }
 
 const meta: Meta<CardPlaygroundArgs> = {
-    title: 'Layout/Card',
+    title: 'Surfaces/Card',
     component: Card,
     argTypes: {
         as: {
@@ -345,10 +345,10 @@ export const Playground: Story = {
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { ComponentProps } from 'react'
 import { Button } from '@/components/actions/button'
-import { Card } from '@/components/layout/card'
+import { Card } from '@/components/surfaces/card'
 
 const meta = {
-    title: 'Layout/Card',
+    title: 'Surfaces/Card',
     component: Card,
     parameters: {
         layout: 'centered',

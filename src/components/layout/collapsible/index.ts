@@ -1,7 +1,0 @@
-export { default as Collapsible } from '@components/layout/collapsible/Collapsible.tsx'
-export { COLLAPSIBLE_STYLES } from '@components/layout/collapsible/Collapsible.css.ts'
-export { COLLAPSIBLE_TRIGGER_STYLES } from '@components/layout/collapsible/components/collapsible-trigger/CollapsibleTrigger.css.ts'
-export { COLLAPSIBLE_PANEL_STYLES } from '@components/layout/collapsible/components/collapsible-panel/CollapsiblePanel.css.ts'
-export type { CollapsibleProps } from '@components/layout/collapsible/types/Collapsible.props.ts'
-export type { CollapsibleTriggerProps } from '@components/layout/collapsible/components/collapsible-trigger/types/CollapsibleTrigger.props.ts'
-export type { CollapsiblePanelProps } from '@components/layout/collapsible/components/collapsible-panel/types/CollapsiblePanel.props.ts'
