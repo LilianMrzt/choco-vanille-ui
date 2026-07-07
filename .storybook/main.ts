@@ -8,13 +8,17 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 const root = fileURLToPath(new URL('..', import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../src/stories/**/*.mdx',
+    '../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
+
   addons: [
     '@storybook/addon-a11y',
+    '@storybook/addon-vitest',
     {
       name: '@storybook/addon-docs',
       options: {
-        // Enable GitHub Flavored Markdown so MDX tables, strikethrough, etc. render.
         mdxPluginOptions: {
           mdxCompileOptions: {
             remarkPlugins: [remarkGfm],
@@ -23,20 +27,18 @@ const config: StorybookConfig = {
       },
     },
   ],
+
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
+
   viteFinal: async (viteConfig) => {
+    viteConfig.plugins = [
+      ...(viteConfig.plugins ?? []),
+      vanillaExtractPlugin(),
+    ];
 
-    viteConfig.optimizeDeps ??= {}
-
-    viteConfig.optimizeDeps.exclude = [
-      ...(viteConfig.optimizeDeps.exclude ?? []),
-      '@base-ui/react',
-    ]
-
-    viteConfig.plugins = [...(viteConfig.plugins ?? []), vanillaExtractPlugin()];
     viteConfig.resolve = {
       ...viteConfig.resolve,
       alias: {
