@@ -8,7 +8,7 @@ import type {
     TypographyWeight,
 } from '@components/foundation/typography'
 import { lightColors } from '@theme/colors/light.ts'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/types'
 import { md } from '@stories/utils/markdown'
 
 const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
@@ -72,32 +72,34 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A polymorphic text component that renders the correct semantic HTML element for a given \`variant\` and optionally overrides the element via the \`as\` prop.
 It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fine-grained control.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <Typography variant="h1">Page Title</Typography>
 <Typography variant="p">Body paragraph text.</Typography>
 
 // Override the rendered element while keeping the h2 style
 <Typography variant="h2" as="span">Visually h2, semantically a span</Typography>
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`variant\` | ✅ Yes | \`h1\`–\`h6\`, \`p\`, \`span\`, \`label\`, … | Determines semantic element and default styling. Never pick a heading level for its size — use \`fontSize\` instead. |
-| \`as\` | No | Any HTML element | Overrides the rendered element while keeping the visual style (e.g. an \`h3\`-styled \`<span>\` inside a \`<li>\`). |
-| \`title\` (for \`abbr\`) | Conditional | \`string\` | Required when \`variant="abbr"\` to expose the expanded form to screen readers and hover tooltips. |
-| \`htmlFor\` (for \`label\`) | Conditional | \`string\` | Links a \`label\` variant to its form control; alternative is wrapping the control as a child. |
+| Prop / Attribute        | Required    | Type                               | Notes                                                                                                              |
+| ----------------------- | ----------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| \`variant\`               | ✅ Yes      | \`h1\`–\`h6\`, \`p\`, \`span\`, \`label\`, … | Determines semantic element and default styling. Never pick a heading level for its size — use \`fontSize\` instead. |
+| \`as\`                    | No          | Any HTML element                   | Overrides the rendered element while keeping the visual style (e.g. an \`h3\`-styled \`<span>\` inside a \`<li>\`).      |
+| \`title\` (for \`abbr\`)    | Conditional | \`string\`                           | Required when \`variant="abbr"\` to expose the expanded form to screen readers and hover tooltips.                   |
+| \`htmlFor\` (for \`label\`) | Conditional | \`string\`                           | Links a \`label\` variant to its form control; alternative is wrapping the control as a child.                       |
 
 - Respect heading hierarchy: use one \`h1\` per page and nest levels in order without skipping.
 - Pair \`del\` and \`ins\` together to communicate document revisions accessibly.
-                `,
+        `,
             },
         },
     },
@@ -115,7 +117,7 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fi
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {

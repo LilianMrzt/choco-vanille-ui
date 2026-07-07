@@ -2,18 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent, waitFor, within } from 'storybook/test'
 import type { ComponentProps } from 'react'
 
-import { Button, Dialog, Typography } from '@components'
-import type { DialogSize } from '@components/overlay/dialog'
+import { Button } from '@components/actions/button'
+import { Dialog, type DialogSize } from '@components/overlay/dialog'
+import { Typography } from '@components/foundation/typography'
 import { md } from '@stories/utils/markdown'
 
 type DialogPlaygroundArgs = ComponentProps<typeof Dialog> & {
-    size?: DialogSize
-    title?: string
-    description?: string
-    showDescription?: boolean
-    showFooter?: boolean
-    confirmLabel?: string
-    cancelLabel?: string
+  size?: DialogSize
+  title?: string
+  description?: string
+  showDescription?: boolean
+  showFooter?: boolean
+  confirmLabel?: string
+  cancelLabel?: string
 }
 
 const SIZES: DialogSize[] = ['sm', 'md', 'lg', 'xl', '2xl', 'full']
@@ -25,14 +26,16 @@ const meta: Meta<DialogPlaygroundArgs> = {
         layout: 'centered',
         docs: {
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
 A modal dialog built on Base UI Dialog.
 
 Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog.Body\`, \`Dialog.Footer\`, \`Dialog.Title\`, \`Dialog.Description\` and \`Dialog.Close\`.
 
 **Usage**
 
-\`\`\`tsx
+~~~tsx
 <Dialog>
   <Dialog.Trigger>
     <Button label="Open dialog" variant="contained" color="primary" />
@@ -53,15 +56,15 @@ Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog
     </Dialog.Footer>
   </Dialog.Content>
 </Dialog>
-\`\`\`
+~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`title\` on \`Dialog.Header\` | Recommended | \`string\` | Provides an accessible title for the dialog. |
-| \`titleAs\` on \`Dialog.Header\` | No | \`h1\` – \`h6\` | Choose the heading level that fits the page outline. |
-| \`aria-label\` on \`Dialog.Content\` | No | \`string\` | Use when no visible title is present. |
+| Prop / Attribute                 | Required    | Type        | Notes                                                |
+| -------------------------------- | ----------- | ----------- | ---------------------------------------------------- |
+| \`title\` on \`Dialog.Header\`       | Recommended | \`string\`    | Provides an accessible title for the dialog.         |
+| \`titleAs\` on \`Dialog.Header\`     | No          | \`h1\` – \`h6\` | Choose the heading level that fits the page outline. |
+| \`aria-label\` on \`Dialog.Content\` | No          | \`string\`    | Use when no visible title is present.                |
 
 - Focus is trapped inside the dialog while it is open.
 - Pressing \`Escape\` or clicking the overlay closes the dialog.
@@ -69,18 +72,18 @@ Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog
 
 **Sub-components**
 
-| Sub-component | Description |
-|---|---|
-| \`Dialog\` | Root wrapper that manages open/close state. |
-| \`Dialog.Trigger\` | Element that opens the dialog. |
-| \`Dialog.Content\` | Modal panel rendered inside a portal. |
-| \`Dialog.Header\` | Title, description, and optional close button. |
-| \`Dialog.Body\` | Main content area. |
-| \`Dialog.Footer\` | Bottom area for action buttons. |
-| \`Dialog.Title\` | Accessible dialog title. |
-| \`Dialog.Description\` | Accessible dialog description. |
-| \`Dialog.Close\` | Closes the dialog when activated. |
-                `,
+| Sub-component        | Description                                    |
+| -------------------- | ---------------------------------------------- |
+| \`Dialog\`             | Root wrapper that manages open/close state.    |
+| \`Dialog.Trigger\`     | Element that opens the dialog.                 |
+| \`Dialog.Content\`     | Modal panel rendered inside a portal.          |
+| \`Dialog.Header\`      | Title, description, and optional close button. |
+| \`Dialog.Body\`        | Main content area.                             |
+| \`Dialog.Footer\`      | Bottom area for action buttons.                |
+| \`Dialog.Title\`       | Accessible dialog title.                       |
+| \`Dialog.Description\` | Accessible dialog description.                 |
+| \`Dialog.Close\`       | Closes the dialog when activated.              |
+        `,
             },
         },
     },
@@ -142,7 +145,7 @@ Compose with \`Dialog.Trigger\`, \`Dialog.Content\`, \`Dialog.Header\`, \`Dialog
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
@@ -186,8 +189,8 @@ export const Playground: Story = {
                         fontSize={'sm'}
                         color={'foreground'}
                     >
-                        Your content goes here. This dialog demonstrates the
-                        compound component layout with Header, Body and Footer.
+                        Your content goes here. This dialog demonstrates the compound
+                        component layout with Header, Body and Footer.
                     </Typography>
                 </Dialog.Body>
                 {showFooter && (
@@ -217,7 +220,11 @@ export const Playground: Story = {
         await waitFor(() =>
             expect(document.querySelector('[role="dialog"]')).toBeInTheDocument(),
         )
-        await expect(document.querySelector('[role="dialog"]')).toHaveTextContent('Account settings')
-        await userEvent.click(document.querySelector('[aria-label="Close dialog"]')!)
+        await expect(document.querySelector('[role="dialog"]')).toHaveTextContent(
+            'Account settings',
+        )
+        await userEvent.click(
+      document.querySelector('[aria-label="Close dialog"]')!,
+        )
     },
 }

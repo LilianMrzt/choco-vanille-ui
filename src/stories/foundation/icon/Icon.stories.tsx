@@ -5,7 +5,7 @@ import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
 import { lightColors } from '@theme/colors/light.ts'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/types'
 import { md } from '@stories/utils/markdown'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
@@ -45,7 +45,7 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
 
 - When the icon accompanies visible text, the default decorative treatment is correct — do not add \`aria-label\`.
 - Avoid using \`Icon\` as the sole means of conveying state — pair it with a visible text label or a \`Tooltip\`.
-                `,
+        `,
             },
         },
     },
@@ -71,7 +71,7 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-                    'Interactive playground — use the Controls panel to change the icon name, size, color, and spin animation.',
+          'Interactive playground — use the Controls panel to change the icon name, size, color, and spin animation.',
             },
         },
     },

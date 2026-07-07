@@ -2,25 +2,30 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 import type { ComponentProps } from 'react'
 
-import { Button, Card, IconButton, Typography } from '@components'
+import { Button } from '@components/actions/button'
+import { IconButton } from '@components/actions/icon-button'
+import { Card } from '@components/layout/card'
+import {
+    Typography,
+    type TypographyProps,
+} from '@components/foundation/typography'
 import type { BoxRecipeVariants } from '@components/layout/box'
-import type { TypographyProps } from '@components/foundation/typography'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
 type CardPlaygroundArgs = ComponentProps<typeof Card> & {
-    headerAs?: 'div' | 'header'
-    title?: string
-    titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-    titleFontSize?: TypographyProps['fontSize']
-    titleFontWeight?: TypographyProps['fontWeight']
-    description?: string
-    descriptionFontSize?: TypographyProps['fontSize']
-    bodyAs?: 'div' | 'section'
-    bodyPadding?: BoxRecipeVariants['padding']
-    footerAs?: 'div' | 'footer'
-    showFooter?: boolean
-    footerActionLabel?: string
+  headerAs?: 'div' | 'header'
+  title?: string
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  titleFontSize?: TypographyProps['fontSize']
+  titleFontWeight?: TypographyProps['fontWeight']
+  description?: string
+  descriptionFontSize?: TypographyProps['fontSize']
+  bodyAs?: 'div' | 'section'
+  bodyPadding?: BoxRecipeVariants['padding']
+  footerAs?: 'div' | 'footer'
+  showFooter?: boolean
+  footerActionLabel?: string
 }
 
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
@@ -83,24 +88,24 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 
 ~~~tsx
 <Card>
-    <Card.Header
-        title="Account settings"
-        description="Manage your profile."
-        titleAs="h3"
-        titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
-        actions={
-            <IconButton
-                icon={IconRegistry.ellipsisVertical}
-                aria-label="More"
-                variant="ghost"
-                color="primary"
-            />
-        }
-    />
-    <Card.Body>…</Card.Body>
-    <Card.Footer>
-        <Button label="Save" variant="contained" color="primary" />
-    </Card.Footer>
+  <Card.Header
+    title="Account settings"
+    description="Manage your profile."
+    titleAs="h3"
+    titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
+    actions={
+      <IconButton
+        icon={IconRegistry.ellipsisVertical}
+        aria-label="More"
+        variant="ghost"
+        color="primary"
+      />
+    }
+  />
+  <Card.Body>…</Card.Body>
+  <Card.Footer>
+    <Button label="Save" variant="contained" color="primary" />
+  </Card.Footer>
 </Card>
 ~~~
 
@@ -124,7 +129,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 | \`Card.Header\` | Title, description, and optional actions. |
 | \`Card.Body\`   | Main content area.                        |
 | \`Card.Footer\` | Bottom area for actions or metadata.      |
-                `,
+        `,
             },
         },
     },
@@ -253,7 +258,7 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-                    'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
+          'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
             },
         },
     },
