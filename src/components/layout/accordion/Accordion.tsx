@@ -1,11 +1,12 @@
-﻿import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
+import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
 import AccordionContent from '@components/layout/accordion/components/accordion-content/AccordionContent.tsx'
 import AccordionItem from '@components/layout/accordion/components/accordion-item/AccordionItem.tsx'
 import AccordionTrigger from '@components/layout/accordion/components/accordion-trigger/AccordionTrigger.tsx'
 import { ACCORDION_STYLES } from '@components/layout/accordion/Accordion.css.ts'
+import type { AccordionProps } from '@components/layout/accordion/types/Accordion.props.ts'
 import type { AccordionCompound } from '@components/layout/accordion/types'
-import { cn } from '@utils/cn.ts'
+import { Flex } from '@components/layout/flex'
 
 /**
  * A styled accordion built on top of `@base-ui/react/accordion`.
@@ -15,7 +16,7 @@ import { cn } from '@utils/cn.ts'
  *
  * @example
  * ```tsx
- * <Accordion type="single" defaultValue="item-1" collapsible>
+ * <Accordion defaultValue={['item-1']}>
  *   <Accordion.Item value="item-1">
  *     <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
  *     <Accordion.Content>Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
@@ -23,11 +24,19 @@ import { cn } from '@utils/cn.ts'
  * </Accordion>
  * ```
  */
-const Accordion = (({ className, ...props }) => (
-    <BaseAccordion.Root
-        className={cn(ACCORDION_STYLES.root, className)}
-        {...props}
-    />
+const Accordion = (({ className, width, ...props }: AccordionProps) => (
+    <Flex
+        flexDirection={'column'}
+        alignItems={'stretch'}
+        width={width ?? '100%'}
+        gap={'none'}
+        className={typeof className === 'function' ? undefined : className}
+    >
+        <BaseAccordion.Root
+            className={ACCORDION_STYLES.root}
+            {...props}
+        />
+    </Flex>
 )) as AccordionCompound
 
 Accordion.displayName = 'Accordion'

@@ -12,4 +12,4 @@ export type AccordionTriggerProps = Omit<
   endIcon?: string;
   /** Custom trigger content. Takes precedence over `label`. */
   children?: Accordion.Trigger.Props['children'];
-};
+}

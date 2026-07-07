@@ -7,9 +7,9 @@ import { cn } from '@utils/cn.ts'
 /**
  * Groups an accordion header with its corresponding panel.
  */
-const AccordionItem = ({ className, ...props }: AccordionItemProps) => (
+const AccordionItem = ({ className, bordered = true, ...props }: AccordionItemProps) => (
     <BaseAccordion.Item
-        className={cn(ACCORDION_ITEM_STYLES.root, className)}
+        className={cn(ACCORDION_ITEM_STYLES.recipe({ bordered }), className)}
         {...props}
     />
 )

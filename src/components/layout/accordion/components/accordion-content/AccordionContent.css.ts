@@ -20,7 +20,6 @@ export const ACCORDION_CONTENT_STYLES = {
         selectors: {
             '&[data-open]': {
                 gridTemplateRows: '1fr',
-                paddingBottom: vars.space.md,
                 opacity: 1,
             },
             '&:focus-visible': {

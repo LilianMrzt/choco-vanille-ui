@@ -9,6 +9,7 @@ export const ACCORDION_TRIGGER_STYLES = {
         justifyContent: 'space-between',
         gap: vars.space.sm,
         width: '100%',
+        boxSizing: 'border-box',
         padding: `${vars.space.sm} 0`,
         border: 'none',
         backgroundColor: 'transparent',
