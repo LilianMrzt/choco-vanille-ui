@@ -36,6 +36,11 @@ export const darkColors: Record<keyof LightColors, string> = {
     primarySubtleForeground: palette.brand[200],
     primarySubtleBorder: palette.brand[800],
 
+    /* Links — higher contrast hover/active for clear affordance */
+    link: palette.brand[500],
+    linkHover: palette.brand[300],
+    linkActive: palette.brand[200],
+
     /* Secondary (low-emphasis neutral intent)  */
     secondary: palette.neutral[800],
     secondaryHover: palette.neutral[700],

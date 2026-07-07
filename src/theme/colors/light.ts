@@ -57,6 +57,11 @@ export const lightColors = {
     primarySubtleForeground: palette.brand[800],
     primarySubtleBorder: palette.brand[200],
 
+    /* Links — higher contrast hover/active for clear affordance */
+    link: palette.brand[600],
+    linkHover: palette.brand[800],
+    linkActive: palette.brand[900],
+
     /* Secondary (low-emphasis neutral intent)  */
     secondary: palette.neutral[200],
     secondaryHover: palette.neutral[300],
