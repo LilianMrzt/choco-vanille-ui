@@ -28,10 +28,18 @@ export type AvatarProps = {
   color?: AvatarColor;
   /** Optional status indicator rendered at the bottom-right edge. */
   status?: AvatarStatus;
+  /** Accessible label describing the status. Defaults to the status value. Use this for i18n. */
+  statusLabel?: string;
   /** Size of the status indicator. Defaults to the avatar size. */
   statusSize?: AvatarSize;
   /** Whether to render a subtle ring around the avatar. Defaults to `false`. */
   ring?: boolean;
+  /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
+  'aria-label'?: string;
+  /** Id of the element that labels the avatar. */
+  'aria-labelledby'?: string;
+  /** Semantic role for the avatar. Use `button` when the avatar is interactive. */
+  role?: React.HTMLAttributes<HTMLSpanElement>['role'];
   /** Delay in milliseconds before showing the fallback. */
   fallbackDelay?: Avatar.Fallback.Props['delay'];
   /** Callback fired when the image loading status changes. */

@@ -3,6 +3,7 @@ import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import { AVATAR_FALLBACK_STYLES } from '@components/data-display/avatar/components/avatar-fallback/styles/AvatarFallback.css.ts'
 import type { AvatarFallbackProps } from '@components/data-display/avatar/components/avatar-fallback/types/AvatarFallback.props.ts'
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
 
@@ -14,7 +15,12 @@ const AvatarFallback: FC<AvatarFallbackProps> = ({
     ...props
 }) => {
     const fallbackContent = initials ? (
-        <span aria-hidden={'true'}>{initials.slice(0, 2).toUpperCase()}</span>
+        <Typography
+            as={'span'}
+            aria-hidden={'true'}
+        >
+            {initials.slice(0, 2).toUpperCase()}
+        </Typography>
     ) : icon ? (
         <Icon icon={icon} />
     ) : (

@@ -1,21 +1,25 @@
 import { AVATAR_STATUS } from '@components/data-display/avatar/constants'
 import { AVATAR_STATUS_STYLES } from '@components/data-display/avatar/components/avatar-status/styles/AvatarStatus.css.ts'
 import type { AvatarStatusProps } from '@components/data-display/avatar/components/avatar-status/types/AvatarStatus.props.ts'
+import { Box } from '@components/layout/box'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
 
 const AvatarStatus: FC<AvatarStatusProps> = ({
     status = AVATAR_STATUS.online,
     size,
+    label,
     className,
     ...props
 }) => (
-    <span
+    <Box
+        as={'span'}
         className={cn(
             AVATAR_STATUS_STYLES.recipe({ size, status }),
             className,
         )}
-        aria-hidden={'true'}
+        aria-label={label ?? status}
+        role={'status'}
         {...props}
     />
 )

@@ -17,6 +17,12 @@ export type AvatarRootProps = {
   color?: AvatarColor;
   /** Whether to render a subtle ring around the avatar. Defaults to `false`. */
   ring?: boolean;
+  /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
+  'aria-label'?: string;
+  /** Id of the element that labels the avatar. */
+  'aria-labelledby'?: string;
+  /** Semantic role for the avatar. Use `button` when the avatar is interactive. */
+  role?: React.HTMLAttributes<HTMLSpanElement>['role'];
   /** Additional CSS class names. */
   className?: string;
   /** Children (image, fallback, status). */

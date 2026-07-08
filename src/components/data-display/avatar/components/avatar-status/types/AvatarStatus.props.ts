@@ -8,6 +8,8 @@ export type AvatarStatusProps = {
   status?: AvatarStatusType;
   /** Size of the status indicator. Defaults to `md`. */
   size?: AvatarSize;
+  /** Accessible label describing the status. Defaults to the status value. Use this for i18n. */
+  label?: string;
   /** Additional CSS class names. */
   className?: string;
   /** Native HTML attributes forwarded to the status element. */

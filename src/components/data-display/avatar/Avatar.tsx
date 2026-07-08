@@ -14,6 +14,7 @@ const Avatar = (({
     shape = 'circle',
     color = 'primary',
     status,
+    statusLabel,
     statusSize,
     ring = false,
     fallbackDelay,
@@ -50,6 +51,7 @@ const Avatar = (({
                 <AvatarStatus
                     status={status}
                     size={statusSize ?? size}
+                    label={statusLabel}
                 />
             )}
         </AvatarRoot>

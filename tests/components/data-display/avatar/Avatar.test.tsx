@@ -125,6 +125,47 @@ describe('Avatar', () => {
                 ).toBeGreaterThanOrEqual(2)
             },
         )
+
+        it.each(statuses)(
+            'exposes the status value as an accessible label by default for status="%s"',
+            (status) => {
+                render(<Avatar status={status} initials={'A'} />)
+                expect(screen.getByRole('status').getAttribute('aria-label')).toBe(
+                    status,
+                )
+            },
+        )
+
+        it('uses a custom accessible status label when provided', () => {
+            render(
+                <Avatar
+                    status={'online'}
+                    statusLabel={'En ligne'}
+                    initials={'A'}
+                />,
+            )
+            expect(screen.getByRole('status').getAttribute('aria-label')).toBe(
+                'En ligne',
+            )
+        })
+    })
+
+    describe('accessible name', () => {
+        it('forwards aria-label to the root element', () => {
+            const { container } = render(
+                <Avatar aria-label={'John Doe'} initials={'JD'} />,
+            )
+            expect(getFirstChild(container).getAttribute('aria-label')).toBe(
+                'John Doe',
+            )
+        })
+
+        it('forwards role to the root element', () => {
+            const { container } = render(
+                <Avatar role={'button'} initials={'JD'} />,
+            )
+            expect(getFirstChild(container).getAttribute('role')).toBe('button')
+        })
     })
 
     describe('ring', () => {
@@ -194,6 +235,33 @@ describe('AvatarGroup', () => {
         expect(screen.queryByText('C')).toBeFalsy()
         expect(screen.queryByText('D')).toBeFalsy()
         expect(screen.getByText('+2')).toBeTruthy()
+    })
+
+    it('provides an accessible label for the overflow indicator', () => {
+        render(
+            <AvatarGroup max={2}>
+                <Avatar initials="A" />
+                <Avatar initials="B" />
+                <Avatar initials="C" />
+                <Avatar initials="D" />
+            </AvatarGroup>,
+        )
+        expect(screen.getByLabelText('2 more')).toBeTruthy()
+    })
+
+    it('supports a custom overflow label for i18n', () => {
+        render(
+            <AvatarGroup
+                max={2}
+                overflowLabel={(count) => `${count} de plus`}
+            >
+                <Avatar initials="A" />
+                <Avatar initials="B" />
+                <Avatar initials="C" />
+                <Avatar initials="D" />
+            </AvatarGroup>,
+        )
+        expect(screen.getByLabelText('2 de plus')).toBeTruthy()
     })
 
     it('forwards the ref to the underlying DOM node', () => {

@@ -10,14 +10,18 @@ import { Avatar } from '@components/data-display/avatar'
 import { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/constants'
 import type { AvatarGroupProps } from '@components/data-display/avatar-group/types/AvatarGroup.props.ts'
 import type { AvatarProps } from '@components/data-display/avatar/types/Avatar.props.ts'
+import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
+
+const defaultOverflowLabel = (count: number) => `${count} more`
 
 const AvatarGroup: FC<AvatarGroupProps> = ({
     children,
     max,
     spacing = 'md',
     ring = true,
+    overflowLabel = defaultOverflowLabel,
     className,
     ref,
     ...props
@@ -60,18 +64,21 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
                 }
 
                 return (
-                    <span
+                    <Box
+                        as={'span'}
                         key={index}
                         style={style}
                     >
                         {child}
-                    </span>
+                    </Box>
                 )
             })}
             {overflowCount > 0 && (
                 <Avatar
                     initials={`+${overflowCount}`}
                     ring={ring}
+                    aria-label={overflowLabel(overflowCount)}
+                    role={'img'}
                     style={{ marginLeft: overlap }}
                 />
             )}
