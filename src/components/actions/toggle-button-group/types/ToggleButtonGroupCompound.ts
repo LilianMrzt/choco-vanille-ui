@@ -1,0 +1,8 @@
+import type { FC } from 'react'
+
+import type ToggleButtonGroupItem from '@components/actions/toggle-button-group/components/toggle-button-group-item/ToggleButtonGroupItem.tsx'
+import type { ToggleButtonGroupProps } from '@components/actions/toggle-button-group/types/ToggleButtonGroup.props.ts'
+
+export type ToggleButtonGroupCompound = FC<ToggleButtonGroupProps> & {
+    Item: typeof ToggleButtonGroupItem
+}
