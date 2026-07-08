@@ -10,7 +10,7 @@ import {
     BUTTON_COLORS,
     BUTTON_SIZES,
 } from '@components/actions/_shared/buttons/constants'
-import { md } from '@stories/utils/markdown'
+import { md } from '@stories/utils/markdown.ts'
 import type { ThemeColor } from '@theme/types'
 
 const ORIENTATIONS: ToggleButtonGroupOrientation[] = ['horizontal', 'vertical']
@@ -60,7 +60,7 @@ type ToggleButtonGroupStoryArgs = React.ComponentProps<
 };
 
 const meta = {
-    title: 'Actions/ToggleButtonGroup',
+    title: 'Actions/Toggle/ToggleButtonGroup',
     component: ToggleButtonGroup,
     parameters: {
         layout: 'centered',

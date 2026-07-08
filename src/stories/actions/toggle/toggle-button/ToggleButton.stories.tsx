@@ -2,15 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
 import {
-    ToggleIconButton,
-    type ToggleIconButtonColor,
-    type ToggleIconButtonRadius,
-    type ToggleIconButtonSize,
-    type ToggleIconButtonVariant,
-} from '@components/actions/toggle-icon-button'
-import { md } from '@stories/utils/markdown'
+    ToggleButton,
+    type ToggleButtonColor,
+    type ToggleButtonRadius,
+    type ToggleButtonSize,
+    type ToggleButtonVariant,
+} from '@components/actions/toggle-button'
+import { md } from '@stories/utils/markdown.ts'
 
-const COLORS: ToggleIconButtonColor[] = [
+const COLORS: ToggleButtonColor[] = [
     'primary',
     'secondary',
     'destructive',
@@ -18,8 +18,8 @@ const COLORS: ToggleIconButtonColor[] = [
     'warning',
     'info',
 ]
-const SIZES: ToggleIconButtonSize[] = ['xs', 'sm', 'md', 'lg']
-const RADII: ToggleIconButtonRadius[] = [
+const SIZES: ToggleButtonSize[] = ['sm', 'md', 'lg']
+const RADII: ToggleButtonRadius[] = [
     'none',
     'xs',
     'sm',
@@ -29,34 +29,39 @@ const RADII: ToggleIconButtonRadius[] = [
     '2xl',
     'full',
 ]
-const VARIANTS: ToggleIconButtonVariant[] = ['outlined', 'ghost']
+const VARIANTS: ToggleButtonVariant[] = ['outlined', 'ghost']
 
 const meta = {
-    title: 'Actions/ToggleIconButton',
-    component: ToggleIconButton,
+    title: 'Actions/Toggle/ToggleButton',
+    component: ToggleButton,
     parameters: {
         layout: 'centered',
         docs: {
             description: {
                 component: md /* language=markdown */ `
-A two-state button that displays a single icon and can be either pressed or not pressed.
-Use it for compact toolbars or actions where a text label would take up too much space.
-It shares the same variant, color, size, and radius options as \`ToggleButton\`.
+A two-state button that can be either pressed or not pressed.
+Use it for actions that toggle a binary state, such as bold/italic formatting or showing/hiding a panel.
+It can show a label, an icon, or both, and shares the same size and color options as the standard Button.
+
+For an icon-only toggle, use ToggleIconButton instead.
 
 **Usage**
 
 ~~~tsx
+<ToggleButton label="Bold" defaultPressed />
+<ToggleButton label="Italic" color="secondary" />
+<ToggleButton label="Bold" startIcon="lucide:bold" />
+<ToggleButton label="Rounded" radius="full" />
+
 <ToggleIconButton icon="lucide:bold" aria-label="Bold" />
-<ToggleIconButton icon="lucide:italic" color="secondary" variant="ghost" />
-<ToggleIconButton icon="lucide:underline" aria-label="Underline" radius="full" />
 ~~~
 
 **Accessibility**
 
 | Prop / Attribute | Required | Type                  | Notes                                                                          |
 | ---------------- | -------- | --------------------- | ------------------------------------------------------------------------------ |
-| \`icon\`           | ✅ Yes   | \`string\`              | Iconify icon name rendered inside the button.                                  |
-| \`aria-label\`     | ✅ Yes   | \`string\`              | Required — describes the action, not the icon name.                            |
+| \`label\`          | No       | \`string\`              | Becomes the button's accessible name when provided.                            |
+| \`aria-label\`     | No       | \`string\`              | Required when the button only displays an icon.                                |
 | \`variant\`        | No       | \`outlined\` \| \`ghost\` | Visual style of the untoggled button. @default \`outlined\`.                     |
 | \`radius\`         | No       | \`Radius\`              | Border radius of the button. Defaults to the library's \`sm\` radius.            |
 | \`pressed\`        | No       | \`boolean\`             | Controlled pressed state.                                                      |
@@ -71,23 +76,23 @@ It shares the same variant, color, size, and radius options as \`ToggleButton\`.
         },
     },
     argTypes: {
-        icon: { control: 'text' },
-        'aria-label': { control: 'text' },
+        label: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         radius: { control: 'select', options: RADII },
+        startIcon: { control: 'text' },
+        endIcon: { control: 'text' },
         pressed: { control: 'boolean' },
         defaultPressed: { control: 'boolean' },
         disabled: { control: 'boolean' },
     },
     args: {
-        icon: 'lucide:bold',
-        'aria-label': 'Bold',
+        label: 'Toggle',
         variant: 'outlined',
         radius: 'sm',
     },
-} satisfies Meta<typeof ToggleIconButton>
+} satisfies Meta<typeof ToggleButton>
 
 export default meta
 
@@ -105,7 +110,7 @@ export const Playground: Story = {
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         await expect(
-            canvas.getByRole('button', { name: args['aria-label'] as string }),
+            canvas.getByRole('button', { name: args.label as string }),
         ).toBeInTheDocument()
     },
 }
