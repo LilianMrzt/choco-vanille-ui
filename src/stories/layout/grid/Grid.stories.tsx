@@ -6,6 +6,22 @@ import { Box } from '@components/layout/box'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
+const COLUMNS = [
+    undefined,
+    'none',
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+] as const
 const AUTO_ROWS = [undefined, 'auto', 'min', 'max', 'fr'] as const
 const FLOW = [
     undefined,
@@ -151,7 +167,7 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
     },
     argTypes: {
         as: { control: 'select', options: ['div', 'section', 'article', 'aside', 'main', 'header', 'footer', 'nav', 'ul', 'ol'] },
-        columns: { control: 'text' },
+        columns: { control: 'select', options: COLUMNS },
         gridAutoRows: { control: 'select', options: AUTO_ROWS },
         gridAutoFlow: { control: 'select', options: FLOW },
         alignItems: { control: 'select', options: ALIGN },
