@@ -19,7 +19,16 @@ const COLORS: ToggleButtonColor[] = [
     'info',
 ]
 const SIZES: ToggleButtonSize[] = ['sm', 'md', 'lg']
-const RADII: ToggleButtonRadius[] = ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full']
+const RADII: ToggleButtonRadius[] = [
+    'none',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    'full',
+]
 const VARIANTS: ToggleButtonVariant[] = ['outlined', 'ghost']
 
 const meta = {
@@ -34,31 +43,35 @@ A two-state button that can be either pressed or not pressed.
 Use it for actions that toggle a binary state, such as bold/italic formatting or showing/hiding a panel.
 It can show a label, an icon, or both, and shares the same size and color options as the standard Button.
 
+For an icon-only toggle, use ToggleIconButton instead.
+
 **Usage**
 
 ~~~tsx
 <ToggleButton label="Bold" defaultPressed />
 <ToggleButton label="Italic" color="secondary" />
-<ToggleButton startIcon="lucide:bold" aria-label="Bold" />
+<ToggleButton label="Bold" startIcon="lucide:bold" />
 <ToggleButton label="Rounded" radius="full" />
+
+<ToggleIconButton icon="lucide:bold" aria-label="Bold" />
 ~~~
 
 **Accessibility**
 
-| Prop / Attribute | Required | Type      | Notes                                                                          |
-| ---------------- | -------- | --------- | ------------------------------------------------------------------------------ |
-| \`label\`          | No       | \`string\`  | Becomes the button's accessible name when provided.                          |
-| \`aria-label\`     | No       | \`string\`  | Required when the button only displays an icon.                              |
-| \`variant\`        | No       | \`outlined\` \| \`ghost\` | Visual style of the untoggled button. @default \`outlined\`. |
-| \`radius\`         | No       | \`Radius\`  | Border radius of the button. Defaults to the library's \`sm\` radius.         |
-| \`pressed\`        | No       | \`boolean\` | Controlled pressed state.                                                      |
-| \`defaultPressed\` | No       | \`boolean\` | Uncontrolled initial pressed state.                                            |
-| \`disabled\`       | No       | \`boolean\` | Keeps the button visible and announced by screen readers.                      |
-| \`aria-*\`         | No       | —         | All native \`<button>\` ARIA attributes are forwarded to the underlying element. |
+| Prop / Attribute | Required | Type                  | Notes                                                                          |
+| ---------------- | -------- | --------------------- | ------------------------------------------------------------------------------ |
+| \`label\`          | No       | \`string\`              | Becomes the button's accessible name when provided.                            |
+| \`aria-label\`     | No       | \`string\`              | Required when the button only displays an icon.                                |
+| \`variant\`        | No       | \`outlined\` \| \`ghost\` | Visual style of the untoggled button. @default \`outlined\`.                     |
+| \`radius\`         | No       | \`Radius\`              | Border radius of the button. Defaults to the library's \`sm\` radius.            |
+| \`pressed\`        | No       | \`boolean\`             | Controlled pressed state.                                                      |
+| \`defaultPressed\` | No       | \`boolean\`             | Uncontrolled initial pressed state.                                            |
+| \`disabled\`       | No       | \`boolean\`             | Keeps the button visible and announced by screen readers.                      |
+| \`aria-*\`         | No       | —                     | All native \`<button>\` ARIA attributes are forwarded to the underlying element. |
 
 - The underlying element is a native \`<button>\` with \`aria-pressed\`, ensuring screen readers announce the pressed state.
 - It is keyboard operable with \`Space\` / \`Enter\`.
-                `,
+        `,
             },
         },
     },
@@ -83,14 +96,14 @@ It can show a label, an icon, or both, and shares the same size and color option
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-                    'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },

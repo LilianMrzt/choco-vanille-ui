@@ -6,18 +6,22 @@ import { describe, expect, it, vi } from 'vitest'
 import {
     ToggleButtonGroup,
     TOGGLE_BUTTON_GROUP_STYLES,
+    TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES,
 } from '@components/actions/toggle-button-group'
 
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 const ControlledToggleButtonGroup = ({
     defaultValue,
     onValueChange,
     ...props
-}: Omit<React.ComponentProps<typeof ToggleButtonGroup>, 'value' | 'onValueChange'> & {
-    defaultValue?: string[]
-    onValueChange?: (value: string[]) => void
+}: Omit<
+  React.ComponentProps<typeof ToggleButtonGroup>,
+  'value' | 'onValueChange'
+> & {
+  defaultValue?: string[];
+  onValueChange?: (value: string[]) => void;
 }) => {
     const [value, setValue] = useState<string[]>(defaultValue ?? [])
 
@@ -57,6 +61,25 @@ describe('ToggleButtonGroup', () => {
             expect(screen.getByRole('button', { name: 'B' })).toBeTruthy()
             expect(screen.getByRole('button', { name: 'C' })).toBeTruthy()
         })
+
+        it('renders icon items', () => {
+            render(
+                <ToggleButtonGroup>
+                    <ToggleButtonGroup.IconItem
+                        value="a"
+                        icon="lucide:bold"
+                        aria-label="Bold"
+                    />
+                    <ToggleButtonGroup.IconItem
+                        value="b"
+                        icon="lucide:italic"
+                        aria-label="Italic"
+                    />
+                </ToggleButtonGroup>,
+            )
+            expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
+            expect(screen.getByRole('button', { name: 'Italic' })).toBeTruthy()
+        })
     })
 
     describe('selection behavior', () => {
@@ -68,13 +91,21 @@ describe('ToggleButtonGroup', () => {
                 </ControlledToggleButtonGroup>,
             )
 
-            expect(screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed')).toBe('true')
-            expect(screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed')).toBe('false')
+            expect(
+                screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed'),
+            ).toBe('true')
+            expect(
+                screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed'),
+            ).toBe('false')
 
             await userEvent.click(screen.getByRole('button', { name: 'B' }))
 
-            expect(screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed')).toBe('false')
-            expect(screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed')).toBe('true')
+            expect(
+                screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed'),
+            ).toBe('false')
+            expect(
+                screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed'),
+            ).toBe('true')
         })
 
         it('allows multiple selections when multiple is true', async () => {
@@ -87,8 +118,12 @@ describe('ToggleButtonGroup', () => {
 
             await userEvent.click(screen.getByRole('button', { name: 'B' }))
 
-            expect(screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed')).toBe('true')
-            expect(screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed')).toBe('true')
+            expect(
+                screen.getByRole('button', { name: 'A' }).getAttribute('aria-pressed'),
+            ).toBe('true')
+            expect(
+                screen.getByRole('button', { name: 'B' }).getAttribute('aria-pressed'),
+            ).toBe('true')
         })
 
         it('calls onValueChange when selection changes', async () => {
@@ -137,8 +172,14 @@ describe('ToggleButtonGroup', () => {
                     <ToggleButtonGroup.Item value="b" label="B" />
                 </ToggleButtonGroup>,
             )
-            expect((screen.getByRole('button', { name: 'A' }) as HTMLButtonElement).disabled).toBe(true)
-            expect((screen.getByRole('button', { name: 'B' }) as HTMLButtonElement).disabled).toBe(true)
+            expect(
+                (screen.getByRole('button', { name: 'A' }) as HTMLButtonElement)
+                    .disabled,
+            ).toBe(true)
+            expect(
+                (screen.getByRole('button', { name: 'B' }) as HTMLButtonElement)
+                    .disabled,
+            ).toBe(true)
         })
     })
 
@@ -166,6 +207,71 @@ describe('ToggleButtonGroup', () => {
         })
     })
 
+    describe('icon item selection behavior', () => {
+        it('selects only one icon item by default', async () => {
+            render(
+                <ControlledToggleButtonGroup defaultValue={['a']}>
+                    <ToggleButtonGroup.IconItem
+                        value="a"
+                        icon="lucide:bold"
+                        aria-label="Bold"
+                    />
+                    <ToggleButtonGroup.IconItem
+                        value="b"
+                        icon="lucide:italic"
+                        aria-label="Italic"
+                    />
+                </ControlledToggleButtonGroup>,
+            )
+
+            expect(
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('aria-pressed'),
+            ).toBe('true')
+            expect(
+                screen
+                    .getByRole('button', { name: 'Italic' })
+                    .getAttribute('aria-pressed'),
+            ).toBe('false')
+
+            await userEvent.click(screen.getByRole('button', { name: 'Italic' }))
+
+            expect(
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('aria-pressed'),
+            ).toBe('false')
+            expect(
+                screen
+                    .getByRole('button', { name: 'Italic' })
+                    .getAttribute('aria-pressed'),
+            ).toBe('true')
+        })
+
+        it('applies a non-empty class for icon items', () => {
+            const { container } = render(
+                <ToggleButtonGroup>
+                    <ToggleButtonGroup.IconItem
+                        value="a"
+                        icon="lucide:bold"
+                        aria-label="Bold"
+                    />
+                </ToggleButtonGroup>,
+            )
+            const button = container.querySelector('button')
+            expect(button!.className.length).toBeGreaterThan(0)
+        })
+
+        it('produces distinct icon item class names for each size', () => {
+            const sizes = ['sm', 'md', 'lg'] as const
+            const classNames = sizes.map((size) =>
+                TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES.recipe({ size }),
+            )
+            expect(new Set(classNames).size).toBe(sizes.length)
+        })
+    })
+
     describe('displayName', () => {
         it('is set to "ToggleButtonGroup"', () => {
             expect(ToggleButtonGroup.displayName).toBe('ToggleButtonGroup')
@@ -173,6 +279,12 @@ describe('ToggleButtonGroup', () => {
 
         it('is set to "ToggleButtonGroup.Item" on the item', () => {
             expect(ToggleButtonGroup.Item.displayName).toBe('ToggleButtonGroup.Item')
+        })
+
+        it('is set to "ToggleButtonGroup.IconItem" on the icon item', () => {
+            expect(ToggleButtonGroup.IconItem.displayName).toBe(
+                'ToggleButtonGroup.IconItem',
+            )
         })
     })
 })

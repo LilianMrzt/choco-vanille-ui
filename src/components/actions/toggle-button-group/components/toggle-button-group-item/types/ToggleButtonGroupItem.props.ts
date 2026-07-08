@@ -8,7 +8,7 @@ export type ToggleButtonGroupItemProps = Omit<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'children' | 'color'
 > &
-    Pick<ToggleButtonGroupItemRecipeVariants, 'size' | 'color'> &
+    Pick<ToggleButtonGroupItemRecipeVariants, 'size' | 'color' | 'radius'> &
     Pick<Toggle.Props, 'value' | 'disabled'> & {
         /** Ref forwarded to the underlying `<button>` element. */
         ref?: React.Ref<HTMLButtonElement>

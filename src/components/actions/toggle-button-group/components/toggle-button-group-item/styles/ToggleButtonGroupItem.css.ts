@@ -2,6 +2,7 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { BUTTON_COLORS, BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
+import { radius } from '@theme/tokens/radii.ts'
 import { vars } from '@theme/contract.css.ts'
 
 const pressedSelector = '&[data-pressed]'
@@ -124,10 +125,21 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                     paddingInline: vars.space['2xl'],
                 },
             },
+            radius: {
+                none: { borderRadius: radius.none },
+                xs: { borderRadius: radius.xs },
+                sm: { borderRadius: radius.sm },
+                md: { borderRadius: radius.md },
+                lg: { borderRadius: radius.lg },
+                xl: { borderRadius: radius.xl },
+                '2xl': { borderRadius: radius['2xl'] },
+                full: { borderRadius: radius.full },
+            },
         },
         defaultVariants: {
             color: BUTTON_COLORS.primary,
             size: BUTTON_SIZES.md,
+            radius: 'sm',
         },
     }),
 }

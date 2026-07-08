@@ -1,7 +1,11 @@
 import * as React from 'react'
 
-import { ToggleGroup as BaseToggleGroup, type ToggleGroup } from '@base-ui/react/toggle-group'
+import {
+    ToggleGroup as BaseToggleGroup,
+    type ToggleGroup,
+} from '@base-ui/react/toggle-group'
 
+import ToggleButtonGroupIconItem from '@components/actions/toggle-button-group/components/toggle-button-group-icon-item/ToggleButtonGroupIconItem.tsx'
 import ToggleButtonGroupItem from '@components/actions/toggle-button-group/components/toggle-button-group-item/ToggleButtonGroupItem.tsx'
 import { TOGGLE_BUTTON_GROUP_STYLES } from '@components/actions/toggle-button-group/styles/ToggleButtonGroup.css.ts'
 import type { ToggleButtonGroupCompound } from '@components/actions/toggle-button-group/types/ToggleButtonGroupCompound.ts'
@@ -12,8 +16,8 @@ import { cn } from '@utils/cn.ts'
  * A group of toggle buttons where one or many buttons can be pressed at a time.
  * Built on top of `@base-ui/react/toggle-group`.
  *
- * Use `ToggleButtonGroup.Item` for each option so the styling is cohesive with
- * the group container.
+ * Use `ToggleButtonGroup.Item` for labelled options or `ToggleButtonGroup.IconItem`
+ * for icon-only options so the styling is cohesive with the group container.
  *
  * @example
  * ```tsx
@@ -36,11 +40,16 @@ const ToggleButtonGroup = (({
     ref,
     ...props
 }) => {
-    const [internalValue, setInternalValue] = React.useState<readonly string[]>(defaultValue ?? value ?? [])
+    const [internalValue, setInternalValue] = React.useState<readonly string[]>(
+        defaultValue ?? value ?? [],
+    )
     const isControlled = value !== undefined
     const currentValue = isControlled ? value : internalValue
 
-    const handleValueChange = (newValue: string[], eventDetails: ToggleGroup.ChangeEventDetails) => {
+    const handleValueChange = (
+        newValue: string[],
+        eventDetails: ToggleGroup.ChangeEventDetails,
+    ) => {
         if (requireSelection && newValue.length === 0) {
             return
         }
@@ -53,11 +62,18 @@ const ToggleButtonGroup = (({
     return (
         <BaseToggleGroup
             ref={ref}
-            className={cn(TOGGLE_BUTTON_GROUP_STYLES.recipe({ orientation }), className)}
+            className={cn(
+                TOGGLE_BUTTON_GROUP_STYLES.recipe({ orientation }),
+                className,
+            )}
             orientation={orientation}
             value={currentValue}
             onValueChange={handleValueChange}
-            style={backgroundColor ? { ...style, backgroundColor: vars.color[backgroundColor] } : style}
+            style={
+                backgroundColor
+                    ? { ...style, backgroundColor: vars.color[backgroundColor] }
+                    : style
+            }
             {...props}
         >
             {children}
@@ -67,5 +83,6 @@ const ToggleButtonGroup = (({
 
 ToggleButtonGroup.displayName = 'ToggleButtonGroup'
 ToggleButtonGroup.Item = ToggleButtonGroupItem
+ToggleButtonGroup.IconItem = ToggleButtonGroupIconItem
 
 export default ToggleButtonGroup

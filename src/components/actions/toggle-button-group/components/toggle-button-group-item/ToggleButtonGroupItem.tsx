@@ -26,6 +26,7 @@ import type { FC } from 'react'
 const ToggleButtonGroupItem: FC<ToggleButtonGroupItemProps> = ({
     color,
     size = BUTTON_SIZES.md,
+    radius,
     className,
     label,
     startIcon,
@@ -39,7 +40,7 @@ const ToggleButtonGroupItem: FC<ToggleButtonGroupItemProps> = ({
     return (
         <BaseToggle
             ref={ref}
-            className={cn(TOGGLE_BUTTON_GROUP_ITEM_STYLES.recipe({ color, size }), className)}
+            className={cn(TOGGLE_BUTTON_GROUP_ITEM_STYLES.recipe({ color, size, radius }), className)}
             {...props}
         >
             {startIcon && (
