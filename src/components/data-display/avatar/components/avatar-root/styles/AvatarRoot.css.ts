@@ -43,6 +43,7 @@ export const AVATAR_STYLES = {
             fontWeight: vars.fontWeight.medium,
             lineHeight: vars.lineHeight.none,
             userSelect: 'none',
+            boxSizing: 'border-box',
         },
 
         variants: {
@@ -86,12 +87,6 @@ export const AVATAR_STYLES = {
                 ]),
             ),
 
-            ring: {
-                true: {},
-                false: {
-                    border: '2px solid transparent',
-                },
-            },
         },
 
         compoundVariants: [],
@@ -100,7 +95,6 @@ export const AVATAR_STYLES = {
             size: AVATAR_SIZES.md,
             shape: AVATAR_SHAPES.circle,
             color: AVATAR_COLORS.primary,
-            ring: false,
         },
     }),
 }

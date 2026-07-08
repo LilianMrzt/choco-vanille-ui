@@ -13,8 +13,6 @@ export type AvatarGroupProps = Omit<BoxProps, 'ref' | 'children'> & {
   max?: number;
   /** Amount of negative overlap between avatars. Defaults to `md`. */
   spacing?: AvatarGroupSpacing;
-  /** Whether every avatar in the group should render a ring. Defaults to `true`. */
-  ring?: boolean;
   /** Accessible label for the overflow indicator. Receives the hidden count. Defaults to `${count} more`. Use this for i18n. */
   overflowLabel?: (count: number) => string;
 };

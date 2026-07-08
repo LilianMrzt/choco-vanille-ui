@@ -20,7 +20,6 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
     children,
     max,
     spacing = 'md',
-    ring = true,
     overflowLabel = defaultOverflowLabel,
     className,
     ref,
@@ -55,7 +54,6 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
                 ? avatarChild.props.style
                 : {}
                     return cloneElement(avatarChild, {
-                        ring,
                         style: {
                             ...existingStyle,
                             ...style,
@@ -76,7 +74,6 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
             {overflowCount > 0 && (
                 <Avatar
                     initials={`+${overflowCount}`}
-                    ring={ring}
                     aria-label={overflowLabel(overflowCount)}
                     role={'img'}
                     style={{ marginLeft: overlap }}

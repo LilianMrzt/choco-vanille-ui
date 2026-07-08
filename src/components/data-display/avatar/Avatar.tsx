@@ -16,7 +16,6 @@ const Avatar = (({
     status,
     statusLabel,
     statusSize,
-    ring = false,
     fallbackDelay,
     onLoadingStatusChange,
     className,
@@ -31,7 +30,6 @@ const Avatar = (({
             size={size}
             shape={shape}
             color={color}
-            ring={ring}
             className={className}
             {...props}
         >
@@ -45,6 +43,7 @@ const Avatar = (({
             <AvatarFallback
                 initials={initials}
                 icon={icon}
+                size={size}
                 delay={fallbackDelay}
             />
             {status && (

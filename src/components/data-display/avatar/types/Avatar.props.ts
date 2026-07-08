@@ -32,8 +32,6 @@ export type AvatarProps = {
   statusLabel?: string;
   /** Size of the status indicator. Defaults to the avatar size. */
   statusSize?: AvatarSize;
-  /** Whether to render a subtle ring around the avatar. Defaults to `false`. */
-  ring?: boolean;
   /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
   'aria-label'?: string;
   /** Id of the element that labels the avatar. */

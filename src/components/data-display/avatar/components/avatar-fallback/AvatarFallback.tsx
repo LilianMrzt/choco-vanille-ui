@@ -6,10 +6,14 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
+import {
+    AVATAR_SIZE_TO_TYPOGRAPHY_SIZE
+} from '@components/data-display/avatar/components/avatar-fallback/constants/sizeToTypography.const.ts'
 
 const AvatarFallback: FC<AvatarFallbackProps> = ({
     initials,
     icon,
+    size = 'md',
     delay,
     className,
     ...props
@@ -18,6 +22,7 @@ const AvatarFallback: FC<AvatarFallbackProps> = ({
         <Typography
             as={'span'}
             aria-hidden={'true'}
+            fontSize={AVATAR_SIZE_TO_TYPOGRAPHY_SIZE[size]}
         >
             {initials.slice(0, 2).toUpperCase()}
         </Typography>

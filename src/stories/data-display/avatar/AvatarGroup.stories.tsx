@@ -51,11 +51,9 @@ Useful for showing a team, participants, or collaborators.
     argTypes: {
         max: { control: 'number' },
         spacing: { control: 'select', options: SPACINGS },
-        ring: { control: 'boolean' },
     },
     args: {
         spacing: 'md',
-        ring: true,
     },
 } satisfies Meta<typeof AvatarGroup>
 
@@ -66,13 +64,12 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
     args: {
         spacing: 'md',
-        ring: true,
     },
     parameters: {
         docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with spacing, max, and ring.',
+          'Interactive playground — use the Controls panel to experiment with spacing and max.',
             },
         },
     },
@@ -94,7 +91,6 @@ export const Playground: Story = {
 export const Default: Story = {
     args: {
         spacing: 'md',
-        ring: true,
     },
     parameters: {
         docs: {
@@ -115,7 +111,6 @@ export const Default: Story = {
 export const WithMax: Story = {
     args: {
         spacing: 'md',
-        ring: true,
     },
     parameters: {
         docs: {
@@ -138,7 +133,6 @@ export const WithMax: Story = {
 export const Spacing: Story = {
     args: {
         spacing: 'md',
-        ring: true,
     },
     parameters: {
         docs: {
@@ -174,7 +168,6 @@ export const Spacing: Story = {
 export const WithImages: Story = {
     args: {
         spacing: 'md',
-        ring: true,
     },
     parameters: {
         docs: {
@@ -195,28 +188,6 @@ export const WithImages: Story = {
                 initials={'VC'}
             />
             <Avatar initials={'MK'} />
-        </AvatarGroup>
-    ),
-}
-
-export const WithoutRing: Story = {
-    args: {
-        spacing: 'md',
-        ring: false,
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: 'A group without the default ring border.',
-            },
-        },
-    },
-    render: () => (
-        <AvatarGroup ring={false}>
-            <Avatar initials={'AB'} />
-            <Avatar initials={'CD'} />
-            <Avatar initials={'EF'} />
-            <Avatar initials={'GH'} />
         </AvatarGroup>
     ),
 }

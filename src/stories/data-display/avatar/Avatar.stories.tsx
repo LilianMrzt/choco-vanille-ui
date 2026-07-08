@@ -74,14 +74,12 @@ It displays an image when available and falls back to initials or an icon.
         color: { control: 'select', options: COLORS },
         status: { control: 'select', options: STATUS },
         statusSize: { control: 'select', options: SIZES },
-        ring: { control: 'boolean' },
         fallbackDelay: { control: 'number' },
     },
     args: {
         size: 'md',
         shape: 'circle',
         color: 'primary',
-        ring: false,
     },
 } satisfies Meta<typeof Avatar>
 
@@ -129,17 +127,27 @@ export const Sizes: Story = {
 export const Shapes: Story = {
     parameters: {
         docs: {
-            description: { story: 'Circle and square shapes.' },
+            description: { story: 'Circle and square shapes, with initials and image fallbacks.' },
         },
     },
     render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {SHAPES.map((shape) => (
-                <Avatar
+                <div
                     key={shape}
-                    initials={shape[0].toUpperCase()}
-                    shape={shape}
-                />
+                    style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}
+                >
+                    <Avatar
+                        initials={shape[0].toUpperCase()}
+                        shape={shape}
+                    />
+                    <Avatar
+                        src={'https://github.com/shadcn.png'}
+                        alt={'shadcn'}
+                        initials={'CN'}
+                        shape={shape}
+                    />
+                </div>
             ))}
         </div>
     ),
@@ -237,11 +245,11 @@ export const WithStatusSizes: Story = {
     ),
 }
 
-export const WithRing: Story = {
+export const OnColoredBackground: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Avatar with a ring, useful on colored backgrounds.',
+                story: 'Avatars on a colored background, showing the default ring.',
             },
         },
     },
@@ -255,15 +263,11 @@ export const WithRing: Story = {
                 background: '#f3f4f6',
             }}
         >
-            <Avatar
-                initials={'JD'}
-                ring
-            />
+            <Avatar initials={'JD'} />
             <Avatar
                 src={'https://github.com/shadcn.png'}
                 alt={'shadcn'}
                 initials={'CN'}
-                ring
             />
         </div>
     ),

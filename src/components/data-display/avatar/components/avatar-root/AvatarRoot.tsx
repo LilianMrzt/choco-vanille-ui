@@ -9,7 +9,6 @@ const AvatarRoot: FC<AvatarRootProps> = ({
     size,
     shape,
     color,
-    ring,
     className,
     ref,
     ...props
@@ -17,7 +16,7 @@ const AvatarRoot: FC<AvatarRootProps> = ({
     <BaseAvatar.Root
         ref={ref}
         className={cn(
-            AVATAR_STYLES.recipe({ size, shape, color, ring }),
+            AVATAR_STYLES.recipe({ size, shape, color }),
             className,
         )}
         {...props}

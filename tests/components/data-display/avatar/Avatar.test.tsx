@@ -168,13 +168,6 @@ describe('Avatar', () => {
         })
     })
 
-    describe('ring', () => {
-        it('applies a ring class when ring is true', () => {
-            const { container } = render(<Avatar ring initials={'A'} />)
-            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
-        })
-    })
-
     describe('CSS class application', () => {
         it('merges a custom className', () => {
             const { container } = render(

@@ -15,8 +15,6 @@ export type AvatarRootProps = {
   shape?: AvatarShape;
   /** Semantic color intent for the fallback background. Defaults to `primary`. */
   color?: AvatarColor;
-  /** Whether to render a subtle ring around the avatar. Defaults to `false`. */
-  ring?: boolean;
   /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
   'aria-label'?: string;
   /** Id of the element that labels the avatar. */
