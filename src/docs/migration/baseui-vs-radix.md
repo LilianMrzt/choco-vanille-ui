@@ -63,7 +63,8 @@ consommateur fournir son propre élément (souvent notre `Button`). Deux points 
    noms de props sont très proches (`value`/`onValueChange`, `checked`/`onCheckedChange`)
    mais pas garantis identiques à 100 % (ex: `Select` de Base UI gère nativement les
    objects/valeurs complexes et le multi-select, API légèrement différente pour
-   `Select.Value`/`Select.Icon`). Il faut vérifier composant par composant.
+   `Select.Value`/`Select.Icon`). Notre wrapper ne les expose plus en tant que
+   sous-composants compound ; ils sont gérés en interne par `Select.Trigger`.
 4. **CSS/attributs de style** : nos fichiers `*.css.ts` (Vanilla Extract) ciblent des
    sélecteurs comme `&[data-state="open"]`, `&[data-disabled]`, `&[data-highlighted]`.
    Base UI conserve globalement les mêmes attributs `data-*`, donc la majorité des styles

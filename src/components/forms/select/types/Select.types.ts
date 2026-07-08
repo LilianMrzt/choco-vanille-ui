@@ -9,15 +9,10 @@ type SelectRoot = FC<BaseSelect.Root.Props<string>>
 
 export type SelectCompound = SelectRoot & {
     Trigger: FC<SelectTriggerProps>
-    Value: FC<BaseSelect.Value.Props>
-    Icon: FC<BaseSelect.Icon.Props>
-    Portal: FC<BaseSelect.Portal.Props>
     Content: FC<SelectContentProps>
     List: FC<BaseSelect.List.Props>
     Group: FC<BaseSelect.Group.Props>
     Label: FC<BaseSelect.GroupLabel.Props>
     Item: FC<SelectItemProps>
-    ItemText: FC<BaseSelect.ItemText.Props>
-    ItemIndicator: FC<BaseSelect.ItemIndicator.Props>
     Separator: FC<BaseSelect.Separator.Props>
 }

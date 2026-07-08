@@ -113,16 +113,11 @@ const [value, setValue] = useState('')
 |---|---|
 | \`Select\` | Root context provider. |
 | \`Select.Trigger\` | Button that opens the listbox. |
-| \`Select.Value\` | Selected value text rendered inside the trigger. |
-| \`Select.Icon\` | Chevron icon slot inside the trigger. |
-| \`Select.Portal\` | Portal wrapper for the listbox popup. |
 | \`Select.Content\` | The floating listbox panel. |
 | \`Select.List\` | Scrollable list of listbox items. |
 | \`Select.Group\` | Semantic group of items. |
 | \`Select.Label\` | Non-interactive section heading. |
 | \`Select.Item\` | A single selectable option. |
-| \`Select.ItemText\` | Text label of an item. |
-| \`Select.ItemIndicator\` | Checkmark shown in front of the selected item. |
 | \`Select.Separator\` | Horizontal divider between groups. |
                 `,
             },

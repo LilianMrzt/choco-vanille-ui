@@ -212,16 +212,11 @@ describe('SelectField', () => {
 describe('Select (compound API)', () => {
     it('renders the compound sub-components', () => {
         expect(Select.Trigger).toBeTruthy()
-        expect(Select.Value).toBeTruthy()
-        expect(Select.Icon).toBeTruthy()
-        expect(Select.Portal).toBeTruthy()
         expect(Select.Content).toBeTruthy()
         expect(Select.List).toBeTruthy()
         expect(Select.Group).toBeTruthy()
         expect(Select.Label).toBeTruthy()
         expect(Select.Item).toBeTruthy()
-        expect(Select.ItemText).toBeTruthy()
-        expect(Select.ItemIndicator).toBeTruthy()
         expect(Select.Separator).toBeTruthy()
     })
 
