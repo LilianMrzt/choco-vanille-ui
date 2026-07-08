@@ -1,10 +1,8 @@
 import { Box } from '@components/layout/box'
-import { CARD_STYLES } from '@components/surfaces/card/styles/Card.css.ts'
 import CardBody from '@components/surfaces/card/components/card-body/CardBody.tsx'
 import CardFooter from '@components/surfaces/card/components/card-footer/CardFooter.tsx'
 import CardHeader from '@components/surfaces/card/components/card-header/CardHeader.tsx'
 import type { CardCompound } from '@components/surfaces/card/types'
-import { cn } from '@utils/cn.ts'
 
 /**
   * A surface container with a consistent background, border, shadow and
@@ -26,10 +24,28 @@ import { cn } from '@utils/cn.ts'
   * </Card>
   * ```
   */
-const Card = (({ as = 'div', className, ...props }) => (
+const Card = (({
+    as = 'div',
+    backgroundColor = 'card',
+    color = 'cardForeground',
+    borderRadius = 'lg',
+    borderWidth = '1px',
+    borderColor = 'border',
+    boxShadow = 'none',
+    overflow = 'hidden',
+    className,
+    ...props
+}) => (
     <Box
         as={as}
-        className={cn(CARD_STYLES.root, className)}
+        backgroundColor={backgroundColor}
+        color={color}
+        borderRadius={borderRadius}
+        borderWidth={borderWidth}
+        borderColor={borderColor}
+        boxShadow={boxShadow}
+        overflow={overflow}
+        className={className}
         {...props}
     />
 )) as CardCompound

@@ -6,10 +6,6 @@ import type { FC } from 'react'
 import Box from '@components/layout/box/Box.tsx'
 
 const Flex: FC<FlexProps> = ({
-    flexDirection,
-    flexWrap,
-    alignItems,
-    justifyContent,
     inline,
     gap = 'sm',
     className,
@@ -18,10 +14,7 @@ const Flex: FC<FlexProps> = ({
     return (
         <Box
             gap={gap}
-            className={cn(
-                FLEX_STYLES.recipe({ flexDirection, flexWrap, alignItems, justifyContent, inline }),
-                className,
-            )}
+            className={cn(FLEX_STYLES.recipe({ inline }), className)}
             {...props}
         />
     )

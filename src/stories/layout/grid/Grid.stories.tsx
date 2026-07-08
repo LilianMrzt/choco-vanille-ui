@@ -3,24 +3,9 @@ import { expect, within } from 'storybook/test'
 
 import { Grid } from '@components/layout/grid'
 import { Box } from '@components/layout/box'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
-const COLUMNS = [
-    undefined,
-    'none',
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-] as const
 const AUTO_ROWS = [undefined, 'auto', 'min', 'max', 'fr'] as const
 const FLOW = [
     undefined,
@@ -45,9 +30,9 @@ const ALIGN_CONTENT = [
     'end',
     'center',
     'stretch',
-    'between',
-    'around',
-    'evenly',
+    'space-between',
+    'space-around',
+    'space-evenly',
 ] as const
 const JUSTIFY_CONTENT = [
     undefined,
@@ -55,9 +40,9 @@ const JUSTIFY_CONTENT = [
     'end',
     'center',
     'stretch',
-    'between',
-    'around',
-    'evenly',
+    'space-between',
+    'space-around',
+    'space-evenly',
 ] as const
 const SPACING = [
     undefined,
@@ -86,16 +71,49 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = [
+const BG = ['transparent', ...THEME_COLORS] as const
+const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
+const BORDER_STYLE = [
     undefined,
-    'transparent',
-    'background',
-    'card',
-    'muted',
-    'primary',
-    'primarySubtle',
-    'secondary',
-    'secondarySubtle',
+    'solid',
+    'dashed',
+    'dotted',
+    'double',
+    'groove',
+    'ridge',
+    'inset',
+    'outset',
+    'none',
+    'hidden',
+] as const
+const BOX_SHADOW = [
+    undefined,
+    'none',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    'inner',
+] as const
+const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
+const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
+const OVERFLOW = [
+    undefined,
+    'visible',
+    'hidden',
+    'auto',
+    'scroll',
+    'clip',
+] as const
+const POSITION = [
+    undefined,
+    'static',
+    'relative',
+    'absolute',
+    'fixed',
+    'sticky',
 ] as const
 
 const meta = {
@@ -132,7 +150,8 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
         },
     },
     argTypes: {
-        columns: { control: 'select', options: COLUMNS },
+        as: { control: 'select', options: ['div', 'section', 'article', 'aside', 'main', 'header', 'footer', 'nav', 'ul', 'ol'] },
+        columns: { control: 'text' },
         gridAutoRows: { control: 'select', options: AUTO_ROWS },
         gridAutoFlow: { control: 'select', options: FLOW },
         alignItems: { control: 'select', options: ALIGN },
@@ -140,9 +159,42 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
         justifyContent: { control: 'select', options: JUSTIFY_CONTENT },
         alignContent: { control: 'select', options: ALIGN_CONTENT },
         gap: { control: 'select', options: SPACING },
+        columnGap: { control: 'select', options: SPACING },
+        rowGap: { control: 'select', options: SPACING },
         padding: { control: 'select', options: SPACING },
+        paddingX: { control: 'select', options: SPACING },
+        paddingY: { control: 'select', options: SPACING },
+        paddingTop: { control: 'select', options: SPACING },
+        paddingRight: { control: 'select', options: SPACING },
+        paddingBottom: { control: 'select', options: SPACING },
+        paddingLeft: { control: 'select', options: SPACING },
+        margin: { control: 'select', options: [...SPACING, 'auto'] },
+        marginX: { control: 'select', options: [...SPACING, 'auto'] },
+        marginY: { control: 'select', options: [...SPACING, 'auto'] },
+        marginTop: { control: 'select', options: [...SPACING, 'auto'] },
+        marginRight: { control: 'select', options: [...SPACING, 'auto'] },
+        marginBottom: { control: 'select', options: [...SPACING, 'auto'] },
+        marginLeft: { control: 'select', options: [...SPACING, 'auto'] },
         borderRadius: { control: 'select', options: ROUNDED },
         backgroundColor: { control: 'select', options: BG },
+        borderColor: { control: 'select', options: BG },
+        boxShadow: { control: 'select', options: BOX_SHADOW },
+        width: { control: 'select', options: WH },
+        height: { control: 'select', options: WH },
+        minWidth: { control: 'select', options: MIN_MAX },
+        maxWidth: { control: 'select', options: MIN_MAX },
+        minHeight: { control: 'select', options: MIN_MAX },
+        maxHeight: { control: 'select', options: MIN_MAX },
+        overflow: { control: 'select', options: OVERFLOW },
+        overflowX: { control: 'select', options: OVERFLOW },
+        overflowY: { control: 'select', options: OVERFLOW },
+        position: { control: 'select', options: POSITION },
+        borderWidth: { control: 'select', options: BORDER_WIDTH },
+        borderTopWidth: { control: 'select', options: BORDER_WIDTH },
+        borderRightWidth: { control: 'select', options: BORDER_WIDTH },
+        borderBottomWidth: { control: 'select', options: BORDER_WIDTH },
+        borderLeftWidth: { control: 'select', options: BORDER_WIDTH },
+        borderStyle: { control: 'select', options: BORDER_STYLE },
     },
     args: {
         columns: 3,

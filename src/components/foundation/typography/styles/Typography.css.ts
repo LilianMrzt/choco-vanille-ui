@@ -1,6 +1,9 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+
+const colorVariants = createColorVariants('color')
 
 export const TYPOGRAPHY_STYLES = {
     recipe: recipe({
@@ -169,6 +172,8 @@ export const TYPOGRAPHY_STYLES = {
                     whiteSpace: 'nowrap',
                 },
             },
+
+            color: colorVariants,
         },
 
         defaultVariants: {
