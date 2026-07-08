@@ -1,2 +1,4 @@
+export * from '@components/data-display/avatar'
+export * from '@components/data-display/avatar-group'
 export * from '@components/data-display/badge'
 export * from '@components/data-display/table'
