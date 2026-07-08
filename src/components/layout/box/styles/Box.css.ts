@@ -1,13 +1,16 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+
+const backgroundColorVariants = createColorVariants('background')
 
 export const BOX_STYLES = {
     recipe: recipe({
         base: {},
 
         variants: {
-        // Display
+            // Display
             display: {
                 block: { display: 'block' },
                 flex: { display: 'flex' },
@@ -367,26 +370,11 @@ export const BOX_STYLES = {
             },
 
             // Background Color
-            backgroundColor: {
-                transparent: { background: 'transparent' },
-                background: { background: vars.color.background },
-                card: { background: vars.color.card },
-                muted: { background: vars.color.muted },
-                primary: { background: vars.color.primary },
-                primarySubtle: { background: vars.color.primarySubtle },
-                secondary: { background: vars.color.secondary },
-                secondarySubtle: { background: vars.color.secondarySubtle },
-                success: { background: vars.color.success },
-                successSubtle: { background: vars.color.successSubtle },
-                warning: { background: vars.color.warning },
-                warningSubtle: { background: vars.color.warningSubtle },
-                info: { background: vars.color.info },
-                infoSubtle: { background: vars.color.infoSubtle },
-                destructive: { background: vars.color.destructive },
-                destructiveSubtle: { background: vars.color.destructiveSubtle },
-            },
+            backgroundColor: backgroundColorVariants,
         },
     }),
 }
 
-export type BoxRecipeVariants = NonNullable<RecipeVariants<typeof BOX_STYLES.recipe>>
+export type BoxRecipeVariants = NonNullable<
+  RecipeVariants<typeof BOX_STYLES.recipe>
+>;

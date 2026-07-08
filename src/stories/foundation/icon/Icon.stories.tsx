@@ -4,12 +4,10 @@ import { expect, waitFor } from 'storybook/test'
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
-import { lightColors } from '@theme/colors/light.ts'
-import type { ThemeColor } from '@theme/types'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
-const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
 
 const meta = {
     title: 'Foundation/Icon',
@@ -52,7 +50,7 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
     argTypes: {
         icon: { control: 'text' },
         size: { control: 'select', options: SIZES },
-        color: { control: 'select', options: [undefined, ...THEME_COLORS] },
+        color: { control: 'select', options: THEME_COLORS },
         spin: { control: 'boolean' },
         'aria-label': { control: 'text' },
     },

@@ -7,11 +7,8 @@ import type {
     TypographyVariant,
     TypographyWeight,
 } from '@components/foundation/typography'
-import { lightColors } from '@theme/colors/light.ts'
-import type { ThemeColor } from '@theme/types'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
-
-const THEME_COLORS: ThemeColor[] = Object.keys(lightColors) as ThemeColor[]
 
 const VARIANTS: TypographyVariant[] = [
     'h1',
@@ -107,7 +104,7 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fi
         variant: { control: 'select', options: VARIANTS },
         fontSize: { control: 'select', options: [undefined, ...SIZES] },
         fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
-        color: { control: 'select', options: [undefined, ...THEME_COLORS] },
+        color: { control: 'select', options: THEME_COLORS },
         ellipsis: { control: 'boolean' },
     },
     args: {

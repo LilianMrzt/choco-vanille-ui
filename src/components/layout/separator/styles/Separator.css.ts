@@ -1,6 +1,9 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+
+const colorVariants = createColorVariants('backgroundColor')
 
 export const SEPARATOR_STYLES = {
     recipe: recipe({
@@ -20,6 +23,8 @@ export const SEPARATOR_STYLES = {
                     height: '100%',
                 },
             },
+
+            color: colorVariants,
         },
 
         defaultVariants: {

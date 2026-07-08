@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
 import { Box, type BoxVariant } from '@components/layout/box'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
 const BOX_VARIANTS: BoxVariant[] = [
@@ -66,17 +67,7 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = [
-    undefined,
-    'transparent',
-    'background',
-    'card',
-    'muted',
-    'primary',
-    'primarySubtle',
-    'secondary',
-    'secondarySubtle',
-] as const
+const BG = ['transparent', ...THEME_COLORS] as const
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
 const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
 const FLEX = [undefined, '1', 'auto', 'initial', 'none'] as const

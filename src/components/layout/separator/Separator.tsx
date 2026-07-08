@@ -10,13 +10,14 @@ import type { FC } from 'react'
  */
 const Separator: FC<SeparatorProps> = ({
     orientation = 'horizontal',
+    color,
     className,
     ...props
 }) => {
     return (
         <Box
             as={'div'}
-            className={cn(SEPARATOR_STYLES.recipe({ orientation }), className)}
+            className={cn(SEPARATOR_STYLES.recipe({ orientation, color }), className)}
             {...props}
         />
     )

@@ -4,9 +4,11 @@ import { expect, within } from 'storybook/test'
 import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { Separator } from '@components/layout/separator'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
 const ORIENTATION = ['horizontal', 'vertical'] as const
+const COLORS = THEME_COLORS
 
 const meta = {
     title: 'Layout/Separator',
@@ -44,6 +46,7 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
 |---|---|---|---|
 | \`aria-hidden\` | No | \`boolean\` | Decorative separators should be hidden from assistive technologies. |
 | \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Default is \`horizontal\`. |
+| \`color\` | No | \`ThemeColor\` | Any semantic color token from the theme. |
 
 - A separator used purely for visual decoration should include \`aria-hidden="true"\` so it is not announced by screen readers.
                 `,
@@ -52,6 +55,7 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
     },
     argTypes: {
         orientation: { control: 'select', options: ORIENTATION },
+        color: { control: 'select', options: COLORS },
     },
     args: {
         orientation: 'horizontal',

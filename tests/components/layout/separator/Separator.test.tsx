@@ -46,6 +46,13 @@ describe('Separator', () => {
         })
     })
 
+    describe('color', () => {
+        it('applies classes for a theme color', () => {
+            const { container } = render(<Separator color="primary" />)
+            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(<Separator data-testid="separator" />)
