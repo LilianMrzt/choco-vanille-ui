@@ -10,13 +10,14 @@
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
-import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.css.ts'
+import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
 import { IconRegistry } from '@constants/icons'
+import { Flex } from '@components'
 
 /**
  * An expandable section row rendered inside a `Drawer`.
@@ -121,9 +122,17 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 className={DRAWER_SECTION_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
             >
-                <div className={DRAWER_SECTION_ITEM_STYLES.sectionContentInner}>
+                <Flex
+                    flexDirection={'column'}
+                    minHeight={0}
+                    paddingLeft={'lg'}
+                    paddingRight={'xs'}
+                    paddingBottom={'xs'}
+                    overflow={'hidden'}
+                    gap={'none'}
+                >
                     {children}
-                </div>
+                </Flex>
             </div>
         </Box>
     )

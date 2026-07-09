@@ -7,21 +7,13 @@ const sectionContent = style({
     display: 'grid',
     gridTemplateRows: '0fr',
     overflow: 'hidden',
-    transition: `grid-template-rows ${vars.duration.normal} ${vars.easing.standard}`,
+    transition: `grid-template-rows ${vars.duration.normal} ${vars.easing.standard}, padding-top ${vars.duration.normal} ${vars.easing.standard}`,
     selectors: {
         '&[data-state="open"]': {
             gridTemplateRows: '1fr',
+            paddingTop: vars.space.xs,
         },
     },
-})
-
-const sectionContentInner = style({
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: 0,
-    padding: vars.space.xs,
-    paddingLeft: vars.space.lg,
-    overflow: 'hidden',
 })
 
 const chevron = style({
@@ -42,6 +34,5 @@ const chevron = style({
 export const DRAWER_SECTION_ITEM_STYLES = {
     ...DRAWER_ITEM_STYLES,
     sectionContent,
-    sectionContentInner,
     chevron,
 }
