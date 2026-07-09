@@ -1,21 +1,19 @@
 ﻿import {
     useCallback,
     useId,
-    useMemo,
     useState,
     type FC,
     type KeyboardEvent,
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
+import {
+    DrawerItemContent,
+    useDrawerItemAttributes,
+} from '@components/overlay/drawer/components/items/_shared'
 import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
-import {
-    DRAWER_ITEM_SIZE_TO_ICON_SIZE,
-    useDrawerItemState,
-} from '@components/overlay/drawer/components/items/_shared'
 import { IconRegistry } from '@constants/icons'
 import { Flex, Grid } from '@components'
 
@@ -40,14 +38,13 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     style,
     ...props
 }) => {
-    const { open, mode, position } = useDrawerItemState()
+    const { state, resolvedIconSize, itemAttributes } =
+        useDrawerItemAttributes(size, undefined)
     const generatedId = useId()
     const sectionId = `${generatedId}-section`
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
     const isControlled = expandedProp !== undefined
     const expanded = isControlled ? expandedProp : internalExpanded
-    const resolvedIconSize = DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
-    const state = open ? 'open' : 'closed'
 
     const handleToggle = useCallback(() => {
         const next = !expanded
@@ -67,13 +64,15 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
         [handleToggle],
     )
 
-    const headerAttributes = useMemo(
-        () => ({
-            'data-state': state,
-            'data-mode': mode,
-            'data-position': position,
-        }),
-        [state, mode, position],
+    const chevron = (
+        <Icon
+            icon={IconRegistry.chevronDown}
+            size={resolvedIconSize}
+            className={DRAWER_SECTION_ITEM_STYLES.chevron}
+            data-expanded={expanded}
+            data-state={state}
+            aria-hidden
+        />
     )
 
     return (
@@ -90,32 +89,14 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 className={DRAWER_SECTION_ITEM_STYLES.recipe({ size })}
                 onClick={handleToggle}
                 onKeyDown={handleKeyDown}
-                {...headerAttributes}
+                {...itemAttributes}
                 {...props}
             >
-                <Icon
-                    icon={startIcon}
-                    size={resolvedIconSize}
-                    className={DRAWER_SECTION_ITEM_STYLES.icon}
-                />
-                <Typography
-                    width={'100%'}
-                    maxLines={1}
-                    minWidth={0}
-                    ellipsis={true}
-                    maxWidth={'100%'}
-                    variant={'span'}
-                    data-state={state}
-                >
-                    {label}
-                </Typography>
-                <Icon
-                    icon={IconRegistry.chevronDown}
-                    size={resolvedIconSize}
-                    className={DRAWER_SECTION_ITEM_STYLES.chevron}
-                    data-expanded={expanded}
-                    data-state={state}
-                    aria-hidden
+                <DrawerItemContent
+                    label={label}
+                    startIcon={startIcon}
+                    size={size}
+                    trailing={chevron}
                 />
             </button>
             <Grid

@@ -1,12 +1,10 @@
 ﻿import { useMemo, type FC, type MouseEvent } from 'react'
 
-import { Icon } from '@components/foundation/icon'
-import { Typography } from '@components/foundation/typography'
 import { DRAWER_NAV_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.css.ts'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import {
-    DRAWER_ITEM_SIZE_TO_ICON_SIZE,
-    useDrawerItemState,
+    DrawerItemContent,
+    useDrawerItemAttributes,
 } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
 
@@ -31,9 +29,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     ref,
     ...props
 }) => {
-    const { open, mode, position } = useDrawerItemState()
-    const resolvedIconSize = iconSize ?? DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
-    const state = open ? 'open' : 'closed'
+    const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
 
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
         if (onClick) {
@@ -42,16 +38,14 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
         }
     }
 
-    const itemAttributes = useMemo(
+    const linkAttributes = useMemo(
         () => ({
-            'data-state': state,
-            'data-mode': mode,
-            'data-position': position,
+            ...itemAttributes,
             'data-active': active ? 'true' : undefined,
             'aria-disabled': disabled || undefined,
             'aria-current': active ? ('page' as const) : undefined,
         }),
-        [state, mode, position, active, disabled],
+        [itemAttributes, active, disabled],
     )
 
     return (
@@ -61,33 +55,16 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             className={cn(DRAWER_NAV_ITEM_STYLES.recipe({ size }), className)}
             style={style}
             onClick={handleClick}
-            {...itemAttributes}
+            {...linkAttributes}
             {...props}
         >
-            <Icon
-                icon={startIcon}
-                size={resolvedIconSize}
-                className={DRAWER_NAV_ITEM_STYLES.icon}
+            <DrawerItemContent
+                label={label}
+                startIcon={startIcon}
+                endIcon={endIcon}
+                size={size}
+                iconSize={iconSize}
             />
-            <Typography
-                variant={'span'}
-                width={'100%'}
-                maxLines={1}
-                minWidth={0}
-                ellipsis={true}
-                maxWidth={'100%'}
-                data-state={state}
-            >
-                {label}
-            </Typography>
-            {endIcon && (
-                <Icon
-                    icon={endIcon}
-                    size={resolvedIconSize}
-                    className={DRAWER_NAV_ITEM_STYLES.endIcon}
-                    data-state={state}
-                />
-            )}
         </a>
     )
 }
