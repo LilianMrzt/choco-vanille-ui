@@ -5,6 +5,24 @@ import { spinAnimation } from '@constants/animations'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 
 const colorVariants = createColorVariants('color')
+const backgroundColorVariants = createColorVariants('background')
+const borderColorVariants = createColorVariants('borderColor')
+
+const SPACE_VARIANTS = {
+    none: vars.space.none,
+    px: vars.space.px,
+    xxs: vars.space.xxs,
+    xs: vars.space.xs,
+    xs2: vars.space.xs2,
+    sm: vars.space.sm,
+    md: vars.space.md,
+    lg: vars.space.lg,
+    xl: vars.space.xl,
+    '2xl': vars.space['2xl'],
+    '3xl': vars.space['3xl'],
+    '4xl': vars.space['4xl'],
+    '5xl': vars.space['5xl'],
+} as const
 
 export const ICON_STYLES = {
     recipe: recipe({
@@ -30,6 +48,26 @@ export const ICON_STYLES = {
             },
 
             color: colorVariants,
+
+            padding: {
+                none: { padding: SPACE_VARIANTS.none },
+                px: { padding: SPACE_VARIANTS.px },
+                xxs: { padding: SPACE_VARIANTS.xxs },
+                xs: { padding: SPACE_VARIANTS.xs },
+                xs2: { padding: SPACE_VARIANTS.xs2 },
+                sm: { padding: SPACE_VARIANTS.sm },
+                md: { padding: SPACE_VARIANTS.md },
+                lg: { padding: SPACE_VARIANTS.lg },
+                xl: { padding: SPACE_VARIANTS.xl },
+                '2xl': { padding: SPACE_VARIANTS['2xl'] },
+                '3xl': { padding: SPACE_VARIANTS['3xl'] },
+                '4xl': { padding: SPACE_VARIANTS['4xl'] },
+                '5xl': { padding: SPACE_VARIANTS['5xl'] },
+            },
+
+            borderColor: borderColorVariants,
+
+            backgroundColor: backgroundColorVariants,
         },
         defaultVariants: {
             size: 'md',
