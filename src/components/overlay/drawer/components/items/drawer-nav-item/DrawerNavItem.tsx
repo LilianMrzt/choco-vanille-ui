@@ -4,9 +4,11 @@ import { Icon } from '@components/foundation/icon'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     DRAWER_ITEM_STYLES,
+    DrawerItemTooltip,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
+import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -33,6 +35,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     const { open, mode, position } = useDrawerItemState()
     const resolvedIconSize = iconSize ?? DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
     const state = open ? 'open' : 'closed'
+    const isMiniCollapsed = mode === DRAWER_MODES.mini && !open
 
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
         if (onClick) {
@@ -53,7 +56,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
         [state, mode, position, active, disabled],
     )
 
-    return (
+    const item = (
         <a
             ref={ref}
             href={href}
@@ -62,22 +65,23 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             onClick={handleClick}
             {...itemAttributes}
             {...props}
+            aria-label={isMiniCollapsed ? (props['aria-label'] ?? label) : props['aria-label']}
         >
-            {startIcon && (
-                <Icon
-                    icon={startIcon}
-                    size={resolvedIconSize}
-                    className={DRAWER_ITEM_STYLES.icon}
-                />
+            <Icon
+                icon={startIcon}
+                size={resolvedIconSize}
+                className={DRAWER_ITEM_STYLES.icon}
+            />
+            {!isMiniCollapsed && (
+                <span
+                    className={DRAWER_ITEM_STYLES.label}
+                    data-state={state}
+                    data-mode={mode}
+                >
+                    {label}
+                </span>
             )}
-            <span
-                className={DRAWER_ITEM_STYLES.label}
-                data-state={state}
-                data-mode={mode}
-            >
-                {label}
-            </span>
-            {endIcon && (
+            {endIcon && !isMiniCollapsed && (
                 <Icon
                     icon={endIcon}
                     size={resolvedIconSize}
@@ -87,6 +91,12 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
                 />
             )}
         </a>
+    )
+
+    return (
+        <DrawerItemTooltip content={label}>
+            {item}
+        </DrawerItemTooltip>
     )
 }
 

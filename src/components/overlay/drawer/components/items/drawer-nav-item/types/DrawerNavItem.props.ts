@@ -13,8 +13,8 @@ export type DrawerNavItemProps = Omit<
     label: string;
     /** Destination URL. @default '#' */
     href?: string;
-    /** Optional icon rendered before the label. */
-    startIcon?: string;
+    /** Icon rendered before the label. */
+    startIcon: string;
     /** Optional icon rendered after the label. */
     endIcon?: string;
     /** Whether the item represents the current page. */

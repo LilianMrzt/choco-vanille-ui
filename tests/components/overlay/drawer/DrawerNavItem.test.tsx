@@ -16,13 +16,18 @@ beforeAll(() => {
         width: 24,
         height: 24,
     })
+    addIcon('lucide:user', {
+        body: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+        width: 24,
+        height: 24,
+    })
 })
 
 describe('Drawer.NavItem', () => {
     it('renders an anchor with the label', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="Dashboard" href="/dashboard" />
+                <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
             </Drawer>,
         )
 
@@ -32,29 +37,29 @@ describe('Drawer.NavItem', () => {
     })
 
     it('renders a start icon', () => {
-        const { container } = render(
+        render(
             <Drawer defaultOpen>
                 <Drawer.NavItem label="Home" startIcon="lucide:home" />
             </Drawer>,
         )
 
-        expect(container.querySelector('svg')).toBeTruthy()
+        expect(document.querySelector('svg')).toBeTruthy()
     })
 
     it('renders an end icon', () => {
-        const { container } = render(
+        render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="External" endIcon="lucide:external-link" />
+                <Drawer.NavItem label="External" startIcon="lucide:home" endIcon="lucide:external-link" />
             </Drawer>,
         )
 
-        expect(container.querySelectorAll('svg')).toHaveLength(1)
+        expect(document.querySelectorAll('svg')).toHaveLength(2)
     })
 
     it('marks the item as current when active', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="Active" active />
+                <Drawer.NavItem label="Active" startIcon="lucide:home" active />
             </Drawer>,
         )
 
@@ -64,7 +69,7 @@ describe('Drawer.NavItem', () => {
     it('disables the item', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="Disabled" disabled />
+                <Drawer.NavItem label="Disabled" startIcon="lucide:home" disabled />
             </Drawer>,
         )
 
@@ -75,7 +80,7 @@ describe('Drawer.NavItem', () => {
         const onClick = vi.fn()
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="Click me" href="/click" onClick={onClick} />
+                <Drawer.NavItem label="Click me" href="/click" startIcon="lucide:home" onClick={onClick} />
             </Drawer>,
         )
 
@@ -87,10 +92,21 @@ describe('Drawer.NavItem', () => {
     it('forwards data-* attributes', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="Test" data-testid="nav-item" />
+                <Drawer.NavItem label="Test" startIcon="lucide:home" data-testid="nav-item" />
             </Drawer>,
         )
 
         expect(screen.getByTestId('nav-item')).toBeTruthy()
+    })
+
+    it('hides the label in collapsed mini mode', () => {
+        render(
+            <Drawer defaultOpen={false} mode="mini">
+                <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+            </Drawer>,
+        )
+
+        expect(screen.queryByText('Dashboard')).toBeNull()
+        expect(screen.getByRole('link').getAttribute('aria-label')).toBe('Dashboard')
     })
 })

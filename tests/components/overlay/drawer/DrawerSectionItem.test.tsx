@@ -16,14 +16,19 @@ beforeAll(() => {
         width: 24,
         height: 24,
     })
+    addIcon('lucide:user', {
+        body: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+        width: 24,
+        height: 24,
+    })
 })
 
 describe('Drawer.SectionItem', () => {
     it('renders the section header button', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings">
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings">
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -34,8 +39,8 @@ describe('Drawer.SectionItem', () => {
     it('toggles children when the header is clicked', async () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings">
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings">
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -54,8 +59,8 @@ describe('Drawer.SectionItem', () => {
     it('respects defaultExpanded', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" defaultExpanded>
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings" defaultExpanded>
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -67,8 +72,8 @@ describe('Drawer.SectionItem', () => {
         const onExpandedChange = vi.fn()
         const { rerender } = render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" expanded={false} onExpandedChange={onExpandedChange}>
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings" expanded={false} onExpandedChange={onExpandedChange}>
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -81,8 +86,8 @@ describe('Drawer.SectionItem', () => {
 
         rerender(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" expanded onExpandedChange={onExpandedChange}>
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings" expanded onExpandedChange={onExpandedChange}>
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -93,8 +98,8 @@ describe('Drawer.SectionItem', () => {
     it('sets aria-expanded on the header', async () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings">
-                    <Drawer.NavItem label="Profile" />
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings">
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
                 </Drawer.SectionItem>
             </Drawer>,
         )
@@ -105,5 +110,26 @@ describe('Drawer.SectionItem', () => {
         await userEvent.click(header)
 
         expect(header.getAttribute('aria-expanded')).toBe('true')
+    })
+
+    it('still expands and collapses in collapsed mini mode', async () => {
+        render(
+            <Drawer defaultOpen={false} mode="mini">
+                <Drawer.SectionItem label="Settings" startIcon="lucide:settings">
+                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
+                </Drawer.SectionItem>
+            </Drawer>,
+        )
+
+        expect(screen.queryByRole('link', { name: 'Profile' })).toBeNull()
+
+        const header = screen.getByRole('button', { name: 'Settings' })
+        await userEvent.click(header)
+
+        expect(screen.getByRole('link', { name: 'Profile' })).toBeTruthy()
+
+        await userEvent.click(header)
+
+        expect(screen.queryByRole('link', { name: 'Profile' })).toBeNull()
     })
 })

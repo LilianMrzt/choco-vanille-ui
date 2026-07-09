@@ -9,8 +9,8 @@ export type DrawerSectionItemProps = Omit<
 > & {
   /** Visible text label for the section header. */
   label: string;
-  /** Optional icon rendered before the label. */
-  startIcon?: string;
+  /** Icon rendered before the label. */
+  startIcon: string;
   /** Items rendered inside the collapsible section. */
   children: ReactNode;
   /** Accessible label for the section region. Defaults to `label`. */

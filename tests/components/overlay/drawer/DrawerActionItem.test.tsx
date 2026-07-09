@@ -17,7 +17,7 @@ describe('Drawer.ActionItem', () => {
     it('renders a button with the label', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Sign out" />
+                <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
             </Drawer>,
         )
 
@@ -25,20 +25,20 @@ describe('Drawer.ActionItem', () => {
     })
 
     it('renders a start icon', () => {
-        const { container } = render(
+        render(
             <Drawer defaultOpen>
                 <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
             </Drawer>,
         )
 
-        expect(container.querySelector('svg')).toBeTruthy()
+        expect(document.querySelector('svg')).toBeTruthy()
     })
 
     it('calls onClick when clicked', async () => {
         const onClick = vi.fn()
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Action" onClick={onClick} />
+                <Drawer.ActionItem label="Action" startIcon="lucide:log-out" onClick={onClick} />
             </Drawer>,
         )
 
@@ -50,7 +50,7 @@ describe('Drawer.ActionItem', () => {
     it('disables the button', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Disabled" disabled />
+                <Drawer.ActionItem label="Disabled" startIcon="lucide:log-out" disabled />
             </Drawer>,
         )
 
@@ -60,10 +60,21 @@ describe('Drawer.ActionItem', () => {
     it('forwards data-* attributes', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Test" data-testid="action-item" />
+                <Drawer.ActionItem label="Test" startIcon="lucide:log-out" data-testid="action-item" />
             </Drawer>,
         )
 
         expect(screen.getByTestId('action-item')).toBeTruthy()
+    })
+
+    it('hides the label in collapsed mini mode', () => {
+        render(
+            <Drawer defaultOpen={false} mode="mini">
+                <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+            </Drawer>,
+        )
+
+        expect(screen.queryByText('Sign out')).toBeNull()
+        expect(screen.getByRole('button').getAttribute('aria-label')).toBe('Sign out')
     })
 })

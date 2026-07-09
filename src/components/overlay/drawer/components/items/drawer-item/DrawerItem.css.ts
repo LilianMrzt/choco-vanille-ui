@@ -61,6 +61,9 @@ const drawerItemRecipe = recipe({
             '&[data-mode="mini"][data-state="closed"]': {
                 opacity: 1,
                 transform: 'translateX(0)',
+                justifyContent: 'center',
+                gap: 0,
+                paddingInline: vars.space.sm,
             },
         },
     },
@@ -147,7 +150,7 @@ const sectionContent = style({
         '&[data-state="open"]': {
             gridTemplateRows: '1fr',
         },
-        '&[data-drawer-state="closed"]': {
+        '&[data-drawer-state="closed"]:not([data-mode="mini"])': {
             gridTemplateRows: '0fr',
         },
     },

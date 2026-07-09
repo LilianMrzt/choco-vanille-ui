@@ -11,8 +11,8 @@ export type DrawerActionItemProps = Omit<
   RefAttributes<HTMLButtonElement> & {
     /** Visible text label. */
     label: string;
-    /** Optional icon rendered before the label. */
-    startIcon?: string;
+    /** Icon rendered before the label. */
+    startIcon: string;
     /** Optional icon rendered after the label. */
     endIcon?: string;
     /** Size preset for the row. @default 'md' */

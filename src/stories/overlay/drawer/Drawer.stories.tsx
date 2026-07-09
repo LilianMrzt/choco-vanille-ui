@@ -79,10 +79,12 @@ const renderDrawer = ({
                             <Drawer.NavItem
                                 label={'Profile'}
                                 href={'/profile'}
+                                startIcon={IconRegistry.user}
                             />
                             <Drawer.NavItem
                                 label={'Billing'}
                                 href={'/billing'}
+                                startIcon={IconRegistry.creditCard}
                             />
                         </Drawer.SectionItem>
                         <Drawer.ActionItem

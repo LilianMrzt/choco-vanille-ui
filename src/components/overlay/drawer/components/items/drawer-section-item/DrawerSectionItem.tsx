@@ -11,9 +11,11 @@ import { Icon } from '@components/foundation/icon'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     DRAWER_ITEM_STYLES,
+    DrawerItemTooltip,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
+import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import { IconRegistry } from '@constants/icons'
 
 /**
@@ -45,6 +47,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     const expanded = isControlled ? expandedProp : internalExpanded
     const resolvedIconSize = DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
     const state = open ? 'open' : 'closed'
+    const isMiniCollapsed = mode === DRAWER_MODES.mini && !open
 
     const handleToggle = useCallback(() => {
         const next = !expanded
@@ -73,30 +76,25 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
         [state, mode, position],
     )
 
-    return (
-        <div
-            className={className}
-            style={style}
+    const header = (
+        <button
+            type={'button'}
+            disabled={disabled}
+            aria-expanded={expanded}
+            aria-controls={sectionId}
+            aria-label={isMiniCollapsed ? (ariaLabel ?? label) : ariaLabel}
+            className={DRAWER_ITEM_STYLES.recipe({ size })}
+            onClick={handleToggle}
+            onKeyDown={handleKeyDown}
+            {...headerAttributes}
+            {...props}
         >
-            <button
-                type={'button'}
-                disabled={disabled}
-                aria-expanded={expanded}
-                aria-controls={sectionId}
-                aria-label={ariaLabel}
-                className={DRAWER_ITEM_STYLES.recipe({ size })}
-                onClick={handleToggle}
-                onKeyDown={handleKeyDown}
-                {...headerAttributes}
-                {...props}
-            >
-                {startIcon && (
-                    <Icon
-                        icon={startIcon}
-                        size={resolvedIconSize}
-                        className={DRAWER_ITEM_STYLES.icon}
-                    />
-                )}
+            <Icon
+                icon={startIcon}
+                size={resolvedIconSize}
+                className={DRAWER_ITEM_STYLES.icon}
+            />
+            {!isMiniCollapsed && (
                 <span
                     className={DRAWER_ITEM_STYLES.label}
                     data-state={state}
@@ -104,6 +102,8 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 >
                     {label}
                 </span>
+            )}
+            {!isMiniCollapsed && (
                 <Icon
                     icon={IconRegistry.chevronDown}
                     size={resolvedIconSize}
@@ -113,7 +113,18 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     data-mode={mode}
                     aria-hidden
                 />
-            </button>
+            )}
+        </button>
+    )
+
+    return (
+        <div
+            className={className}
+            style={style}
+        >
+            <DrawerItemTooltip content={label}>
+                {header}
+            </DrawerItemTooltip>
             <div
                 id={sectionId}
                 role={'region'}
@@ -122,6 +133,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 className={DRAWER_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
                 data-drawer-state={open ? undefined : 'closed'}
+                data-mode={mode}
             >
                 <div className={DRAWER_ITEM_STYLES.sectionChildren}>{children}</div>
             </div>

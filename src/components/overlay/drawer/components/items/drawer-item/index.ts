@@ -4,5 +4,6 @@ export {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
 } from '@components/overlay/drawer/components/items/drawer-item/DrawerItem.constants.ts'
 export { useDrawerItemState } from '@components/overlay/drawer/components/items/drawer-item/useDrawerItemState.hook.ts'
+export { default as DrawerItemTooltip } from '@components/overlay/drawer/components/items/drawer-item/DrawerItemTooltip.tsx'
 export type { DrawerItemSize } from '@components/overlay/drawer/components/items/drawer-item/DrawerItem.types.ts'
 export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/drawer-item/DrawerItem.css.ts'
