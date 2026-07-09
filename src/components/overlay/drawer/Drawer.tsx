@@ -1,11 +1,14 @@
 import { useCallback, useMemo, useState } from 'react'
 
+import DrawerActionItem from '@components/overlay/drawer/components/drawer-action-item/DrawerActionItem.tsx'
 import DrawerBody from '@components/overlay/drawer/components/drawer-body/DrawerBody.tsx'
 import DrawerFooter from '@components/overlay/drawer/components/drawer-footer/DrawerFooter.tsx'
 import DrawerHeader from '@components/overlay/drawer/components/drawer-header/DrawerHeader.tsx'
 import DrawerInline from '@components/overlay/drawer/components/drawer-inline/DrawerInline.tsx'
 import DrawerMini from '@components/overlay/drawer/components/drawer-mini/DrawerMini.tsx'
+import DrawerNavItem from '@components/overlay/drawer/components/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/drawer-portal/DrawerPortal.tsx'
+import DrawerSectionItem from '@components/overlay/drawer/components/drawer-section-item/DrawerSectionItem.tsx'
 import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
 import type { DrawerCompound, DrawerProps } from '@components/overlay/drawer/types'
@@ -19,7 +22,13 @@ import type { DrawerCompound, DrawerProps } from '@components/overlay/drawer/typ
  * ```tsx
  * <Drawer open={open} onOpenChange={setOpen} mode="portal">
  *   <Drawer.Header title="Settings" />
- *   <Drawer.Body>Your content here.</Drawer.Body>
+ *   <Drawer.Body>
+ *     <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+ *     <Drawer.SectionItem label="Account" startIcon="lucide:user">
+ *       <Drawer.NavItem label="Profile" href="/profile" />
+ *       <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+ *     </Drawer.SectionItem>
+ *   </Drawer.Body>
  *   <Drawer.Footer>
  *     <Button onClick={() => setOpen(false)}>Close</Button>
  *   </Drawer.Footer>
@@ -106,5 +115,8 @@ Drawer.displayName = 'Drawer'
 Drawer.Header = DrawerHeader
 Drawer.Body = DrawerBody
 Drawer.Footer = DrawerFooter
+Drawer.NavItem = DrawerNavItem
+Drawer.ActionItem = DrawerActionItem
+Drawer.SectionItem = DrawerSectionItem
 
 export { Drawer }

@@ -1,14 +1,20 @@
 import type { FC } from 'react'
 
+import type DrawerActionItem from '@components/overlay/drawer/components/drawer-action-item/DrawerActionItem.tsx'
 import type DrawerBody from '@components/overlay/drawer/components/drawer-body/DrawerBody.tsx'
 import type DrawerFooter from '@components/overlay/drawer/components/drawer-footer/DrawerFooter.tsx'
 import type DrawerHeader from '@components/overlay/drawer/components/drawer-header/DrawerHeader.tsx'
+import type DrawerNavItem from '@components/overlay/drawer/components/drawer-nav-item/DrawerNavItem.tsx'
+import type DrawerSectionItem from '@components/overlay/drawer/components/drawer-section-item/DrawerSectionItem.tsx'
 import type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
 
 export type DrawerCompound = FC<DrawerProps> & {
     Header: typeof DrawerHeader
     Body: typeof DrawerBody
     Footer: typeof DrawerFooter
+    NavItem: typeof DrawerNavItem
+    ActionItem: typeof DrawerActionItem
+    SectionItem: typeof DrawerSectionItem
 }
 
 export type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
@@ -16,3 +22,6 @@ export type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay
 export type { DrawerHeaderProps } from '@components/overlay/drawer/components/drawer-header/types/DrawerHeader.props.ts'
 export type { DrawerBodyProps } from '@components/overlay/drawer/components/drawer-body/types/DrawerBody.props.ts'
 export type { DrawerFooterProps } from '@components/overlay/drawer/components/drawer-footer/types/DrawerFooter.props.ts'
+export type { DrawerNavItemProps } from '@components/overlay/drawer/components/drawer-nav-item/types/DrawerNavItem.props.ts'
+export type { DrawerActionItemProps } from '@components/overlay/drawer/components/drawer-action-item/types/DrawerActionItem.props.ts'
+export type { DrawerSectionItemProps } from '@components/overlay/drawer/components/drawer-section-item/types/DrawerSectionItem.props.ts'

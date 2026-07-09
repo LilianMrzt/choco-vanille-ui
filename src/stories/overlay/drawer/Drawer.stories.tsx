@@ -3,8 +3,9 @@ import { expect, userEvent, waitFor } from 'storybook/test'
 import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
-import { Typography } from '@components/foundation/typography'
+import { Flex } from '@components/layout/flex'
 import { Drawer, type DrawerMode, type DrawerPosition, type DrawerSize } from '@components/overlay/drawer'
+import { IconRegistry } from '@constants/icons'
 import { DRAWER_MODES_ARRAY, DRAWER_POSITIONS_ARRAY, DRAWER_SIZES_ARRAY } from '@components/overlay/drawer/constants'
 import { md } from '@stories/utils/markdown'
 
@@ -51,15 +52,45 @@ const renderDrawer = ({
                     title={title}
                     description={showDescription ? description : undefined}
                 />
-                <Drawer.Body>
-                    <Typography
-                        variant={'p'}
-                        fontSize={'sm'}
-                        color={'foreground'}
+                <Drawer.Body
+                    as={'nav'}
+                    aria-label={'Main navigation'}
+                >
+                    <Flex
+                        flexDirection={'column'}
+                        gap={'xs'}
                     >
-                        Your content goes here. This drawer demonstrates the
-                        compound component layout with Header, Body and Footer.
-                    </Typography>
+                        <Drawer.NavItem
+                            label={'Dashboard'}
+                            href={'/dashboard'}
+                            startIcon={IconRegistry.home}
+                            active
+                        />
+                        <Drawer.NavItem
+                            label={'Team'}
+                            href={'/team'}
+                            startIcon={IconRegistry.user}
+                        />
+                        <Drawer.SectionItem
+                            label={'Settings'}
+                            startIcon={IconRegistry.settings}
+                            defaultExpanded
+                        >
+                            <Drawer.NavItem
+                                label={'Profile'}
+                                href={'/profile'}
+                            />
+                            <Drawer.NavItem
+                                label={'Billing'}
+                                href={'/billing'}
+                            />
+                        </Drawer.SectionItem>
+                        <Drawer.ActionItem
+                            label={'Sign out'}
+                            startIcon={IconRegistry.logOut}
+                            onClick={() => setOpen(false)}
+                        />
+                    </Flex>
                 </Drawer.Body>
                 {showFooter && (
                     <Drawer.Footer>
@@ -103,6 +134,8 @@ const meta: Meta<DrawerPlaygroundArgs> = {
 A flexible drawer component with three render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
+Use \`Drawer.NavItem\`, \`Drawer.ActionItem\` and \`Drawer.SectionItem\`
+inside the body to build accessible navigation.
 
 **Usage**
 
@@ -111,8 +144,12 @@ const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
   <Drawer.Header title="Settings" />
-  <Drawer.Body>
-    <Typography>Your content goes here.</Typography>
+  <Drawer.Body as="nav" aria-label="Main navigation">
+    <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+    <Drawer.SectionItem label="Account" startIcon="lucide:user">
+      <Drawer.NavItem label="Profile" href="/profile" />
+      <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+    </Drawer.SectionItem>
   </Drawer.Body>
   <Drawer.Footer>
     <Button onClick={() => setOpen(false)}>Close</Button>
@@ -133,6 +170,8 @@ const [open, setOpen] = useState(false)
 - Portal drawers are always modal and trap focus while open.
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
 - Provide a visible title via \`Drawer.Header\` or an \`aria-label\`.
+- Wrap navigation items in \`Drawer.Body as="nav"\` with an \`aria-label\`.
+- \`Drawer.SectionItem\` exposes \`aria-expanded\`, \`aria-controls\` and a labelled region.
         `,
             },
         },
@@ -238,6 +277,10 @@ export const Playground: Story = {
         await expect(document.querySelector('[role="dialog"]')).toHaveTextContent(
             'Account settings',
         )
+
+        const navigation = document.querySelector('[role="navigation"]')
+        await expect(navigation).toBeInTheDocument()
+        await expect(navigation).toHaveTextContent('Dashboard')
 
         await userEvent.click(document.querySelector('[aria-label="Close drawer"]')!)
 

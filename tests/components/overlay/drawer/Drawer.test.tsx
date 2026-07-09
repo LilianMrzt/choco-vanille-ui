@@ -6,10 +6,13 @@ import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
 
 describe('Drawer', () => {
     describe('compound components', () => {
-        it('exposes Header, Body and Footer', () => {
+        it('exposes Header, Body, Footer, NavItem, ActionItem and SectionItem', () => {
             expect(Drawer.Header).toBeDefined()
             expect(Drawer.Body).toBeDefined()
             expect(Drawer.Footer).toBeDefined()
+            expect(Drawer.NavItem).toBeDefined()
+            expect(Drawer.ActionItem).toBeDefined()
+            expect(Drawer.SectionItem).toBeDefined()
         })
     })
 
