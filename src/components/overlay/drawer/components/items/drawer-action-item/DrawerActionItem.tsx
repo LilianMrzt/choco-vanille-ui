@@ -7,7 +7,7 @@ import type { DrawerActionItemProps } from '@components/overlay/drawer/component
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     useDrawerItemState,
-} from '@components/overlay/drawer/components/items/drawer-item'
+} from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
 
 /**

@@ -1,5 +1,5 @@
 ﻿import type { IconSize } from '@components/foundation/icon'
-import type { DrawerItemSize } from '@components/overlay/drawer/components/items/drawer-item'
+import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 

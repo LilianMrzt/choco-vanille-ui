@@ -16,8 +16,8 @@ export type { DrawerActionItemProps } from '@components/overlay/drawer/component
 export { default as DrawerSectionItem } from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
 export type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
 
-export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-item'
-export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/drawer-item'
+export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared'
+export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/_shared'
 
 export { default as DrawerPortal } from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
 export type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'

@@ -1,4 +1,4 @@
-﻿import type { DrawerItemSize } from '@components/overlay/drawer/components/items/drawer-item'
+import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
 import type { ReactNode } from 'react'
 

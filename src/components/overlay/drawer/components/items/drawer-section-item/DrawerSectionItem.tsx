@@ -15,7 +15,7 @@ import type { DrawerSectionItemProps } from '@components/overlay/drawer/componen
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     useDrawerItemState,
-} from '@components/overlay/drawer/components/items/drawer-item'
+} from '@components/overlay/drawer/components/items/_shared'
 import { IconRegistry } from '@constants/icons'
 import { Flex, Grid } from '@components'
 

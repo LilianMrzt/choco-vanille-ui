@@ -1,7 +1,7 @@
 ﻿export { Drawer } from '@components/overlay/drawer/Drawer.tsx'
 export { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
 export { DRAWER_HEADER_STYLES } from '@components/overlay/drawer/components/blocs/drawer-header/styles/DrawerHeader.css.ts'
-export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-item'
+export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared'
 export type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
 export type {
     DrawerMode,

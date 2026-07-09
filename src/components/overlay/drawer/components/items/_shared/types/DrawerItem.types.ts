@@ -1,4 +1,4 @@
-﻿import { DRAWER_ITEM_SIZES } from '@components/overlay/drawer/components/items/drawer-item/DrawerItem.constants.ts'
+import { DRAWER_ITEM_SIZES } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
 
 /** Available size presets for drawer item rows. */
 export type DrawerItemSize =
