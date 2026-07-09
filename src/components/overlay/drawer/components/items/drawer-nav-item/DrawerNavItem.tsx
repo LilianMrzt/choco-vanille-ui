@@ -4,9 +4,7 @@ import { useDrawerNavItem } from '@components/overlay/drawer/components/items/dr
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
-import {
-    DRAWER_NAV_ITEM_STYLES
-} from '@components/overlay/drawer/components/items/drawer-nav-item/styles/DrawerNavItem.css.ts'
+import { DRAWER_NAV_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-nav-item/styles/DrawerNavItem.css.ts'
 
 /**
  * A navigation row rendered inside a `Drawer`.
@@ -22,6 +20,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     active,
     disabled,
     size = 'md',
+    variant = 'default',
     iconSize,
     className,
     style,
@@ -41,7 +40,10 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
         <a
             ref={ref}
             href={href}
-            className={cn(DRAWER_NAV_ITEM_STYLES.recipe({ size }), className)}
+            className={cn(
+                DRAWER_NAV_ITEM_STYLES.recipe({ size, variant }),
+                className,
+            )}
             style={style}
             onClick={handleClick}
             {...linkAttributes}

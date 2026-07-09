@@ -43,17 +43,6 @@ const drawerItemRecipe = recipe({
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
-            '&[data-active="true"]': {
-                backgroundColor: vars.color.card,
-                color: vars.color.text,
-                borderColor: vars.color.border,
-            },
-            '&[data-active="true"]:hover': {
-                backgroundColor: vars.color.primarySubtle,
-            },
-            '&[data-active="true"]:active': {
-                backgroundColor: vars.color.primarySubtleHover,
-            },
             '&[aria-disabled="true"], &:disabled': {
                 pointerEvents: 'none',
                 opacity: 0.5,
@@ -83,9 +72,42 @@ const drawerItemRecipe = recipe({
                 fontSize: vars.fontSize.base,
             },
         },
+        variant: {
+            default: {
+                selectors: {
+                    '&[data-active="true"]': {
+                        backgroundColor: vars.color.primary,
+                        color: vars.color.primaryForeground,
+                        borderColor: 'transparent',
+                    },
+                    '&[data-active="true"]:hover': {
+                        backgroundColor: vars.color.primaryHover,
+                    },
+                    '&[data-active="true"]:active': {
+                        backgroundColor: vars.color.primaryActive,
+                    },
+                },
+            },
+            outlined: {
+                selectors: {
+                    '&[data-active="true"]': {
+                        backgroundColor: vars.color.card,
+                        color: vars.color.text,
+                        borderColor: vars.color.border,
+                    },
+                    '&[data-active="true"]:hover': {
+                        backgroundColor: vars.color.primarySubtle,
+                    },
+                    '&[data-active="true"]:active': {
+                        backgroundColor: vars.color.primarySubtleHover,
+                    },
+                },
+            },
+        },
     },
     defaultVariants: {
         size: 'md',
+        variant: 'default',
     },
 })
 

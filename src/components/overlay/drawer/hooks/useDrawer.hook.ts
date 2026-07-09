@@ -47,6 +47,7 @@ export const useDrawer = ({
     mode = DRAWER_MODES.portal,
     position = 'left',
     size = 'md',
+    withBackdrop: _withBackdrop,
     backgroundColor,
     defaultAriaLabel = 'Drawer',
     children,

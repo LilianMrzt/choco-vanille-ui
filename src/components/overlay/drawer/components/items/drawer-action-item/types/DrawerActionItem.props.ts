@@ -1,5 +1,8 @@
 ﻿import type { IconSize } from '@components/foundation/icon'
-import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared'
+import type {
+    DrawerItemSize,
+    DrawerItemVariant,
+} from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
@@ -17,6 +20,8 @@ export type DrawerActionItemProps = Omit<
     endIcon?: string;
     /** Size preset for the row. @default 'md' */
     size?: DrawerItemSize;
+    /** Visual variant for the row. @default 'default' */
+    variant?: DrawerItemVariant;
     /** Size of the start/end icons. Defaults to the row size mapping. */
     iconSize?: IconSize;
     /** Accessible label for the button. Defaults to `label`. */

@@ -64,20 +64,22 @@ const renderDrawer = ({
                     >
                         <Drawer.Section title={'Navigation'}>
                             <Drawer.NavItem
-                                label={'Dashboard Dashboard Dashboard Dashboard Dashboard '}
+                                label={'Dashboard'}
                                 href={'/dashboard'}
+                                onClick={() => console.log('Dashboard clicked')}
                                 startIcon={IconRegistry.home}
                                 active
                             />
                             <Drawer.NavItem
                                 label={'Team'}
                                 href={'/team'}
+                                onClick={() => console.log('Team clicked')}
                                 startIcon={IconRegistry.user}
                             />
                         </Drawer.Section>
-                        <Drawer.Section title={'Settings Settings Settings Settings Settings '}>
+                        <Drawer.Section title={'Settings'}>
                             <Drawer.SectionItem
-                                label={'Account Account Account Account Account Account '}
+                                label={'Account'}
                                 startIcon={IconRegistry.settings}
                                 defaultExpanded
                             >
@@ -85,11 +87,13 @@ const renderDrawer = ({
                                     label={'Profile'}
                                     href={'/profile'}
                                     startIcon={IconRegistry.user}
+                                    onClick={() => console.log('Profile clicked')}
                                 />
                                 <Drawer.NavItem
                                     label={'Billing'}
                                     href={'/billing'}
                                     startIcon={IconRegistry.creditCard}
+                                    onClick={() => console.log('Billing clicked')}
                                 />
                             </Drawer.SectionItem>
                         </Drawer.Section>

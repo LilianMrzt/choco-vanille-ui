@@ -65,7 +65,6 @@ const Drawer = (({
         mode,
         position,
         size,
-        withBackdrop,
         backgroundColor,
         defaultAriaLabel,
         children,

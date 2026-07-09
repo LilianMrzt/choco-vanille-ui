@@ -18,6 +18,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
     startIcon,
     endIcon,
     size = 'md',
+    variant = 'default',
     iconSize,
     disabled,
     className,
@@ -32,7 +33,10 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
             ref={ref}
             type={'button'}
             disabled={disabled}
-            className={cn(DRAWER_ACTION_ITEM_STYLES.recipe({ size }), className)}
+            className={cn(
+                DRAWER_ACTION_ITEM_STYLES.recipe({ size, variant }),
+                className,
+            )}
             style={style}
             {...itemAttributes}
             {...props}
