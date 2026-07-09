@@ -1,0 +1,60 @@
+﻿import { type FC, useMemo } from 'react'
+
+import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
+import { DRAWER_INLINE_STYLES } from '@components/overlay/drawer/components/variants/drawer-inline/styles/DrawerInline.css.ts'
+import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
+import { cn } from '@utils/cn.ts'
+
+/**
+ * Inline drawer renderer.
+ *
+ * Renders the drawer as a layout element that takes space when open
+ * and collapses to `width: 0` when closed.
+ */
+const DrawerInline: FC<DrawerInlineProps> = ({
+    open,
+    position,
+    size,
+    sizeWidthMap,
+    backgroundColor,
+    accessibleName,
+    ariaLabelledBy,
+    children,
+    className,
+    style,
+    ...props
+}) => {
+    const backgroundClassName = useMemo(
+        () =>
+            backgroundColor ? DRAWER_STYLES.recipe({ backgroundColor }) : undefined,
+        [backgroundColor],
+    )
+
+    const panelClassName = cn(
+        DRAWER_STYLES.panel,
+        DRAWER_INLINE_STYLES.panel,
+        position === 'right'
+            ? DRAWER_INLINE_STYLES.right
+            : DRAWER_INLINE_STYLES.left,
+        !open && DRAWER_INLINE_STYLES.closed,
+        DRAWER_STYLES.size[size],
+        backgroundClassName,
+        className,
+    )
+
+    return (
+        <div
+            className={panelClassName}
+            style={{ width: open ? sizeWidthMap[size] : 0, ...style }}
+            aria-label={accessibleName}
+            aria-labelledby={ariaLabelledBy}
+            {...props}
+        >
+            {children}
+        </div>
+    )
+}
+
+DrawerInline.displayName = 'Drawer.Inline'
+
+export default DrawerInline

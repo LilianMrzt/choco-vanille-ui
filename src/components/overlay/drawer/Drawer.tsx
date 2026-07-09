@@ -1,17 +1,23 @@
-import { useCallback, useMemo, useState } from 'react'
+﻿import { useCallback, useMemo, useState } from 'react'
 
-import DrawerActionItem from '@components/overlay/drawer/components/drawer-action-item/DrawerActionItem.tsx'
-import DrawerBody from '@components/overlay/drawer/components/drawer-body/DrawerBody.tsx'
-import DrawerFooter from '@components/overlay/drawer/components/drawer-footer/DrawerFooter.tsx'
-import DrawerHeader from '@components/overlay/drawer/components/drawer-header/DrawerHeader.tsx'
-import DrawerInline from '@components/overlay/drawer/components/drawer-inline/DrawerInline.tsx'
-import DrawerMini from '@components/overlay/drawer/components/drawer-mini/DrawerMini.tsx'
-import DrawerNavItem from '@components/overlay/drawer/components/drawer-nav-item/DrawerNavItem.tsx'
-import DrawerPortal from '@components/overlay/drawer/components/drawer-portal/DrawerPortal.tsx'
-import DrawerSectionItem from '@components/overlay/drawer/components/drawer-section-item/DrawerSectionItem.tsx'
-import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
+import DrawerActionItem from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.tsx'
+import DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/DrawerBody.tsx'
+import DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
+import DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
+import DrawerInline from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.tsx'
+import DrawerMini from '@components/overlay/drawer/components/variants/drawer-mini/DrawerMini.tsx'
+import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
+import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
+import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
+import {
+    DRAWER_MODES,
+    DRAWER_SIZE_WIDTH,
+} from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
-import type { DrawerCompound, DrawerProps } from '@components/overlay/drawer/types'
+import type {
+    DrawerCompound,
+    DrawerProps,
+} from '@components/overlay/drawer/types'
 
 /**
  * A flexible drawer with three render modes: portal, inline and mini.
@@ -56,10 +62,13 @@ const Drawer = (({
     const [internalOpen, setInternalOpen] = useState(defaultOpen)
     const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
 
-    const handleOpenChange = useCallback((nextOpen: boolean) => {
-        setInternalOpen(nextOpen)
-        onOpenChange?.(nextOpen)
-    }, [onOpenChange])
+    const handleOpenChange = useCallback(
+        (nextOpen: boolean) => {
+            setInternalOpen(nextOpen)
+            onOpenChange?.(nextOpen)
+        },
+        [onOpenChange],
+    )
 
     const contextValue = useMemo(
         () => ({
@@ -72,7 +81,8 @@ const Drawer = (({
         [isOpen, handleOpenChange, mode, position, size],
     )
 
-    const accessibleName = ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
+    const accessibleName =
+    ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
 
     const commonRendererProps = {
         open: isOpen,
