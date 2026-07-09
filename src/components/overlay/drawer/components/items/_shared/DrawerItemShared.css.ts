@@ -15,7 +15,7 @@ const drawerItemRecipe = recipe({
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',
-        color: vars.color.text,
+        color: vars.color.textSecondary,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
@@ -38,14 +38,20 @@ const drawerItemRecipe = recipe({
             },
             '&:active': {
                 backgroundColor: vars.color.secondarySubtleActive,
+                color: vars.color.text,
             },
             '&:focus-visible': {
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
             '&[data-active="true"]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.card,
+                color: vars.color.text,
+                borderColor: vars.color.border,
+            },
+            '&[aria-expanded="true"]': {
+                backgroundColor: vars.color.secondarySubtle,
+                color: vars.color.secondarySubtleForeground,
             },
             '&[aria-disabled="true"], &:disabled': {
                 pointerEvents: 'none',
@@ -119,53 +125,11 @@ const endIcon = style({
     },
 })
 
-const sectionContent = style({
-    display: 'grid',
-    gridTemplateRows: '0fr',
-    transition: `grid-template-rows ${vars.duration.normal} ${vars.easing.standard}`,
-    selectors: {
-        '&[data-state="open"]': {
-            gridTemplateRows: '1fr',
-        },
-    },
-})
-
-const sectionChildren = style({
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: vars.space.xs,
-    paddingLeft: vars.space.lg,
-    paddingBlock: vars.space.xs,
-})
-
-const chevron = style({
-    flexShrink: 0,
-    width: vars.fontSize.base,
-    height: vars.fontSize.base,
-    color: 'currentcolor',
-    transition: [
-        `transform ${vars.duration.normal} ${vars.easing.standard}`,
-        `opacity ${vars.duration.normal} ${vars.easing.standard}`,
-    ].join(', '),
-    selectors: {
-        '&[data-expanded="true"]': {
-            transform: 'rotate(180deg)',
-        },
-        '&[data-state="closed"]': {
-            opacity: 0,
-        },
-    },
-})
-
 export const DRAWER_ITEM_STYLES = {
     recipe: drawerItemRecipe,
     icon,
     label,
     endIcon,
-    sectionContent,
-    sectionChildren,
-    chevron,
 }
 
 export type DrawerItemRecipeVariants = NonNullable<

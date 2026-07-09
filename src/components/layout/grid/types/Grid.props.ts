@@ -12,6 +12,8 @@ export type GridProps = Omit<
   columns?: GridRecipeVariants['columns'];
   /** The track size for implicitly created grid rows. */
   gridAutoRows?: GridRecipeVariants['gridAutoRows'];
+  /** The explicit row track sizing for the grid. */
+  gridTemplateRows?: GridRecipeVariants['gridTemplateRows'];
   /** The auto-placement algorithm for grid items. */
   gridAutoFlow?: GridRecipeVariants['gridAutoFlow'];
   /** The default alignment of grid items along the block axis. */

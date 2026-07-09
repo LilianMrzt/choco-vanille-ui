@@ -10,12 +10,12 @@
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
+import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.css.ts'
+import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
-    DRAWER_ITEM_STYLES,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
-import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
 import { IconRegistry } from '@constants/icons'
 
 /**
@@ -86,7 +86,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 aria-expanded={expanded}
                 aria-controls={sectionId}
                 aria-label={ariaLabel}
-                className={DRAWER_ITEM_STYLES.recipe({ size })}
+                className={DRAWER_SECTION_ITEM_STYLES.recipe({ size })}
                 onClick={handleToggle}
                 onKeyDown={handleKeyDown}
                 {...headerAttributes}
@@ -95,11 +95,11 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 <Icon
                     icon={startIcon}
                     size={resolvedIconSize}
-                    className={DRAWER_ITEM_STYLES.icon}
+                    className={DRAWER_SECTION_ITEM_STYLES.icon}
                 />
                 <Typography
                     variant={'span'}
-                    className={DRAWER_ITEM_STYLES.label}
+                    className={DRAWER_SECTION_ITEM_STYLES.label}
                     data-state={state}
                 >
                     {label}
@@ -107,24 +107,24 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 <Icon
                     icon={IconRegistry.chevronDown}
                     size={resolvedIconSize}
-                    className={DRAWER_ITEM_STYLES.chevron}
+                    className={DRAWER_SECTION_ITEM_STYLES.chevron}
                     data-expanded={expanded}
                     data-state={state}
                     aria-hidden
                 />
             </button>
-            <Box
+            <div
                 id={sectionId}
                 role={'region'}
                 aria-label={sectionLabel ?? label}
                 aria-hidden={!expanded}
-                className={DRAWER_ITEM_STYLES.sectionContent}
+                className={DRAWER_SECTION_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
             >
-                <Box className={DRAWER_ITEM_STYLES.sectionChildren}>
+                <div className={DRAWER_SECTION_ITEM_STYLES.sectionContentInner}>
                     {children}
-                </Box>
-            </Box>
+                </div>
+            </div>
         </Box>
     )
 }

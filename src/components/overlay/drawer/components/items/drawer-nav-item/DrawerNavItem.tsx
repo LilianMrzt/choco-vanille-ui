@@ -2,12 +2,12 @@
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
+import { DRAWER_NAV_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.css.ts'
+import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
-    DRAWER_ITEM_STYLES,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
-import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -58,7 +58,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
         <a
             ref={ref}
             href={href}
-            className={cn(DRAWER_ITEM_STYLES.recipe({ size }), className)}
+            className={cn(DRAWER_NAV_ITEM_STYLES.recipe({ size }), className)}
             style={style}
             onClick={handleClick}
             {...itemAttributes}
@@ -67,11 +67,11 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             <Icon
                 icon={startIcon}
                 size={resolvedIconSize}
-                className={DRAWER_ITEM_STYLES.icon}
+                className={DRAWER_NAV_ITEM_STYLES.icon}
             />
             <Typography
                 variant={'span'}
-                className={DRAWER_ITEM_STYLES.label}
+                className={DRAWER_NAV_ITEM_STYLES.label}
                 data-state={state}
             >
                 {label}
@@ -80,7 +80,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
                 <Icon
                     icon={endIcon}
                     size={resolvedIconSize}
-                    className={DRAWER_ITEM_STYLES.endIcon}
+                    className={DRAWER_NAV_ITEM_STYLES.endIcon}
                     data-state={state}
                 />
             )}

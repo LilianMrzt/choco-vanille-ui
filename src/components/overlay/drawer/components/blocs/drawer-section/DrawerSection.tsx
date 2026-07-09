@@ -40,7 +40,11 @@ const DrawerSection: FC<DrawerSectionProps> = ({
                     {title}
                 </Typography>
             )}
-            {children}
+            <Box
+                paddingTop={'xs'}
+            >
+                {children}
+            </Box>
         </Box>
     )
 }

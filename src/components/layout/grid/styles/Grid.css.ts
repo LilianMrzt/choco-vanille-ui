@@ -32,6 +32,16 @@ export const GRID_STYLES = {
                 fr: { gridAutoRows: 'minmax(0, 1fr)' },
             },
 
+            // Template Rows
+            gridTemplateRows: {
+                none: { gridTemplateRows: 'none' },
+                auto: { gridTemplateRows: 'auto' },
+                min: { gridTemplateRows: 'min-content' },
+                max: { gridTemplateRows: 'max-content' },
+                '1fr': { gridTemplateRows: '1fr' },
+                '0fr': { gridTemplateRows: '0fr' },
+            },
+
             // Auto Flow
             gridAutoFlow: {
                 row: { gridAutoFlow: 'row' },
