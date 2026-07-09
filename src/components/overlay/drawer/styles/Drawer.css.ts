@@ -13,7 +13,6 @@ const panel = style({
     height: '100%',
     overflow: 'hidden',
     backgroundColor: vars.color.background,
-    color: vars.color.foreground,
 })
 
 const size = {

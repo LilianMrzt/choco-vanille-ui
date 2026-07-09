@@ -1,6 +1,6 @@
 ﻿import type { FC } from 'react'
 
-import { DRAWER_ACTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.css.ts'
+import { DRAWER_ACTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-action-item/styles/DrawerActionItem.css.ts'
 import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
 import {
     DrawerItemContent,

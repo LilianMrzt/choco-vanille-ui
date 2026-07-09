@@ -1,6 +1,4 @@
-﻿import { useCallback, useMemo, useState } from 'react'
-
-import DrawerActionItem from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.tsx'
+﻿import DrawerActionItem from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.tsx'
 import DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/DrawerBody.tsx'
 import DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
 import DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
@@ -9,11 +7,9 @@ import DrawerInline from '@components/overlay/drawer/components/variants/drawer-
 import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
 import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
-import {
-    DRAWER_MODES,
-    DRAWER_SIZE_WIDTH,
-} from '@components/overlay/drawer/constants'
+import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
+import { useDrawer } from '@components/overlay/drawer/hooks/useDrawer.hook.ts'
 import type {
     DrawerCompound,
     DrawerProps,
@@ -62,43 +58,23 @@ const Drawer = (({
     'aria-labelledby': ariaLabelledBy,
     ...props
 }: DrawerProps) => {
-    const [internalOpen, setInternalOpen] = useState(defaultOpen)
-    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
-
-    const handleOpenChange = useCallback(
-        (nextOpen: boolean) => {
-            setInternalOpen(nextOpen)
-            onOpenChange?.(nextOpen)
-        },
-        [onOpenChange],
-    )
-
-    const contextValue = useMemo(
-        () => ({
-            open: isOpen,
-            onOpenChange: handleOpenChange,
-            mode,
-            position,
-            size,
-        }),
-        [isOpen, handleOpenChange, mode, position, size],
-    )
-
-    const accessibleName =
-    ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
-
-    const commonRendererProps = {
-        open: isOpen,
+    const { contextValue, handleOpenChange, commonRendererProps } = useDrawer({
+        open: controlledOpen,
+        defaultOpen,
+        onOpenChange,
+        mode,
         position,
         size,
+        withBackdrop,
         backgroundColor,
-        accessibleName,
-        ariaLabelledBy,
+        defaultAriaLabel,
         children,
         className,
         style,
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
         ...props,
-    }
+    })
 
     return (
         <DrawerContext.Provider value={contextValue}>

@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
-import { DRAWER_ITEM_CONTENT_STYLES } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/DrawerItemContent.css.ts'
+import { DRAWER_ITEM_CONTENT_STYLES } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/styles/DrawerItemContent.css.ts'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemAttributes.hook.ts'
 import type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/types/DrawerItemContent.props.ts'
 

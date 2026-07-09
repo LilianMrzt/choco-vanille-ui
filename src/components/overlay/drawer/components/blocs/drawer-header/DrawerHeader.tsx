@@ -4,7 +4,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { IconRegistry } from '@constants/icons'
-import { useDrawer } from '@components/overlay/drawer/hooks/useDrawer.hook.ts'
+import { useDrawerContext } from '@components/overlay/drawer/hooks/useDrawerContext.hook.ts'
 import { DRAWER_HEADER_STYLES } from '@components/overlay/drawer/components/blocs/drawer-header/styles/DrawerHeader.css.ts'
 import type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types/DrawerHeader.props.ts'
 
@@ -28,7 +28,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
     children,
     ...props
 }) => {
-    const { onOpenChange } = useDrawer()
+    const { onOpenChange } = useDrawerContext()
 
     return (
         <Flex

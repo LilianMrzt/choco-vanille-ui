@@ -1,12 +1,12 @@
-﻿import { useMemo, type FC, type MouseEvent } from 'react'
+﻿import { type FC } from 'react'
 
-import { DRAWER_NAV_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.css.ts'
+import { useDrawerNavItem } from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/useDrawerNavItem.hook.ts'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
-import {
-    DrawerItemContent,
-    useDrawerItemAttributes,
-} from '@components/overlay/drawer/components/items/_shared'
+import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
+import {
+    DRAWER_NAV_ITEM_STYLES
+} from '@components/overlay/drawer/components/items/drawer-nav-item/styles/DrawerNavItem.css.ts'
 
 /**
  * A navigation row rendered inside a `Drawer`.
@@ -29,24 +29,13 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     ref,
     ...props
 }) => {
-    const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
-
-    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-        if (onClick) {
-            event.preventDefault()
-            onClick(event)
-        }
-    }
-
-    const linkAttributes = useMemo(
-        () => ({
-            ...itemAttributes,
-            'data-active': active ? 'true' : undefined,
-            'aria-disabled': disabled || undefined,
-            'aria-current': active ? ('page' as const) : undefined,
-        }),
-        [itemAttributes, active, disabled],
-    )
+    const { linkAttributes, handleClick } = useDrawerNavItem({
+        active,
+        disabled,
+        size,
+        iconSize,
+        onClick,
+    })
 
     return (
         <a

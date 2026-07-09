@@ -32,11 +32,11 @@ const drawerItemRecipe = recipe({
         ].join(', '),
         selectors: {
             '&:hover': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.primarySubtle,
                 color: vars.color.text,
             },
             '&:active': {
-                backgroundColor: vars.color.secondarySubtleActive,
+                backgroundColor: vars.color.primarySubtleHover,
                 color: vars.color.text,
             },
             '&:focus-visible': {
@@ -48,9 +48,11 @@ const drawerItemRecipe = recipe({
                 color: vars.color.text,
                 borderColor: vars.color.border,
             },
-            '&[aria-expanded="true"]': {
-                backgroundColor: vars.color.secondarySubtle,
-                color: vars.color.secondarySubtleForeground,
+            '&[data-active="true"]:hover': {
+                backgroundColor: vars.color.primarySubtle,
+            },
+            '&[data-active="true"]:active': {
+                backgroundColor: vars.color.primarySubtleHover,
             },
             '&[aria-disabled="true"], &:disabled': {
                 pointerEvents: 'none',

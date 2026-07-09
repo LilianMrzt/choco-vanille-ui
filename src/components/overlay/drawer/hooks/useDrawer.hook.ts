@@ -1,17 +1,104 @@
-import { useContext } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-import { DrawerContext, type DrawerContextValue } from '@components/overlay/drawer/context/Drawer.context.ts'
+import { DRAWER_MODES } from '@components/overlay/drawer/constants'
+import type { DrawerContextValue } from '@components/overlay/drawer/context/Drawer.context.ts'
+import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
+import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'
+import type { DrawerProps } from '@components/overlay/drawer/types'
+
+type UseDrawerParams = DrawerProps
+
+/** Props shared by both drawer renderers. */
+type CommonRendererProps = Pick<
+    DrawerPortalProps & DrawerInlineProps,
+    | 'open'
+    | 'position'
+    | 'size'
+    | 'backgroundColor'
+    | 'accessibleName'
+    | 'ariaLabelledBy'
+    | 'children'
+    | 'className'
+    | 'style'
+> &
+    Record<string, unknown>
+
+type UseDrawerReturn = {
+    /** Resolved open state (controlled or internal). */
+    isOpen: boolean
+    /** Callback to update the open state. */
+    handleOpenChange: (nextOpen: boolean) => void
+    /** Value provided to `DrawerContext.Provider`. */
+    contextValue: DrawerContextValue
+    /** Accessible name resolved from aria props. */
+    accessibleName: string | undefined
+    /** Props shared between `DrawerPortal` and `DrawerInline`. */
+    commonRendererProps: CommonRendererProps
+}
 
 /**
- * Returns the current drawer state and helpers.
- * Throws if used outside of a `Drawer`.
+ * Encapsulates the state, context and accessibility logic for the root
+ * `Drawer` component.
  */
-export const useDrawer = (): DrawerContextValue => {
-    const context = useContext(DrawerContext)
+export const useDrawer = ({
+    open: controlledOpen,
+    defaultOpen = false,
+    onOpenChange,
+    mode = DRAWER_MODES.portal,
+    position = 'left',
+    size = 'md',
+    backgroundColor,
+    defaultAriaLabel = 'Drawer',
+    children,
+    className,
+    style,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    ...props
+}: UseDrawerParams): UseDrawerReturn => {
+    const [internalOpen, setInternalOpen] = useState(defaultOpen)
+    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
 
-    if (!context) {
-        throw new Error('useDrawer must be used within a <Drawer>.')
+    const handleOpenChange = useCallback(
+        (nextOpen: boolean) => {
+            setInternalOpen(nextOpen)
+            onOpenChange?.(nextOpen)
+        },
+        [onOpenChange],
+    )
+
+    const contextValue = useMemo<DrawerContextValue>(
+        () => ({
+            open: isOpen,
+            onOpenChange: handleOpenChange,
+            mode,
+            position,
+            size,
+        }),
+        [isOpen, handleOpenChange, mode, position, size],
+    )
+
+    const accessibleName =
+        ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
+
+    const commonRendererProps = {
+        open: isOpen,
+        position,
+        size,
+        backgroundColor,
+        accessibleName,
+        ariaLabelledBy,
+        children,
+        className,
+        style,
+        ...props,
     }
 
-    return context
+    return {
+        isOpen,
+        handleOpenChange,
+        contextValue,
+        accessibleName,
+        commonRendererProps: commonRendererProps as CommonRendererProps,
+    }
 }
