@@ -13,10 +13,6 @@ export type DrawerContextValue = {
     position: DrawerPosition
     /** Current width preset. */
     size: DrawerSize
-    /** Width when the drawer is collapsed in `mini` mode. */
-    collapsedSize: string | number
-    /** Whether the portal drawer renders a backdrop. */
-    withBackdrop: boolean
 }
 
 export const DrawerContext = createContext<DrawerContextValue | null>(null)
