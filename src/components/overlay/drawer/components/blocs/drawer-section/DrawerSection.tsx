@@ -35,6 +35,7 @@ const DrawerSection: FC<DrawerSectionProps> = ({
                     textTransform={'uppercase'}
                     fontWeight={'medium'}
                     letterSpacing={'wide'}
+                    maxLines={1}
                     {...titleProps}
                 >
                     {title}

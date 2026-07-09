@@ -20,6 +20,7 @@ export const TYPOGRAPHY_STYLES = {
     recipe: recipe({
         base: {
             margin: 0,
+            transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
         },
 
         variants: {

@@ -64,7 +64,7 @@ const renderDrawer = ({
                     >
                         <Drawer.Section title={'Navigation'}>
                             <Drawer.NavItem
-                                label={'Dashboard'}
+                                label={'Dashboard Dashboard Dashboard Dashboard Dashboard '}
                                 href={'/dashboard'}
                                 startIcon={IconRegistry.home}
                                 active
@@ -75,9 +75,9 @@ const renderDrawer = ({
                                 startIcon={IconRegistry.user}
                             />
                         </Drawer.Section>
-                        <Drawer.Section title={'Settings'}>
+                        <Drawer.Section title={'Settings Settings Settings Settings Settings '}>
                             <Drawer.SectionItem
-                                label={'Account'}
+                                label={'Account Account Account Account Account Account '}
                                 startIcon={IconRegistry.settings}
                                 defaultExpanded
                             >

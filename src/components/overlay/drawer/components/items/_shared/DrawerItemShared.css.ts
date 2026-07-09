@@ -95,23 +95,6 @@ const icon = style({
     color: 'currentcolor',
 })
 
-const label = style({
-    display: 'block',
-    flex: 1,
-    minWidth: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    maxWidth: '100%',
-    opacity: 1,
-    transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
-    selectors: {
-        '&[data-state="closed"]': {
-            opacity: 0,
-        },
-    },
-})
-
 const endIcon = style({
     flexShrink: 0,
     width: vars.fontSize.base,
@@ -128,7 +111,6 @@ const endIcon = style({
 export const DRAWER_ITEM_STYLES = {
     recipe: drawerItemRecipe,
     icon,
-    label,
     endIcon,
 }
 

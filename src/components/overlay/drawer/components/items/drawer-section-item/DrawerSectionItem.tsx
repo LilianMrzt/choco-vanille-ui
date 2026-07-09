@@ -99,8 +99,12 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     className={DRAWER_SECTION_ITEM_STYLES.icon}
                 />
                 <Typography
+                    width={'100%'}
+                    maxLines={1}
+                    minWidth={0}
+                    ellipsis={true}
+                    maxWidth={'100%'}
                     variant={'span'}
-                    className={DRAWER_SECTION_ITEM_STYLES.label}
                     data-state={state}
                 >
                     {label}

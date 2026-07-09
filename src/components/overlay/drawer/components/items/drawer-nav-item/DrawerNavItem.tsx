@@ -71,7 +71,11 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             />
             <Typography
                 variant={'span'}
-                className={DRAWER_NAV_ITEM_STYLES.label}
+                width={'100%'}
+                maxLines={1}
+                minWidth={0}
+                ellipsis={true}
+                maxWidth={'100%'}
                 data-state={state}
             >
                 {label}
