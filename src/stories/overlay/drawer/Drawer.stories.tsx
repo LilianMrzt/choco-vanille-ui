@@ -24,7 +24,7 @@ const renderDrawer = ({
     size,
     collapsedSize,
     withBackdrop,
-    modal,
+    backgroundColor,
     title,
     description,
     showDescription,
@@ -45,7 +45,7 @@ const renderDrawer = ({
                 size={size}
                 collapsedSize={collapsedSize}
                 withBackdrop={withBackdrop}
-                modal={modal}
+                backgroundColor={backgroundColor}
             >
                 <Drawer.Header
                     title={title}
@@ -130,7 +130,7 @@ const [open, setOpen] = useState(false)
 
 **Accessibility**
 
-- Portal drawers are modal by default and trap focus while open.
+- Portal drawers are always modal and trap focus while open.
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
 - Provide a visible title via \`Drawer.Header\` or an \`aria-label\`.
         `,
@@ -169,8 +169,9 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer' },
         },
-        modal: {
-            control: 'boolean',
+        backgroundColor: {
+            control: 'select',
+            options: ['background', 'card', 'popover', 'muted', 'primary', 'secondary', 'transparent'],
             table: { category: 'Drawer' },
         },
         title: {
@@ -205,7 +206,6 @@ const [open, setOpen] = useState(false)
         size: 'md' as DrawerSize,
         collapsedSize: '4rem',
         withBackdrop: true,
-        modal: true,
         title: 'Account settings',
         description: 'Manage your profile and preferences.',
         showDescription: true,

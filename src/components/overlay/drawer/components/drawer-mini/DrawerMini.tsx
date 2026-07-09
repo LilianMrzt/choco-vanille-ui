@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import { DRAWER_MINI_STYLES } from '@components/overlay/drawer/components/drawer-mini/styles/DrawerMini.css.ts'
@@ -17,6 +17,7 @@ const DrawerMini: FC<DrawerMiniProps> = ({
     size,
     collapsedSize,
     sizeWidthMap,
+    backgroundColor,
     accessibleName,
     ariaLabelledBy,
     children,
@@ -24,25 +25,25 @@ const DrawerMini: FC<DrawerMiniProps> = ({
     style,
     ...props
 }) => {
+    const backgroundClassName = useMemo(
+        () => (backgroundColor ? DRAWER_STYLES.recipe({ backgroundColor }) : undefined),
+        [backgroundColor],
+    )
+
     const panelClassName = cn(
         DRAWER_STYLES.panel,
         DRAWER_MINI_STYLES.panel,
         position === 'right' ? DRAWER_MINI_STYLES.right : DRAWER_MINI_STYLES.left,
         !open && DRAWER_MINI_STYLES.closed,
         DRAWER_STYLES.size[size],
+        backgroundClassName,
         className,
     )
-
-    const panelStyle = {
-        width: open ? sizeWidthMap[size] : collapsedSize,
-        opacity: !open ? 1 : undefined,
-        ...style,
-    }
 
     return (
         <div
             className={panelClassName}
-            style={panelStyle}
+            style={{ width: open ? sizeWidthMap[size] : collapsedSize, opacity: !open ? 1 : undefined, ...style }}
             aria-label={accessibleName}
             aria-labelledby={ariaLabelledBy}
             {...props}

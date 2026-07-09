@@ -35,7 +35,7 @@ const Drawer = (({
     size = 'md',
     collapsedSize = '4rem',
     withBackdrop = true,
-    modal = true,
+    backgroundColor,
     defaultAriaLabel = 'Drawer',
     children,
     className,
@@ -69,6 +69,7 @@ const Drawer = (({
         open: isOpen,
         position,
         size,
+        backgroundColor,
         accessibleName,
         ariaLabelledBy,
         children,
@@ -84,7 +85,6 @@ const Drawer = (({
                     {...commonRendererProps}
                     onOpenChange={handleOpenChange}
                     withBackdrop={withBackdrop}
-                    modal={modal}
                 />
             ) : mode === DRAWER_MODES.inline ? (
                 <DrawerInline

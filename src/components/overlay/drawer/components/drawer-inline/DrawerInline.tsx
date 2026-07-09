@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import { DRAWER_INLINE_STYLES } from '@components/overlay/drawer/components/drawer-inline/styles/DrawerInline.css.ts'
@@ -16,6 +16,7 @@ const DrawerInline: FC<DrawerInlineProps> = ({
     position,
     size,
     sizeWidthMap,
+    backgroundColor,
     accessibleName,
     ariaLabelledBy,
     children,
@@ -23,24 +24,25 @@ const DrawerInline: FC<DrawerInlineProps> = ({
     style,
     ...props
 }) => {
+    const backgroundClassName = useMemo(
+        () => (backgroundColor ? DRAWER_STYLES.recipe({ backgroundColor }) : undefined),
+        [backgroundColor],
+    )
+
     const panelClassName = cn(
         DRAWER_STYLES.panel,
         DRAWER_INLINE_STYLES.panel,
         position === 'right' ? DRAWER_INLINE_STYLES.right : DRAWER_INLINE_STYLES.left,
         !open && DRAWER_INLINE_STYLES.closed,
         DRAWER_STYLES.size[size],
+        backgroundClassName,
         className,
     )
-
-    const panelStyle = {
-        width: open ? sizeWidthMap[size] : 0,
-        ...style,
-    }
 
     return (
         <div
             className={panelClassName}
-            style={panelStyle}
+            style={{ width: open ? sizeWidthMap[size] : 0, ...style }}
             aria-label={accessibleName}
             aria-labelledby={ariaLabelledBy}
             {...props}

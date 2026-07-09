@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css'
+import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+
+const backgroundColorVariants = createColorVariants('backgroundColor')
 
 const panel = style({
     display: 'flex',
@@ -21,7 +25,17 @@ const size = {
     full: style({ maxWidth: '100%' }),
 }
 
+const recipeStyles = recipe({
+    base: {},
+    variants: {
+        backgroundColor: backgroundColorVariants,
+    },
+})
+
 export const DRAWER_STYLES = {
     panel,
     size,
+    recipe: recipeStyles,
 }
+
+export type DrawerRecipeVariants = NonNullable<RecipeVariants<typeof recipeStyles>>

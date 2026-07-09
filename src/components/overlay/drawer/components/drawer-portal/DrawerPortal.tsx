@@ -1,5 +1,5 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import { DRAWER_PORTAL_STYLES } from '@components/overlay/drawer/components/drawer-portal/styles/DrawerPortal.css.ts'
@@ -18,18 +18,25 @@ const DrawerPortal: FC<DrawerPortalProps> = ({
     position,
     size,
     withBackdrop = true,
-    modal = true,
+    backgroundColor,
     accessibleName,
     ariaLabelledBy,
     children,
     className,
+    style,
     ...props
 }) => {
+    const backgroundClassName = useMemo(
+        () => (backgroundColor ? DRAWER_STYLES.recipe({ backgroundColor }) : undefined),
+        [backgroundColor],
+    )
+
     const panelClassName = cn(
         DRAWER_STYLES.panel,
         DRAWER_PORTAL_STYLES.panel,
         position === 'right' ? DRAWER_PORTAL_STYLES.right : DRAWER_PORTAL_STYLES.left,
         DRAWER_STYLES.size[size],
+        backgroundClassName,
         className,
     )
 
@@ -37,7 +44,7 @@ const DrawerPortal: FC<DrawerPortalProps> = ({
         <BaseDialog.Root
             open={open}
             onOpenChange={onOpenChange}
-            modal={modal}
+            modal
         >
             <BaseDialog.Portal>
                 {withBackdrop && (
@@ -45,6 +52,7 @@ const DrawerPortal: FC<DrawerPortalProps> = ({
                 )}
                 <BaseDialog.Popup
                     className={panelClassName}
+                    style={style}
                     aria-label={accessibleName}
                     aria-labelledby={ariaLabelledBy}
                     {...props}
