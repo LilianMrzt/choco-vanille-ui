@@ -1,0 +1,29 @@
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
+
+import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer/types/Drawer.types.ts'
+
+/** Props for the root `Drawer` component. */
+export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
+    /** Controlled open state. */
+    open?: boolean
+    /** Initial open state when uncontrolled. @default false */
+    defaultOpen?: boolean
+    /** Called when the open state changes. */
+    onOpenChange?: (open: boolean) => void
+    /** Render mode. @default 'portal' */
+    mode?: DrawerMode
+    /** Side the drawer attaches to. @default 'left' */
+    position?: DrawerPosition
+    /** Width preset. @default 'md' */
+    size?: DrawerSize
+    /** Width of the drawer when collapsed in `mini` mode. @default '4rem' */
+    collapsedSize?: CSSProperties['width']
+    /** Whether to render the backdrop in `portal` mode. @default true */
+    withBackdrop?: boolean
+    /** Whether the `portal` drawer blocks the rest of the page. @default true */
+    modal?: boolean
+    /** Accessible name used when no visible title is present. @default 'Drawer' */
+    defaultAriaLabel?: string
+    /** Drawer content — typically `Drawer.Header`, `Drawer.Body`, `Drawer.Footer`. */
+    children?: ReactNode
+}
