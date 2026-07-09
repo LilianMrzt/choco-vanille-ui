@@ -4,7 +4,6 @@ import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { IconRegistry } from '@constants/icons'
-import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import { useDrawer } from '@components/overlay/drawer/hooks/useDrawer.hook.ts'
 import { DRAWER_HEADER_STYLES } from '@components/overlay/drawer/components/blocs/drawer-header/styles/DrawerHeader.css.ts'
 import type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types/DrawerHeader.props.ts'
@@ -29,8 +28,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
     children,
     ...props
 }) => {
-    const { onOpenChange, mode, open } = useDrawer()
-    const isMiniCollapsed = mode === DRAWER_MODES.mini && !open
+    const { onOpenChange } = useDrawer()
 
     return (
         <Flex
@@ -39,12 +37,12 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
             alignItems={'start'}
             justifyContent={'between'}
             gap={'md'}
-            padding={isMiniCollapsed ? 'xs' : 'lg'}
+            padding={'lg'}
             paddingBottom={'none'}
             className={className}
             {...props}
         >
-            {(title || description) && !isMiniCollapsed && (
+            {(title || description) && (
                 <Flex
                     flexDirection={'column'}
                     alignItems={'start'}
@@ -58,6 +56,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
                             fontSize={'lg'}
                             fontWeight={'semibold'}
                             color={'foreground'}
+                            ellipsis
                             {...titleProps}
                         >
                             {title}
@@ -68,6 +67,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
                             as={'p'}
                             fontSize={'sm'}
                             color={'mutedForeground'}
+                            ellipsis
                             {...descriptionProps}
                         >
                             {description}

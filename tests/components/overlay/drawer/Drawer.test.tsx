@@ -56,7 +56,7 @@ describe('Drawer', () => {
             expect(screen.getByText('Mini body')).toBeTruthy()
         })
 
-        it('hides the header title when mini drawer is collapsed', () => {
+        it('still renders the header title when mini drawer is collapsed', () => {
             render(
                 <Drawer defaultOpen={false} mode="mini">
                     <Drawer.Header title="Mini title" />
@@ -64,7 +64,7 @@ describe('Drawer', () => {
                 </Drawer>,
             )
 
-            expect(screen.queryByText('Mini title')).toBeNull()
+            expect(screen.getByText('Mini title')).toBeTruthy()
             expect(screen.getByText('Mini body')).toBeTruthy()
         })
 

@@ -13,6 +13,7 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
     title?: string
     description?: string
     showDescription?: boolean
+    showHeader?: boolean
     showFooter?: boolean
     confirmLabel?: string
     cancelLabel?: string
@@ -29,6 +30,7 @@ const renderDrawer = ({
     title,
     description,
     showDescription,
+    showHeader,
     showFooter,
     confirmLabel,
     cancelLabel,
@@ -48,10 +50,12 @@ const renderDrawer = ({
                 withBackdrop={withBackdrop}
                 backgroundColor={backgroundColor}
             >
-                <Drawer.Header
-                    title={title}
-                    description={showDescription ? description : undefined}
-                />
+                {showHeader && (
+                    <Drawer.Header
+                        title={title}
+                        description={showDescription ? description : undefined}
+                    />
+                )}
                 <Drawer.Body
                     as={'nav'}
                     aria-label={'Main navigation'}
@@ -227,6 +231,10 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.Header' },
         },
+        showHeader: {
+            control: 'boolean',
+            table: { category: 'Drawer.Header' },
+        },
         showFooter: {
             control: 'boolean',
             table: { category: 'Drawer.Footer' },
@@ -250,6 +258,7 @@ const [open, setOpen] = useState(false)
         title: 'Account settings',
         description: 'Manage your profile and preferences.',
         showDescription: true,
+        showHeader: true,
         showFooter: true,
         confirmLabel: 'Save changes',
         cancelLabel: 'Cancel',
@@ -318,6 +327,7 @@ export const Mini: Story = {
     args: {
         defaultOpen: true,
         mode: 'mini',
+        showHeader: false,
         showFooter: false,
     },
     parameters: {
