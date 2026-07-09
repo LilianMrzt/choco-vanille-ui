@@ -1,9 +1,9 @@
 import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
 import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, useMemo, type CSSProperties, type FC } from 'react'
 
-const Box: FC<BoxProps> = ({
+const Box: FC<BoxProps> = memo(({
     as: Element = 'div',
     borderRadius,
     padding,
@@ -55,66 +55,122 @@ const Box: FC<BoxProps> = ({
     ref,
     ...props
 }) => {
+    const recipeClassName = useMemo(
+        () =>
+            BOX_STYLES.recipe({
+                borderRadius,
+                padding,
+                paddingX,
+                paddingY,
+                paddingTop,
+                paddingRight,
+                paddingBottom,
+                paddingLeft,
+                margin,
+                marginX,
+                marginY,
+                marginTop,
+                marginRight,
+                marginBottom,
+                marginLeft,
+                gap,
+                columnGap,
+                rowGap,
+                borderColor,
+                backgroundColor,
+                boxShadow,
+            }),
+        [
+            borderRadius,
+            padding,
+            paddingX,
+            paddingY,
+            paddingTop,
+            paddingRight,
+            paddingBottom,
+            paddingLeft,
+            margin,
+            marginX,
+            marginY,
+            marginTop,
+            marginRight,
+            marginBottom,
+            marginLeft,
+            gap,
+            columnGap,
+            rowGap,
+            borderColor,
+            backgroundColor,
+            boxShadow,
+        ],
+    )
+
+    const computedStyle = useMemo<CSSProperties>(
+        () => ({
+            display,
+            width,
+            minWidth,
+            maxWidth,
+            height,
+            minHeight,
+            maxHeight,
+            overflow,
+            overflowX,
+            overflowY,
+            position,
+            flex,
+            flexDirection,
+            flexWrap,
+            alignSelf,
+            alignItems,
+            alignContent,
+            justifyContent,
+            borderWidth,
+            borderTopWidth,
+            borderRightWidth,
+            borderBottomWidth,
+            borderLeftWidth,
+            borderStyle,
+            ...style,
+        }),
+        [
+            display,
+            width,
+            minWidth,
+            maxWidth,
+            height,
+            minHeight,
+            maxHeight,
+            overflow,
+            overflowX,
+            overflowY,
+            position,
+            flex,
+            flexDirection,
+            flexWrap,
+            alignSelf,
+            alignItems,
+            alignContent,
+            justifyContent,
+            borderWidth,
+            borderTopWidth,
+            borderRightWidth,
+            borderBottomWidth,
+            borderLeftWidth,
+            borderStyle,
+            style,
+        ],
+    )
+
     return (
         <Element
             ref={ref}
-            className={cn(
-                BOX_STYLES.recipe({
-                    borderRadius,
-                    padding,
-                    paddingX,
-                    paddingY,
-                    paddingTop,
-                    paddingRight,
-                    paddingBottom,
-                    paddingLeft,
-                    margin,
-                    marginX,
-                    marginY,
-                    marginTop,
-                    marginRight,
-                    marginBottom,
-                    marginLeft,
-                    gap,
-                    columnGap,
-                    rowGap,
-                    borderColor,
-                    backgroundColor,
-                    boxShadow,
-                }),
-                className,
-            )}
-            style={{
-                display,
-                width,
-                minWidth,
-                maxWidth,
-                height,
-                minHeight,
-                maxHeight,
-                overflow,
-                overflowX,
-                overflowY,
-                position,
-                flex,
-                flexDirection,
-                flexWrap,
-                alignSelf,
-                alignItems,
-                alignContent,
-                justifyContent,
-                borderWidth,
-                borderTopWidth,
-                borderRightWidth,
-                borderBottomWidth,
-                borderLeftWidth,
-                borderStyle,
-                ...style,
-            }}
+            className={cn(recipeClassName, className)}
+            style={computedStyle}
             {...props}
         />
     )
-}
+})
 
 Box.displayName = 'Box'
 
