@@ -111,25 +111,4 @@ describe('Drawer.SectionItem', () => {
 
         expect(header.getAttribute('aria-expanded')).toBe('true')
     })
-
-    it('still expands and collapses in collapsed mini mode', async () => {
-        render(
-            <Drawer defaultOpen={false} mode="mini">
-                <Drawer.SectionItem label="Settings" startIcon="lucide:settings">
-                    <Drawer.NavItem label="Profile" href="/profile" startIcon="lucide:user" />
-                </Drawer.SectionItem>
-            </Drawer>,
-        )
-
-        expect(screen.queryByRole('link', { name: 'Profile' })).toBeNull()
-
-        const header = screen.getByRole('button', { name: 'Settings' })
-        await userEvent.click(header)
-
-        expect(screen.getByRole('link', { name: 'Profile' })).toBeTruthy()
-
-        await userEvent.click(header)
-
-        expect(screen.queryByRole('link', { name: 'Profile' })).toBeNull()
-    })
 })

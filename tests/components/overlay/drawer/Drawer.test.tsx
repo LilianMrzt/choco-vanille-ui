@@ -44,30 +44,6 @@ describe('Drawer', () => {
             expect(screen.getByText('Inline body')).toBeTruthy()
         })
 
-        it('renders a mini drawer when mode is mini', () => {
-            render(
-                <Drawer defaultOpen mode="mini">
-                    <Drawer.Header title="Mini title" />
-                    <Drawer.Body>Mini body</Drawer.Body>
-                </Drawer>,
-            )
-
-            expect(screen.getByText('Mini title')).toBeTruthy()
-            expect(screen.getByText('Mini body')).toBeTruthy()
-        })
-
-        it('still renders the header title when mini drawer is collapsed', () => {
-            render(
-                <Drawer defaultOpen={false} mode="mini">
-                    <Drawer.Header title="Mini title" />
-                    <Drawer.Body>Mini body</Drawer.Body>
-                </Drawer>,
-            )
-
-            expect(screen.getByText('Mini title')).toBeTruthy()
-            expect(screen.getByText('Mini body')).toBeTruthy()
-        })
-
         it('renders a close button by default in the header', () => {
             render(
                 <Drawer defaultOpen>

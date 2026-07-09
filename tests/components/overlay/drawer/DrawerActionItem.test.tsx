@@ -66,15 +66,4 @@ describe('Drawer.ActionItem', () => {
 
         expect(screen.getByTestId('action-item')).toBeTruthy()
     })
-
-    it('hides the label in collapsed mini mode', () => {
-        render(
-            <Drawer defaultOpen={false} mode="mini">
-                <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
-            </Drawer>,
-        )
-
-        expect(screen.queryByText('Sign out')).toBeNull()
-        expect(screen.getByRole('button').getAttribute('aria-label')).toBe('Sign out')
-    })
 })

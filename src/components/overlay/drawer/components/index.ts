@@ -24,6 +24,3 @@ export type { DrawerPortalProps } from '@components/overlay/drawer/components/va
 
 export { default as DrawerInline } from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.tsx'
 export type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
-
-export { default as DrawerMini } from '@components/overlay/drawer/components/variants/drawer-mini/DrawerMini.tsx'
-export type { DrawerMiniProps } from '@components/overlay/drawer/components/variants/drawer-mini/types/DrawerMini.props.ts'

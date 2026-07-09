@@ -24,7 +24,6 @@ const renderDrawer = ({
     mode,
     position,
     size,
-    collapsedSize,
     withBackdrop,
     backgroundColor,
     title,
@@ -46,7 +45,6 @@ const renderDrawer = ({
                 mode={mode}
                 position={position}
                 size={size}
-                collapsedSize={collapsedSize}
                 withBackdrop={withBackdrop}
                 backgroundColor={backgroundColor}
             >
@@ -137,7 +135,7 @@ const meta: Meta<DrawerPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `
-A flexible drawer component with three render modes.
+A flexible drawer component with two render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
 Use \`Drawer.NavItem\`, \`Drawer.ActionItem\` and \`Drawer.SectionItem\`
@@ -169,7 +167,6 @@ const [open, setOpen] = useState(false)
 | ---------- | ------------------------------------------------------------------- |
 | \`portal\` | Rendered in a portal over the page with an optional backdrop.       |
 | \`inline\` | Takes space in the layout when open, collapses to width \`0\` when closed. |
-| \`mini\`   | Like inline, but stays visible in a slim state when closed.         |
 
 **Accessibility**
 
@@ -204,10 +201,6 @@ const [open, setOpen] = useState(false)
         size: {
             control: 'select',
             options: DRAWER_SIZES_ARRAY,
-            table: { category: 'Drawer' },
-        },
-        collapsedSize: {
-            control: 'text',
             table: { category: 'Drawer' },
         },
         withBackdrop: {
@@ -253,7 +246,6 @@ const [open, setOpen] = useState(false)
         mode: 'portal' as DrawerMode,
         position: 'left' as DrawerPosition,
         size: 'md' as DrawerSize,
-        collapsedSize: '4rem',
         withBackdrop: true,
         title: 'Account settings',
         description: 'Manage your profile and preferences.',
@@ -317,23 +309,6 @@ export const Inline: Story = {
         docs: {
             description: {
                 story: 'Inline drawer that takes layout space when open.',
-            },
-        },
-    },
-    render: renderDrawer,
-}
-
-export const Mini: Story = {
-    args: {
-        defaultOpen: true,
-        mode: 'mini',
-        showHeader: false,
-        showFooter: false,
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: 'Mini drawer that stays visible in a slim state when closed.',
             },
         },
     },

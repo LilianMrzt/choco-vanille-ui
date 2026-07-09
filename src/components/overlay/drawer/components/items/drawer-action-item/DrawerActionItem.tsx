@@ -4,11 +4,9 @@ import { Icon } from '@components/foundation/icon'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     DRAWER_ITEM_STYLES,
-    DrawerItemTooltip,
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
 import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
-import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -31,7 +29,6 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
     const { open, mode, position } = useDrawerItemState()
     const resolvedIconSize = iconSize ?? DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
     const state = open ? 'open' : 'closed'
-    const isMiniCollapsed = mode === DRAWER_MODES.mini && !open
 
     const itemAttributes = useMemo(
         () => ({
@@ -42,7 +39,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
         [state, mode, position],
     )
 
-    const item = (
+    return (
         <button
             ref={ref}
             type={'button'}
@@ -51,38 +48,27 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
             style={style}
             {...itemAttributes}
             {...props}
-            aria-label={isMiniCollapsed ? (props['aria-label'] ?? label) : props['aria-label']}
         >
             <Icon
                 icon={startIcon}
                 size={resolvedIconSize}
                 className={DRAWER_ITEM_STYLES.icon}
             />
-            {!isMiniCollapsed && (
-                <span
-                    className={DRAWER_ITEM_STYLES.label}
-                    data-state={state}
-                    data-mode={mode}
-                >
-                    {label}
-                </span>
-            )}
-            {endIcon && !isMiniCollapsed && (
+            <span
+                className={DRAWER_ITEM_STYLES.label}
+                data-state={state}
+            >
+                {label}
+            </span>
+            {endIcon && (
                 <Icon
                     icon={endIcon}
                     size={resolvedIconSize}
                     className={DRAWER_ITEM_STYLES.endIcon}
                     data-state={state}
-                    data-mode={mode}
                 />
             )}
         </button>
-    )
-
-    return (
-        <DrawerItemTooltip content={label}>
-            {item}
-        </DrawerItemTooltip>
     )
 }
 

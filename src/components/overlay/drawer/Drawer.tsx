@@ -5,7 +5,6 @@ import DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/
 import DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
 import DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
 import DrawerInline from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.tsx'
-import DrawerMini from '@components/overlay/drawer/components/variants/drawer-mini/DrawerMini.tsx'
 import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
 import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
@@ -20,7 +19,7 @@ import type {
 } from '@components/overlay/drawer/types'
 
 /**
- * A flexible drawer with three render modes: portal, inline and mini.
+ * A flexible drawer with two render modes: portal and inline.
  *
  * Compose with `Drawer.Header`, `Drawer.Body` and `Drawer.Footer`:
  *
@@ -48,7 +47,6 @@ const Drawer = (({
     mode = DRAWER_MODES.portal,
     position = 'left',
     size = 'md',
-    collapsedSize = '2.5rem',
     withBackdrop = true,
     backgroundColor,
     defaultAriaLabel = 'Drawer',
@@ -105,15 +103,9 @@ const Drawer = (({
                     onOpenChange={handleOpenChange}
                     withBackdrop={withBackdrop}
                 />
-            ) : mode === DRAWER_MODES.inline ? (
+            ) : (
                 <DrawerInline
                     {...commonRendererProps}
-                    sizeWidthMap={DRAWER_SIZE_WIDTH}
-                />
-            ) : (
-                <DrawerMini
-                    {...commonRendererProps}
-                    collapsedSize={collapsedSize ?? '4rem'}
                     sizeWidthMap={DRAWER_SIZE_WIDTH}
                 />
             )}

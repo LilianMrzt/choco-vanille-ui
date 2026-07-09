@@ -58,13 +58,6 @@ const drawerItemRecipe = recipe({
             '&[data-state="closed"][data-position="right"]': {
                 transform: 'translateX(0.5rem)',
             },
-            '&[data-mode="mini"][data-state="closed"]': {
-                opacity: 1,
-                transform: 'translateX(0)',
-                justifyContent: 'center',
-                gap: 0,
-                paddingInline: vars.space.sm,
-            },
         },
     },
     variants: {
@@ -103,22 +96,12 @@ const label = style({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    wordBreak: 'keep-all',
-    overflowWrap: 'normal',
     maxWidth: '100%',
     opacity: 1,
-    transition: [
-        `opacity ${vars.duration.normal} ${vars.easing.standard}`,
-        `max-width ${vars.duration.normal} ${vars.easing.standard}`,
-    ].join(', '),
+    transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
     selectors: {
         '&[data-state="closed"]': {
             opacity: 0,
-            maxWidth: 0,
-        },
-        '&[data-mode="mini"][data-state="closed"]': {
-            opacity: 0,
-            maxWidth: 0,
         },
     },
 })
@@ -128,18 +111,10 @@ const endIcon = style({
     width: vars.fontSize.base,
     height: vars.fontSize.base,
     color: 'currentcolor',
-    transition: [
-        `opacity ${vars.duration.normal} ${vars.easing.standard}`,
-        `max-width ${vars.duration.normal} ${vars.easing.standard}`,
-    ].join(', '),
+    transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
     selectors: {
         '&[data-state="closed"]': {
             opacity: 0,
-            maxWidth: 0,
-        },
-        '&[data-mode="mini"][data-state="closed"]': {
-            opacity: 0,
-            maxWidth: 0,
         },
     },
 })
@@ -152,7 +127,7 @@ const sectionContent = style({
         '&[data-state="open"]': {
             gridTemplateRows: '1fr',
         },
-        '&[data-drawer-state="closed"]:not([data-mode="mini"])': {
+        '&[data-drawer-state="closed"]': {
             gridTemplateRows: '0fr',
         },
     },
@@ -165,11 +140,6 @@ const sectionChildren = style({
     gap: vars.space.xs,
     paddingLeft: vars.space.lg,
     paddingBlock: vars.space.xs,
-    selectors: {
-        '&[data-mode="mini"][data-drawer-state="closed"]': {
-            paddingLeft: 0,
-        },
-    },
 })
 
 const chevron = style({
@@ -180,7 +150,6 @@ const chevron = style({
     transition: [
         `transform ${vars.duration.normal} ${vars.easing.standard}`,
         `opacity ${vars.duration.normal} ${vars.easing.standard}`,
-        `max-width ${vars.duration.normal} ${vars.easing.standard}`,
     ].join(', '),
     selectors: {
         '&[data-expanded="true"]': {
@@ -188,11 +157,6 @@ const chevron = style({
         },
         '&[data-state="closed"]': {
             opacity: 0,
-            maxWidth: 0,
-        },
-        '&[data-mode="mini"][data-state="closed"]': {
-            opacity: 0,
-            maxWidth: 0,
         },
     },
 })

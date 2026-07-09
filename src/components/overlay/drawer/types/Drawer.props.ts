@@ -1,4 +1,4 @@
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 import type { DrawerRecipeVariants } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer/types/Drawer.types.ts'
@@ -17,8 +17,6 @@ export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
     position?: DrawerPosition
     /** Width preset. @default 'md' */
     size?: DrawerSize
-    /** Width of the drawer when collapsed in `mini` mode. @default '2.5rem' */
-    collapsedSize?: CSSProperties['width']
     /** Whether to render the backdrop in `portal` mode. @default true */
     withBackdrop?: boolean
     /** Theme color token applied to the drawer panel background. */

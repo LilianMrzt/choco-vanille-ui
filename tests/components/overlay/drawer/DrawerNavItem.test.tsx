@@ -98,15 +98,4 @@ describe('Drawer.NavItem', () => {
 
         expect(screen.getByTestId('nav-item')).toBeTruthy()
     })
-
-    it('hides the label in collapsed mini mode', () => {
-        render(
-            <Drawer defaultOpen={false} mode="mini">
-                <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
-            </Drawer>,
-        )
-
-        expect(screen.queryByText('Dashboard')).toBeNull()
-        expect(screen.getByRole('link').getAttribute('aria-label')).toBe('Dashboard')
-    })
 })
