@@ -103,6 +103,8 @@ const label = style({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    wordBreak: 'keep-all',
+    overflowWrap: 'normal',
     maxWidth: '100%',
     opacity: 1,
     transition: [
@@ -163,6 +165,11 @@ const sectionChildren = style({
     gap: vars.space.xs,
     paddingLeft: vars.space.lg,
     paddingBlock: vars.space.xs,
+    selectors: {
+        '&[data-mode="mini"][data-drawer-state="closed"]': {
+            paddingLeft: 0,
+        },
+    },
 })
 
 const chevron = style({

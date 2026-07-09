@@ -318,6 +318,7 @@ export const Mini: Story = {
     args: {
         defaultOpen: true,
         mode: 'mini',
+        showFooter: false,
     },
     parameters: {
         docs: {

@@ -48,7 +48,7 @@ const Drawer = (({
     mode = DRAWER_MODES.portal,
     position = 'left',
     size = 'md',
-    collapsedSize = '4rem',
+    collapsedSize = '2.5rem',
     withBackdrop = true,
     backgroundColor,
     defaultAriaLabel = 'Drawer',

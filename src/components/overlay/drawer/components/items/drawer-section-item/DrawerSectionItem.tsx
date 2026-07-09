@@ -135,7 +135,13 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 data-drawer-state={open ? undefined : 'closed'}
                 data-mode={mode}
             >
-                <div className={DRAWER_ITEM_STYLES.sectionChildren}>{children}</div>
+                <div
+                    className={DRAWER_ITEM_STYLES.sectionChildren}
+                    data-mode={mode}
+                    data-drawer-state={open ? undefined : 'closed'}
+                >
+                    {children}
+                </div>
             </div>
         </div>
     )

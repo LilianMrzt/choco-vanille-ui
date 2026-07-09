@@ -46,13 +46,25 @@ describe('Drawer', () => {
 
         it('renders a mini drawer when mode is mini', () => {
             render(
-                <Drawer defaultOpen={false} mode="mini">
+                <Drawer defaultOpen mode="mini">
                     <Drawer.Header title="Mini title" />
                     <Drawer.Body>Mini body</Drawer.Body>
                 </Drawer>,
             )
 
             expect(screen.getByText('Mini title')).toBeTruthy()
+            expect(screen.getByText('Mini body')).toBeTruthy()
+        })
+
+        it('hides the header title when mini drawer is collapsed', () => {
+            render(
+                <Drawer defaultOpen={false} mode="mini">
+                    <Drawer.Header title="Mini title" />
+                    <Drawer.Body>Mini body</Drawer.Body>
+                </Drawer>,
+            )
+
+            expect(screen.queryByText('Mini title')).toBeNull()
             expect(screen.getByText('Mini body')).toBeTruthy()
         })
 

@@ -17,7 +17,7 @@ export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
     position?: DrawerPosition
     /** Width preset. @default 'md' */
     size?: DrawerSize
-    /** Width of the drawer when collapsed in `mini` mode. @default '4rem' */
+    /** Width of the drawer when collapsed in `mini` mode. @default '2.5rem' */
     collapsedSize?: CSSProperties['width']
     /** Whether to render the backdrop in `portal` mode. @default true */
     withBackdrop?: boolean

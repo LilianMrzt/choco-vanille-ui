@@ -4,6 +4,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { IconRegistry } from '@constants/icons'
+import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import { useDrawer } from '@components/overlay/drawer/hooks/useDrawer.hook.ts'
 import { DRAWER_HEADER_STYLES } from '@components/overlay/drawer/components/blocs/drawer-header/styles/DrawerHeader.css.ts'
 import type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types/DrawerHeader.props.ts'
@@ -28,7 +29,8 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
     children,
     ...props
 }) => {
-    const { onOpenChange } = useDrawer()
+    const { onOpenChange, mode, open } = useDrawer()
+    const isMiniCollapsed = mode === DRAWER_MODES.mini && !open
 
     return (
         <Flex
@@ -37,12 +39,12 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
             alignItems={'start'}
             justifyContent={'between'}
             gap={'md'}
-            padding={'lg'}
+            padding={isMiniCollapsed ? 'xs' : 'lg'}
             paddingBottom={'none'}
             className={className}
             {...props}
         >
-            {(title || description) && (
+            {(title || description) && !isMiniCollapsed && (
                 <Flex
                     flexDirection={'column'}
                     alignItems={'start'}
