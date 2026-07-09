@@ -106,6 +106,7 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fi
         fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
         color: { control: 'select', options: THEME_COLORS },
         ellipsis: { control: 'boolean' },
+        maxLines: { control: 'number' },
     },
     args: {
         children: 'The quick brown fox jumps over the lazy dog.',

@@ -13,8 +13,17 @@ const Typography: FC<TypographyProps> = ({
     fontWeight,
     color,
     textTransform,
+    display,
+    width,
+    minWidth,
+    maxWidth,
+    opacity,
+    flex,
+    flexGrow,
+    flexShrink,
     letterSpacing,
     ellipsis,
+    maxLines,
     className,
     style,
     ref,
@@ -24,6 +33,14 @@ const Typography: FC<TypographyProps> = ({
 
     const computedStyle: CSSProperties = {
         textTransform,
+        display,
+        width,
+        minWidth,
+        maxWidth,
+        opacity,
+        flex,
+        flexGrow,
+        flexShrink,
         letterSpacing: letterSpacing ? vars.letterSpacing[letterSpacing] : undefined,
         ...style,
     }
@@ -31,7 +48,7 @@ const Typography: FC<TypographyProps> = ({
     return (
         <Element
             ref={ref}
-            className={cn(TYPOGRAPHY_STYLES.recipe({ variant, fontSize, fontWeight, ellipsis, color }), className)}
+            className={cn(TYPOGRAPHY_STYLES.recipe({ variant, fontSize, fontWeight, ellipsis, maxLines, color }), className)}
             style={computedStyle}
             {...props}
         />

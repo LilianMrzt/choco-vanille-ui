@@ -5,6 +5,17 @@ import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 
 const colorVariants = createColorVariants('color')
 
+const truncateTextStyles = (maxLines: number) => ({
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: maxLines,
+    WebkitBoxOrient: 'vertical' as const,
+    whiteSpace: 'normal' as const,
+    overflowWrap: 'anywhere' as const,
+    wordBreak: 'break-all' as const,
+})
+
 export const TYPOGRAPHY_STYLES = {
     recipe: recipe({
         base: {
@@ -171,6 +182,15 @@ export const TYPOGRAPHY_STYLES = {
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
                 },
+            },
+
+            maxLines: {
+                1: truncateTextStyles(1),
+                2: truncateTextStyles(2),
+                3: truncateTextStyles(3),
+                4: truncateTextStyles(4),
+                5: truncateTextStyles(5),
+                6: truncateTextStyles(6),
             },
 
             color: colorVariants,

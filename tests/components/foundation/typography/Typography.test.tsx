@@ -37,9 +37,9 @@ describe('Typography', () => {
             expect(getFirstChild(container).tagName.toLowerCase()).toBe(variant)
         })
 
-        it('defaults to <p> when no variant is provided', () => {
+        it('defaults to <span> when no variant is provided', () => {
             const { container } = render(<Typography>text</Typography>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('p')
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe('span')
         })
     })
 
@@ -85,6 +85,19 @@ describe('Typography', () => {
         it('does not apply the ellipsis class when ellipsis is not set', () => {
             const { container } = render(<Typography variant="p">text</Typography>)
             expect(getFirstChild(container).className).not.toContain(ellipsisClass())
+        })
+
+        const maxLinesClass = (maxLines: 1 | 2 | 3 | 4 | 5 | 6): string =>
+            onlyIn(TYPOGRAPHY_STYLES.recipe({ maxLines }), TYPOGRAPHY_STYLES.recipe({}))[0]
+
+        it('applies the maxLines class when maxLines is set', () => {
+            const { container } = render(<Typography maxLines={2}>text</Typography>)
+            expect(getFirstChild(container).className).toContain(maxLinesClass(2))
+        })
+
+        it('does not apply the maxLines class when maxLines is not set', () => {
+            const { container } = render(<Typography>text</Typography>)
+            expect(getFirstChild(container).className).not.toContain(maxLinesClass(2))
         })
 
         it('merges a custom className', () => {
@@ -137,7 +150,7 @@ describe('Typography', () => {
             const ref = createRef<HTMLElement>()
             render(<Typography ref={ref}>text</Typography>)
             expect(ref.current).toBeTruthy()
-            expect(ref.current!.tagName.toLowerCase()).toBe('p')
+            expect(ref.current!.tagName.toLowerCase()).toBe('span')
         })
 
         it('ref points to the correct element when `as` is used', () => {
