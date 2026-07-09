@@ -17,7 +17,7 @@ import {
     useDrawerItemState,
 } from '@components/overlay/drawer/components/items/drawer-item'
 import { IconRegistry } from '@constants/icons'
-import { Flex } from '@components'
+import { Flex, Grid } from '@components'
 
 /**
  * An expandable section row rendered inside a `Drawer`.
@@ -114,11 +114,14 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     aria-hidden
                 />
             </button>
-            <div
+            <Grid
                 id={sectionId}
                 role={'region'}
                 aria-label={sectionLabel ?? label}
                 aria-hidden={!expanded}
+                gridTemplateRows={expanded ? '1fr' : '0fr'}
+                overflow={'hidden'}
+                paddingTop={expanded ? 'xs' : 'none'}
                 className={DRAWER_SECTION_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
             >
@@ -133,7 +136,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 >
                     {children}
                 </Flex>
-            </div>
+            </Grid>
         </Box>
     )
 }
