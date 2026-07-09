@@ -1,6 +1,7 @@
 ﻿import { useMemo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     DRAWER_ITEM_STYLES,
@@ -54,12 +55,13 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
                 size={resolvedIconSize}
                 className={DRAWER_ITEM_STYLES.icon}
             />
-            <span
+            <Typography
+                variant={'span'}
                 className={DRAWER_ITEM_STYLES.label}
                 data-state={state}
             >
                 {label}
-            </span>
+            </Typography>
             {endIcon && (
                 <Icon
                     icon={endIcon}

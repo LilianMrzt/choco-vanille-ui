@@ -8,6 +8,8 @@
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import { Typography } from '@components/foundation/typography'
+import { Box } from '@components/layout/box'
 import {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
     DRAWER_ITEM_STYLES,
@@ -19,8 +21,8 @@ import { IconRegistry } from '@constants/icons'
 /**
  * An expandable section row rendered inside a `Drawer`.
  *
- * Clicking the header toggles the children. The section also collapses
- * gracefully while the drawer is closing.
+ * Clicking the header toggles the children. The expanded state is
+ * independent of the drawer open/close state to avoid unwanted transitions.
  */
 const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     label,
@@ -74,7 +76,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     )
 
     return (
-        <div
+        <Box
             className={className}
             style={style}
         >
@@ -95,12 +97,13 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     size={resolvedIconSize}
                     className={DRAWER_ITEM_STYLES.icon}
                 />
-                <span
+                <Typography
+                    variant={'span'}
                     className={DRAWER_ITEM_STYLES.label}
                     data-state={state}
                 >
                     {label}
-                </span>
+                </Typography>
                 <Icon
                     icon={IconRegistry.chevronDown}
                     size={resolvedIconSize}
@@ -110,23 +113,19 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     aria-hidden
                 />
             </button>
-            <div
+            <Box
                 id={sectionId}
                 role={'region'}
                 aria-label={sectionLabel ?? label}
                 aria-hidden={!expanded}
                 className={DRAWER_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
-                data-drawer-state={open ? undefined : 'closed'}
             >
-                <div
-                    className={DRAWER_ITEM_STYLES.sectionChildren}
-                    data-drawer-state={open ? undefined : 'closed'}
-                >
+                <Box className={DRAWER_ITEM_STYLES.sectionChildren}>
                     {children}
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     )
 }
 

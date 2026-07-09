@@ -127,9 +127,6 @@ const sectionContent = style({
         '&[data-state="open"]': {
             gridTemplateRows: '1fr',
         },
-        '&[data-drawer-state="closed"]': {
-            gridTemplateRows: '0fr',
-        },
     },
 })
 
