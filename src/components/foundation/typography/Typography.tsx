@@ -17,7 +17,7 @@ const Typography: FC<TypographyProps> = ({
     ref,
     ...props
 }) => {
-    const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[(variant as TypographyVariant) ?? 'p'] ?? 'p'
+    const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[(variant as TypographyVariant) ?? 'span'] ?? 'span'
 
     return (
         <Element

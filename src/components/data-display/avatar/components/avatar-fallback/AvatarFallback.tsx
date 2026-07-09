@@ -9,6 +9,7 @@ import type { FC } from 'react'
 import {
     AVATAR_SIZE_TO_TYPOGRAPHY_SIZE
 } from '@components/data-display/avatar/components/avatar-fallback/constants/sizeToTypography.const.ts'
+import { IconRegistry } from '@constants'
 
 const AvatarFallback: FC<AvatarFallbackProps> = ({
     initials,
@@ -21,6 +22,7 @@ const AvatarFallback: FC<AvatarFallbackProps> = ({
     const fallbackContent = initials ? (
         <Typography
             as={'span'}
+            variant={'span'}
             aria-hidden={'true'}
             fontSize={AVATAR_SIZE_TO_TYPOGRAPHY_SIZE[size]}
         >
@@ -29,7 +31,7 @@ const AvatarFallback: FC<AvatarFallbackProps> = ({
     ) : icon ? (
         <Icon icon={icon} />
     ) : (
-        <Icon icon={'lucide:user'} />
+        <Icon icon={IconRegistry.user} />
     )
 
     return (
