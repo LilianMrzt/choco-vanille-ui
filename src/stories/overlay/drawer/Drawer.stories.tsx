@@ -60,40 +60,46 @@ const renderDrawer = ({
                 >
                     <Flex
                         flexDirection={'column'}
-                        gap={'xs'}
+                        gap={'lg'}
                     >
-                        <Drawer.NavItem
-                            label={'Dashboard'}
-                            href={'/dashboard'}
-                            startIcon={IconRegistry.home}
-                            active
-                        />
-                        <Drawer.NavItem
-                            label={'Team'}
-                            href={'/team'}
-                            startIcon={IconRegistry.user}
-                        />
-                        <Drawer.SectionItem
-                            label={'Settings'}
-                            startIcon={IconRegistry.settings}
-                            defaultExpanded
-                        >
+                        <Drawer.Section title={'Navigation'}>
                             <Drawer.NavItem
-                                label={'Profile'}
-                                href={'/profile'}
+                                label={'Dashboard'}
+                                href={'/dashboard'}
+                                startIcon={IconRegistry.home}
+                                active
+                            />
+                            <Drawer.NavItem
+                                label={'Team'}
+                                href={'/team'}
                                 startIcon={IconRegistry.user}
                             />
-                            <Drawer.NavItem
-                                label={'Billing'}
-                                href={'/billing'}
-                                startIcon={IconRegistry.creditCard}
+                        </Drawer.Section>
+                        <Drawer.Section title={'Settings'}>
+                            <Drawer.SectionItem
+                                label={'Account'}
+                                startIcon={IconRegistry.settings}
+                                defaultExpanded
+                            >
+                                <Drawer.NavItem
+                                    label={'Profile'}
+                                    href={'/profile'}
+                                    startIcon={IconRegistry.user}
+                                />
+                                <Drawer.NavItem
+                                    label={'Billing'}
+                                    href={'/billing'}
+                                    startIcon={IconRegistry.creditCard}
+                                />
+                            </Drawer.SectionItem>
+                        </Drawer.Section>
+                        <Drawer.Section title={'Actions'}>
+                            <Drawer.ActionItem
+                                label={'Sign out'}
+                                startIcon={IconRegistry.logOut}
+                                onClick={() => setOpen(false)}
                             />
-                        </Drawer.SectionItem>
-                        <Drawer.ActionItem
-                            label={'Sign out'}
-                            startIcon={IconRegistry.logOut}
-                            onClick={() => setOpen(false)}
-                        />
+                        </Drawer.Section>
                     </Flex>
                 </Drawer.Body>
                 {showFooter && (
@@ -138,8 +144,8 @@ const meta: Meta<DrawerPlaygroundArgs> = {
 A flexible drawer component with two render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
-Use \`Drawer.NavItem\`, \`Drawer.ActionItem\` and \`Drawer.SectionItem\`
-inside the body to build accessible navigation.
+Use \`Drawer.Section\` to group \`Drawer.NavItem\`, \`Drawer.ActionItem\`
+and \`Drawer.SectionItem\` elements inside the body.
 
 **Usage**
 
@@ -149,11 +155,15 @@ const [open, setOpen] = useState(false)
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
   <Drawer.Header title="Settings" />
   <Drawer.Body as="nav" aria-label="Main navigation">
-    <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
-    <Drawer.SectionItem label="Account" startIcon="lucide:user">
-      <Drawer.NavItem label="Profile" href="/profile" />
-      <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
-    </Drawer.SectionItem>
+    <Drawer.Section title="Navigation">
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+    </Drawer.Section>
+    <Drawer.Section title="Account">
+      <Drawer.SectionItem label="Account" startIcon="lucide:user">
+        <Drawer.NavItem label="Profile" href="/profile" />
+        <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+      </Drawer.SectionItem>
+    </Drawer.Section>
   </Drawer.Body>
   <Drawer.Footer>
     <Button onClick={() => setOpen(false)}>Close</Button>

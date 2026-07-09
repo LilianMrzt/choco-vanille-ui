@@ -3,7 +3,8 @@ import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/consta
 import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { vars } from '@theme/contract.css.ts'
+import type { CSSProperties, FC } from 'react'
 
 const Typography: FC<TypographyProps> = ({
     as,
@@ -11,6 +12,8 @@ const Typography: FC<TypographyProps> = ({
     fontSize,
     fontWeight,
     color,
+    textTransform,
+    letterSpacing,
     ellipsis,
     className,
     style,
@@ -19,11 +22,17 @@ const Typography: FC<TypographyProps> = ({
 }) => {
     const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[(variant as TypographyVariant) ?? 'span'] ?? 'span'
 
+    const computedStyle: CSSProperties = {
+        textTransform,
+        letterSpacing: letterSpacing ? vars.letterSpacing[letterSpacing] : undefined,
+        ...style,
+    }
+
     return (
         <Element
             ref={ref}
             className={cn(TYPOGRAPHY_STYLES.recipe({ variant, fontSize, fontWeight, ellipsis, color }), className)}
-            style={style}
+            style={computedStyle}
             {...props}
         />
     )

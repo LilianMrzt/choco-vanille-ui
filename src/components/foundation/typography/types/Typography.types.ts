@@ -50,3 +50,12 @@ export type TypographyWeight =
   | 'bold'
   | 'extrabold'
   | 'black';
+
+/** Letter-spacing scale exposed as a prop. */
+export type TypographyLetterSpacing =
+  | 'tighter'
+  | 'tight'
+  | 'normal'
+  | 'wide'
+  | 'wider'
+  | 'widest';

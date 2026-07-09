@@ -4,6 +4,7 @@ import DrawerActionItem from '@components/overlay/drawer/components/items/drawer
 import DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/DrawerBody.tsx'
 import DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
 import DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
+import DrawerSection from '@components/overlay/drawer/components/blocs/drawer-section/DrawerSection.tsx'
 import DrawerInline from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.tsx'
 import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
@@ -28,11 +29,15 @@ import type {
  * <Drawer open={open} onOpenChange={setOpen} mode="portal">
  *   <Drawer.Header title="Settings" />
  *   <Drawer.Body>
- *     <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
- *     <Drawer.SectionItem label="Account" startIcon="lucide:user">
- *       <Drawer.NavItem label="Profile" href="/profile" />
- *       <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
- *     </Drawer.SectionItem>
+ *     <Drawer.Section title="Navigation">
+ *       <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+ *     </Drawer.Section>
+ *     <Drawer.Section title="Account">
+ *       <Drawer.SectionItem label="Account" startIcon="lucide:user">
+ *         <Drawer.NavItem label="Profile" href="/profile" />
+ *         <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+ *       </Drawer.SectionItem>
+ *     </Drawer.Section>
  *   </Drawer.Body>
  *   <Drawer.Footer>
  *     <Button onClick={() => setOpen(false)}>Close</Button>
@@ -117,6 +122,7 @@ Drawer.displayName = 'Drawer'
 Drawer.Header = DrawerHeader
 Drawer.Body = DrawerBody
 Drawer.Footer = DrawerFooter
+Drawer.Section = DrawerSection
 Drawer.NavItem = DrawerNavItem
 Drawer.ActionItem = DrawerActionItem
 Drawer.SectionItem = DrawerSectionItem
