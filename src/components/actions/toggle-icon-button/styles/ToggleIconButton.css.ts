@@ -32,25 +32,17 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
             variant: {
                 outlined: {
                     borderColor: vars.color.border,
-                    selectors: {
-                        '&:hover': { backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
-                    },
                 },
                 ghost: {
                     borderColor: 'transparent',
-                    selectors: {
-                        '&:hover': { backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
-                    },
                 },
             },
             color: {
                 [BUTTON_COLORS.primary]: {
                     color: vars.color.primarySubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.primarySubtleForeground },
-                        '&:active': { color: vars.color.primarySubtleForeground },
+                        '&:hover': { color: vars.color.primarySubtleForeground, backgroundColor: vars.color.primarySubtle },
+                        '&:active': { color: vars.color.primarySubtleForeground, backgroundColor: vars.color.primarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.primary,
                             color: vars.color.primaryForeground,
@@ -66,8 +58,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.secondary]: {
                     color: vars.color.secondarySubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.secondarySubtleForeground },
-                        '&:active': { color: vars.color.secondarySubtleForeground },
+                        '&:hover': { color: vars.color.secondarySubtleForeground, backgroundColor: vars.color.secondarySubtle },
+                        '&:active': { color: vars.color.secondarySubtleForeground, backgroundColor: vars.color.secondarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.secondary,
                             color: vars.color.secondaryForeground,
@@ -83,8 +75,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.tertiary]: {
                     color: vars.color.tertiaryForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.tertiaryForeground },
-                        '&:active': { color: vars.color.tertiaryForeground },
+                        '&:hover': { color: vars.color.tertiaryForeground, backgroundColor: vars.color.tertiarySubtle },
+                        '&:active': { color: vars.color.tertiaryForeground, backgroundColor: vars.color.tertiarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.tertiary,
                             color: vars.color.tertiaryForeground,
@@ -100,8 +92,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.destructive]: {
                     color: vars.color.destructiveSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.destructiveSubtleForeground },
-                        '&:active': { color: vars.color.destructiveSubtleForeground },
+                        '&:hover': { color: vars.color.destructiveSubtleForeground, backgroundColor: vars.color.destructiveSubtle },
+                        '&:active': { color: vars.color.destructiveSubtleForeground, backgroundColor: vars.color.destructiveSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.destructive,
                             color: vars.color.destructiveForeground,
@@ -117,8 +109,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.success]: {
                     color: vars.color.successSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.successSubtleForeground },
-                        '&:active': { color: vars.color.successSubtleForeground },
+                        '&:hover': { color: vars.color.successSubtleForeground, backgroundColor: vars.color.successSubtle },
+                        '&:active': { color: vars.color.successSubtleForeground, backgroundColor: vars.color.successSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.success,
                             color: vars.color.successForeground,
@@ -134,8 +126,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.warning]: {
                     color: vars.color.warningSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.warningSubtleForeground },
-                        '&:active': { color: vars.color.warningSubtleForeground },
+                        '&:hover': { color: vars.color.warningSubtleForeground, backgroundColor: vars.color.warningSubtle },
+                        '&:active': { color: vars.color.warningSubtleForeground, backgroundColor: vars.color.warningSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.warning,
                             color: vars.color.warningForeground,
@@ -151,8 +143,8 @@ export const TOGGLE_ICON_BUTTON_STYLES = {
                 [BUTTON_COLORS.info]: {
                     color: vars.color.infoSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.infoSubtleForeground },
-                        '&:active': { color: vars.color.infoSubtleForeground },
+                        '&:hover': { color: vars.color.infoSubtleForeground, backgroundColor: vars.color.infoSubtle },
+                        '&:active': { color: vars.color.infoSubtleForeground, backgroundColor: vars.color.infoSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.info,
                             color: vars.color.infoForeground,
