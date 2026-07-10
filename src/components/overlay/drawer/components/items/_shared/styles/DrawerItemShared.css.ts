@@ -64,12 +64,6 @@ const drawerItemRecipe = recipe({
                 fontSize: vars.fontSize.xs,
             },
             [DRAWER_ITEM_SIZES.md]: {},
-            [DRAWER_ITEM_SIZES.lg]: {
-                paddingInline: vars.space.lg,
-                paddingBlock: vars.space.md,
-                gap: vars.space.lg,
-                fontSize: vars.fontSize.base,
-            },
         },
         variant: {
             [DRAWER_ITEM_VARIANTS.default]: {},

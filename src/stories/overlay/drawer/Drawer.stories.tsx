@@ -39,20 +39,20 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   fourthNavItemLabel?: string;
   navItemActive?: boolean;
   navItemDisabled?: boolean;
-  navItemSize?: 'sm' | 'md' | 'lg';
+  navItemSize?: 'sm' | 'md';
   navItemVariant?: 'default' | 'outlined';
   navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   navItemEndIcon?: string;
   actionItemLabel?: string;
   actionItemDisabled?: boolean;
-  actionItemSize?: 'sm' | 'md' | 'lg';
+  actionItemSize?: 'sm' | 'md';
   actionItemVariant?: 'default' | 'outlined';
   actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   actionItemEndIcon?: string;
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
-  sectionItemSize?: 'sm' | 'md' | 'lg';
+  sectionItemSize?: 'sm' | 'md';
   sectionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
 };
 
@@ -161,6 +161,54 @@ const renderDrawer = ({
                                     size={sectionItemSize}
                                     color={sectionItemColor}
                                 >
+                                    <Drawer.SectionItem
+                                        label={sectionItemLabel ?? 'Section item'}
+                                        startIcon={IconRegistry.settings}
+                                        defaultExpanded={sectionItemDefaultExpanded}
+                                        disabled={sectionItemDisabled}
+                                        size={sectionItemSize}
+                                        color={sectionItemColor}
+                                    >
+                                        <Drawer.SectionItem
+                                            label={sectionItemLabel ?? 'Section item'}
+                                            startIcon={IconRegistry.settings}
+                                            defaultExpanded={sectionItemDefaultExpanded}
+                                            disabled={sectionItemDisabled}
+                                            size={sectionItemSize}
+                                            color={sectionItemColor}
+                                        >
+                                            <Drawer.NavItem
+                                                label={thirdNavItemLabel ?? 'Profile'}
+                                                href={'/profile'}
+                                                startIcon={IconRegistry.user}
+                                                endIcon={navItemEndIcon || undefined}
+                                                disabled={navItemDisabled}
+                                                size={navItemSize}
+                                                variant={navItemVariant}
+                                                color={navItemColor}
+                                            />
+                                            <Drawer.NavItem
+                                                label={fourthNavItemLabel ?? 'Billing'}
+                                                href={'/billing'}
+                                                startIcon={IconRegistry.creditCard}
+                                                endIcon={navItemEndIcon || undefined}
+                                                disabled={navItemDisabled}
+                                                size={navItemSize}
+                                                variant={navItemVariant}
+                                                color={navItemColor}
+                                            />
+                                        </Drawer.SectionItem>
+                                        <Drawer.NavItem
+                                            label={fourthNavItemLabel ?? 'Billing'}
+                                            href={'/billing'}
+                                            startIcon={IconRegistry.creditCard}
+                                            endIcon={navItemEndIcon || undefined}
+                                            disabled={navItemDisabled}
+                                            size={navItemSize}
+                                            variant={navItemVariant}
+                                            color={navItemColor}
+                                        />
+                                    </Drawer.SectionItem>
                                     <Drawer.NavItem
                                         label={thirdNavItemLabel ?? 'Profile'}
                                         href={'/profile'}
@@ -181,6 +229,35 @@ const renderDrawer = ({
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
+                                    <Drawer.SectionItem
+                                        label={sectionItemLabel ?? 'Section item'}
+                                        startIcon={IconRegistry.settings}
+                                        defaultExpanded={sectionItemDefaultExpanded}
+                                        disabled={sectionItemDisabled}
+                                        size={sectionItemSize}
+                                        color={sectionItemColor}
+                                    >
+                                        <Drawer.NavItem
+                                            label={thirdNavItemLabel ?? 'Profile'}
+                                            href={'/profile'}
+                                            startIcon={IconRegistry.user}
+                                            endIcon={navItemEndIcon || undefined}
+                                            disabled={navItemDisabled}
+                                            size={navItemSize}
+                                            variant={navItemVariant}
+                                            color={navItemColor}
+                                        />
+                                        <Drawer.NavItem
+                                            label={fourthNavItemLabel ?? 'Billing'}
+                                            href={'/billing'}
+                                            startIcon={IconRegistry.creditCard}
+                                            endIcon={navItemEndIcon || undefined}
+                                            disabled={navItemDisabled}
+                                            size={navItemSize}
+                                            variant={navItemVariant}
+                                            color={navItemColor}
+                                        />
+                                    </Drawer.SectionItem>
                                 </Drawer.SectionItem>
                             </Drawer.Section>
                         )}
@@ -414,7 +491,7 @@ const [open, setOpen] = useState(false)
         },
         navItemSize: {
             control: 'select',
-            options: ['sm', 'md', 'lg'],
+            options: ['sm', 'md'],
             table: { category: 'Drawer.NavItem' },
         },
         navItemVariant: {
@@ -441,7 +518,7 @@ const [open, setOpen] = useState(false)
         },
         actionItemSize: {
             control: 'select',
-            options: ['sm', 'md', 'lg'],
+            options: ['sm', 'md'],
             table: { category: 'Drawer.ActionItem' },
         },
         actionItemVariant: {
@@ -472,7 +549,7 @@ const [open, setOpen] = useState(false)
         },
         sectionItemSize: {
             control: 'select',
-            options: ['sm', 'md', 'lg'],
+            options: ['sm', 'md'],
             table: { category: 'Drawer.SectionItem' },
         },
         sectionItemColor: {

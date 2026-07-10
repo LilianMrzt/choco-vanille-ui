@@ -6,7 +6,6 @@ import type { IconSize } from '@components/foundation/icon'
 export const DRAWER_ITEM_SIZES = {
     sm: 'sm',
     md: 'md',
-    lg: 'lg',
 } as const
 
 /**
@@ -44,5 +43,4 @@ export const DRAWER_ITEM_SIZE_TO_ICON_SIZE: Record<
 > = {
     sm: 'xs',
     md: 'md',
-    lg: 'lg',
 }

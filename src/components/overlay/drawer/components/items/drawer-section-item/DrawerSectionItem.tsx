@@ -1,11 +1,16 @@
 import { type FC } from 'react'
 
 import { Box } from '@components/layout/box'
-import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
+import {
+    DrawerItemContent,
+} from '@components/overlay/drawer/components/items/_shared'
 import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
 import { useDrawerSectionItem } from '@components/overlay/drawer/components/items/drawer-section-item/hooks/use-drawer-section-item/useDrawerSectionItem.hook.tsx'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
-import { Flex, Grid } from '@components'
+import { Flex, Grid, Separator } from '@components'
+import {
+    DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT, DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT
+} from '@components/overlay/drawer/components/items/drawer-section-item/constants'
 
 /**
  * An expandable section row rendered inside a `Drawer`.
@@ -73,22 +78,31 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 role={'region'}
                 aria-label={sectionLabel ?? label}
                 aria-hidden={!expanded}
+                inert={!expanded}
                 gridTemplateRows={expanded ? '1fr' : '0fr'}
-                overflow={'hidden'}
-                paddingTop={expanded ? 'xs' : 'none'}
                 className={DRAWER_SECTION_ITEM_STYLES.sectionContent}
                 data-state={expanded ? 'open' : 'closed'}
             >
                 <Flex
-                    flexDirection={'column'}
+                    flexDirection={'row'}
                     minHeight={0}
-                    paddingLeft={'lg'}
-                    paddingRight={'xs'}
                     paddingBottom={'xs'}
-                    overflow={'hidden'}
+                    paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT[size]}
+                    overflow={expanded ? 'visible' : 'hidden'}
                     gap={'none'}
                 >
-                    {children}
+                    <Separator
+                        orientation={'vertical'}
+                    />
+                    <Flex
+                        flexDirection={'column'}
+                        minHeight={0}
+                        paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT[size]}
+                        gap={'none'}
+                        flex={1}
+                    >
+                        {children}
+                    </Flex>
                 </Flex>
             </Grid>
         </Box>

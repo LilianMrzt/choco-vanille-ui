@@ -9,8 +9,11 @@ export const space = {
     xs: '0.25rem', // 4px
     xs2: '0.375rem', // 6px
     sm: '0.5rem', // 8px
+    sm2: '0.625rem', // 10px
     md: '0.75rem', // 12px
+    md2: '0.875rem', // 14px
     lg: '1rem', // 16px
+    lg2: '1.25rem', // 20px
     xl: '1.5rem', // 24px
     '2xl': '2rem', // 32px
     '3xl': '3rem', // 48px
