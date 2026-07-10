@@ -16,6 +16,7 @@ import {
     DRAWER_POSITIONS_ARRAY,
     DRAWER_SIZES_ARRAY,
 } from '@components/overlay/drawer/constants'
+import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
 import { md } from '@stories/utils/markdown'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
@@ -40,16 +41,19 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   navItemDisabled?: boolean;
   navItemSize?: 'sm' | 'md' | 'lg';
   navItemVariant?: 'default' | 'outlined';
+  navItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
   navItemEndIcon?: string;
   actionItemLabel?: string;
   actionItemDisabled?: boolean;
   actionItemSize?: 'sm' | 'md' | 'lg';
   actionItemVariant?: 'default' | 'outlined';
+  actionItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
   actionItemEndIcon?: string;
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
   sectionItemSize?: 'sm' | 'md' | 'lg';
+  sectionItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
 };
 
 const renderDrawer = ({
@@ -80,16 +84,19 @@ const renderDrawer = ({
     navItemDisabled,
     navItemSize,
     navItemVariant,
+    navItemColor,
     navItemEndIcon,
     actionItemLabel,
     actionItemDisabled,
     actionItemSize,
     actionItemVariant,
+    actionItemColor,
     actionItemEndIcon,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
     sectionItemSize,
+    sectionItemColor,
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
     const isPortal = mode === 'portal'
@@ -130,6 +137,7 @@ const renderDrawer = ({
                                     disabled={navItemDisabled}
                                     size={navItemSize}
                                     variant={navItemVariant}
+                                    color={navItemColor}
                                 />
                                 <Drawer.NavItem
                                     label={secondNavItemLabel ?? 'Team'}
@@ -139,6 +147,7 @@ const renderDrawer = ({
                                     disabled={navItemDisabled}
                                     size={navItemSize}
                                     variant={navItemVariant}
+                                    color={navItemColor}
                                 />
                             </Drawer.Section>
                         )}
@@ -150,6 +159,7 @@ const renderDrawer = ({
                                     defaultExpanded={sectionItemDefaultExpanded}
                                     disabled={sectionItemDisabled}
                                     size={sectionItemSize}
+                                    color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
                                         label={thirdNavItemLabel ?? 'Profile'}
@@ -159,6 +169,7 @@ const renderDrawer = ({
                                         disabled={navItemDisabled}
                                         size={navItemSize}
                                         variant={navItemVariant}
+                                        color={navItemColor}
                                     />
                                     <Drawer.NavItem
                                         label={fourthNavItemLabel ?? 'Billing'}
@@ -168,6 +179,7 @@ const renderDrawer = ({
                                         disabled={navItemDisabled}
                                         size={navItemSize}
                                         variant={navItemVariant}
+                                        color={navItemColor}
                                     />
                                 </Drawer.SectionItem>
                             </Drawer.Section>
@@ -181,6 +193,7 @@ const renderDrawer = ({
                                     disabled={actionItemDisabled}
                                     size={actionItemSize}
                                     variant={actionItemVariant}
+                                    color={actionItemColor}
                                     onClick={() => setOpen(false)}
                                 />
                             </Drawer.Section>
@@ -409,6 +422,11 @@ const [open, setOpen] = useState(false)
             options: ['default', 'outlined'],
             table: { category: 'Drawer.NavItem' },
         },
+        navItemColor: {
+            control: 'select',
+            options: DRAWER_ITEM_COLORS_ARRAY,
+            table: { category: 'Drawer.NavItem' },
+        },
         navItemEndIcon: {
             control: 'text',
             table: { category: 'Drawer.NavItem' },
@@ -431,6 +449,11 @@ const [open, setOpen] = useState(false)
             options: ['default', 'outlined'],
             table: { category: 'Drawer.ActionItem' },
         },
+        actionItemColor: {
+            control: 'select',
+            options: DRAWER_ITEM_COLORS_ARRAY,
+            table: { category: 'Drawer.ActionItem' },
+        },
         actionItemEndIcon: {
             control: 'text',
             table: { category: 'Drawer.ActionItem' },
@@ -450,6 +473,11 @@ const [open, setOpen] = useState(false)
         sectionItemSize: {
             control: 'select',
             options: ['sm', 'md', 'lg'],
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemColor: {
+            control: 'select',
+            options: DRAWER_ITEM_COLORS_ARRAY,
             table: { category: 'Drawer.SectionItem' },
         },
     },
@@ -480,16 +508,19 @@ const [open, setOpen] = useState(false)
         navItemDisabled: false,
         navItemSize: 'md',
         navItemVariant: 'default',
+        navItemColor: 'primary',
         navItemEndIcon: '',
         actionItemLabel: 'Sign out',
         actionItemDisabled: false,
         actionItemSize: 'md',
         actionItemVariant: 'default',
+        actionItemColor: 'primary',
         actionItemEndIcon: '',
         sectionItemLabel: 'Section item',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,
         sectionItemSize: 'md',
+        sectionItemColor: 'primary',
     },
 } satisfies Meta<DrawerPlaygroundArgs>
 

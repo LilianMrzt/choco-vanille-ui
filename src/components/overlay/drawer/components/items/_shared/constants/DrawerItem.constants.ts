@@ -16,6 +16,23 @@ export const DRAWER_ITEM_VARIANTS = {
 } as const
 
 /**
+ * Color intents for drawer item rows.
+ */
+export const DRAWER_ITEM_COLORS = {
+    primary: 'primary',
+    secondary: 'secondary',
+    destructive: 'destructive',
+    success: 'success',
+    warning: 'warning',
+    info: 'info',
+} as const
+
+/**
+ * Array of available color intents for drawer item rows.
+ */
+export const DRAWER_ITEM_COLORS_ARRAY = Object.values(DRAWER_ITEM_COLORS)
+
+/**
  * Maps a drawer item size to the icon size rendered inside the row.
  */
 export const DRAWER_ITEM_SIZE_TO_ICON_SIZE = {

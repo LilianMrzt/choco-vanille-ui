@@ -1,5 +1,6 @@
 ﻿import type { IconSize } from '@components/foundation/icon'
 import type {
+    DrawerItemColor,
     DrawerItemSize,
     DrawerItemVariant,
 } from '@components/overlay/drawer/components/items/_shared'
@@ -30,6 +31,8 @@ export type DrawerNavItemProps = Omit<
     size?: DrawerItemSize;
     /** Visual variant for the row. @default 'default' */
     variant?: DrawerItemVariant;
+    /** Color intent for the row. @default 'primary' */
+    color?: DrawerItemColor;
     /** Size of the start/end icons. Defaults to the row size mapping. */
     iconSize?: IconSize;
   };

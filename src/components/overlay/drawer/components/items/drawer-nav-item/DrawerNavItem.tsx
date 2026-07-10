@@ -21,6 +21,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     disabled,
     size = 'md',
     variant = 'default',
+    color = 'primary',
     iconSize,
     className,
     style,
@@ -41,7 +42,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             ref={ref}
             href={href}
             className={cn(
-                DRAWER_NAV_ITEM_STYLES.recipe({ size, variant }),
+                DRAWER_NAV_ITEM_STYLES.recipe({ size, variant, color }),
                 className,
             )}
             style={style}

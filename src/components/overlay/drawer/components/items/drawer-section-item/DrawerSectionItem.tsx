@@ -23,6 +23,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     expanded: expandedProp,
     onExpandedChange,
     size = 'md',
+    color = 'primary',
     disabled,
     className,
     style,
@@ -54,7 +55,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 aria-expanded={expanded}
                 aria-controls={sectionId}
                 aria-label={ariaLabel}
-                className={DRAWER_SECTION_ITEM_STYLES.recipe({ size })}
+                className={DRAWER_SECTION_ITEM_STYLES.recipe({ size, color })}
                 onClick={handleToggle}
                 onKeyDown={handleKeyDown}
                 {...itemAttributes}

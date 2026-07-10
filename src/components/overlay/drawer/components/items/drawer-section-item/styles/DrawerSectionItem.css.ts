@@ -20,6 +20,7 @@ const chevron = style({
 
 export const DRAWER_SECTION_ITEM_STYLES = {
     ...DRAWER_ITEM_STYLES,
+    recipe: DRAWER_ITEM_STYLES.recipe,
     sectionContent,
     chevron,
 }
