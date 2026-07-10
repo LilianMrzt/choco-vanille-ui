@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 
 import CollapsiblePanel from '@components/surfaces/collapsible/components/collapsible-panel/CollapsiblePanel.tsx'
@@ -7,7 +9,7 @@ import type { CollapsibleProps } from '@components/surfaces/collapsible/types/Co
 import type { CollapsibleCompound } from '@components/surfaces/collapsible/types'
 import { Flex } from '@components/layout/flex'
 
-const Collapsible = (({ className, width, ...props }: CollapsibleProps) => (
+const Collapsible = memo<CollapsibleProps>(({ className, width, ...props }) => (
     <Flex
         flexDirection={'column'}
         alignItems={'stretch'}
@@ -20,7 +22,7 @@ const Collapsible = (({ className, width, ...props }: CollapsibleProps) => (
             {...props}
         />
     </Flex>
-)) as CollapsibleCompound
+)) as unknown as CollapsibleCompound
 
 Collapsible.displayName = 'Collapsible'
 Collapsible.Trigger = CollapsibleTrigger

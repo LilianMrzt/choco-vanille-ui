@@ -1,9 +1,8 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
+import { memo, type FC } from 'react'
 
 import { TooltipProviderContext } from '@components/overlay/tooltip/context/TooltipProvider.context.ts'
 import type { TooltipProviderProps } from '@components/overlay/tooltip/components/tooltip-provider/types/TooltipProvider.props.ts'
-
-import type { FC } from 'react'
 
 /**
  * Shares tooltip timing across every descendant `Tooltip`.
@@ -16,7 +15,7 @@ import type { FC } from 'react'
  * tooltips outside of a `ThemeProvider`. A standalone `Tooltip` still works
  * without any provider (it falls back to its own).
  */
-const TooltipProvider: FC<TooltipProviderProps> = ({
+const TooltipProvider: FC<TooltipProviderProps> = memo(({
     children,
     delayDuration = 300,
     skipDelayDuration = 300,
@@ -29,7 +28,7 @@ const TooltipProvider: FC<TooltipProviderProps> = ({
             {children}
         </BaseTooltip.Provider>
     </TooltipProviderContext.Provider>
-)
+))
 
 TooltipProvider.displayName = 'TooltipProvider'
 

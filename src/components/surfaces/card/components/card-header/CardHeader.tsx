@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { vars } from '@theme/contract.css.ts'
 import { Flex } from '@components/layout/flex'
@@ -22,7 +22,7 @@ import type { CardHeaderProps } from '@components/surfaces/card/components/card-
   * />
   * ```
   */
-const CardHeader: FC<CardHeaderProps> = ({
+const CardHeader: FC<CardHeaderProps> = memo(({
     as: Element = 'div',
     title,
     titleAs,
@@ -90,7 +90,7 @@ const CardHeader: FC<CardHeaderProps> = ({
             </Flex>
         )}
     </Flex>
-)
+))
 
 CardHeader.displayName = 'Card.Header'
 

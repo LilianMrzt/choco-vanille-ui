@@ -1,4 +1,4 @@
-import { type FC, useId } from 'react'
+import { memo, type FC, useId } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
@@ -10,7 +10,7 @@ import type { DrawerSectionProps } from '@components/overlay/drawer/components/b
  * Renders an uppercase title followed by its children — typically
  * `Drawer.NavItem`, `Drawer.ActionItem` or `Drawer.SectionItem` elements.
  */
-const DrawerSection: FC<DrawerSectionProps> = ({
+const DrawerSection: FC<DrawerSectionProps> = memo(({
     as = 'section',
     title,
     titleProps,
@@ -53,7 +53,7 @@ const DrawerSection: FC<DrawerSectionProps> = ({
             </Box>
         </Box>
     )
-}
+})
 
 DrawerSection.displayName = 'Drawer.Section'
 

@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
@@ -15,14 +16,14 @@ import { useViewportShift } from '@hooks'
  * shifts the panel inward by exactly the overflowing amount — keeping the
  * original side and never cropping the menu.
  */
-const DropdownMenuContent = ({
+const DropdownMenuContent: FC<DropdownMenuContentProps> = memo(({
     className,
     side = 'bottom',
     align = 'start',
     sideOffset = 6,
     collisionPadding = 8,
     ...props
-}: DropdownMenuContentProps) => {
+}) => {
     const contentRef = useViewportShift(collisionPadding)
 
     return (
@@ -44,7 +45,7 @@ const DropdownMenuContent = ({
             </BaseMenu.Positioner>
         </BaseMenu.Portal>
     )
-}
+})
 
 DropdownMenuContent.displayName = 'DropdownMenu.Content'
 

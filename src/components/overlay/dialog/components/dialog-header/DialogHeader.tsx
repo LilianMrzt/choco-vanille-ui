@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
 import { Flex } from '@components/layout/flex'
@@ -15,7 +15,7 @@ import type { DialogHeaderProps } from '@components/overlay/dialog/components/di
   * `children` can be used for fully custom header content alongside or instead
   * of the `title` / `description` props.
   */
-const DialogHeader: FC<DialogHeaderProps> = ({
+const DialogHeader: FC<DialogHeaderProps> = memo(({
     as: Element = 'div',
     title,
     titleAs,
@@ -100,7 +100,7 @@ const DialogHeader: FC<DialogHeaderProps> = ({
             )
         )}
     </Flex>
-)
+))
 
 DialogHeader.displayName = 'Dialog.Header'
 

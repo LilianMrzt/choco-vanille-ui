@@ -1,4 +1,5 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
+import { memo } from 'react'
 
 import DialogBody from '@components/overlay/dialog/components/dialog-body/DialogBody.tsx'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
@@ -9,6 +10,7 @@ import DialogHeader from '@components/overlay/dialog/components/dialog-header/Di
 import DialogTitle from '@components/overlay/dialog/components/dialog-title/DialogTitle.tsx'
 import DialogTrigger from '@components/overlay/dialog/components/dialog-trigger/DialogTrigger.tsx'
 import type { DialogCompound } from '@components/overlay/dialog/types'
+import type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.ts'
 
 /**
  * A modal dialog built on Base UI Dialog.
@@ -41,9 +43,9 @@ import type { DialogCompound } from '@components/overlay/dialog/types'
  * </Dialog>
  * ```
  */
-const Dialog = ((props) => (
+const Dialog = memo<DialogProps>((props) => (
     <BaseDialog.Root {...props} />
-)) as DialogCompound
+)) as unknown as DialogCompound
 
 Dialog.displayName = 'Dialog'
 Dialog.Trigger = DialogTrigger

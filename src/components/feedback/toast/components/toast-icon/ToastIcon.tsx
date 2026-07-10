@@ -7,9 +7,9 @@ import { TOAST_ICON_STYLES } from '@components/feedback/toast/components/toast-i
 import type { ToastIconProps } from '@components/feedback/toast/components/toast-icon/types/ToastIcon.props.ts'
 import { Icon } from '@components/foundation/icon'
 import { cn } from '@utils/cn.ts'
-import { useContext, type FC } from 'react'
+import { memo, useContext, type FC } from 'react'
 
-const ToastIcon: FC<ToastIconProps> = ({
+const ToastIcon: FC<ToastIconProps> = memo(({
     icon,
     color,
     className,
@@ -26,7 +26,7 @@ const ToastIcon: FC<ToastIconProps> = ({
             {...props}
         />
     )
-}
+})
 
 ToastIcon.displayName = 'Toast.Icon'
 

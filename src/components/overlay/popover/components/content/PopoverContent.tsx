@@ -1,4 +1,5 @@
 import { Popover as BasePopover } from '@base-ui/react/popover'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
@@ -16,7 +17,7 @@ import { useViewportShift } from '@hooks'
  * shifts the panel inward by exactly the overflowing amount — keeping the
  * original side and never cropping the content.
  */
-const PopoverContent = ({
+const PopoverContent: FC<PopoverContentProps> = memo(({
     className,
     position,
     side: sideProp = 'bottom',
@@ -27,7 +28,7 @@ const PopoverContent = ({
     'aria-labelledby': ariaLabelledBy,
     defaultAriaLabel = 'Popover',
     ...props
-}: PopoverContentProps) => {
+}) => {
     const contentRef = useViewportShift(collisionPadding)
 
     const { side, align } = position
@@ -58,7 +59,7 @@ const PopoverContent = ({
             </BasePopover.Positioner>
         </BasePopover.Portal>
     )
-}
+})
 
 PopoverContent.displayName = 'Popover.Content'
 

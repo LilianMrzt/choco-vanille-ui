@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
+import { memo } from 'react'
 
 import DropdownMenuContent from '@components/overlay/dropdown-menu/components/content/DropdownMenuContent.tsx'
 import DropdownMenuGroup from '@components/overlay/dropdown-menu/components/groups/dropdown-menu-group/DropdownMenuGroup.tsx'
@@ -14,14 +15,15 @@ import DropdownMenuSub from '@components/overlay/dropdown-menu/components/sub/dr
 import DropdownMenuSubTrigger from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.tsx'
 import DropdownMenuTrigger from '@components/overlay/dropdown-menu/components/trigger/DropdownMenuTrigger.tsx'
 import type { DropdownMenuCompound } from '@components/overlay/dropdown-menu/types'
+import type { DropdownMenuProps } from '@components/overlay/dropdown-menu/types/DropdownMenu.props.ts'
 
 /**
  * The root wrapper that manages open/close state.
  * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Base UI Menu.
  */
-const DropdownMenu = ((props) => (
+const DropdownMenu = memo<DropdownMenuProps>((props) => (
     <BaseMenu.Root {...props} />
-)) as DropdownMenuCompound
+)) as unknown as DropdownMenuCompound
 
 DropdownMenu.displayName = 'DropdownMenu'
 DropdownMenu.Trigger = DropdownMenuTrigger

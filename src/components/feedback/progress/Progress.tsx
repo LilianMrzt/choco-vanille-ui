@@ -3,11 +3,11 @@ import type { ProgressBaseProps } from '@components/feedback/progress/types/Prog
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
-const Progress: FC<ProgressBaseProps> = ({
+const Progress: FC<ProgressBaseProps> = memo(({
     value,
     color,
     size = 'sm',
@@ -83,7 +83,7 @@ const Progress: FC<ProgressBaseProps> = ({
             </Box>
         </Box>
     )
-}
+})
 
 Progress.displayName = 'Progress'
 

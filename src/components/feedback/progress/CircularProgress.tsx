@@ -7,11 +7,11 @@ import type { ProgressBaseProps } from '@components/feedback/progress/types/Prog
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
-const CircularProgress: FC<ProgressBaseProps> = ({
+const CircularProgress: FC<ProgressBaseProps> = memo(({
     value,
     color,
     size = 'sm',
@@ -112,7 +112,7 @@ const CircularProgress: FC<ProgressBaseProps> = ({
             )}
         </Box>
     )
-}
+})
 
 CircularProgress.displayName = 'CircularProgress'
 

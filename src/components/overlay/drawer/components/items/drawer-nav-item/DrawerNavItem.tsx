@@ -1,4 +1,4 @@
-﻿import { type FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { useDrawerNavItem } from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/use-drawer-nav-item/useDrawerNavItem.hook.ts'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
@@ -11,7 +11,7 @@ import { cn } from '@utils/cn.ts'
  * Behaves like a link, supports icons, an active state and graceful close
  * animation when the drawer is dismissed.
  */
-const DrawerNavItem: FC<DrawerNavItemProps> = ({
+const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     label,
     href = '#',
     startIcon,
@@ -58,7 +58,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             />
         </a>
     )
-}
+})
 
 DrawerNavItem.displayName = 'Drawer.NavItem'
 

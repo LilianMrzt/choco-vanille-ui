@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo, useCallback, type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
@@ -15,7 +15,7 @@ import type { DrawerHeaderProps } from '@components/overlay/drawer/components/bl
  * `children` can be used for fully custom header content alongside or instead
  * of the `title` / `description` props.
  */
-const DrawerHeader: FC<DrawerHeaderProps> = ({
+const DrawerHeader: FC<DrawerHeaderProps> = memo(({
     as: Element = 'div',
     title,
     titleAs,
@@ -30,6 +30,10 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
 }) => {
     const { onOpenChange, titleId } = useDrawerContext()
     const resolvedTitleId = titleProps?.id ?? titleId
+
+    const handleClose = useCallback(() => {
+        onOpenChange(false)
+    }, [onOpenChange])
 
     return (
         <Flex
@@ -99,14 +103,14 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
                             variant={'ghost'}
                             color={'primary'}
                             size={'sm'}
-                            onClick={() => onOpenChange(false)}
+                            onClick={handleClose}
                         />
                     </Flex>
                 )
             )}
         </Flex>
     )
-}
+})
 
 DrawerHeader.displayName = 'Drawer.Header'
 

@@ -1,4 +1,4 @@
-import { useMemo, type MouseEvent } from 'react'
+import { useCallback, useMemo, type MouseEvent } from 'react'
 
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
 import type {
@@ -18,17 +18,20 @@ export const useDrawerNavItem = ({
 }: UseDrawerNavItemParams): UseDrawerNavItemReturn => {
     const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
 
-    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-        if (disabled) {
-            event.preventDefault()
-            return
-        }
+    const handleClick = useCallback(
+        (event: MouseEvent<HTMLAnchorElement>) => {
+            if (disabled) {
+                event.preventDefault()
+                return
+            }
 
-        if (onClick) {
-            event.preventDefault()
-            onClick(event)
-        }
-    }
+            if (onClick) {
+                event.preventDefault()
+                onClick(event)
+            }
+        },
+        [disabled, onClick],
+    )
 
     const linkAttributes = useMemo(
         () => ({

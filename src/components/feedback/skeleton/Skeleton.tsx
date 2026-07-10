@@ -2,9 +2,9 @@ import { SKELETON_STYLES } from '@components/feedback/skeleton/styles/Skeleton.c
 import type { SkeletonProps } from '@components/feedback/skeleton/types/Skeleton.props.ts'
 import Box from '@components/layout/box/Box.tsx'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const Skeleton: FC<SkeletonProps> = ({
+const Skeleton: FC<SkeletonProps> = memo(({
     variant,
     width,
     height,
@@ -22,7 +22,7 @@ const Skeleton: FC<SkeletonProps> = ({
             {...props}
         />
     )
-}
+})
 
 Skeleton.displayName = 'Skeleton'
 

@@ -14,7 +14,7 @@ import type {
     DrawerCompound,
     DrawerProps,
 } from '@components/overlay/drawer/types'
-import { useId } from 'react'
+import { memo, useId } from 'react'
 
 /**
  * A flexible drawer with two render modes: portal and inline.
@@ -42,7 +42,7 @@ import { useId } from 'react'
  * </Drawer>
  * ```
  */
-const Drawer = (({
+const Drawer = memo<DrawerProps>(({
     open: controlledOpen,
     defaultOpen = false,
     onOpenChange,
@@ -58,7 +58,7 @@ const Drawer = (({
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     ...props
-}: DrawerProps) => {
+}) => {
     const generatedTitleId = useId()
 
     const { contextValue, handleOpenChange, commonRendererProps } = useDrawer({
@@ -95,7 +95,7 @@ const Drawer = (({
             )}
         </DrawerContext.Provider>
     )
-}) as DrawerCompound
+}) as unknown as DrawerCompound
 
 Drawer.displayName = 'Drawer'
 Drawer.Header = DrawerHeader

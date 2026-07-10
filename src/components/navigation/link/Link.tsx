@@ -1,11 +1,13 @@
+import { memo, useCallback } from 'react'
+import type * as React from 'react'
+
 import { LINK_STYLES } from '@components/navigation/link/styles/Link.css.ts'
 import type { LinkProps } from '@components/navigation/link/types/Link.props.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import type * as React from 'react'
 
-const Link: React.FC<LinkProps> = ({
+const Link: React.FC<LinkProps> = memo(({
     href = '#',
     className,
     onClick,
@@ -18,12 +20,15 @@ const Link: React.FC<LinkProps> = ({
     iconSize = 'md',
     ...props
 }) => {
-    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        if (onClick) {
-            event.preventDefault()
-            onClick(event)
-        }
-    }
+    const handleClick = useCallback(
+        (event: React.MouseEvent<HTMLAnchorElement>) => {
+            if (onClick) {
+                event.preventDefault()
+                onClick(event)
+            }
+        },
+        [onClick],
+    )
 
     return (
         <a
@@ -57,7 +62,7 @@ const Link: React.FC<LinkProps> = ({
             )}
         </a>
     )
-}
+})
 
 Link.displayName = 'Link'
 

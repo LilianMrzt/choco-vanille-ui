@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
@@ -13,7 +13,7 @@ import { RotatingChevron } from '@components/_common/rotating-chevron'
  * end icon. Used by `DrawerActionItem`, `DrawerNavItem` and
  * `DrawerSectionItem` to keep their markup consistent.
  */
-const DrawerItemContent: FC<DrawerItemContentProps> = ({
+const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
     label,
     startIcon,
     endChevronIcon,
@@ -51,7 +51,7 @@ const DrawerItemContent: FC<DrawerItemContentProps> = ({
             )}
         </>
     )
-}
+})
 
 DrawerItemContent.displayName = 'DrawerItemContent'
 

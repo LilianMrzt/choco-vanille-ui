@@ -1,3 +1,5 @@
+import { memo, type FC } from 'react'
+
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 
 import { COLLAPSIBLE_TRIGGER_STYLES } from '@components/surfaces/collapsible/components/collapsible-trigger/styles/CollapsibleTrigger.css.ts'
@@ -8,14 +10,14 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 
-const CollapsibleTrigger = ({
+const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
     className,
     children,
     label,
     startIcon,
     endIcon,
     ...props
-}: CollapsibleTriggerProps) => (
+}) => (
     <BaseCollapsible.Trigger
         className={cn(COLLAPSIBLE_TRIGGER_STYLES.root, className)}
         {...props}
@@ -51,7 +53,7 @@ const CollapsibleTrigger = ({
         )}
         <RotatingChevron size={'sm'} />
     </BaseCollapsible.Trigger>
-)
+))
 
 CollapsibleTrigger.displayName = 'Collapsible.Trigger'
 

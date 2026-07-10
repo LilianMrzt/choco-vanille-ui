@@ -1,4 +1,5 @@
 import { PreviewCard } from '@base-ui/react/preview-card'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
@@ -22,7 +23,7 @@ import { useViewportShift } from '@hooks'
  * no `dialog` role, so it needs no required accessible name. Any `aria-label` /
  * `aria-labelledby` a consumer passes is still forwarded via `...props`.
  */
-const HoverCardContent = ({
+const HoverCardContent: FC<HoverCardContentProps> = memo(({
     className,
     position,
     side: sideProp = 'bottom',
@@ -30,7 +31,7 @@ const HoverCardContent = ({
     sideOffset = 6,
     collisionPadding = 8,
     ...props
-}: HoverCardContentProps) => {
+}) => {
     const contentRef = useViewportShift(collisionPadding)
 
     const { side, align } = position
@@ -55,7 +56,7 @@ const HoverCardContent = ({
             </PreviewCard.Positioner>
         </PreviewCard.Portal>
     )
-}
+})
 
 HoverCardContent.displayName = 'HoverCard.Content'
 

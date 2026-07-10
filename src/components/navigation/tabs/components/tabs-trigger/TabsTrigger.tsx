@@ -1,3 +1,5 @@
+import { memo, type FC } from 'react'
+
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
 import { TABS_TRIGGER_STYLES, tabsTriggerLabel } from '@components/navigation/tabs/components/tabs-trigger/styles/TabsTrigger.css.ts'
@@ -12,7 +14,7 @@ import { cn } from '@utils/cn.ts'
  * via keyboard. Automatically matches the visual style of its parent
  * `Tabs.List`.
  */
-const TabsTrigger = ({ className, style, width, label, startIcon, endIcon, value, ...props }: TabsTriggerProps) => {
+const TabsTrigger: FC<TabsTriggerProps> = memo(({ className, style, width, label, startIcon, endIcon, value, ...props }) => {
     const { variant } = useTabsVariant()
 
     return (
@@ -46,7 +48,7 @@ const TabsTrigger = ({ className, style, width, label, startIcon, endIcon, value
             )}
         </BaseTabs.Tab>
     )
-}
+})
 
 TabsTrigger.displayName = 'Tabs.Trigger'
 

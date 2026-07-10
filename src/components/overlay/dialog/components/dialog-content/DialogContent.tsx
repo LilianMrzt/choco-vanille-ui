@@ -1,4 +1,5 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
+import { memo, type FC } from 'react'
 
 import { DIALOG_STYLES } from '@components/overlay/dialog/styles/Dialog.css.ts'
 import type { DialogContentProps } from '@components/overlay/dialog/components/dialog-content/types/DialogContent.props.ts'
@@ -8,7 +9,7 @@ import { cn } from '@utils/cn.ts'
  * The modal panel rendered inside a portal.
  * Includes the backdrop overlay and the content container.
  */
-const DialogContent = ({
+const DialogContent: FC<DialogContentProps> = memo(({
     className,
     size = 'md',
     'aria-label': ariaLabel,
@@ -16,7 +17,7 @@ const DialogContent = ({
     defaultAriaLabel = 'Dialog',
     children,
     ...props
-}: DialogContentProps) => {
+}) => {
     // A role="dialog" element must have an accessible name (axe aria-dialog-name).
     // Consumers can override via aria-label or aria-labelledby; otherwise we fall
     // back to defaultAriaLabel so it can be localized.
@@ -35,7 +36,7 @@ const DialogContent = ({
             </BaseDialog.Popup>
         </BaseDialog.Portal>
     )
-}
+})
 
 DialogContent.displayName = 'Dialog.Content'
 

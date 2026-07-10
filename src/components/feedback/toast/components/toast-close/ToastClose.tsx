@@ -4,9 +4,9 @@ import { TOAST_CLOSE_STYLES } from '@components/feedback/toast/components/toast-
 import { IconRegistry } from '@constants/icons'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const ToastClose: FC<ToastCloseProps> = ({
+const ToastClose: FC<ToastCloseProps> = memo(({
     'aria-label': ariaLabel,
     color: _color,
     className,
@@ -24,7 +24,7 @@ const ToastClose: FC<ToastCloseProps> = ({
             {...props}
         />
     )
-}
+})
 
 ToastClose.displayName = 'Toast.Close'
 

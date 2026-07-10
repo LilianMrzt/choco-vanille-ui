@@ -1,4 +1,4 @@
-﻿import type { FC } from 'react'
+﻿import { memo, type FC } from 'react'
 
 import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
 import {
@@ -13,7 +13,7 @@ import { cn } from '@utils/cn.ts'
  *
  * Useful for actions that do not navigate, such as "Sign out" or "Toggle theme".
  */
-const DrawerActionItem: FC<DrawerActionItemProps> = ({
+const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
     label,
     startIcon,
     trailing,
@@ -51,7 +51,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
             />
         </button>
     )
-}
+})
 
 DrawerActionItem.displayName = 'Drawer.ActionItem'
 

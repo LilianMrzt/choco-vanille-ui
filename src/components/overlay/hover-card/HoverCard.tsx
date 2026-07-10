@@ -1,8 +1,10 @@
 import { PreviewCard } from '@base-ui/react/preview-card'
+import { memo } from 'react'
 
 import HoverCardContent from '@components/overlay/hover-card/components/content/HoverCardContent.tsx'
 import HoverCardTrigger from '@components/overlay/hover-card/components/trigger/HoverCardTrigger.tsx'
 import type { HoverCardCompound } from '@components/overlay/hover-card/types'
+import type { HoverCardProps } from '@components/overlay/hover-card/types/HoverCard.props.ts'
 
 /**
  * A hover-activated overlay built on top of `@base-ui/react/preview-card`.
@@ -11,9 +13,9 @@ import type { HoverCardCompound } from '@components/overlay/hover-card/types'
  *
  * Reuses the popover content styles for visual consistency.
  */
-const HoverCard = ((props) => (
+const HoverCard = memo<HoverCardProps>((props) => (
     <PreviewCard.Root {...props} />
-)) as HoverCardCompound
+)) as unknown as HoverCardCompound
 
 HoverCard.displayName = 'HoverCard'
 HoverCard.Trigger = HoverCardTrigger

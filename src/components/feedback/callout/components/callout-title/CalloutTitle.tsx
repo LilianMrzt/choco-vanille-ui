@@ -1,9 +1,9 @@
 import { Typography } from '@components/foundation/typography'
 import type { CalloutTitleProps } from '@components/feedback/callout/components/callout-title/types/CalloutTitle.props.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const CalloutTitle: FC<CalloutTitleProps> = ({
+const CalloutTitle: FC<CalloutTitleProps> = memo(({
     children,
     className,
     ref,
@@ -22,7 +22,7 @@ const CalloutTitle: FC<CalloutTitleProps> = ({
             {children}
         </Typography>
     )
-}
+})
 
 CalloutTitle.displayName = 'Callout.Title'
 

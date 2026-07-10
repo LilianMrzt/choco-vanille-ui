@@ -4,9 +4,9 @@ import type { CalloutIconProps } from '@components/feedback/callout/components/c
 import { VARIANT_TO_COLOR, VARIANT_TO_ICON } from '@components/feedback/callout/constants'
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'
 import { cn } from '@utils/cn.ts'
-import { useContext, type FC } from 'react'
+import { memo, useContext, type FC } from 'react'
 
-const CalloutIcon: FC<CalloutIconProps> = ({
+const CalloutIcon: FC<CalloutIconProps> = memo(({
     icon,
     color,
     className,
@@ -22,7 +22,7 @@ const CalloutIcon: FC<CalloutIconProps> = ({
             {...props}
         />
     )
-}
+})
 
 CalloutIcon.displayName = 'Callout.Icon'
 

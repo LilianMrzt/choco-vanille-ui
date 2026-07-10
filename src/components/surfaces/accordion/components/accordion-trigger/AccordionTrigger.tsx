@@ -1,3 +1,5 @@
+import { memo, type FC } from 'react'
+
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
 import { ACCORDION_TRIGGER_STYLES } from '@components/surfaces/accordion/components/accordion-trigger/styles/AccordionTrigger.css.ts'
@@ -15,14 +17,14 @@ import { cn } from '@utils/cn.ts'
  * it is rendered through `Typography` and optional `startIcon` / `endIcon`
  * icons can be added.
  */
-const AccordionTrigger = ({
+const AccordionTrigger: FC<AccordionTriggerProps> = memo(({
     className,
     children,
     label,
     startIcon,
     endIcon,
     ...props
-}: AccordionTriggerProps) => (
+}) => (
     <BaseAccordion.Header style={{ margin: 0 }}>
         <BaseAccordion.Trigger
             className={cn(ACCORDION_TRIGGER_STYLES.root, className)}
@@ -60,7 +62,7 @@ const AccordionTrigger = ({
             <RotatingChevron size={'sm'} />
         </BaseAccordion.Trigger>
     </BaseAccordion.Header>
-)
+))
 
 AccordionTrigger.displayName = 'Accordion.Trigger'
 

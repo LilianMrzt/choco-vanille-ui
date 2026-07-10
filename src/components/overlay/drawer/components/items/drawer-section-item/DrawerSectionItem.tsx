@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { Box } from '@components/layout/box'
 import {
@@ -18,7 +18,7 @@ import {
  * Clicking the header toggles the children. The expanded state is
  * independent of the drawer open/close state to avoid unwanted transitions.
  */
-const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
+const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
     label,
     startIcon,
     children,
@@ -107,7 +107,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
             </Grid>
         </Box>
     )
-}
+})
 
 DrawerSectionItem.displayName = 'Drawer.SectionItem'
 

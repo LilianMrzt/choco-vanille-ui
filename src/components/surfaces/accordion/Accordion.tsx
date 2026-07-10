@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
 import AccordionContent from '@components/surfaces/accordion/components/accordion-content/AccordionContent.tsx'
@@ -24,7 +26,7 @@ import { Flex } from '@components/layout/flex'
  * </Accordion>
  * ```
  */
-const Accordion = (({ className, width, ...props }: AccordionProps) => (
+const Accordion = memo<AccordionProps>(({ className, width, ...props }) => (
     <Flex
         flexDirection={'column'}
         alignItems={'stretch'}
@@ -37,7 +39,7 @@ const Accordion = (({ className, width, ...props }: AccordionProps) => (
             {...props}
         />
     </Flex>
-)) as AccordionCompound
+)) as unknown as AccordionCompound
 
 Accordion.displayName = 'Accordion'
 Accordion.Item = AccordionItem

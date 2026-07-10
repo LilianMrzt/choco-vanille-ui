@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/styles/DropdownMenuSubTrigger.css.ts'
@@ -13,12 +14,12 @@ import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-m
   * The item that opens the nested sub-menu on hover/focus.
   * A chevron icon is automatically appended on the right.
   */
-const DropdownMenuSubTrigger = ({
+const DropdownMenuSubTrigger: FC<DropdownMenuSubTriggerProps> = memo(({
     className,
     startIcon,
     label,
     ...props
-}: DropdownMenuSubTriggerProps) => (
+}) => (
     <BaseMenu.SubmenuTrigger
         className={cn(DROPDOWN_MENU_SUB_TRIGGER_STYLES.root, className)}
         {...props}
@@ -55,7 +56,7 @@ const DropdownMenuSubTrigger = ({
             />
         </Flex>
     </BaseMenu.SubmenuTrigger>
-)
+))
 
 DropdownMenuSubTrigger.displayName = 'DropdownMenu.SubTrigger'
 

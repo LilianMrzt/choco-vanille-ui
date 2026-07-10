@@ -1,3 +1,5 @@
+import { memo, useCallback } from 'react'
+
 import { TOAST_STYLES } from '@components/feedback/toast/styles/Toast.css.ts'
 import { ToastActions } from '@components/feedback/toast/components/toast-actions'
 import { ToastClose } from '@components/feedback/toast/components/toast-close'
@@ -6,13 +8,14 @@ import { ToastIcon } from '@components/feedback/toast/components/toast-icon'
 import { ToastTitle } from '@components/feedback/toast/components/toast-title'
 import { ToastContext } from '@components/feedback/toast/context/Toast.context.ts'
 import type { ToastCompound } from '@components/feedback/toast/types'
+import type { ToastProps } from '@components/feedback/toast/types/Toast.props.ts'
 import { Box } from '@components/layout/box'
 import { createIconChildUtils } from '@utils/createIconChildUtils.ts'
 import { cn } from '@utils/cn.ts'
 
 const { hasIconChild } = createIconChildUtils(ToastIcon)
 
-const Toast = (({
+const Toast = memo<ToastProps>(({
     variant = 'info',
     role = 'status',
     icon,
@@ -27,6 +30,10 @@ const Toast = (({
 }) => {
     const isCompound = children !== undefined
     const showDefaultIcon = isCompound && !hasIconChild(children)
+
+    const handleClose = useCallback(() => {
+        onClose?.()
+    }, [onClose])
 
     return (
         <ToastContext.Provider value={{ variant }}>
@@ -52,7 +59,7 @@ const Toast = (({
                         {onClose && (
                             <ToastClose
                                 aria-label={closeLabel}
-                                onClick={onClose}
+                                onClick={handleClose}
                             />
                         )}
                     </>
@@ -60,7 +67,7 @@ const Toast = (({
             </Box>
         </ToastContext.Provider>
     )
-}) as ToastCompound
+}) as unknown as ToastCompound
 
 Toast.displayName = 'Toast'
 Toast.Icon = ToastIcon

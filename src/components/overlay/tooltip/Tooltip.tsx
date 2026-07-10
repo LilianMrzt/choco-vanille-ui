@@ -1,4 +1,5 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
+import { memo, useCallback, useContext, type FC } from 'react'
 
 import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
 import { TOOLTIP_STYLES } from '@components/overlay/tooltip/styles/Tooltip.css.ts'
@@ -6,9 +7,7 @@ import { TooltipProviderContext } from '@components/overlay/tooltip/context/Tool
 import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
 
-import { type FC, useContext } from 'react'
-
-const Tooltip: FC<TooltipProps> = ({
+const Tooltip: FC<TooltipProps> = memo(({
     children,
     content,
     position,
@@ -26,6 +25,11 @@ const Tooltip: FC<TooltipProps> = ({
         ? parsePosition(position)
         : { side: sideProp, align: alignProp }
 
+    const handleOpenChange = useCallback(
+        (isOpen: boolean) => onOpenChange?.(isOpen),
+        [onOpenChange],
+    )
+
     if (disabled) {
         return <>{children}</>
     }
@@ -33,7 +37,7 @@ const Tooltip: FC<TooltipProps> = ({
     const root = (
         <BaseTooltip.Root
             open={open}
-            onOpenChange={(isOpen) => onOpenChange?.(isOpen)}
+            onOpenChange={handleOpenChange}
         >
             <BaseTooltip.Trigger
                 delay={delayDuration}
@@ -60,7 +64,7 @@ const Tooltip: FC<TooltipProps> = ({
     // adjacent triggers — is shared. Fall back to a local provider so a
     // standalone `Tooltip` still works without any setup.
     return hasProvider ? root : <BaseTooltip.Provider delay={delayDuration}>{root}</BaseTooltip.Provider>
-}
+})
 
 Tooltip.displayName = 'Tooltip'
 

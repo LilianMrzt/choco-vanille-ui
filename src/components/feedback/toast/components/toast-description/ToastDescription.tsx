@@ -2,9 +2,9 @@ import type { ToastDescriptionProps } from '@components/feedback/toast/component
 import { TOAST_DESCRIPTION_STYLES } from '@components/feedback/toast/components/toast-description/styles/ToastDescription.css.ts'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const ToastDescription: FC<ToastDescriptionProps> = ({
+const ToastDescription: FC<ToastDescriptionProps> = memo(({
     children,
     className,
     ref,
@@ -23,7 +23,7 @@ const ToastDescription: FC<ToastDescriptionProps> = ({
             {children}
         </Typography>
     )
-}
+})
 
 ToastDescription.displayName = 'Toast.Description'
 

@@ -1,8 +1,11 @@
+import { memo } from 'react'
+
 import { Box } from '@components/layout/box'
 import CardBody from '@components/surfaces/card/components/card-body/CardBody.tsx'
 import CardFooter from '@components/surfaces/card/components/card-footer/CardFooter.tsx'
 import CardHeader from '@components/surfaces/card/components/card-header/CardHeader.tsx'
 import type { CardCompound } from '@components/surfaces/card/types'
+import type { CardProps } from '@components/surfaces/card/types/Card.props.ts'
 
 /**
   * A surface container with a consistent background, border, shadow and
@@ -24,7 +27,7 @@ import type { CardCompound } from '@components/surfaces/card/types'
   * </Card>
   * ```
   */
-const Card = (({
+const Card = memo<CardProps>(({
     as = 'div',
     backgroundColor = 'card',
     color = 'cardForeground',
@@ -48,7 +51,7 @@ const Card = (({
         className={className}
         {...props}
     />
-)) as CardCompound
+)) as unknown as CardCompound
 
 Card.displayName = 'Card'
 Card.Header = CardHeader

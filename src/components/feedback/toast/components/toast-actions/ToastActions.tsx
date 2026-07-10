@@ -2,9 +2,9 @@ import type { ToastActionsProps } from '@components/feedback/toast/components/to
 import { TOAST_ACTIONS_STYLES } from '@components/feedback/toast/components/toast-actions/styles/ToastActions.css.ts'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const ToastActions: FC<ToastActionsProps> = ({
+const ToastActions: FC<ToastActionsProps> = memo(({
     children,
     className,
     ref,
@@ -24,7 +24,7 @@ const ToastActions: FC<ToastActionsProps> = ({
             {children}
         </Flex>
     )
-}
+})
 
 ToastActions.displayName = 'Toast.Actions'
 

@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
@@ -8,9 +9,8 @@ import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
-import type { FC } from 'react'
 
-const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
+const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = memo(({
     className,
     label,
     ...props
@@ -39,7 +39,7 @@ const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = ({
             {label}
         </Typography>
     </BaseMenu.RadioItem>
-)
+))
 
 DropdownMenuRadioItem.displayName = 'DropdownMenu.RadioItem'
 

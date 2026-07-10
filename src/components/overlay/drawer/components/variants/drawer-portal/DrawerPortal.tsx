@@ -1,5 +1,5 @@
 ﻿import { Dialog as BaseDialog } from '@base-ui/react/dialog'
-import { type FC, useMemo } from 'react'
+import { memo, type FC, useMemo } from 'react'
 
 import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import { DRAWER_PORTAL_STYLES } from '@components/overlay/drawer/components/variants/drawer-portal/styles/DrawerPortal.css.ts'
@@ -12,7 +12,7 @@ import { cn } from '@utils/cn.ts'
  * Renders the drawer through a React portal using `@base-ui/react/dialog`,
  * with an optional backdrop and modal focus trap.
  */
-const DrawerPortal: FC<DrawerPortalProps> = ({
+const DrawerPortal: FC<DrawerPortalProps> = memo(({
     open,
     onOpenChange,
     position,
@@ -65,7 +65,7 @@ const DrawerPortal: FC<DrawerPortalProps> = ({
             </BaseDialog.Portal>
         </BaseDialog.Root>
     )
-}
+})
 
 DrawerPortal.displayName = 'Drawer.Portal'
 

@@ -1,4 +1,4 @@
-﻿import { type FC, useMemo } from 'react'
+﻿import { memo, type FC, useMemo } from 'react'
 
 import { Box } from '@components/layout/box'
 import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
@@ -12,7 +12,7 @@ import { cn } from '@utils/cn.ts'
  * Renders the drawer as a layout element that takes space when open
  * and collapses to `width: 0` when closed.
  */
-const DrawerInline: FC<DrawerInlineProps> = ({
+const DrawerInline: FC<DrawerInlineProps> = memo(({
     open,
     position,
     size,
@@ -56,7 +56,7 @@ const DrawerInline: FC<DrawerInlineProps> = ({
             {children}
         </Box>
     )
-}
+})
 
 DrawerInline.displayName = 'Drawer.Inline'
 

@@ -4,9 +4,9 @@ import { TOAST_TITLE_STYLES } from '@components/feedback/toast/components/toast-
 import type { ToastTitleProps } from '@components/feedback/toast/components/toast-title/types/ToastTitle.props.ts'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import { useContext, type FC } from 'react'
+import { memo, useContext, type FC } from 'react'
 
-const ToastTitle: FC<ToastTitleProps> = ({
+const ToastTitle: FC<ToastTitleProps> = memo(({
     children,
     className,
     ref,
@@ -28,7 +28,7 @@ const ToastTitle: FC<ToastTitleProps> = ({
             {children}
         </Typography>
     )
-}
+})
 
 ToastTitle.displayName = 'Toast.Title'
 

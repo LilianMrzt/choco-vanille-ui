@@ -1,4 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
@@ -20,7 +21,7 @@ import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/co
   * />
   * ```
   */
-const DropdownMenuItem = ({
+const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
     className,
     destructive = false,
     startIcon,
@@ -28,7 +29,7 @@ const DropdownMenuItem = ({
     shortcut,
     label,
     ...props
-}: DropdownMenuItemProps) => (
+}) => (
     <BaseMenu.Item
         className={cn(
             DROPDOWN_MENU_ITEM_STYLES.root,
@@ -72,7 +73,7 @@ const DropdownMenuItem = ({
             </Flex>
         )}
     </BaseMenu.Item>
-)
+))
 
 DropdownMenuItem.displayName = 'DropdownMenu.Item'
 

@@ -1,16 +1,19 @@
+import { memo } from 'react'
+
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'
 import { CALLOUT_STYLES } from '@components/feedback/callout/styles/Callout.css.ts'
 import { CalloutDescription } from '@components/feedback/callout/components/callout-description'
 import { CalloutIcon } from '@components/feedback/callout/components/callout-icon'
 import { CalloutTitle } from '@components/feedback/callout/components/callout-title'
 import type { CalloutCompound } from '@components/feedback/callout/types'
+import type { CalloutProps } from '@components/feedback/callout/types/Callout.props.ts'
 import { Flex } from '@components/layout/flex'
 import { createIconChildUtils } from '@utils/createIconChildUtils.ts'
 import { cn } from '@utils/cn.ts'
 
 const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
-const Callout = (({
+const Callout = memo<CalloutProps>(({
     variant = 'info',
     role = 'status',
     icon,
@@ -55,7 +58,7 @@ const Callout = (({
             </Flex>
         </CalloutContext.Provider>
     )
-}) as CalloutCompound
+}) as unknown as CalloutCompound
 
 Callout.displayName = 'Callout'
 Callout.Icon = CalloutIcon

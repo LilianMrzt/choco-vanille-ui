@@ -1,4 +1,5 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
+import { memo, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import type { DialogTitleProps } from '@components/overlay/dialog/components/dialog-title/types/DialogTitle.props.ts'
@@ -8,7 +9,7 @@ import { cn } from '@utils/cn.ts'
  * Accessible title for the dialog.
  * Required for screen-reader users; rendered as a heading by default.
  */
-const DialogTitle = ({ className, children, ...props }: DialogTitleProps) => (
+const DialogTitle: FC<DialogTitleProps> = memo(({ className, children, ...props }) => (
     <BaseDialog.Title
         className={cn(className)}
         {...props}
@@ -22,7 +23,7 @@ const DialogTitle = ({ className, children, ...props }: DialogTitleProps) => (
             {children}
         </Typography>
     </BaseDialog.Title>
-)
+))
 
 DialogTitle.displayName = 'Dialog.Title'
 
