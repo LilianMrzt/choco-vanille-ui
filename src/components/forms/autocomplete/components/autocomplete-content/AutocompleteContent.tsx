@@ -1,5 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.ts'
@@ -13,7 +13,7 @@ import type { AutocompleteContentProps } from '@components/forms/autocomplete/co
  * simple API as Select.Content. Collision handling is delegated to
  * `useViewportShift` (Base UI's built-in flip/shift is disabled).
  */
-const AutocompleteContent: FC<AutocompleteContentProps> = ({
+const AutocompleteContent: FC<AutocompleteContentProps> = memo(({
     className,
     listboxAriaLabel = 'Options',
     children,
@@ -45,7 +45,7 @@ const AutocompleteContent: FC<AutocompleteContentProps> = ({
             </BaseAutocomplete.Positioner>
         </BaseAutocomplete.Portal>
     )
-}
+})
 
 AutocompleteContent.displayName = 'Autocomplete.Content'
 

@@ -1,8 +1,8 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 import { TEXT_AREA_LABEL_STYLES } from '@components/forms/text-area/components/text-area-label/styles/TextAreaLabel.css.ts'
 import type { TextAreaLabelProps } from '@components/forms/text-area/components/text-area-label/types/TextAreaLabel.props.ts'
 
-const TextAreaLabel: FC<TextAreaLabelProps> = ({ htmlFor, disabled, children }) => (
+const TextAreaLabel: FC<TextAreaLabelProps> = memo(({ htmlFor, disabled, children }) => (
     <label
         htmlFor={htmlFor}
         className={TEXT_AREA_LABEL_STYLES.root}
@@ -10,7 +10,7 @@ const TextAreaLabel: FC<TextAreaLabelProps> = ({ htmlFor, disabled, children }) 
     >
         {children}
     </label>
-)
+))
 
 TextAreaLabel.displayName = 'TextArea.Label'
 

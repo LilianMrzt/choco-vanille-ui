@@ -10,6 +10,7 @@ import {
     SelectTrigger,
 } from '@components/forms/select/components'
 import type { SelectCompound } from '@components/forms/select/types/Select.types.ts'
+import { memo } from 'react'
 
 // Re-export styles so consumers can target / extend them.
 export { SELECT_TRIGGER_STYLES } from '@components/forms/select/components/select-trigger/styles/SelectTrigger.css.ts'
@@ -42,7 +43,7 @@ export { SELECT_SEPARATOR_STYLES } from '@components/forms/select/components/sel
  * </Select>
  * ```
  */
-const Select = ((props) => <BaseSelect.Root {...props} />) as SelectCompound
+const Select = memo<BaseSelect.Root.Props<string>>((props) => <BaseSelect.Root {...props} />) as unknown as SelectCompound
 
 Select.displayName = 'Select'
 

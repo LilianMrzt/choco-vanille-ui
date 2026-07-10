@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import {
     DEFAULT_END_YEAR,
@@ -26,10 +26,13 @@ export const useCalendar = ({
 
     const currentMonth = controlledMonth ?? internalMonth
 
-    const setCurrentMonth = (date: Date) => {
-        setInternalMonth(date)
-        onMonthChange?.(date)
-    }
+    const setCurrentMonth = useCallback(
+        (date: Date) => {
+            setInternalMonth(date)
+            onMonthChange?.(date)
+        },
+        [onMonthChange],
+    )
 
     const resolvedStartMonth = startMonth ?? new Date(resolvedStartYear, 0, 1)
     const resolvedEndMonth = endMonth ?? new Date(resolvedEndYear, 11, 31)

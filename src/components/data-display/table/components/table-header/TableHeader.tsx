@@ -1,16 +1,16 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { TABLE_HEADER_STYLES } from '@components/data-display/table/components/table-header/styles/TableHeader.css.ts'
 import type { TableHeaderProps } from '@components/data-display/table/components/table-header/types/TableHeader.props.ts'
 import { cn } from '@utils/cn.ts'
 
-const TableHeader: FC<TableHeaderProps> = ({ className, ref, ...props }) => (
+const TableHeader: FC<TableHeaderProps> = memo(({ className, ref, ...props }) => (
     <thead
         ref={ref}
         className={cn(TABLE_HEADER_STYLES.root, className)}
         {...props}
     />
-)
+))
 
 TableHeader.displayName = 'Table.Header'
 

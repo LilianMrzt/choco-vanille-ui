@@ -1,5 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-import { type FC, useRef } from 'react'
+import { type FC, memo, useCallback, useRef } from 'react'
 
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
@@ -13,7 +13,7 @@ import type { AutocompleteInputProps } from '@components/forms/autocomplete/comp
  * ring and disabled state. Supports `size`, `startIcon`, `placeholder`,
  * `hasError` and `width`.
  */
-const AutocompleteInput: FC<AutocompleteInputProps> = ({
+const AutocompleteInput: FC<AutocompleteInputProps> = memo(({
     className,
     placeholder,
     startIcon,
@@ -26,22 +26,25 @@ const AutocompleteInput: FC<AutocompleteInputProps> = ({
 }) => {
     const pointerDownRef = useRef(false)
 
-    const handleMouseDown: NonNullable<BaseAutocomplete.Input.Props['onMouseDown']> = (event) => {
-        pointerDownRef.current = true
-        onMouseDown?.(event)
-    }
+    const handleMouseDown: NonNullable<BaseAutocomplete.Input.Props['onMouseDown']> = useCallback(
+        (event) => {
+            pointerDownRef.current = true
+            onMouseDown?.(event)
+        },
+        [onMouseDown],
+    )
 
-    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocus = useCallback((event: React.FocusEvent<HTMLInputElement>) => {
         if (pointerDownRef.current) {
             event.currentTarget.setAttribute('data-mouse-focus', '')
             pointerDownRef.current = false
         }
-    }
+    }, [])
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleBlur = useCallback((event: React.FocusEvent<HTMLInputElement>) => {
         pointerDownRef.current = false
         event.currentTarget.removeAttribute('data-mouse-focus')
-    }
+    }, [])
 
     const mergedStyle = width !== undefined ? { ...style, width } : style
 
@@ -72,7 +75,7 @@ const AutocompleteInput: FC<AutocompleteInputProps> = ({
             />
         </>
     )
-}
+})
 
 AutocompleteInput.displayName = 'Autocomplete.Input'
 

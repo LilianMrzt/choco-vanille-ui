@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useCallback, useId, useState } from 'react'
 import type { UseSelectFieldParams, UseSelectFieldReturn } from '@components/forms/select/components/select-field/types'
 
 const useSelectField = ({
@@ -19,12 +19,15 @@ const useSelectField = ({
     const isControlled = value !== undefined
     const selectedValue = isControlled ? String(value) : internalValue
 
-    const handleValueChange = (nextValue: string) => {
-        if (!isControlled) {
-            setInternalValue(nextValue)
-        }
-        onValueChange?.(nextValue)
-    }
+    const handleValueChange = useCallback(
+        (nextValue: string) => {
+            if (!isControlled) {
+                setInternalValue(nextValue)
+            }
+            onValueChange?.(nextValue)
+        },
+        [isControlled, onValueChange],
+    )
 
     return {
         triggerId,

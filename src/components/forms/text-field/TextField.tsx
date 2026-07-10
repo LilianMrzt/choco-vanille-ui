@@ -12,6 +12,8 @@ import type { TextFieldCompound } from '@components/forms/text-field/types'
 import { Flex } from '@components/layout/flex'
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
+import { memo, useCallback } from 'react'
+import type { TextFieldProps } from '@/components'
 
 /**
   * A styled text input built with a native `<input>` and `<label>`.
@@ -33,7 +35,7 @@ import { cn } from '@utils/cn.ts'
   * <TextField label="Amount" width="12rem" />
   * ```
   */
-const TextField = ((props) => {
+const TextField = memo<TextFieldProps>((props) => {
     const {
         inputId,
         helperId,
@@ -70,6 +72,11 @@ const TextField = ((props) => {
     } = props
     const size = sizeProp ?? 'md'
 
+    const handleTogglePassword = useCallback(
+        () => setShowPassword(!showPassword),
+        [setShowPassword, showPassword],
+    )
+
     const resolvedEndAction = isPassword ? (
         <IconButton
             icon={showPassword ? IconRegistry.eyeOff : IconRegistry.eye}
@@ -79,7 +86,7 @@ const TextField = ((props) => {
             size={fieldSizeToActionSize[size]}
             type={'button'}
             tabIndex={-1}
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={handleTogglePassword}
         />
     ) : (
         endAction
@@ -157,7 +164,7 @@ const TextField = ((props) => {
             )}
         </Flex>
     )
-}) as TextFieldCompound
+}) as unknown as TextFieldCompound
 
 TextField.displayName = 'TextField'
 TextField.Label = TextFieldLabel

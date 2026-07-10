@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react'
+import { type FC, memo, useCallback, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
@@ -27,7 +27,7 @@ import { flattenItems } from '@components/forms/select/components/select-field/u
  * />
  * ```
  */
-const SelectField: FC<SelectFieldProps> = ({
+const SelectField: FC<SelectFieldProps> = memo(({
     label,
     helperText,
     error,
@@ -58,6 +58,11 @@ const SelectField: FC<SelectFieldProps> = ({
 
     const items = useMemo(() => flattenItems(options), [options])
 
+    const handleSelectValueChange = useCallback(
+        (v: string | null) => { if (v !== null) { handleValueChange(v) } },
+        [handleValueChange],
+    )
+
     return (
         <Flex
             flexDirection={'column'}
@@ -79,7 +84,7 @@ const SelectField: FC<SelectFieldProps> = ({
 
             <Select
                 value={selectedValue ?? null}
-                onValueChange={(v) => { if (v !== null) {handleValueChange(v)} }}
+                onValueChange={handleSelectValueChange}
                 disabled={disabled}
                 required={required}
                 open={open}
@@ -143,7 +148,7 @@ const SelectField: FC<SelectFieldProps> = ({
             )}
         </Flex>
     )
-}
+})
 
 SelectField.displayName = 'SelectField'
 

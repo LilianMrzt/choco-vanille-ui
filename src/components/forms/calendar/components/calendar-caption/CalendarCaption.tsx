@@ -1,4 +1,4 @@
-import type { FC, ReactElement } from 'react'
+import { memo, type FC, type ReactElement, useCallback } from 'react'
 
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
@@ -22,7 +22,7 @@ import { DEFAULT_CALENDAR_CAPTION_LABELS } from '@components/forms/calendar/comp
   * - Month view: navigate by year
   * - Year view: navigate by page (12 years)
   */
-const CalendarCaption: FC<CalendarCaptionProps> = ({
+const CalendarCaption: FC<CalendarCaptionProps> = memo(({
     labels = {},
 }): ReactElement => {
     const {
@@ -37,6 +37,11 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
         isPrevDisabled,
         isNextDisabled,
     } = useCalendarCaption()
+
+    const handleOpenYearView = useCallback(
+        () => setView('year'),
+        [setView],
+    )
 
     const mergedLabels = { ...DEFAULT_CALENDAR_CAPTION_LABELS, ...labels }
 
@@ -83,7 +88,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
                         color={'tertiary'}
                         size={'sm'}
                         label={label}
-                        onClick={() => setView('year')}
+                        onClick={handleOpenYearView}
                     />
                 )}
 
@@ -121,7 +126,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
             />
         </Flex>
     )
-}
+})
 
 CalendarCaption.displayName = 'CalendarCaption'
 

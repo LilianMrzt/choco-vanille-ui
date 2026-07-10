@@ -1,7 +1,7 @@
 import { FORM_STYLES } from '@components/layout/form/styles/Form.css.ts'
 import type { FormProps } from '@components/layout/form/types/Form.props.ts'
 import { cn } from '@utils/cn.ts'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
 
 /**
  * A thin, unstyled wrapper around the native `<form>` element.
@@ -18,7 +18,7 @@ import { forwardRef } from 'react'
  * </Form>
  * ```
  */
-const Form = forwardRef<HTMLFormElement, FormProps>(
+const Form = memo(forwardRef<HTMLFormElement, FormProps>(
     ({ className, children, ...props }, ref) => (
         <form
             ref={ref}
@@ -28,7 +28,7 @@ const Form = forwardRef<HTMLFormElement, FormProps>(
             {children}
         </form>
     ),
-)
+))
 
 Form.displayName = 'Form'
 

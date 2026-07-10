@@ -3,9 +3,9 @@ import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/styles/AvatarRoot.css.ts'
 import type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types/AvatarRoot.props.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const AvatarRoot: FC<AvatarRootProps> = ({
+const AvatarRoot: FC<AvatarRootProps> = memo(({
     size,
     shape,
     color,
@@ -21,7 +21,7 @@ const AvatarRoot: FC<AvatarRootProps> = ({
         )}
         {...props}
     />
-)
+))
 
 AvatarRoot.displayName = 'Avatar.Root'
 

@@ -1,7 +1,7 @@
 import { FIELDSET_STYLES } from '@components/layout/fieldset/styles/Fieldset.css.ts'
 import type { FieldsetProps } from '@components/layout/fieldset/types/Fieldset.props.ts'
 import { cn } from '@utils/cn.ts'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
 
 /**
  * A thin wrapper around the native `<fieldset>` element.
@@ -22,7 +22,7 @@ import { forwardRef } from 'react'
  * </Fieldset>
  * ```
  */
-const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
+const Fieldset = memo(forwardRef<HTMLFieldSetElement, FieldsetProps>(
     ({ className, children, ...props }, ref) => (
         <fieldset
             ref={ref}
@@ -32,7 +32,7 @@ const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
             {children}
         </fieldset>
     ),
-)
+))
 
 Fieldset.displayName = 'Fieldset'
 

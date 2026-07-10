@@ -1,12 +1,12 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 /**
  * Scrollable list of items inside the popup.
  */
-const AutocompleteList: FC<BaseAutocomplete.List.Props> = (props) => (
+const AutocompleteList: FC<BaseAutocomplete.List.Props> = memo((props) => (
     <BaseAutocomplete.List {...props} />
-)
+))
 
 AutocompleteList.displayName = 'Autocomplete.List'
 

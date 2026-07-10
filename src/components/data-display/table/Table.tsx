@@ -9,9 +9,19 @@ import TableHead from '@components/data-display/table/components/table-head/Tabl
 import TableHeader from '@components/data-display/table/components/table-header/TableHeader.tsx'
 import TableRow from '@components/data-display/table/components/table-row/TableRow.tsx'
 import type { TableCompound } from '@components/data-display/table/types'
+import type { TableProps } from '@components/data-display/table/types/Table.props.ts'
 import { cn } from '@utils/cn.ts'
+import { memo } from 'react'
 
-const Table = (({ size, striped, bordered, fixed, className, ref, ...props }) => (
+const Table = memo<TableProps>(({
+    size,
+    striped,
+    bordered,
+    fixed,
+    className,
+    ref,
+    ...props
+}) => (
     <div
         className={TABLE_STYLES.wrapper}
         // Scrollable overflow containers must be keyboard-reachable so users
@@ -30,7 +40,7 @@ const Table = (({ size, striped, bordered, fixed, className, ref, ...props }) =>
             {...props}
         />
     </div>
-)) as TableCompound
+)) as unknown as TableCompound
 
 Table.displayName = 'Table'
 Table.Header = TableHeader

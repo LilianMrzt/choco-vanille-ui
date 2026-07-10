@@ -7,6 +7,7 @@ import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePic
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
+import { memo, useCallback } from 'react'
 
 /**
   * A date picker that combines a native `type="date"` text field with a
@@ -23,7 +24,7 @@ import type { DatePickerProps } from '@components/forms/date-picker/types/DatePi
   * <DatePicker label="Pick a date" value={date} onChange={setDate} />
   * ```
   */
-const DatePicker = ({
+const DatePicker = memo(({
     value,
     defaultValue,
     onChange,
@@ -47,10 +48,28 @@ const DatePicker = ({
         setOpen,
     } = useDatePicker({ value, defaultValue, onChange, id })
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        handleInputKeyDown(event)
-        onKeyDown?.(event)
-    }
+    const handleKeyDown = useCallback(
+        (event: React.KeyboardEvent<HTMLInputElement>) => {
+            handleInputKeyDown(event)
+            onKeyDown?.(event)
+        },
+        [handleInputKeyDown, onKeyDown],
+    )
+
+    const handleCalendarButtonMouseDown = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault()
+        },
+        [],
+    )
+
+    const handleCalendarButtonClick = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.stopPropagation()
+            setOpen(true)
+        },
+        [setOpen],
+    )
 
     const { className: calendarClassName, ...restCalendarProps } =
         calendarProps ?? {}
@@ -84,13 +103,8 @@ const DatePicker = ({
                             type={'button'}
                             tabIndex={-1}
                             disabled={disabled}
-                            onMouseDown={(event) => {
-                                event.preventDefault()
-                            }}
-                            onClick={(event) => {
-                                event.stopPropagation()
-                                setOpen(true)
-                            }}
+                            onMouseDown={handleCalendarButtonMouseDown}
+                            onClick={handleCalendarButtonClick}
                         />
                     }
                 />
@@ -114,7 +128,7 @@ const DatePicker = ({
             </Popover.Content>
         </Popover>
     )
-}
+})
 
 DatePicker.displayName = 'DatePicker'
 

@@ -1,10 +1,10 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { TABLE_CELL_STYLES } from '@components/data-display/table/components/table-cell/styles/TableCell.css.ts'
 import type { TableCellProps } from '@components/data-display/table/components/table-cell/types/TableCell.props.ts'
 import { cn } from '@utils/cn.ts'
 
-const TableCell: FC<TableCellProps> = ({
+const TableCell: FC<TableCellProps> = memo(({
     align,
     numeric,
     truncate,
@@ -22,7 +22,7 @@ const TableCell: FC<TableCellProps> = ({
         )}
         {...props}
     />
-)
+))
 
 TableCell.displayName = 'Table.Cell'
 

@@ -3,9 +3,9 @@ import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import { AVATAR_IMAGE_STYLES } from '@components/data-display/avatar/components/avatar-image/styles/AvatarImage.css.ts'
 import type { AvatarImageProps } from '@components/data-display/avatar/components/avatar-image/types/AvatarImage.props.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const AvatarImage: FC<AvatarImageProps> = ({
+const AvatarImage: FC<AvatarImageProps> = memo(({
     src,
     alt,
     onLoadingStatusChange,
@@ -19,7 +19,7 @@ const AvatarImage: FC<AvatarImageProps> = ({
         onLoadingStatusChange={onLoadingStatusChange}
         {...props}
     />
-)
+))
 
 AvatarImage.displayName = 'Avatar.Image'
 

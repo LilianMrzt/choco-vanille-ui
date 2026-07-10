@@ -1,5 +1,5 @@
 import { Select as BaseSelect } from '@base-ui/react/select'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
@@ -9,7 +9,7 @@ import { SELECT_LABEL_STYLES } from '@components/forms/select/components/select-
  * Non-interactive section heading inside a `Select.Group`.
  * Maps to Base UI's `Select.GroupLabel`.
  */
-const SelectLabel: FC<BaseSelect.GroupLabel.Props> = ({ className, children, ...props }) => (
+const SelectLabel: FC<BaseSelect.GroupLabel.Props> = memo(({ className, children, ...props }) => (
     <BaseSelect.GroupLabel
         className={cn(SELECT_LABEL_STYLES.root, className)}
         {...props}
@@ -21,7 +21,7 @@ const SelectLabel: FC<BaseSelect.GroupLabel.Props> = ({ className, children, ...
             {children}
         </Typography>
     </BaseSelect.GroupLabel>
-)
+))
 
 SelectLabel.displayName = 'Select.Label'
 

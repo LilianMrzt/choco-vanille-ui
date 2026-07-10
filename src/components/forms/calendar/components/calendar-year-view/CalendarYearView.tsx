@@ -1,17 +1,17 @@
-import type { ReactElement } from 'react'
+import { memo, type ReactElement } from 'react'
 
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
-import { CALENDAR_YEAR_VIEW_STYLES } from '@components/forms/calendar/components/calendar-year-view/styles/CalendarYearView.css.ts'
 import { useCalendarYearView } from '@components/forms/calendar/components/calendar-year-view/hooks/useCalendarYearView.hook.ts'
 import Grid from '@components/layout/grid/Grid.tsx'
-import { cn } from '@utils/cn.ts'
+import CalendarYearButton
+    from '@components/forms/calendar/components/calendar-year-view/components/calendar-year-button/CalendarYearButton.tsx'
 
 /**
  * Year picker: 3×4 grid of years for the current decade page.
  * Clicking a year navigates to that year and opens the month picker.
  * Supports keyboard arrow navigation (roving tabindex).
  */
-const CalendarYearView = (): ReactElement => {
+const CalendarYearView = memo((): ReactElement => {
     const {
         year,
         decadeStart,
@@ -30,30 +30,25 @@ const CalendarYearView = (): ReactElement => {
         >
             {Array.from({ length: YEARS_PER_PAGE }, (_, i) => {
                 const y = decadeStart + i
-                const isSelected = year === y
 
                 return (
-                    <button
+                    <CalendarYearButton
                         key={y}
-                        ref={el => { buttonRefs.current[i] = el }}
-                        tabIndex={i === focusedIndex ? 0 : -1}
-                        disabled={isDisabled(y)}
-                        aria-pressed={isSelected}
-                        className={cn(
-                            CALENDAR_YEAR_VIEW_STYLES.item,
-                            isToday(y) && !isSelected && CALENDAR_YEAR_VIEW_STYLES.itemToday,
-                            isSelected && CALENDAR_YEAR_VIEW_STYLES.itemSelected,
-                        )}
-                        onClick={() => handleSelect(y)}
-                        onKeyDown={e => handleKeyDown(e, i)}
-                    >
-                        {y}
-                    </button>
+                        year={y}
+                        index={i}
+                        isSelected={year === y}
+                        isFocused={i === focusedIndex}
+                        buttonRefs={buttonRefs}
+                        isDisabled={isDisabled}
+                        isToday={isToday}
+                        handleSelect={handleSelect}
+                        handleKeyDown={handleKeyDown}
+                    />
                 )
             })}
         </Grid>
     )
-}
+})
 
 CalendarYearView.displayName = 'CalendarYearView'
 

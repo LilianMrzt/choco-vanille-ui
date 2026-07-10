@@ -2,7 +2,7 @@ import { Typography } from '@components/foundation/typography'
 import { LEGEND_STYLES } from '@components/layout/legend/styles/Legend.css.ts'
 import type { LegendProps } from '@components/layout/legend/types/Legend.props.ts'
 import { cn } from '@utils/cn.ts'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
 
 /**
  * A thin wrapper around the native `<legend>` element.
@@ -20,7 +20,7 @@ import { forwardRef } from 'react'
  * </Fieldset>
  * ```
  */
-const Legend = forwardRef<HTMLLegendElement, LegendProps>(
+const Legend = memo(forwardRef<HTMLLegendElement, LegendProps>(
     ({ className, children, ...props }, ref) => (
         <Typography
             ref={ref}
@@ -32,7 +32,7 @@ const Legend = forwardRef<HTMLLegendElement, LegendProps>(
             {children}
         </Typography>
     ),
-)
+))
 
 Legend.displayName = 'Legend'
 

@@ -10,7 +10,8 @@ import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.
 import type { TextAreaCompound } from '@components/forms/text-area/types'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import { useCallback, useRef } from 'react'
+import { memo, useCallback, useRef } from 'react'
+import type { TextAreaProps } from '@/components'
 
 /**
   * A styled textarea built with a native `<textarea>` and `<label>`.
@@ -35,7 +36,7 @@ import { useCallback, useRef } from 'react'
   * <TextArea label="Notes" width="24rem" />
   * ```
   */
-const TextArea = ((props) => {
+const TextArea = memo<TextAreaProps>((props) => {
     const {
         inputId,
         helperId,
@@ -169,7 +170,7 @@ const TextArea = ((props) => {
             )}
         </Flex>
     )
-}) as TextAreaCompound
+}) as unknown as TextAreaCompound
 
 TextArea.displayName = 'TextArea'
 TextArea.Label = TextAreaLabel

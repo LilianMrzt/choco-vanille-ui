@@ -1,4 +1,4 @@
-import { Fragment, type FC, useMemo } from 'react'
+import { Fragment, type FC, memo, useCallback, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
@@ -27,7 +27,7 @@ import { toRootItems } from '@components/forms/autocomplete/components/autocompl
  * />
  * ```
  */
-const AutocompleteField: FC<AutocompleteFieldProps> = ({
+const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
     label,
     helperText,
     error,
@@ -58,6 +58,11 @@ const AutocompleteField: FC<AutocompleteFieldProps> = ({
 
     const items = useMemo(() => toRootItems(options), [options])
     const hasGroups = useMemo(() => options.some((option) => option.type === 'group'), [options])
+
+    const handleAutocompleteValueChange = useCallback(
+        (nextValue: string) => { handleValueChange(nextValue) },
+        [handleValueChange],
+    )
 
     return (
         <Flex
@@ -91,10 +96,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = ({
 
                 <Autocomplete
                     value={inputValue}
-                    onValueChange={(nextValue) => {
-                        // Base UI passes the input value as first arg for Autocomplete.Root
-                        handleValueChange(nextValue)
-                    }}
+                    onValueChange={handleAutocompleteValueChange}
                     disabled={disabled}
                     required={required}
                     open={open}
@@ -172,7 +174,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = ({
             )}
         </Flex>
     )
-}
+})
 
 AutocompleteField.displayName = 'AutocompleteField'
 

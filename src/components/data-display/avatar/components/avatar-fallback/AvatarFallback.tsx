@@ -5,13 +5,13 @@ import type { AvatarFallbackProps } from '@components/data-display/avatar/compon
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 import {
     AVATAR_SIZE_TO_TYPOGRAPHY_SIZE
 } from '@components/data-display/avatar/components/avatar-fallback/constants/sizeToTypography.const.ts'
 import { IconRegistry } from '@constants'
 
-const AvatarFallback: FC<AvatarFallbackProps> = ({
+const AvatarFallback: FC<AvatarFallbackProps> = memo(({
     initials,
     icon,
     size = 'md',
@@ -43,7 +43,7 @@ const AvatarFallback: FC<AvatarFallbackProps> = ({
             {fallbackContent}
         </BaseAvatar.Fallback>
     )
-}
+})
 
 AvatarFallback.displayName = 'Avatar.Fallback'
 

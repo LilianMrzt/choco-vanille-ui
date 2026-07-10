@@ -1,5 +1,5 @@
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
-import { useId, type FC } from 'react'
+import { memo, useCallback, useId, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
@@ -19,11 +19,16 @@ import type { SwitchProps } from '@components/forms/switch/types/Switch.props.ts
  * <Switch label="Airplane mode" checked={enabled} onCheckedChange={setEnabled} />
  * ```
  */
-const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disabled, size = 'md', onCheckedChange, ...props }) => {
+const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className, disabled, size = 'md', onCheckedChange, ...props }) => {
     const generatedId = useId()
     const switchId = id ?? (label ? generatedId : undefined)
     const hasError = Boolean(error)
     const helperId = (helperText || error) ? `${switchId}-helper` : undefined
+
+    const handleCheckedChange = useCallback(
+        (checked: boolean) => onCheckedChange?.(checked, { reason: 'none' } as never),
+        [onCheckedChange],
+    )
 
     return (
         <Flex
@@ -46,7 +51,7 @@ const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disa
                     aria-describedby={helperId}
                     aria-invalid={hasError || undefined}
                     className={cn(SWITCH_STYLES.root({ size, error: hasError }), className)}
-                    onCheckedChange={(checked) => onCheckedChange?.(checked, { reason: 'none' } as never)}
+                    onCheckedChange={handleCheckedChange}
                     {...props}
                 >
                     <BaseSwitch.Thumb className={SWITCH_STYLES.thumb({ size })} />
@@ -75,7 +80,7 @@ const Switch: FC<SwitchProps> = ({ label, helperText, error, id, className, disa
             )}
         </Flex>
     )
-}
+})
 
 Switch.displayName = 'Switch'
 

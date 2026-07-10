@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { HELPER_TEXT_STYLES } from '@components/forms/_shared/components/helper-text/HelperText.css.ts'
 import type { HelperTextProps } from '@components/forms/_shared/components/helper-text/types'
@@ -8,7 +8,7 @@ import type { HelperTextProps } from '@components/forms/_shared/components/helpe
  *
  * Used by TextField (and any other form control that needs assistive copy).
  */
-const HelperText: FC<HelperTextProps> = ({
+const HelperText: FC<HelperTextProps> = memo(({
     id,
     hasError = false,
     role: roleProp,
@@ -28,7 +28,7 @@ const HelperText: FC<HelperTextProps> = ({
             {children}
         </span>
     )
-}
+})
 
 HelperText.displayName = 'HelperText'
 

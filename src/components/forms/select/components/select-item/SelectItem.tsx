@@ -1,5 +1,5 @@
 import { Select as BaseSelect } from '@base-ui/react/select'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -10,7 +10,7 @@ import type { SelectItemProps } from '@components/forms/select/components/select
 /**
   * A single selectable option inside the listbox.
   */
-const SelectItem: FC<SelectItemProps> = ({
+const SelectItem: FC<SelectItemProps> = memo(({
     className,
     label,
     children,
@@ -30,7 +30,7 @@ const SelectItem: FC<SelectItemProps> = ({
         </span>
         <BaseSelect.ItemText>{label ?? children}</BaseSelect.ItemText>
     </BaseSelect.Item>
-)
+))
 
 SelectItem.displayName = 'Select.Item'
 

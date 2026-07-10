@@ -1,5 +1,5 @@
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
-import { useId, type FC } from 'react'
+import { memo, useCallback, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -20,9 +20,14 @@ import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.pr
   * <Checkbox label="Accept terms" checked={accepted} onCheckedChange={setAccepted} />
   * ```
   */
-const Checkbox: FC<CheckboxProps> = ({ label, id, className, onCheckedChange, ...props }) => {
+const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChange, ...props }) => {
     const generatedId = useId()
     const checkboxId = id ?? (label ? generatedId : undefined)
+
+    const handleCheckedChange = useCallback(
+        (checked: boolean) => onCheckedChange?.(checked, { reason: 'none' } as never),
+        [onCheckedChange],
+    )
 
     return (
         <Flex
@@ -33,7 +38,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, onCheckedChange, ..
             <BaseCheckbox.Root
                 id={checkboxId}
                 className={cn(CHECKBOX_STYLES.root, className)}
-                onCheckedChange={(checked) => onCheckedChange?.(checked, { reason: 'none' } as never)}
+                onCheckedChange={handleCheckedChange}
                 {...props}
             >
                 <BaseCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
@@ -57,7 +62,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, id, className, onCheckedChange, ..
             )}
         </Flex>
     )
-}
+})
 
 Checkbox.displayName = 'Checkbox'
 

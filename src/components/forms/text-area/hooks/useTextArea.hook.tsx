@@ -1,4 +1,4 @@
-import { type FocusEventHandler, type MouseEventHandler, useId, useRef } from 'react'
+import { type FocusEventHandler, type MouseEventHandler, useCallback, useId, useRef } from 'react'
 import type { TextAreaProps } from '@components/forms/text-area/types/TextArea.props.ts'
 import type { UseTextAreaReturn } from '@components/forms/text-area/hooks/types'
 
@@ -27,24 +27,33 @@ export const useTextArea = (
 
     const pointerDownRef = useRef(false)
 
-    const handleMouseDown = (e: React.MouseEvent<HTMLTextAreaElement>) => {
-        pointerDownRef.current = true
-        onMouseDown?.(e)
-    }
+    const handleMouseDown = useCallback(
+        (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            pointerDownRef.current = true
+            onMouseDown?.(e)
+        },
+        [onMouseDown],
+    )
 
-    const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        if (pointerDownRef.current) {
-            e.currentTarget.setAttribute('data-mouse-focus', '')
+    const handleFocus = useCallback(
+        (e: React.FocusEvent<HTMLTextAreaElement>) => {
+            if (pointerDownRef.current) {
+                e.currentTarget.setAttribute('data-mouse-focus', '')
+                pointerDownRef.current = false
+            }
+            onFocus?.(e)
+        },
+        [onFocus],
+    )
+
+    const handleBlur = useCallback(
+        (e: React.FocusEvent<HTMLTextAreaElement>) => {
             pointerDownRef.current = false
-        }
-        onFocus?.(e)
-    }
-
-    const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        pointerDownRef.current = false
-        e.currentTarget.removeAttribute('data-mouse-focus')
-        onBlur?.(e)
-    }
+            e.currentTarget.removeAttribute('data-mouse-focus')
+            onBlur?.(e)
+        },
+        [onBlur],
+    )
 
     const hasStartIcon = Boolean(startIcon)
     const hasEndAction = Boolean(endAction)

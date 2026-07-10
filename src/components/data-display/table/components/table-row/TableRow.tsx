@@ -1,10 +1,10 @@
-import type { FC, KeyboardEvent } from 'react'
+import { memo, useCallback, type FC, type KeyboardEvent } from 'react'
 
 import { TABLE_ROW_STYLES } from '@components/data-display/table/components/table-row/styles/TableRow.css.ts'
 import type { TableRowProps } from '@components/data-display/table/components/table-row/types/TableRow.props.ts'
 import { cn } from '@utils/cn.ts'
 
-const TableRow: FC<TableRowProps> = ({
+const TableRow: FC<TableRowProps> = memo(({
     hoverable,
     selectable,
     selected,
@@ -14,13 +14,13 @@ const TableRow: FC<TableRowProps> = ({
     onKeyDown,
     ...props
 }) => {
-    const handleKeyDown = (e: KeyboardEvent<HTMLTableRowElement>) => {
+    const handleKeyDown = useCallback((e: KeyboardEvent<HTMLTableRowElement>) => {
         if (selectable && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault()
             e.currentTarget.click()
         }
         onKeyDown?.(e)
-    }
+    }, [selectable, onKeyDown])
 
     return (
         <tr
@@ -33,7 +33,7 @@ const TableRow: FC<TableRowProps> = ({
             {...props}
         />
     )
-}
+})
 
 TableRow.displayName = 'Table.Row'
 

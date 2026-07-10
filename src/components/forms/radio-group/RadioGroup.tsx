@@ -2,8 +2,10 @@ import { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group'
 
 import RadioItem from '@components/forms/radio-group/components/radio-item/RadioItem.tsx'
 import type { RadioGroupCompound } from '@components/forms/radio-group/types'
+import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioGroup.props.ts'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
+import { memo, useCallback } from 'react'
 
 /**
  * The root container for a group of `RadioGroup.Item` components.
@@ -17,21 +19,28 @@ import { cn } from '@utils/cn.ts'
  * </RadioGroup>
  * ```
  */
-const RadioGroup = (({ className, children, onValueChange, ...props }) => (
-    <BaseRadioGroup
-        className={cn(className)}
-        onValueChange={(value, eventDetails) => { onValueChange?.(value, eventDetails) }}
-        {...props}
-    >
-        <Flex
-            flexDirection={'column'}
-            gap={'sm'}
-            alignItems={'start'}
+const RadioGroup = memo<RadioGroupProps>(({ className, children, onValueChange, ...props }) => {
+    const handleValueChange = useCallback(
+        (...args: Parameters<NonNullable<RadioGroupProps['onValueChange']>>) => { onValueChange?.(...args) },
+        [onValueChange],
+    )
+
+    return (
+        <BaseRadioGroup
+            className={cn(className)}
+            onValueChange={handleValueChange}
+            {...props}
         >
-            {children}
-        </Flex>
-    </BaseRadioGroup>
-)) as RadioGroupCompound
+            <Flex
+                flexDirection={'column'}
+                gap={'sm'}
+                alignItems={'start'}
+            >
+                {children}
+            </Flex>
+        </BaseRadioGroup>
+    )
+}) as unknown as RadioGroupCompound
 
 RadioGroup.displayName = 'RadioGroup'
 RadioGroup.Item = RadioItem

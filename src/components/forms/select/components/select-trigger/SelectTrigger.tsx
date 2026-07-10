@@ -1,5 +1,5 @@
 import { Select as BaseSelect } from '@base-ui/react/select'
-import { type CSSProperties, type FC } from 'react'
+import { type CSSProperties, memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -21,7 +21,7 @@ import useSelectTrigger from '@components/forms/select/components/select-trigger
   * (mirroring TextField's endAction pattern). Supports `size`, `startIcon`,
   * `placeholder`, `hasError` and `width`.
   */
-const SelectTrigger: FC<SelectTriggerProps> = ({
+const SelectTrigger: FC<SelectTriggerProps> = memo(({
     className,
     placeholder,
     startIcon,
@@ -76,7 +76,7 @@ const SelectTrigger: FC<SelectTriggerProps> = ({
             </Box>
         </BaseSelect.Trigger>
     )
-}
+})
 
 SelectTrigger.displayName = 'Select.Trigger'
 

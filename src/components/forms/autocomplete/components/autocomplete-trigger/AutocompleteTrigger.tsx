@@ -1,5 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -13,7 +13,7 @@ import type { AutocompleteTriggerProps } from '@components/forms/autocomplete/co
  * Renders as a chevron icon inside the input group. Can be used alongside
  * `Autocomplete.Input` when you want a select-like open action.
  */
-const AutocompleteTrigger: FC<AutocompleteTriggerProps> = ({ className, ...props }) => (
+const AutocompleteTrigger: FC<AutocompleteTriggerProps> = memo(({ className, ...props }) => (
     <BaseAutocomplete.Trigger
         className={cn(AUTOCOMPLETE_TRIGGER_STYLES.root, className)}
         {...props}
@@ -23,7 +23,7 @@ const AutocompleteTrigger: FC<AutocompleteTriggerProps> = ({ className, ...props
             size={'md'}
         />
     </BaseAutocomplete.Trigger>
-)
+))
 
 AutocompleteTrigger.displayName = 'Autocomplete.Trigger'
 

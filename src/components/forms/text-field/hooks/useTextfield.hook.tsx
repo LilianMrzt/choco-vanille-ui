@@ -1,4 +1,4 @@
-import { type FocusEventHandler, type MouseEventHandler, useId, useRef, useState } from 'react'
+import { type FocusEventHandler, type MouseEventHandler, useCallback, useId, useRef, useState } from 'react'
 import type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
 import type { UseTextFieldReturn } from '@components/forms/text-field/hooks/types'
 
@@ -31,24 +31,33 @@ export const useTextField = (
     const [showPassword, setShowPassword] = useState(false)
     const pointerDownRef = useRef(false)
 
-    const handleMouseDown = (e: React.MouseEvent<HTMLInputElement>) => {
-        pointerDownRef.current = true
-        onMouseDown?.(e)
-    }
+    const handleMouseDown = useCallback(
+        (e: React.MouseEvent<HTMLInputElement>) => {
+            pointerDownRef.current = true
+            onMouseDown?.(e)
+        },
+        [onMouseDown],
+    )
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (pointerDownRef.current) {
-            e.currentTarget.setAttribute('data-mouse-focus', '')
+    const handleFocus = useCallback(
+        (e: React.FocusEvent<HTMLInputElement>) => {
+            if (pointerDownRef.current) {
+                e.currentTarget.setAttribute('data-mouse-focus', '')
+                pointerDownRef.current = false
+            }
+            onFocus?.(e)
+        },
+        [onFocus],
+    )
+
+    const handleBlur = useCallback(
+        (e: React.FocusEvent<HTMLInputElement>) => {
             pointerDownRef.current = false
-        }
-        onFocus?.(e)
-    }
-
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        pointerDownRef.current = false
-        e.currentTarget.removeAttribute('data-mouse-focus')
-        onBlur?.(e)
-    }
+            e.currentTarget.removeAttribute('data-mouse-focus')
+            onBlur?.(e)
+        },
+        [onBlur],
+    )
 
     const hasStartIcon = Boolean(startIcon)
     const hasEndAction = isPassword || Boolean(endAction)

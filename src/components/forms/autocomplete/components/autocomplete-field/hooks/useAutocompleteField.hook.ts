@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useCallback, useId, useState } from 'react'
 
 import type {
     UseAutocompleteFieldParams,
@@ -23,12 +23,15 @@ const useAutocompleteField = ({
     const isControlled = value !== undefined
     const inputValue = isControlled ? String(value) : internalValue
 
-    const handleValueChange = (nextValue: string) => {
-        if (!isControlled) {
-            setInternalValue(nextValue)
-        }
-        onValueChange?.(nextValue)
-    }
+    const handleValueChange = useCallback(
+        (nextValue: string) => {
+            if (!isControlled) {
+                setInternalValue(nextValue)
+            }
+            onValueChange?.(nextValue)
+        },
+        [isControlled, onValueChange],
+    )
 
     return {
         inputId,

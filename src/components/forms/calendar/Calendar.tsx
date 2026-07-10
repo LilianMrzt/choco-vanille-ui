@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 import { DayPicker } from 'react-day-picker'
 
 import Box from '@components/layout/box/Box.tsx'
@@ -38,7 +38,7 @@ import type { CalendarProps } from '@components/forms/calendar/types/Calendar.pr
  * <Calendar mode="range" selected={range} onSelect={setRange} />
  * ```
  */
-const Calendar: FC<CalendarProps> = ({
+const Calendar: FC<CalendarProps> = memo(({
     className,
     classNames,
     month: controlledMonth,
@@ -129,7 +129,7 @@ const Calendar: FC<CalendarProps> = ({
             </Box>
         </CalendarContext.Provider>
     )
-}
+})
 
 Calendar.displayName = 'Calendar'
 

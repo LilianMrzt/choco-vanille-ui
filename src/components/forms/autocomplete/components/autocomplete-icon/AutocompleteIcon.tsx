@@ -1,12 +1,12 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 /**
  * Icon slot rendered inside the autocomplete input group.
  */
-const AutocompleteIcon: FC<BaseAutocomplete.Icon.Props> = (props) => (
+const AutocompleteIcon: FC<BaseAutocomplete.Icon.Props> = memo((props) => (
     <BaseAutocomplete.Icon {...props} />
-)
+))
 
 AutocompleteIcon.displayName = 'Autocomplete.Icon'
 

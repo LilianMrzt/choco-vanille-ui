@@ -1,4 +1,4 @@
-import type { FC, KeyboardEvent } from 'react'
+import { memo, useCallback, type FC, type KeyboardEvent } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -21,7 +21,7 @@ const ariaSortMap = {
     none: 'none',
 } as const
 
-const TableHead: FC<TableHeadProps> = ({
+const TableHead: FC<TableHeadProps> = memo(({
     align,
     sortable,
     sortDirection,
@@ -33,13 +33,13 @@ const TableHead: FC<TableHeadProps> = ({
 }) => {
     const isActiveSort = sortDirection === 'asc' || sortDirection === 'desc'
 
-    const handleKeyDown = (e: KeyboardEvent<HTMLTableCellElement>) => {
+    const handleKeyDown = useCallback((e: KeyboardEvent<HTMLTableCellElement>) => {
         if (sortable && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault()
             e.currentTarget.click()
         }
         onKeyDown?.(e)
-    }
+    }, [sortable, onKeyDown])
 
     return (
         <th
@@ -73,7 +73,7 @@ const TableHead: FC<TableHeadProps> = ({
             )}
         </th>
     )
-}
+})
 
 TableHead.displayName = 'Table.Head'
 

@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { getDecadeStart } from '@components/forms/calendar/utils/decadeStart.utils.ts'
@@ -12,7 +14,7 @@ export const useCalendarCaption = () => {
     const decadeEnd = decadeStart + YEARS_PER_PAGE - 1
     const label = `${capitalizeMonth(new Intl.DateTimeFormat(undefined, { month: 'long' }).format(currentMonth))} ${year}`
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         if (view === 'day') {
             setCurrentMonth(new Date(year, month - 1, 1))
             return
@@ -24,9 +26,9 @@ export const useCalendarCaption = () => {
         }
 
         setCurrentMonth(new Date(year - YEARS_PER_PAGE, month, 1))
-    }
+    }, [view, year, month, setCurrentMonth])
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (view === 'day') {
             setCurrentMonth(new Date(year, month + 1, 1))
             return
@@ -38,7 +40,7 @@ export const useCalendarCaption = () => {
         }
 
         setCurrentMonth(new Date(year + YEARS_PER_PAGE, month, 1))
-    }
+    }, [view, year, month, setCurrentMonth])
 
     const isPrevDisabled =
         view === 'day' ? new Date(year, month - 1, 1) < new Date(startYear, 0, 1)

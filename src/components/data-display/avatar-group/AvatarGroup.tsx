@@ -2,6 +2,7 @@ import {
     Children,
     cloneElement,
     isValidElement,
+    memo,
     type FC,
     type ReactElement,
 } from 'react'
@@ -16,7 +17,7 @@ import { cn } from '@utils/cn.ts'
 
 const defaultOverflowLabel = (count: number) => `${count} more`
 
-const AvatarGroup: FC<AvatarGroupProps> = ({
+const AvatarGroup: FC<AvatarGroupProps> = memo(({
     children,
     max,
     spacing = 'md',
@@ -81,7 +82,7 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
             )}
         </Flex>
     )
-}
+})
 
 AvatarGroup.displayName = 'AvatarGroup'
 

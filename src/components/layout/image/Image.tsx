@@ -1,9 +1,9 @@
 import { IMAGE_STYLES } from '@components/layout/image/styles/Image.css.ts'
 import type { ImageProps } from '@components/layout/image/types/Image.props.ts'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, useMemo, type FC } from 'react'
 
-const Image: FC<ImageProps> = ({
+const Image: FC<ImageProps> = memo(({
     alt,
     objectFit,
     objectPosition,
@@ -23,21 +23,31 @@ const Image: FC<ImageProps> = ({
     ref,
     ...props
 }) => {
+    const recipeClassName = useMemo(
+        () =>
+            IMAGE_STYLES.recipe({
+                objectFit,
+                objectPosition,
+                borderRadius,
+                padding,
+                margin,
+                backgroundColor,
+            }),
+        [
+            objectFit,
+            objectPosition,
+            borderRadius,
+            padding,
+            margin,
+            backgroundColor,
+        ],
+    )
+
     return (
         <img
             ref={ref}
             alt={alt}
-            className={cn(
-                IMAGE_STYLES.recipe({
-                    objectFit,
-                    objectPosition,
-                    borderRadius,
-                    padding,
-                    margin,
-                    backgroundColor,
-                }),
-                className,
-            )}
+            className={cn(recipeClassName, className)}
             style={{
                 width,
                 minWidth,
@@ -51,7 +61,7 @@ const Image: FC<ImageProps> = ({
             {...props}
         />
     )
-}
+})
 
 Image.displayName = 'Image'
 

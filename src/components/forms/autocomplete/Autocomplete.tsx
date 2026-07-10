@@ -17,6 +17,7 @@ import {
     AutocompleteCollection,
 } from '@components/forms/autocomplete/components'
 import type { AutocompleteCompound } from '@components/forms/autocomplete/types/Autocomplete.types.ts'
+import { memo } from 'react'
 
 // Re-export styles so consumers can target / extend them.
 export { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
@@ -49,14 +50,14 @@ export { AUTOCOMPLETE_SEPARATOR_STYLES } from '@components/forms/autocomplete/co
  * </Autocomplete>
  * ```
  */
-const Autocomplete = ((props) => (
+const Autocomplete = memo<BaseAutocomplete.Root.Props<any>>((props) => (
     // Match Select's behavior of opening the popup on click, while still
     // letting consumers opt out via an explicit `openOnInputClick` prop.
     <BaseAutocomplete.Root
         openOnInputClick
         {...props}
     />
-)) as AutocompleteCompound
+)) as unknown as AutocompleteCompound
 
 Autocomplete.displayName = 'Autocomplete'
 

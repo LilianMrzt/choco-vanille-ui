@@ -1,5 +1,5 @@
 import { Radio } from '@base-ui/react/radio'
-import { useId, type FC } from 'react'
+import { memo, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -18,7 +18,7 @@ import type { RadioItemProps } from '@components/forms/radio-group/components/ra
   * <RadioItem value="dark" label="Dark mode" />
   * ```
   */
-const RadioItem: FC<RadioItemProps> = ({
+const RadioItem: FC<RadioItemProps> = memo(({
     label,
     id,
     className,
@@ -61,7 +61,7 @@ const RadioItem: FC<RadioItemProps> = ({
             )}
         </Flex>
     )
-}
+})
 
 RadioItem.displayName = 'RadioGroup.Item'
 

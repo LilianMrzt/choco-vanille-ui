@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
+import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react'
 
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
@@ -19,25 +19,38 @@ export const useCalendarYearView = () => {
         buttonRefs.current[focusedIndex]?.focus()
     }, [focusedIndex])
 
-    const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-        let next: number
-        if (event.key === 'ArrowRight') {next = Math.min(index + 1, YEARS_PER_PAGE - 1)}
-        else if (event.key === 'ArrowLeft') {next = Math.max(index - 1, 0)}
-        else if (event.key === 'ArrowDown') {next = Math.min(index + GRID_COLS, YEARS_PER_PAGE - 1)}
-        else if (event.key === 'ArrowUp') {next = Math.max(index - GRID_COLS, 0)}
-        else {return}
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+            let next: number
+            if (event.key === 'ArrowRight') {next = Math.min(index + 1, YEARS_PER_PAGE - 1)}
+            else if (event.key === 'ArrowLeft') {next = Math.max(index - 1, 0)}
+            else if (event.key === 'ArrowDown') {next = Math.min(index + GRID_COLS, YEARS_PER_PAGE - 1)}
+            else if (event.key === 'ArrowUp') {next = Math.max(index - GRID_COLS, 0)}
+            else {return}
 
-        event.preventDefault()
-        setFocusedIndex(next)
-    }
+            event.preventDefault()
+            setFocusedIndex(next)
+        },
+        [],
+    )
 
-    const handleSelect = (selectedYear: number) => {
-        setCurrentMonth(new Date(selectedYear, currentMonth.getMonth(), 1))
-        setView('month')
-    }
+    const handleSelect = useCallback(
+        (selectedYear: number) => {
+            setCurrentMonth(new Date(selectedYear, currentMonth.getMonth(), 1))
+            setView('month')
+        },
+        [currentMonth, setCurrentMonth, setView],
+    )
 
-    const isDisabled = (selectedYear: number) => selectedYear < startYear || selectedYear > endYear
-    const isToday = (selectedYear: number) => today.getFullYear() === selectedYear
+    const isDisabled = useCallback(
+        (selectedYear: number) => selectedYear < startYear || selectedYear > endYear,
+        [startYear, endYear],
+    )
+
+    const isToday = useCallback(
+        (selectedYear: number) => today.getFullYear() === selectedYear,
+        [today],
+    )
 
     return {
         year,

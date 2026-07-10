@@ -1,5 +1,5 @@
 import { Select as BaseSelect } from '@base-ui/react/select'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { SELECT_CONTENT_STYLES } from '@components/forms/select/components/select-content/styles/SelectContent.css.ts'
@@ -13,7 +13,7 @@ import type { SelectContentProps } from '@components/forms/select/components/sel
  * simple API as before. Collision handling is delegated to `useViewportShift`
  * (Base UI's built-in flip/shift is disabled).
  */
-const SelectContent: FC<SelectContentProps> = ({
+const SelectContent: FC<SelectContentProps> = memo(({
     className,
     listboxAriaLabel = 'Options',
     children,
@@ -47,7 +47,7 @@ const SelectContent: FC<SelectContentProps> = ({
             </BaseSelect.Positioner>
         </BaseSelect.Portal>
     )
-}
+})
 
 SelectContent.displayName = 'Select.Content'
 

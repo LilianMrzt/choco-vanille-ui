@@ -5,9 +5,9 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
 import { cn } from '@utils/cn.ts'
-import type { FC } from 'react'
+import { memo, type FC } from 'react'
 
-const Badge: FC<BadgeProps> = ({
+const Badge: FC<BadgeProps> = memo(({
     label,
     variant,
     color,
@@ -49,7 +49,7 @@ const Badge: FC<BadgeProps> = ({
             />
         )}
     </Box>
-)
+))
 
 Badge.displayName = 'Badge'
 

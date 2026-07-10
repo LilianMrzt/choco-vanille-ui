@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useCallback, useEffect, useId, useState } from 'react'
 
 import { formatDateToString, parseStringToDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
 import type { UseDatePickerOptions, UseDatePickerReturn } from '@components/forms/date-picker/types'
@@ -34,45 +34,57 @@ export const useDatePicker = ({
         }
     }, [isControlled, value])
 
-    const updateDate = (date: Date | undefined) => {
-        if (!isControlled) {
-            setSelectedDate(date)
-            setInputValue(formatDateToString(date))
-        }
-        onChange?.(date)
-    }
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value
-        setInputValue(newValue)
-
-        if (newValue === '') {
-            if (resolvedDate !== undefined) {
-                updateDate(undefined)
+    const updateDate = useCallback(
+        (date: Date | undefined) => {
+            if (!isControlled) {
+                setSelectedDate(date)
+                setInputValue(formatDateToString(date))
             }
-            return
-        }
+            onChange?.(date)
+        },
+        [isControlled, onChange],
+    )
 
-        const parsed = parseStringToDate(newValue)
-        if (parsed && parsed.getTime() !== resolvedDate?.getTime()) {
-            updateDate(parsed)
-        }
-    }
+    const handleInputChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            const newValue = event.target.value
+            setInputValue(newValue)
 
-    const handleCalendarSelect = (date: Date | undefined) => {
-        updateDate(date)
-        setOpen(false)
-    }
+            if (newValue === '') {
+                if (resolvedDate !== undefined) {
+                    updateDate(undefined)
+                }
+                return
+            }
 
-    const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        const isSpace = KEYS_THAT_OPEN_NATIVE_PICKER.has(event.key)
-        const isAltArrowDown = event.key === 'ArrowDown' && event.altKey
+            const parsed = parseStringToDate(newValue)
+            if (parsed && parsed.getTime() !== resolvedDate?.getTime()) {
+                updateDate(parsed)
+            }
+        },
+        [resolvedDate, updateDate],
+    )
 
-        if (isSpace || isAltArrowDown) {
-            event.preventDefault()
-            setOpen(true)
-        }
-    }
+    const handleCalendarSelect = useCallback(
+        (date: Date | undefined) => {
+            updateDate(date)
+            setOpen(false)
+        },
+        [updateDate],
+    )
+
+    const handleInputKeyDown = useCallback(
+        (event: React.KeyboardEvent<HTMLInputElement>) => {
+            const isSpace = KEYS_THAT_OPEN_NATIVE_PICKER.has(event.key)
+            const isAltArrowDown = event.key === 'ArrowDown' && event.altKey
+
+            if (isSpace || isAltArrowDown) {
+                event.preventDefault()
+                setOpen(true)
+            }
+        },
+        [],
+    )
 
     return {
         selectedDate: resolvedDate,
