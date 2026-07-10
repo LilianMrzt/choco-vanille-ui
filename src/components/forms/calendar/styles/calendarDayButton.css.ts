@@ -26,7 +26,7 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
                 backgroundColor: vars.color.muted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.secondary,
+                backgroundColor: vars.color.tertiary,
             },
             '&:focus-visible': {
                 outline: 'none',

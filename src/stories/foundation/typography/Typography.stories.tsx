@@ -85,6 +85,10 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fi
 <Typography variant="h2" as="span">Visually h2, semantically a span</Typography>
 ~~~
 
+**Performance**
+
+\`Typography\` is wrapped in \`React.memo\` so re-renders are skipped when props are unchanged. Keep prop values stable (especially \`style\` and spread objects) to get the most benefit in long lists and dense UIs.
+
 **Accessibility**
 
 | Prop / Attribute        | Required    | Type                               | Notes                                                                                                              |

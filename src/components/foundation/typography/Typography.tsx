@@ -4,9 +4,9 @@ import type { TypographyProps } from '@components/foundation/typography/types/Ty
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
 import { cn } from '@utils/cn.ts'
 import { vars } from '@theme/contract.css.ts'
-import type { CSSProperties, FC } from 'react'
+import { memo, type CSSProperties, type FC } from 'react'
 
-const Typography: FC<TypographyProps> = ({
+const Typography: FC<TypographyProps> = memo(({
     as,
     variant,
     fontSize,
@@ -53,7 +53,7 @@ const Typography: FC<TypographyProps> = ({
             {...props}
         />
     )
-}
+})
 
 Typography.displayName = 'Typography'
 

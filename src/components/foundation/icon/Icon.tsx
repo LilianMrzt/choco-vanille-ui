@@ -1,11 +1,12 @@
 import { Icon as Iconify } from '@iconify/react'
 
+import { Box } from '@components/layout/box'
 import { ICON_STYLES } from '@components/foundation/icon/styles/Icon.css.ts'
 import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
 import { cn } from '@utils/cn.ts'
-import { useMemo, type CSSProperties, type FC } from 'react'
+import { memo, type CSSProperties, type FC } from 'react'
 
-const Icon: FC<IconProps> = ({
+const Icon: FC<IconProps> = memo(({
     icon,
     size,
     spin,
@@ -23,41 +24,39 @@ const Icon: FC<IconProps> = ({
 }) => {
     const isDecorative = ariaLabel === undefined
 
-    const recipeClassName = useMemo(
-        () =>
-            ICON_STYLES.recipe({
-                size,
-                spin,
-                color,
-                padding,
-                borderColor,
-                backgroundColor,
-            }),
-        [size, spin, color, padding, borderColor, backgroundColor],
-    )
+    const recipeClassName = ICON_STYLES.recipe({
+        size,
+        spin,
+        color,
+    })
 
-    const computedStyle = useMemo<CSSProperties>(
-        () => ({
-            borderWidth,
-            borderStyle,
-            borderRadius,
-            ...style,
-        }),
-        [borderWidth, borderStyle, borderRadius, style],
-    )
+    const computedStyle: CSSProperties = {
+        ...style,
+    }
 
     return (
-        <Iconify
-            icon={icon}
-            aria-hidden={isDecorative}
-            aria-label={ariaLabel}
-            role={isDecorative ? undefined : 'img'}
-            className={cn(recipeClassName, className)}
-            style={computedStyle}
-            {...props}
-        />
+        <Box
+            as={'span'}
+            display={'inline-flex'}
+            padding={padding}
+            borderColor={borderColor}
+            backgroundColor={backgroundColor}
+            borderWidth={borderWidth}
+            borderStyle={borderStyle}
+            borderRadius={borderRadius}
+        >
+            <Iconify
+                icon={icon}
+                aria-hidden={isDecorative}
+                aria-label={ariaLabel}
+                role={isDecorative ? undefined : 'img'}
+                className={cn(recipeClassName, className)}
+                style={computedStyle}
+                {...props}
+            />
+        </Box>
     )
-}
+})
 
 Icon.displayName = 'Icon'
 

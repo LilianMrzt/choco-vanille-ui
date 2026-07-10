@@ -25,7 +25,7 @@ export const CALENDAR_YEAR_VIEW_STYLES = {
                 backgroundColor: vars.color.muted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.secondary,
+                backgroundColor: vars.color.tertiary,
             },
             '&:focus-visible': {
                 outline: 'none',

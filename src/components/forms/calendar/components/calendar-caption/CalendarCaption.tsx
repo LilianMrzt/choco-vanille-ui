@@ -65,7 +65,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
                 icon={IconRegistry.chevronLeft}
                 aria-label={prevLabel}
                 variant={'ghost'}
-                color={'secondary'}
+                color={'tertiary'}
                 size={'sm'}
                 disabled={isPrevDisabled}
                 onClick={handlePrev}
@@ -80,7 +80,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
                 {view === 'day' && (
                     <Button
                         variant={'ghost'}
-                        color={'secondary'}
+                        color={'tertiary'}
                         size={'sm'}
                         label={label}
                         onClick={() => setView('year')}
@@ -114,7 +114,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = ({
                 icon={IconRegistry.chevronRight}
                 aria-label={nextLabel}
                 variant={'ghost'}
-                color={'secondary'}
+                color={'tertiary'}
                 size={'sm'}
                 disabled={isNextDisabled}
                 onClick={handleNext}
