@@ -151,7 +151,7 @@ export const Playground: Story = {
                         />
                         <DropdownMenu.Sub>
                             <DropdownMenu.SubTrigger
-                                label={'Invite users'}
+                                label={'SubMenu Right'}
                                 startIcon={IconRegistry.userPlus}
                             />
                             <DropdownMenu.SubContent>
@@ -168,6 +168,69 @@ export const Playground: Story = {
                                     label={'More…'}
                                     startIcon={IconRegistry.ellipsisHorizontal}
                                 />
+                            </DropdownMenu.SubContent>
+                        </DropdownMenu.Sub>
+                        <DropdownMenu.Sub>
+                            <DropdownMenu.SubTrigger
+                                label={'SubMenu Left'}
+                                startIcon={IconRegistry.userPlus}
+                            />
+                            <DropdownMenu.SubContent
+                                side={'left'}
+                            >
+                                <DropdownMenu.Label label={'Appearance'} />
+                                <DropdownMenu.CheckboxItem
+                                    label={'Show status bar'}
+                                    checked={showStatus}
+                                    onCheckedChange={setShowStatus}
+                                />
+                                <DropdownMenu.CheckboxItem
+                                    label={'Show activity bar'}
+                                    checked={showActivity}
+                                    onCheckedChange={setShowActivity}
+                                />
+                                <DropdownMenu.Sub>
+                                    <DropdownMenu.SubTrigger
+                                        label={'SubMenu Left'}
+                                        startIcon={IconRegistry.userPlus}
+                                    />
+                                    <DropdownMenu.SubContent
+                                        side={'left'}
+                                    >
+                                        <DropdownMenu.Label label={'Appearance'} />
+                                        <DropdownMenu.CheckboxItem
+                                            label={'Show status bar'}
+                                            checked={showStatus}
+                                            onCheckedChange={setShowStatus}
+                                        />
+                                        <DropdownMenu.CheckboxItem
+                                            label={'Show activity bar'}
+                                            checked={showActivity}
+                                            onCheckedChange={setShowActivity}
+                                        />
+                                        <DropdownMenu.Sub>
+                                            <DropdownMenu.SubTrigger
+                                                label={'SubMenu Right'}
+                                                startIcon={IconRegistry.userPlus}
+                                            />
+                                            <DropdownMenu.SubContent
+                                                side={'right'}
+                                            >
+                                                <DropdownMenu.Label label={'Appearance'} />
+                                                <DropdownMenu.CheckboxItem
+                                                    label={'Show status bar'}
+                                                    checked={showStatus}
+                                                    onCheckedChange={setShowStatus}
+                                                />
+                                                <DropdownMenu.CheckboxItem
+                                                    label={'Show activity bar'}
+                                                    checked={showActivity}
+                                                    onCheckedChange={setShowActivity}
+                                                />
+                                            </DropdownMenu.SubContent>
+                                        </DropdownMenu.Sub>
+                                    </DropdownMenu.SubContent>
+                                </DropdownMenu.Sub>
                             </DropdownMenu.SubContent>
                         </DropdownMenu.Sub>
                         <DropdownMenu.Item
