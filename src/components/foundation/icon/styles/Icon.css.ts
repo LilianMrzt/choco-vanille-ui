@@ -3,26 +3,11 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 import { vars } from '@theme/contract.css.ts'
 import { spinAnimation } from '@constants/animations'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 
 const colorVariants = createColorVariants('color')
 const backgroundColorVariants = createColorVariants('background')
 const borderColorVariants = createColorVariants('borderColor')
-
-const SPACE_VARIANTS = {
-    none: vars.space.none,
-    px: vars.space.px,
-    xxs: vars.space.xxs,
-    xs: vars.space.xs,
-    xs2: vars.space.xs2,
-    sm: vars.space.sm,
-    md: vars.space.md,
-    lg: vars.space.lg,
-    xl: vars.space.xl,
-    '2xl': vars.space['2xl'],
-    '3xl': vars.space['3xl'],
-    '4xl': vars.space['4xl'],
-    '5xl': vars.space['5xl'],
-} as const
 
 export const ICON_STYLES = {
     recipe: recipe({

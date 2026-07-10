@@ -12,4 +12,6 @@ export type IconProps = Omit<IconifyProps, 'aria-hidden' | 'role'> &
     borderWidth?: CSSProperties['borderWidth']
     /** The CSS `border-style` value of the icon. */
     borderStyle?: CSSProperties['borderStyle']
+    /** The CSS `border-radius` value of the icon. */
+    borderRadius?: CSSProperties['borderRadius']
   }

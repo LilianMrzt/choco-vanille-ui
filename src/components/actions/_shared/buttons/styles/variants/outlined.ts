@@ -30,7 +30,7 @@ export const outlinedCompoundVariants = [
     {
         variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.tertiary },
         style: {
-            borderColor: vars.color.input,
+            borderColor: vars.color.tertiary,
             color: vars.color.tertiaryForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.tertiarySubtle },

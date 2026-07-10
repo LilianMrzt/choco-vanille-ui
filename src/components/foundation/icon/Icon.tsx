@@ -15,6 +15,7 @@ const Icon: FC<IconProps> = ({
     backgroundColor,
     borderWidth,
     borderStyle,
+    borderRadius,
     'aria-label': ariaLabel,
     className,
     style,
@@ -39,9 +40,10 @@ const Icon: FC<IconProps> = ({
         () => ({
             borderWidth,
             borderStyle,
+            borderRadius,
             ...style,
         }),
-        [borderWidth, borderStyle, style],
+        [borderWidth, borderStyle, borderRadius, style],
     )
 
     return (
