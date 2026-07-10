@@ -1,26 +1,10 @@
 import { useMemo, type MouseEvent } from 'react'
 
-import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
-
-type UseDrawerNavItemParams = Pick<
-    DrawerNavItemProps,
-    'active' | 'disabled' | 'size' | 'iconSize' | 'onClick'
->
-
-type UseDrawerNavItemReturn = {
-    /** Attributes to spread on the anchor element. */
-    linkAttributes: {
-        'data-state': 'open' | 'closed'
-        'data-mode': string
-        'data-position': string
-        'data-active': 'true' | undefined
-        'aria-disabled': true | undefined
-        'aria-current': 'page' | undefined
-    }
-    /** Click handler that supports the optional `onClick` callback. */
-    handleClick: (event: MouseEvent<HTMLAnchorElement>) => void
-}
+import type {
+    UseDrawerNavItemParams,
+    UseDrawerNavItemReturn
+} from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/use-drawer-nav-item/types'
 
 /**
  * Encapsulates the state and accessibility logic for a `Drawer.NavItem`.

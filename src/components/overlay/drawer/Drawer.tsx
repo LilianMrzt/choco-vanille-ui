@@ -9,7 +9,7 @@ import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-
 import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
 import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
-import { useDrawer } from '@components/overlay/drawer/hooks/useDrawer.hook.ts'
+import { useDrawer } from '@components/overlay/drawer/hooks/use-drawer/useDrawer.hook.ts'
 import type {
     DrawerCompound,
     DrawerProps,

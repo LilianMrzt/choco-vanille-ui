@@ -11,6 +11,7 @@ const drawerItemRecipe = recipe({
         minWidth: 0,
         paddingInline: vars.space.md,
         paddingBlock: vars.space.sm,
+        height: 40,
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',

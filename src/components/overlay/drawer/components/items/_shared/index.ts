@@ -6,7 +6,7 @@ export {
     DRAWER_ITEM_SIZE_TO_ICON_SIZE,
 } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
 export { useDrawerItemState } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemState.hook.ts'
-export { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemAttributes.hook.ts'
+export { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/use-drawer-item-attributes/useDrawerItemAttributes.hook.ts'
 export { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content'
 export type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content'
 export type {

@@ -3,7 +3,7 @@ import { type FC } from 'react'
 import { Box } from '@components/layout/box'
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
-import { useDrawerSectionItem } from '@components/overlay/drawer/components/items/drawer-section-item/hooks/useDrawerSectionItem.hook.tsx'
+import { useDrawerSectionItem } from '@components/overlay/drawer/components/items/drawer-section-item/hooks/use-drawer-section-item/useDrawerSectionItem.hook.tsx'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
 import { Flex, Grid } from '@components'
 

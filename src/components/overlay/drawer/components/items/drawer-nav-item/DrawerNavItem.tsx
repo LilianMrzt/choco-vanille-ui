@@ -1,6 +1,6 @@
 ﻿import { type FC } from 'react'
 
-import { useDrawerNavItem } from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/useDrawerNavItem.hook.ts'
+import { useDrawerNavItem } from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/use-drawer-nav-item/useDrawerNavItem.hook.ts'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'

@@ -4,22 +4,9 @@ import type { IconSize } from '@components/foundation/icon'
 import { DRAWER_ITEM_SIZE_TO_ICON_SIZE } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
 import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared/types/DrawerItem.types.ts'
 import { useDrawerItemState } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemState.hook.ts'
-
-/**
- * Common drawer item state derived from the drawer context.
- */
-type DrawerItemAttributes = {
-    /** Current animation state based on drawer open/close. */
-    state: 'open' | 'closed'
-    /** Icon size resolved from the row size or explicit override. */
-    resolvedIconSize: IconSize
-    /** Common data attributes applied to the row element. */
-    itemAttributes: {
-        'data-state': 'open' | 'closed'
-        'data-mode': string
-        'data-position': string
-    }
-}
+import type {
+    DrawerItemAttributes
+} from '@components/overlay/drawer/components/items/_shared/hooks/use-drawer-item-attributes/types'
 
 /**
  * Returns the common state, resolved icon size and data attributes used by

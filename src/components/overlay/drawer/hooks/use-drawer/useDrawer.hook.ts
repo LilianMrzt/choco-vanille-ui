@@ -2,39 +2,11 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { DRAWER_MODES } from '@components/overlay/drawer/constants'
 import type { DrawerContextValue } from '@components/overlay/drawer/context/Drawer.context.ts'
-import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
-import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'
-import type { DrawerProps } from '@components/overlay/drawer/types'
-
-type UseDrawerParams = DrawerProps
-
-/** Props shared by both drawer renderers. */
-type CommonRendererProps = Pick<
-    DrawerPortalProps & DrawerInlineProps,
-    | 'open'
-    | 'position'
-    | 'size'
-    | 'backgroundColor'
-    | 'accessibleName'
-    | 'ariaLabelledBy'
-    | 'children'
-    | 'className'
-    | 'style'
-> &
-    Record<string, unknown>
-
-type UseDrawerReturn = {
-    /** Resolved open state (controlled or internal). */
-    isOpen: boolean
-    /** Callback to update the open state. */
-    handleOpenChange: (nextOpen: boolean) => void
-    /** Value provided to `DrawerContext.Provider`. */
-    contextValue: DrawerContextValue
-    /** Accessible name resolved from aria props. */
-    accessibleName: string | undefined
-    /** Props shared between `DrawerPortal` and `DrawerInline`. */
-    commonRendererProps: CommonRendererProps
-}
+import type {
+    CommonRendererProps,
+    UseDrawerParams,
+    UseDrawerReturn
+} from '@components/overlay/drawer/hooks/use-drawer/types'
 
 /**
  * Encapsulates the state, context and accessibility logic for the root

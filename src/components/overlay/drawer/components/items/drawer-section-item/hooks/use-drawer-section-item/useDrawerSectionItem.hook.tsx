@@ -3,32 +3,16 @@ import {
     useId,
     useState,
     type KeyboardEvent,
-    type ReactElement,
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
 import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
-import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
-import { IconRegistry } from '@constants/icons'
-
-export interface UseDrawerSectionItemOptions extends Pick<
-  DrawerSectionItemProps,
-  'defaultExpanded' | 'expanded' | 'onExpandedChange' | 'size' | 'disabled'
-> {}
-
-export interface UseDrawerSectionItemReturn {
-  state: ReturnType<typeof useDrawerItemAttributes>['state'];
-  resolvedIconSize: ReturnType<
-    typeof useDrawerItemAttributes
-  >['resolvedIconSize'];
-  itemAttributes: ReturnType<typeof useDrawerItemAttributes>['itemAttributes'];
-  sectionId: string;
-  expanded: boolean;
-  chevron: ReactElement;
-  handleToggle: () => void;
-  handleKeyDown: (event: KeyboardEvent<HTMLButtonElement>) => void;
-}
+import { IconRegistry } from '@constants/icons.ts'
+import type {
+    UseDrawerSectionItemOptions,
+    UseDrawerSectionItemReturn
+} from '@components/overlay/drawer/components/items/drawer-section-item/hooks/use-drawer-section-item/types'
 
 export const useDrawerSectionItem = ({
     defaultExpanded = false,

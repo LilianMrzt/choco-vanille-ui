@@ -4,20 +4,53 @@ import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Flex } from '@components/layout/flex'
-import { Drawer, type DrawerMode, type DrawerPosition, type DrawerSize } from '@components/overlay/drawer'
+import {
+    Drawer,
+    type DrawerMode,
+    type DrawerPosition,
+    type DrawerSize,
+} from '@components/overlay/drawer'
 import { IconRegistry } from '@constants/icons'
-import { DRAWER_MODES_ARRAY, DRAWER_POSITIONS_ARRAY, DRAWER_SIZES_ARRAY } from '@components/overlay/drawer/constants'
+import {
+    DRAWER_MODES_ARRAY,
+    DRAWER_POSITIONS_ARRAY,
+    DRAWER_SIZES_ARRAY,
+} from '@components/overlay/drawer/constants'
 import { md } from '@stories/utils/markdown'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
-    title?: string
-    description?: string
-    showDescription?: boolean
-    showHeader?: boolean
-    showFooter?: boolean
-    confirmLabel?: string
-    cancelLabel?: string
-}
+  title?: string;
+  description?: string;
+  showDescription?: boolean;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  showNavigation?: boolean;
+  showSettings?: boolean;
+  showActions?: boolean;
+  navigationTitle?: string;
+  settingsTitle?: string;
+  actionsTitle?: string;
+  firstNavItemLabel?: string;
+  secondNavItemLabel?: string;
+  thirdNavItemLabel?: string;
+  fourthNavItemLabel?: string;
+  navItemActive?: boolean;
+  navItemDisabled?: boolean;
+  navItemSize?: 'sm' | 'md' | 'lg';
+  navItemVariant?: 'default' | 'outlined';
+  navItemEndIcon?: string;
+  actionItemLabel?: string;
+  actionItemDisabled?: boolean;
+  actionItemSize?: 'sm' | 'md' | 'lg';
+  actionItemVariant?: 'default' | 'outlined';
+  actionItemEndIcon?: string;
+  sectionItemLabel?: string;
+  sectionItemDefaultExpanded?: boolean;
+  sectionItemDisabled?: boolean;
+  sectionItemSize?: 'sm' | 'md' | 'lg';
+};
 
 const renderDrawer = ({
     defaultOpen,
@@ -33,6 +66,30 @@ const renderDrawer = ({
     showFooter,
     confirmLabel,
     cancelLabel,
+    showNavigation,
+    showSettings,
+    showActions,
+    navigationTitle,
+    settingsTitle,
+    actionsTitle,
+    firstNavItemLabel,
+    secondNavItemLabel,
+    thirdNavItemLabel,
+    fourthNavItemLabel,
+    navItemActive,
+    navItemDisabled,
+    navItemSize,
+    navItemVariant,
+    navItemEndIcon,
+    actionItemLabel,
+    actionItemDisabled,
+    actionItemSize,
+    actionItemVariant,
+    actionItemEndIcon,
+    sectionItemLabel,
+    sectionItemDefaultExpanded,
+    sectionItemDisabled,
+    sectionItemSize,
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
     const isPortal = mode === 'portal'
@@ -62,48 +119,72 @@ const renderDrawer = ({
                         flexDirection={'column'}
                         gap={'lg'}
                     >
-                        <Drawer.Section title={'Navigation'}>
-                            <Drawer.NavItem
-                                label={'Dashboard'}
-                                href={'/dashboard'}
-                                onClick={() => console.log('Dashboard clicked')}
-                                startIcon={IconRegistry.home}
-                                active
-                            />
-                            <Drawer.NavItem
-                                label={'Team'}
-                                href={'/team'}
-                                onClick={() => console.log('Team clicked')}
-                                startIcon={IconRegistry.user}
-                            />
-                        </Drawer.Section>
-                        <Drawer.Section title={'Settings'}>
-                            <Drawer.SectionItem
-                                label={'Account'}
-                                startIcon={IconRegistry.settings}
-                                defaultExpanded
-                            >
+                        {showNavigation && (
+                            <Drawer.Section title={navigationTitle}>
                                 <Drawer.NavItem
-                                    label={'Profile'}
-                                    href={'/profile'}
+                                    label={firstNavItemLabel ?? 'Dashboard'}
+                                    href={'/dashboard'}
+                                    startIcon={IconRegistry.home}
+                                    endIcon={navItemEndIcon || undefined}
+                                    active={navItemActive}
+                                    disabled={navItemDisabled}
+                                    size={navItemSize}
+                                    variant={navItemVariant}
+                                />
+                                <Drawer.NavItem
+                                    label={secondNavItemLabel ?? 'Team'}
+                                    href={'/team'}
                                     startIcon={IconRegistry.user}
-                                    onClick={() => console.log('Profile clicked')}
+                                    endIcon={navItemEndIcon || undefined}
+                                    disabled={navItemDisabled}
+                                    size={navItemSize}
+                                    variant={navItemVariant}
                                 />
-                                <Drawer.NavItem
-                                    label={'Billing'}
-                                    href={'/billing'}
-                                    startIcon={IconRegistry.creditCard}
-                                    onClick={() => console.log('Billing clicked')}
+                            </Drawer.Section>
+                        )}
+                        {showSettings && (
+                            <Drawer.Section title={settingsTitle}>
+                                <Drawer.SectionItem
+                                    label={sectionItemLabel ?? 'Section item'}
+                                    startIcon={IconRegistry.settings}
+                                    defaultExpanded={sectionItemDefaultExpanded}
+                                    disabled={sectionItemDisabled}
+                                    size={sectionItemSize}
+                                >
+                                    <Drawer.NavItem
+                                        label={thirdNavItemLabel ?? 'Profile'}
+                                        href={'/profile'}
+                                        startIcon={IconRegistry.user}
+                                        endIcon={navItemEndIcon || undefined}
+                                        disabled={navItemDisabled}
+                                        size={navItemSize}
+                                        variant={navItemVariant}
+                                    />
+                                    <Drawer.NavItem
+                                        label={fourthNavItemLabel ?? 'Billing'}
+                                        href={'/billing'}
+                                        startIcon={IconRegistry.creditCard}
+                                        endIcon={navItemEndIcon || undefined}
+                                        disabled={navItemDisabled}
+                                        size={navItemSize}
+                                        variant={navItemVariant}
+                                    />
+                                </Drawer.SectionItem>
+                            </Drawer.Section>
+                        )}
+                        {showActions && (
+                            <Drawer.Section title={actionsTitle}>
+                                <Drawer.ActionItem
+                                    label={actionItemLabel ?? 'Action item'}
+                                    startIcon={IconRegistry.logOut}
+                                    endIcon={actionItemEndIcon || undefined}
+                                    disabled={actionItemDisabled}
+                                    size={actionItemSize}
+                                    variant={actionItemVariant}
+                                    onClick={() => setOpen(false)}
                                 />
-                            </Drawer.SectionItem>
-                        </Drawer.Section>
-                        <Drawer.Section title={'Actions'}>
-                            <Drawer.ActionItem
-                                label={'Sign out'}
-                                startIcon={IconRegistry.logOut}
-                                onClick={() => setOpen(false)}
-                            />
-                        </Drawer.Section>
+                            </Drawer.Section>
+                        )}
                     </Flex>
                 </Drawer.Body>
                 {showFooter && (
@@ -127,7 +208,15 @@ const renderDrawer = ({
 
             <div style={{ padding: '1rem' }}>
                 <Button
-                    label={isPortal ? (open ? 'Close drawer' : 'Open drawer') : open ? 'Collapse drawer' : 'Expand drawer'}
+                    label={
+                        isPortal
+                            ? open
+                                ? 'Close drawer'
+                                : 'Open drawer'
+                            : open
+                                ? 'Collapse drawer'
+                                : 'Expand drawer'
+                    }
                     variant={'contained'}
                     color={'primary'}
                     onClick={() => setOpen(!open)}
@@ -177,9 +266,9 @@ const [open, setOpen] = useState(false)
 
 **Modes**
 
-| Mode       | Behavior                                                            |
-| ---------- | ------------------------------------------------------------------- |
-| \`portal\` | Rendered in a portal over the page with an optional backdrop.       |
+| Mode     | Behavior                                                                 |
+| -------- | ------------------------------------------------------------------------ |
+| \`portal\` | Rendered in a portal over the page with an optional backdrop.            |
 | \`inline\` | Takes space in the layout when open, collapses to width \`0\` when closed. |
 
 **Accessibility**
@@ -223,7 +312,15 @@ const [open, setOpen] = useState(false)
         },
         backgroundColor: {
             control: 'select',
-            options: ['background', 'card', 'popover', 'muted', 'primary', 'secondary', 'transparent'],
+            options: [
+                'background',
+                'card',
+                'popover',
+                'muted',
+                'primary',
+                'secondary',
+                'transparent',
+            ],
             table: { category: 'Drawer' },
         },
         title: {
@@ -254,6 +351,107 @@ const [open, setOpen] = useState(false)
             control: 'text',
             table: { category: 'Drawer.Footer' },
         },
+        showNavigation: {
+            control: 'boolean',
+            table: { category: 'Drawer.Body' },
+        },
+        showSettings: {
+            control: 'boolean',
+            table: { category: 'Drawer.Body' },
+        },
+        showActions: {
+            control: 'boolean',
+            table: { category: 'Drawer.Body' },
+        },
+        navigationTitle: {
+            control: 'text',
+            table: { category: 'Drawer.Section' },
+        },
+        settingsTitle: {
+            control: 'text',
+            table: { category: 'Drawer.Section' },
+        },
+        actionsTitle: {
+            control: 'text',
+            table: { category: 'Drawer.Section' },
+        },
+        firstNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        secondNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        thirdNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        fourthNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemActive: {
+            control: 'boolean',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemDisabled: {
+            control: 'boolean',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemSize: {
+            control: 'select',
+            options: ['sm', 'md', 'lg'],
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemVariant: {
+            control: 'select',
+            options: ['default', 'outlined'],
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemEndIcon: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        actionItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.ActionItem' },
+        },
+        actionItemDisabled: {
+            control: 'boolean',
+            table: { category: 'Drawer.ActionItem' },
+        },
+        actionItemSize: {
+            control: 'select',
+            options: ['sm', 'md', 'lg'],
+            table: { category: 'Drawer.ActionItem' },
+        },
+        actionItemVariant: {
+            control: 'select',
+            options: ['default', 'outlined'],
+            table: { category: 'Drawer.ActionItem' },
+        },
+        actionItemEndIcon: {
+            control: 'text',
+            table: { category: 'Drawer.ActionItem' },
+        },
+        sectionItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemDefaultExpanded: {
+            control: 'boolean',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemDisabled: {
+            control: 'boolean',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemSize: {
+            control: 'select',
+            options: ['sm', 'md', 'lg'],
+            table: { category: 'Drawer.SectionItem' },
+        },
     },
     args: {
         defaultOpen: false,
@@ -268,19 +466,43 @@ const [open, setOpen] = useState(false)
         showFooter: true,
         confirmLabel: 'Save changes',
         cancelLabel: 'Cancel',
+        showNavigation: true,
+        showSettings: true,
+        showActions: true,
+        navigationTitle: 'Navigation',
+        settingsTitle: 'Settings',
+        actionsTitle: 'Actions',
+        firstNavItemLabel: 'Dashboard',
+        secondNavItemLabel: 'Team',
+        thirdNavItemLabel: 'Profile',
+        fourthNavItemLabel: 'Billing',
+        navItemActive: true,
+        navItemDisabled: false,
+        navItemSize: 'md',
+        navItemVariant: 'default',
+        navItemEndIcon: '',
+        actionItemLabel: 'Sign out',
+        actionItemDisabled: false,
+        actionItemSize: 'md',
+        actionItemVariant: 'default',
+        actionItemEndIcon: '',
+        sectionItemLabel: 'Section item',
+        sectionItemDefaultExpanded: true,
+        sectionItemDisabled: false,
+        sectionItemSize: 'md',
     },
 } satisfies Meta<DrawerPlaygroundArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-                    'Interactive playground — switch modes, positions and sizes from the Controls panel.',
+          'Interactive playground — switch modes, positions and sizes from the Controls panel.',
             },
         },
     },
@@ -299,7 +521,9 @@ export const Playground: Story = {
         await expect(navigation).toBeInTheDocument()
         await expect(navigation).toHaveTextContent('Dashboard')
 
-        await userEvent.click(document.querySelector('[aria-label="Close drawer"]')!)
+        await userEvent.click(
+      document.querySelector('[aria-label="Close drawer"]')!,
+        )
 
         await waitFor(() =>
             expect(document.querySelector('[role="dialog"]')).not.toBeInTheDocument(),
@@ -318,6 +542,7 @@ export const Inline: Story = {
     args: {
         defaultOpen: false,
         mode: 'inline',
+        size: 'sm',
     },
     parameters: {
         docs: {
