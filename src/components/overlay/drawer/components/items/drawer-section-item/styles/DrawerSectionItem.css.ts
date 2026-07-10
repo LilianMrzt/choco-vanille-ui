@@ -9,18 +9,8 @@ const sectionContent = style({
 
 })
 
-const chevron = style({
-    transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,
-    selectors: {
-        '&[data-expanded="true"]': {
-            transform: 'rotate(180deg)',
-        },
-    },
-})
-
 export const DRAWER_SECTION_ITEM_STYLES = {
     ...DRAWER_ITEM_STYLES,
     recipe: DRAWER_ITEM_STYLES.recipe,
     sectionContent,
-    chevron,
 }

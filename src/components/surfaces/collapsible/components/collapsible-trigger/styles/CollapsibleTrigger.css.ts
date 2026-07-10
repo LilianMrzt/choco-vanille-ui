@@ -46,13 +46,3 @@ export const COLLAPSIBLE_TRIGGER_STYLES = {
         },
     }),
 }
-
-export const collapsibleTriggerChevron = style({
-    flexShrink: 0,
-    transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,
-    selectors: {
-        '[data-panel-open] &': {
-            transform: 'rotate(180deg)',
-        },
-    },
-})

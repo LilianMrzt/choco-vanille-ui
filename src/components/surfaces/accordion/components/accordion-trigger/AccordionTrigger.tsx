@@ -1,10 +1,8 @@
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 
-import {
-    ACCORDION_TRIGGER_STYLES,
-    accordionTriggerChevron,
-} from '@components/surfaces/accordion/components/accordion-trigger/styles/AccordionTrigger.css.ts'
+import { ACCORDION_TRIGGER_STYLES } from '@components/surfaces/accordion/components/accordion-trigger/styles/AccordionTrigger.css.ts'
 import type { AccordionTriggerProps } from '@components/surfaces/accordion/components/accordion-trigger/types/AccordionTrigger.props.ts'
+import { RotatingChevron } from '@components/_common/rotating-chevron'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
@@ -59,12 +57,7 @@ const AccordionTrigger = ({
             ) : (
                 children
             )}
-            <Icon
-                icon={'lucide:chevron-down'}
-                size={'sm'}
-                className={accordionTriggerChevron}
-                aria-hidden
-            />
+            <RotatingChevron size={'sm'} />
         </BaseAccordion.Trigger>
     </BaseAccordion.Header>
 )

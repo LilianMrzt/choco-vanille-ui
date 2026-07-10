@@ -46,13 +46,3 @@ export const ACCORDION_TRIGGER_STYLES = {
         },
     }),
 }
-
-export const accordionTriggerChevron = style({
-    flexShrink: 0,
-    transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,
-    selectors: {
-        '[data-panel-open] &': {
-            transform: 'rotate(180deg)',
-        },
-    },
-})

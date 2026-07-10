@@ -1,12 +1,10 @@
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 
-import {
-    COLLAPSIBLE_TRIGGER_STYLES,
-    collapsibleTriggerChevron,
-} from '@components/surfaces/collapsible/components/collapsible-trigger/styles/CollapsibleTrigger.css.ts'
+import { COLLAPSIBLE_TRIGGER_STYLES } from '@components/surfaces/collapsible/components/collapsible-trigger/styles/CollapsibleTrigger.css.ts'
 import type { CollapsibleTriggerProps } from '@components/surfaces/collapsible/components/collapsible-trigger/types/CollapsibleTrigger.props.ts'
-import { Icon } from '@components/foundation/icon'
+import { RotatingChevron } from '@components/_common/rotating-chevron'
 import { Flex } from '@components/layout/flex'
+import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 
@@ -51,12 +49,7 @@ const CollapsibleTrigger = ({
         ) : (
             children
         )}
-        <Icon
-            icon={'lucide:chevron-down'}
-            size={'sm'}
-            className={collapsibleTriggerChevron}
-            aria-hidden
-        />
+        <RotatingChevron size={'sm'} />
     </BaseCollapsible.Trigger>
 )
 

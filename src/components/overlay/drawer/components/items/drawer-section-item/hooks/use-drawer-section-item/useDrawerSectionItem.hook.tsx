@@ -5,10 +5,8 @@ import {
     type KeyboardEvent,
 } from 'react'
 
-import { Icon } from '@components/foundation/icon'
+import { RotatingChevron } from '@components/_common/rotating-chevron'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
-import { DRAWER_SECTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-section-item/styles/DrawerSectionItem.css.ts'
-import { IconRegistry } from '@constants/icons.ts'
 import type {
     UseDrawerSectionItemOptions,
     UseDrawerSectionItemReturn
@@ -49,13 +47,10 @@ export const useDrawerSectionItem = ({
     )
 
     const chevron = (
-        <Icon
-            icon={IconRegistry.chevronDown}
+        <RotatingChevron
+            expanded={expanded}
             size={resolvedIconSize}
-            className={DRAWER_SECTION_ITEM_STYLES.chevron}
-            data-expanded={expanded}
             data-state={state}
-            aria-hidden
         />
     )
 
