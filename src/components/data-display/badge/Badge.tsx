@@ -17,7 +17,7 @@ const Badge: FC<BadgeProps> = ({
     className,
     ref,
     display = 'inline-flex',
-    borderRadius = 'full',
+    borderRadius = 'sm',
     ...props
 }) => (
     <Box

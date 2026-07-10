@@ -5,6 +5,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.primary },
         style: {
+            backgroundColor: vars.color.primarySubtle,
             borderColor: vars.color.primarySubtleBorder,
             color: vars.color.primarySubtleForeground,
         },
@@ -12,6 +13,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.secondary },
         style: {
+            backgroundColor: vars.color.secondarySubtle,
             borderColor: vars.color.secondarySubtleBorder,
             color: vars.color.secondarySubtleForeground,
         },
@@ -19,6 +21,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.tertiary },
         style: {
+            backgroundColor: vars.color.tertiarySubtle,
             borderColor: vars.color.tertiarySubtleBorder,
             color: vars.color.tertiarySubtleForeground,
         },
@@ -26,6 +29,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.destructive },
         style: {
+            backgroundColor: vars.color.destructiveSubtle,
             borderColor: vars.color.destructiveSubtleBorder,
             color: vars.color.destructiveSubtleForeground,
         },
@@ -33,6 +37,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.success },
         style: {
+            backgroundColor: vars.color.successSubtle,
             borderColor: vars.color.successSubtleBorder,
             color: vars.color.successSubtleForeground,
         },
@@ -40,6 +45,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.warning },
         style: {
+            backgroundColor: vars.color.warningSubtle,
             borderColor: vars.color.warningSubtleBorder,
             color: vars.color.warningSubtleForeground,
         },
@@ -47,6 +53,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.info },
         style: {
+            backgroundColor: vars.color.infoSubtle,
             borderColor: vars.color.infoSubtleBorder,
             color: vars.color.infoSubtleForeground,
         },
@@ -54,6 +61,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.purple },
         style: {
+            backgroundColor: vars.color.purpleSubtle,
             borderColor: vars.color.purpleSubtleBorder,
             color: vars.color.purpleSubtleForeground,
         },
@@ -61,6 +69,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.pink },
         style: {
+            backgroundColor: vars.color.pinkSubtle,
             borderColor: vars.color.pinkSubtleBorder,
             color: vars.color.pinkSubtleForeground,
         },
@@ -68,6 +77,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.orange },
         style: {
+            backgroundColor: vars.color.orangeSubtle,
             borderColor: vars.color.orangeSubtleBorder,
             color: vars.color.orangeSubtleForeground,
         },
@@ -75,6 +85,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.teal },
         style: {
+            backgroundColor: vars.color.tealSubtle,
             borderColor: vars.color.tealSubtleBorder,
             color: vars.color.tealSubtleForeground,
         },
@@ -82,6 +93,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.cyan },
         style: {
+            backgroundColor: vars.color.cyanSubtle,
             borderColor: vars.color.cyanSubtleBorder,
             color: vars.color.cyanSubtleForeground,
         },
@@ -89,6 +101,7 @@ export const outlineCompoundVariants = [
     {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.indigo },
         style: {
+            backgroundColor: vars.color.indigoSubtle,
             borderColor: vars.color.indigoSubtleBorder,
             color: vars.color.indigoSubtleForeground,
         },

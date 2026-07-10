@@ -152,6 +152,8 @@ const renderDrawer = ({
                                         <Badge
                                             label={'3'}
                                             size={'sm'}
+                                            color={'orange'}
+                                            borderRadius={'sm'}
                                         />
                                     }
                                     disabled={navItemDisabled}
@@ -186,6 +188,7 @@ const renderDrawer = ({
                                             <Badge
                                                 label={'New'}
                                                 size={'sm'}
+                                                borderRadius={'sm'}
                                                 color={'destructive'}
                                             />
                                         }

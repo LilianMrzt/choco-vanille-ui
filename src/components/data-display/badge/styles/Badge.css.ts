@@ -16,23 +16,27 @@ export const BADGE_STYLES = {
             border: `1px solid transparent`,
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.none,
+            flexShrink: 0,
         },
 
         variants: {
             size: {
                 sm: {
+                    minWidth: '1.25rem',
                     minHeight: '1.25rem',
                     paddingInline: vars.space.xs,
                     paddingBlock: vars.space.xxs,
                     gap: vars.space.xxs,
                 },
                 md: {
+                    minWidth: '1.5rem',
                     minHeight: '1.5rem',
                     paddingInline: vars.space.sm,
                     paddingBlock: vars.space.xxs,
                     gap: vars.space.xs,
                 },
                 lg: {
+                    minWidth: '1.75rem',
                     minHeight: '1.75rem',
                     paddingInline: vars.space.md,
                     paddingBlock: vars.space.xs,
