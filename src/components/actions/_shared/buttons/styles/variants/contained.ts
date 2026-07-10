@@ -20,6 +20,15 @@ export const containedCompoundVariants = createButtonCompoundVariantUtils(
             '&:active': {
                 backgroundColor: vars.color[`${color}Active` as ColorVarKey],
             },
+            '&[data-active="true"]': {
+                backgroundColor: vars.color[`${color}Active` as ColorVarKey],
+            },
+            '&[data-active="true"]:hover': {
+                backgroundColor: vars.color[`${color}Hover` as ColorVarKey],
+            },
+            '&[data-active="true"]:active': {
+                backgroundColor: vars.color[`${color}Active` as ColorVarKey],
+            },
         },
     }),
 )

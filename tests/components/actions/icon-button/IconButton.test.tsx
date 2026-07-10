@@ -147,6 +147,29 @@ describe('IconButton', () => {
         })
     })
 
+    describe('active state', () => {
+        it('sets data-active="true" when active prop is true', () => {
+            const { container } = render(
+                <IconButton active icon={'lucide:pencil'} aria-label={'btn'} />,
+            )
+            expect(getFirstChild(container).getAttribute('data-active')).toBe('true')
+        })
+
+        it('does not set data-active when active prop is false', () => {
+            const { container } = render(
+                <IconButton active={false} icon={'lucide:pencil'} aria-label={'btn'} />,
+            )
+            expect(getFirstChild(container).getAttribute('data-active')).toBeNull()
+        })
+
+        it('does not set data-active when active prop is omitted', () => {
+            const { container } = render(
+                <IconButton icon={'lucide:pencil'} aria-label={'btn'} />,
+            )
+            expect(getFirstChild(container).getAttribute('data-active')).toBeNull()
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(

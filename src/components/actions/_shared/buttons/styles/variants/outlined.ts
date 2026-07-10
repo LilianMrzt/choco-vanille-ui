@@ -19,6 +19,15 @@ export const outlinedCompoundVariants = createButtonCompoundVariantUtils(
             '&:active': {
                 backgroundColor: vars.color[`${color}SubtleActive` as ColorVarKey],
             },
+            '&[data-active="true"]': {
+                backgroundColor: vars.color[`${color}SubtleActive` as ColorVarKey],
+            },
+            '&[data-active="true"]:hover': {
+                backgroundColor: vars.color[`${color}Subtle` as ColorVarKey],
+            },
+            '&[data-active="true"]:active': {
+                backgroundColor: vars.color[`${color}SubtleActive` as ColorVarKey],
+            },
         },
     }),
 )

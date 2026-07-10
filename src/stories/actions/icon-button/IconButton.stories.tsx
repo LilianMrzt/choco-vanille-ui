@@ -63,6 +63,7 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         disabled: { control: 'boolean' },
+        active: { control: 'boolean' },
     },
     args: {
         icon: IconRegistry.pencil,

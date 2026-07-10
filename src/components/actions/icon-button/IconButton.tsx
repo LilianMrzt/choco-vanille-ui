@@ -12,6 +12,7 @@ const IconButton: FC<IconButtonProps> = ({
     size = ICON_BUTTON_SIZES.md,
     className,
     icon,
+    active,
     ref,
     ...props
 }) => {
@@ -20,6 +21,7 @@ const IconButton: FC<IconButtonProps> = ({
     return (
         <button
             ref={ref}
+            data-active={active ? 'true' : undefined}
             className={cn(ICON_BUTTON_STYLES.recipe({ variant, color, size }), className)}
             {...props}
         >

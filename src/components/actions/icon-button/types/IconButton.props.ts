@@ -13,4 +13,6 @@ export type IconButtonProps = Omit<
     icon: string;
     /** Accessible label for the button (used as aria-label). */
     'aria-label': string;
+    /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */
+    active?: boolean;
   };

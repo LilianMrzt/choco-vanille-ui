@@ -16,6 +16,7 @@ const Button: FC<ButtonProps> = ({
     label,
     startIcon,
     endIcon,
+    active,
     ref,
     ...props
 }) => {
@@ -25,6 +26,7 @@ const Button: FC<ButtonProps> = ({
     return (
         <button
             ref={ref}
+            data-active={active ? 'true' : undefined}
             className={cn(BUTTON_STYLES.recipe({ variant, color, size }), className)}
             {...props}
         >

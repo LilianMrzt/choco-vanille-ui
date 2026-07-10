@@ -15,4 +15,6 @@ export type ButtonProps = Omit<
     startIcon?: string;
     /** Iconify icon name rendered after the label. Size and color are derived from the Button variant and size. */
     endIcon?: string;
+    /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */
+    active?: boolean;
   };

@@ -63,6 +63,7 @@ It supports three visual variants, six semantic color intents, and three sizes, 
         startIcon: { control: 'text' },
         endIcon: { control: 'text' },
         disabled: { control: 'boolean' },
+        active: { control: 'boolean' },
     },
     args: {
         label: 'Button',

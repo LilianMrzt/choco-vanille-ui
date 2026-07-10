@@ -104,6 +104,23 @@ describe('Button', () => {
         })
     })
 
+    describe('active state', () => {
+        it('sets data-active="true" when active prop is true', () => {
+            const { container } = render(<Button active label={'btn'} />)
+            expect(getFirstChild(container).getAttribute('data-active')).toBe('true')
+        })
+
+        it('does not set data-active when active prop is false', () => {
+            const { container } = render(<Button active={false} label={'btn'} />)
+            expect(getFirstChild(container).getAttribute('data-active')).toBeNull()
+        })
+
+        it('does not set data-active when active prop is omitted', () => {
+            const { container } = render(<Button label={'btn'} />)
+            expect(getFirstChild(container).getAttribute('data-active')).toBeNull()
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(<Button data-testid={'btn'} label={'btn'} />)
