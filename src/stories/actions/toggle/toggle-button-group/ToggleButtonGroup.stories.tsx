@@ -133,6 +133,10 @@ Built on top of \`@base-ui/react/toggle-group\`, it supports keyboard navigation
             control: 'boolean',
             table: { category: 'ToggleButtonGroup' },
         },
+        bordered: {
+            control: 'boolean',
+            table: { category: 'ToggleButtonGroup' },
+        },
         itemSize: {
             name: 'Item size',
             control: 'select',
@@ -157,6 +161,7 @@ Built on top of \`@base-ui/react/toggle-group\`, it supports keyboard navigation
         orientation: 'horizontal',
         requireSelection: true,
         disabled: false,
+        bordered: true,
         itemSize: BUTTON_SIZES.md,
         itemColor: BUTTON_COLORS.primary,
         itemRadius: 'sm',

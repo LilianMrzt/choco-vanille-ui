@@ -35,8 +35,8 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                 [BUTTON_COLORS.primary]: {
                     color: vars.color.primarySubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.primarySubtleForeground, backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:hover': { color: vars.color.primarySubtleForeground, backgroundColor: vars.color.primarySubtle },
+                        '&:active': { backgroundColor: vars.color.primarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.primary,
                             color: vars.color.primaryForeground,
@@ -74,8 +74,8 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                 [BUTTON_COLORS.destructive]: {
                     color: vars.color.destructiveSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.destructiveSubtleForeground, backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:hover': { color: vars.color.destructiveSubtleForeground, backgroundColor: vars.color.destructiveSubtle },
+                        '&:active': { backgroundColor: vars.color.destructiveSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.destructive,
                             color: vars.color.destructiveForeground,
@@ -87,8 +87,8 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                 [BUTTON_COLORS.success]: {
                     color: vars.color.successSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.successSubtleForeground, backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:hover': { color: vars.color.successSubtleForeground, backgroundColor: vars.color.successSubtle },
+                        '&:active': { backgroundColor: vars.color.successSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.success,
                             color: vars.color.successForeground,
@@ -100,8 +100,8 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                 [BUTTON_COLORS.warning]: {
                     color: vars.color.warningSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.warningSubtleForeground, backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:hover': { color: vars.color.warningSubtleForeground, backgroundColor: vars.color.warningSubtle },
+                        '&:active': { backgroundColor: vars.color.warningSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.warning,
                             color: vars.color.warningForeground,
@@ -113,8 +113,8 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                 [BUTTON_COLORS.info]: {
                     color: vars.color.infoSubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.infoSubtleForeground, backgroundColor: vars.color.secondarySubtle },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:hover': { color: vars.color.infoSubtleForeground, backgroundColor: vars.color.infoSubtle },
+                        '&:active': { backgroundColor: vars.color.infoSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.info,
                             color: vars.color.infoForeground,

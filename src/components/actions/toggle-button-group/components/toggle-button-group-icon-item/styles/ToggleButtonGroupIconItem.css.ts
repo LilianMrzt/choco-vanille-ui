@@ -39,9 +39,9 @@ export const TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES = {
                     selectors: {
                         '&:hover': {
                             color: vars.color.primarySubtleForeground,
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.primarySubtle,
                         },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:active': { backgroundColor: vars.color.primarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.primary,
                             color: vars.color.primaryForeground,
@@ -99,9 +99,9 @@ export const TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES = {
                     selectors: {
                         '&:hover': {
                             color: vars.color.destructiveSubtleForeground,
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.destructiveSubtle,
                         },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:active': { backgroundColor: vars.color.destructiveSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.destructive,
                             color: vars.color.destructiveForeground,
@@ -119,9 +119,9 @@ export const TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES = {
                     selectors: {
                         '&:hover': {
                             color: vars.color.successSubtleForeground,
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.successSubtle,
                         },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:active': { backgroundColor: vars.color.successSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.success,
                             color: vars.color.successForeground,
@@ -139,9 +139,9 @@ export const TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES = {
                     selectors: {
                         '&:hover': {
                             color: vars.color.warningSubtleForeground,
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.warningSubtle,
                         },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:active': { backgroundColor: vars.color.warningSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.warning,
                             color: vars.color.warningForeground,
@@ -159,9 +159,9 @@ export const TOGGLE_BUTTON_GROUP_ICON_ITEM_STYLES = {
                     selectors: {
                         '&:hover': {
                             color: vars.color.infoSubtleForeground,
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.infoSubtle,
                         },
-                        '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+                        '&:active': { backgroundColor: vars.color.infoSubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.info,
                             color: vars.color.infoForeground,

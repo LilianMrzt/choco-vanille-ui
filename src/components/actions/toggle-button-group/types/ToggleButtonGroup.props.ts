@@ -21,6 +21,8 @@ export type ToggleButtonGroupProps = Omit<
         orientation?: ToggleButtonGroupOrientation
         /** Background color of the group wrapper. Overrides the default. */
         backgroundColor?: ThemeColor
+        /** Shows the group outline border. @default true */
+        bordered?: boolean
         /** When `true` (default), the last pressed item cannot be unpressed. */
         requireSelection?: boolean
     }

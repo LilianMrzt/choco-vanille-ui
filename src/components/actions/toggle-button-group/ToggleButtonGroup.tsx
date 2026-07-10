@@ -31,6 +31,7 @@ const ToggleButtonGroup = (({
     className,
     orientation = 'horizontal',
     backgroundColor,
+    bordered = true,
     requireSelection = true,
     style,
     value,
@@ -63,7 +64,7 @@ const ToggleButtonGroup = (({
         <BaseToggleGroup
             ref={ref}
             className={cn(
-                TOGGLE_BUTTON_GROUP_STYLES.recipe({ orientation }),
+                TOGGLE_BUTTON_GROUP_STYLES.recipe({ orientation, bordered }),
                 className,
             )}
             orientation={orientation}

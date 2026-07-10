@@ -10,7 +10,6 @@ export const TOGGLE_BUTTON_GROUP_STYLES = {
             alignItems: 'center',
             padding: vars.space.xxs,
             backgroundColor: vars.color.card,
-            border: `1px solid ${vars.color.border}`,
             borderRadius: radius.md,
             vars: {
                 '--toggle-button-group-item-radius': radius.sm,
@@ -26,9 +25,18 @@ export const TOGGLE_BUTTON_GROUP_STYLES = {
                     alignItems: 'stretch',
                 },
             },
+            bordered: {
+                true: {
+                    border: `1px solid ${vars.color.border}`,
+                },
+                false: {
+                    border: '1px solid transparent',
+                },
+            },
         },
         defaultVariants: {
             orientation: 'horizontal',
+            bordered: true,
         },
     }),
 }
