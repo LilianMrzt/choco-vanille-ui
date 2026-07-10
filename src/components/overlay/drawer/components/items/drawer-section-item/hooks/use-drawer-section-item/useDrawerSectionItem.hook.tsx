@@ -5,7 +5,6 @@ import {
     type KeyboardEvent,
 } from 'react'
 
-import { RotatingChevron } from '@components/_common/rotating-chevron'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
 import type {
     UseDrawerSectionItemOptions,
@@ -46,21 +45,12 @@ export const useDrawerSectionItem = ({
         [handleToggle],
     )
 
-    const chevron = (
-        <RotatingChevron
-            expanded={expanded}
-            size={resolvedIconSize}
-            data-state={state}
-        />
-    )
-
     return {
         state,
         resolvedIconSize,
         itemAttributes,
         sectionId,
         expanded,
-        chevron,
         handleToggle,
         handleKeyDown,
     }

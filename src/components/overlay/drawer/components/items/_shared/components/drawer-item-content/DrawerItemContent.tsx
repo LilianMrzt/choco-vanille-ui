@@ -4,18 +4,20 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/use-drawer-item-attributes/useDrawerItemAttributes.hook.ts'
 import type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/types/DrawerItemContent.props.ts'
+import { RotatingChevron } from '@components/_common/rotating-chevron'
 
 /**
  * Shared inner content of a drawer item row.
  *
- * Renders the start icon, label and an optional trailing icon (or custom
- * trailing content). Used by `DrawerActionItem`, `DrawerNavItem` and
+ * Renders the start icon, label, optional trailing content and an optional
+ * end icon. Used by `DrawerActionItem`, `DrawerNavItem` and
  * `DrawerSectionItem` to keep their markup consistent.
  */
 const DrawerItemContent: FC<DrawerItemContentProps> = ({
     label,
     startIcon,
-    endIcon,
+    endChevronIcon,
+    expanded,
     size = 'md',
     iconSize,
     trailing,
@@ -39,14 +41,14 @@ const DrawerItemContent: FC<DrawerItemContentProps> = ({
             >
                 {label}
             </Typography>
-            {trailing ??
-                (endIcon && (
-                    <Icon
-                        icon={endIcon}
-                        size={resolvedIconSize}
-                        data-state={state}
-                    />
-                ))}
+            {trailing}
+            {endChevronIcon && (
+                <RotatingChevron
+                    expanded={expanded ?? false}
+                    size={resolvedIconSize}
+                    data-state={state}
+                />
+            )}
         </>
     )
 }

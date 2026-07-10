@@ -3,6 +3,7 @@ import { expect, userEvent, waitFor } from 'storybook/test'
 import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
+import { Badge } from '@components/data-display/badge'
 import { Flex } from '@components/layout/flex'
 import {
     Drawer,
@@ -42,13 +43,11 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   navItemSize?: 'sm' | 'md';
   navItemVariant?: 'default' | 'outlined';
   navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
-  navItemEndIcon?: string;
   actionItemLabel?: string;
   actionItemDisabled?: boolean;
   actionItemSize?: 'sm' | 'md';
   actionItemVariant?: 'default' | 'outlined';
   actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
-  actionItemEndIcon?: string;
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
@@ -85,13 +84,11 @@ const renderDrawer = ({
     navItemSize,
     navItemVariant,
     navItemColor,
-    navItemEndIcon,
     actionItemLabel,
     actionItemDisabled,
     actionItemSize,
     actionItemVariant,
     actionItemColor,
-    actionItemEndIcon,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
@@ -132,7 +129,6 @@ const renderDrawer = ({
                                     label={firstNavItemLabel ?? 'Dashboard'}
                                     href={'/dashboard'}
                                     startIcon={IconRegistry.home}
-                                    endIcon={navItemEndIcon || undefined}
                                     active={navItemActive}
                                     disabled={navItemDisabled}
                                     size={navItemSize}
@@ -143,7 +139,21 @@ const renderDrawer = ({
                                     label={secondNavItemLabel ?? 'Team'}
                                     href={'/team'}
                                     startIcon={IconRegistry.user}
-                                    endIcon={navItemEndIcon || undefined}
+                                    disabled={navItemDisabled}
+                                    size={navItemSize}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                                <Drawer.NavItem
+                                    label={'Messages'}
+                                    href={'/messages'}
+                                    startIcon={IconRegistry.mail}
+                                    trailing={
+                                        <Badge
+                                            label={'3'}
+                                            size={'sm'}
+                                        />
+                                    }
                                     disabled={navItemDisabled}
                                     size={navItemSize}
                                     variant={navItemVariant}
@@ -156,16 +166,38 @@ const renderDrawer = ({
                                 <Drawer.SectionItem
                                     label={sectionItemLabel ?? 'Section item'}
                                     startIcon={IconRegistry.settings}
+                                    trailing={
+                                        <Badge
+                                            label={'Pro'}
+                                            size={'sm'}
+                                            color={'secondary'}
+                                        />
+                                    }
                                     defaultExpanded={sectionItemDefaultExpanded}
                                     disabled={sectionItemDisabled}
                                     size={sectionItemSize}
                                     color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
+                                        label={'Notifications'}
+                                        href={'/notifications'}
+                                        startIcon={IconRegistry.bell}
+                                        trailing={
+                                            <Badge
+                                                label={'New'}
+                                                size={'sm'}
+                                                color={'destructive'}
+                                            />
+                                        }
+                                        disabled={navItemDisabled}
+                                        size={navItemSize}
+                                        variant={navItemVariant}
+                                        color={navItemColor}
+                                    />
+                                    <Drawer.NavItem
                                         label={thirdNavItemLabel ?? 'Profile'}
                                         href={'/profile'}
                                         startIcon={IconRegistry.user}
-                                        endIcon={navItemEndIcon || undefined}
                                         disabled={navItemDisabled}
                                         size={navItemSize}
                                         variant={navItemVariant}
@@ -175,7 +207,6 @@ const renderDrawer = ({
                                         label={fourthNavItemLabel ?? 'Billing'}
                                         href={'/billing'}
                                         startIcon={IconRegistry.creditCard}
-                                        endIcon={navItemEndIcon || undefined}
                                         disabled={navItemDisabled}
                                         size={navItemSize}
                                         variant={navItemVariant}
@@ -189,7 +220,6 @@ const renderDrawer = ({
                                 <Drawer.ActionItem
                                     label={actionItemLabel ?? 'Action item'}
                                     startIcon={IconRegistry.logOut}
-                                    endIcon={actionItemEndIcon || undefined}
                                     disabled={actionItemDisabled}
                                     size={actionItemSize}
                                     variant={actionItemVariant}
@@ -427,10 +457,6 @@ const [open, setOpen] = useState(false)
             options: DRAWER_ITEM_COLORS_ARRAY,
             table: { category: 'Drawer.NavItem' },
         },
-        navItemEndIcon: {
-            control: 'text',
-            table: { category: 'Drawer.NavItem' },
-        },
         actionItemLabel: {
             control: 'text',
             table: { category: 'Drawer.ActionItem' },
@@ -452,10 +478,6 @@ const [open, setOpen] = useState(false)
         actionItemColor: {
             control: 'select',
             options: DRAWER_ITEM_COLORS_ARRAY,
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemEndIcon: {
-            control: 'text',
             table: { category: 'Drawer.ActionItem' },
         },
         sectionItemLabel: {
@@ -509,14 +531,12 @@ const [open, setOpen] = useState(false)
         navItemSize: 'md',
         navItemVariant: 'default',
         navItemColor: 'primary',
-        navItemEndIcon: '',
         actionItemLabel: 'Sign out',
         actionItemDisabled: false,
         actionItemSize: 'md',
         actionItemVariant: 'default',
         actionItemColor: 'primary',
-        actionItemEndIcon: '',
-        sectionItemLabel: 'Section item',
+        sectionItemLabel: 'Section item ',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,
         sectionItemSize: 'md',

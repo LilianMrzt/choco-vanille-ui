@@ -2,9 +2,8 @@
 
 import { useDrawerNavItem } from '@components/overlay/drawer/components/items/drawer-nav-item/hooks/use-drawer-nav-item/useDrawerNavItem.hook.ts'
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
-import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
+import { DRAWER_ITEM_STYLES, DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
-import { DRAWER_NAV_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-nav-item/styles/DrawerNavItem.css.ts'
 
 /**
  * A navigation row rendered inside a `Drawer`.
@@ -16,7 +15,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
     label,
     href = '#',
     startIcon,
-    endIcon,
+    trailing,
     active,
     disabled,
     size = 'md',
@@ -42,7 +41,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             ref={ref}
             href={href}
             className={cn(
-                DRAWER_NAV_ITEM_STYLES.recipe({ size, variant, color }),
+                DRAWER_ITEM_STYLES.recipe({ size, variant, color }),
                 className,
             )}
             style={style}
@@ -53,7 +52,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = ({
             <DrawerItemContent
                 label={label}
                 startIcon={startIcon}
-                endIcon={endIcon}
+                trailing={trailing}
                 size={size}
                 iconSize={iconSize}
             />

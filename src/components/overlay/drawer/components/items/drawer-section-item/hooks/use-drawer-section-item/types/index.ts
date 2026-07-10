@@ -1,4 +1,4 @@
-import type { KeyboardEvent, ReactElement } from 'react'
+import type { KeyboardEvent } from 'react'
 
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
 import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
@@ -16,7 +16,6 @@ export type UseDrawerSectionItemReturn = {
     itemAttributes: ReturnType<typeof useDrawerItemAttributes>['itemAttributes'];
     sectionId: string;
     expanded: boolean;
-    chevron: ReactElement;
     handleToggle: () => void;
     handleKeyDown: (event: KeyboardEvent<HTMLButtonElement>) => void;
 }

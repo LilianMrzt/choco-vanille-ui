@@ -2,19 +2,9 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
 const colorVariants = createColorVariants('color')
-
-const truncateTextStyles = (maxLines: number) => ({
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    display: '-webkit-box',
-    WebkitLineClamp: maxLines,
-    WebkitBoxOrient: 'vertical' as const,
-    whiteSpace: 'normal' as const,
-    overflowWrap: 'anywhere' as const,
-    wordBreak: 'break-all' as const,
-})
 
 export const TYPOGRAPHY_STYLES = {
     recipe: recipe({

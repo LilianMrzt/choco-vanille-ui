@@ -22,6 +22,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
     label,
     startIcon,
     children,
+    trailing,
     sectionLabel,
     'aria-label': ariaLabel,
     defaultExpanded = false,
@@ -38,7 +39,6 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
         itemAttributes,
         sectionId,
         expanded,
-        chevron,
         handleToggle,
         handleKeyDown,
     } = useDrawerSectionItem({
@@ -70,7 +70,9 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                     label={label}
                     startIcon={startIcon}
                     size={size}
-                    trailing={chevron}
+                    trailing={trailing}
+                    endChevronIcon
+                    expanded={expanded}
                 />
             </button>
             <Grid

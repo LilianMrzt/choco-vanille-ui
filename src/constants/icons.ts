@@ -54,6 +54,8 @@ export const ActionIcons = {
     cloudOff: 'lucide:cloud-off',
     creditCard: 'lucide:credit-card',
     home: 'lucide:home',
+    mail: 'lucide:mail',
+    bell: 'lucide:bell',
 } as const
 
 export const IconRegistry = {

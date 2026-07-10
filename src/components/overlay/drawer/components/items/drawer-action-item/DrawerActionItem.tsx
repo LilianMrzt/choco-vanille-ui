@@ -1,8 +1,8 @@
 ﻿import type { FC } from 'react'
 
-import { DRAWER_ACTION_ITEM_STYLES } from '@components/overlay/drawer/components/items/drawer-action-item/styles/DrawerActionItem.css.ts'
 import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
 import {
+    DRAWER_ITEM_STYLES,
     DrawerItemContent,
     useDrawerItemAttributes,
 } from '@components/overlay/drawer/components/items/_shared'
@@ -16,7 +16,7 @@ import { cn } from '@utils/cn.ts'
 const DrawerActionItem: FC<DrawerActionItemProps> = ({
     label,
     startIcon,
-    endIcon,
+    trailing,
     size = 'md',
     variant = 'default',
     color = 'primary',
@@ -35,7 +35,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
             type={'button'}
             disabled={disabled}
             className={cn(
-                DRAWER_ACTION_ITEM_STYLES.recipe({ size, variant, color }),
+                DRAWER_ITEM_STYLES.recipe({ size, variant, color }),
                 className,
             )}
             style={style}
@@ -45,7 +45,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = ({
             <DrawerItemContent
                 label={label}
                 startIcon={startIcon}
-                endIcon={endIcon}
+                trailing={trailing}
                 size={size}
                 iconSize={iconSize}
             />

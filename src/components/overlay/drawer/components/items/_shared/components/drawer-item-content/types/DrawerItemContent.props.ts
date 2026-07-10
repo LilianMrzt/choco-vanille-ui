@@ -9,12 +9,14 @@ export type DrawerItemContentProps = {
     label: string
     /** Icon rendered before the label. */
     startIcon: string
-    /** Optional icon rendered after the label. */
-    endIcon?: string
+    /** Optional icon rendered at the end of the row. */
+    endChevronIcon?: boolean
+    /** Whether the drawer item is expanded. */
+    expanded?: boolean
     /** Size preset for the row. @default 'md' */
     size?: DrawerItemSize
     /** Size of the start/end icons. Defaults to the row size mapping. */
     iconSize?: IconSize
-    /** Optional content rendered after the label, overrides `endIcon`. */
+    /** Optional content rendered before the end icon (e.g. a badge). */
     trailing?: ReactNode
 }

@@ -16,6 +16,8 @@ export type DrawerSectionItemProps = Omit<
   startIcon: string;
   /** Items rendered inside the collapsible section. */
   children: ReactNode;
+  /** Optional content rendered at the end of the header (e.g. a badge). */
+  trailing?: ReactNode;
   /** Accessible label for the section region. Defaults to `label`. */
   sectionLabel?: string;
   /** Initial expanded state when uncontrolled. @default false */

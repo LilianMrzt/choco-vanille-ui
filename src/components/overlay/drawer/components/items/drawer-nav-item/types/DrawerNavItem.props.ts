@@ -5,7 +5,7 @@ import type {
     DrawerItemVariant,
 } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
-import type { RefAttributes } from 'react'
+import type { ReactNode, RefAttributes } from 'react'
 
 /** Props for `Drawer.NavItem`. */
 export type DrawerNavItemProps = Omit<
@@ -19,8 +19,6 @@ export type DrawerNavItemProps = Omit<
     href?: string;
     /** Icon rendered before the label. */
     startIcon: string;
-    /** Optional icon rendered after the label. */
-    endIcon?: string;
     /** Whether the item represents the current page. */
     active?: boolean;
     /** Disables the item and sets `aria-disabled`. */
@@ -35,4 +33,6 @@ export type DrawerNavItemProps = Omit<
     color?: DrawerItemColor;
     /** Size of the start/end icons. Defaults to the row size mapping. */
     iconSize?: IconSize;
+    /** Optional content rendered before the end icon (e.g. a badge). */
+    trailing?: ReactNode;
   };
