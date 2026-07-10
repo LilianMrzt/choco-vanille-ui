@@ -1,5 +1,5 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
-import { memo, type FC } from 'react'
+import { memo, type CSSProperties, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
@@ -22,6 +22,8 @@ const DropdownMenuContent: FC<DropdownMenuContentProps> = memo(({
     align = 'start',
     sideOffset = 6,
     collisionPadding = 8,
+    width = '14rem',
+    style,
     ...props
 }) => {
     const contentRef = useViewportShift(collisionPadding)
@@ -39,6 +41,7 @@ const DropdownMenuContent: FC<DropdownMenuContentProps> = memo(({
                 <BaseMenu.Popup
                     ref={contentRef}
                     className={cn(DROPDOWN_MENU_CONTENT_STYLES.root, className)}
+                    style={{ width, flexGrow: '0', flexShrink: '0', ...style } as CSSProperties}
                 >
                     {props.children}
                 </BaseMenu.Popup>

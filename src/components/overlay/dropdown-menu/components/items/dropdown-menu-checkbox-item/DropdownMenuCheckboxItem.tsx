@@ -44,6 +44,8 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = memo(({
             <Typography
                 as={'span'}
                 variant={'span'}
+                maxLines={1}
+                width={'100%'}
             >
                 {label}
             </Typography>

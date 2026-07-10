@@ -25,4 +25,43 @@ describe('DropdownMenuSubContent', () => {
     it('is attached to the DropdownMenu compound component', () => {
         expect(DropdownMenu.SubContent.displayName).toBe('DropdownMenu.SubContent')
     })
+
+    it('applies the default width and prevents flex growth/shrink', () => {
+        render(
+            <DropdownMenu defaultOpen>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                    <DropdownMenu.Sub open>
+                        <DropdownMenu.SubTrigger label={'More'} />
+                        <DropdownMenu.SubContent>
+                            <DropdownMenu.Item label={'Nested'} />
+                        </DropdownMenu.SubContent>
+                    </DropdownMenu.Sub>
+                </DropdownMenu.Content>
+            </DropdownMenu>,
+        )
+
+        const content = screen.getAllByRole('menu')[1]
+        expect(content.style.width).toBe('14rem')
+        expect(content.style.flexGrow).toBe('0')
+        expect(content.style.flexShrink).toBe('0')
+    })
+
+    it('applies a custom width', () => {
+        render(
+            <DropdownMenu defaultOpen>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                    <DropdownMenu.Sub open>
+                        <DropdownMenu.SubTrigger label={'More'} />
+                        <DropdownMenu.SubContent width={'20rem'}>
+                            <DropdownMenu.Item label={'Nested'} />
+                        </DropdownMenu.SubContent>
+                    </DropdownMenu.Sub>
+                </DropdownMenu.Content>
+            </DropdownMenu>,
+        )
+
+        expect(screen.getAllByRole('menu')[1].style.width).toBe('20rem')
+    })
 })

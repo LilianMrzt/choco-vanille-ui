@@ -54,7 +54,8 @@ const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
         <Typography
             as={'span'}
             variant={'span'}
-            style={{ flex: 1 }}
+            maxLines={1}
+            width={'100%'}
         >
             {label}
         </Typography>

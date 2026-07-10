@@ -11,11 +11,12 @@ import {
 export const DROPDOWN_MENU_CONTENT_STYLES = {
     root: style({
         zIndex: vars.zIndex.dropdown,
-        minWidth: '11rem',
         overflow: 'hidden',
         borderRadius: vars.radius.lg,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.popover,
+        flexGrow: 0,
+        flexShrink: 0,
         color: vars.color.popoverForeground,
         padding: vars.space.xs,
         boxShadow: vars.shadow.lg,

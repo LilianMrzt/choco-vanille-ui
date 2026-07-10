@@ -67,4 +67,33 @@ describe('DropdownMenuContent', () => {
     it('is attached to the DropdownMenu compound component', () => {
         expect(DropdownMenu.Content.displayName).toBe('DropdownMenu.Content')
     })
+
+    it('applies the default width and prevents flex growth/shrink', () => {
+        render(
+            <DropdownMenu defaultOpen>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                    <DropdownMenu.Item label={'Item'} />
+                </DropdownMenu.Content>
+            </DropdownMenu>,
+        )
+
+        const content = screen.getByRole('menu')
+        expect(content.style.width).toBe('14rem')
+        expect(content.style.flexGrow).toBe('0')
+        expect(content.style.flexShrink).toBe('0')
+    })
+
+    it('applies a custom width', () => {
+        render(
+            <DropdownMenu defaultOpen>
+                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Content width={'20rem'}>
+                    <DropdownMenu.Item label={'Item'} />
+                </DropdownMenu.Content>
+            </DropdownMenu>,
+        )
+
+        expect(screen.getByRole('menu').style.width).toBe('20rem')
+    })
 })

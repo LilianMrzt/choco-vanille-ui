@@ -1,4 +1,5 @@
 import type { Menu } from '@base-ui/react/menu'
+import type { CSSProperties } from 'react'
 
 export type DropdownMenuSubContentProps = Menu.Positioner.Props & {
     /**
@@ -8,4 +9,6 @@ export type DropdownMenuSubContentProps = Menu.Positioner.Props & {
      * @default 8
      */
     collisionPadding?: number | { top?: number; right?: number; bottom?: number; left?: number }
+    /** Fixed width of the sub-menu panel. @default '14rem' */
+    width?: CSSProperties['width']
 }
