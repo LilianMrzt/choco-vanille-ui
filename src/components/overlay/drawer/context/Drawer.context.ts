@@ -13,6 +13,8 @@ export type DrawerContextValue = {
     position: DrawerPosition
     /** Current width preset. */
     size: DrawerSize
+    /** Id of the header title used for the drawer aria-labelledby. */
+    titleId?: string
 }
 
 export const DrawerContext = createContext<DrawerContextValue | null>(null)

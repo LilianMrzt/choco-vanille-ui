@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useId } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
@@ -18,6 +18,9 @@ const DrawerSection: FC<DrawerSectionProps> = ({
     className,
     ...props
 }) => {
+    const generatedTitleId = useId()
+    const resolvedTitleId = titleProps?.id ?? generatedTitleId
+
     return (
         <Box
             as={as as 'div'}
@@ -25,6 +28,7 @@ const DrawerSection: FC<DrawerSectionProps> = ({
             flexDirection={'column'}
             gap={'xs'}
             className={className}
+            aria-labelledby={title ? resolvedTitleId : undefined}
             {...props}
         >
             {title && (
@@ -36,6 +40,7 @@ const DrawerSection: FC<DrawerSectionProps> = ({
                     fontWeight={'medium'}
                     letterSpacing={'wide'}
                     maxLines={1}
+                    id={resolvedTitleId}
                     {...titleProps}
                 >
                     {title}

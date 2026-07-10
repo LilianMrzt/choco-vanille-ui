@@ -14,6 +14,7 @@ import type {
     DrawerCompound,
     DrawerProps,
 } from '@components/overlay/drawer/types'
+import { useId } from 'react'
 
 /**
  * A flexible drawer with two render modes: portal and inline.
@@ -58,6 +59,8 @@ const Drawer = (({
     'aria-labelledby': ariaLabelledBy,
     ...props
 }: DrawerProps) => {
+    const generatedTitleId = useId()
+
     const { contextValue, handleOpenChange, commonRendererProps } = useDrawer({
         open: controlledOpen,
         defaultOpen,
@@ -72,6 +75,7 @@ const Drawer = (({
         style,
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
+        titleId: generatedTitleId,
         ...props,
     })
 

@@ -28,4 +28,19 @@ describe('Drawer.Section', () => {
 
         expect(screen.getByTestId('section')).toBeTruthy()
     })
+
+    it('associates the title with the section via aria-labelledby', () => {
+        render(
+            <Drawer defaultOpen>
+                <Drawer.Section title="Account" data-testid="section">
+                    <div>Profile</div>
+                </Drawer.Section>
+            </Drawer>,
+        )
+
+        const section = screen.getByTestId('section')
+        const title = screen.getByText('Account')
+
+        expect(section.getAttribute('aria-labelledby')).toBe(title.id)
+    })
 })

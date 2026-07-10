@@ -27,8 +27,12 @@ export const useDrawer = ({
     style,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
+    titleId,
     ...props
-}: UseDrawerParams): UseDrawerReturn => {
+}: UseDrawerParams & {
+    /** Id of the header title used as the default aria-labelledby. */
+    titleId?: string
+}): UseDrawerReturn => {
     const [internalOpen, setInternalOpen] = useState(defaultOpen)
     const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen
 
@@ -47,12 +51,14 @@ export const useDrawer = ({
             mode,
             position,
             size,
+            titleId,
         }),
-        [isOpen, handleOpenChange, mode, position, size],
+        [isOpen, handleOpenChange, mode, position, size, titleId],
     )
 
+    const resolvedAriaLabelledBy = ariaLabel ? undefined : (ariaLabelledBy ?? titleId)
     const accessibleName =
-        ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
+        ariaLabel ?? (resolvedAriaLabelledBy ? undefined : defaultAriaLabel)
 
     const commonRendererProps = {
         open: isOpen,
@@ -60,7 +66,7 @@ export const useDrawer = ({
         size,
         backgroundColor,
         accessibleName,
-        ariaLabelledBy,
+        ariaLabelledBy: resolvedAriaLabelledBy,
         children,
         className,
         style,

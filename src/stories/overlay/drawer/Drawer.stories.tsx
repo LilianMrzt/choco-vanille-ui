@@ -321,9 +321,17 @@ const [open, setOpen] = useState(false)
 
 - Portal drawers are always modal and trap focus while open.
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
-- Provide a visible title via \`Drawer.Header\` or an \`aria-label\`.
+- Provide a visible title via \`Drawer.Header\`; the drawer automatically wires
+  \`aria-labelledby\` to that title. You can still override with \`aria-label\` or
+  \`aria-labelledby\` on \`Drawer\`.
 - Wrap navigation items in \`Drawer.Body as="nav"\` with an \`aria-label\`.
+- \`Drawer.Section\` automatically associates its title with the section landmark
+  via \`aria-labelledby\`.
 - \`Drawer.SectionItem\` exposes \`aria-expanded\`, \`aria-controls\` and a labelled region.
+- Disabled \`Drawer.NavItem\` elements set \`aria-disabled\` and prevent navigation
+  while remaining discoverable in the tab order.
+- In \`inline\` mode the collapsed panel is hidden from assistive technologies with
+  \`aria-hidden\` and \`inert\`.
         `,
             },
         },

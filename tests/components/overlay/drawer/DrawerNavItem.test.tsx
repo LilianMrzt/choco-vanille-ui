@@ -46,14 +46,15 @@ describe('Drawer.NavItem', () => {
         expect(document.querySelector('svg')).toBeTruthy()
     })
 
-    it('renders an end icon', () => {
+    it('renders trailing content', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.NavItem label="External" startIcon="lucide:home" endIcon="lucide:external-link" />
+                <Drawer.NavItem label="External" startIcon="lucide:home" trailing={<span data-testid="trailing">↗</span>} />
             </Drawer>,
         )
 
-        expect(document.querySelectorAll('svg')).toHaveLength(2)
+        expect(document.querySelectorAll('svg')).toHaveLength(1)
+        expect(screen.getByTestId('trailing')).toBeTruthy()
     })
 
     it('marks the item as current when active', () => {
@@ -73,7 +74,9 @@ describe('Drawer.NavItem', () => {
             </Drawer>,
         )
 
-        expect(screen.getByRole('link', { name: 'Disabled' }).getAttribute('aria-disabled')).toBe('true')
+        const link = screen.getByRole('link', { name: 'Disabled' })
+
+        expect(link.getAttribute('aria-disabled')).toBe('true')
     })
 
     it('calls onClick and prevents default navigation', async () => {

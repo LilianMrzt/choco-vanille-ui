@@ -40,7 +40,6 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
         sectionId,
         expanded,
         handleToggle,
-        handleKeyDown,
     } = useDrawerSectionItem({
         defaultExpanded,
         expanded: expandedProp,
@@ -62,7 +61,6 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = ({
                 aria-label={ariaLabel}
                 className={DRAWER_SECTION_ITEM_STYLES.recipe({ size, color })}
                 onClick={handleToggle}
-                onKeyDown={handleKeyDown}
                 {...itemAttributes}
                 {...props}
             >

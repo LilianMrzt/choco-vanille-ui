@@ -49,6 +49,8 @@ const DrawerInline: FC<DrawerInlineProps> = ({
             style={{ width: open ? sizeWidthMap[size] : 0, ...style }}
             aria-label={accessibleName}
             aria-labelledby={ariaLabelledBy}
+            aria-hidden={!open}
+            inert={!open}
             {...props}
         >
             {children}

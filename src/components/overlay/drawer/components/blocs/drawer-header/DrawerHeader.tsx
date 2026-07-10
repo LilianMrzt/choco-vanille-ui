@@ -1,4 +1,4 @@
-﻿import { type FC } from 'react'
+import { type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
@@ -28,7 +28,8 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
     children,
     ...props
 }) => {
-    const { onOpenChange } = useDrawerContext()
+    const { onOpenChange, titleId } = useDrawerContext()
+    const resolvedTitleId = titleProps?.id ?? titleId
 
     return (
         <Flex
@@ -52,7 +53,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = ({
                     {title && (
                         <Typography
                             as={titleAs ?? 'h2'}
-                            id={titleProps?.id}
+                            id={resolvedTitleId}
                             fontSize={'lg'}
                             fontWeight={'semibold'}
                             color={'foreground'}

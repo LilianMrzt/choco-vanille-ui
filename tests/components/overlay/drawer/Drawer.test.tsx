@@ -129,6 +129,50 @@ describe('Drawer', () => {
         })
     })
 
+    describe('accessibility', () => {
+        it('auto-wires aria-labelledby to the header title', () => {
+            render(
+                <Drawer defaultOpen>
+                    <Drawer.Header title="Settings" />
+                    <Drawer.Body>Content</Drawer.Body>
+                </Drawer>,
+            )
+
+            const title = screen.getByText('Settings')
+            const dialog = screen.getByRole('dialog')
+
+            expect(dialog.getAttribute('aria-labelledby')).toBe(title.id)
+        })
+
+        it('prefers explicit aria-label over auto-wired aria-labelledby', () => {
+            render(
+                <Drawer defaultOpen aria-label="Custom label">
+                    <Drawer.Header title="Settings" />
+                    <Drawer.Body>Content</Drawer.Body>
+                </Drawer>,
+            )
+
+            const dialog = screen.getByRole('dialog')
+
+            expect(dialog.getAttribute('aria-label')).toBe('Custom label')
+            expect(dialog.getAttribute('aria-labelledby')).toBeNull()
+        })
+
+        it('hides inline drawer content when closed', () => {
+            render(
+                <Drawer open={false} mode="inline">
+                    <Drawer.Header title="Inline title" />
+                    <Drawer.Body>Inline body</Drawer.Body>
+                </Drawer>,
+            )
+
+            const panel = screen.getByText('Inline title').closest('[aria-hidden]')
+
+            expect(panel?.getAttribute('aria-hidden')).toBe('true')
+            expect(panel?.hasAttribute('inert')).toBe(true)
+        })
+    })
+
     describe('displayName', () => {
         it('is set to "Drawer"', () => {
             expect(Drawer.displayName).toBe('Drawer')

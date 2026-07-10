@@ -2,7 +2,6 @@ import {
     useCallback,
     useId,
     useState,
-    type KeyboardEvent,
 } from 'react'
 
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
@@ -35,16 +34,6 @@ export const useDrawerSectionItem = ({
         onExpandedChange?.(next)
     }, [expanded, isControlled, onExpandedChange])
 
-    const handleKeyDown = useCallback(
-        (event: KeyboardEvent<HTMLButtonElement>) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                handleToggle()
-            }
-        },
-        [handleToggle],
-    )
-
     return {
         state,
         resolvedIconSize,
@@ -52,6 +41,5 @@ export const useDrawerSectionItem = ({
         sectionId,
         expanded,
         handleToggle,
-        handleKeyDown,
     }
 }

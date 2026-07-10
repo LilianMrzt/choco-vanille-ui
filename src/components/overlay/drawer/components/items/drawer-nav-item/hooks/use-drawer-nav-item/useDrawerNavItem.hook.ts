@@ -19,6 +19,11 @@ export const useDrawerNavItem = ({
     const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
 
     const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        if (disabled) {
+            event.preventDefault()
+            return
+        }
+
         if (onClick) {
             event.preventDefault()
             onClick(event)
