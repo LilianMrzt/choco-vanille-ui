@@ -1,10 +1,15 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
-import { BADGE_COLORS, BADGE_COLORS_ARRAY, BADGE_VARIANTS } from '@components/data-display/badge/constants'
+import {
+    BADGE_COLORS,
+    BADGE_COLORS_ARRAY,
+    BADGE_VARIANTS,
+} from '@components/data-display/badge/constants'
 import { solidCompoundVariants } from '@components/data-display/badge/styles/variants/solid.ts'
 import { subtleCompoundVariants } from '@components/data-display/badge/styles/variants/subtle.ts'
 import { outlineCompoundVariants } from '@components/data-display/badge/styles/variants/outline.ts'
+import { outlinedSubtleCompoundVariants } from '@components/data-display/badge/styles/variants/outlinedSubtle.ts'
 
 export const BADGE_STYLES = {
     recipe: recipe({
@@ -50,6 +55,7 @@ export const BADGE_STYLES = {
                 [BADGE_VARIANTS.outline]: {
                     backgroundColor: 'transparent',
                 },
+                [BADGE_VARIANTS.outlinedSubtle]: {},
             },
 
             color: Object.fromEntries(BADGE_COLORS_ARRAY.map((color) => [color, {}])),
@@ -59,6 +65,7 @@ export const BADGE_STYLES = {
             ...solidCompoundVariants,
             ...subtleCompoundVariants,
             ...outlineCompoundVariants,
+            ...outlinedSubtleCompoundVariants,
         ],
 
         defaultVariants: {
@@ -69,4 +76,6 @@ export const BADGE_STYLES = {
     }),
 }
 
-export type BadgeRecipeVariants = NonNullable<RecipeVariants<typeof BADGE_STYLES.recipe>>
+export type BadgeRecipeVariants = NonNullable<
+  RecipeVariants<typeof BADGE_STYLES.recipe>
+>;

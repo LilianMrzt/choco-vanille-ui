@@ -6,7 +6,7 @@ import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-displ
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
-const VARIANTS: BadgeVariant[] = ['solid', 'subtle', 'outline']
+const VARIANTS: BadgeVariant[] = ['solid', 'subtle', 'outline', 'outlinedSubtle']
 const COLORS: BadgeColor[] = [
     'primary',
     'secondary',
@@ -33,7 +33,7 @@ const meta = {
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A small status indicator built on top of the Box primitive.
-It supports three visual variants, twelve semantic color intents, and three sizes,
+It supports four visual variants, twelve semantic color intents, and three sizes,
 while inheriting Box layout props so radius, width, padding, and more remain customizable.
 
 **Usage**
@@ -42,6 +42,7 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
 <Badge label="New" />
 <Badge label="Verified" variant="solid" color="success" />
 <Badge label="Draft" variant="outline" color="secondary" size="sm" />
+<Badge label="Soft" variant="outlinedSubtle" color="secondary" size="sm" />
 <Badge label="Custom" borderRadius="md" width="fit-content" />
 \`\`\`
 
@@ -98,7 +99,7 @@ export const Variants: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'The three visual variants applied to the primary color.',
+                story: 'The four visual variants applied to the primary color.',
             },
         },
     },
