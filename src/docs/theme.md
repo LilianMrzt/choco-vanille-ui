@@ -51,7 +51,7 @@ src/theme/
 
 Raw, theme-agnostic OKLCH color scales. Components **never** reference the palette directly — only `colors/light.ts` and `colors/dark.ts` consume it.
 
-Available ramps: `neutral`, `brand` (violet-indigo), `blue`, `green`, `amber`, `red`.  
+Available ramps: `neutral`, `brand` (violet-indigo), `secondary` (warm golden-orange, complementary to brand), `blue`, `green`, `amber`, `red`.  
 Each ramp: steps `50` → `950` (lighter → darker).
 
 ```ts
@@ -71,7 +71,7 @@ Maps palette values to *roles* — named slots that describe what a color is *us
 
 ### Naming convention — one symmetric set per intent
 
-Every **interactive intent** (`primary`, `secondary`, `success`, `warning`, `info`, `destructive`) ships the **exact same set of tokens**, so the API is predictable for both design and dev:
+Every **interactive intent** (`primary`, `secondary`, `tertiary`, `success`, `warning`, `info`, `destructive`) ships the **exact same set of tokens**, so the API is predictable for both design and dev:
 
 | Family | Token | Used for |
 |---|---|---|
@@ -107,7 +107,8 @@ Each of the six intents exposes the nine tokens described above. Solid steps dee
 | Intent | Solid (light) | Subtle surface (light) |
 |---|---|---|
 | `primary` | brand-600 → 700 → 800 | brand-50 → 100 → 200 |
-| `secondary` | neutral-200 → 300 → 400 | neutral-100 → 200 → 300 |
+| `secondary` | secondary-600 → 700 → 800 | secondary-50 → 100 → 200 |
+| `tertiary` | neutral-200 → 300 → 400 | neutral-100 → 200 → 300 |
 | `success` | green-600 → 700 → 800 | green-50 → 100 → 200 |
 | `warning` | amber-500 → 600 → 700 (dark text) | amber-50 → 100 → 200 |
 | `info` | blue-600 → 700 → 800 | blue-50 → 100 → 200 |

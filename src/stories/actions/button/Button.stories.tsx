@@ -13,6 +13,7 @@ const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: ButtonColor[] = [
     'primary',
     'secondary',
+    'tertiary',
     'destructive',
     'success',
     'warning',

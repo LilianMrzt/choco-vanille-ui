@@ -15,6 +15,7 @@ const SHAPES: AvatarShape[] = ['circle', 'square']
 const COLORS: AvatarColor[] = [
     'primary',
     'secondary',
+    'tertiary',
     'destructive',
     'success',
     'warning',

@@ -18,10 +18,20 @@ export const ghostCompoundVariants = [
     {
         variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.secondary },
         style: {
-            color: vars.color.secondaryForeground,
+            color: vars.color.secondarySubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.secondarySubtle },
                 '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+            },
+        },
+    },
+    {
+        variants: { variant: BUTTON_VARIANTS.ghost, color: BUTTON_COLORS.tertiary },
+        style: {
+            color: vars.color.tertiaryForeground,
+            selectors: {
+                '&:hover': { backgroundColor: vars.color.tertiarySubtle },
+                '&:active': { backgroundColor: vars.color.tertiarySubtleActive },
             },
         },
     },

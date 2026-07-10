@@ -73,6 +73,7 @@ const drawerItemRecipe = recipe({
         color: {
             [DRAWER_ITEM_COLORS.primary]: {},
             [DRAWER_ITEM_COLORS.secondary]: {},
+            [DRAWER_ITEM_COLORS.tertiary]: {},
             [DRAWER_ITEM_COLORS.destructive]: {},
             [DRAWER_ITEM_COLORS.success]: {},
             [DRAWER_ITEM_COLORS.warning]: {},
@@ -129,6 +130,32 @@ const drawerItemRecipe = recipe({
                     },
                     '&[data-active="true"]:active': {
                         backgroundColor: vars.color.secondaryActive,
+                    },
+                },
+            },
+        },
+        {
+            variants: { variant: 'default', color: DRAWER_ITEM_COLORS.tertiary },
+            style: {
+                selectors: {
+                    '&:hover': {
+                        backgroundColor: vars.color.tertiarySubtle,
+                        color: vars.color.text,
+                    },
+                    '&:active': {
+                        backgroundColor: vars.color.tertiarySubtleHover,
+                        color: vars.color.text,
+                    },
+                    '&[data-active="true"]': {
+                        backgroundColor: vars.color.tertiary,
+                        color: vars.color.tertiaryForeground,
+                        borderColor: 'transparent',
+                    },
+                    '&[data-active="true"]:hover': {
+                        backgroundColor: vars.color.tertiaryHover,
+                    },
+                    '&[data-active="true"]:active': {
+                        backgroundColor: vars.color.tertiaryActive,
                     },
                 },
             },
@@ -282,6 +309,30 @@ const drawerItemRecipe = recipe({
                     },
                     '&[data-active="true"]:active': {
                         backgroundColor: vars.color.secondarySubtleHover,
+                    },
+                },
+            },
+        },
+        {
+            variants: { variant: 'outlined', color: DRAWER_ITEM_COLORS.tertiary },
+            style: {
+                selectors: {
+                    '&:hover': {
+                        backgroundColor: vars.color.tertiarySubtle,
+                    },
+                    '&:active': {
+                        backgroundColor: vars.color.tertiarySubtleHover,
+                    },
+                    '&[data-active="true"]': {
+                        backgroundColor: vars.color.card,
+                        color: vars.color.text,
+                        borderColor: vars.color.border,
+                    },
+                    '&[data-active="true"]:hover': {
+                        backgroundColor: vars.color.tertiarySubtle,
+                    },
+                    '&[data-active="true"]:active': {
+                        backgroundColor: vars.color.tertiarySubtleHover,
                     },
                 },
             },

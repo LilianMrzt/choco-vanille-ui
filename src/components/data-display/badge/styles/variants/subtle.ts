@@ -17,6 +17,13 @@ export const subtleCompoundVariants = [
         },
     },
     {
+        variants: { variant: BADGE_VARIANTS.subtle, color: BADGE_COLORS.tertiary },
+        style: {
+            backgroundColor: vars.color.tertiarySubtle,
+            color: vars.color.tertiarySubtleForeground,
+        },
+    },
+    {
         variants: { variant: BADGE_VARIANTS.subtle, color: BADGE_COLORS.destructive },
         style: {
             backgroundColor: vars.color.destructiveSubtle,

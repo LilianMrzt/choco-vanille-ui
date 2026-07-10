@@ -10,6 +10,7 @@ const VARIANTS: BadgeVariant[] = ['solid', 'subtle', 'outline']
 const COLORS: BadgeColor[] = [
     'primary',
     'secondary',
+    'tertiary',
     'destructive',
     'success',
     'warning',

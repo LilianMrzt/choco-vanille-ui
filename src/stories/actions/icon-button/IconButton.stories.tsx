@@ -14,6 +14,7 @@ const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: IconButtonColor[] = [
     'primary',
     'secondary',
+    'tertiary',
     'destructive',
     'success',
     'warning',

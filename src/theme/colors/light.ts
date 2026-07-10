@@ -62,16 +62,27 @@ export const lightColors = {
     linkHover: palette.brand[800],
     linkActive: palette.brand[900],
 
-    /* Secondary (low-emphasis neutral intent)  */
-    secondary: palette.neutral[200],
-    secondaryHover: palette.neutral[300],
-    secondaryActive: palette.neutral[400],
-    secondaryForeground: palette.neutral[900],
-    secondarySubtle: palette.neutral[200],
-    secondarySubtleHover: palette.neutral[300],
-    secondarySubtleActive: palette.neutral[400],
-    secondarySubtleForeground: palette.neutral[900],
-    secondarySubtleBorder: palette.neutral[300],
+    /* Secondary (complementary to primary)  */
+    secondary: palette.secondary[600],
+    secondaryHover: palette.secondary[700],
+    secondaryActive: palette.secondary[800],
+    secondaryForeground: palette.neutral[0],
+    secondarySubtle: palette.secondary[100],
+    secondarySubtleHover: palette.secondary[200],
+    secondarySubtleActive: palette.secondary[300],
+    secondarySubtleForeground: palette.secondary[900],
+    secondarySubtleBorder: palette.secondary[200],
+
+    /* Tertiary (low-emphasis neutral intent)  */
+    tertiary: palette.neutral[200],
+    tertiaryHover: palette.neutral[300],
+    tertiaryActive: palette.neutral[400],
+    tertiaryForeground: palette.neutral[900],
+    tertiarySubtle: palette.neutral[200],
+    tertiarySubtleHover: palette.neutral[300],
+    tertiarySubtleActive: palette.neutral[400],
+    tertiarySubtleForeground: palette.neutral[900],
+    tertiarySubtleBorder: palette.neutral[300],
 
     /* Status: success  */
     success: palette.green[600],

@@ -59,6 +59,7 @@ export const BUTTON_SHARED_STYLES = {
     colorVariants: {
         [BUTTON_COLORS.primary]: {},
         [BUTTON_COLORS.secondary]: {},
+        [BUTTON_COLORS.tertiary]: {},
         [BUTTON_COLORS.destructive]: {},
         [BUTTON_COLORS.success]: {},
         [BUTTON_COLORS.warning]: {},

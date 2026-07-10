@@ -13,6 +13,7 @@ import { md } from '@stories/utils/markdown.ts'
 const COLORS: ToggleIconButtonColor[] = [
     'primary',
     'secondary',
+    'tertiary',
     'destructive',
     'success',
     'warning',

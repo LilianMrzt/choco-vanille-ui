@@ -19,11 +19,22 @@ export const outlinedCompoundVariants = [
     {
         variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.secondary },
         style: {
-            borderColor: vars.color.input,
-            color: vars.color.secondaryForeground,
+            borderColor: vars.color.secondary,
+            color: vars.color.secondarySubtleForeground,
             selectors: {
                 '&:hover': { backgroundColor: vars.color.secondarySubtle },
                 '&:active': { backgroundColor: vars.color.secondarySubtleActive },
+            },
+        },
+    },
+    {
+        variants: { variant: BUTTON_VARIANTS.outlined, color: BUTTON_COLORS.tertiary },
+        style: {
+            borderColor: vars.color.input,
+            color: vars.color.tertiaryForeground,
+            selectors: {
+                '&:hover': { backgroundColor: vars.color.tertiarySubtle },
+                '&:active': { backgroundColor: vars.color.tertiarySubtleActive },
             },
         },
     },

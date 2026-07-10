@@ -17,6 +17,13 @@ export const outlineCompoundVariants = [
         },
     },
     {
+        variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.tertiary },
+        style: {
+            borderColor: vars.color.tertiarySubtleBorder,
+            color: vars.color.tertiarySubtleForeground,
+        },
+    },
+    {
         variants: { variant: BADGE_VARIANTS.outline, color: BADGE_COLORS.destructive },
         style: {
             borderColor: vars.color.destructiveSubtleBorder,

@@ -45,7 +45,7 @@ const colorGroups: ColorGroup[] = [
     },
     {
         label: 'Secondary',
-        description: 'Low-emphasis neutral intent. Same states as other families.',
+        description: 'Complementary to primary. Same states as other families.',
         tokens: [
             'secondary',
             'secondaryHover',
@@ -56,6 +56,21 @@ const colorGroups: ColorGroup[] = [
             'secondarySubtleActive',
             'secondarySubtleForeground',
             'secondarySubtleBorder',
+        ],
+    },
+    {
+        label: 'Tertiary',
+        description: 'Low-emphasis neutral intent. Same states as other families.',
+        tokens: [
+            'tertiary',
+            'tertiaryHover',
+            'tertiaryActive',
+            'tertiaryForeground',
+            'tertiarySubtle',
+            'tertiarySubtleHover',
+            'tertiarySubtleActive',
+            'tertiarySubtleForeground',
+            'tertiarySubtleBorder',
         ],
     },
     {
@@ -148,7 +163,8 @@ Semantic color tokens form the color system of this UI kit. Each token carries i
 |---|---|
 | Surfaces & Text | Backgrounds, elevated surfaces, base foreground text |
 | Primary | Main brand color — CTAs, active states |
-| Secondary | Neutral low-emphasis actions |
+| Secondary | Complementary accent to primary |
+| Tertiary | Neutral low-emphasis actions |
 | Success | Positive feedback, confirmed states |
 | Warning | Cautionary messages, moderate risk |
 | Info | Neutral informational messages |

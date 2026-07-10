@@ -41,16 +41,27 @@ export const darkColors: Record<keyof LightColors, string> = {
     linkHover: palette.brand[300],
     linkActive: palette.brand[200],
 
-    /* Secondary (low-emphasis neutral intent)  */
-    secondary: palette.neutral[800],
-    secondaryHover: palette.neutral[700],
-    secondaryActive: palette.neutral[600],
-    secondaryForeground: palette.neutral[100],
-    secondarySubtle: palette.neutral[800],
-    secondarySubtleHover: palette.neutral[700],
-    secondarySubtleActive: palette.neutral[600],
-    secondarySubtleForeground: palette.neutral[100],
-    secondarySubtleBorder: palette.neutral[700],
+    /* Secondary (complementary to primary)  */
+    secondary: palette.secondary[500],
+    secondaryHover: palette.secondary[400],
+    secondaryActive: palette.secondary[300],
+    secondaryForeground: palette.neutral[950],
+    secondarySubtle: palette.secondary[950],
+    secondarySubtleHover: palette.secondary[900],
+    secondarySubtleActive: palette.secondary[800],
+    secondarySubtleForeground: palette.secondary[200],
+    secondarySubtleBorder: palette.secondary[800],
+
+    /* Tertiary (low-emphasis neutral intent)  */
+    tertiary: palette.neutral[800],
+    tertiaryHover: palette.neutral[700],
+    tertiaryActive: palette.neutral[600],
+    tertiaryForeground: palette.neutral[100],
+    tertiarySubtle: palette.neutral[800],
+    tertiarySubtleHover: palette.neutral[700],
+    tertiarySubtleActive: palette.neutral[600],
+    tertiarySubtleForeground: palette.neutral[100],
+    tertiarySubtleBorder: palette.neutral[700],
 
     /* Status: success  */
     success: palette.green[500],

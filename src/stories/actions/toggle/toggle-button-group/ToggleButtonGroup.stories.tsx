@@ -35,6 +35,7 @@ const SIZES = [BUTTON_SIZES.sm, BUTTON_SIZES.md, BUTTON_SIZES.lg] as const
 const COLORS = [
     BUTTON_COLORS.primary,
     BUTTON_COLORS.secondary,
+    BUTTON_COLORS.tertiary,
     BUTTON_COLORS.destructive,
     BUTTON_COLORS.success,
     BUTTON_COLORS.warning,

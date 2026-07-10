@@ -45,6 +45,21 @@ export const palette = {
         950: 'oklch(0.282 0.09 268)',
     },
 
+    /* Secondary — rose/coral, complementary to the cool indigo-blue primary and clearly distinct from the amber warning palette. */
+    secondary: {
+        50: 'oklch(0.98 0.02 345)',
+        100: 'oklch(0.965 0.045 345)',
+        200: 'oklch(0.925 0.09 345)',
+        300: 'oklch(0.86 0.15 345)',
+        400: 'oklch(0.78 0.20 345)',
+        500: 'oklch(0.70 0.22 345)',
+        600: 'oklch(0.62 0.20 345)',
+        700: 'oklch(0.54 0.16 345)',
+        800: 'oklch(0.46 0.13 345)',
+        900: 'oklch(0.40 0.10 345)',
+        950: 'oklch(0.29 0.065 345)',
+    },
+
     /* Blue — informational intent (sky-blue, distinct from brand indigo). */
     blue: {
         50: 'oklch(0.97 0.014 237)',

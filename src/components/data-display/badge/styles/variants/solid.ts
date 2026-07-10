@@ -17,6 +17,13 @@ export const solidCompoundVariants = [
         },
     },
     {
+        variants: { variant: BADGE_VARIANTS.solid, color: BADGE_COLORS.tertiary },
+        style: {
+            backgroundColor: vars.color.tertiary,
+            color: vars.color.tertiaryForeground,
+        },
+    },
+    {
         variants: { variant: BADGE_VARIANTS.solid, color: BADGE_COLORS.destructive },
         style: {
             backgroundColor: vars.color.destructive,

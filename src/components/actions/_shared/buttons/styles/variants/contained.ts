@@ -29,6 +29,17 @@ export const containedCompoundVariants = [
         },
     },
     {
+        variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.tertiary },
+        style: {
+            backgroundColor: vars.color.tertiary,
+            color: vars.color.tertiaryForeground,
+            selectors: {
+                '&:hover': { backgroundColor: vars.color.tertiaryHover },
+                '&:active': { backgroundColor: vars.color.tertiaryActive },
+            },
+        },
+    },
+    {
         variants: { variant: BUTTON_VARIANTS.contained, color: BUTTON_COLORS.destructive },
         style: {
             backgroundColor: vars.color.destructive,

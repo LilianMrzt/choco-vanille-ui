@@ -41,19 +41,19 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   navItemDisabled?: boolean;
   navItemSize?: 'sm' | 'md' | 'lg';
   navItemVariant?: 'default' | 'outlined';
-  navItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
+  navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   navItemEndIcon?: string;
   actionItemLabel?: string;
   actionItemDisabled?: boolean;
   actionItemSize?: 'sm' | 'md' | 'lg';
   actionItemVariant?: 'default' | 'outlined';
-  actionItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
+  actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   actionItemEndIcon?: string;
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
   sectionItemSize?: 'sm' | 'md' | 'lg';
-  sectionItemColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info';
+  sectionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
 };
 
 const renderDrawer = ({

@@ -46,9 +46,9 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                     },
                 },
                 [BUTTON_COLORS.secondary]: {
-                    color: vars.color.secondaryForeground,
+                    color: vars.color.secondarySubtleForeground,
                     selectors: {
-                        '&:hover': { color: vars.color.secondaryForeground, backgroundColor: vars.color.secondarySubtle },
+                        '&:hover': { color: vars.color.secondarySubtleForeground, backgroundColor: vars.color.secondarySubtle },
                         '&:active': { backgroundColor: vars.color.secondarySubtleActive },
                         [pressedSelector]: {
                             backgroundColor: vars.color.secondary,
@@ -56,6 +56,19 @@ export const TOGGLE_BUTTON_GROUP_ITEM_STYLES = {
                         },
                         [`${pressedSelector}:hover`]: { backgroundColor: vars.color.secondaryHover },
                         [`${pressedSelector}:active`]: { backgroundColor: vars.color.secondaryActive },
+                    },
+                },
+                [BUTTON_COLORS.tertiary]: {
+                    color: vars.color.tertiaryForeground,
+                    selectors: {
+                        '&:hover': { color: vars.color.tertiaryForeground, backgroundColor: vars.color.tertiarySubtle },
+                        '&:active': { backgroundColor: vars.color.tertiarySubtleActive },
+                        [pressedSelector]: {
+                            backgroundColor: vars.color.tertiary,
+                            color: vars.color.tertiaryForeground,
+                        },
+                        [`${pressedSelector}:hover`]: { backgroundColor: vars.color.tertiaryHover },
+                        [`${pressedSelector}:active`]: { backgroundColor: vars.color.tertiaryActive },
                     },
                 },
                 [BUTTON_COLORS.destructive]: {
