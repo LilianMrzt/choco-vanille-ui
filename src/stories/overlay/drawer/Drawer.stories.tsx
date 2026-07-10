@@ -16,7 +16,7 @@ import {
     DRAWER_POSITIONS_ARRAY,
     DRAWER_SIZES_ARRAY,
 } from '@components/overlay/drawer/constants'
-import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
+import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants'
 import { md } from '@stories/utils/markdown'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {

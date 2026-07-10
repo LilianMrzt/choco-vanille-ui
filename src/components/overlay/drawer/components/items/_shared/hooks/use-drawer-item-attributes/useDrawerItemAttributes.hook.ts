@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import type { IconSize } from '@components/foundation/icon'
-import { DRAWER_ITEM_SIZE_TO_ICON_SIZE } from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
+import { DRAWER_ITEM_SIZE_TO_ICON_SIZE } from '@components/overlay/drawer/components/items/_shared/constants'
 import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared/types/DrawerItem.types.ts'
 import { useDrawerItemState } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemState.hook.ts'
 import type {

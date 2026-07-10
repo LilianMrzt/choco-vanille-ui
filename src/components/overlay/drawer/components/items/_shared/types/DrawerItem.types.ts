@@ -2,7 +2,7 @@ import {
     DRAWER_ITEM_COLORS,
     DRAWER_ITEM_SIZES,
     DRAWER_ITEM_VARIANTS,
-} from '@components/overlay/drawer/components/items/_shared/constants/DrawerItem.constants.ts'
+} from '@components/overlay/drawer/components/items/_shared/constants'
 
 /** Available size presets for drawer item rows. */
 export type DrawerItemSize =
