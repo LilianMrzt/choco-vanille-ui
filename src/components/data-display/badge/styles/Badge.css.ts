@@ -69,7 +69,7 @@ export const BADGE_STYLES = {
         ],
 
         defaultVariants: {
-            variant: BADGE_VARIANTS.subtle,
+            variant: BADGE_VARIANTS.outlinedSubtle,
             color: BADGE_COLORS.primary,
             size: 'md',
         },
