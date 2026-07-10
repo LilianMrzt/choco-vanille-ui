@@ -161,54 +161,6 @@ const renderDrawer = ({
                                     size={sectionItemSize}
                                     color={sectionItemColor}
                                 >
-                                    <Drawer.SectionItem
-                                        label={sectionItemLabel ?? 'Section item'}
-                                        startIcon={IconRegistry.settings}
-                                        defaultExpanded={sectionItemDefaultExpanded}
-                                        disabled={sectionItemDisabled}
-                                        size={sectionItemSize}
-                                        color={sectionItemColor}
-                                    >
-                                        <Drawer.SectionItem
-                                            label={sectionItemLabel ?? 'Section item'}
-                                            startIcon={IconRegistry.settings}
-                                            defaultExpanded={sectionItemDefaultExpanded}
-                                            disabled={sectionItemDisabled}
-                                            size={sectionItemSize}
-                                            color={sectionItemColor}
-                                        >
-                                            <Drawer.NavItem
-                                                label={thirdNavItemLabel ?? 'Profile'}
-                                                href={'/profile'}
-                                                startIcon={IconRegistry.user}
-                                                endIcon={navItemEndIcon || undefined}
-                                                disabled={navItemDisabled}
-                                                size={navItemSize}
-                                                variant={navItemVariant}
-                                                color={navItemColor}
-                                            />
-                                            <Drawer.NavItem
-                                                label={fourthNavItemLabel ?? 'Billing'}
-                                                href={'/billing'}
-                                                startIcon={IconRegistry.creditCard}
-                                                endIcon={navItemEndIcon || undefined}
-                                                disabled={navItemDisabled}
-                                                size={navItemSize}
-                                                variant={navItemVariant}
-                                                color={navItemColor}
-                                            />
-                                        </Drawer.SectionItem>
-                                        <Drawer.NavItem
-                                            label={fourthNavItemLabel ?? 'Billing'}
-                                            href={'/billing'}
-                                            startIcon={IconRegistry.creditCard}
-                                            endIcon={navItemEndIcon || undefined}
-                                            disabled={navItemDisabled}
-                                            size={navItemSize}
-                                            variant={navItemVariant}
-                                            color={navItemColor}
-                                        />
-                                    </Drawer.SectionItem>
                                     <Drawer.NavItem
                                         label={thirdNavItemLabel ?? 'Profile'}
                                         href={'/profile'}
@@ -229,35 +181,6 @@ const renderDrawer = ({
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
-                                    <Drawer.SectionItem
-                                        label={sectionItemLabel ?? 'Section item'}
-                                        startIcon={IconRegistry.settings}
-                                        defaultExpanded={sectionItemDefaultExpanded}
-                                        disabled={sectionItemDisabled}
-                                        size={sectionItemSize}
-                                        color={sectionItemColor}
-                                    >
-                                        <Drawer.NavItem
-                                            label={thirdNavItemLabel ?? 'Profile'}
-                                            href={'/profile'}
-                                            startIcon={IconRegistry.user}
-                                            endIcon={navItemEndIcon || undefined}
-                                            disabled={navItemDisabled}
-                                            size={navItemSize}
-                                            variant={navItemVariant}
-                                            color={navItemColor}
-                                        />
-                                        <Drawer.NavItem
-                                            label={fourthNavItemLabel ?? 'Billing'}
-                                            href={'/billing'}
-                                            startIcon={IconRegistry.creditCard}
-                                            endIcon={navItemEndIcon || undefined}
-                                            disabled={navItemDisabled}
-                                            size={navItemSize}
-                                            variant={navItemVariant}
-                                            color={navItemColor}
-                                        />
-                                    </Drawer.SectionItem>
                                 </Drawer.SectionItem>
                             </Drawer.Section>
                         )}
