@@ -63,14 +63,6 @@ const DatePicker = memo(({
         [],
     )
 
-    const handleCalendarButtonClick = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.stopPropagation()
-            setOpen(true)
-        },
-        [setOpen],
-    )
-
     const { className: calendarClassName, ...restCalendarProps } =
         calendarProps ?? {}
 
@@ -79,21 +71,21 @@ const DatePicker = memo(({
             open={open}
             onOpenChange={setOpen}
         >
-            <Popover.Trigger nativeButton={false}>
-                <TextField
-                    {...textFieldProps}
-                    id={inputId}
-                    type={'date'}
-                    disabled={disabled}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    className={cn(DATE_PICKER_STYLES.input, textFieldProps.className)}
-                    aria-label={ariaLabel}
-                    aria-labelledby={ariaLabelledBy}
-                    aria-haspopup={'dialog'}
-                    aria-expanded={undefined}
-                    endAction={
+            <TextField
+                {...textFieldProps}
+                id={inputId}
+                type={'date'}
+                disabled={disabled}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                className={cn(DATE_PICKER_STYLES.input, textFieldProps.className)}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledBy}
+                aria-haspopup={'dialog'}
+                aria-expanded={undefined}
+                endAction={
+                    <Popover.Trigger>
                         <IconButton
                             icon={IconRegistry.calendar}
                             aria-label={'Open calendar'}
@@ -104,15 +96,14 @@ const DatePicker = memo(({
                             tabIndex={-1}
                             disabled={disabled}
                             onMouseDown={handleCalendarButtonMouseDown}
-                            onClick={handleCalendarButtonClick}
                         />
-                    }
-                />
-            </Popover.Trigger>
+                    </Popover.Trigger>
+                }
+            />
 
             <Popover.Content
                 side={'bottom'}
-                align={'start'}
+                align={'end'}
                 className={DATE_PICKER_STYLES.content}
                 aria-label={calendarAriaLabel}
                 initialFocus={false}

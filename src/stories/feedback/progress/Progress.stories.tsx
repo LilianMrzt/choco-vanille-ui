@@ -86,6 +86,7 @@ A progress indicator with linear and circular variants.
         size: 'sm',
         borderRadius: 'sm',
         width: '100%',
+        label: 'Loading progress',
     },
 } satisfies Meta<typeof Progress>
 

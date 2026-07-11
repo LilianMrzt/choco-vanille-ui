@@ -114,7 +114,7 @@ describe('Dialog', () => {
 
             await userEvent.click(screen.getByLabelText('Close dialog'))
 
-            expect(onOpenChange).toHaveBeenCalledWith(false)
+            expect(onOpenChange).toHaveBeenCalledWith(false, expect.anything())
         })
     })
 

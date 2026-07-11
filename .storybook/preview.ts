@@ -6,23 +6,23 @@ import '../src/theme';
 
 // Pre-load all icons used in stories so Iconify renders them synchronously
 // without making network requests (important for browser-based test runners).
-addIcon('mdi:home', {
-    body: '<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>',
+addIcon('lucide:home', {
+    body: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
     width: 24,
     height: 24,
 });
-addIcon('mdi:information', {
-    body: '<path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/>',
+addIcon('lucide:info', {
+    body: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
     width: 24,
     height: 24,
 });
-addIcon('mdi:loading', {
-    body: '<path d="M12 4V2A10 10 0 0 0 2 12h2a8 8 0 0 1 8-8z"/>',
+addIcon('mdi:alert-outline', {
+    body: '<path d="M12 2L1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2"/>',
     width: 24,
     height: 24,
 });
-addIcon('mdi:pencil', {
-    body: '<path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>',
+addIcon('mdi:circle', {
+    body: '<circle cx="12" cy="12" r="10"/>',
     width: 24,
     height: 24,
 });

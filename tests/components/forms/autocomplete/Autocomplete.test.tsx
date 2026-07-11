@@ -60,7 +60,7 @@ describe('AutocompleteField', () => {
 
         it('renders a trigger button', () => {
             render(<AutocompleteField options={OPTIONS} />)
-            expect(screen.getByRole('button', { name: '' })).toBeTruthy()
+            expect(screen.getByRole('button', { name: 'Open options' })).toBeTruthy()
         })
     })
 

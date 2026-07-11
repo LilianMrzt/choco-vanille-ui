@@ -14,8 +14,6 @@ const renderGroup = (defaultValue?: string, disabled?: boolean) =>
         </RadioGroup>,
     )
 
-const isDisabled = (el: HTMLElement) => (el as HTMLButtonElement).disabled
-
 // Suites
 
 describe('RadioGroup', () => {
@@ -28,7 +26,7 @@ describe('RadioGroup', () => {
         it('no item is checked when no defaultValue is provided', () => {
             renderGroup()
             for (const radio of screen.getAllByRole('radio')) {
-                expect(radio.getAttribute('data-state')).toBe('unchecked')
+                expect(radio.getAttribute('data-unchecked')).not.toBeNull()
             }
         })
     })
@@ -65,7 +63,7 @@ describe('RadioItem', () => {
             expect(screen.getByText('My option').tagName.toLowerCase()).toBe('label')
         })
 
-        it('associates label with the radio via htmlFor / id', () => {
+        it('associates label with the radio via aria-labelledby', () => {
             render(
                 <RadioGroup aria-label={'group'}>
                     <RadioGroup.Item value={'x'} label={'My option'} />
@@ -73,7 +71,7 @@ describe('RadioItem', () => {
             )
             const label = screen.getByText('My option') as HTMLLabelElement
             const radio = screen.getByRole('radio') as HTMLElement
-            expect(label.htmlFor).toBe(radio.id)
+            expect(radio.getAttribute('aria-labelledby')).toBe(label.id)
         })
 
         it('renders without label when label prop is omitted', () => {
@@ -89,8 +87,8 @@ describe('RadioItem', () => {
     describe('controlled selection', () => {
         it('marks the correct item as checked via defaultValue', () => {
             renderGroup('b')
-            expect(screen.getByRole('radio', { name: 'Option B' }).getAttribute('data-state')).toBe('checked')
-            expect(screen.getByRole('radio', { name: 'Option A' }).getAttribute('data-state')).toBe('unchecked')
+            expect(screen.getByRole('radio', { name: 'Option B' }).getAttribute('data-checked')).not.toBeNull()
+            expect(screen.getByRole('radio', { name: 'Option A' }).getAttribute('data-unchecked')).not.toBeNull()
         })
 
         it('calls onValueChange when a different item is clicked', async () => {
@@ -102,7 +100,7 @@ describe('RadioItem', () => {
                 </RadioGroup>,
             )
             await userEvent.click(screen.getByRole('radio', { name: 'B' }))
-            expect(handler).toHaveBeenCalledWith('b')
+            expect(handler).toHaveBeenCalledWith('b', expect.anything())
         })
 
         it('does not call onValueChange when clicking the already-selected item', async () => {
@@ -122,7 +120,7 @@ describe('RadioItem', () => {
         it('disables all items when group is disabled', () => {
             renderGroup(undefined, true)
             for (const radio of screen.getAllByRole('radio')) {
-                expect(isDisabled(radio)).toBe(true)
+                expect(radio.getAttribute('aria-disabled')).toBe('true')
             }
         })
 
@@ -133,8 +131,8 @@ describe('RadioItem', () => {
                     <RadioGroup.Item value={'b'} label={'B'} disabled />
                 </RadioGroup>,
             )
-            expect(isDisabled(screen.getByRole('radio', { name: 'A' }))).toBe(false)
-            expect(isDisabled(screen.getByRole('radio', { name: 'B' }))).toBe(true)
+            expect(screen.getByRole('radio', { name: 'A' }).getAttribute('aria-disabled')).not.toBe('true')
+            expect(screen.getByRole('radio', { name: 'B' }).getAttribute('aria-disabled')).toBe('true')
         })
 
         it('does not call onValueChange when a disabled item is clicked', async () => {

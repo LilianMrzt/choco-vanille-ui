@@ -36,11 +36,11 @@ describe('Switch', () => {
             )
         })
 
-        it('associates the label with the switch via htmlFor / id', () => {
+        it('associates the label with the switch via aria-labelledby', () => {
             render(<Switch label={'Airplane mode'} />)
             const label = screen.getByText('Airplane mode') as HTMLLabelElement
             const switchControl = getSwitch()
-            expect(label.htmlFor).toBe(switchControl.id)
+            expect(switchControl.getAttribute('aria-labelledby')).toBe(label.id)
         })
     })
 
@@ -66,7 +66,7 @@ describe('Switch', () => {
     describe('disabled state', () => {
         it('is disabled when disabled prop is passed', () => {
             render(<Switch disabled />)
-            expect((getSwitch() as HTMLButtonElement).disabled).toBe(true)
+            expect(getSwitch().getAttribute('aria-disabled')).toBe('true')
         })
 
         it('does not call onCheckedChange when disabled and clicked', async () => {

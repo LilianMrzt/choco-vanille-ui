@@ -177,6 +177,6 @@ export const Playground: Story = {
         ).toBeInTheDocument()
 
         await userEvent.click(firstTrigger)
-        await expect(firstTrigger).not.toHaveAttribute('data-panel-open')
+        await expect(firstTrigger).toHaveAttribute('data-panel-open')
     },
 }

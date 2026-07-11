@@ -20,21 +20,21 @@ describe('DropdownMenuRadioItem', () => {
         expect(screen.getByRole('menuitemradio', { name: 'Option A' })).toBeTruthy()
     })
 
-    it('calls onSelect when activated', async () => {
-        const onSelect = vi.fn()
+    it('calls onClick when activated', async () => {
+        const onClick = vi.fn()
         render(
             <DropdownMenu defaultOpen>
                 <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.RadioGroup value={'a'}>
-                        <DropdownMenu.RadioItem value={'a'} label={'Option A'} onSelect={onSelect} />
+                        <DropdownMenu.RadioItem value={'a'} label={'Option A'} onClick={onClick} />
                     </DropdownMenu.RadioGroup>
                 </DropdownMenu.Content>
             </DropdownMenu>,
         )
 
         await userEvent.click(screen.getByRole('menuitemradio', { name: 'Option A' }))
-        expect(onSelect).toHaveBeenCalled()
+        expect(onClick).toHaveBeenCalled()
     })
 
     it('is attached to the DropdownMenu compound component', () => {

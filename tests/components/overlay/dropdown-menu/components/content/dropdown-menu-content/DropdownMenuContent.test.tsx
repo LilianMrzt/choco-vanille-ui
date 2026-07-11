@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -33,6 +33,7 @@ describe('DropdownMenuContent', () => {
     })
 
     it('opens and closes via the trigger', async () => {
+        const user = userEvent.setup()
         render(
             <DropdownMenu>
                 <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
@@ -42,14 +43,19 @@ describe('DropdownMenuContent', () => {
             </DropdownMenu>,
         )
 
-        await userEvent.click(screen.getByRole('button', { name: 'Open' }))
-        expect(screen.getByRole('menuitem', { name: 'Item' })).toBeTruthy()
+        await user.click(screen.getByRole('button', { name: 'Open' }))
+        await waitFor(() => {
+            expect(screen.getByRole('menuitem', { name: 'Item' })).toBeTruthy()
+        })
 
-        await userEvent.keyboard('{Escape}')
-        expect(screen.queryByRole('menu')).toBeNull()
+        await user.keyboard('{Escape}')
+        await waitFor(() => {
+            expect(screen.queryByRole('menu')).toBeNull()
+        })
     }, 10000)
 
     it('calls onOpenChange when the open state changes', async () => {
+        const user = userEvent.setup()
         const onOpenChange = vi.fn()
         render(
             <DropdownMenu onOpenChange={onOpenChange}>
@@ -60,8 +66,10 @@ describe('DropdownMenuContent', () => {
             </DropdownMenu>,
         )
 
-        await userEvent.click(screen.getByRole('button', { name: 'Open' }))
-        expect(onOpenChange).toHaveBeenLastCalledWith(true)
+        await user.click(screen.getByRole('button', { name: 'Open' }))
+        await waitFor(() => {
+            expect(onOpenChange).toHaveBeenLastCalledWith(true, expect.anything())
+        })
     }, 10000)
 
     it('is attached to the DropdownMenu compound component', () => {
