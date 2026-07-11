@@ -22,7 +22,10 @@ addIcon('mdi:alert-outline', {
     height: 24,
 });
 addIcon('mdi:circle', {
-    body: '<circle cx="12" cy="12" r="10"/>',
+    body: '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">\n' +
+        '\t<path d="M0 0h24v24H0z" fill="none" />\n' +
+        '\t<path fill="currentColor" d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2" />\n' +
+        '</svg>\n',
     width: 24,
     height: 24,
 });
