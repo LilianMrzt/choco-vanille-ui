@@ -18,7 +18,7 @@ describe('Checkbox', () => {
 
         it('is unchecked by default', () => {
             render(<Checkbox />)
-            expect(getCheckbox().getAttribute('data-state')).toBe('unchecked')
+            expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
         })
 
         it('renders without a label when label prop is omitted', () => {
@@ -34,37 +34,37 @@ describe('Checkbox', () => {
             expect(screen.getByText('Accept terms').tagName.toLowerCase()).toBe('label')
         })
 
-        it('associates the label with the checkbox via htmlFor / id', () => {
+        it('associates the label with the checkbox via aria-labelledby', () => {
             render(<Checkbox label={'Subscribe'} />)
             const label = screen.getByText('Subscribe') as HTMLLabelElement
             const checkbox = getCheckbox()
-            expect(label.htmlFor).toBe(checkbox.id)
+            expect(checkbox.getAttribute('aria-labelledby')).toBe(label.id)
         })
     })
 
     describe('controlled checked state', () => {
         it('is checked when checked={true}', () => {
             render(<Checkbox checked onCheckedChange={() => undefined} />)
-            expect(getCheckbox().getAttribute('data-state')).toBe('checked')
+            expect(getCheckbox().getAttribute('data-checked')).not.toBeNull()
         })
 
         it('is unchecked when checked={false}', () => {
             render(<Checkbox checked={false} onCheckedChange={() => undefined} />)
-            expect(getCheckbox().getAttribute('data-state')).toBe('unchecked')
+            expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
         })
     })
 
     describe('uncontrolled checked state', () => {
         it('starts checked when defaultChecked is true', () => {
             render(<Checkbox defaultChecked />)
-            expect(getCheckbox().getAttribute('data-state')).toBe('checked')
+            expect(getCheckbox().getAttribute('data-checked')).not.toBeNull()
         })
     })
 
     describe('disabled state', () => {
         it('is disabled when disabled prop is passed', () => {
             render(<Checkbox disabled />)
-            expect((getCheckbox() as HTMLButtonElement).disabled).toBe(true)
+            expect(getCheckbox().getAttribute('aria-disabled')).toBe('true')
         })
 
         it('does not call onCheckedChange when disabled and clicked', async () => {
@@ -85,11 +85,11 @@ describe('Checkbox', () => {
 
         it('toggles checked state on click (uncontrolled)', async () => {
             render(<Checkbox />)
-            expect(getCheckbox().getAttribute('data-state')).toBe('unchecked')
+            expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
             await userEvent.click(getCheckbox())
-            expect(getCheckbox().getAttribute('data-state')).toBe('checked')
+            expect(getCheckbox().getAttribute('data-checked')).not.toBeNull()
             await userEvent.click(getCheckbox())
-            expect(getCheckbox().getAttribute('data-state')).toBe('unchecked')
+            expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
         })
     })
 

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -6,6 +6,7 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 
 describe('DropdownMenu', () => {
     it('renders the trigger and opens the menu', async () => {
+        const user = userEvent.setup()
         render(
             <DropdownMenu>
                 <DropdownMenu.Trigger>
@@ -19,11 +20,14 @@ describe('DropdownMenu', () => {
 
         expect(screen.getByRole('button', { name: 'Open' })).toBeTruthy()
 
-        await userEvent.click(screen.getByRole('button', { name: 'Open' }))
-        expect(screen.getByRole('menuitem', { name: 'Item' })).toBeTruthy()
+        await user.click(screen.getByRole('button', { name: 'Open' }))
+        await waitFor(() => {
+            expect(screen.getByRole('menuitem', { name: 'Item' })).toBeTruthy()
+        })
     }, 10000)
 
     it('supports controlled open state', async () => {
+        const user = userEvent.setup()
         const onOpenChange = vi.fn()
         render(
             <DropdownMenu open={false} onOpenChange={onOpenChange}>
@@ -36,8 +40,10 @@ describe('DropdownMenu', () => {
             </DropdownMenu>,
         )
 
-        await userEvent.click(screen.getByRole('button', { name: 'Open' }))
-        expect(onOpenChange).toHaveBeenLastCalledWith(true)
+        await user.click(screen.getByRole('button', { name: 'Open' }))
+        await waitFor(() => {
+            expect(onOpenChange).toHaveBeenLastCalledWith(true, expect.anything())
+        })
         expect(screen.queryByRole('menu')).toBeNull()
     }, 10000)
 

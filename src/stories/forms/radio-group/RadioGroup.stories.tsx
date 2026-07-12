@@ -158,19 +158,37 @@ export const Playground: Story = {
 }
 
 export const Horizontal: Story = {
-    render: (args) => {
+    render: ({
+        disabled,
+        required,
+        labelOne,
+        labelTwo,
+        labelThree,
+        ...args
+    }) => {
         const [value, setValue] = useState(args.defaultValue as string)
         return (
             <RadioGroup
                 {...args}
                 value={value}
                 onValueChange={setValue}
+                disabled={disabled}
+                required={required}
                 aria-label={'Theme preference'}
             >
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                    <RadioGroup.Item value={'light'}>{args.labelOne}</RadioGroup.Item>
-                    <RadioGroup.Item value={'dark'}>{args.labelTwo}</RadioGroup.Item>
-                    <RadioGroup.Item value={'system'}>{args.labelThree}</RadioGroup.Item>
+                    <RadioGroup.Item
+                        value={'light'}
+                        label={labelOne}
+                    />
+                    <RadioGroup.Item
+                        value={'dark'}
+                        label={labelTwo}
+                    />
+                    <RadioGroup.Item
+                        value={'system'}
+                        label={labelThree}
+                    />
                 </div>
             </RadioGroup>
         )

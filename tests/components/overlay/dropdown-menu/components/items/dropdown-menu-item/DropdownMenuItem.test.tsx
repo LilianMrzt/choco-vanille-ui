@@ -18,19 +18,19 @@ describe('DropdownMenuItem', () => {
         expect(screen.getByRole('menuitem', { name: 'Edit' })).toBeTruthy()
     })
 
-    it('calls onSelect when activated', async () => {
-        const onSelect = vi.fn()
+    it('calls onClick when activated', async () => {
+        const onClick = vi.fn()
         render(
             <DropdownMenu defaultOpen>
                 <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
                 <DropdownMenu.Content>
-                    <DropdownMenu.Item label={'Edit'} onSelect={onSelect} />
+                    <DropdownMenu.Item label={'Edit'} onClick={onClick} />
                 </DropdownMenu.Content>
             </DropdownMenu>,
         )
 
         await userEvent.click(screen.getByRole('menuitem', { name: 'Edit' }))
-        expect(onSelect).toHaveBeenCalled()
+        expect(onClick).toHaveBeenCalled()
     })
 
     it('renders start and end icons', () => {

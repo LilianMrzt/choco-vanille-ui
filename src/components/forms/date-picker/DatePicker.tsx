@@ -7,81 +7,82 @@ import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePic
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useMemo, useRef } from 'react'
 
 /**
-  * A date picker that combines a native `type="date"` text field with a
-  * calendar popover.
-  *
-  * - Typing a valid `YYYY-MM-DD` date updates the calendar and calls `onChange`.
-  * - Selecting a day in the calendar updates the input and closes the popover.
-  * - Invalid or incomplete typed values are kept in the input but do not update
-  *   the selected date until they become valid.
-  *
-  * @example
-  * ```tsx
-  * const [date, setDate] = useState<Date | undefined>()
-  * <DatePicker label="Pick a date" value={date} onChange={setDate} />
-  * ```
-  */
-const DatePicker = memo(({
-    value,
-    defaultValue,
-    onChange,
-    calendarProps,
-    id,
-    disabled,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledBy,
-    calendarAriaLabel = 'Calendar',
-    onKeyDown,
-    ...textFieldProps
-}: DatePickerProps) => {
-    const {
-        selectedDate,
-        inputValue,
-        open,
-        inputId,
-        handleInputChange,
-        handleInputKeyDown,
-        handleCalendarSelect,
-        setOpen,
-    } = useDatePicker({ value, defaultValue, onChange, id })
+ * A date picker that combines a native `type="date"` text field with a
+ * calendar popover.
+ *
+ * - Typing a valid `YYYY-MM-DD` date updates the calendar and calls `onChange`.
+ * - Selecting a day in the calendar updates the input and closes the popover.
+ * - Invalid or incomplete typed values are kept in the input but do not update
+ *   the selected date until they become valid.
+ * - Opening the popover focuses the selected day (or today), and closing it
+ *   returns focus to the input.
+ *
+ * @example
+ * ```tsx
+ * const [date, setDate] = useState<Date | undefined>()
+ * <DatePicker label="Pick a date" value={date} onChange={setDate} />
+ * ```
+ */
+const DatePicker = memo(
+    ({
+        value,
+        defaultValue,
+        onChange,
+        calendarProps,
+        id,
+        disabled,
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        calendarAriaLabel = 'Calendar',
+        onKeyDown,
+        ...textFieldProps
+    }: DatePickerProps) => {
+        const {
+            selectedDate,
+            inputValue,
+            open,
+            inputId,
+            handleInputChange,
+            handleInputKeyDown,
+            handleCalendarSelect,
+            setOpen,
+        } = useDatePicker({ value, defaultValue, onChange, id })
 
-    const handleKeyDown = useCallback(
-        (event: React.KeyboardEvent<HTMLInputElement>) => {
-            handleInputKeyDown(event)
-            onKeyDown?.(event)
-        },
-        [handleInputKeyDown, onKeyDown],
-    )
+        const inputRef = useRef<HTMLInputElement>(null)
+        const calendarDefaultMonth = useMemo(
+            () => selectedDate ?? new Date(),
+            [selectedDate],
+        )
 
-    const handleCalendarButtonMouseDown = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.preventDefault()
-        },
-        [],
-    )
+        const handleKeyDown = useCallback(
+            (event: React.KeyboardEvent<HTMLInputElement>) => {
+                handleInputKeyDown(event)
+                onKeyDown?.(event)
+            },
+            [handleInputKeyDown, onKeyDown],
+        )
 
-    const handleCalendarButtonClick = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.stopPropagation()
-            setOpen(true)
-        },
-        [setOpen],
-    )
+        const handleCalendarButtonMouseDown = useCallback(
+            (event: React.MouseEvent<HTMLButtonElement>) => {
+                event.preventDefault()
+            },
+            [],
+        )
 
-    const { className: calendarClassName, ...restCalendarProps } =
-        calendarProps ?? {}
+        const { className: calendarClassName, ...restCalendarProps } =
+            calendarProps ?? {}
 
-    return (
-        <Popover
-            open={open}
-            onOpenChange={setOpen}
-        >
-            <Popover.Trigger nativeButton={false}>
+        return (
+            <Popover
+                open={open}
+                onOpenChange={setOpen}
+            >
                 <TextField
                     {...textFieldProps}
+                    ref={inputRef}
                     id={inputId}
                     type={'date'}
                     disabled={disabled}
@@ -92,43 +93,46 @@ const DatePicker = memo(({
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
                     aria-haspopup={'dialog'}
-                    aria-expanded={undefined}
+                    aria-expanded={open}
                     endAction={
-                        <IconButton
-                            icon={IconRegistry.calendar}
-                            aria-label={'Open calendar'}
-                            variant={'ghost'}
-                            color={'primary'}
-                            size={'sm'}
-                            type={'button'}
-                            tabIndex={-1}
-                            disabled={disabled}
-                            onMouseDown={handleCalendarButtonMouseDown}
-                            onClick={handleCalendarButtonClick}
-                        />
+                        <Popover.Trigger>
+                            <IconButton
+                                icon={IconRegistry.calendar}
+                                aria-label={'Open calendar'}
+                                variant={'ghost'}
+                                color={'primary'}
+                                size={'sm'}
+                                type={'button'}
+                                disabled={disabled}
+                                onMouseDown={handleCalendarButtonMouseDown}
+                            />
+                        </Popover.Trigger>
                     }
                 />
-            </Popover.Trigger>
 
-            <Popover.Content
-                side={'bottom'}
-                align={'start'}
-                className={DATE_PICKER_STYLES.content}
-                aria-label={calendarAriaLabel}
-                initialFocus={false}
-            >
-                <Calendar
-                    mode={'single'}
-                    selected={selectedDate}
-                    onSelect={handleCalendarSelect}
-                    disabled={disabled}
-                    className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
-                    {...restCalendarProps}
-                />
-            </Popover.Content>
-        </Popover>
-    )
-})
+                <Popover.Content
+                    side={'bottom'}
+                    align={'end'}
+                    className={DATE_PICKER_STYLES.content}
+                    aria-label={calendarAriaLabel}
+                    initialFocus={false}
+                    finalFocus={inputRef}
+                >
+                    <Calendar
+                        mode={'single'}
+                        selected={selectedDate}
+                        onSelect={handleCalendarSelect}
+                        disabled={disabled}
+                        className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
+                        {...restCalendarProps}
+                        defaultMonth={calendarDefaultMonth}
+                        autoFocus={open}
+                    />
+                </Popover.Content>
+            </Popover>
+        )
+    },
+)
 
 DatePicker.displayName = 'DatePicker'
 

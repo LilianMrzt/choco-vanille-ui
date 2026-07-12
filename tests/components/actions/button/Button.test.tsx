@@ -1,8 +1,23 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { addIcon } from '@iconify/react'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { Button, BUTTON_STYLES, type ButtonVariant, type ButtonColor, type ButtonSize } from '@components/actions/button'
+
+// Preload test icons so Iconify renders synchronously in JSDOM.
+beforeAll(() => {
+    addIcon('lucide:check', {
+        body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
+        width: 24,
+        height: 24,
+    })
+    addIcon('lucide:arrow-right', {
+        body: '<path d="M5 12h14M12 5l7 7-7 7"/>',
+        width: 24,
+        height: 24,
+    })
+})
 
 // Helper
 

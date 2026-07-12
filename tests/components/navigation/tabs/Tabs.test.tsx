@@ -48,7 +48,7 @@ describe('Tabs', () => {
         it('marks the selected trigger as active', () => {
             render(<TestTabs defaultValue="password" />)
             const passwordTab = screen.getByRole('tab', { name: 'Password' })
-            expect(passwordTab.getAttribute('data-state')).toBe('active')
+            expect(passwordTab.getAttribute('data-active')).not.toBeNull()
         })
     })
 
@@ -57,7 +57,7 @@ describe('Tabs', () => {
             const handler = vi.fn()
             render(<TestTabs value="account" onValueChange={handler} />)
             await userEvent.click(screen.getByRole('tab', { name: 'Password' }))
-            expect(handler).toHaveBeenCalledWith('password')
+            expect(handler).toHaveBeenCalledWith('password', expect.anything())
         })
     })
 

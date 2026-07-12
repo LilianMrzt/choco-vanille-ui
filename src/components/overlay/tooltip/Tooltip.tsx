@@ -51,7 +51,10 @@ const Tooltip: FC<TooltipProps> = memo(({
                     sideOffset={6}
                     className={'isolate'}
                 >
-                    <BaseTooltip.Popup className={cn(TOOLTIP_STYLES.content, className)}>
+                    <BaseTooltip.Popup
+                        role={'tooltip'}
+                        className={cn(TOOLTIP_STYLES.content, className)}
+                    >
                         {content}
                     </BaseTooltip.Popup>
                 </BaseTooltip.Positioner>

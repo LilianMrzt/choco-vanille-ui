@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,6 +9,17 @@ import dts from 'vite-plugin-dts';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
+const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf-8'));
+const externalDeps = [
+  ...Object.keys(pkg.peerDependencies ?? {}),
+  ...Object.keys(pkg.dependencies ?? {}),
+];
+
+const isExternal = (id: string) =>
+  externalDeps.some((dep) => id === dep || id.startsWith(`${dep}/`));
+
+const assetFileNames = 'ui-kit[extname]';
+
 export default defineConfig({
   plugins: [
     react(),
@@ -15,7 +27,7 @@ export default defineConfig({
     dts({
       tsconfigPath: './tsconfig.build.json',
       include: ['src'],
-      exclude: ['src/**/*.stories.tsx', 'src/**/*.stories.ts'],
+      exclude: ['src/stories', 'src/**/*.stories.tsx', 'src/**/*.stories.ts'],
       bundleTypes: true,
     }),
   ],
@@ -34,19 +46,26 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(root, 'src/index.ts'),
-      formats: ['es', 'cjs'],
       fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs'),
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
-      output: {
-        assetFileNames: 'ui-kit.[ext]',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'jsxRuntime',
+      external: isExternal,
+      output: [
+        {
+          format: 'es',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          assetFileNames,
+          entryFileNames: '[name].js',
         },
-      },
+        {
+          format: 'cjs',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          assetFileNames,
+          entryFileNames: '[name].cjs',
+        },
+      ],
     },
     sourcemap: true,
   },

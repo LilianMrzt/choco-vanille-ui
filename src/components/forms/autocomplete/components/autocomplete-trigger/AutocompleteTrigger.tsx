@@ -13,9 +13,14 @@ import type { AutocompleteTriggerProps } from '@components/forms/autocomplete/co
  * Renders as a chevron icon inside the input group. Can be used alongside
  * `Autocomplete.Input` when you want a select-like open action.
  */
-const AutocompleteTrigger: FC<AutocompleteTriggerProps> = memo(({ className, ...props }) => (
+const AutocompleteTrigger: FC<AutocompleteTriggerProps> = memo(({
+    className,
+    'aria-label': ariaLabel = 'Open options',
+    ...props
+}) => (
     <BaseAutocomplete.Trigger
         className={cn(AUTOCOMPLETE_TRIGGER_STYLES.root, className)}
+        aria-label={ariaLabel}
         {...props}
     >
         <Icon

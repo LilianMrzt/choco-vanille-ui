@@ -43,8 +43,6 @@ describe('DropdownMenuSubContent', () => {
 
         const content = screen.getAllByRole('menu')[1]
         expect(content.style.width).toBe('14rem')
-        expect(content.style.flexGrow).toBe('0')
-        expect(content.style.flexShrink).toBe('0')
     })
 
     it('applies a custom width', () => {

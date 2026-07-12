@@ -17,6 +17,7 @@ const Separator: FC<SeparatorProps> = memo(({
     return (
         <Box
             as={'div'}
+            role={'separator'}
             className={cn(SEPARATOR_STYLES.recipe({ orientation, color }), className)}
             {...props}
         />

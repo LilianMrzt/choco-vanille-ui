@@ -12,7 +12,6 @@ export const ICON_STYLES = {
             display: 'inline-block',
             flexShrink: 0,
             verticalAlign: 'middle',
-            fill: 'currentColor',
         },
         variants: {
             size: {

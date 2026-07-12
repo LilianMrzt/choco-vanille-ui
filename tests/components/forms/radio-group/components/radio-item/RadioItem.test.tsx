@@ -37,7 +37,7 @@ describe('RadioItem', () => {
     })
 
     describe('accessibility', () => {
-        it('associates the label with the radio via htmlFor', () => {
+        it('associates the label with the radio via aria-labelledby', () => {
             render(
                 <RadioGroup aria-label={'group'}>
                     <RadioItem value={'a'} label={'Option A'} />
@@ -45,7 +45,7 @@ describe('RadioItem', () => {
             )
             const label = screen.getByText('Option A') as HTMLLabelElement
             const radio = screen.getByRole('radio') as HTMLElement
-            expect(label.htmlFor).toBe(radio.id)
+            expect(radio.getAttribute('aria-labelledby')).toBe(label.id)
         })
     })
 
