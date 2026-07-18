@@ -1,13 +1,14 @@
 import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
+import type { DrawerMiniProps } from '@components/overlay/drawer/components/variants/drawer-mini/types/DrawerMini.props.ts'
 import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'
 import type { DrawerProps } from '@components/overlay/drawer/types'
 import type { DrawerContextValue } from '@components/overlay/drawer/context/Drawer.context.ts'
 
 export type UseDrawerParams = DrawerProps
 
-/** Props shared by both drawer renderers. */
+/** Props shared by all drawer renderers. */
 export type CommonRendererProps = Pick<
-    DrawerPortalProps & DrawerInlineProps,
+    DrawerPortalProps & DrawerInlineProps & DrawerMiniProps,
     | 'open'
     | 'position'
     | 'size'
@@ -29,6 +30,6 @@ export type UseDrawerReturn = {
     contextValue: DrawerContextValue
     /** Accessible name resolved from aria props. */
     accessibleName: string | undefined
-    /** Props shared between `DrawerPortal` and `DrawerInline`. */
+    /** Props shared between all drawer renderers. */
     commonRendererProps: CommonRendererProps
 }

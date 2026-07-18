@@ -28,12 +28,13 @@ const DrawerHeader: FC<DrawerHeaderProps> = memo(({
     children,
     ...props
 }) => {
-    const { onOpenChange, titleId } = useDrawerContext()
-    const resolvedTitleId = titleProps?.id ?? titleId
+    const context = useDrawerContext()
+    const resolvedTitleId = titleProps?.id ?? context?.titleId
+    const isMini = context?.mode === 'mini'
 
     const handleClose = useCallback(() => {
-        onOpenChange(false)
-    }, [onOpenChange])
+        context?.onOpenChange(false)
+    }, [context])
 
     return (
         <Flex
@@ -92,7 +93,7 @@ const DrawerHeader: FC<DrawerHeaderProps> = memo(({
                     {actions}
                 </Flex>
             ) : (
-                showCloseButton && (
+                showCloseButton && context && !isMini && (
                     <Flex
                         alignItems={'center'}
                         className={DRAWER_HEADER_STYLES.actions}

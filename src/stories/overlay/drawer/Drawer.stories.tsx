@@ -61,6 +61,7 @@ const renderDrawer = ({
     position,
     size,
     withBackdrop,
+    collapsedWidth,
     backgroundColor,
     title,
     description,
@@ -97,6 +98,7 @@ const renderDrawer = ({
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
     const isPortal = mode === 'portal'
+    const isMini = mode === 'mini'
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
@@ -107,6 +109,7 @@ const renderDrawer = ({
                 position={position}
                 size={size}
                 withBackdrop={withBackdrop}
+                collapsedWidth={collapsedWidth}
                 backgroundColor={backgroundColor}
             >
                 {showHeader && (
@@ -259,9 +262,13 @@ const renderDrawer = ({
                             ? open
                                 ? 'Close drawer'
                                 : 'Open drawer'
-                            : open
-                                ? 'Collapse drawer'
-                                : 'Expand drawer'
+                            : isMini
+                                ? open
+                                    ? 'Collapse mini'
+                                    : 'Expand mini'
+                                : open
+                                    ? 'Collapse drawer'
+                                    : 'Expand drawer'
                     }
                     variant={'contained'}
                     color={'primary'}
@@ -280,7 +287,7 @@ const meta: Meta<DrawerPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `
-A flexible drawer component with two render modes.
+A flexible drawer component with three render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
 Use \`Drawer.Section\` to group \`Drawer.NavItem\`, \`Drawer.ActionItem\`
@@ -316,6 +323,7 @@ const [open, setOpen] = useState(false)
 | -------- | ------------------------------------------------------------------------ |
 | \`portal\` | Rendered in a portal over the page with an optional backdrop.            |
 | \`inline\` | Takes space in the layout when open, collapses to width \`0\` when closed. |
+| \`mini\`   | Stays visible when closed, collapsing to a narrow width.                 |
 
 **Accessibility**
 
@@ -332,6 +340,7 @@ const [open, setOpen] = useState(false)
   while remaining discoverable in the tab order.
 - In \`inline\` mode the collapsed panel is hidden from assistive technologies with
   \`aria-hidden\` and \`inert\`.
+- In \`mini\` mode the panel stays visible and accessible when collapsed.
         `,
             },
         },
@@ -362,6 +371,10 @@ const [open, setOpen] = useState(false)
         },
         withBackdrop: {
             control: 'boolean',
+            table: { category: 'Drawer' },
+        },
+        collapsedWidth: {
+            control: 'text',
             table: { category: 'Drawer' },
         },
         backgroundColor: {
@@ -520,6 +533,7 @@ const [open, setOpen] = useState(false)
         position: 'left' as DrawerPosition,
         size: 'md' as DrawerSize,
         withBackdrop: true,
+        collapsedWidth: '4rem',
         title: 'Account settings',
         description: 'Manage your profile and preferences.',
         showDescription: true,
@@ -610,6 +624,22 @@ export const Inline: Story = {
         docs: {
             description: {
                 story: 'Inline drawer that takes layout space when open.',
+            },
+        },
+    },
+    render: renderDrawer,
+}
+
+export const Mini: Story = {
+    args: {
+        defaultOpen: false,
+        mode: 'mini',
+        size: 'sm',
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Mini drawer that stays visible when closed, collapsing to a narrow width.',
             },
         },
     },

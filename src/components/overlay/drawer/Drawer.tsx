@@ -2,10 +2,11 @@
 import DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/DrawerBody.tsx'
 import DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
 import DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
-import DrawerSection from '@components/overlay/drawer/components/blocs/drawer-section/DrawerSection.tsx'
 import DrawerInline from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.tsx'
+import DrawerMini from '@components/overlay/drawer/components/variants/drawer-mini/DrawerMini.tsx'
 import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
+import DrawerSection from '@components/overlay/drawer/components/blocs/drawer-section/DrawerSection.tsx'
 import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
 import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
@@ -17,7 +18,7 @@ import type {
 import { memo, useId } from 'react'
 
 /**
- * A flexible drawer with two render modes: portal and inline.
+ * A flexible drawer with three render modes: portal, inline and mini.
  *
  * Compose with `Drawer.Header`, `Drawer.Body` and `Drawer.Footer`:
  *
@@ -50,6 +51,7 @@ const Drawer = memo<DrawerProps>(({
     position = 'left',
     size = 'md',
     withBackdrop = true,
+    collapsedWidth,
     backgroundColor,
     defaultAriaLabel = 'Drawer',
     children,
@@ -68,6 +70,8 @@ const Drawer = memo<DrawerProps>(({
         mode,
         position,
         size,
+        withBackdrop,
+        collapsedWidth,
         backgroundColor,
         defaultAriaLabel,
         children,
@@ -79,20 +83,38 @@ const Drawer = memo<DrawerProps>(({
         ...props,
     })
 
-    return (
-        <DrawerContext.Provider value={contextValue}>
-            {mode === DRAWER_MODES.portal ? (
+    const renderer = (() => {
+        if (mode === DRAWER_MODES.portal) {
+            return (
                 <DrawerPortal
                     {...commonRendererProps}
                     onOpenChange={handleOpenChange}
                     withBackdrop={withBackdrop}
                 />
-            ) : (
-                <DrawerInline
+            )
+        }
+
+        if (mode === DRAWER_MODES.mini) {
+            return (
+                <DrawerMini
                     {...commonRendererProps}
                     sizeWidthMap={DRAWER_SIZE_WIDTH}
+                    collapsedWidth={collapsedWidth}
                 />
-            )}
+            )
+        }
+
+        return (
+            <DrawerInline
+                {...commonRendererProps}
+                sizeWidthMap={DRAWER_SIZE_WIDTH}
+            />
+        )
+    })()
+
+    return (
+        <DrawerContext.Provider value={contextValue}>
+            {renderer}
         </DrawerContext.Provider>
     )
 }) as unknown as DrawerCompound
