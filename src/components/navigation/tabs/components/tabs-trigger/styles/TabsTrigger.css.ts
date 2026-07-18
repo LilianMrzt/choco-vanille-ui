@@ -48,11 +48,11 @@ export const TABS_TRIGGER_STYLES = {
                     borderRadius: `${vars.radius.sm} ${vars.radius.sm} 0 0`,
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.primarySubtle,
                             color: vars.color.foreground,
                         },
                         '&:not([data-disabled]):not([data-active]):active': {
-                            backgroundColor: vars.color.secondarySubtleActive,
+                            backgroundColor: vars.color.primarySubtleActive,
                             color: vars.color.foreground,
                         },
                         '&[data-active]': {
@@ -69,11 +69,11 @@ export const TABS_TRIGGER_STYLES = {
                     borderRadius: vars.radius.sm,
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
-                            backgroundColor: vars.color.secondarySubtle,
+                            backgroundColor: vars.color.primarySubtle,
                             color: vars.color.foreground,
                         },
                         '&:not([data-disabled]):not([data-active]):active': {
-                            backgroundColor: vars.color.secondarySubtleActive,
+                            backgroundColor: vars.color.primarySubtleActive,
                             color: vars.color.foreground,
                         },
                         '&[data-active]': {

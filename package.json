@@ -25,7 +25,7 @@
     "dev": "vite build --watch",
     "storybook": "storybook dev -p 6006",
     "build": "storybook build",
-    "start": "serve storybook-static -p $PORT",
+    "start": "serve storybook-static -p 3000",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{ts,tsx,css,md,json}\"",
