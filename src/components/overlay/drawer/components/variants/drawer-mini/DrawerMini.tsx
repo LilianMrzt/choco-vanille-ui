@@ -7,6 +7,7 @@ import type {
     DrawerMiniProps
 } from '@components/overlay/drawer/components/variants/drawer-mini/types/DrawerMini.props.ts'
 import { DRAWER_MINI_STYLES } from '@components/overlay/drawer/components/variants/drawer-mini/styles/DrawerMini.css.ts'
+import { COLLAPSED_WIDTH } from '@components/overlay/drawer/components/variants/drawer-mini/constants'
 
 /**
  * Mini drawer renderer.
@@ -19,7 +20,7 @@ const DrawerMini: FC<DrawerMiniProps> = memo(({
     position,
     size,
     sizeWidthMap,
-    collapsedWidth = '4rem',
+    collapsedWidth = COLLAPSED_WIDTH,
     backgroundColor,
     accessibleName,
     ariaLabelledBy,
