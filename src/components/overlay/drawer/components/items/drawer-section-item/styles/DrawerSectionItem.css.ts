@@ -13,6 +13,10 @@ const sectionContent = style({
     },
 })
 
+const sectionInner = style({
+    transition: `padding-bottom ${vars.duration.normal} ${vars.easing.standard}`,
+})
+
 const sectionSeparator = style({
     opacity: 0,
     transition: [
@@ -31,5 +35,6 @@ export const DRAWER_SECTION_ITEM_STYLES = {
     ...DRAWER_ITEM_STYLES,
     recipe: DRAWER_ITEM_STYLES.recipe,
     sectionContent,
+    sectionInner,
     sectionSeparator,
 }

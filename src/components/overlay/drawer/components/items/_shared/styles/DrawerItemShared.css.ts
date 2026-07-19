@@ -32,6 +32,7 @@ const drawerItemRecipe = recipe({
         gap: vars.space.md,
         width: '100%',
         minWidth: 0,
+        flexShrink: 0,
         height: '2.25rem',
         paddingInline: vars.space.sm2,
         border: '1px solid transparent',

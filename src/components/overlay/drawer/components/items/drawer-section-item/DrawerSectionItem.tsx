@@ -100,9 +100,10 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                         flexDirection={'row'}
                         minHeight={0}
                         minWidth={0}
-                        paddingBottom={'xs'}
+                        paddingBottom={showChildren ? 'xs' : 'none'}
                         overflow={showChildren ? 'visible' : 'hidden'}
                         gap={'none'}
+                        className={DRAWER_SECTION_ITEM_STYLES.sectionInner}
                     >
                         {shouldRenderSeparator && (
                             <Separator
