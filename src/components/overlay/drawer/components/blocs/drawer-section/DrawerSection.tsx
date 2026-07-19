@@ -27,6 +27,7 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
             display={'flex'}
             flexDirection={'column'}
             gap={'xs'}
+            width={'100%'}
             className={className}
             aria-labelledby={title ? resolvedTitleId : undefined}
             {...props}

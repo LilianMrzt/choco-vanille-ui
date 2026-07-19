@@ -90,6 +90,7 @@ const renderDrawer = ({
                         <IconButton
                             icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
                             aria-label={open ? 'Collapse mini' : 'Expand mini'}
+                            size={'sm'}
                             onClick={() => setOpen(!open)}
                         />
                     </Drawer.Header>
@@ -204,7 +205,9 @@ const renderDrawer = ({
                     <Drawer.Footer
                         justifyContent={'start'}
                     >
-                        <Drawer.Section>
+                        <Drawer.Section
+                            title={'Actions'}
+                        >
                             <Drawer.ActionItem
                                 label={'Sign out'}
                                 startIcon={IconRegistry.logOut}
