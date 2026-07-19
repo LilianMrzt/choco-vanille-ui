@@ -19,6 +19,8 @@ export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
     size?: DrawerSize
     /** Whether to render the backdrop in `portal` mode. @default true */
     withBackdrop?: boolean
+    /** Width applied when the drawer is collapsed in `mini` mode. @default '4rem' */
+    collapsedWidth?: string
     /** Theme color token applied to the drawer panel background. */
     backgroundColor?: DrawerRecipeVariants['backgroundColor']
     /** Accessible name used when no visible title is present. @default 'Drawer' */

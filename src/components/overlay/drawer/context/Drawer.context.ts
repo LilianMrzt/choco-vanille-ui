@@ -15,6 +15,8 @@ export type DrawerContextValue = {
     size: DrawerSize
     /** Id of the header title used for the drawer aria-labelledby. */
     titleId?: string
+    /** Width applied when the drawer is collapsed in mini mode. */
+    collapsedWidth?: string
 }
 
 export const DrawerContext = createContext<DrawerContextValue | null>(null)

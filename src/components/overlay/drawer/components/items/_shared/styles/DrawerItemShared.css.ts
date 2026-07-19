@@ -1,13 +1,29 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { style } from '@vanilla-extract/css'
 
 import { vars } from '@theme/contract.css.ts'
 import {
     DRAWER_ITEM_COLORS,
-    DRAWER_ITEM_SIZES,
     DRAWER_ITEM_VARIANTS,
 } from '@components/overlay/drawer/components/items/_shared/constants'
 import { defaultCompoundVariants } from '@components/overlay/drawer/components/items/_shared/styles/variants/default.ts'
 import { outlinedCompoundVariants } from '@components/overlay/drawer/components/items/_shared/styles/variants/outlined.ts'
+
+const content = style({
+    display: 'flex',
+    alignItems: 'center',
+    gap: 'inherit',
+    flex: 1,
+    minWidth: 0,
+    overflow: 'hidden',
+    transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
+    selectors: {
+        '&[data-state="closed"]': {
+            opacity: 0,
+            pointerEvents: 'none',
+        },
+    },
+})
 
 const drawerItemRecipe = recipe({
     base: {
@@ -16,8 +32,9 @@ const drawerItemRecipe = recipe({
         gap: vars.space.md,
         width: '100%',
         minWidth: 0,
-        paddingInline: vars.space.md,
-        paddingBlock: vars.space.sm,
+        flexShrink: 0,
+        height: '2.25rem',
+        paddingInline: vars.space.sm2,
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',
@@ -53,18 +70,13 @@ const drawerItemRecipe = recipe({
             '&[data-state="closed"][data-position="right"]': {
                 transform: 'translateX(0.5rem)',
             },
+            '&[data-mode="mini"][data-state="closed"]': {
+                opacity: 1,
+                transform: 'none',
+            },
         },
     },
     variants: {
-        size: {
-            [DRAWER_ITEM_SIZES.sm]: {
-                paddingInline: vars.space.sm,
-                paddingBlock: vars.space.xs,
-                gap: vars.space.sm,
-                fontSize: vars.fontSize.xs,
-            },
-            [DRAWER_ITEM_SIZES.md]: {},
-        },
         variant: {
             [DRAWER_ITEM_VARIANTS.default]: {},
             [DRAWER_ITEM_VARIANTS.outlined]: {},
@@ -84,7 +96,6 @@ const drawerItemRecipe = recipe({
         ...outlinedCompoundVariants,
     ],
     defaultVariants: {
-        size: DRAWER_ITEM_SIZES.md,
         variant: DRAWER_ITEM_VARIANTS.default,
         color: DRAWER_ITEM_COLORS.primary,
     },
@@ -92,6 +103,7 @@ const drawerItemRecipe = recipe({
 
 export const DRAWER_ITEM_STYLES = {
     recipe: drawerItemRecipe,
+    content,
 }
 
 export type DrawerItemRecipeVariants = NonNullable<

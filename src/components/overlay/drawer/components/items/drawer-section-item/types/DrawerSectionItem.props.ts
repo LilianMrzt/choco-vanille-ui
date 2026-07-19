@@ -1,6 +1,5 @@
 import type {
     DrawerItemColor,
-    DrawerItemSize,
 } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
 import type { ReactNode } from 'react'
@@ -26,8 +25,6 @@ export type DrawerSectionItemProps = Omit<
   expanded?: boolean;
   /** Called when the expanded state changes. */
   onExpandedChange?: (expanded: boolean) => void;
-  /** Size preset for the header row. @default 'md' */
-  size?: DrawerItemSize;
   /** Color intent for the header row. @default 'primary' */
   color?: DrawerItemColor;
   /** Accessible label for the section header. Defaults to `label`. */

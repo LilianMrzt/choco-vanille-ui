@@ -3,10 +3,12 @@ import type { DrawerNavItemProps } from '@components'
 
 export type UseDrawerNavItemParams = Pick<
     DrawerNavItemProps,
-    'active' | 'disabled' | 'size' | 'iconSize' | 'onClick'
+    'active' | 'disabled' | 'iconSize' | 'onClick'
 >
 
 export type UseDrawerNavItemReturn = {
+    /** Whether the parent drawer is currently open. */
+    open: boolean
     /** Attributes to spread on the anchor element. */
     linkAttributes: {
         'data-state': 'open' | 'closed'

@@ -4,14 +4,9 @@ import { DrawerContext, type DrawerContextValue } from '@components/overlay/draw
 
 /**
  * Returns the current drawer state and helpers.
- * Throws if used outside of a `Drawer`.
+ * Returns `null` when used outside of a `Drawer` so sub-components can be
+ * rendered independently (e.g. inside `DrawerMini`).
  */
-export const useDrawerContext = (): DrawerContextValue => {
-    const context = useContext(DrawerContext)
-
-    if (!context) {
-        throw new Error('useDrawerContext must be used within a <Drawer>.')
-    }
-
-    return context
+export const useDrawerContext = (): DrawerContextValue | null => {
+    return useContext(DrawerContext)
 }

@@ -1,7 +1,6 @@
-﻿import type { IconSize } from '@components/foundation/icon'
+import type { IconSize } from '@components/foundation/icon'
 import type {
     DrawerItemColor,
-    DrawerItemSize,
     DrawerItemVariant,
 } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
@@ -25,8 +24,6 @@ export type DrawerNavItemProps = Omit<
     disabled?: boolean;
     /** Accessible label for the link. Defaults to `label`. */
     'aria-label'?: string;
-    /** Size preset for the row. @default 'md' */
-    size?: DrawerItemSize;
     /** Visual variant for the row. @default 'default' */
     variant?: DrawerItemVariant;
     /** Color intent for the row. @default 'primary' */

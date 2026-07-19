@@ -52,8 +52,11 @@ export const useDrawer = ({
             position,
             size,
             titleId,
+            collapsedWidth: 'collapsedWidth' in props && typeof props.collapsedWidth === 'string'
+                ? props.collapsedWidth
+                : undefined,
         }),
-        [isOpen, handleOpenChange, mode, position, size, titleId],
+        [isOpen, handleOpenChange, mode, position, size, titleId, props],
     )
 
     const resolvedAriaLabelledBy = ariaLabel ? undefined : (ariaLabelledBy ?? titleId)

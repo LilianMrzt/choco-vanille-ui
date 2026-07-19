@@ -1,7 +1,6 @@
-﻿import type { IconSize } from '@components/foundation/icon'
+import type { IconSize } from '@components/foundation/icon'
 import type {
     DrawerItemColor,
-    DrawerItemSize,
     DrawerItemVariant,
 } from '@components/overlay/drawer/components/items/_shared'
 import type * as React from 'react'
@@ -17,8 +16,6 @@ export type DrawerActionItemProps = Omit<
     label: string;
     /** Icon rendered before the label. */
     startIcon: string;
-    /** Size preset for the row. @default 'md' */
-    size?: DrawerItemSize;
     /** Visual variant for the row. @default 'default' */
     variant?: DrawerItemVariant;
     /** Color intent for the row. @default 'primary' */

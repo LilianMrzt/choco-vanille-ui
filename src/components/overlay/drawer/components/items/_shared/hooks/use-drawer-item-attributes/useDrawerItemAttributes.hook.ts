@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
 
 import type { IconSize } from '@components/foundation/icon'
-import { DRAWER_ITEM_SIZE_TO_ICON_SIZE } from '@components/overlay/drawer/components/items/_shared/constants'
-import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared/types/DrawerItem.types.ts'
+import { DRAWER_ITEM_DEFAULT_ICON_SIZE } from '@components/overlay/drawer/components/items/_shared/constants'
 import { useDrawerItemState } from '@components/overlay/drawer/components/items/_shared/hooks/useDrawerItemState.hook.ts'
 import type {
     DrawerItemAttributes
@@ -13,11 +12,10 @@ import type {
  * every drawer item row.
  */
 export const useDrawerItemAttributes = (
-    size: DrawerItemSize,
     iconSize?: IconSize,
 ): DrawerItemAttributes => {
     const { open, mode, position } = useDrawerItemState()
-    const resolvedIconSize = iconSize ?? DRAWER_ITEM_SIZE_TO_ICON_SIZE[size]
+    const resolvedIconSize = iconSize ?? DRAWER_ITEM_DEFAULT_ICON_SIZE
     const state: 'open' | 'closed' = open ? 'open' : 'closed'
 
     const itemAttributes = useMemo(
@@ -31,6 +29,7 @@ export const useDrawerItemAttributes = (
 
     return {
         state,
+        open,
         resolvedIconSize,
         itemAttributes,
     }

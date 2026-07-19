@@ -1,27 +1,11 @@
-import type { BoxRecipeVariants } from '@components/layout/box'
-import type { DrawerItemSize } from '@components/overlay/drawer/components/items/_shared'
-
-type PaddingVariant = NonNullable<BoxRecipeVariants['paddingLeft']>
+type PaddingVariant = NonNullable<import('@components/layout/box').BoxRecipeVariants['paddingLeft']>
 
 /**
- * Maps a drawer section item size to the left padding of its collapsible
- * content area. Adjust the values as needed.
+ * Left padding of the drawer section item collapsible content area.
  */
-export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT: Record<
-    DrawerItemSize,
-    PaddingVariant
-> = {
-    sm: 'md2',
-    md: 'lg2',
-}
+export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT: PaddingVariant = 'lg2'
+
 /**
- * Maps a drawer section item size to the right padding of its collapsible
- * content area. Adjust the values as needed.
+ * Right padding of the drawer section item collapsible content area.
  */
-export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT: Record<
-    DrawerItemSize,
-    PaddingVariant
-> = {
-    sm: 'md',
-    md: 'sm',
-}
+export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT: PaddingVariant = 'sm'

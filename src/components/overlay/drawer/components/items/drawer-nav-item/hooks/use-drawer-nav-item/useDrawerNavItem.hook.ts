@@ -12,11 +12,10 @@ import type {
 export const useDrawerNavItem = ({
     active,
     disabled,
-    size = 'md',
     iconSize,
     onClick,
 }: UseDrawerNavItemParams): UseDrawerNavItemReturn => {
-    const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
+    const { open, itemAttributes } = useDrawerItemAttributes(iconSize)
 
     const handleClick = useCallback(
         (event: MouseEvent<HTMLAnchorElement>) => {
@@ -44,6 +43,7 @@ export const useDrawerNavItem = ({
     )
 
     return {
+        open,
         linkAttributes,
         handleClick,
     }

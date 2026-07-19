@@ -3,6 +3,7 @@ import { expect, userEvent, waitFor } from 'storybook/test'
 import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconButton } from '@components/actions/icon-button'
 import { Badge } from '@components/data-display/badge'
 import { Flex } from '@components/layout/flex'
 import {
@@ -21,37 +22,23 @@ import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/
 import { md } from '@stories/utils/markdown'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
-  title?: string;
-  description?: string;
-  showDescription?: boolean;
   showHeader?: boolean;
   showFooter?: boolean;
-  confirmLabel?: string;
-  cancelLabel?: string;
   showNavigation?: boolean;
   showSettings?: boolean;
-  showActions?: boolean;
   navigationTitle?: string;
   settingsTitle?: string;
-  actionsTitle?: string;
   firstNavItemLabel?: string;
   secondNavItemLabel?: string;
   thirdNavItemLabel?: string;
   fourthNavItemLabel?: string;
   navItemActive?: boolean;
   navItemDisabled?: boolean;
-  navItemSize?: 'sm' | 'md';
   navItemVariant?: 'default' | 'outlined';
   navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
-  actionItemLabel?: string;
-  actionItemDisabled?: boolean;
-  actionItemSize?: 'sm' | 'md';
-  actionItemVariant?: 'default' | 'outlined';
-  actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
-  sectionItemSize?: 'sm' | 'md';
   sectionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
 };
 
@@ -61,45 +48,33 @@ const renderDrawer = ({
     position,
     size,
     withBackdrop,
+    collapsedWidth,
     backgroundColor,
-    title,
-    description,
-    showDescription,
     showHeader,
     showFooter,
-    confirmLabel,
-    cancelLabel,
     showNavigation,
     showSettings,
-    showActions,
     navigationTitle,
     settingsTitle,
-    actionsTitle,
     firstNavItemLabel,
     secondNavItemLabel,
     thirdNavItemLabel,
     fourthNavItemLabel,
     navItemActive,
     navItemDisabled,
-    navItemSize,
     navItemVariant,
     navItemColor,
-    actionItemLabel,
-    actionItemDisabled,
-    actionItemSize,
-    actionItemVariant,
-    actionItemColor,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
-    sectionItemSize,
     sectionItemColor,
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
     const isPortal = mode === 'portal'
+    const isMini = mode === 'mini'
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100%' }}>
             <Drawer
                 open={open}
                 onOpenChange={setOpen}
@@ -107,13 +82,17 @@ const renderDrawer = ({
                 position={position}
                 size={size}
                 withBackdrop={withBackdrop}
+                collapsedWidth={collapsedWidth}
                 backgroundColor={backgroundColor}
             >
                 {showHeader && (
-                    <Drawer.Header
-                        title={title}
-                        description={showDescription ? description : undefined}
-                    />
+                    <Drawer.Header>
+                        <IconButton
+                            icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
+                            aria-label={open ? 'Collapse mini' : 'Expand mini'}
+                            onClick={() => setOpen(!open)}
+                        />
+                    </Drawer.Header>
                 )}
                 <Drawer.Body
                     as={'nav'}
@@ -131,7 +110,6 @@ const renderDrawer = ({
                                     startIcon={IconRegistry.home}
                                     active={navItemActive}
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -140,7 +118,6 @@ const renderDrawer = ({
                                     href={'/team'}
                                     startIcon={IconRegistry.user}
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -157,7 +134,6 @@ const renderDrawer = ({
                                         />
                                     }
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -177,7 +153,6 @@ const renderDrawer = ({
                                     }
                                     defaultExpanded={sectionItemDefaultExpanded}
                                     disabled={sectionItemDisabled}
-                                    size={sectionItemSize}
                                     color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
@@ -193,7 +168,6 @@ const renderDrawer = ({
                                             />
                                         }
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -202,7 +176,6 @@ const renderDrawer = ({
                                         href={'/profile'}
                                         startIcon={IconRegistry.user}
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -211,43 +184,33 @@ const renderDrawer = ({
                                         href={'/billing'}
                                         startIcon={IconRegistry.creditCard}
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
                                 </Drawer.SectionItem>
-                            </Drawer.Section>
-                        )}
-                        {showActions && (
-                            <Drawer.Section title={actionsTitle}>
-                                <Drawer.ActionItem
-                                    label={actionItemLabel ?? 'Action item'}
-                                    startIcon={IconRegistry.logOut}
-                                    disabled={actionItemDisabled}
-                                    size={actionItemSize}
-                                    variant={actionItemVariant}
-                                    color={actionItemColor}
-                                    onClick={() => setOpen(false)}
+                                <Drawer.NavItem
+                                    label={thirdNavItemLabel ?? 'Profile'}
+                                    href={'/profile'}
+                                    startIcon={IconRegistry.user}
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
                                 />
                             </Drawer.Section>
                         )}
                     </Flex>
                 </Drawer.Body>
                 {showFooter && (
-                    <Drawer.Footer>
-                        <Button
-                            label={cancelLabel ?? 'Cancel'}
-                            variant={'outlined'}
-                            color={'primary'}
-                            size={'sm'}
-                            onClick={() => setOpen(false)}
-                        />
-                        <Button
-                            label={confirmLabel ?? 'Save changes'}
-                            variant={'contained'}
-                            color={'primary'}
-                            size={'sm'}
-                        />
+                    <Drawer.Footer
+                        justifyContent={'start'}
+                    >
+                        <Drawer.Section>
+                            <Drawer.ActionItem
+                                label={'Sign out'}
+                                startIcon={IconRegistry.logOut}
+                                color={'destructive'}
+                            />
+                        </Drawer.Section>
                     </Drawer.Footer>
                 )}
             </Drawer>
@@ -259,9 +222,13 @@ const renderDrawer = ({
                             ? open
                                 ? 'Close drawer'
                                 : 'Open drawer'
-                            : open
-                                ? 'Collapse drawer'
-                                : 'Expand drawer'
+                            : isMini
+                                ? open
+                                    ? 'Collapse mini'
+                                    : 'Expand mini'
+                                : open
+                                    ? 'Collapse drawer'
+                                    : 'Expand drawer'
                     }
                     variant={'contained'}
                     color={'primary'}
@@ -280,7 +247,7 @@ const meta: Meta<DrawerPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `
-A flexible drawer component with two render modes.
+A flexible drawer component with three render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
 Use \`Drawer.Section\` to group \`Drawer.NavItem\`, \`Drawer.ActionItem\`
@@ -292,7 +259,12 @@ and \`Drawer.SectionItem\` elements inside the body.
 const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
-  <Drawer.Header title="Settings" />
+  <Drawer.Header>
+    <Typography as="h2" fontSize="lg" fontWeight="semibold" color="foreground" ellipsis style={{ flex: '1 1 0%' }}>
+      Settings
+    </Typography>
+    <IconButton icon="lucide:x" aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />
+  </Drawer.Header>
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
       <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
@@ -316,14 +288,14 @@ const [open, setOpen] = useState(false)
 | -------- | ------------------------------------------------------------------------ |
 | \`portal\` | Rendered in a portal over the page with an optional backdrop.            |
 | \`inline\` | Takes space in the layout when open, collapses to width \`0\` when closed. |
+| \`mini\`   | Stays visible when closed, collapsing to a narrow width.                 |
 
 **Accessibility**
 
 - Portal drawers are always modal and trap focus while open.
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
-- Provide a visible title via \`Drawer.Header\`; the drawer automatically wires
-  \`aria-labelledby\` to that title. You can still override with \`aria-label\` or
-  \`aria-labelledby\` on \`Drawer\`.
+- Add a visible title inside \`Drawer.Header\` and pass its \`id\` to \`aria-labelledby\` on \`Drawer\` for screen readers.
+- Override with \`aria-label\` or \`aria-labelledby\` on \`Drawer\` as needed.
 - Wrap navigation items in \`Drawer.Body as="nav"\` with an \`aria-label\`.
 - \`Drawer.Section\` automatically associates its title with the section landmark
   via \`aria-labelledby\`.
@@ -332,6 +304,7 @@ const [open, setOpen] = useState(false)
   while remaining discoverable in the tab order.
 - In \`inline\` mode the collapsed panel is hidden from assistive technologies with
   \`aria-hidden\` and \`inert\`.
+- In \`mini\` mode the panel stays visible and accessible when collapsed.
         `,
             },
         },
@@ -364,6 +337,10 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer' },
         },
+        collapsedWidth: {
+            control: 'text',
+            table: { category: 'Drawer' },
+        },
         backgroundColor: {
             control: 'select',
             options: [
@@ -377,32 +354,12 @@ const [open, setOpen] = useState(false)
             ],
             table: { category: 'Drawer' },
         },
-        title: {
-            control: 'text',
-            table: { category: 'Drawer.Header' },
-        },
-        description: {
-            control: 'text',
-            table: { category: 'Drawer.Header' },
-        },
-        showDescription: {
-            control: 'boolean',
-            table: { category: 'Drawer.Header' },
-        },
         showHeader: {
             control: 'boolean',
             table: { category: 'Drawer.Header' },
         },
         showFooter: {
             control: 'boolean',
-            table: { category: 'Drawer.Footer' },
-        },
-        confirmLabel: {
-            control: 'text',
-            table: { category: 'Drawer.Footer' },
-        },
-        cancelLabel: {
-            control: 'text',
             table: { category: 'Drawer.Footer' },
         },
         showNavigation: {
@@ -413,19 +370,11 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.Body' },
         },
-        showActions: {
-            control: 'boolean',
-            table: { category: 'Drawer.Body' },
-        },
         navigationTitle: {
             control: 'text',
             table: { category: 'Drawer.Section' },
         },
         settingsTitle: {
-            control: 'text',
-            table: { category: 'Drawer.Section' },
-        },
-        actionsTitle: {
             control: 'text',
             table: { category: 'Drawer.Section' },
         },
@@ -453,11 +402,6 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.NavItem' },
         },
-        navItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
-            table: { category: 'Drawer.NavItem' },
-        },
         navItemVariant: {
             control: 'select',
             options: ['default', 'outlined'],
@@ -467,29 +411,6 @@ const [open, setOpen] = useState(false)
             control: 'select',
             options: DRAWER_ITEM_COLORS_ARRAY,
             table: { category: 'Drawer.NavItem' },
-        },
-        actionItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemDisabled: {
-            control: 'boolean',
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemVariant: {
-            control: 'select',
-            options: ['default', 'outlined'],
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemColor: {
-            control: 'select',
-            options: DRAWER_ITEM_COLORS_ARRAY,
-            table: { category: 'Drawer.ActionItem' },
         },
         sectionItemLabel: {
             control: 'text',
@@ -501,11 +422,6 @@ const [open, setOpen] = useState(false)
         },
         sectionItemDisabled: {
             control: 'boolean',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
             table: { category: 'Drawer.SectionItem' },
         },
         sectionItemColor: {
@@ -520,37 +436,24 @@ const [open, setOpen] = useState(false)
         position: 'left' as DrawerPosition,
         size: 'md' as DrawerSize,
         withBackdrop: true,
-        title: 'Account settings',
-        description: 'Manage your profile and preferences.',
-        showDescription: true,
+        collapsedWidth: '3.875rem',
         showHeader: true,
         showFooter: true,
-        confirmLabel: 'Save changes',
-        cancelLabel: 'Cancel',
         showNavigation: true,
         showSettings: true,
-        showActions: true,
         navigationTitle: 'Navigation',
         settingsTitle: 'Settings',
-        actionsTitle: 'Actions',
         firstNavItemLabel: 'Dashboard',
         secondNavItemLabel: 'Team',
         thirdNavItemLabel: 'Profile',
         fourthNavItemLabel: 'Billing',
         navItemActive: true,
         navItemDisabled: false,
-        navItemSize: 'md',
         navItemVariant: 'default',
         navItemColor: 'primary',
-        actionItemLabel: 'Sign out',
-        actionItemDisabled: false,
-        actionItemSize: 'md',
-        actionItemVariant: 'default',
-        actionItemColor: 'primary',
         sectionItemLabel: 'Section item ',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,
-        sectionItemSize: 'md',
         sectionItemColor: 'primary',
     },
 } satisfies Meta<DrawerPlaygroundArgs>
@@ -614,4 +517,34 @@ export const Inline: Story = {
         },
     },
     render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
+}
+
+export const Mini: Story = {
+    args: {
+        defaultOpen: false,
+        mode: 'mini',
+        size: 'sm',
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Mini drawer that stays visible when closed, collapsing to a narrow width.',
+            },
+        },
+    },
+    render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }

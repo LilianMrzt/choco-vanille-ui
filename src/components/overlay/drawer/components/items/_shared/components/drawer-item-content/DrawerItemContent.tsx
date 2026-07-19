@@ -5,6 +5,7 @@ import { Typography } from '@components/foundation/typography'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/use-drawer-item-attributes/useDrawerItemAttributes.hook.ts'
 import type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/types/DrawerItemContent.props.ts'
 import { RotatingChevron } from '@components/_common/rotating-chevron'
+import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared/styles/DrawerItemShared.css.ts'
 
 /**
  * Shared inner content of a drawer item row.
@@ -18,11 +19,10 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
     startIcon,
     endChevronIcon,
     expanded,
-    size = 'md',
     iconSize,
     trailing,
 }) => {
-    const { state, resolvedIconSize } = useDrawerItemAttributes(size, iconSize)
+    const { state, resolvedIconSize } = useDrawerItemAttributes(iconSize)
 
     return (
         <>
@@ -30,25 +30,29 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
                 icon={startIcon}
                 size={resolvedIconSize}
             />
-            <Typography
-                variant={'span'}
-                width={'100%'}
-                maxLines={1}
-                minWidth={0}
-                ellipsis={true}
-                maxWidth={'100%'}
+            <span
+                className={DRAWER_ITEM_STYLES.content}
                 data-state={state}
+                aria-hidden={state === 'closed'}
             >
-                {label}
-            </Typography>
-            {trailing}
-            {endChevronIcon && (
-                <RotatingChevron
-                    expanded={expanded ?? false}
-                    size={resolvedIconSize}
-                    data-state={state}
-                />
-            )}
+                <Typography
+                    variant={'span'}
+                    width={'100%'}
+                    maxLines={1}
+                    minWidth={0}
+                    ellipsis={true}
+                    maxWidth={'100%'}
+                >
+                    {label}
+                </Typography>
+                {trailing}
+                {endChevronIcon && (
+                    <RotatingChevron
+                        expanded={expanded ?? false}
+                        size={resolvedIconSize}
+                    />
+                )}
+            </span>
         </>
     )
 })

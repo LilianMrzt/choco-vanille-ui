@@ -1,4 +1,4 @@
-﻿import { memo, type FC } from 'react'
+import { memo, type FC } from 'react'
 
 import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
 import {
@@ -7,6 +7,7 @@ import {
     useDrawerItemAttributes,
 } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
+import { Tooltip } from '@components'
 
 /**
  * A button-like action row rendered inside a `Drawer`.
@@ -17,7 +18,6 @@ const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
     label,
     startIcon,
     trailing,
-    size = 'md',
     variant = 'default',
     color = 'primary',
     iconSize,
@@ -27,29 +27,36 @@ const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
     ref,
     ...props
 }) => {
-    const { itemAttributes } = useDrawerItemAttributes(size, iconSize)
+    const { open, itemAttributes } = useDrawerItemAttributes(iconSize)
 
     return (
-        <button
-            ref={ref}
-            type={'button'}
-            disabled={disabled}
-            className={cn(
-                DRAWER_ITEM_STYLES.recipe({ size, variant, color }),
-                className,
-            )}
-            style={style}
-            {...itemAttributes}
-            {...props}
+        <Tooltip
+            position={'right'}
+            content={label}
+            disabled={open}
         >
-            <DrawerItemContent
-                label={label}
-                startIcon={startIcon}
-                trailing={trailing}
-                size={size}
-                iconSize={iconSize}
-            />
-        </button>
+            <button
+                ref={ref}
+                type={'button'}
+                disabled={disabled}
+                aria-label={open ? undefined : label}
+                className={cn(
+                    DRAWER_ITEM_STYLES.recipe({ variant, color }),
+                    className,
+                )}
+                style={style}
+                {...itemAttributes}
+                {...props}
+            >
+                <DrawerItemContent
+                    label={label}
+                    startIcon={startIcon}
+                    trailing={trailing}
+                    iconSize={iconSize}
+                />
+            </button>
+        </Tooltip>
+
     )
 })
 
