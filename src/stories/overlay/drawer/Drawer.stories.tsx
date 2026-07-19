@@ -3,6 +3,7 @@ import { expect, userEvent, waitFor } from 'storybook/test'
 import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
+import { IconButton } from '@components/actions/icon-button'
 import { Badge } from '@components/data-display/badge'
 import { Flex } from '@components/layout/flex'
 import {
@@ -21,19 +22,12 @@ import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/
 import { md } from '@stories/utils/markdown'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
-  title?: string;
-  description?: string;
-  showDescription?: boolean;
   showHeader?: boolean;
   showFooter?: boolean;
-  confirmLabel?: string;
-  cancelLabel?: string;
   showNavigation?: boolean;
   showSettings?: boolean;
-  showActions?: boolean;
   navigationTitle?: string;
   settingsTitle?: string;
-  actionsTitle?: string;
   firstNavItemLabel?: string;
   secondNavItemLabel?: string;
   thirdNavItemLabel?: string;
@@ -42,10 +36,6 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   navItemDisabled?: boolean;
   navItemVariant?: 'default' | 'outlined';
   navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
-  actionItemLabel?: string;
-  actionItemDisabled?: boolean;
-  actionItemVariant?: 'default' | 'outlined';
-  actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
@@ -60,19 +50,12 @@ const renderDrawer = ({
     withBackdrop,
     collapsedWidth,
     backgroundColor,
-    title,
-    description,
-    showDescription,
     showHeader,
     showFooter,
-    confirmLabel,
-    cancelLabel,
     showNavigation,
     showSettings,
-    showActions,
     navigationTitle,
     settingsTitle,
-    actionsTitle,
     firstNavItemLabel,
     secondNavItemLabel,
     thirdNavItemLabel,
@@ -81,10 +64,6 @@ const renderDrawer = ({
     navItemDisabled,
     navItemVariant,
     navItemColor,
-    actionItemLabel,
-    actionItemDisabled,
-    actionItemVariant,
-    actionItemColor,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
@@ -107,10 +86,13 @@ const renderDrawer = ({
                 backgroundColor={backgroundColor}
             >
                 {showHeader && (
-                    <Drawer.Header
-                        title={title}
-                        description={showDescription ? description : undefined}
-                    />
+                    <Drawer.Header>
+                        <IconButton
+                            icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
+                            aria-label={open ? 'Collapse mini' : 'Expand mini'}
+                            onClick={() => setOpen(!open)}
+                        />
+                    </Drawer.Header>
                 )}
                 <Drawer.Body
                     as={'nav'}
@@ -206,37 +188,29 @@ const renderDrawer = ({
                                         color={navItemColor}
                                     />
                                 </Drawer.SectionItem>
-                            </Drawer.Section>
-                        )}
-                        {showActions && (
-                            <Drawer.Section title={actionsTitle}>
-                                <Drawer.ActionItem
-                                    label={actionItemLabel ?? 'Action item'}
-                                    startIcon={IconRegistry.logOut}
-                                    disabled={actionItemDisabled}
-                                    variant={actionItemVariant}
-                                    color={actionItemColor}
-                                    onClick={() => setOpen(false)}
+                                <Drawer.NavItem
+                                    label={thirdNavItemLabel ?? 'Profile'}
+                                    href={'/profile'}
+                                    startIcon={IconRegistry.user}
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
                                 />
                             </Drawer.Section>
                         )}
                     </Flex>
                 </Drawer.Body>
                 {showFooter && (
-                    <Drawer.Footer>
-                        <Button
-                            label={cancelLabel ?? 'Cancel'}
-                            variant={'outlined'}
-                            color={'primary'}
-                            size={'sm'}
-                            onClick={() => setOpen(false)}
-                        />
-                        <Button
-                            label={confirmLabel ?? 'Save changes'}
-                            variant={'contained'}
-                            color={'primary'}
-                            size={'sm'}
-                        />
+                    <Drawer.Footer
+                        justifyContent={'start'}
+                    >
+                        <Drawer.Section>
+                            <Drawer.ActionItem
+                                label={'Sign out'}
+                                startIcon={IconRegistry.logOut}
+                                color={'destructive'}
+                            />
+                        </Drawer.Section>
                     </Drawer.Footer>
                 )}
             </Drawer>
@@ -285,7 +259,12 @@ and \`Drawer.SectionItem\` elements inside the body.
 const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
-  <Drawer.Header title="Settings" />
+  <Drawer.Header>
+    <Typography as="h2" fontSize="lg" fontWeight="semibold" color="foreground" ellipsis style={{ flex: '1 1 0%' }}>
+      Settings
+    </Typography>
+    <IconButton icon="lucide:x" aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />
+  </Drawer.Header>
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
       <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
@@ -315,9 +294,8 @@ const [open, setOpen] = useState(false)
 
 - Portal drawers are always modal and trap focus while open.
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
-- Provide a visible title via \`Drawer.Header\`; the drawer automatically wires
-  \`aria-labelledby\` to that title. You can still override with \`aria-label\` or
-  \`aria-labelledby\` on \`Drawer\`.
+- Add a visible title inside \`Drawer.Header\` and pass its \`id\` to \`aria-labelledby\` on \`Drawer\` for screen readers.
+- Override with \`aria-label\` or \`aria-labelledby\` on \`Drawer\` as needed.
 - Wrap navigation items in \`Drawer.Body as="nav"\` with an \`aria-label\`.
 - \`Drawer.Section\` automatically associates its title with the section landmark
   via \`aria-labelledby\`.
@@ -376,32 +354,12 @@ const [open, setOpen] = useState(false)
             ],
             table: { category: 'Drawer' },
         },
-        title: {
-            control: 'text',
-            table: { category: 'Drawer.Header' },
-        },
-        description: {
-            control: 'text',
-            table: { category: 'Drawer.Header' },
-        },
-        showDescription: {
-            control: 'boolean',
-            table: { category: 'Drawer.Header' },
-        },
         showHeader: {
             control: 'boolean',
             table: { category: 'Drawer.Header' },
         },
         showFooter: {
             control: 'boolean',
-            table: { category: 'Drawer.Footer' },
-        },
-        confirmLabel: {
-            control: 'text',
-            table: { category: 'Drawer.Footer' },
-        },
-        cancelLabel: {
-            control: 'text',
             table: { category: 'Drawer.Footer' },
         },
         showNavigation: {
@@ -412,19 +370,11 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.Body' },
         },
-        showActions: {
-            control: 'boolean',
-            table: { category: 'Drawer.Body' },
-        },
         navigationTitle: {
             control: 'text',
             table: { category: 'Drawer.Section' },
         },
         settingsTitle: {
-            control: 'text',
-            table: { category: 'Drawer.Section' },
-        },
-        actionsTitle: {
             control: 'text',
             table: { category: 'Drawer.Section' },
         },
@@ -462,24 +412,6 @@ const [open, setOpen] = useState(false)
             options: DRAWER_ITEM_COLORS_ARRAY,
             table: { category: 'Drawer.NavItem' },
         },
-        actionItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemDisabled: {
-            control: 'boolean',
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemVariant: {
-            control: 'select',
-            options: ['default', 'outlined'],
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemColor: {
-            control: 'select',
-            options: DRAWER_ITEM_COLORS_ARRAY,
-            table: { category: 'Drawer.ActionItem' },
-        },
         sectionItemLabel: {
             control: 'text',
             table: { category: 'Drawer.SectionItem' },
@@ -505,19 +437,12 @@ const [open, setOpen] = useState(false)
         size: 'md' as DrawerSize,
         withBackdrop: true,
         collapsedWidth: '3.875rem',
-        title: 'Account settings',
-        description: 'Manage your profile and preferences.',
-        showDescription: true,
         showHeader: true,
         showFooter: true,
-        confirmLabel: 'Save changes',
-        cancelLabel: 'Cancel',
         showNavigation: true,
         showSettings: true,
-        showActions: true,
         navigationTitle: 'Navigation',
         settingsTitle: 'Settings',
-        actionsTitle: 'Actions',
         firstNavItemLabel: 'Dashboard',
         secondNavItemLabel: 'Team',
         thirdNavItemLabel: 'Profile',
@@ -526,10 +451,6 @@ const [open, setOpen] = useState(false)
         navItemDisabled: false,
         navItemVariant: 'default',
         navItemColor: 'primary',
-        actionItemLabel: 'Sign out',
-        actionItemDisabled: false,
-        actionItemVariant: 'default',
-        actionItemColor: 'primary',
         sectionItemLabel: 'Section item ',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,

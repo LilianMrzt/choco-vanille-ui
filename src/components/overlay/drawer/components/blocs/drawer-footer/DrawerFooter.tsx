@@ -8,7 +8,7 @@ const DrawerFooter: FC<DrawerFooterProps> = memo(({
     as = 'div',
     justifyContent = 'end',
     gap = 'sm',
-    padding = 'lg',
+    padding = 'md',
     paddingTop = 'none',
     ...props
 }) => (
