@@ -16,11 +16,4 @@ export type DrawerItemContentProps = {
     iconSize?: IconSize
     /** Optional content rendered before the end icon (e.g. a badge). */
     trailing?: ReactNode
-    /**
-     * Whether the label, trailing content and end icon should be rendered.
-     *
-     * The start icon is always rendered. Defaults to `true` so items render
-     * normally when the transition hook is not driving this prop.
-     */
-    renderContent?: boolean
 }

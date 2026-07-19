@@ -14,7 +14,6 @@ import { cn } from '@utils/cn.ts'
  */
 const DrawerInline: FC<DrawerInlineProps> = memo(({
     open,
-    position,
     size,
     sizeWidthMap,
     backgroundColor,
@@ -34,9 +33,6 @@ const DrawerInline: FC<DrawerInlineProps> = memo(({
     const panelClassName = cn(
         DRAWER_STYLES.panel,
         DRAWER_INLINE_STYLES.panel,
-        position === 'right'
-            ? DRAWER_INLINE_STYLES.right
-            : DRAWER_INLINE_STYLES.left,
         !open && DRAWER_INLINE_STYLES.closed,
         DRAWER_STYLES.size[size],
         backgroundClassName,

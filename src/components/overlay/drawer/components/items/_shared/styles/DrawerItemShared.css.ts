@@ -15,10 +15,12 @@ const content = style({
     gap: 'inherit',
     flex: 1,
     minWidth: 0,
+    overflow: 'hidden',
     transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
     selectors: {
         '&[data-state="closed"]': {
             opacity: 0,
+            pointerEvents: 'none',
         },
     },
 })
@@ -31,7 +33,7 @@ const drawerItemRecipe = recipe({
         width: '100%',
         minWidth: 0,
         height: '2.25rem',
-        paddingInline: vars.space.md,
+        paddingInline: vars.space.sm2,
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',

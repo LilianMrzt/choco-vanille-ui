@@ -34,7 +34,6 @@ const panel = style({
 
 const left = style({
     left: 0,
-    borderRight: `1px solid ${vars.color.border}`,
     transform: 'translateX(-100%)',
     selectors: {
         '&[data-open]': {
@@ -48,7 +47,6 @@ const left = style({
 
 const right = style({
     right: 0,
-    borderLeft: `1px solid ${vars.color.border}`,
     transform: 'translateX(100%)',
     selectors: {
         '&[data-open]': {

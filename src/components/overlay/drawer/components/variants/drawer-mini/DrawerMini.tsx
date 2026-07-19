@@ -17,7 +17,6 @@ import { COLLAPSED_WIDTH } from '@components/overlay/drawer/components/variants/
  */
 const DrawerMini: FC<DrawerMiniProps> = memo(({
     open,
-    position,
     size,
     sizeWidthMap,
     collapsedWidth = COLLAPSED_WIDTH,
@@ -38,9 +37,6 @@ const DrawerMini: FC<DrawerMiniProps> = memo(({
     const panelClassName = cn(
         DRAWER_STYLES.panel,
         DRAWER_MINI_STYLES.panel,
-        position === 'right'
-            ? DRAWER_MINI_STYLES.right
-            : DRAWER_MINI_STYLES.left,
         !open && DRAWER_MINI_STYLES.closed,
         DRAWER_STYLES.size[size],
         backgroundClassName,

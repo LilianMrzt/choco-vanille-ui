@@ -8,14 +8,6 @@ const panel = style({
     transition: `width ${vars.duration.normal} ${vars.easing.standard}, opacity ${vars.duration.normal} ${vars.easing.standard}`,
 })
 
-const left = style({
-    borderRight: `1px solid ${vars.color.border}`,
-})
-
-const right = style({
-    borderLeft: `1px solid ${vars.color.border}`,
-})
-
 const closed = style({
     opacity: 0,
     overflow: 'hidden',
@@ -24,7 +16,5 @@ const closed = style({
 
 export const DRAWER_INLINE_STYLES = {
     panel,
-    left,
-    right,
     closed,
 }

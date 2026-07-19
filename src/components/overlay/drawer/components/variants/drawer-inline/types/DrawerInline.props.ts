@@ -2,7 +2,6 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 
 import type { DrawerRecipeVariants } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import type {
-    DrawerPosition,
     DrawerSize,
 } from '@components/overlay/drawer/types'
 
@@ -10,8 +9,6 @@ import type {
 export type DrawerInlineProps = HTMLAttributes<HTMLDivElement> & {
   /** Current open state. */
   open: boolean;
-  /** Side the drawer attaches to. */
-  position: DrawerPosition;
   /** Width preset. */
   size: DrawerSize;
   /** Maps a size preset to a CSS width value. */

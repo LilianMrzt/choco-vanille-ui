@@ -1,1 +1,1 @@
-export const COLLAPSED_WIDTH = 64
+export const COLLAPSED_WIDTH = 62

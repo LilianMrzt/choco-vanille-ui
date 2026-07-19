@@ -21,7 +21,6 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
     expanded,
     iconSize,
     trailing,
-    renderContent = true,
 }) => {
     const { state, resolvedIconSize } = useDrawerItemAttributes(iconSize)
 
@@ -31,30 +30,29 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
                 icon={startIcon}
                 size={resolvedIconSize}
             />
-            {renderContent && (
-                <span
-                    className={DRAWER_ITEM_STYLES.content}
-                    data-state={state}
+            <span
+                className={DRAWER_ITEM_STYLES.content}
+                data-state={state}
+                aria-hidden={state === 'closed'}
+            >
+                <Typography
+                    variant={'span'}
+                    width={'100%'}
+                    maxLines={1}
+                    minWidth={0}
+                    ellipsis={true}
+                    maxWidth={'100%'}
                 >
-                    <Typography
-                        variant={'span'}
-                        width={'100%'}
-                        maxLines={1}
-                        minWidth={0}
-                        ellipsis={true}
-                        maxWidth={'100%'}
-                    >
-                        {label}
-                    </Typography>
-                    {trailing}
-                    {endChevronIcon && (
-                        <RotatingChevron
-                            expanded={expanded ?? false}
-                            size={resolvedIconSize}
-                        />
-                    )}
-                </span>
-            )}
+                    {label}
+                </Typography>
+                {trailing}
+                {endChevronIcon && (
+                    <RotatingChevron
+                        expanded={expanded ?? false}
+                        size={resolvedIconSize}
+                    />
+                )}
+            </span>
         </>
     )
 })

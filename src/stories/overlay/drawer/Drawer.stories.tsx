@@ -95,7 +95,7 @@ const renderDrawer = ({
     const isMini = mode === 'mini'
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100%' }}>
             <Drawer
                 open={open}
                 onOpenChange={setOpen}
@@ -504,7 +504,7 @@ const [open, setOpen] = useState(false)
         position: 'left' as DrawerPosition,
         size: 'md' as DrawerSize,
         withBackdrop: true,
-        collapsedWidth: '4rem',
+        collapsedWidth: '3.875rem',
         title: 'Account settings',
         description: 'Manage your profile and preferences.',
         showDescription: true,
@@ -596,6 +596,13 @@ export const Inline: Story = {
         },
     },
     render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
 
 export const Mini: Story = {
@@ -612,4 +619,11 @@ export const Mini: Story = {
         },
     },
     render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
 }
