@@ -39,6 +39,15 @@ const config: StorybookConfig = {
       vanillaExtractPlugin(),
     ];
 
+    viteConfig.server = {
+      ...viteConfig.server,
+      warmup: {
+        clientFiles: [
+          resolve(root, 'src/stories/overview/introduction/Introduction.mdx'),
+        ],
+      },
+    };
+
     viteConfig.resolve = {
       ...viteConfig.resolve,
       alias: {
