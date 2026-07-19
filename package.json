@@ -1,6 +1,6 @@
 {
-  "name": "@aurora-ds/lib-test",
-  "version": "0.0.3-dev.1",
+  "name": "@choco-vanille/ui",
+  "version": "1.0.0",
   "description": "A React 19 UI kit built with Radix primitives and a Vanilla Extract design system.",
   "type": "module",
   "license": "MIT",
