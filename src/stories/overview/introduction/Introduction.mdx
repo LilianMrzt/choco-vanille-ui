@@ -2,15 +2,15 @@ import { Meta, Source } from '@storybook/addon-docs/blocks'
 
 <Meta title="Overview/Introduction" />
 
-# @my-org/ui-kit
+# @choco-vanille/ui
 
-A React 19 component library built with **Vite** and **Vanilla Extract** (zero-runtime CSS-in-TS).
+A React 19 component library built with **Vite**, **Vanilla Extract** (zero-runtime CSS-in-TS) and **Base UI** primitives.
 
 ---
 
 ## What is it for?
 
-`@my-org/ui-kit` is the **shared component library** of the organisation. Its purpose is to centralise all reusable UI building blocks so that every product benefits from:
+`@choco-vanille/ui` is a personal UI kit. Its purpose is to centralise reusable UI building blocks so that every project benefits from:
 
 | Benefit | Details |
 | --- | --- |
@@ -26,14 +26,14 @@ A React 19 component library built with **Vite** and **Vanilla Extract** (zero-r
 
 <Source
   language="bash"
-  code={`yarn add @my-org/ui-kit react react-dom`}
+  code={`yarn add @choco-vanille/ui react react-dom`}
 />
 
 Import the stylesheet once in your entry point:
 
 <Source
   language="ts"
-  code={`import '@my-org/ui-kit/styles.css';`}
+  code={`import '@choco-vanille/ui/styles.css';`}
 />
 
 ---
@@ -42,7 +42,7 @@ Import the stylesheet once in your entry point:
 
 <Source
   language="tsx"
-  code={`import { Typography, Button } from '@my-org/ui-kit';
+  code={`import { Typography, Button } from '@choco-vanille/ui';
 
 export function Example() {
   return (
@@ -54,6 +54,23 @@ export function Example() {
   );
 }`}
 />
+
+---
+
+## Components
+
+| Category | Components |
+|---|---|
+| **Foundation** | `Icon`, `Typography` |
+| **Layout** | `Box`, `Flex`, `Grid`, `Image`, `Separator`, `Form`, `Fieldset`, `Legend` |
+| **Actions** | `Button`, `IconButton`, `ToggleButton`, `ToggleIconButton`, `ToggleButtonGroup` |
+| **Forms** | `Autocomplete`, `Calendar`, `Checkbox`, `DatePicker`, `RadioGroup`, `Select`, `Switch`, `TextArea`, `TextField` |
+| **Data Display** | `Avatar`, `AvatarGroup`, `Badge`, `Table` |
+| **Surfaces** | `Accordion`, `Card`, `Collapsible` |
+| **Navigation** | `Tabs`, `Link` |
+| **Overlay** | `Tooltip`, `DropdownMenu`, `Popover`, `HoverCard`, `Dialog`, `Drawer` |
+| **Feedback** | `Skeleton`, `Callout`, `Toast`, `Progress` |
+| **Theme** | `ThemeProvider`, `useTheme` |
 
 ---
 
@@ -75,7 +92,7 @@ In your `*.css.ts` files (Vanilla Extract), access tokens via the `vars` object 
 <Source
   language="ts"
   code={`import { style } from '@vanilla-extract/css';
-import { vars } from '@my-org/ui-kit';
+import { vars } from '@choco-vanille/ui';
 
 export const card = style({
   backgroundColor: vars.color.card,
