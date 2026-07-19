@@ -19,7 +19,8 @@ import {
  *      from the painted hidden state (prevents flickering).
  *
  * Closing sequence:
- *   `isFadingIn=false` → CSS transition plays → after `duration` ms → `isVisible=false`.
+ *   `isFadingIn=false` → CSS transition plays → after `duration` ms → `isVisible=false`
+ *   and `shouldRenderContent=false`.
  *
  * When `prefers-reduced-motion: reduce` is active the effective duration is forced to
  * `0` so the element is removed from the DOM immediately after hiding, in sync with
@@ -65,5 +66,5 @@ export const useTransitionRender = (
         }
     }, [isOpen, effectiveDuration])
 
-    return { isVisible, isFadingIn }
+    return { isVisible, isFadingIn, shouldRenderContent: isVisible }
 }

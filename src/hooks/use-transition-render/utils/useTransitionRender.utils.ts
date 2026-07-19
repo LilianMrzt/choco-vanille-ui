@@ -25,6 +25,7 @@ const resolveDurationMs = (varRef: string): number => {
  */
 const getPrefersReducedMotion = (): boolean =>
     typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export { parseDurationMs, resolveDurationMs, getPrefersReducedMotion }

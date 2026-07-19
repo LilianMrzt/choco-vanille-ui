@@ -1,13 +1,3 @@
-import type { IconSize } from '@components/foundation/icon'
-
-/**
- * Size presets for drawer item rows.
- */
-export const DRAWER_ITEM_SIZES = {
-    sm: 'sm',
-    md: 'md',
-} as const
-
 /**
  * Visual variants for drawer item rows.
  */
@@ -35,12 +25,6 @@ export const DRAWER_ITEM_COLORS = {
 export const DRAWER_ITEM_COLORS_ARRAY = Object.values(DRAWER_ITEM_COLORS)
 
 /**
- * Maps a drawer item size to the icon size rendered inside the row.
+ * Default icon size rendered inside a drawer item row.
  */
-export const DRAWER_ITEM_SIZE_TO_ICON_SIZE: Record<
-  (typeof DRAWER_ITEM_SIZES)[keyof typeof DRAWER_ITEM_SIZES],
-  IconSize
-> = {
-    sm: 'xs',
-    md: 'md',
-}
+export const DRAWER_ITEM_DEFAULT_ICON_SIZE = 'md' as const

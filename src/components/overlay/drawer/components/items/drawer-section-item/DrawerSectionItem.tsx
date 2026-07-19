@@ -11,6 +11,8 @@ import { Flex, Grid, Separator } from '@components'
 import {
     DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT, DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT
 } from '@components/overlay/drawer/components/items/drawer-section-item/constants'
+import { useTransitionRender } from '@hooks/use-transition-render/useTransitionRender.hook.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /**
  * An expandable section row rendered inside a `Drawer`.
@@ -28,7 +30,6 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
     defaultExpanded = false,
     expanded: expandedProp,
     onExpandedChange,
-    size = 'md',
     color = 'primary',
     disabled,
     className,
@@ -36,6 +37,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
     ...props
 }) => {
     const {
+        open,
         itemAttributes,
         sectionId,
         expanded,
@@ -44,9 +46,9 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
         defaultExpanded,
         expanded: expandedProp,
         onExpandedChange,
-        size,
         disabled,
     })
+    const { shouldRenderContent } = useTransitionRender(open, vars.duration.normal)
 
     return (
         <Box
@@ -58,8 +60,8 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
                 disabled={disabled}
                 aria-expanded={expanded}
                 aria-controls={sectionId}
-                aria-label={ariaLabel}
-                className={DRAWER_SECTION_ITEM_STYLES.recipe({ size, color })}
+                aria-label={ariaLabel ?? (shouldRenderContent ? undefined : label)}
+                className={DRAWER_SECTION_ITEM_STYLES.recipe({ color })}
                 onClick={handleToggle}
                 {...itemAttributes}
                 {...props}
@@ -67,10 +69,10 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
                 <DrawerItemContent
                     label={label}
                     startIcon={startIcon}
-                    size={size}
                     trailing={trailing}
                     endChevronIcon
                     expanded={expanded}
+                    renderContent={shouldRenderContent}
                 />
             </button>
             <Grid
@@ -87,7 +89,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
                     flexDirection={'row'}
                     minHeight={0}
                     paddingBottom={'xs'}
-                    paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT[size]}
+                    paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT}
                     overflow={expanded ? 'visible' : 'hidden'}
                     gap={'none'}
                 >
@@ -97,7 +99,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(({
                     <Flex
                         flexDirection={'column'}
                         minHeight={0}
-                        paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT[size]}
+                        paddingLeft={DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT}
                         gap={'none'}
                         flex={1}
                     >

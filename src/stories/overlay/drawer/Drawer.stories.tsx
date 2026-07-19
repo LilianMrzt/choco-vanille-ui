@@ -40,18 +40,15 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   fourthNavItemLabel?: string;
   navItemActive?: boolean;
   navItemDisabled?: boolean;
-  navItemSize?: 'sm' | 'md';
   navItemVariant?: 'default' | 'outlined';
   navItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   actionItemLabel?: string;
   actionItemDisabled?: boolean;
-  actionItemSize?: 'sm' | 'md';
   actionItemVariant?: 'default' | 'outlined';
   actionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
-  sectionItemSize?: 'sm' | 'md';
   sectionItemColor?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'success' | 'warning' | 'info';
 };
 
@@ -82,18 +79,15 @@ const renderDrawer = ({
     fourthNavItemLabel,
     navItemActive,
     navItemDisabled,
-    navItemSize,
     navItemVariant,
     navItemColor,
     actionItemLabel,
     actionItemDisabled,
-    actionItemSize,
     actionItemVariant,
     actionItemColor,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
-    sectionItemSize,
     sectionItemColor,
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
@@ -134,7 +128,6 @@ const renderDrawer = ({
                                     startIcon={IconRegistry.home}
                                     active={navItemActive}
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -143,7 +136,6 @@ const renderDrawer = ({
                                     href={'/team'}
                                     startIcon={IconRegistry.user}
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -160,7 +152,6 @@ const renderDrawer = ({
                                         />
                                     }
                                     disabled={navItemDisabled}
-                                    size={navItemSize}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -180,7 +171,6 @@ const renderDrawer = ({
                                     }
                                     defaultExpanded={sectionItemDefaultExpanded}
                                     disabled={sectionItemDisabled}
-                                    size={sectionItemSize}
                                     color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
@@ -196,7 +186,6 @@ const renderDrawer = ({
                                             />
                                         }
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -205,7 +194,6 @@ const renderDrawer = ({
                                         href={'/profile'}
                                         startIcon={IconRegistry.user}
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -214,7 +202,6 @@ const renderDrawer = ({
                                         href={'/billing'}
                                         startIcon={IconRegistry.creditCard}
                                         disabled={navItemDisabled}
-                                        size={navItemSize}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -227,7 +214,6 @@ const renderDrawer = ({
                                     label={actionItemLabel ?? 'Action item'}
                                     startIcon={IconRegistry.logOut}
                                     disabled={actionItemDisabled}
-                                    size={actionItemSize}
                                     variant={actionItemVariant}
                                     color={actionItemColor}
                                     onClick={() => setOpen(false)}
@@ -466,11 +452,6 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.NavItem' },
         },
-        navItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
-            table: { category: 'Drawer.NavItem' },
-        },
         navItemVariant: {
             control: 'select',
             options: ['default', 'outlined'],
@@ -487,11 +468,6 @@ const [open, setOpen] = useState(false)
         },
         actionItemDisabled: {
             control: 'boolean',
-            table: { category: 'Drawer.ActionItem' },
-        },
-        actionItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
             table: { category: 'Drawer.ActionItem' },
         },
         actionItemVariant: {
@@ -514,11 +490,6 @@ const [open, setOpen] = useState(false)
         },
         sectionItemDisabled: {
             control: 'boolean',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemSize: {
-            control: 'select',
-            options: ['sm', 'md'],
             table: { category: 'Drawer.SectionItem' },
         },
         sectionItemColor: {
@@ -553,18 +524,15 @@ const [open, setOpen] = useState(false)
         fourthNavItemLabel: 'Billing',
         navItemActive: true,
         navItemDisabled: false,
-        navItemSize: 'md',
         navItemVariant: 'default',
         navItemColor: 'primary',
         actionItemLabel: 'Sign out',
         actionItemDisabled: false,
-        actionItemSize: 'md',
         actionItemVariant: 'default',
         actionItemColor: 'primary',
         sectionItemLabel: 'Section item ',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,
-        sectionItemSize: 'md',
         sectionItemColor: 'primary',
     },
 } satisfies Meta<DrawerPlaygroundArgs>

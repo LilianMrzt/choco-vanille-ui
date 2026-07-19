@@ -4,6 +4,8 @@ import { useDrawerNavItem } from '@components/overlay/drawer/components/items/dr
 import type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
 import { DRAWER_ITEM_STYLES, DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
 import { cn } from '@utils/cn.ts'
+import { useTransitionRender } from '@hooks/use-transition-render/useTransitionRender.hook.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /**
  * A navigation row rendered inside a `Drawer`.
@@ -18,7 +20,6 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     trailing,
     active,
     disabled,
-    size = 'md',
     variant = 'default',
     color = 'primary',
     iconSize,
@@ -28,20 +29,21 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     ref,
     ...props
 }) => {
-    const { linkAttributes, handleClick } = useDrawerNavItem({
+    const { open, linkAttributes, handleClick } = useDrawerNavItem({
         active,
         disabled,
-        size,
         iconSize,
         onClick,
     })
+    const { shouldRenderContent } = useTransitionRender(open, vars.duration.normal)
 
     return (
         <a
             ref={ref}
             href={href}
+            aria-label={shouldRenderContent ? undefined : label}
             className={cn(
-                DRAWER_ITEM_STYLES.recipe({ size, variant, color }),
+                DRAWER_ITEM_STYLES.recipe({ variant, color }),
                 className,
             )}
             style={style}
@@ -53,8 +55,8 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
                 label={label}
                 startIcon={startIcon}
                 trailing={trailing}
-                size={size}
                 iconSize={iconSize}
+                renderContent={shouldRenderContent}
             />
         </a>
     )

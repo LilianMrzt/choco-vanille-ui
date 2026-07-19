@@ -14,12 +14,8 @@ export const useDrawerSectionItem = ({
     defaultExpanded = false,
     expanded: expandedProp,
     onExpandedChange,
-    size = 'md',
 }: UseDrawerSectionItemOptions): UseDrawerSectionItemReturn => {
-    const { state, resolvedIconSize, itemAttributes } = useDrawerItemAttributes(
-        size,
-        undefined,
-    )
+    const { open, state, resolvedIconSize, itemAttributes } = useDrawerItemAttributes()
     const generatedId = useId()
     const sectionId = `${generatedId}-section`
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
@@ -35,6 +31,7 @@ export const useDrawerSectionItem = ({
     }, [expanded, isControlled, onExpandedChange])
 
     return {
+        open,
         state,
         resolvedIconSize,
         itemAttributes,

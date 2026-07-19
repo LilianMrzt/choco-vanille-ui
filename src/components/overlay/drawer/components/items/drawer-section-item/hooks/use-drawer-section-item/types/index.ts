@@ -3,10 +3,11 @@ import type { DrawerSectionItemProps } from '@components/overlay/drawer/componen
 
 export type UseDrawerSectionItemOptions = Pick<
     DrawerSectionItemProps,
-    'defaultExpanded' | 'expanded' | 'onExpandedChange' | 'size' | 'disabled'
+    'defaultExpanded' | 'expanded' | 'onExpandedChange' | 'disabled'
 >
 
 export type UseDrawerSectionItemReturn = {
+    open: ReturnType<typeof useDrawerItemAttributes>['open'];
     state: ReturnType<typeof useDrawerItemAttributes>['state'];
     resolvedIconSize: ReturnType<
         typeof useDrawerItemAttributes
