@@ -732,6 +732,7 @@ Do not introduce:
 - [ ] Check callback arguments at runtime.
 - [ ] Check accessible name, role, state and relationships.
 - [ ] Check the package barrel and generated declaration.
+- [ ] Keep the associated story coherent with the public API; when a consumer API (for example, props) changes, update the story. Story completeness can be addressed separately.
 - [ ] Update only relevant tests and stories.
 
 ### Adding a feature

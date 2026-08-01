@@ -76,14 +76,13 @@ Le même axe visuel est nommé différemment :
 
 - Button/IconButton : `contained` et `outlined`
   (`buttonVariants.const.ts:1-5`) ;
-- Badge : `solid` et `outline`
+- Badge : `contained` et `outlined`
   (`badgeVariants.const.ts:1-6`).
 
-Les recettes confirment l'équivalence des concepts : `contained` et `solid`
-appliquent tous deux la couleur d'intention en fond et sa couleur foreground
-(`contained.ts:11-15`, `solid.ts:10-15`). `outlined` et `outline` décrivent
-dans les deux cas une surface sans remplissage bordée, même si l'intensité du
-token diffère.
+La recette `contained.ts` de Badge applique la couleur d'intention en fond et sa
+couleur foreground (`contained.ts:10-15`). La recette `outlined.ts` décrit une
+surface sans remplissage bordée pour `outlined`, même si l'intensité du token
+diffère.
 
 La convention dominante et déjà exemplaire est `contained | outlined | ghost`.
 La correction minimale porte donc uniquement sur Badge.

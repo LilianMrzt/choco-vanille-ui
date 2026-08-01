@@ -6,9 +6,9 @@ import {
     BADGE_COLORS_ARRAY,
     BADGE_VARIANTS,
 } from '@components/data-display/badge/constants'
-import { solidCompoundVariants } from '@components/data-display/badge/styles/variants/solid.ts'
+import { solidCompoundVariants } from '@components/data-display/badge/styles/variants/contained.ts'
 import { subtleCompoundVariants } from '@components/data-display/badge/styles/variants/subtle.ts'
-import { outlineCompoundVariants } from '@components/data-display/badge/styles/variants/outline.ts'
+import { outlineCompoundVariants } from '@components/data-display/badge/styles/variants/outlined.ts'
 import { outlinedSubtleCompoundVariants } from '@components/data-display/badge/styles/variants/outlinedSubtle.ts'
 
 export const BADGE_STYLES = {
@@ -50,9 +50,9 @@ export const BADGE_STYLES = {
             },
 
             variant: {
-                [BADGE_VARIANTS.solid]: {},
+                [BADGE_VARIANTS.contained]: {},
                 [BADGE_VARIANTS.subtle]: {},
-                [BADGE_VARIANTS.outline]: {
+                [BADGE_VARIANTS.outlined]: {
                     backgroundColor: 'transparent',
                 },
                 [BADGE_VARIANTS.outlinedSubtle]: {},

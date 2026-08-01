@@ -77,7 +77,7 @@ describe('Badge', () => {
     })
 
     describe('variant styling', () => {
-        const variants: BadgeVariant[] = ['solid', 'subtle', 'outline']
+        const variants: BadgeVariant[] = ['contained', 'subtle', 'outlined']
 
         it.each(variants)(
             'applies a non-empty class for variant="%s"',
@@ -89,10 +89,10 @@ describe('Badge', () => {
             },
         )
 
-        it('falls back to the subtle variant when none is provided', () => {
+        it('falls back to the outlinedSubtle variant when none is provided', () => {
             const { container } = render(<Badge label={'badge'} />)
             expect(getFirstChild(container).className).toContain(
-                BADGE_STYLES.recipe({ variant: 'subtle', size: 'md' }),
+                BADGE_STYLES.recipe({ variant: 'outlinedSubtle', size: 'md' }),
             )
         })
 

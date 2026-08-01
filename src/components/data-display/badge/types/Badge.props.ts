@@ -9,7 +9,7 @@ export type BadgeProps = Omit<BoxProps, 'as' | 'children' | 'ref'> & {
     ref?: React.Ref<HTMLSpanElement>
     /** The text content rendered inside the badge. */
     label: string
-    /** Visual style variant. Defaults to `subtle`. */
+    /** Visual style variant. Defaults to `outlinedSubtle`. */
     variant?: BadgeVariant
     /** Semantic color intent. Defaults to `primary`. */
     color?: BadgeColor

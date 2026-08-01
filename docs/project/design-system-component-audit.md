@@ -84,7 +84,7 @@ des recettes.
   (`src/components/actions/_shared/buttons/constants/buttonVariants.const.ts:1-5`).
 - Les recettes `solid` et `contained` utilisent le même modèle observable :
   couleur d'intention en fond et foreground associé
-  (`badge/styles/variants/solid.ts:10-15`,
+  (`badge/styles/variants/contained.ts:10-15`,
   `actions/_shared/buttons/styles/variants/contained.ts:11-15`).
 - `outline` et `outlined` désignent tous deux la variante bordée sans
   remplissage. Le choix de tokens de bordure reste propre à chaque famille.

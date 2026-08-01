@@ -1,7 +1,7 @@
 export const BADGE_VARIANTS = {
-    solid: 'solid',
+    contained: 'contained',
     subtle: 'subtle',
-    outline: 'outline',
+    outlined: 'outlined',
     outlinedSubtle: 'outlinedSubtle',
 } as const
 

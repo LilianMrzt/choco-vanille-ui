@@ -5,12 +5,12 @@ import { createBadgeCompoundVariantUtils } from '@components/data-display/badge/
 type ColorVarKey = keyof typeof vars.color;
 
 /**
- * Compound variants for the "outline" visual variant.
+ * Compound variants for the "contained" visual variant.
  */
-export const outlineCompoundVariants = createBadgeCompoundVariantUtils(
-    BADGE_VARIANTS.outline,
+export const solidCompoundVariants = createBadgeCompoundVariantUtils(
+    BADGE_VARIANTS.contained,
     (color) => ({
-        borderColor: vars.color[`${color}SubtleBorder` as ColorVarKey],
-        color: vars.color[`${color}SubtleForeground` as ColorVarKey],
+        backgroundColor: vars.color[color],
+        color: vars.color[`${color}Foreground` as ColorVarKey],
     }),
 )

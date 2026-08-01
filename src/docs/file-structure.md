@@ -126,9 +126,9 @@ src/components/data-display/badge/
 ├── styles/
 │   ├── Badge.css.ts
 │   └── variants/
-│       ├── solid.ts
+│       ├── contained.ts
 │       ├── subtle.ts
-│       └── outline.ts
+│       └── outlined.ts
 ├── types/
 │   ├── Badge.props.ts
 │   └── Badge.types.ts
@@ -142,7 +142,7 @@ src/components/data-display/badge/
 Rules for `styles/`:
 
 - The main recipe file lives at `styles/ComponentName.css.ts`.
-- One file per visual variant under `styles/variants/` (e.g. `solid.ts`, `subtle.ts`, `outline.ts`).
+- One file per visual variant under `styles/variants/` (e.g. `contained.ts`, `subtle.ts`, `outlined.ts`).
 - Each variant file exports a single named array: `{variantName}CompoundVariants`.
 - `styles/ComponentName.css.ts` imports and spreads these arrays into `compoundVariants`.
 - Keep shared base styles, size variants, and the recipe itself in `styles/ComponentName.css.ts`.

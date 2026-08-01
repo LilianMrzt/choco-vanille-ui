@@ -6,7 +6,12 @@ import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-displ
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
-const VARIANTS: BadgeVariant[] = ['solid', 'subtle', 'outline', 'outlinedSubtle']
+const VARIANTS: BadgeVariant[] = [
+    'contained',
+    'subtle',
+    'outlined',
+    'outlinedSubtle',
+]
 const COLORS: BadgeColor[] = [
     'primary',
     'secondary',
@@ -40,8 +45,8 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
 
 \`\`\`tsx
 <Badge label="New" />
-<Badge label="Verified" variant="solid" color="success" />
-<Badge label="Draft" variant="outline" color="secondary" size="sm" />
+<Badge label="Verified" variant="contained" color="success" />
+<Badge label="Draft" variant="outlined" color="secondary" size="sm" />
 <Badge label="Soft" variant="outlinedSubtle" color="secondary" size="sm" />
 <Badge label="Custom" borderRadius="md" width="fit-content" />
 \`\`\`
@@ -141,7 +146,7 @@ export const Colors: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'All available color intents in the default subtle variant.',
+                story: 'All available color intents in the default outlinedSubtle variant.',
             },
         },
     },
@@ -177,14 +182,14 @@ export const WithIcons: Story = {
                 label={'End icon'}
                 endIcon={IconRegistry.chevronRight}
                 color={'primary'}
-                variant={'outline'}
+                variant={'outlined'}
             />
             <Badge
                 label={'Both icons'}
                 startIcon={IconRegistry.check}
                 endIcon={IconRegistry.chevronRight}
                 color={'info'}
-                variant={'solid'}
+                variant={'contained'}
             />
         </div>
     ),
