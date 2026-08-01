@@ -11,7 +11,7 @@ export type CalloutProps = React.HTMLAttributes<HTMLDivElement> &
     /**
      * Accessible live-region role. Defaults to "status" (polite). Use "alert"
      * for critical, time-sensitive messages that should interrupt the screen
-     * reader, or "none" to opt out of live-region semantics entirely.
+     * reader, or pass undefined to opt out of live-region semantics entirely.
      */
     role?: CalloutRole;
     /** Optional icon identifier. A default icon is provided per variant. */

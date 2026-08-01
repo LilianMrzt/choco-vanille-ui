@@ -8,7 +8,7 @@ import { md } from '@stories/utils/markdown'
 
 const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
 
-const ROLES: CalloutRole[] = ['alert', 'status', 'none']
+const ROLES: CalloutRole[] = ['alert', 'status', undefined]
 
 type CalloutPlaygroundArgs = {
     variant?: CalloutVariant
@@ -59,7 +59,7 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
 
 | Prop / Attribute               | Required | Type                          | Notes                                                                                      |
 | ------------------------------ | -------- | ----------------------------- | ------------------------------------------------------------------------------------------ |
-| \`role\` on root                 | No       | \`alert\` \| \`status\` \| \`none\` | Defaults to \`status\` (polite). Use \`alert\` for critical, time-sensitive messages that must interrupt the screen reader. |
+| \`role\` on root                 | No       | \`alert\` \| \`status\` \| \`undefined\` | Defaults to \`status\` (polite). Use \`alert\` for critical, time-sensitive messages that must interrupt the screen reader, or pass \`undefined\` to omit the role. |
 | \`aria-label\` on \`Callout.Icon\` | No       | \`string\`                      | Provide when the icon conveys meaning on its own.                                          |
 
 - The callout is a polite live region by default (\`role="status"\`), so updates are announced without interrupting the user; switch to \`role="alert"\` only for urgent messages.

@@ -13,17 +13,19 @@ import { cn } from '@utils/cn.ts'
 
 const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
-const Callout = memo<CalloutProps>(({
-    variant = 'info',
-    role = 'status',
-    icon,
-    title,
-    description,
-    children,
-    className,
-    ref,
-    ...props
-}) => {
+const Callout = memo<CalloutProps>((calloutProps) => {
+    const {
+        variant = 'info',
+        icon,
+        title,
+        description,
+        children,
+        className,
+        ref,
+        ...props
+    } = calloutProps
+    const role = 'role' in calloutProps ? calloutProps.role : 'status'
+
     const showDefaultIcon = !hasIconChild(children)
     const iconChild = extractIconChild(children)
     const remainingChildren = iconChild.remaining
@@ -35,8 +37,8 @@ const Callout = memo<CalloutProps>(({
                 alignItems={'start'}
                 gap={'md'}
                 className={cn(CALLOUT_STYLES.recipe({ variant }), className)}
-                role={role}
                 {...props}
+                role={role}
             >
                 {showDefaultIcon ? (
                     <CalloutIcon icon={icon} />
