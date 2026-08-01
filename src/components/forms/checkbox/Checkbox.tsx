@@ -1,5 +1,5 @@
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
-import { memo, useCallback, useId, type FC } from 'react'
+import { memo, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { IconRegistry } from '@constants/icons'
@@ -24,11 +24,6 @@ const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChang
     const generatedId = useId()
     const checkboxId = id ?? (label ? generatedId : undefined)
 
-    const handleCheckedChange = useCallback(
-        (checked: boolean) => onCheckedChange?.(checked, { reason: 'none' } as never),
-        [onCheckedChange],
-    )
-
     return (
         <Flex
             as={'span'}
@@ -38,7 +33,7 @@ const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChang
             <BaseCheckbox.Root
                 id={checkboxId}
                 className={cn(CHECKBOX_STYLES.root, className)}
-                onCheckedChange={handleCheckedChange}
+                onCheckedChange={onCheckedChange}
                 {...props}
             >
                 <BaseCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
