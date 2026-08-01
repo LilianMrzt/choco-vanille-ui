@@ -247,6 +247,11 @@ Vanilla Extract types.
 - Recipe types may exist inside `*.css.ts` for internal implementation only.
 - Public `*_STYLES` values may remain established extension handles, but they
   never define the component's props or public unions.
+- Name public aliases after the component and the precise concept they model
+  (`ComponentVariant`, `ComponentColor`, `ComponentSpace`, or
+  `ComponentBorderRadius`). Do not expose aggregate aliases named
+  `ComponentRecipeVariants`; after decoupling a recipe type, migrate consumers
+  to the precise public aliases and remove the old name.
 - When decoupling an existing component, move the vocabulary to
   `constants/`/`types/`, make the recipe consume it, then remove the
   type-level dependency from props to styles.

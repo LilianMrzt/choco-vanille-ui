@@ -4,13 +4,13 @@ import type { CSSProperties } from 'react'
 
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
-import type { BoxRecipeVariants } from '@components/layout/box'
+import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
 import { IconRegistry } from '@constants/icons'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
-const PADDINGS: (NonNullable<BoxRecipeVariants['padding']> | undefined)[] = [
+const PADDINGS: (BoxSpace | undefined)[] = [
     undefined,
     'none',
     'px',
@@ -29,7 +29,7 @@ const PADDINGS: (NonNullable<BoxRecipeVariants['padding']> | undefined)[] = [
     '4xl',
     '5xl',
 ]
-const BORDER_RADIUSES: (NonNullable<BoxRecipeVariants['borderRadius']> | undefined)[] = [
+const BORDER_RADIUSES: (BoxBorderRadius | undefined)[] = [
     undefined,
     'none',
     'xs',

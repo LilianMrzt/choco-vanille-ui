@@ -16,7 +16,7 @@ les composants absents de ce document :
 - Les formes observées sont des intersections complètes
   (`ButtonProps & ButtonRecipeVariants`), des sélections
   (`Pick<TextFieldInputRecipeVariants, 'size'>`) et des accès par propriété
-  (`BoxRecipeVariants['padding']`).
+  (`BoxSpace`).
 - Ces formes donnent aujourd'hui les bonnes unions, mais la direction de
   dépendance est inversée : la Consumer API dépend de la recette Vanilla
   Extract.

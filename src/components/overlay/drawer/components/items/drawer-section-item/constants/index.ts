@@ -1,4 +1,6 @@
-type PaddingVariant = NonNullable<import('@components/layout/box').BoxRecipeVariants['paddingLeft']>
+import type { BoxSpace } from '@components/layout/box/types/Box.types.ts'
+
+type PaddingVariant = BoxSpace
 
 /**
  * Left padding of the drawer section item collapsible content area.

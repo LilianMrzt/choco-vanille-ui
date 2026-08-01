@@ -1,8 +1,14 @@
 import type * as React from 'react'
 import type { CSSProperties, HTMLAttributes, RefAttributes } from 'react'
 
-import type { BoxRecipeVariants } from '@components/layout/box/styles/Box.css.ts'
-import type { BoxVariant } from '@components/layout/box/types/Box.types.ts'
+import type {
+    BoxBorderRadius,
+    BoxColor,
+    BoxMargin,
+    BoxShadow,
+    BoxSpace,
+    BoxVariant,
+} from '@components/layout/box/types/Box.types.ts'
 
 export type BoxProps = HTMLAttributes<HTMLElement> &
   RefAttributes<HTMLElement> & {
@@ -57,45 +63,45 @@ export type BoxProps = HTMLAttributes<HTMLElement> &
     /** The CSS `border-style` value of the element. */
     borderStyle?: CSSProperties['borderStyle'];
     /** The border radius token applied to the element. */
-    borderRadius?: BoxRecipeVariants['borderRadius'];
+    borderRadius?: BoxBorderRadius;
     /** The padding token applied to all sides of the element. */
-    padding?: BoxRecipeVariants['padding'];
+    padding?: BoxSpace;
     /** The padding token applied to the inline (horizontal) axis of the element. */
-    paddingX?: BoxRecipeVariants['paddingX'];
+    paddingX?: BoxSpace;
     /** The padding token applied to the block (vertical) axis of the element. */
-    paddingY?: BoxRecipeVariants['paddingY'];
+    paddingY?: BoxSpace;
     /** The padding token applied to the top of the element. */
-    paddingTop?: BoxRecipeVariants['paddingTop'];
+    paddingTop?: BoxSpace;
     /** The padding token applied to the right of the element. */
-    paddingRight?: BoxRecipeVariants['paddingRight'];
+    paddingRight?: BoxSpace;
     /** The padding token applied to the bottom of the element. */
-    paddingBottom?: BoxRecipeVariants['paddingBottom'];
+    paddingBottom?: BoxSpace;
     /** The padding token applied to the left of the element. */
-    paddingLeft?: BoxRecipeVariants['paddingLeft'];
+    paddingLeft?: BoxSpace;
     /** The margin token applied to all sides of the element. Supports `auto`. */
-    margin?: BoxRecipeVariants['margin'];
+    margin?: BoxMargin;
     /** The margin token applied to the inline (horizontal) axis of the element. Supports `auto`. */
-    marginX?: BoxRecipeVariants['marginX'];
+    marginX?: BoxMargin;
     /** The margin token applied to the block (vertical) axis of the element. Supports `auto`. */
-    marginY?: BoxRecipeVariants['marginY'];
+    marginY?: BoxMargin;
     /** The margin token applied to the top of the element. Supports `auto`. */
-    marginTop?: BoxRecipeVariants['marginTop'];
+    marginTop?: BoxMargin;
     /** The margin token applied to the right of the element. Supports `auto`. */
-    marginRight?: BoxRecipeVariants['marginRight'];
+    marginRight?: BoxMargin;
     /** The margin token applied to the bottom of the element. Supports `auto`. */
-    marginBottom?: BoxRecipeVariants['marginBottom'];
+    marginBottom?: BoxMargin;
     /** The margin token applied to the left of the element. Supports `auto`. */
-    marginLeft?: BoxRecipeVariants['marginLeft'];
+    marginLeft?: BoxMargin;
     /** The gap token between flex or grid children. */
-    gap?: BoxRecipeVariants['gap'];
+    gap?: BoxSpace;
     /** The column gap token between flex or grid children. */
-    columnGap?: BoxRecipeVariants['columnGap'];
+    columnGap?: BoxSpace;
     /** The row gap token between flex or grid children. */
-    rowGap?: BoxRecipeVariants['rowGap'];
+    rowGap?: BoxSpace;
     /** The theme color token applied to the element's border color. */
-    borderColor?: BoxRecipeVariants['borderColor'];
+    borderColor?: BoxColor;
     /** The theme color token applied to the element's background color. */
-    backgroundColor?: BoxRecipeVariants['backgroundColor'];
+    backgroundColor?: BoxColor;
     /** The shadow token applied to the element. */
-    boxShadow?: BoxRecipeVariants['boxShadow'];
+    boxShadow?: BoxShadow;
   };

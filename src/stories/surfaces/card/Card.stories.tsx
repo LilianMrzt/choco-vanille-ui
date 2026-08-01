@@ -9,7 +9,7 @@ import {
     Typography,
     type TypographyProps,
 } from '@components/foundation/typography'
-import type { BoxRecipeVariants } from '@components/layout/box'
+import type { BoxSpace } from '@components/layout/box'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
 
@@ -22,7 +22,7 @@ type CardPlaygroundArgs = ComponentProps<typeof Card> & {
   description?: string
   descriptionFontSize?: TypographyProps['fontSize']
   bodyAs?: 'div' | 'section'
-  bodyPadding?: BoxRecipeVariants['padding']
+  bodyPadding?: BoxSpace
   footerAs?: 'div' | 'footer'
   showFooter?: boolean
   footerActionLabel?: string
