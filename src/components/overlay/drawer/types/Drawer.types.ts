@@ -1,4 +1,5 @@
 import { DRAWER_MODES, DRAWER_POSITIONS, DRAWER_SIZES } from '@components/overlay/drawer/constants'
+import type { ThemeColor } from '@theme/types/index.ts'
 
 /** Render mode for the drawer. */
 export type DrawerMode = (typeof DRAWER_MODES)[keyof typeof DRAWER_MODES]
@@ -8,3 +9,6 @@ export type DrawerPosition = (typeof DRAWER_POSITIONS)[keyof typeof DRAWER_POSIT
 
 /** Predefined width for the drawer. */
 export type DrawerSize = (typeof DRAWER_SIZES)[keyof typeof DRAWER_SIZES]
+
+/** Theme color token used for the drawer panel background. */
+export type DrawerColor = ThemeColor | 'transparent'

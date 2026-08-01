@@ -21,6 +21,7 @@ export type DrawerCompound = FC<DrawerProps> & {
 
 export type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
 export type {
+    DrawerColor,
     DrawerMode,
     DrawerPosition,
     DrawerSize,

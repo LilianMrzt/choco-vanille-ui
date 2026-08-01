@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 
-import type { DrawerRecipeVariants } from '@components/overlay/drawer/styles/Drawer.css.ts'
 import type {
+    DrawerColor,
     DrawerPosition,
     DrawerSize,
 } from '@components/overlay/drawer/types'
@@ -19,7 +19,7 @@ export type DrawerPortalProps = HTMLAttributes<HTMLDivElement> & {
   /** Whether to render the backdrop. @default true */
   withBackdrop?: boolean;
   /** Theme color token applied to the drawer panel background. */
-  backgroundColor?: DrawerRecipeVariants['backgroundColor'];
+  backgroundColor?: DrawerColor;
   /** Accessible name used when no visible title is present. */
   accessibleName: string | undefined;
   /** Accessible labelled-by id. */

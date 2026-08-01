@@ -1,7 +1,11 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 
-import type { DrawerRecipeVariants } from '@components/overlay/drawer/styles/Drawer.css.ts'
-import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer/types/Drawer.types.ts'
+import type {
+    DrawerColor,
+    DrawerMode,
+    DrawerPosition,
+    DrawerSize,
+} from '@components/overlay/drawer/types/Drawer.types.ts'
 
 /** Props for the root `Drawer` component. */
 export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
@@ -22,7 +26,7 @@ export type DrawerProps = HTMLAttributes<HTMLDivElement> & {
     /** Width applied when the drawer is collapsed in `mini` mode. @default '4rem' */
     collapsedWidth?: string
     /** Theme color token applied to the drawer panel background. */
-    backgroundColor?: DrawerRecipeVariants['backgroundColor']
+    backgroundColor?: DrawerColor
     /** Accessible name used when no visible title is present. @default 'Drawer' */
     defaultAriaLabel?: string
     /** Drawer content — typically `Drawer.Header`, `Drawer.Body`, `Drawer.Footer`. */
