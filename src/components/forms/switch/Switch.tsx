@@ -1,5 +1,5 @@
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
-import { memo, useCallback, useId, type FC } from 'react'
+import { memo, useId, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
@@ -25,11 +25,6 @@ const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className,
     const hasError = Boolean(error)
     const helperId = (helperText || error) ? `${switchId}-helper` : undefined
 
-    const handleCheckedChange = useCallback(
-        (checked: boolean) => onCheckedChange?.(checked, { reason: 'none' } as never),
-        [onCheckedChange],
-    )
-
     return (
         <Flex
             as={'span'}
@@ -51,7 +46,7 @@ const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className,
                     aria-describedby={helperId}
                     aria-invalid={hasError || undefined}
                     className={cn(SWITCH_STYLES.root({ size, error: hasError }), className)}
-                    onCheckedChange={handleCheckedChange}
+                    onCheckedChange={onCheckedChange}
                     {...props}
                 >
                     <BaseSwitch.Thumb className={SWITCH_STYLES.thumb({ size })} />
