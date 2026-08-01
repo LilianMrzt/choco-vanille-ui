@@ -1,5 +1,4 @@
-export { vars } from '@theme'
-export type { ThemeVars, ThemeColor, ThemeColorValue } from '@theme'
+export * from '@theme'
 
 // ThemeProvider — re-exported here for discoverability alongside the theme types
 export type { ThemeMode, ThemeContextValue } from '@components/theme-provider'

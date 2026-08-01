@@ -42,12 +42,12 @@ Each method manipulates the **same** underlying CSS variables. Choose the one th
 
 It doesn't change how the kit reads tokens or how you override them. What it does:
 
-- Manages the `data-theme` attribute on a wrapper element for you (the same attribute Plain CSS / Tailwind / Vanilla Extract all rely on).
+- Manages the `data-theme` attribute on a wrapper element, or on `<html>` with `scope="document"` (the same attribute Plain CSS / Tailwind / Vanilla Extract all rely on).
 - Follows `prefers-color-scheme` in `'system'` mode and updates reactively when the OS preference changes.
 - Exposes a `setTheme` / `useTheme` hook so any React component can toggle the theme without touching the DOM directly.
 - Accepts a `tokens` prop that injects CSS custom properties as inline styles — still the same CSS variables, just set at runtime instead of in a stylesheet.
 
-In short: **you keep your existing customization approach unchanged; `ThemeProvider` only adds React state management around the `data-theme` attribute**. Use it if your project is React-based and you need programmatic theme switching. Skip it if you manage `data-theme` another way (server-rendered attribute, a state manager, a URL param, etc.).
+In short: **you keep your existing customization approach unchanged; `ThemeProvider` only adds React state management around the `data-theme` attribute**. Its default document scope makes body-mounted portals inherit the application theme; use `scope="subtree"` for independent themed zones. Skip it if you manage `data-theme` another way (server-rendered attribute, a state manager, a URL param, etc.).
 
 See the **ThemeProvider** page for the full API and usage examples.
 

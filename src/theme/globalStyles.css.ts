@@ -1,6 +1,10 @@
 import { globalLayer, globalStyle } from '@vanilla-extract/css'
 
-import { RESET_LAYER } from '@constants/theme'
+import {
+    RESET_LAYER,
+    THEME_TRANSITION_ATTRIBUTE,
+    THEME_TRANSITION_DURATION_VAR,
+} from '@constants/theme'
 import { vars } from '@theme/contract.css.ts'
 
 /*
@@ -48,3 +52,13 @@ globalStyle('body', {
         },
     },
 })
+
+globalStyle(
+    `[${THEME_TRANSITION_ATTRIBUTE}], ` +
+    `[${THEME_TRANSITION_ATTRIBUTE}] *, ` +
+    `[${THEME_TRANSITION_ATTRIBUTE}] *::before, ` +
+    `[${THEME_TRANSITION_ATTRIBUTE}] *::after`,
+    {
+        transition: `all var(${THEME_TRANSITION_DURATION_VAR}) linear !important`,
+    },
+)

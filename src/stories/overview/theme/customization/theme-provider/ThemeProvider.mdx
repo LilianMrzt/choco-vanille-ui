@@ -7,7 +7,7 @@ import { THEME_DARK_CLASS, THEME_LIGHT_CLASS } from '@constants/theme'
 
 > **`ThemeProvider` is not a new customization method.** It is a React convenience wrapper that manages the `data-theme` attribute on a DOM element for you. The kit's components still read the exact same CSS custom properties they always did — nothing about that contract changes.
 
-Use it when your project is React-based and you want **programmatic theme switching** (dark mode toggle, OS preference tracking, `useTheme` hook) without writing DOM manipulation code yourself. Your existing CSS customization approach — Plain CSS, CSS Modules, Tailwind, Vanilla Extract, or any other — stays exactly as-is alongside it.
+Use it when your project is React-based and you want **programmatic theme switching** (dark mode toggle, OS preference tracking, `useTheme` hook) without writing DOM manipulation code yourself. Import `@my-org/ui-kit/styles.css` once in the consumer application first; the provider does not inject the library stylesheet. Its default document scope also keeps body-mounted portals in the active theme. Your existing CSS customization approach — Plain CSS, CSS Modules, Tailwind, Vanilla Extract, or any other — stays exactly as-is alongside it.
 
 > If you need to theme a subtree without touching the host document's `data-theme` attribute, use the `.${THEME_DARK_CLASS}` or `.${THEME_LIGHT_CLASS}` class directly on any ancestor. `ThemeProvider` uses `data-theme` for React state management, but the underlying CSS responds to both forms.
 
@@ -17,7 +17,7 @@ Use it when your project is React-based and you want **programmatic theme switch
 
 | What `ThemeProvider` does | What it does **not** do |
 |---|---|
-| Sets `data-theme="light\|dark"` on a wrapper `<div>` | Change how kit components read tokens |
+| Sets `data-theme="<theme-name>"` on a wrapper `<div>` or `<html>` when `scope="document"` | Change how kit components read tokens |
 | Tracks `prefers-color-scheme` and updates on OS change | Replace Plain CSS / Tailwind / Vanilla Extract overrides |
 | Exposes `{ theme, resolvedTheme, setTheme }` via React context | Introduce a new styling engine or token format |
 | Injects `tokens` prop values as inline CSS custom properties | Prevent any other `data-theme` management strategy from working |
@@ -41,14 +41,36 @@ That's it. Every kit component inside the tree now automatically switches betwee
 
 ---
 
+## Custom theme names
+
+`light`, `dark` and `system` are the built-in values, but the provider also
+accepts consumer-defined names. Add the matching CSS rules in your application
+stylesheet, then pass the name to the provider:
+
+<Source language="tsx" code={`<ThemeProvider theme="light-green">
+  <YourApp />
+</ThemeProvider>
+
+// Your stylesheet:
+// [data-theme="light-green"] {
+//   --color-primary: oklch(0.55 0.2 145);
+// }`} />
+
+The provider treats `light-green` as an opaque theme name and exposes it
+through both `theme` and `resolvedTheme`. The consumer remains responsible for
+defining its CSS variables.
+
+---
+
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `defaultTheme` | `'light' \| 'dark' \| 'system'` | `'system'` | Initial mode (uncontrolled). |
-| `theme` | `'light' \| 'dark' \| 'system'` | — | Controlled mode. Pair with `onThemeChange`. |
-| `onThemeChange` | `(theme: ThemeMode) => void` | — | Fired whenever a child calls `setTheme`. |
-| `tokens` | `Partial<Record<ThemeColor, string>>` | — | Runtime color-token overrides. |
+| `defaultTheme` | `string` | `'system'` | Initial theme name (uncontrolled). |
+| `theme` | `string` | — | Controlled theme name. Built-in values are `light`, `dark` and `system`. |
+| `onThemeChange` | `(theme: string) => void` | — | Fired whenever a child calls `setTheme`. |
+| `scope` | `'subtree' \| 'document'` | `'document'` | Apply the theme to the wrapper or to `<html>`. Use `subtree` for an independent themed zone. |
+| `tokens` | `Partial<Record<ThemeColor, string>>` | — | Runtime color-token overrides. Applied to the wrapper or `<html>` according to `scope`. |
 | `...divProps` | `React.HTMLAttributes<HTMLDivElement>` | — | All standard `<div>` props (`className`, `style`, `id`, …). |
 
 ---
@@ -71,9 +93,9 @@ function DarkModeToggle() {
 
 | Value | Type | Description |
 |---|---|---|
-| `theme` | `ThemeMode` | Active mode, including `'system'` if that's what was set. |
-| `resolvedTheme` | `'light' \| 'dark'` | Concrete mode — never `'system'`. Safe for conditional rendering. |
-| `setTheme` | `(theme: ThemeMode) => void` | Change the active mode. |
+| `theme` | `string` | Active theme name, including `'system'` if that's what was set. |
+| `resolvedTheme` | `string` | Concrete theme name — never `'system'`. Safe for conditional rendering. |
+| `setTheme` | `(theme: string) => void` | Change the active theme. |
 
 > `useTheme` is safe to call **outside** a `ThemeProvider` — it returns `{ theme: 'system', resolvedTheme: 'light', setTheme: noop }` as a fallback.
 
@@ -105,7 +127,7 @@ The parent owns the state. Pass `theme` and handle `onThemeChange` to stay in sy
 
 ## Runtime token overrides
 
-The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and injects them as `--color-*` inline styles on the wrapper element. This is the zero-build-step alternative to the Vanilla Extract `overrideColors` helper — no `.css.ts` file required.
+The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and injects them as `--color-*` inline styles on the wrapper element. With `scope="document"`, the overrides are also applied to `<html>` so body-mounted portals inherit them.
 
 <Source language="tsx" code={`<ThemeProvider
   tokens={{
@@ -127,7 +149,10 @@ The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and 
 
 ## Scoped theming
 
-Because `ThemeProvider` renders a `<div>`, you can nest several providers to create independent theme zones inside the same page.
+With `scope="subtree"`, the provider renders a `<div>` and you can
+nest several providers to create independent theme zones inside the same page.
+Portals from a scoped zone still need a portal container inside that zone if
+they must use its theme.
 
 <Source language="tsx" code={`<ThemeProvider defaultTheme="light">
   {/* default light zone */}
@@ -145,7 +170,9 @@ Because `ThemeProvider` renders a `<div>`, you can nest several providers to cre
 
 ## Global (app-level) theming
 
-Render `ThemeProvider` at the very top of your React tree to apply the theme globally. Its `<div>` wrapper then covers the entire viewport.
+Render `ThemeProvider scope="document"` at the very top of your React tree to
+apply the theme to `<html>`. This is the recommended mode for applications
+using body-mounted portals.
 
 <Source language="tsx" code={`// main.tsx
 import { ThemeProvider } from '@my-org/ui-kit'
@@ -171,4 +198,3 @@ createRoot(document.getElementById('root')!).render(
 | Works in any framework | React only | ✅ | ✅ |
 
 Use `ThemeProvider` when you need **React-driven** theme switching or want to inject token overrides at runtime. For static builds or non-React projects, the Plain CSS or Vanilla Extract pages are the right tool.
-

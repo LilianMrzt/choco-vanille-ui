@@ -5,11 +5,21 @@ import { THEME_DARK_CLASS } from '@constants/theme'
 
 # MUI (Material UI)
 
-**First, the honest answer: this kit is _not_ built on MUI.** Its components are built on [Radix primitives](https://www.radix-ui.com/) and styled with [Vanilla Extract](https://vanilla-extract.style/), reading plain CSS variables. MUI's `ThemeProvider` and `createTheme` have **no effect** on the kit's components — wrapping them in a MUI theme will not re-skin a kit `<Button>`.
+**First, the honest answer: this kit is _not_ built on MUI.** Its components are built on [Base UI](https://base-ui.com/) primitives and styled with [Vanilla Extract](https://vanilla-extract.style/), reading plain CSS variables. MUI's `ThemeProvider` and `createTheme` have **no effect** on the kit's components — wrapping them in a MUI theme will not re-skin a kit `<Button>`.
 
 So MUI can't _drive_ this kit's theme. But there's a genuinely useful pattern: if your app renders **both** MUI components and kit components, you can make MUI **consume the kit's tokens** so the two libraries look consistent. That bridge is what this page is about.
 
 > **Direction of truth:** the kit's CSS variables → MUI's theme. To change the kit itself, override the CSS variables (see **Plain CSS** / **Vanilla Extract**). Those same variables then feed MUI below.
+
+---
+
+## 0. Load the kit stylesheet
+
+Import the kit stylesheet once before rendering either library. MUI's
+`ThemeProvider` does not load the kit's CSS variables.
+
+<Source language="ts" code={`// main.tsx
+import '@my-org/ui-kit/styles.css';`} />
 
 ---
 
@@ -94,7 +104,7 @@ You do **not** need MUI's `palette.mode: 'dark'` machinery for the kit's tokens.
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { muiTheme } from './theme';
 
-<KitThemeProvider defaultTheme="system">
+<KitThemeProvider scope="document" defaultTheme="system">
   {/* MUI palette reads var(--color-*) — it follows the kit's data-theme */}
   <MuiThemeProvider theme={muiTheme}>
     <App />
@@ -122,4 +132,3 @@ If you also rely on MUI's own light/dark components (e.g. its `mode`-aware defau
 - ✅ Your app mixes MUI components **and** kit components and you want one consistent palette.
 - ✅ You want MUI to inherit the kit's dark mode and scoped overrides for free.
 - ✅ Combine with the kit's **ThemeProvider** for React-driven theme switching — MUI follows the kit's `data-theme` automatically since its palette reads `var(--color-*)`; no changes to your MUI theme object.- ❌ You expected MUI's theme to restyle the kit's components — it can't; the kit doesn't read MUI's theme. Use **Plain CSS** or **Vanilla Extract** to change the kit itself.
-

@@ -11,6 +11,18 @@ CSS Modules scope **class names** by default, but **CSS custom properties are no
 
 ---
 
+## 0. Load the kit stylesheet
+
+Import the kit stylesheet once from the consumer application's entry point.
+The CSS Modules file only adds application styles; it does not load the kit's
+token contract.
+
+<Source language="ts" code={`// main.tsx
+import '@my-org/ui-kit/styles.css';
+import './app.css';`} />
+
+---
+
 ## 1. Consume tokens in a component's module
 
 Reference any kit variable with `var()` in your `.module.css` file — no imports needed.
@@ -142,4 +154,3 @@ CSS custom properties cascade normally, so dark mode needs **no extra CSS Module
 - ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your module styles are unchanged.
 
 For **typed** token access with autocomplete, see the **Vanilla Extract** page. For **utility classes** mapped to tokens, see the **Tailwind** page. For **React-driven** theme management, see the **ThemeProvider** page.
-

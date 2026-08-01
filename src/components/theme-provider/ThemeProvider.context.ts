@@ -1,24 +1,23 @@
 import { createContext, useContext } from 'react'
-import type { ThemeMode } from '@components/theme-provider/types/ThemeProvider.props.ts'
+import type { ThemeValue } from '@components/theme-provider/types/ThemeProvider.props.ts'
 
 export interface ThemeContextValue {
-    /** Currently active mode. `'system'` means "follow the OS preference". */
-    theme: ThemeMode
+    /** Currently active theme name. `'system'` follows the OS preference. */
+    theme: ThemeValue
 
     /**
-     * The concrete resolved mode — always `'light'` or `'dark'`, never
-     * `'system'`.  Useful for conditional rendering that depends on the actual
-     * visual state (e.g. swapping an icon).
+     * The concrete resolved theme name, never `'system'`. Useful for
+     * conditional rendering that depends on the actual visual state.
      */
-    resolvedTheme: 'light' | 'dark'
+    resolvedTheme: string
 
     /**
-     * Change the active mode.
+     * Change the active theme.
      * - In **uncontrolled** mode this updates internal state.
      * - In **controlled** mode (`theme` prop is provided) it only fires
      *   `onThemeChange`; the parent is responsible for updating `theme`.
      */
-    setTheme: (theme: ThemeMode) => void
+    setTheme: (theme: ThemeValue) => void
 }
 
 /**

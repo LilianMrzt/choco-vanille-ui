@@ -40,17 +40,21 @@ Import the stylesheet once in your entry point:
 
 ## Quick start
 
+For a React application, wrap the application with `ThemeProvider`. It applies
+the default document-level theme so components and body-mounted portals share
+the same light/dark mode.
+
 <Source
   language="tsx"
-  code={`import { Typography, Button } from '@choco-vanille/ui';
+  code={`import { Button, ThemeProvider, Typography } from '@choco-vanille/ui';
 
 export function Example() {
   return (
-    <>
+    <ThemeProvider>
       <Typography variant="h1">Hello 👋</Typography>
       <Typography variant="p">A typography primitive.</Typography>
       <Button variant="contained" color="primary" label="Primary action" onClick={() => alert('Clicked!')} />
-    </>
+    </ThemeProvider>
   );
 }`}
 />

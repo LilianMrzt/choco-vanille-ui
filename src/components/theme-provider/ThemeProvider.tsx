@@ -1,22 +1,21 @@
-import { type FC, useEffect, useMemo, useState } from 'react'
+import { type CSSProperties, type FC, useMemo } from 'react'
 import { TooltipProvider } from '@components/overlay/tooltip'
 import { ThemeContext } from '@components/theme-provider/ThemeProvider.context.ts'
-import type { ThemeMode, ThemeProviderProps } from '@components/theme-provider/types/ThemeProvider.props.ts'
-import { getSystemTheme } from '@components/theme-provider/utils/getSystemTheme.utils.ts'
-import { resolveTheme } from '@components/theme-provider/utils/resolveTheme.utils.ts'
+import type { ThemeProviderProps } from '@components/theme-provider/types/ThemeProvider.props.ts'
+import { useThemeProvider } from '@components/theme-provider/hooks/use-theme-provider/useThemeProvider.hook.ts'
+import {
+    THEME_TRANSITION_ATTRIBUTE,
+    THEME_TRANSITION_DURATION_VAR,
+} from '@constants/theme'
 
 /**
  * `ThemeProvider` wraps a subtree and manages the active color-scheme.
  *
  * ### What it does
- * - Sets `data-theme="light"` or `data-theme="dark"` on its wrapper `<div>` so
- *   the kit's CSS-variable scoping works out of the box.
- * - In `'system'` mode it follows `prefers-color-scheme` and reactively updates
- *   when the OS preference changes.
- * - Accepts a `tokens` map to inject runtime CSS-variable overrides directly
- *   on the wrapper element — no `.css.ts` file required.
- * - Exposes `{ theme, resolvedTheme, setTheme }` via React context so any child
- *   can read or change the active mode with the `useTheme` hook.
+ * - Manages the active color scheme and runtime token overrides.
+ * - Applies the theme to `<html>` by default so body-mounted portals inherit it.
+ * - Applies the theme to its wrapper when `scope="subtree"`.
+ * - Temporarily forces all transitions to the configured theme duration.
  *
  * ### Controlled vs uncontrolled
  * - **Uncontrolled** (default): omit the `theme` prop.  The component manages
@@ -32,7 +31,7 @@ import { resolveTheme } from '@components/theme-provider/utils/resolveTheme.util
  * ```
  * Or scope it to a single subtree:
  * ```tsx
- * <ThemeProvider theme="dark" tokens={{ primary: 'oklch(0.70 0.16 185)' }}>
+ * <ThemeProvider scope="subtree" theme="dark" tokens={{ primary: 'oklch(0.70 0.16 185)' }}>
  *   <DarkWidget />
  * </ThemeProvider>
  * ```
@@ -40,61 +39,54 @@ import { resolveTheme } from '@components/theme-provider/utils/resolveTheme.util
 const ThemeProvider: FC<ThemeProviderProps> = ({
     theme: controlledTheme,
     defaultTheme = 'system',
+    scope = 'document',
+    themeTransitionDuration = 100,
     onThemeChange,
     tokens,
     style,
     children,
     ...divProps
 }) => {
-
-    // 1. Internal state (uncontrolled mode)
-
-    const [internalTheme, setInternalTheme] = useState<ThemeMode>(defaultTheme)
-    const activeTheme = controlledTheme ?? internalTheme
-
-    // 2. Resolve OS preference and subscribe to changes
-
-    const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(getSystemTheme)
-
-    useEffect(() => {
-        const mql = window.matchMedia('(prefers-color-scheme: dark)')
-        const handler = (e: MediaQueryListEvent) => setSystemTheme(e.matches ? 'dark' : 'light')
-        mql.addEventListener('change', handler)
-        return () => mql.removeEventListener('change', handler)
-    }, [])
-
-    const resolvedTheme = resolveTheme(activeTheme, systemTheme)
-
-    // 3. setTheme — works in both controlled and uncontrolled modes
-
-    const setTheme = (next: ThemeMode) => {
-        if (controlledTheme === undefined) {
-            setInternalTheme(next)
-        }
-        onThemeChange?.(next)
-    }
-
-    // 4. Convert `tokens` → inline CSS custom properties
-
-    const tokenStyles = useMemo<React.CSSProperties>(() => {
-        if (!tokens) { return {} }
-        return Object.fromEntries(
-            Object.entries(tokens).map(([key, value]) => [`--color-${key}`, value]),
-        ) as React.CSSProperties
-    }, [tokens])
-
-    // 5. Render
+    const { activeTheme, resolvedTheme, setTheme, tokenStyles, isTransitioning } =
+    useThemeProvider({
+        controlledTheme,
+        defaultTheme,
+        onThemeChange,
+        scope,
+        tokens,
+        themeTransitionDuration,
+    })
+    const transitionStyle = useMemo<CSSProperties>(
+        () =>
+            isTransitioning
+                ? ({
+                    [THEME_TRANSITION_DURATION_VAR]: `${Math.max(0, themeTransitionDuration)}ms`,
+                } as CSSProperties)
+                : {},
+        [isTransitioning, themeTransitionDuration],
+    )
+    const containerStyle = useMemo(
+        () => ({ ...tokenStyles, ...style, ...transitionStyle }),
+        [style, tokenStyles, transitionStyle],
+    )
+    const contextValue = useMemo(
+        () => ({ theme: activeTheme, resolvedTheme, setTheme }),
+        [activeTheme, resolvedTheme, setTheme],
+    )
+    const content = useMemo(
+        () => <TooltipProvider>{children}</TooltipProvider>,
+        [children],
+    )
 
     return (
-        <ThemeContext.Provider value={{ theme: activeTheme, resolvedTheme, setTheme }}>
+        <ThemeContext.Provider value={contextValue}>
             <div
                 data-theme={resolvedTheme}
-                style={{ ...tokenStyles, ...style }}
+                {...(isTransitioning ? { [THEME_TRANSITION_ATTRIBUTE]: '' } : {})}
+                style={containerStyle}
                 {...divProps}
             >
-                <TooltipProvider>
-                    {children}
-                </TooltipProvider>
+                {content}
             </div>
         </ThemeContext.Provider>
     )

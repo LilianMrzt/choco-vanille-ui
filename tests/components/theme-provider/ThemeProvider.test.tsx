@@ -1,18 +1,25 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ThemeProvider, useTheme } from '@components/theme-provider'
+import { THEME_TRANSITION_ATTRIBUTE, THEME_TRANSITION_DURATION_VAR, } from '@constants/theme'
 
 const createMatchMediaMock = (matches: boolean) => {
     const listeners = new Set<EventListenerOrEventListenerObject>()
-    const mql = {
+    return {
         matches,
         media: '(prefers-color-scheme: dark)',
-        addEventListener: (_event: string, listener: EventListenerOrEventListenerObject) => {
+        addEventListener: (
+            _event: string,
+            listener: EventListenerOrEventListenerObject,
+        ) => {
             listeners.add(listener)
         },
-        removeEventListener: (_event: string, listener: EventListenerOrEventListenerObject) => {
+        removeEventListener: (
+            _event: string,
+            listener: EventListenerOrEventListenerObject,
+        ) => {
             listeners.delete(listener)
         },
         dispatchEvent: (event: Event) => {
@@ -26,8 +33,6 @@ const createMatchMediaMock = (matches: boolean) => {
             return true
         },
     } as MediaQueryList
-
-    return mql
 }
 
 const matchMediaMock = (matches: boolean) => {
@@ -38,7 +43,11 @@ const matchMediaMock = (matches: boolean) => {
         value: vi.fn().mockImplementation((query: string) =>
             query === '(prefers-color-scheme: dark)'
                 ? mql
-                : { matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() },
+                : {
+                    matches: false,
+                    addEventListener: vi.fn(),
+                    removeEventListener: vi.fn(),
+                },
         ),
     })
 
@@ -80,6 +89,7 @@ describe('ThemeProvider', () => {
         )
         const wrapper = screen.getByText('child').parentElement as HTMLElement
         expect(wrapper.getAttribute('data-theme')).toBe('dark')
+        expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
     })
 
     it('exposes the active theme via context', () => {
@@ -147,6 +157,17 @@ describe('ThemeProvider', () => {
             expect(screen.getByTestId('theme').textContent).toBe('dark')
         })
 
+        it('accepts consumer-defined theme names', () => {
+            render(
+                <ThemeProvider theme={'light-green'}>
+                    <ThemeReader />
+                </ThemeProvider>,
+            )
+
+            expect(screen.getByTestId('theme').textContent).toBe('light-green')
+            expect(screen.getByTestId('resolved-theme').textContent).toBe('light-green')
+        })
+
         it('does not update internal state when setTheme is called', async () => {
             render(
                 <ThemeProvider theme={'light'}>
@@ -201,7 +222,9 @@ describe('ThemeProvider', () => {
 
             const event = new Event('change') as MediaQueryListEvent
             Object.defineProperty(event, 'matches', { value: true })
-            Object.defineProperty(event, 'media', { value: '(prefers-color-scheme: dark)' })
+            Object.defineProperty(event, 'media', {
+                value: '(prefers-color-scheme: dark)',
+            })
             await act(async () => {
                 mql.dispatchEvent(event)
             })
@@ -212,7 +235,10 @@ describe('ThemeProvider', () => {
     describe('tokens', () => {
         it('injects token values as CSS custom properties', () => {
             render(
-                <ThemeProvider theme={'light'} tokens={{ primary: 'red', ring: 'blue' }}>
+                <ThemeProvider
+                    theme={'light'}
+                    tokens={{ primary: 'red', ring: 'blue' }}
+                >
                     <span>child</span>
                 </ThemeProvider>,
             )
@@ -223,7 +249,11 @@ describe('ThemeProvider', () => {
 
         it('merges custom style with token styles', () => {
             render(
-                <ThemeProvider theme={'light'} tokens={{ primary: 'red' }} style={{ padding: '1rem' }}>
+                <ThemeProvider
+                    theme={'light'}
+                    tokens={{ primary: 'red' }}
+                    style={{ padding: '1rem' }}
+                >
                     <span>child</span>
                 </ThemeProvider>,
             )
@@ -231,6 +261,76 @@ describe('ThemeProvider', () => {
             expect(wrapper.style.getPropertyValue('--color-primary')).toBe('red')
             expect(wrapper.style.padding).toBe('1rem')
         })
+    })
+
+    it('syncs document scope to html for body-mounted portals', () => {
+        const { unmount } = render(
+            <ThemeProvider
+                scope={'document'}
+                theme={'dark'}
+                tokens={{ primary: 'red' }}
+            >
+                <span>child</span>
+            </ThemeProvider>,
+        )
+
+        expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+        expect(
+            document.documentElement.style.getPropertyValue('--color-primary'),
+        ).toBe('red')
+
+        unmount()
+
+        expect(document.documentElement.hasAttribute('data-theme')).toBe(false)
+        expect(
+            document.documentElement.style.getPropertyValue('--color-primary'),
+        ).toBe('')
+    })
+
+    it('forces transitions for the default duration when the resolved theme changes', () => {
+        vi.useFakeTimers()
+
+        try {
+            const { unmount } = render(
+                <ThemeProvider defaultTheme={'light'}>
+                    <ThemeReader />
+                </ThemeProvider>,
+            )
+            const wrapper = screen.getByTestId('theme').parentElement as HTMLElement
+
+            expect(wrapper.hasAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe(false)
+            expect(
+                document.documentElement.hasAttribute(THEME_TRANSITION_ATTRIBUTE),
+            ).toBe(false)
+
+            fireEvent.click(screen.getByRole('button', { name: 'set dark' }))
+
+            expect(wrapper.getAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe('')
+            expect(
+                wrapper.style.getPropertyValue(THEME_TRANSITION_DURATION_VAR),
+            ).toBe('100ms')
+            expect(
+                document.documentElement.getAttribute(THEME_TRANSITION_ATTRIBUTE),
+            ).toBe('')
+            expect(
+                document.documentElement.style.getPropertyValue(
+                    THEME_TRANSITION_DURATION_VAR,
+                ),
+            ).toBe('100ms')
+
+            act(() => {
+                vi.advanceTimersByTime(100)
+            })
+
+            expect(wrapper.hasAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe(false)
+            expect(
+                document.documentElement.hasAttribute(THEME_TRANSITION_ATTRIBUTE),
+            ).toBe(false)
+
+            unmount()
+        } finally {
+            vi.useRealTimers()
+        }
     })
 
     it('displayName is "ThemeProvider"', () => {

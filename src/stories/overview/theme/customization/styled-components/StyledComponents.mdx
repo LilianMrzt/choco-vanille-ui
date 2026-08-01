@@ -11,6 +11,16 @@ Both [Styled Components](https://styled-components.com/) and [Emotion](https://e
 
 ---
 
+## 0. Load the kit stylesheet
+
+Import the kit stylesheet once from the consumer application's entry point.
+The styled-components or Emotion runtime does not replace this import.
+
+<Source language="ts" code={`// main.tsx
+import '@my-org/ui-kit/styles.css';`} />
+
+---
+
 ## 1. Consume tokens in a styled component
 
 <Source language="tsx" code={`// Styled Components
@@ -193,4 +203,3 @@ export const DarkBrandOverride = createGlobalStyle\`
 - ✅ React app: if you also need a theme toggle, `ThemeProvider` adds React state management on top — your styled components are unchanged.
 
 For **utility-class** approaches, see **Tailwind**. For **zero-runtime typed** tokens, see **Vanilla Extract**. For **React-driven** theme management, see the **ThemeProvider** page.
-
