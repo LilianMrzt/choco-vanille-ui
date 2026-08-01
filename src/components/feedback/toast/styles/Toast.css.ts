@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 
@@ -32,7 +32,3 @@ export const TOAST_STYLES = {
         },
     }),
 }
-
-export type ToastRecipeVariants = NonNullable<
-  RecipeVariants<typeof TOAST_STYLES.recipe>
->;

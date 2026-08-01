@@ -1,15 +1,16 @@
 import type * as React from 'react'
 
-import type { ToastRecipeVariants } from '@components/feedback/toast/styles/Toast.css.ts'
-import type { ToastRole } from '@components/feedback/toast/types/Toast.types.ts'
 import type { RefAttributes } from 'react'
+import type { ToastRole, ToastVariant } from '@components/feedback/toast/types/Toast.types.ts'
 
 export type ToastProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'children' | 'role'
 > &
   RefAttributes<HTMLDivElement> &
-  ToastRecipeVariants & {
+  {
+    /** Visual intent of the toast. Defaults to `info`. */
+    variant?: ToastVariant;
     /** Optional title rendered in bold above the description. */
     title?: React.ReactNode;
     /** Main message content of the toast. */

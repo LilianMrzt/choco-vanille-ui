@@ -2,6 +2,8 @@ import type { ToastVariant } from '@components/feedback/toast/types/Toast.types.
 import { IconRegistry } from '@constants/icons'
 import type { ThemeColor } from '@theme'
 
+export { TOAST_VARIANTS } from '@components/feedback/toast/constants/toastVariants.const.ts'
+
 export const VARIANT_TO_ICON: Record<ToastVariant, string> = {
     info: IconRegistry.info,
     success: IconRegistry.success,

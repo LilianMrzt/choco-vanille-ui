@@ -9,7 +9,7 @@ export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     placeholder?: string
     /** Iconify icon name rendered on the left side of the trigger. */
     startIcon?: string
-    /** Visual size of the trigger. */
+    /** Visual size of the trigger. Defaults to `md`. */
     size?: TextFieldSize
     /** Whether the trigger should be styled in its error state. */
     hasError?: boolean
