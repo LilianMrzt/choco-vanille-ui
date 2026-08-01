@@ -1,14 +1,14 @@
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
-import type { TextAreaRecipeVariants } from '@components/forms/text-area/styles/TextArea.css.ts'
+import type { TextAreaSize } from '@components/forms/text-area/types/TextArea.types.ts'
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   'size'
 > &
   RefAttributes<HTMLTextAreaElement> &
-  Pick<TextAreaRecipeVariants, 'size'> & {
+  {
     /** Text label rendered above the textarea, linked via Radix Label for accessibility. */
     label?: string
     /** Helper text rendered below the textarea. Hidden when `error` is provided. */
@@ -21,6 +21,8 @@ export type TextAreaProps = Omit<
     endAction?: React.ReactNode
     /** CSS width of the outer wrapper. Defaults to `100%`. */
     width?: React.CSSProperties['width']
+    /** Size variant of the textarea. Defaults to `md`. */
+    size?: TextAreaSize
     /** Number of visible text lines. Maps to the native `rows` attribute. */
     rows?: number
     /** Minimum number of visible text lines when auto-resizing. */

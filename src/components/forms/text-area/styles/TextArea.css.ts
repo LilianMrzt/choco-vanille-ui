@@ -1,4 +1,6 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
+
+import { TEXT_AREA_SIZES } from '@components/forms/text-area/constants/index.ts'
 import { vars } from '@theme/contract.css.ts'
 
 export const TEXT_AREA_STYLES = {
@@ -42,19 +44,19 @@ export const TEXT_AREA_STYLES = {
         },
         variants: {
             size: {
-                sm: {
+                [TEXT_AREA_SIZES.sm]: {
                     minHeight: '4.5rem',
                     paddingInline: vars.space.sm,
                     paddingBlock: vars.space.sm,
                     fontSize: vars.fontSize.sm,
                 },
-                md: {
+                [TEXT_AREA_SIZES.md]: {
                     minHeight: '5rem',
                     paddingInline: vars.space.md,
                     paddingBlock: vars.space.md,
                     fontSize: vars.fontSize.sm,
                 },
-                lg: {
+                [TEXT_AREA_SIZES.lg]: {
                     minHeight: '5.5rem',
                     paddingInline: vars.space.lg,
                     paddingBlock: vars.space.lg,
@@ -91,21 +93,19 @@ export const TEXT_AREA_STYLES = {
         },
         compoundVariants: [
             // Start icon: push text right
-            { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_AREA_SIZES.sm, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_AREA_SIZES.md, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_AREA_SIZES.lg, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             // End action: push text left (slot width 1.75rem + right offset 0.625rem)
-            { variants: { size: 'sm', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'md', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'lg', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_AREA_SIZES.sm, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_AREA_SIZES.md, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_AREA_SIZES.lg, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
         ],
         defaultVariants: {
-            size: 'md',
+            size: TEXT_AREA_SIZES.md,
             hasError: false,
             hasStartIcon: false,
             hasEndAction: false,
         },
     }),
 }
-
-export type TextAreaRecipeVariants = NonNullable<RecipeVariants<typeof TEXT_AREA_STYLES.recipe>>
