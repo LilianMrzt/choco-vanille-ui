@@ -1,7 +1,12 @@
 import type * as React from 'react'
 
-import type { TableRowRecipeVariants } from '@components/data-display/table/components/table-row/styles/TableRow.css.ts'
+import type { TableRowIntent } from '@components/data-display/table/types/Table.types.ts'
 
 export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement> &
     React.RefAttributes<HTMLTableRowElement> &
-    TableRowRecipeVariants
+    {
+        hoverable?: boolean
+        selectable?: boolean
+        selected?: boolean
+        intent?: TableRowIntent
+    }

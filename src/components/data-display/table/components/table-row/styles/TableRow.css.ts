@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 
@@ -102,5 +102,3 @@ export const TABLE_ROW_STYLES = {
         },
     }),
 }
-
-export type TableRowRecipeVariants = NonNullable<RecipeVariants<typeof TABLE_ROW_STYLES.recipe>>

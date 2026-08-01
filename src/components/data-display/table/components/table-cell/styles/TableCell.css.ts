@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { TABLE_STYLES } from '@components/data-display/table/styles/Table.css.ts'
@@ -43,5 +43,3 @@ export const TABLE_CELL_STYLES = {
         fontVariantNumeric: 'tabular-nums',
     }),
 }
-
-export type TableCellRecipeVariants = NonNullable<RecipeVariants<typeof TABLE_CELL_STYLES.recipe>>

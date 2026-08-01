@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { TABLE_STYLES } from '@components/data-display/table/styles/Table.css.ts'
@@ -62,5 +62,3 @@ export const TABLE_HEAD_STYLES = {
         opacity: 1,
     }),
 }
-
-export type TableHeadRecipeVariants = NonNullable<RecipeVariants<typeof TABLE_HEAD_STYLES.recipe>>

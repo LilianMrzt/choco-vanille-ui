@@ -1,5 +1,5 @@
 import { createVar, globalStyle, style } from '@vanilla-extract/css'
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 
@@ -55,5 +55,3 @@ export const TABLE_STYLES = {
         defaultVariants: { size: 'md' },
     }),
 }
-
-export type TableRecipeVariants = NonNullable<RecipeVariants<typeof TABLE_STYLES.recipe>>

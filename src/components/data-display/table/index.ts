@@ -8,7 +8,11 @@ export { TABLE_HEAD_STYLES } from '@components/data-display/table/components/tab
 export { TABLE_CELL_STYLES } from '@components/data-display/table/components/table-cell/styles/TableCell.css.ts'
 export { TABLE_CAPTION_STYLES } from '@components/data-display/table/components/table-caption/styles/TableCaption.css.ts'
 export type { TableProps } from '@components/data-display/table/types/Table.props.ts'
-export type { TableSize, TableCellAlign } from '@components/data-display/table/types/Table.types.ts'
+export type {
+    TableSize,
+    TableCellAlign,
+    TableRowIntent,
+} from '@components/data-display/table/types/Table.types.ts'
 export type { TableHeaderProps } from '@components/data-display/table/components/table-header/types/TableHeader.props.ts'
 export type { TableBodyProps } from '@components/data-display/table/components/table-body/types/TableBody.props.ts'
 export type { TableFooterProps } from '@components/data-display/table/components/table-footer/types/TableFooter.props.ts'

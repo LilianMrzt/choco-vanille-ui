@@ -1,10 +1,11 @@
 import type * as React from 'react'
 
-import type { TableRecipeVariants } from '@components/data-display/table/styles/Table.css.ts'
+import type { TableSize } from '@components/data-display/table/types/Table.types.ts'
 
 export type TableProps = React.HTMLAttributes<HTMLTableElement> &
     React.RefAttributes<HTMLTableElement> &
-    TableRecipeVariants & {
+    {
+        size?: TableSize
         /** Applies an alternating background to even body rows. */
         striped?: boolean
         /** Adds borders on all four sides of every header and data cell. */

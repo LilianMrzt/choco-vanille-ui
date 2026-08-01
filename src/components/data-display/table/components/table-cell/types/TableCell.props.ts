@@ -1,10 +1,11 @@
 import type * as React from 'react'
 
-import type { TableCellRecipeVariants } from '@components/data-display/table/components/table-cell/styles/TableCell.css.ts'
+import type { TableCellAlign } from '@components/data-display/table/types/Table.types.ts'
 
 export type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> &
     React.RefAttributes<HTMLTableCellElement> &
-    TableCellRecipeVariants & {
+    {
+        align?: TableCellAlign
         /**
          * Right-aligns the content and enables tabular number rendering.
          * Takes precedence over the `align` variant when both are set.
