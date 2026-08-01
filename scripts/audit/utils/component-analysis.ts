@@ -1,14 +1,8 @@
 import path from 'node:path';
 import { Node, type SourceFile, SyntaxKind, type TypeNode } from 'ts-morph';
 import type { ComponentInfo, PropInfo } from '../types/index.ts';
-import {
-  categoryNames,
-  semanticColorTokens,
-  semanticSizeTokens,
-  statusToneTokens,
-} from '../constants/index.ts';
+import { categoryNames, statusToneTokens } from '../constants/index.ts';
 import { normalize } from './source-graph.ts';
-
 
 type SourceGraphContext = {
   sourceFiles: SourceFile[];
@@ -183,7 +177,6 @@ function addClassifiedValue(
   if (category === 'size') {
     for (const value of uniqueValues) {
       if (isRawDimension(value)) info.rawDimensions.push(value);
-      else if (semanticSizeTokens.has(value)) info.semanticSizes.push(value);
     }
     return;
   }
@@ -191,16 +184,10 @@ function addClassifiedValue(
     for (const value of uniqueValues) {
       if (/tone/i.test(sourceName)) info.tones.push(value);
       else if (/status|intent/i.test(sourceName)) info.statuses.push(value);
-      else if (semanticColorTokens.has(value)) info.semanticColors.push(value);
       else if (statusToneTokens.has(value)) info.statuses.push(value);
       else info.variants.push(value);
     }
     return;
-  }
-  if (category === 'color') {
-    for (const value of uniqueValues) {
-      if (semanticColorTokens.has(value)) info.semanticColors.push(value);
-    }
   }
 }
 
@@ -331,12 +318,11 @@ export function analyzeComponents(
           : 'internal',
       props: [],
       variants: [],
-      semanticSizes: [],
-      semanticColors: [],
       statuses: [],
       tones: [],
       rawDimensions: [],
       stylingProps: [],
+      vanillaExtractStyleBases: [],
       exports: [
         ...new Set([
           ...(publicExports.get(normalize(sourceFile.getFilePath())) ?? []),
@@ -391,6 +377,46 @@ export function analyzeComponents(
       extractedProps.push(...propertyEntries(declaration));
     }
 
+    const styleTypeImports = new Map<
+      string,
+      { styleType: string; source: string }
+    >();
+    for (const declaration of propsFile?.getImportDeclarations() ?? []) {
+      const source = declaration.getModuleSpecifierValue();
+      if (!/[\\/]styles[\\/].+\.css\.ts$/.test(source)) continue;
+      for (const namedImport of declaration.getNamedImports()) {
+        styleTypeImports.set(namedImport.getName(), {
+          styleType: namedImport.getName(),
+          source,
+        });
+      }
+    }
+    for (const declaration of [
+      ...(propsFile?.getTypeAliases() ?? []),
+      ...(propsFile?.getInterfaces() ?? []),
+    ]) {
+      if (!declaration.getName().endsWith('Props')) continue;
+      const typeNode = Node.isTypeAliasDeclaration(declaration)
+        ? declaration.getTypeNode()
+        : declaration;
+      if (!typeNode) continue;
+      const references = [
+        typeNode,
+        ...typeNode.getDescendantsOfKind(SyntaxKind.TypeReference),
+      ];
+      for (const reference of references) {
+        if (!Node.isTypeReference(reference)) continue;
+        const styleType = styleTypeImports.get(
+          reference.getTypeName().getText(),
+        );
+        if (!styleType) continue;
+        info.vanillaExtractStyleBases.push({
+          propsType: declaration.getName(),
+          ...styleType,
+        });
+      }
+    }
+
     for (const prop of extractedProps) {
       if (isStylingProp(prop.name)) info.stylingProps.push(prop.name);
       if (isNativeProp(prop.name, nativeProps)) continue;
@@ -414,12 +440,22 @@ export function analyzeComponents(
       ).values(),
     ];
     info.variants = [...new Set(info.variants)].sort();
-    info.semanticSizes = [...new Set(info.semanticSizes)].sort();
-    info.semanticColors = [...new Set(info.semanticColors)].sort();
     info.statuses = [...new Set(info.statuses)].sort();
     info.tones = [...new Set(info.tones)].sort();
     info.rawDimensions = [...new Set(info.rawDimensions)].sort();
     info.stylingProps = [...new Set(info.stylingProps)].sort();
+    info.vanillaExtractStyleBases = [
+      ...new Map(
+        info.vanillaExtractStyleBases.map((base) => [
+          `${base.propsType}:${base.styleType}:${base.source}`,
+          base,
+        ]),
+      ).values(),
+    ].sort((left, right) =>
+      `${left.propsType}:${left.styleType}`.localeCompare(
+        `${right.propsType}:${right.styleType}`,
+      ),
+    );
     info.exports = [...new Set(info.exports)]
       .filter((name) => !isTechnicalExport(name))
       .sort();

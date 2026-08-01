@@ -7,20 +7,23 @@ import type {
   ArchitecturalSignal,
   ComponentInfo,
   ImplementationLeak,
+  VanillaExtractStyleBase,
 } from '../types/index.ts';
 import {
   buildComponentGroups,
   buildPropsIndex,
   buildValueIndex,
-  componentKind
+  componentKind,
 } from './architecture.ts';
-
 
 const execFileAsync = promisify(execFile);
 
 type GenerateOutputsParams = {
   components: ComponentInfo[];
   implementationLeaks: ImplementationLeak[];
+  vanillaExtractStyleBases: (VanillaExtractStyleBase & {
+    component: string;
+  })[];
   architecturalSignals: ArchitecturalSignal[];
   outputRoot: string;
   root: string;
@@ -32,6 +35,7 @@ export async function generateOutputs(
   const {
     components,
     implementationLeaks,
+    vanillaExtractStyleBases,
     architecturalSignals,
     outputRoot,
     root,
@@ -44,12 +48,11 @@ export async function generateOutputs(
     componentKind: componentKind(component),
     props: component.props,
     variants: component.variants,
-    semanticSizes: component.semanticSizes,
-    semanticColors: component.semanticColors,
     statuses: component.statuses,
     tones: component.tones,
     rawDimensions: component.rawDimensions,
     stylingProps: component.stylingProps,
+    vanillaExtractStyleBases: component.vanillaExtractStyleBases,
     exports: component.exports,
     subComponents: component.subComponents,
     parentComponents: component.parentComponents,
@@ -60,29 +63,47 @@ export async function generateOutputs(
       hasImplementationLeak: implementationLeaks.some(
         (leak) => leak.component === component.name,
       ),
+      hasVanillaExtractStyleBase: component.vanillaExtractStyleBases.length > 0,
     },
   }));
 
   const libraryMap = {
-    schemaVersion: 3,
+    schemaVersion: 5,
     generatedAt: new Date().toISOString(),
     componentGroups: buildComponentGroups(components),
     components: outputComponents,
     indexes: {
       props: buildPropsIndex(components),
       variants: buildValueIndex(components, (component) => component.variants),
-      colors: buildValueIndex(
-        components,
-        (component) => component.semanticColors,
-      ),
-      sizes: buildValueIndex(
-        components,
-        (component) => component.semanticSizes,
-      ),
     },
     implementationLeaks,
+    vanillaExtractStyleBases,
     architecturalSignals,
   };
+  const formatVanillaExtractStyleBases = (): string =>
+    libraryMap.vanillaExtractStyleBases
+      .map(
+        ({ component, propsType, styleType, source }) =>
+          `- \`${component}\` : \`${propsType}\` inclut \`${styleType}\` depuis \`${source}\``,
+      )
+      .join('\n') || '- Aucune';
+  const formatImplementationLeaks = (): string =>
+    libraryMap.implementationLeaks
+      .map(
+        ({ component, prop, reason }) =>
+          `- \`${component}.${prop}\` : ${reason}`,
+      )
+      .join('\n') || '- Aucune';
+  const formatArchitecturalSignals = (): string =>
+    libraryMap.architecturalSignals
+      .map(({ kind, values, confidence }) => {
+        const label =
+          kind === 'variant-similarity'
+            ? 'Variantes similaires'
+            : 'Props similaires';
+        return `- ${label} : \`${values[0]}\` et \`${values[1]}\` (confiance : ${Math.round(confidence * 100)} %)`;
+      })
+      .join('\n') || '- Aucun';
 
   const summary = `# Design system dataset
 
@@ -99,13 +120,28 @@ Generated at ${new Date().toISOString()}.
 
 - Props personnalisées : ${Object.keys(libraryMap.indexes.props).length}
 - Variantes : ${Object.keys(libraryMap.indexes.variants).length}
-- Couleurs sémantiques : ${Object.keys(libraryMap.indexes.colors).length}
-- Tailles sémantiques : ${Object.keys(libraryMap.indexes.sizes).length}
 
-## Métadonnées d'API
+## Encapsulation d'API
 
 - Fuites d'implémentation signalées : ${libraryMap.implementationLeaks.length}
+- Bases de props couplées à des styles Vanilla Extract : ${libraryMap.vanillaExtractStyleBases.length}
 - Signaux architecturaux : ${libraryMap.architecturalSignals.length}
+
+### Fuites d'implémentation
+
+Types techniques exposés dans des props publiques :
+
+${formatImplementationLeaks()}
+
+### Bases Vanilla Extract exposées aux consommateurs
+
+${formatVanillaExtractStyleBases()}
+
+### Signaux architecturaux
+
+Ces rapprochements suggèrent des noms à harmoniser ; ils ne constituent pas des erreurs.
+
+${formatArchitecturalSignals()}
 
 `;
 

@@ -3,13 +3,13 @@ import type {
   ComponentInfo,
   ComponentKind,
   ComponentReference,
-  ImplementationLeak
+  ImplementationLeak,
+  VanillaExtractStyleBase,
 } from '../types/index.ts';
 import {
   propSimilarityPairs,
   variantSimilarityPairs,
 } from '../constants/index.ts';
-
 
 export function componentKind(component: ComponentInfo): ComponentKind {
   if (component.scope === 'internal') return 'internal';
@@ -55,6 +55,9 @@ function presentApiPropNames(components: ComponentInfo[]): Set<string> {
 
 export type ArchitectureResult = {
   implementationLeaks: ImplementationLeak[];
+  vanillaExtractStyleBases: (VanillaExtractStyleBase & {
+    component: string;
+  })[];
   architecturalSignals: ArchitecturalSignal[];
 };
 
@@ -73,6 +76,19 @@ export function detectArchitecture(
       );
     },
   );
+  const vanillaExtractStyleBases = components
+    .filter((component) => component.scope === 'public')
+    .flatMap((component) =>
+      component.vanillaExtractStyleBases.map((base) => ({
+        component: component.name,
+        ...base,
+      })),
+    )
+    .sort((left, right) =>
+      `${left.component}:${left.propsType}`.localeCompare(
+        `${right.component}:${right.propsType}`,
+      ),
+    );
 
   const variants = new Set(
     components.flatMap((component) => component.variants),
@@ -99,7 +115,11 @@ export function detectArchitecture(
     }
   }
 
-  return { implementationLeaks, architecturalSignals };
+  return {
+    implementationLeaks,
+    vanillaExtractStyleBases,
+    architecturalSignals,
+  };
 }
 
 export function buildComponentGroups(components: ComponentInfo[]): {

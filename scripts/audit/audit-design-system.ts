@@ -16,11 +16,15 @@ const outputRoot = path.join(root, 'docs', 'project');
 async function main(): Promise<void> {
   const graph = buildSourceGraph(root, componentsRoot);
   const components = analyzeComponents({ ...graph, componentsRoot });
-  const { implementationLeaks, architecturalSignals } =
-    detectArchitecture(components);
+  const {
+    implementationLeaks,
+    vanillaExtractStyleBases,
+    architecturalSignals,
+  } = detectArchitecture(components);
   await generateOutputs({
     components,
     implementationLeaks,
+    vanillaExtractStyleBases,
     architecturalSignals,
     outputRoot,
     root,

@@ -9,12 +9,11 @@ export type ComponentInfo = {
   scope: 'public' | 'internal';
   props: PropInfo[];
   variants: string[];
-  semanticSizes: string[];
-  semanticColors: string[];
   statuses: string[];
   tones: string[];
   rawDimensions: string[];
   stylingProps: string[];
+  vanillaExtractStyleBases: VanillaExtractStyleBase[];
   exports: string[];
   subComponents: string[];
   parentComponents: string[];
@@ -37,4 +36,10 @@ export type ArchitecturalSignal = {
 export type ComponentReference = {
   name: string;
   scope: ComponentInfo['scope'];
+};
+
+export type VanillaExtractStyleBase = {
+  propsType: string;
+  styleType: string;
+  source: string;
 };
