@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { SkeletonRecipeVariants } from '@components/feedback/skeleton/styles/Skeleton.css.ts'
+import type { SkeletonVariant } from '@components/feedback/skeleton/types/Skeleton.types.ts'
 import type { RefAttributes } from 'react'
 
 export type SkeletonProps = Omit<
@@ -8,7 +8,9 @@ export type SkeletonProps = Omit<
   'children'
 > &
   RefAttributes<HTMLDivElement> &
-  SkeletonRecipeVariants & {
+  {
+    /** Shape variant of the placeholder. Defaults to `rounded`. */
+    variant?: SkeletonVariant
     /** Explicit width for the placeholder. */
     width?: React.CSSProperties['width']
     /** Explicit height for the placeholder. */

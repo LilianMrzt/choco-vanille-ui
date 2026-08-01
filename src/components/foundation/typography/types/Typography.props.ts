@@ -1,15 +1,27 @@
 import type * as React from 'react'
 
-import type { TypographyRecipeVariants } from '@components/foundation/typography/styles/Typography.css.ts'
-import type { TypographyLetterSpacing } from '@components/foundation/typography/types/Typography.types.ts'
+import type {
+    TypographyLetterSpacing,
+    TypographySize,
+    TypographyVariant,
+    TypographyWeight,
+} from '@components/foundation/typography/types/Typography.types.ts'
 import type { CSSProperties, RefAttributes } from 'react'
 import type { ThemeColor } from '@theme'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
   RefAttributes<HTMLElement> &
-  TypographyRecipeVariants & {
+  {
     /** Override the rendered HTML element. */
     as?: React.ElementType;
+    /** Semantic HTML element variant used for default rendering and styles. */
+    variant?: TypographyVariant;
+    /** Font-size token applied to the text. */
+    fontSize?: TypographySize;
+    /** Font-weight token applied to the text. */
+    fontWeight?: TypographyWeight;
+    /** Whether overflowing text should be truncated on one line. */
+    ellipsis?: boolean;
     /** Optional theme color token applied to the text's `color` CSS property. */
     color?: ThemeColor;
     /** CSS `text-transform` value applied to the text. */

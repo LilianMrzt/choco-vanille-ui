@@ -8,8 +8,8 @@ import type { UseTooltipOptions, UseTooltipReturn } from '@components/overlay/to
  * When `disabled` becomes true the internal state is reset, so the tooltip
  * never appears stale when `disabled` goes back to false.
  */
-export const useTooltip = ({ disabled, open, onOpenChange }: UseTooltipOptions): UseTooltipReturn => {
-    const [internalOpen, setInternalOpen] = useState(false)
+export const useTooltip = ({ disabled, open, defaultOpen, onOpenChange }: UseTooltipOptions): UseTooltipReturn => {
+    const [internalOpen, setInternalOpen] = useState(defaultOpen ?? false)
 
     useEffect(() => {
         if (disabled) {setInternalOpen(false)}

@@ -18,6 +18,7 @@ const Tooltip: FC<TooltipProps> = memo(({
     disabled = false,
     className,
     open,
+    defaultOpen,
     onOpenChange,
 }) => {
     const hasProvider = useContext(TooltipProviderContext)
@@ -26,7 +27,7 @@ const Tooltip: FC<TooltipProps> = memo(({
         ? parsePosition(position)
         : { side: sideProp, align: alignProp }
 
-    const { effectiveOpen, handleOpenChange } = useTooltip({ disabled, open, onOpenChange })
+    const { effectiveOpen, handleOpenChange } = useTooltip({ disabled, open, defaultOpen, onOpenChange })
 
     const root = (
         <BaseTooltip.Root

@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { pulseAnimation } from '@constants/animations'
 import { vars } from '@theme/contract.css.ts'
@@ -30,5 +30,3 @@ export const SKELETON_STYLES = {
         },
     }),
 }
-
-export type SkeletonRecipeVariants = NonNullable<RecipeVariants<typeof SKELETON_STYLES.recipe>>

@@ -25,6 +25,8 @@ export type TooltipProps = {
   className?: string;
   /** Controls the open state when used as a controlled component. */
   open?: boolean;
+  /** Initial open state when used as an uncontrolled component. */
+  defaultOpen?: boolean;
   /** Callback called when the open state changes. */
   onOpenChange?: (open: boolean) => void;
 }

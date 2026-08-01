@@ -1,6 +1,7 @@
 export type UseTooltipOptions = {
     disabled: boolean
     open?: boolean
+    defaultOpen?: boolean
     onOpenChange?: (open: boolean) => void
 }
 
