@@ -41,6 +41,7 @@ export default defineConfig({
       '@hooks': resolve(root, 'src/hooks'),
       '@stories': resolve(root, 'src/stories'),
       '@tests': resolve(root, 'tests'),
+      '@scripts': resolve(root, 'scripts'),
     },
   },
   build: {

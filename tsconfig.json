@@ -33,8 +33,9 @@
       "@hooks": ["./src/hooks/index.ts"],
       "@hooks/*": ["./src/hooks/*"],
       "@stories/*": ["./src/stories/*"],
-      "@tests/*": ["./tests/*"]
+      "@tests/*": ["./tests/*"],
+      "@scripts/*": ["./scripts/*"]
     }
   },
-  "include": ["src", ".storybook", "tests"]
+  "include": ["src", ".storybook", "tests", "scripts"],
 }

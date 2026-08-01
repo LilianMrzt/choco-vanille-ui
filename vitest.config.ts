@@ -32,6 +32,7 @@ export default defineConfig({
       '@hooks': path.resolve(dirname, 'src/hooks'),
       '@stories': path.resolve(dirname, 'src/stories'),
       '@tests': path.resolve(dirname, 'tests'),
+      '@scripts': path.resolve(dirname, 'scripts'),
     },
   },
   test: {
