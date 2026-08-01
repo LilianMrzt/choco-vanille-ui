@@ -1,7 +1,7 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
-import { ICON_BUTTON_SIZES } from '@components/actions/icon-button/constants'
+import { ICON_BUTTON_SIZE_VARIANTS } from '@components/actions/icon-button/constants/iconButtonSizeVariants.const.ts'
 
 export const ICON_BUTTON_STYLES = {
     recipe: recipe({
@@ -13,24 +13,7 @@ export const ICON_BUTTON_STYLES = {
         variants: {
             variant: BUTTON_SHARED_STYLES.variantVariants,
             color: BUTTON_SHARED_STYLES.colorVariants,
-            size: {
-                [ICON_BUTTON_SIZES.xs]: {
-                    height: '2rem',
-                    width: '2rem',
-                },
-                [ICON_BUTTON_SIZES.sm]: {
-                    height: '2.25rem',
-                    width: '2.25rem',
-                },
-                [ICON_BUTTON_SIZES.md]: {
-                    height: '2.5rem',
-                    width: '2.5rem',
-                },
-                [ICON_BUTTON_SIZES.lg]: {
-                    height: '2.75rem',
-                    width: '2.75rem',
-                },
-            },
+            size: ICON_BUTTON_SIZE_VARIANTS,
         },
 
         compoundVariants: BUTTON_SHARED_STYLES.compoundVariants,

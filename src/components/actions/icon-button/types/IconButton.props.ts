@@ -1,12 +1,20 @@
 import type * as React from 'react'
 
-import type { IconButtonRecipeVariants } from '@components/actions/icon-button/styles/IconButton.css.ts'
+import type {
+    IconButtonColor,
+    IconButtonSize,
+    IconButtonVariant,
+} from '@components/actions/icon-button/types/IconButton.types.ts'
 
 export type IconButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children' | 'aria-label' | 'color'
 > &
-  IconButtonRecipeVariants & {
+  {
+    variant?: IconButtonVariant
+    color?: IconButtonColor
+    /** Button size. Defaults to `md`. */
+    size?: IconButtonSize
     /** Ref forwarded to the underlying `<button>` element. */
     ref?: React.Ref<HTMLButtonElement>;
     /** Iconify icon name rendered inside the button. */

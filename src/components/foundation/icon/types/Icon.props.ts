@@ -1,18 +1,20 @@
 import type { IconProps as IconifyProps } from '@iconify/react'
 import type { CSSProperties } from 'react'
 
-import type { IconRecipeVariants } from '@components/foundation/icon/styles/Icon.css.ts'
 import type {
     BoxBorderRadius,
     BoxColor,
     BoxSpace,
 } from '@components/layout/box/types/Box.types.ts'
-import type { ThemeColor } from '@theme'
+import type { IconColor, IconSize } from '@components/foundation/icon/types/Icon.types.ts'
 
-export type IconProps = Omit<IconifyProps, 'aria-hidden' | 'role'> &
-  IconRecipeVariants & {
+export type IconProps = Omit<IconifyProps, 'aria-hidden' | 'role'> & {
+    /** Icon size. Defaults to `md`. */
+    size?: IconSize
+    /** Whether the icon should continuously rotate. */
+    spin?: boolean
     /** Optional theme color token applied to the icon's `color` CSS property. */
-    color?: ThemeColor
+    color?: IconColor
     /** Padding token applied to the wrapper around the icon. */
     padding?: BoxSpace
     /** Theme color token applied to the wrapper's border color. */

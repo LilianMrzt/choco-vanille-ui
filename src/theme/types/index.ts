@@ -5,3 +5,6 @@ import type { LightColors } from '@theme/colors/index.ts'
  * Maps to `vars.color.<key>` at runtime.
  */
 export type ThemeColor = keyof LightColors
+
+/** Theme color tokens plus CSS color keywords supported by visual props. */
+export type ThemeColorValue = ThemeColor | 'transparent'

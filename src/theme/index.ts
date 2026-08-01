@@ -20,4 +20,4 @@ export type { LightColors } from '@theme/colors/light.ts'
 export { overrideColors, setColorToken } from '@theme/override.ts'
 
 // Theme types
-export type { ThemeColor } from '@theme/types/index.ts'
+export type { ThemeColor, ThemeColorValue } from '@theme/types/index.ts'
