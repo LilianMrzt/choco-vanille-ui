@@ -14,8 +14,8 @@ export function buildSourceGraph(root: string, componentsRoot: string) {
     skipAddingFilesFromTsConfig: true,
   });
   project.addSourceFilesAtPaths([
-    path.join(componentsRoot, '**', '*.ts'),
-    path.join(componentsRoot, '**', '*.tsx'),
+    path.join(root, 'src', '**', '*.ts'),
+    path.join(root, 'src', '**', '*.tsx'),
   ]);
 
   const nativePropsSource = project.createSourceFile(

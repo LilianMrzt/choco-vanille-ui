@@ -46,6 +46,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,css,md,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,css,md,json}\"",
     "audit:design-system": "node --experimental-strip-types scripts/audit/audit-design-system.ts",
+    "audit:design-system:check": "node --experimental-strip-types scripts/audit/audit-design-system.ts --strict",
     "typecheck": "tsc --noEmit",
     "build-storybook": "storybook build",
     "build:lib": "vite build",

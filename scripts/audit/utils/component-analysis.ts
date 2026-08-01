@@ -25,7 +25,11 @@ function isComponentSource(sourceFile: SourceFile): boolean {
   if (/\.(stories|test)\.tsx?$/.test(filePath)) return false;
   if (/(^|[\\/])(styles|hooks|utils|context)([\\/]|$)/.test(filePath))
     return false;
-  return sourceFile.getDefaultExportSymbol() !== undefined;
+  if (sourceFile.getDefaultExportSymbol() !== undefined) return true;
+  const expectedName = path.basename(filePath, '.tsx');
+  return sourceFile
+    .getExportSymbols()
+    .some((symbol) => symbol.getName() === expectedName);
 }
 
 function componentName(sourceFile: SourceFile): string {
@@ -307,6 +311,7 @@ export function analyzeComponents(
       : [];
     const info: ComponentInfo = {
       name,
+      sourcePath: sourceFile.getFilePath(),
       category:
         path
           .relative(componentsRoot, sourceFile.getFilePath())

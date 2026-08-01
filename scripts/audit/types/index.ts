@@ -5,6 +5,7 @@ export type PropInfo = {
 
 export type ComponentInfo = {
   name: string;
+  sourcePath: string;
   category: string;
   scope: 'public' | 'internal';
   props: PropInfo[];
@@ -42,4 +43,29 @@ export type VanillaExtractStyleBase = {
   propsType: string;
   styleType: string;
   source: string;
+};
+
+export type ConsistencyFindingSeverity = 'error' | 'warning';
+
+export type ConsistencyFindingCategory =
+  | 'accessibility'
+  | 'callbacks'
+  | 'controlled-state'
+  | 'encapsulation'
+  | 'exports'
+  | 'theme'
+  | 'type-safety'
+  | 'visual-consistency';
+
+export type ConsistencyFinding = {
+  rule: string;
+  severity: ConsistencyFindingSeverity;
+  category: ConsistencyFindingCategory;
+  component?: string;
+  symbol?: string;
+  file: string;
+  line: number;
+  message: string;
+  evidence: string;
+  remediation: string;
 };

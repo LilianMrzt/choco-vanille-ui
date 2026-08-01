@@ -6,4 +6,7 @@ storybook-static
 .env
 .env.*
 coverage
-.agents
+docs/audit/
+.agents/*
+!.agents/skills/
+!.agents/skills/**
