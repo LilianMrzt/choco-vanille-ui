@@ -8,8 +8,6 @@ import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 
 const ORIENTATION = ['horizontal', 'vertical'] as const
-const COLORS = THEME_COLORS
-
 const meta = {
     title: 'Layout/Separator',
     component: Separator,
@@ -49,13 +47,14 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
 | \`color\` | No | \`ThemeColor\` | Any semantic color token from the theme. |
 
 - A separator used purely for visual decoration should include \`aria-hidden="true"\` so it is not announced by screen readers.
+- The \`orientation\` prop controls both the visual direction and \`aria-orientation\`.
                 `,
             },
         },
     },
     argTypes: {
         orientation: { control: 'select', options: ORIENTATION },
-        color: { control: 'select', options: COLORS },
+        color: { control: 'select', options: THEME_COLORS },
     },
     args: {
         orientation: 'horizontal',

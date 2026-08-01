@@ -44,6 +44,13 @@ describe('Separator', () => {
             const { container } = render(<Separator orientation="vertical" />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
+
+        it('synchronizes aria-orientation with the visual orientation', () => {
+            const { container } = render(<Separator orientation="vertical" />)
+            expect(getFirstChild(container).getAttribute('aria-orientation')).toBe(
+                'vertical',
+            )
+        })
     })
 
     describe('color', () => {

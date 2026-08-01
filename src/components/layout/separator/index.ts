@@ -1,5 +1,7 @@
 export { default as Separator } from '@components/layout/separator/Separator.tsx'
 export { SEPARATOR_STYLES } from '@components/layout/separator/styles/Separator.css.ts'
-export type { SeparatorRecipeVariants } from '@components/layout/separator/styles/Separator.css.ts'
 export type { SeparatorProps } from '@components/layout/separator/types/Separator.props.ts'
-export type { SeparatorOrientation } from '@components/layout/separator/types/Separator.types.ts'
+export type {
+    SeparatorColor,
+    SeparatorOrientation,
+} from '@components/layout/separator/types/Separator.types.ts'

@@ -1,5 +1,6 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
+import { SEPARATOR_ORIENTATIONS } from '@components/layout/separator/constants/index.ts'
 import { vars } from '@theme/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 
@@ -14,11 +15,11 @@ export const SEPARATOR_STYLES = {
 
         variants: {
             orientation: {
-                horizontal: {
+                [SEPARATOR_ORIENTATIONS.horizontal]: {
                     width: '100%',
                     height: '1px',
                 },
-                vertical: {
+                [SEPARATOR_ORIENTATIONS.vertical]: {
                     width: '1px',
                     height: '100%',
                 },
@@ -28,11 +29,7 @@ export const SEPARATOR_STYLES = {
         },
 
         defaultVariants: {
-            orientation: 'horizontal',
+            orientation: SEPARATOR_ORIENTATIONS.horizontal,
         },
     }),
 }
-
-export type SeparatorRecipeVariants = NonNullable<
-  RecipeVariants<typeof SEPARATOR_STYLES.recipe>
->;

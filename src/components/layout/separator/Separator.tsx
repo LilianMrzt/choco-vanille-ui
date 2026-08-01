@@ -20,6 +20,7 @@ const Separator: FC<SeparatorProps> = memo(({
             role={'separator'}
             className={cn(SEPARATOR_STYLES.recipe({ orientation, color }), className)}
             {...props}
+            aria-orientation={orientation}
         />
     )
 })
