@@ -1,6 +1,15 @@
 import type { CSSProperties, ImgHTMLAttributes, RefAttributes } from 'react'
 
-import type { ImageRecipeVariants } from '@components/layout/image/styles/Image.css.ts'
+import type {
+    BoxBorderRadius,
+    BoxColor,
+} from '@components/layout/box/types/Box.types.ts'
+import type {
+    ImageMargin,
+    ImageObjectFit,
+    ImageObjectPosition,
+    ImageSpace,
+} from '@components/layout/image/types/Image.types.ts'
 
 export type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
   RefAttributes<HTMLImageElement> & {
@@ -19,15 +28,15 @@ export type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
     /** The CSS `aspect-ratio` of the image. */
     aspectRatio?: CSSProperties['aspectRatio'];
     /** The CSS `object-fit` value of the image. */
-    objectFit?: ImageRecipeVariants['objectFit'];
+    objectFit?: ImageObjectFit;
     /** The CSS `object-position` value of the image. */
-    objectPosition?: ImageRecipeVariants['objectPosition'];
+    objectPosition?: ImageObjectPosition;
     /** The border radius token applied to the image. */
-    borderRadius?: ImageRecipeVariants['borderRadius'];
+    borderRadius?: BoxBorderRadius;
     /** The padding token applied to the image. */
-    padding?: ImageRecipeVariants['padding'];
+    padding?: ImageSpace;
     /** The margin token applied to the image. Supports `auto`. */
-    margin?: ImageRecipeVariants['margin'];
+    margin?: ImageMargin;
     /** The theme color token applied to the image's background color. */
-    backgroundColor?: ImageRecipeVariants['backgroundColor'];
+    backgroundColor?: BoxColor;
   };

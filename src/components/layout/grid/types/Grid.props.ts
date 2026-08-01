@@ -1,27 +1,33 @@
-import type { GridRecipeVariants } from '@components/layout/grid/styles/Grid.css.ts'
 import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type {
+    GridAlign,
+    GridAlignContent,
+    GridAutoRows,
+    GridColumns,
+    GridFlow,
+    GridJustifyContent,
+    GridJustifyItems,
+    GridTemplateRows,
+} from '@components/layout/grid/types/Grid.types.ts'
 
 export type GridProps = Omit<
   BoxProps,
-  | 'display'
-  | 'alignItems'
-  | 'alignContent'
-  | 'justifyContent'
+  'display' | 'alignItems' | 'alignContent' | 'justifyContent'
 > & {
   /** The number of equal-width columns in the grid. */
-  columns?: GridRecipeVariants['columns'];
+  columns?: GridColumns;
   /** The track size for implicitly created grid rows. */
-  gridAutoRows?: GridRecipeVariants['gridAutoRows'];
+  gridAutoRows?: GridAutoRows;
   /** The explicit row track sizing for the grid. */
-  gridTemplateRows?: GridRecipeVariants['gridTemplateRows'];
+  gridTemplateRows?: GridTemplateRows;
   /** The auto-placement algorithm for grid items. */
-  gridAutoFlow?: GridRecipeVariants['gridAutoFlow'];
+  gridAutoFlow?: GridFlow;
   /** The default alignment of grid items along the block axis. */
-  alignItems?: GridRecipeVariants['alignItems'];
+  alignItems?: GridAlign;
   /** The default alignment of grid items along the inline axis. */
-  justifyItems?: GridRecipeVariants['justifyItems'];
+  justifyItems?: GridJustifyItems;
   /** The alignment of the grid tracks along the block axis. */
-  alignContent?: GridRecipeVariants['alignContent'];
+  alignContent?: GridAlignContent;
   /** The alignment of the grid tracks along the inline axis. */
-  justifyContent?: GridRecipeVariants['justifyContent'];
+  justifyContent?: GridJustifyContent;
 };

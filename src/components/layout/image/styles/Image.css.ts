@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
@@ -87,7 +87,3 @@ export const IMAGE_STYLES = {
         },
     }),
 }
-
-export type ImageRecipeVariants = NonNullable<
-  RecipeVariants<typeof IMAGE_STYLES.recipe>
->;

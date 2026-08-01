@@ -2,8 +2,9 @@ import type {
     AvatarSize,
     AvatarStatus as AvatarStatusType,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
+import type { HTMLAttributes } from 'react'
 
-export type AvatarStatusProps = {
+export type AvatarStatusProps = HTMLAttributes<HTMLSpanElement> & {
   /** Status indicator variant. Defaults to `online`. */
   status?: AvatarStatusType;
   /** Size of the status indicator. Defaults to `md`. */
@@ -12,6 +13,4 @@ export type AvatarStatusProps = {
   label?: string;
   /** Additional CSS class names. */
   className?: string;
-  /** Native HTML attributes forwarded to the status element. */
-  [key: string]: unknown;
 };

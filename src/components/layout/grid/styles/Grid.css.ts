@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 export const GRID_STYLES = {
     recipe: recipe({
@@ -92,5 +92,3 @@ export const GRID_STYLES = {
         },
     }),
 }
-
-export type GridRecipeVariants = NonNullable<RecipeVariants<typeof GRID_STYLES.recipe>>

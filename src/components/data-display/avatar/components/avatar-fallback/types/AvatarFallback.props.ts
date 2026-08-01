@@ -1,8 +1,9 @@
 import type { Avatar } from '@base-ui/react/avatar'
+import type { HTMLAttributes } from 'react'
 
 import type { AvatarSize } from '@components/data-display/avatar/types/Avatar.types.ts'
 
-export type AvatarFallbackProps = {
+export type AvatarFallbackProps = HTMLAttributes<HTMLSpanElement> & {
   /** Initials displayed when the image fails to load or is omitted. */
   initials?: string;
   /** Iconify icon name displayed as a fallback when no initials are provided. */
@@ -13,6 +14,4 @@ export type AvatarFallbackProps = {
   delay?: Avatar.Fallback.Props['delay'];
   /** Additional CSS class names. */
   className?: string;
-  /** Native HTML attributes forwarded to the fallback element. */
-  [key: string]: unknown;
 };

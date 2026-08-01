@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 export const FLEX_STYLES = {
     recipe: recipe({
@@ -13,5 +13,3 @@ export const FLEX_STYLES = {
         },
     }),
 }
-
-export type FlexRecipeVariants = NonNullable<RecipeVariants<typeof FLEX_STYLES.recipe>>
