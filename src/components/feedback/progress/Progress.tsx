@@ -13,6 +13,8 @@ const Progress: FC<ProgressBaseProps> = memo(({
     size = 'sm',
     borderRadius = 'sm',
     label,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
     quantityLabel,
     width = '100%',
     className,
@@ -71,7 +73,8 @@ const Progress: FC<ProgressBaseProps> = memo(({
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuetext={valueText}
-                aria-label={label}
+                aria-label={label ?? ariaLabel}
+                aria-labelledby={ariaLabelledBy}
                 className={cn(PROGRESS_STYLES.recipe({ size, borderRadius, color }))}
             >
                 <Box

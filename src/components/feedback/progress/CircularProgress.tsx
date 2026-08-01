@@ -16,6 +16,8 @@ const CircularProgress: FC<ProgressBaseProps> = memo(({
     color,
     size = 'sm',
     label,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
     quantityLabel,
     className,
     ref,
@@ -56,7 +58,8 @@ const CircularProgress: FC<ProgressBaseProps> = memo(({
                     aria-valuemin={0}
                     aria-valuemax={100}
                     aria-valuetext={valueText}
-                    aria-label={label}
+                    aria-label={label ?? ariaLabel}
+                    aria-labelledby={ariaLabelledBy}
                     viewBox={`0 0 ${svgSize} ${svgSize}`}
                     className={cn(PROGRESS_STYLES.circular({ size }))}
                 >

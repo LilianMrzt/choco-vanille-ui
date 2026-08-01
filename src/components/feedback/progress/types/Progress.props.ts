@@ -8,7 +8,15 @@ import type {
     ProgressSize,
 } from '@components/feedback/progress/types/Progress.types.ts'
 
-export type ProgressBaseProps = Omit<BoxProps, 'as' | 'children' | 'ref'> & {
+type ProgressAccessibleName =
+  | { label: string }
+  | { 'aria-label': string }
+  | { 'aria-labelledby': string }
+
+export type ProgressBaseProps = Omit<
+  BoxProps,
+  'as' | 'children' | 'ref' | 'aria-label' | 'aria-labelledby'
+> & {
   /** Ref forwarded to the outermost element. */
   ref?: React.Ref<HTMLDivElement>;
   /** Current progress value between 0 and 100. */
@@ -19,11 +27,9 @@ export type ProgressBaseProps = Omit<BoxProps, 'as' | 'children' | 'ref'> & {
   size?: ProgressSize;
   /** Border radius of the linear track. Defaults to `sm`. */
   borderRadius?: ProgressBorderRadius;
-  /** Accessible label describing what the progress represents. */
-  label?: string;
   /**
    * Text displayed alongside (linear) or inside (circular) the progress.
    * Pass `true` to render the value as a percentage, or a custom string.
    */
   quantityLabel?: string | true;
-};
+} & ProgressAccessibleName

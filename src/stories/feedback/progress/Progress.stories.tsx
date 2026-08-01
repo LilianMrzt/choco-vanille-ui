@@ -52,9 +52,9 @@ A progress indicator with linear and circular variants.
 **Usage**
 
 ~~~tsx
-<Progress value={50} />
+<Progress value={50} aria-label="Progress" />
 <Progress value={75} color="success" size="sm" label="Uploading" quantityLabel />
-<CircularProgress value={60} color="primary" quantityLabel />
+<CircularProgress value={60} color="primary" quantityLabel aria-label="Progress" />
 <CircularProgress value={90} color="warning" size="lg" label="Processing" />
 ~~~
 
@@ -63,7 +63,7 @@ A progress indicator with linear and circular variants.
 | Prop / Attribute | Required | Type             | Notes                                                   |
 | ---------------- | -------- | ---------------- | ------------------------------------------------------- |
 | \`value\`          | ✅ Yes   | \`number\`         | Current progress between 0 and 100.                     |
-| \`label\`          | No       | \`string\`         | Describes what the progress represents.                 |
+| \`label\`, \`aria-label\`, \`aria-labelledby\` | One required | \`string\` | Names the progressbar. |
 | \`quantityLabel\`  | No       | \`string \| true\` | Pass \`true\` to show the percentage, or a custom string. |
 
 - Both variants render with \`role="progressbar"\` and forward \`aria-valuenow\`, \`aria-valuemin\`, and \`aria-valuemax\`.
@@ -95,6 +95,7 @@ export default meta
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -109,6 +110,7 @@ export const Playground: Story = {
 }
 
 export const Sizes: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -139,6 +141,7 @@ export const Sizes: Story = {
 }
 
 export const Colors: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -169,6 +172,7 @@ export const Colors: Story = {
 }
 
 export const WithLabels: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -201,6 +205,7 @@ export const WithLabels: Story = {
 }
 
 export const BorderRadius: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -232,6 +237,7 @@ export const BorderRadius: Story = {
 }
 
 export const Width: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -271,6 +277,7 @@ export const Width: Story = {
 }
 
 export const Circular: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -284,22 +291,26 @@ export const Circular: Story = {
                 value={25}
                 size={'sm'}
                 quantityLabel
+                aria-label={'Progress'}
             />
             <CircularProgress
                 value={50}
                 size={'md'}
                 quantityLabel
+                aria-label={'Progress'}
             />
             <CircularProgress
                 value={75}
                 size={'lg'}
                 quantityLabel
+                aria-label={'Progress'}
             />
         </div>
     ),
 }
 
 export const CircularColors: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
@@ -324,6 +335,7 @@ export const CircularColors: Story = {
                     color={color}
                     size={'sm'}
                     quantityLabel
+                    aria-label={color}
                 />
             ))}
         </div>
@@ -331,6 +343,7 @@ export const CircularColors: Story = {
 }
 
 export const CircularWithLabel: Story = {
+    args: { 'aria-label': 'Progress' },
     parameters: {
         docs: {
             description: {
