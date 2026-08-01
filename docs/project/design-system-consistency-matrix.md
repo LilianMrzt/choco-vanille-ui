@@ -86,6 +86,21 @@ clés.
 - Lorsqu'un composant textuel a un équivalent icône-seul, le composant textuel
   exige `label`.
 
+### Couleur et intention
+
+| Prop | Signification | Surface de référence | Vocabulaire |
+| --- | --- | --- | --- |
+| `color` | Choix d'une couleur de thème pour une présentation ou une action | Button, IconButton, Toggle, Badge, Avatar, Progress | Palette sémantique ou étendue selon la famille |
+| `intent` | État métier sémantique d'un élément de contenu, sans être un alias de couleur | Table.Row | `success`, `warning`, `destructive`, `info` |
+
+### Règles
+
+- Utiliser `color` pour choisir une palette exposée par le composant.
+- Réserver `intent` à un état métier contextualisé ; ne pas le remplacer par
+  `color` uniquement parce qu'il produit une couleur de fond.
+- Une surface de feedback utilise son axe propre (`variant` pour Callout et
+  Toast) plutôt que `intent`.
+
 ## Callbacks
 
 | Source du composant | Nom et payload |

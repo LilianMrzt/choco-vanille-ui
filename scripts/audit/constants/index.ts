@@ -235,5 +235,4 @@ export const variantSimilarityPairs: [string, string, number][] = [
 
 export const propSimilarityPairs: [string, string, number][] = [
   ['color', 'tone', 0.85],
-  ['color', 'intent', 0.85],
 ];
