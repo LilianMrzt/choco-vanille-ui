@@ -1,14 +1,16 @@
 import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
+import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 
 export type TextFieldProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   'size'
 > &
   RefAttributes<HTMLInputElement> &
-  Pick<TextFieldInputRecipeVariants, 'size'> & {
+  {
+    /** Input size. @default 'md' */
+    size?: TextFieldSize
     /** Text label rendered above the input, linked via Radix Label for accessibility. */
     label?: string
     /** Helper text rendered below the input. Hidden when `error` is provided. */

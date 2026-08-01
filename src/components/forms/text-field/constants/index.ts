@@ -6,3 +6,9 @@ export const fieldSizeToActionSize: Record<NonNullable<TextFieldSize>, 'sm' | 'm
     md: 'sm',
     lg: 'md',
 }
+
+export const TEXT_FIELD_SIZES = {
+    sm: 'sm',
+    md: 'md',
+    lg: 'lg',
+} as const

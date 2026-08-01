@@ -6,3 +6,4 @@ export { TEXT_FIELD_START_ICON_STYLES } from '@components/forms/text-field/compo
 
 export { default as TextFieldEndAction } from '@components/forms/text-field/components/text-field-end-action/TextFieldEndAction.tsx'
 export { TEXT_FIELD_END_ACTION_STYLES } from '@components/forms/text-field/components/text-field-end-action/styles/TextFieldEndAction.css.ts'
+export type { TextFieldEndActionProps } from '@components/forms/text-field/components/text-field-end-action/types/TextFieldEndAction.props.ts'

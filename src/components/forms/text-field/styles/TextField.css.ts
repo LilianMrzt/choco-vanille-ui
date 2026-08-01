@@ -1,4 +1,5 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
+import { TEXT_FIELD_SIZES } from '@components/forms/text-field/constants'
 import { vars } from '@theme/contract.css.ts'
 
 export const TEXT_FIELD_STYLES = {
@@ -43,17 +44,17 @@ export const TEXT_FIELD_STYLES = {
         },
         variants: {
             size: {
-                sm: {
+                [TEXT_FIELD_SIZES.sm]: {
                     height: '2.25rem',
                     paddingInline: vars.space.sm,
                     fontSize: vars.fontSize.sm,
                 },
-                md: {
+                [TEXT_FIELD_SIZES.md]: {
                     height: '2.5rem',
                     paddingInline: vars.space.md,
                     fontSize: vars.fontSize.sm,
                 },
-                lg: {
+                [TEXT_FIELD_SIZES.lg]: {
                     height: '2.75rem',
                     paddingInline: vars.space.lg,
                     fontSize: vars.fontSize.base,
@@ -89,21 +90,19 @@ export const TEXT_FIELD_STYLES = {
         },
         compoundVariants: [
             // Start icon: push text right
-            { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.sm, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.md, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.lg, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
             // End action: push text left (slot width 1.75rem + right offset 0.625rem)
-            { variants: { size: 'sm', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'md', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
-            { variants: { size: 'lg', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.sm, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.md, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.lg, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
         ],
         defaultVariants: {
-            size: 'md',
+            size: TEXT_FIELD_SIZES.md,
             hasError: false,
             hasStartIcon: false,
             hasEndAction: false,
         },
     }),
 }
-
-export type TextFieldInputRecipeVariants = NonNullable<RecipeVariants<typeof TEXT_FIELD_STYLES.recipe>>

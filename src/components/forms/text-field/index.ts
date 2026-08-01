@@ -7,3 +7,4 @@ export type { TextFieldProps } from '@components/forms/text-field/types/TextFiel
 export type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 export type { TextFieldLabelProps } from '@components/forms/text-field/components/text-field-label/types/TextFieldLabel.props.ts'
 export type { TextFieldStartIconProps } from '@components/forms/text-field/components/text-field-start-icon/types/TextFieldStartIcon.types.ts'
+export type { TextFieldEndActionProps } from '@components/forms/text-field/components/text-field-end-action/types/TextFieldEndAction.props.ts'
