@@ -311,22 +311,19 @@ export type AutocompleteCompound = AutocompleteRoot & {
 2. Conserver les surcharges génériques lors du cast du composant composé.
 3. Vérifier l'inférence avec une liste de chaînes et une liste d'objets.
 
-# ToggleButton
+# Toggle
 
 ## Observations
 
-- `label` est optionnel et `children` est interdit
-  (`src/components/actions/toggle-button/types/ToggleButton.props.ts:7-20`).
+- `label` est obligatoire pour le mode texte et `icon` + `aria-label` pour le mode
+  icône-seule.
 - Les icônes rendues par `Icon` sont décoratives en l'absence d'`aria-label`.
-- `<ToggleButton startIcon="…" />` est donc valide en TypeScript mais peut
-  produire un bouton sans nom accessible.
-- `ToggleIconButton` existe précisément pour l'usage icône-seul et exige un
-  `aria-label`.
+- Le même composant couvre les deux modes sans dupliquer l'API.
 
 ## Conclusions
 
-Deux composants couvrent le même usage, mais seul le composant dédié garantit
-le contrat d'accessibilité. Le composant textuel doit suivre Button.
+Un seul composant couvre les deux usages et impose un nom accessible dans les
+deux cas.
 
 ## Décision
 
@@ -335,35 +332,27 @@ le contrat d'accessibilité. Le composant textuel doit suivre Button.
 ## API cible
 
 ```ts
-type ToggleButtonProps = {
-  label: string
-  startIcon?: string
-  endIcon?: string
-  // props existantes
-}
+type ToggleProps =
+  | { label: string; startIcon?: string; endIcon?: string }
+  | { icon: string; 'aria-label': string }
 ```
 
-Pour un contrôle icône-seul, utiliser `ToggleIconButton`.
+Le composant s'utilise seul ou comme base visuelle de `ToggleGroup.Item`.
 
 ## Tâches d'implémentation
 
-1. Rendre `label` obligatoire.
-2. Mettre à jour les usages icône-seul vers `ToggleIconButton`.
-3. Ajouter un cas de type négatif sans `label`.
+1. Conserver un seul composant pour les deux modes.
+2. Ajouter un cas de type négatif sans nom accessible.
 
-# ToggleButtonGroup.Item
+# ToggleGroup.Item
 
 ## Observations
 
-- `label` est optionnel et `children` est interdit
-  (`ToggleButtonGroupItem.props.ts:7-20`).
-- `ToggleButtonGroup.IconItem` est déjà le composant dédié à l'usage
-  icône-seul et impose un `aria-label`.
+- `Item` reprend le même contrat texte ou icône que `Toggle`.
 
 ## Conclusions
 
-`Item` doit représenter l'item textuel, `IconItem` l'item icône-seul. La
-distinction existe déjà mais n'est pas imposée par le type.
+Le groupe ne duplique plus l'item textuel et l'item icône-seul.
 
 ## Décision
 
@@ -372,17 +361,15 @@ distinction existe déjà mais n'est pas imposée par le type.
 ## API cible
 
 ```ts
-type ToggleButtonGroupItemProps = {
-  label: string
-  // props existantes
+type ToggleGroupItemProps = ToggleProps & {
+  value: string
 }
 ```
 
 ## Tâches d'implémentation
 
-1. Rendre `label` obligatoire sur `ToggleButtonGroup.Item`.
-2. Migrer les usages sans texte vers `ToggleButtonGroup.IconItem`.
-3. Vérifier que `IconItem` conserve son `aria-label` obligatoire.
+1. Exposer uniquement `ToggleGroup.Item`.
+2. Vérifier que les modes texte et icône imposent un nom accessible.
 
 # Tabs.Trigger
 

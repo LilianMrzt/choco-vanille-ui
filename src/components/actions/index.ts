@@ -1,5 +1,4 @@
 export * from '@components/actions/button'
 export * from '@components/actions/icon-button'
-export * from '@components/actions/toggle-button'
-export * from '@components/actions/toggle-icon-button'
-export * from '@components/actions/toggle-button-group'
+export * from '@components/actions/toggle'
+export * from '@components/actions/toggle-group'

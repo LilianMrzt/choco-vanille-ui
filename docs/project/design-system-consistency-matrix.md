@@ -18,7 +18,7 @@ conservent des vocabulaires différents.
 | Axe | Valeurs approuvées | Composants |
 | --- | --- | --- |
 | Remplissage d'action | `contained`, `outlined`, `ghost` | Button, IconButton |
-| Remplissage de toggle | `outlined`, `ghost` | ToggleButton, ToggleIconButton |
+| Remplissage de toggle | `outlined`, `ghost` | Toggle, ToggleGroup.Item |
 | Remplissage de label | `contained`, `subtle`, `outlined`, `outlinedSubtle` | Badge |
 | Intention de feedback | `info`, `success`, `warning`, `error` | Callout, Toast |
 | Forme de placeholder | `circular`, `rectangular`, `rounded` | Skeleton |

@@ -36,7 +36,7 @@ composants n'est pas une incohérence tant que les concepts exposés ne sont pas
   contrôles d'action restent sur les intentions sémantiques, tandis que Badge,
   Avatar et Progress peuvent utiliser la palette étendue.
 - L'accessibilité est souvent garantie par le type ou par le composant :
-  `IconButton` et `ToggleIconButton` exigent un `aria-label`, `Icon` décide
+  `IconButton` et le mode icône de `Toggle` exigent un `aria-label`, `Icon` décide
   automatiquement s'il est décoratif
   (`src/components/foundation/icon/Icon.tsx:20-55`) et `Dialog.Content`
   garantit un nom de repli localisable
@@ -155,7 +155,7 @@ Les problèmes à corriger sont limités aux surfaces suivantes :
 | Tooltip state | Mode uncontrolled initial incomplet | Standardiser |
 | Avatar props | Les fautes de props passent le type-check | Corriger |
 | Autocomplete compound | Perte de l'inférence générique | Corriger |
-| ToggleButton, ToggleButtonGroup.Item, Tabs.Trigger | Contrôle sans nom accessible autorisé | Corriger |
+| Toggle, ToggleGroup.Item, Tabs.Trigger | Contrôle sans nom accessible autorisé | Corriger |
 | Drawer types | Type d'un slot public inaccessible | Corriger |
 | Callout/Toast exports | Deux chemins d'import pour les mêmes slots | Standardiser |
 | Theme exports | Barrel avancé inaccessible depuis le package | Standardiser |
@@ -190,7 +190,7 @@ Les différences suivantes sont conservées :
 
 ### Écarts démontrés
 
-- `ToggleButton`, `ToggleButtonGroup.Item` et `Tabs.Trigger` rendent leur
+- `Toggle`, `ToggleGroup.Item` et `Tabs.Trigger` rendent leur
   `label` optionnel tout en masquant leurs icônes décoratives. Un contrôle sans
   nom accessible est donc accepté par TypeScript.
 - `Progress` et `CircularProgress` émettent toujours
@@ -259,8 +259,8 @@ Intervention requise :
 - Tooltip ;
 - Avatar ;
 - Autocomplete ;
-- ToggleButton ;
-- ToggleButtonGroup.Item ;
+- Toggle ;
+- ToggleGroup.Item ;
 - Tabs.Trigger ;
 - Progress ;
 - CircularProgress ;

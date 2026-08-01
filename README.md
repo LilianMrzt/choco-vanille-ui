@@ -57,7 +57,7 @@ export function Example() {
 |---|---|
 | **Foundation** | `Icon`, `Typography` |
 | **Layout** | `Box`, `Flex`, `Grid`, `Image`, `Separator`, `Form`, `Fieldset`, `Legend` |
-| **Actions** | `Button`, `IconButton`, `ToggleButton`, `ToggleIconButton`, `ToggleButtonGroup` |
+| **Actions** | `Button`, `IconButton`, `Toggle`, `ToggleGroup` |
 | **Forms** | `Autocomplete`, `Calendar`, `Checkbox`, `DatePicker`, `RadioGroup`, `Select`, `Switch`, `TextArea`, `TextField` |
 | **Data Display** | `Avatar`, `AvatarGroup`, `Badge`, `Table` |
 | **Surfaces** | `Accordion`, `Card`, `Collapsible` |
@@ -117,4 +117,3 @@ component that references it through `vars`.
 ## License
 
 [MIT](./LICENSE)
-

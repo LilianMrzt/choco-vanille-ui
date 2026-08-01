@@ -70,21 +70,11 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     expected: ACTION_VARIANTS,
   },
   {
-    component: 'ToggleButton',
+    component: 'Toggle',
     axis: 'variant',
     source: {
       kind: 'recipe',
-      file: 'src/components/actions/toggle-button/styles/ToggleButton.css.ts',
-      axis: 'variant',
-    },
-    expected: TOGGLE_VARIANTS,
-  },
-  {
-    component: 'ToggleIconButton',
-    axis: 'variant',
-    source: {
-      kind: 'recipe',
-      file: 'src/components/actions/toggle-icon-button/styles/ToggleIconButton.css.ts',
+      file: 'src/components/actions/toggle/styles/Toggle.css.ts',
       axis: 'variant',
     },
     expected: TOGGLE_VARIANTS,
@@ -153,7 +143,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
       'src/components/actions/_shared/buttons/styles/buttonShared.css.ts',
   },
   {
-    component: 'ToggleButton',
+    component: 'Toggle',
     axis: 'size',
     source: {
       kind: 'const',
@@ -163,7 +153,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     expected: TEXT_CONTROL_SIZES,
     defaultValue: 'md',
     defaultSource:
-      'src/components/actions/toggle-button/styles/ToggleButton.css.ts',
+      'src/components/actions/toggle/styles/Toggle.css.ts',
   },
   {
     component: 'TextField',
@@ -225,19 +215,6 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     expected: ICON_CONTROL_SIZES,
     defaultValue: 'md',
     defaultSource: 'src/components/actions/icon-button/IconButton.tsx',
-  },
-  {
-    component: 'ToggleIconButton',
-    axis: 'size',
-    source: {
-      kind: 'const',
-      file: 'src/components/actions/icon-button/constants/iconButtonSizes.const.ts',
-      symbol: 'ICON_BUTTON_SIZES',
-    },
-    expected: ICON_CONTROL_SIZES,
-    defaultValue: 'md',
-    defaultSource:
-      'src/components/actions/toggle-icon-button/ToggleIconButton.tsx',
   },
   {
     component: 'Avatar',
@@ -322,7 +299,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
       '6xl',
     ],
   },
-  ...['Button', 'IconButton', 'ToggleButton', 'ToggleIconButton'].map(
+  ...['Button', 'IconButton', 'Toggle'].map(
     (component): VisualVocabularyContract => ({
       component,
       axis: 'color',
