@@ -18,7 +18,7 @@ Copilot charge ce Skill automatiquement lorsque la demande concerne la
 création, la modification, le refactoring ou l'extension d'un composant sous
 `src/components` ou du thème sous `src/theme`.
 
-Pour le demander explicitement, mentionner `/choco-vanille` dans le prompt :
+Pour le demander explicitement, invoquer la commande `/choco-vanille` :
 
 ```text
 /choco-vanille Crée un composant Slider.
@@ -366,6 +366,10 @@ ComponentContextValue
 Rules:
 
 - No public `any`.
+- An upstream `any` required by a Base UI generic root overload may remain in
+  an internal adapter when it is not part of the emitted public compound type.
+  Do not replace it with `Parameters`, `unknown` unions or copied overloads
+  only to satisfy a source scan.
 - Preserve generic primitive overloads with `typeof Primitive.Root`.
 - Use `Pick` for deliberate upstream subsets.
 - Use `Omit` only for redefined keys.
@@ -389,6 +393,42 @@ export type AutocompleteCompound = AutocompleteRoot & {
   Item: typeof AutocompleteItem
 }
 ```
+
+Base UI roots are generic callable values, not necessarily
+`React.FunctionComponent`s. Their type therefore may not declare React's
+optional static `displayName` property, even though the property can be
+assigned at runtime. When a compound wrapper exposes `displayName`, extend the
+root type with that static member rather than creating a second implementation
+variable or casting at the assignment:
+
+```ts
+type AutocompleteRoot = typeof BaseAutocomplete.Root & {
+  displayName?: string
+}
+
+export type AutocompleteCompound = AutocompleteRoot & {
+  Input: typeof AutocompleteInput
+}
+
+const Autocomplete = memo<BaseAutocomplete.Root.Props<Value>>(
+  (props) => <BaseAutocomplete.Root {...props} />,
+) as unknown as AutocompleteCompound
+
+Autocomplete.displayName = 'Autocomplete'
+```
+
+This error occurs because TypeScript checks the static members of the cast
+type, not the runtime object. Keep the Base UI callable and generic contract;
+only add the static React metadata that the wrapper actually assigns.
+
+When a wrapper adds behavior around a generic Base UI root, keep the public
+compound root typed as `typeof BaseAutocomplete.Root`. The implementation may
+use the primitive's generic props directly when needed. If Base UI's own
+declaration uses `any` in an overload, preserve that upstream contract instead
+of reproducing the overloads locally or adding narrowing logic unrelated to
+the component's runtime behavior. Audit rules should ignore that specific
+upstream adapter case while continuing to reject project-defined public
+`any`.
 
 Accessible content union template:
 

@@ -6,7 +6,7 @@ import {
   manualMatrixLimitations,
   visualVocabularyContracts,
   type VocabularySource,
-} from 'scripts/audit/constants/consistency.const.ts';
+} from '../constants/consistency.const.ts';
 import type {
   ComponentInfo,
   ConsistencyFinding,
@@ -219,6 +219,24 @@ function detectPublicAny(
     for (const anyNode of sourceFile.getDescendantsOfKind(
       SyntaxKind.AnyKeyword,
     )) {
+      const typeReference = anyNode.getFirstAncestorByKind(
+        SyntaxKind.TypeReference,
+      );
+      const typeName = typeReference?.getTypeName().getText();
+      const isBaseUiRootProps =
+        !isPublicTypeFile(sourceFile) &&
+        typeName !== undefined &&
+        /^Base[A-Z]\w*\.Root\.Props$/.test(typeName) &&
+        (typeReference?.getTypeArguments().some(
+          (typeArgument) => typeArgument.getKind() === SyntaxKind.AnyKeyword,
+        ) ??
+          false);
+
+      // Base UI uses `any` in the generic root overloads. Keep that upstream
+      // adapter type instead of weakening the wrapper to reproduce the
+      // primitive's overloads locally.
+      if (isBaseUiRootProps) continue;
+
       const component = componentForFile(
         context.components,
         sourceFile.getFilePath(),

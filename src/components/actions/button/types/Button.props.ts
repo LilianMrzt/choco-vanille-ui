@@ -1,12 +1,18 @@
 import type * as React from 'react'
 
-import type { ButtonRecipeVariants } from '@components/actions/button/styles/Button.css.ts'
+import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
 
 export type ButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children' | 'color'
 > &
-  ButtonRecipeVariants & {
+  {
+    /** Visual style variant of the button. */
+    variant?: ButtonVariant;
+    /** Theme color of the button. */
+    color?: ButtonColor;
+    /** Button size. Defaults to `md`. */
+    size?: ButtonSize;
     /** Ref forwarded to the underlying `<button>` element. */
     ref?: React.Ref<HTMLButtonElement>;
     /** The text content rendered inside the button via the Typography component. */

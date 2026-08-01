@@ -1,11 +1,13 @@
-import type { FC } from 'react'
 import type { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
+import type { FC } from 'react'
 
 import type { AutocompleteInputProps } from '@components/forms/autocomplete/components/autocomplete-input/types/AutocompleteInput.props.ts'
 import type { AutocompleteTriggerProps } from '@components/forms/autocomplete/components/autocomplete-trigger/types/AutocompleteTrigger.props.ts'
 import type { AutocompleteContentProps } from '@components/forms/autocomplete/components/autocomplete-content/types/AutocompleteContent.props.ts'
 
-type AutocompleteRoot = FC<BaseAutocomplete.Root.Props<any>>
+type AutocompleteRoot = typeof BaseAutocomplete.Root & {
+    displayName?: string
+}
 
 export type AutocompleteCompound = AutocompleteRoot & {
     Input: FC<AutocompleteInputProps>

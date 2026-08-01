@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
@@ -33,5 +33,3 @@ export const BUTTON_STYLES = {
         defaultVariants: BUTTON_SHARED_STYLES.defaultVariants,
     }),
 }
-
-export type ButtonRecipeVariants = NonNullable<RecipeVariants<typeof BUTTON_STYLES.recipe>>

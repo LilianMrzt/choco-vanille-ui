@@ -14,7 +14,7 @@ type GroupedRootItem = { label: string; items: FlatRootItem[] }
  */
 export const toRootItems = (
     options: AutocompleteOption[],
-): FlatRootItem[] | GroupedRootItem[] => {
+): (FlatRootItem | GroupedRootItem)[] => {
     const hasGroups = options.some((option) => option.type === 'group')
 
     if (!hasGroups) {
