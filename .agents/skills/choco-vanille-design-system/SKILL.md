@@ -709,6 +709,60 @@ Do not introduce:
   already provides the behavior;
 - a rewrite when a local standardization fixes the public inconsistency.
 
+## Stories de composants
+
+Cette convention s'applique aux fichiers CSF
+`src/stories/**/*.stories.tsx` des composants. Les fichiers MDX et
+`src/stories/overview/**` sont des stories de documentation et restent hors
+périmètre jusqu'à leur standardisation dédiée.
+
+### Structure orientée consommateur
+
+Chaque story de composant contient, dans cet ordre :
+
+1. une description du composant avec ses usages essentiels ;
+2. un unique playground interactif couvrant toutes les props publiques
+   contrôlables ;
+3. les Controls du playground ;
+4. un tableau d'accessibilité ;
+5. des exemples ciblés et comparatifs (variants, tailles, couleurs, états,
+   slots ou composition) lorsque le contrat les justifie.
+
+Utiliser une page Docs explicite afin de rendre cet ordre déterministe :
+
+```tsx
+const ComponentDocsPage = () => (
+  <>
+    <Title />
+    <Description />
+    <Canvas />
+    <Controls />
+    <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+    <Stories includePrimary={false} />
+  </>
+)
+```
+
+`<Stories includePrimary={false} />` est obligatoire : le canvas primaire est
+déjà le playground et ne doit jamais être affiché une seconde fois.
+
+### Extraits « Show code »
+
+- Utiliser `storySource` pour chaque story exportée afin d'afficher le code
+  consommateur prévu, jamais la fonction interne `render()`.
+- Les extraits sont directement copiables et emploient un seul espace entre
+  les props ; ne jamais aligner verticalement les props avec des espaces.
+- Les exemples d'une story doivent refléter exactement son rendu visible.
+
+### Lisibilité du fichier
+
+- Ne pas utiliser de séparateurs décoratifs, notamment des commentaires avec
+  des caractères `─`.
+- Garder uniquement les commentaires qui expliquent une décision ou un
+  comportement non évident.
+- Les composants compound possèdent un playground qui permet aussi
+  d'interagir avec chaque slot public pertinent.
+
 ## Checklists
 
 ### Creating a component
@@ -770,6 +824,17 @@ Do not introduce:
 - [ ] `Omit` keys are deliberately redefined.
 - [ ] Compound slots and prop types are discoverable.
 - [ ] No cast hides a callback or state mismatch.
+
+### Reviewing component stories
+
+- [ ] La story est une story de composant, pas une story MDX ou `overview`.
+- [ ] La description précède un playground unique et complet.
+- [ ] La page Docs rend le playground une seule fois, avec Controls.
+- [ ] Le tableau d'accessibilité suit les Controls.
+- [ ] Chaque story exportée fournit son extrait `storySource`.
+- [ ] Les extraits ne contiennent ni alignement artificiel des props ni
+      scaffolding `render()`.
+- [ ] Aucun séparateur décoratif n'alourdit le fichier.
 
 ## Guide de refactoring
 

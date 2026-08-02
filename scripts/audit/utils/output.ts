@@ -10,6 +10,7 @@ import type {
   ImplementationLeak,
   VanillaExtractStyleBase,
 } from '../types/index.ts';
+import type { StoryFinding } from './story-analysis.ts';
 import {
   buildComponentGroups,
   buildPropsIndex,
@@ -28,6 +29,8 @@ type GenerateOutputsParams = {
   })[];
   architecturalSignals: ArchitecturalSignal[];
   consistencyFindings: ConsistencyFinding[];
+  storyFindings: StoryFinding[];
+  storyCount: number;
   outputRoot: string;
   root: string;
 };
@@ -228,6 +231,8 @@ export async function generateOutputs(
     vanillaExtractStyleBases,
     architecturalSignals,
     consistencyFindings,
+    storyFindings,
+    storyCount,
     outputRoot,
     root,
   } = params;
@@ -272,6 +277,10 @@ export async function generateOutputs(
     vanillaExtractStyleBases,
     architecturalSignals,
     consistencyFindings,
+    storyAudit: {
+      storyCount,
+      findings: storyFindings,
+    },
     matrixCoverage: consistencyCoverage,
   };
   const consistencyErrors = consistencyFindings.filter(
@@ -359,6 +368,7 @@ Generated at ${generatedAt}.
 - Erreurs : ${consistencyErrors.length}
 - Avertissements : ${consistencyWarnings.length}
 - Rapports détaillés : [composants nécessitant une intervention](./components/index.md)
+- Stories non conformes : ${storyFindings.length} erreur(s) — [rapports détaillés](./stories/index.md)
 - Couverture : [règles automatisées et limites](./matrix-coverage.md)
 
 ### Couverture de la matrice
@@ -417,9 +427,11 @@ ${formatArchitecturalSignals()}
         summary: {
           errors: consistencyErrors.length,
           warnings: consistencyWarnings.length,
+          storyErrors: storyFindings.length,
           signals: architecturalSignals.length,
         },
         findings: consistencyFindings,
+        storyFindings,
         signals: architecturalSignals,
         coverage: consistencyCoverage,
       },
@@ -657,6 +669,85 @@ ${componentIndexEntries.join('\n')}
 `,
     'utf8',
   );
+
+  const storyOutputRoot = path.join(outputRoot, 'stories');
+  await rm(storyOutputRoot, { recursive: true, force: true });
+  await mkdir(storyOutputRoot, { recursive: true });
+  const storyFindingsByFile = new Map<string, StoryFinding[]>();
+  for (const finding of storyFindings) {
+    const findings = storyFindingsByFile.get(finding.file) ?? [];
+    findings.push(finding);
+    storyFindingsByFile.set(finding.file, findings);
+  }
+  const storyIndexEntries: string[] = [];
+
+  for (const [file, findings] of [...storyFindingsByFile.entries()].sort(
+    ([left], [right]) => left.localeCompare(right),
+  )) {
+    const componentName = path
+      .basename(file)
+      .replace(/\.stories\.tsx$/, '');
+    const findingsMarkdown = findings
+      .map(
+        (finding, index) => `## ${index + 1}. ${finding.rule}
+
+### Observation
+
+- Sévérité : **${finding.severity}**
+- Source : \`${finding.file}:${finding.line}\`
+- Problème : ${finding.message}
+
+### Correction attendue
+
+${finding.remediation}
+
+### Critère de réussite
+
+La règle \`${finding.rule}\` ne doit plus apparaître pour \`${finding.file}\` après régénération de l’audit.`,
+      )
+      .join('\n\n');
+    await writeFile(
+      path.join(storyOutputRoot, `${componentName}.md`),
+      `# ${componentName}
+
+Généré automatiquement le ${generatedAt}.
+
+## Synthèse
+
+- Source : \`${file}\`
+- Erreurs : ${findings.length}
+- Décision globale : **Corriger**
+
+## Instructions pour l’agent correcteur
+
+1. Traiter chaque constat de ce fichier, dans l’ordre.
+2. Conserver le contrat et les exemples qui ne sont pas concernés.
+3. Régénérer \`pnpm audit:design-system\`.
+4. Le travail est terminé lorsque ce fichier n’est plus généré.
+
+${findingsMarkdown}
+`,
+      'utf8',
+    );
+    storyIndexEntries.push(
+      `- [${componentName}](./${componentName}.md) — ${findings.length} erreur(s) — **Corriger**`,
+    );
+  }
+
+  await writeFile(
+    path.join(storyOutputRoot, 'index.md'),
+    `# Stories nécessitant une intervention
+
+Généré automatiquement le ${generatedAt}.
+
+Une story de composant en erreur possède un rapport dédié. Les fichiers MDX et
+\`src/stories/overview/**\` restent exclus du périmètre.
+
+${storyIndexEntries.join('\n') || '- Aucune story en erreur.'}
+`,
+    'utf8',
+  );
+  await rm(path.join(outputRoot, 'stories.md'), { force: true });
 
   await writeFile(
     path.join(outputRoot, 'matrix-coverage.md'),

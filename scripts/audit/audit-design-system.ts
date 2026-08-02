@@ -6,6 +6,7 @@ import { analyzeComponents } from './utils/component-analysis.ts';
 import { detectArchitecture } from './utils/architecture.ts';
 import { detectConsistency } from './utils/consistency.ts';
 import { generateOutputs } from './utils/output.ts';
+import { analyzeComponentStories } from './utils/story-analysis.ts';
 
 const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -30,20 +31,23 @@ async function main(): Promise<void> {
     sourceFiles: graph.sourceFiles,
     publicExports: graph.publicExports,
   });
+  const storyAudit = analyzeComponentStories(root, graph.sourceFiles);
   await generateOutputs({
     components,
     implementationLeaks,
     vanillaExtractStyleBases,
     architecturalSignals,
     consistencyFindings,
+    storyFindings: storyAudit.findings,
+    storyCount: storyAudit.storyCount,
     outputRoot,
     root,
   });
 
-  const errorCount = consistencyFindings.filter(
+  const componentErrorCount = consistencyFindings.filter(
     (finding) => finding.severity === 'error',
   ).length;
-  const warningCount = consistencyFindings.length - errorCount;
+  const warningCount = consistencyFindings.length - componentErrorCount;
   for (const finding of consistencyFindings) {
     const owner = finding.component ? ` ${finding.component}` : '';
     console.log(
@@ -55,8 +59,14 @@ async function main(): Promise<void> {
       `SIGNAL [${signal.kind}] ${signal.values.join(' / ')} — confiance ${Math.round(signal.confidence * 100)} %`,
     );
   }
+  for (const finding of storyAudit.findings) {
+    console.log(
+      `${finding.severity.toUpperCase()} [${finding.rule}] ${finding.file}:${finding.line} — ${finding.message}`,
+    );
+  }
+  const errorCount = componentErrorCount + storyAudit.findings.length;
   console.log(
-    `Coherence findings: ${errorCount} error(s), ${warningCount} warning(s), ${architecturalSignals.length} signal(s).`,
+    `Coherence findings: ${componentErrorCount} component error(s), ${warningCount} warning(s), ${storyAudit.findings.length} story error(s), ${architecturalSignals.length} signal(s).`,
   );
 
   if (strict && errorCount > 0) {
