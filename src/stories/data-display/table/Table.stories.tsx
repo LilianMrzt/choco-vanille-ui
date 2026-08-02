@@ -1,9 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { within, expect } from 'storybook/test'
 import type { ComponentProps } from 'react'
 
 import { Table, type TableSize } from '@/components/data-display/table'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const INVOICES = [
     { invoice: 'INV-001', status: 'Paid', method: 'Credit card', amount: 250.0 },
@@ -23,6 +32,45 @@ const total = INVOICES.reduce((s, r) => s + r.amount, 0)
 
 const SIZES: TableSize[] = ['sm', 'md', 'lg']
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`Table.Caption\` | Recommended | \`ReactNode\` | Provides the accessible name for the table. |
+| \`Table.Head\` | No | \`<th>\` | Maps to \`role="columnheader"\` automatically. |
+| \`sortDirection\` on \`Table.Head\` | No | \`string\` | Sets \`aria-sort\` automatically. |
+`
+
+const SUBCOMPONENTS_DESCRIPTION = md /* language=markdown */ `
+## Sub-components
+
+| Sub-component | Description |
+|---|---|
+| \`Table\` | Root wrapper with size, striped, bordered and fixed props. |
+| \`Table.Caption\` | Accessible name or description for the table. |
+| \`Table.ColGroup\` | Wrapper for column definitions. |
+| \`Table.Col\` | Defines column width and styling. |
+| \`Table.Header\` | Groups header rows. |
+| \`Table.Body\` | Groups data rows. |
+| \`Table.Footer\` | Groups summary or total rows. |
+| \`Table.Row\` | A single table row with hoverable, selectable and intent props. |
+| \`Table.Head\` | A header cell with align, sortable and sortDirection props. |
+| \`Table.Cell\` | A data cell with align, numeric, truncate and colSpan props. |
+`
+
+const TableDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Markdown>{SUBCOMPONENTS_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 type TablePlaygroundArgs = ComponentProps<typeof Table> & {
   headerAlign?: 'left' | 'center' | 'right';
   sortable?: boolean;
@@ -38,6 +86,7 @@ const meta: Meta<TablePlaygroundArgs> = {
     parameters: {
         layout: 'padded',
         docs: {
+            page: TableDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A semantic HTML table built from composable sub-components and Vanilla Extract styles.
@@ -78,34 +127,6 @@ A semantic HTML table built from composable sub-components and Vanilla Extract s
 </Table>
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`Table.Caption\` | Recommended | \`ReactNode\` | Provides the accessible name for the table. Always include one, or use \`aria-label\` when no caption is present. |
-| \`Table.Head\` | No | \`<th>\` | Maps to \`role="columnheader"\` automatically — no extra ARIA needed for simple tables. |
-| \`scope\` on \`Table.Head\` | No | \`string\` | Add for explicit column scoping in complex or multi-level header tables. |
-| \`sortDirection\` on \`Table.Head\` | No | \`'asc' \\| 'desc' \\| 'none'\` | Sets \`aria-sort\` on \`<th>\` automatically. |
-| \`selectable\` on \`Table.Row\` | No | \`boolean\` | Sets \`aria-selected\` on \`<tr>\` automatically when combined with \`selected\`. |
-| \`aria-label\` on \`Table\` | Conditional | \`string\` | Use when \`Table.Caption\` is omitted. |
-
-- The scrollable wrapper is keyboard-reachable (\`tabIndex={0}\`) so users can scroll without a mouse.
-- \`selectable\` rows are pointer-activated only — add \`onKeyDown\` for full keyboard support.
-
-**Sub-components**
-
-| Sub-component | Description |
-|---|---|
-| \`Table\` | Root wrapper with size, striped, bordered and fixed props. |
-| \`Table.Caption\` | Accessible name or description for the table. |
-| \`Table.ColGroup\` | Wrapper for column definitions. |
-| \`Table.Col\` | Defines column width and styling. |
-| \`Table.Header\` | Groups header rows. |
-| \`Table.Body\` | Groups data rows. |
-| \`Table.Footer\` | Groups summary or total rows. |
-| \`Table.Row\` | A single table row with hoverable, selectable and intent props. |
-| \`Table.Head\` | A header cell with align, sortable and sortDirection props. |
-| \`Table.Cell\` | A data cell with align, numeric, truncate and colSpan props. |
                 `,
             },
         },
@@ -201,6 +222,7 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to configure the table, its headers and its rows.',
             },
+            ...storySource(`<Table size="md"><Table.Caption>Recent invoices.</Table.Caption></Table>`),
         },
     },
     render: (args) => {
@@ -281,6 +303,7 @@ export const Striped: Story = {
             description: {
                 story: 'Alternating muted background on even body rows.',
             },
+            ...storySource(`<Table striped><Table.Caption>Recent invoices.</Table.Caption></Table>`),
         },
     },
     render: () => (
@@ -314,6 +337,7 @@ export const Bordered: Story = {
             description: {
                 story: 'Borders on all four sides of every header and data cell.',
             },
+            ...storySource(`<Table bordered><Table.Caption>Recent invoices.</Table.Caption></Table>`),
         },
     },
     render: () => (
@@ -347,6 +371,7 @@ export const FixedLayout: Story = {
             description: {
                 story: 'Fixed table layout with explicit column widths via `Table.ColGroup`.',
             },
+            ...storySource(`<Table fixed><Table.Caption>Recent invoices.</Table.Caption></Table>`),
         },
     },
     render: () => (
@@ -386,6 +411,7 @@ export const Sortable: Story = {
             description: {
                 story: 'Sortable column headers with visual direction indicators.',
             },
+            ...storySource(`<Table><Table.Head sortable sortDirection="asc">Invoice</Table.Head></Table>`),
         },
     },
     render: () => (
@@ -440,6 +466,7 @@ export const SelectableRows: Story = {
             description: {
                 story: 'Rows with hover and selection affordances.',
             },
+            ...storySource(`<Table><Table.Row selectable selected><Table.Cell>INV-001</Table.Cell></Table.Row></Table>`),
         },
     },
     render: () => (
@@ -477,6 +504,7 @@ export const IntentRows: Story = {
             description: {
                 story: 'Semantic row intents for status or emphasis.',
             },
+            ...storySource(`<Table><Table.Row intent="success"><Table.Cell>Paid</Table.Cell></Table.Row></Table>`),
         },
     },
     render: () => (
@@ -517,5 +545,26 @@ export const IntentRows: Story = {
                 </Table.Row>
             </Table.Body>
         </Table>
+    ),
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            description: { story: 'The three table density sizes.' },
+            ...storySource(`<Table size="sm" /><Table size="md" /><Table size="lg" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '1rem' }}>
+            {SIZES.map((size) => (
+                <Table
+                    key={size}
+                    size={size}
+                >
+                    <Table.Caption>{size.toUpperCase()}</Table.Caption>
+                </Table>
+            ))}
+        </div>
     ),
 }

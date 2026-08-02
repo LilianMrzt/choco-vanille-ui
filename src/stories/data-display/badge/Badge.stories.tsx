@@ -1,10 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Badge } from '@/components/data-display/badge'
 import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-display/badge'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const VARIANTS: BadgeVariant[] = [
     'contained',
@@ -29,12 +38,33 @@ const COLORS: BadgeColor[] = [
 ]
 const SIZES: BadgeSize[] = ['sm', 'md', 'lg']
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` | Yes | \`string\` | Becomes the badge's text content. |
+| \`aria-*\` | No | — | Native span ARIA attributes are forwarded. |
+`
+
+const BadgeDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Data Display/Badge',
     component: Badge,
     parameters: {
         layout: 'centered',
         docs: {
+            page: BadgeDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A small status indicator built on top of the Box primitive.
@@ -51,14 +81,6 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
 <Badge label="Custom" borderRadius="md" width="fit-content" />
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | ✅ Yes | \`string\` | Becomes the badge's text content. |
-| \`aria-*\` | No | — | All native \`<span>\` ARIA attributes are forwarded to the underlying element. |
-
-- The badge renders as a native \`<span>\`, making it safe to embed inside paragraphs, tables, and other flow content.
                 `,
             },
         },
@@ -92,6 +114,7 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(`<Badge label="Badge" variant="subtle" color="primary" size="md" />`),
         },
     },
     play: async ({ canvasElement, args }) => {
@@ -106,6 +129,7 @@ export const Variants: Story = {
             description: {
                 story: 'The four visual variants applied to the primary color.',
             },
+            ...storySource(`<Badge label="contained" variant="contained" />`),
         },
     },
     render: () => (
@@ -127,6 +151,7 @@ export const Sizes: Story = {
             description: {
                 story: 'The three size variants.',
             },
+            ...storySource(`<Badge label="SM" size="sm" /><Badge label="MD" size="md" /><Badge label="LG" size="lg" />`),
         },
     },
     render: () => (
@@ -148,6 +173,7 @@ export const Colors: Story = {
             description: {
                 story: 'All available color intents in the default outlinedSubtle variant.',
             },
+            ...storySource(`<Badge label="primary" color="primary" /><Badge label="success" color="success" />`),
         },
     },
     render: () => (
@@ -169,6 +195,7 @@ export const WithIcons: Story = {
             description: {
                 story: 'Badges can display an optional start or end icon.',
             },
+            ...storySource(`<Badge label="Start icon" startIcon={IconRegistry.check} />`),
         },
     },
     render: () => (

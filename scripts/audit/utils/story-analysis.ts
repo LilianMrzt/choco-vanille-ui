@@ -135,6 +135,15 @@ function accessibilitySectionCount(source: string): number {
   return source.match(/\*\*Accessibility\*\*/g)?.length ?? 0;
 }
 
+function componentDescriptionHasSection(
+  source: string,
+  section: string,
+): boolean {
+  return new RegExp(
+    `\\bdescription\\s*:\\s*\\{\\s*component\\s*:[\\s\\S]*?\\*\\*${section}\\*\\*`,
+  ).test(source);
+}
+
 function sourceCodeHasAlignedProps(sourceFile: SourceFile): number | undefined {
   for (const call of sourceFile.getDescendantsOfKind(
     SyntaxKind.CallExpression,
@@ -344,6 +353,18 @@ export function analyzeComponentStories(
         hasCompoundPublicApi &&
         !isFieldWrapperStory
       ) {
+        if (componentDescriptionHasSection(source, 'Sub-components')) {
+          addFinding(
+            findings,
+            root,
+            sourceFile,
+            'story-subcomponents-order',
+            0,
+            'Le tableau des sous-composants est placé dans la description du composant.',
+            'Rendre le tableau via un bloc `<Markdown>` après `<Controls />` dans la page Docs.',
+          );
+        }
+
         const missingCompoundControls = component.subComponents
           .map((subComponent) =>
             subComponent.startsWith(component.name)

@@ -1,4 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Avatar } from '@components/data-display/avatar'
@@ -7,8 +15,30 @@ import {
     type AvatarGroupSpacing,
 } from '@components/data-display/avatar-group'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const SPACINGS: AvatarGroupSpacing[] = ['none', 'sm', 'md', 'lg', 'xl']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`children\` | Yes | \`ReactNode\` | Should be \`Avatar\` elements. |
+| \`max\` | No | \`number\` | Truncates the list with a \`+N\` overflow avatar. |
+| \`spacing\` | No | \`none \| sm \| md \| lg \| xl\` | Controls overlap. |
+`
+
+const AvatarGroupDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Data Display/AvatarGroup',
@@ -16,6 +46,7 @@ const meta = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: AvatarGroupDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -34,16 +65,6 @@ Useful for showing a team, participants, or collaborators.
 </AvatarGroup>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type                           | Notes                                           |
-| ---------------- | -------- | ------------------------------ | ----------------------------------------------- |
-| \`children\`       | ✅ Yes   | \`ReactNode\`                    | Should be \`Avatar\` elements.                    |
-| \`max\`            | No       | \`number\`                       | Truncates the list with a \`+N\` overflow avatar. |
-| \`spacing\`        | No       | \`none \| sm \| md \| lg \| xl\` | Controls the negative overlap between avatars.  |
-
-- The group renders as a flex container.
-- Overflow count is rendered as text inside an additional avatar.
         `,
             },
         },
@@ -71,6 +92,7 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with spacing and max.',
             },
+            ...storySource(`<AvatarGroup max={3} spacing="md"><Avatar initials="AB" /></AvatarGroup>`),
         },
     },
     render: (args) => (
@@ -95,6 +117,7 @@ export const Default: Story = {
     parameters: {
         docs: {
             description: { story: 'A group of overlapping avatars.' },
+            ...storySource(`<AvatarGroup><Avatar initials="AB" /><Avatar initials="CD" /></AvatarGroup>`),
         },
     },
     render: () => (
@@ -117,6 +140,7 @@ export const WithMax: Story = {
             description: {
                 story: 'A group that truncates with a `+N` overflow indicator.',
             },
+            ...storySource(`<AvatarGroup max={3}><Avatar initials="AB" /><Avatar initials="CD" /></AvatarGroup>`),
         },
     },
     render: () => (
@@ -139,6 +163,7 @@ export const Spacing: Story = {
             description: {
                 story: 'Available overlap gaps between avatars.',
             },
+            ...storySource(`<AvatarGroup spacing="md"><Avatar initials="A" /><Avatar initials="B" /></AvatarGroup>`),
         },
     },
     render: () => (
@@ -172,6 +197,7 @@ export const WithImages: Story = {
     parameters: {
         docs: {
             description: { story: 'A group mixing images and initials.' },
+            ...storySource(`<AvatarGroup><Avatar initials="CN" /><Avatar initials="JD" /></AvatarGroup>`),
         },
     },
     render: () => (
