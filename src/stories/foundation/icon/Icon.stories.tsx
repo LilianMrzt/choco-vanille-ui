@@ -1,4 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, waitFor } from 'storybook/test'
 import type { CSSProperties } from 'react'
 
@@ -8,6 +16,7 @@ import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
 import { IconRegistry } from '@constants/icons'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 const PADDINGS: (BoxSpace | undefined)[] = [
@@ -53,6 +62,29 @@ const BORDER_STYLES: (CSSProperties['borderStyle'] | undefined)[] = [
     'outset',
 ]
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required    | Type     | Notes                                                                                                                      |
+| ---------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| \`aria-label\`     | Conditional | \`string\` | Required when the icon conveys meaning without a visible label. Automatically sets \`role="img"\` and removes \`aria-hidden\`. |
+| \`aria-hidden\`    | Auto        | \`true\`   | Applied by default when no \`aria-label\` is provided (decorative icon).                                                     |
+
+- When the icon accompanies visible text, the default decorative treatment is correct — do not add \`aria-label\`.
+- Avoid using \`Icon\` as the sole means of conveying state — pair it with a visible text label or a \`Tooltip\`.
+`
+
+const IconDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Foundation/Icon',
     component: Icon,
@@ -81,16 +113,6 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
 **Performance**
 
 \`Icon\` is wrapped in \`React.memo\` and avoids unnecessary hook overhead, so it is safe to render hundreds of instances in lists, menus, and toolbars.
-
-**Accessibility**
-
-| Prop / Attribute | Required    | Type     | Notes                                                                                                                      |
-| ---------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| \`aria-label\`     | Conditional | \`string\` | Required when the icon conveys meaning without a visible label. Automatically sets \`role="img"\` and removes \`aria-hidden\`. |
-| \`aria-hidden\`    | Auto        | \`true\`   | Applied by default when no \`aria-label\` is provided (decorative icon).                                                     |
-
-- When the icon accompanies visible text, the default decorative treatment is correct — do not add \`aria-label\`.
-- Avoid using \`Icon\` as the sole means of conveying state — pair it with a visible text label or a \`Tooltip\`.
         `,
             },
         },
@@ -116,15 +138,18 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
         docs: {
+            page: IconDocsPage,
             description: {
                 story:
           'Interactive playground — use the Controls panel to change the icon name, size, color, padding, border, background, and spin animation.',
             },
+            ...storySource(/* language=tsx */ `
+<Icon icon="lucide:home" size="md" />`),
         },
     },
     play: async ({ canvasElement }) => {
@@ -133,4 +158,30 @@ export const Playground: Story = {
             expect(svg).toBeInTheDocument()
         })
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Icon icon="lucide:home" size="xs" aria-label="xs" />
+<Icon icon="lucide:home" size="sm" aria-label="sm" />
+<Icon icon="lucide:home" size="md" aria-label="md" />
+<Icon icon="lucide:home" size="lg" aria-label="lg" />
+<Icon icon="lucide:home" size="xl" aria-label="xl" />
+<Icon icon="lucide:home" size="2xl" aria-label="2xl" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            {SIZES.map((size) => (
+                <Icon
+                    key={size}
+                    icon={'lucide:home'}
+                    size={size}
+                    aria-label={size}
+                />
+            ))}
+        </div>
+    ),
 }

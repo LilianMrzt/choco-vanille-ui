@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { Node, SyntaxKind, type SourceFile } from 'ts-morph';
+import type { ComponentInfo } from '../types/index.ts';
 
 export type StoryFinding = {
   rule: string;
@@ -14,6 +15,31 @@ type StoryAudit = {
   findings: StoryFinding[];
   storyCount: number;
 };
+
+type ShowcaseRule = {
+  prop: string;
+  story: string;
+  label: string;
+};
+
+const showcaseRules: ShowcaseRule[] = [
+  { prop: 'variant', story: 'Variants', label: 'variantes' },
+  { prop: 'color', story: 'Colors', label: 'couleurs' },
+  { prop: 'size', story: 'Sizes', label: 'tailles' },
+  { prop: 'fontSize', story: 'FontSizes', label: 'tailles de police' },
+  { prop: 'fontWeight', story: 'FontWeights', label: 'graisses de police' },
+  { prop: 'orientation', story: 'Orientations', label: 'orientations' },
+  { prop: 'status', story: 'Statuses', label: 'statuts' },
+];
+
+const interactiveStateProps = [
+  'active',
+  'checked',
+  'disabled',
+  'loading',
+  'pressed',
+  'selected',
+] as const;
 
 function repositoryPath(root: string, filePath: string): string {
   return path.relative(root, filePath).split(path.sep).join('/');
@@ -57,6 +83,45 @@ function storyExportCount(sourceFile: SourceFile): number {
     .filter((statement) => statement.isExported()).length;
 }
 
+function storyExportNames(sourceFile: SourceFile): Set<string> {
+  return new Set(
+    sourceFile
+      .getVariableStatements()
+      .filter((statement) => statement.isExported())
+      .flatMap((statement) =>
+        statement.getDeclarationList().getDeclarations().map((declaration) =>
+          declaration.getName(),
+        ),
+      ),
+  );
+}
+
+function componentNameForStory(sourceFile: SourceFile): string {
+  return sourceFile.getBaseName().replace(/\.stories\.tsx$/, '');
+}
+
+function argTypeNames(sourceFile: SourceFile): Set<string> {
+  const metaDeclaration = sourceFile.getVariableDeclaration('meta');
+  const metaExpression = metaDeclaration?.getInitializer();
+  const metaInitializer = Node.isSatisfiesExpression(metaExpression)
+    ? metaExpression
+        .getExpression()
+        .asKind(SyntaxKind.ObjectLiteralExpression)
+    : metaExpression?.asKind(SyntaxKind.ObjectLiteralExpression);
+  const argTypes = metaInitializer
+    ?.getProperty('argTypes')
+    ?.asKind(SyntaxKind.PropertyAssignment)
+    ?.getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
+  if (!argTypes) return new Set();
+
+  return new Set(
+    argTypes
+      .getProperties()
+      .filter(Node.isPropertyAssignment)
+      .map((property) => property.getName().replace(/^['"]|['"]$/g, '')),
+  );
+}
+
 function hasAccessibilityTable(source: string): boolean {
   return (
     source.includes('Accessibility') &&
@@ -86,6 +151,7 @@ function sourceCodeHasAlignedProps(sourceFile: SourceFile): number | undefined {
 export function analyzeComponentStories(
   root: string,
   sourceFiles: SourceFile[],
+  components: ComponentInfo[],
 ): StoryAudit {
   const stories = sourceFiles.filter((sourceFile) =>
     isComponentStory(root, sourceFile),
@@ -106,6 +172,12 @@ export function analyzeComponentStories(
       .filter((call) => call.getExpression().getText() === 'storySource')
       .length;
     const exportedStories = storyExportCount(sourceFile);
+    const exportedStoryNames = storyExportNames(sourceFile);
+    const component = components.find(
+      (candidate) =>
+        candidate.scope === 'public' &&
+        candidate.name === componentNameForStory(sourceFile),
+    );
 
     if (!/\bdescription\s*:\s*\{[\s\S]*?\bcomponent\s*:/.test(source)) {
       addFinding(
@@ -189,6 +261,85 @@ export function analyzeComponentStories(
         'Chaque story exportée ne fournit pas un extrait Storybook contrôlé.',
         'Utiliser `storySource` pour chaque story exportée afin d’afficher un exemple consommateur sans `render()` interne.',
       );
+    }
+
+    if (component) {
+      const componentProps = new Set([
+        ...component.props.map((prop) => prop.name),
+        ...argTypeNames(sourceFile),
+      ]);
+      for (const rule of showcaseRules) {
+        if (!componentProps.has(rule.prop)) continue;
+        if (rule.prop === 'color' && component.category === 'foundation') {
+          continue;
+        }
+        if (exportedStoryNames.has(rule.story)) continue;
+
+        addFinding(
+          findings,
+          root,
+          sourceFile,
+          'story-canonical-showcase',
+          0,
+          `La prop publique \`${rule.prop}\` n’a pas de story \`${rule.story}\` dédiée aux ${rule.label}.`,
+          `Ajouter la story \`${rule.story}\` pour comparer toutes les valeurs publiques de \`${rule.prop}\`.`,
+        );
+      }
+
+      if (
+        interactiveStateProps.some((prop) => componentProps.has(prop)) &&
+        !exportedStoryNames.has('States')
+      ) {
+        addFinding(
+          findings,
+          root,
+          sourceFile,
+          'story-canonical-showcase',
+          0,
+          'Les états interactifs publics n’ont pas de story `States` dédiée.',
+          'Ajouter la story `States` pour montrer les états interactifs publics du composant.',
+        );
+      }
+
+      if (
+        (componentProps.has('startIcon') || componentProps.has('endIcon')) &&
+        !exportedStoryNames.has('WithIcons')
+      ) {
+        addFinding(
+          findings,
+          root,
+          sourceFile,
+          'story-canonical-showcase',
+          0,
+          'Les props `startIcon` ou `endIcon` n’ont pas de story `WithIcons` dédiée.',
+          'Ajouter la story `WithIcons` pour comparer les icônes de début, de fin et leur combinaison.',
+        );
+      }
+
+      if (
+        component.subComponents.length > 0
+      ) {
+        const missingCompoundControls = component.subComponents
+          .map((subComponent) =>
+            subComponent.startsWith(component.name)
+              ? subComponent.slice(component.name.length)
+              : subComponent,
+          )
+          .filter(
+            (slotName) => !source.includes(`Compound: ${slotName}`),
+          );
+        if (missingCompoundControls.length > 0) {
+          addFinding(
+            findings,
+            root,
+            sourceFile,
+            'story-compound-controls',
+            0,
+            `Les slots publics ${missingCompoundControls.map((slot) => `\`${slot}\``).join(', ')} n’ont pas de Controls dédiés.`,
+            'Ajouter au playground un argType par slot manquant, catégorisé `Compound: <NomDuSlot>`, et faire varier le rendu avec sa valeur.',
+          );
+        }
+      }
     }
 
     const alignedPropsPosition = sourceCodeHasAlignedProps(sourceFile);

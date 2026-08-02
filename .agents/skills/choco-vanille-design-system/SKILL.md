@@ -752,7 +752,64 @@ déjà le playground et ne doit jamais être affiché une seconde fois.
   consommateur prévu, jamais la fonction interne `render()`.
 - Les extraits sont directement copiables et emploient un seul espace entre
   les props ; ne jamais aligner verticalement les props avec des espaces.
-- Les exemples d'une story doivent refléter exactement son rendu visible.
+- Les exemples d'une story doivent refléter exactement son rendu visible :
+  reprendre chaque élément consommateur rendu, avec les mêmes props, valeurs et
+  libellés.
+- Ne jamais fournir un extrait représentatif ou abrégé d'une story comparative.
+  Si le rendu parcourt toutes les variantes, couleurs, tailles, états ou
+  combinaisons d'icônes, l'extrait doit lister toutes ces instances
+  explicitement.
+- Pour une story avec `render` et un tableau de valeurs, développer le tableau
+  dans `storySource` en JSX consommateur statique. Ne pas afficher le tableau,
+  `.map()` ou la fonction `render` dans l'extrait.
+
+### Sections canoniques
+
+Le contenu n'est pas librement variable : les axes publics partagés utilisent
+les mêmes stories et la même intention dans toutes les stories concernées.
+
+| Prop publique | Story obligatoire | Contenu |
+| --- | --- | --- |
+| `variant` | `Variants` | Comparer toutes les variantes publiques. |
+| `color` | `Colors` | Comparer toutes les couleurs ou intentions publiques, sauf pour les composants `foundation` où cette story est optionnelle. |
+| `size` | `Sizes` | Comparer toutes les tailles publiques. |
+| `fontSize` | `FontSizes` | Comparer toutes les tailles typographiques publiques. |
+| `fontWeight` | `FontWeights` | Comparer toutes les graisses typographiques publiques. |
+| `orientation` | `Orientations` | Comparer toutes les orientations publiques. |
+| `status` | `Statuses` | Comparer tous les statuts publics. |
+| `startIcon` ou `endIcon` | `WithIcons` | Comparer l’icône de début, de fin et leur combinaison. |
+| `disabled`, `active`, `loading`, `checked`, `pressed` ou `selected` | `States` | Montrer tous les états interactifs publics pertinents. |
+
+Les composants d'une même famille, par exemple `Button` et `IconButton`,
+doivent donc fournir les mêmes sections canoniques pour les axes qu'ils
+partagent. La story `Colors` reste obligatoire pour les autres catégories ;
+elle est optionnelle pour `foundation`. Ajouter ensuite seulement les sections
+propres au contrat du composant, comme `WithIcons` pour `Button`.
+
+### Controls des composants compound
+
+Un composant compound n'ajoute pas une story `Composition` séparée. Son
+`Playground` expose au contraire au moins un Control pour chaque slot public
+pertinent. Déclarer ces controls dans `argTypes`, les faire consommer par
+`render`, puis les catégoriser avec le nom du slot :
+
+```tsx
+argTypes: {
+  triggerLabel: {
+    control: 'text',
+    table: { category: 'Compound: Trigger' },
+  },
+  contentVisible: {
+    control: 'boolean',
+    table: { category: 'Compound: Content' },
+  },
+}
+```
+
+La catégorie est exactement `Compound: <NomDuSlot>` ; elle rend chaque slot
+repérable dans le panneau Controls. Modifier une valeur doit changer le rendu
+du slot correspondant. L'audit vérifie qu'un contrôle catégorisé existe pour
+chaque slot public.
 
 ### Lisibilité du fichier
 
@@ -834,6 +891,13 @@ déjà le playground et ne doit jamais être affiché une seconde fois.
 - [ ] Chaque story exportée fournit son extrait `storySource`.
 - [ ] Les extraits ne contiennent ni alignement artificiel des props ni
       scaffolding `render()`.
+- [ ] Chaque axe public partagé utilise sa story canonique (`Variants`,
+      `Colors`, `Sizes`, `FontSizes`, `FontWeights`, `Orientations`,
+      `Statuses`, `WithIcons` ou `States`) ; `Colors` est optionnelle pour les
+      composants `foundation`.
+- [ ] Pour un composant compound, le playground expose au moins un Control
+      catégorisé `Compound: <NomDuSlot>` par slot public, et chaque Control
+      modifie le rendu de son slot.
 - [ ] Aucun séparateur décoratif n'alourdit le fichier.
 
 ## Guide de refactoring

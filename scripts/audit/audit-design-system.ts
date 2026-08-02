@@ -31,7 +31,11 @@ async function main(): Promise<void> {
     sourceFiles: graph.sourceFiles,
     publicExports: graph.publicExports,
   });
-  const storyAudit = analyzeComponentStories(root, graph.sourceFiles);
+  const storyAudit = analyzeComponentStories(
+    root,
+    graph.sourceFiles,
+    components,
+  );
   await generateOutputs({
     components,
     implementationLeaks,
