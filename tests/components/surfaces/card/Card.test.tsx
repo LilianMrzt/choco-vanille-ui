@@ -18,6 +18,11 @@ describe('Card', () => {
             render(<Card>content</Card>)
             expect(screen.getByText('content')).toBeTruthy()
         })
+
+        it('uses a solid border by default', () => {
+            const { container } = render(<Card>content</Card>)
+            expect(getFirstChild(container).style.borderStyle).toBe('solid')
+        })
     })
 
     describe('`as` prop', () => {

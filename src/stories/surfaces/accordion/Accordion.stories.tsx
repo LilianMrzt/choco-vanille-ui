@@ -1,10 +1,19 @@
 import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Accordion } from '@components/surfaces/accordion'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type AccordionPlaygroundArgs = ComponentProps<typeof Accordion> & {
   firstDisabled?: boolean;
@@ -12,12 +21,43 @@ type AccordionPlaygroundArgs = ComponentProps<typeof Accordion> & {
   firstEndIcon?: string;
 };
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required    | Type       | Notes                                      |
+| ---------------- | ----------- | ---------- | ------------------------------------------ |
+| \`defaultValue\`   | Conditional | \`string[]\` | Uncontrolled initial expanded item values. |
+| \`multiple\`       | No          | \`boolean\`  | Allows multiple items to be open at once.  |
+| \`disabled\`       | No          | \`boolean\`  | Prevents an item from being toggled.       |
+
+**Sub-components**
+
+| Sub-component | Description |
+| ------------- | ----------- |
+| \`Accordion\` | Root context provider. |
+| \`Accordion.Item\` | Groups a trigger with its panel. |
+| \`Accordion.Trigger\` | Expands or collapses a panel. |
+| \`Accordion.Content\` | Panel shown when expanded. |
+`
+
+const AccordionDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta: Meta<AccordionPlaygroundArgs> = {
     title: 'Surfaces/Accordion',
     component: Accordion,
     parameters: {
         layout: 'centered',
         docs: {
+            page: AccordionDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -45,27 +85,6 @@ Compose \`Accordion\`, \`Accordion.Item\`, \`Accordion.Trigger\`, and \`Accordio
 </Accordion>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute               | Required    | Type       | Notes                                                       |
-| ------------------------------ | ----------- | ---------- | ----------------------------------------------------------- |
-| \`value\`                        | Conditional | \`string[]\` | Controlled expanded item values; pair with \`onValueChange\`. |
-| \`defaultValue\`                 | Conditional | \`string[]\` | Uncontrolled initial expanded item values.                  |
-| \`multiple\`                     | No          | \`boolean\`  | Allows multiple items to be open at once. @default false    |
-| \`disabled\` on \`Accordion.Item\` | No          | \`boolean\`  | Prevents the item from being toggled.                       |
-| \`startIcon\` / \`endIcon\`        | No          | \`string\`   | Iconify icon name rendered before/after the trigger label.  |
-
-- Keyboard: \`Enter\` or \`Space\` toggles the focused panel; \`Home\` / \`End\` jump to first / last trigger.
-- Open state is exposed to assistive technology via Base UI's built-in ARIA semantics.
-
-**Sub-components**
-
-| Sub-component       | Description                                             |
-| ------------------- | ------------------------------------------------------- |
-| \`Accordion\`         | Root context provider that manages expanded item state. |
-| \`Accordion.Item\`    | Groups a trigger with its corresponding panel.          |
-| \`Accordion.Trigger\` | Button that expands or collapses the associated panel.  |
-| \`Accordion.Content\` | Panel shown when its item is expanded.                  |
         `,
             },
         },
@@ -116,6 +135,13 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with single or multiple expansion, disabled state, and trigger icons.',
             },
+            ...storySource(/* language=tsx */ `
+<Accordion defaultValue={['item-1']}>
+    <Accordion.Item value="item-1">
+        <Accordion.Trigger label="Is it accessible?" />
+        <Accordion.Content>Yes. It follows the WAI-ARIA pattern.</Accordion.Content>
+    </Accordion.Item>
+</Accordion>`),
         },
     },
     render: ({ firstDisabled, firstStartIcon, firstEndIcon, ...args }) => {
@@ -179,4 +205,48 @@ export const Playground: Story = {
         await userEvent.click(firstTrigger)
         await expect(firstTrigger).toHaveAttribute('data-panel-open')
     },
+}
+
+export const States: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Expanded, collapsed, and disabled accordion item states.',
+            },
+            ...storySource(/* language=tsx */ `
+<Accordion defaultValue={['open']}>
+    <Accordion.Item value="open">
+        <Accordion.Trigger label="Expanded" />
+        <Accordion.Content>Visible content.</Accordion.Content>
+    </Accordion.Item>
+    <Accordion.Item value="closed">
+        <Accordion.Trigger label="Collapsed" />
+        <Accordion.Content>Hidden content.</Accordion.Content>
+    </Accordion.Item>
+    <Accordion.Item value="disabled" disabled>
+        <Accordion.Trigger label="Disabled" />
+        <Accordion.Content>Unavailable content.</Accordion.Content>
+    </Accordion.Item>
+</Accordion>`),
+        },
+    },
+    render: () => (
+        <Accordion defaultValue={['open']}>
+            <Accordion.Item value={'open'}>
+                <Accordion.Trigger label={'Expanded'} />
+                <Accordion.Content>Visible content.</Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item value={'closed'}>
+                <Accordion.Trigger label={'Collapsed'} />
+                <Accordion.Content>Hidden content.</Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item
+                value={'disabled'}
+                disabled
+            >
+                <Accordion.Trigger label={'Disabled'} />
+                <Accordion.Content>Unavailable content.</Accordion.Content>
+            </Accordion.Item>
+        </Accordion>
+    ),
 }

@@ -1,4 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 import type { ComponentProps } from 'react'
 
@@ -12,21 +20,52 @@ import {
 import type { BoxSpace } from '@components/layout/box'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type CardPlaygroundArgs = ComponentProps<typeof Card> & {
-  headerAs?: 'div' | 'header'
-  title?: string
-  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  titleFontSize?: TypographyProps['fontSize']
-  titleFontWeight?: TypographyProps['fontWeight']
-  description?: string
-  descriptionFontSize?: TypographyProps['fontSize']
-  bodyAs?: 'div' | 'section'
-  bodyPadding?: BoxSpace
-  footerAs?: 'div' | 'footer'
-  showFooter?: boolean
-  footerActionLabel?: string
-}
+  headerAs?: 'div' | 'header';
+  title?: string;
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  titleFontSize?: TypographyProps['fontSize'];
+  titleFontWeight?: TypographyProps['fontWeight'];
+  description?: string;
+  descriptionFontSize?: TypographyProps['fontSize'];
+  bodyAs?: 'div' | 'section';
+  bodyPadding?: BoxSpace;
+  footerAs?: 'div' | 'footer';
+  showFooter?: boolean;
+  footerActionLabel?: string;
+};
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required    | Type                                 | Notes                                                |
+| ---------------- | ----------- | ------------------------------------ | ---------------------------------------------------- |
+| \`title\`          | Recommended | \`string\`                             | Provides an accessible heading for card content.     |
+| \`titleAs\`        | No          | \`h1\`–\`h6\`                            | Choose the heading level that fits the page outline. |
+| \`as\`             | No          | \`div\`, \`section\`, \`article\`, \`aside\` | Use the semantically correct element.                |
+
+**Sub-components**
+
+| Sub-component | Description |
+| ------------- | ----------- |
+| \`Card\` | Root surface container. |
+| \`Card.Header\` | Title, description, and actions. |
+| \`Card.Body\` | Main content area. |
+| \`Card.Footer\` | Bottom area for actions or metadata. |
+`
+
+const CardDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 const SPACING = [
@@ -75,6 +114,7 @@ const meta: Meta<CardPlaygroundArgs> = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: CardDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -109,26 +149,6 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 </Card>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute           | Required    | Type        | Notes                                                |
-| -------------------------- | ----------- | ----------- | ---------------------------------------------------- | ------------------------------------- | ------- | ---------------------------------------------- |
-| \`title\` on \`Card.Header\`   | Recommended | \`string\`    | Provides an accessible heading for the card content. |
-| \`titleAs\` on \`Card.Header\` | No          | \`h1\` – \`h6\` | Choose the heading level that fits the page outline. |
-| \`as\` on \`Card\`             | No          | \`div\` \\    | \`section\` \\                                         | \`article\` \\                          | \`aside\` | Use the semantically correct landmark element. |
-| \`as\` on \`Card.Footer\`      | No          | \`div\` \\    | \`footer\`                                             | Renders a native \`<footer>\` when set. |
-
-- Prefer \`article\` for self-contained content and \`aside\` for tangential content.
-- Maintain a logical heading order across cards on the same page.
-
-**Sub-components**
-
-| Sub-component | Description                               |
-| ------------- | ----------------------------------------- |
-| \`Card\`        | Root surface container.                   |
-| \`Card.Header\` | Title, description, and optional actions. |
-| \`Card.Body\`   | Main content area.                        |
-| \`Card.Footer\` | Bottom area for actions or metadata.      |
         `,
             },
         },
@@ -142,6 +162,16 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
         borderRadius: {
             control: 'select',
             options: ROUNDED,
+            table: { category: 'Card' },
+        },
+        borderWidth: {
+            control: 'select',
+            options: [undefined, '0', '1px', '2px', '4px', '8px'],
+            table: { category: 'Card' },
+        },
+        borderStyle: {
+            control: 'select',
+            options: [undefined, 'solid', 'dashed', 'dotted', 'double'],
             table: { category: 'Card' },
         },
         backgroundColor: {
@@ -251,7 +281,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
@@ -260,11 +290,21 @@ export const Playground: Story = {
                 story:
           'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
             },
+            ...storySource(/* language=tsx */ `
+<Card>
+    <Card.Header title="Account settings" description="Manage your profile." />
+    <Card.Body>Content goes here.</Card.Body>
+    <Card.Footer>
+        <Button label="Save" variant="contained" color="primary" />
+    </Card.Footer>
+</Card>`),
         },
     },
     render: ({
         as,
         borderRadius,
+        borderWidth,
+        borderStyle,
         backgroundColor,
         padding,
         headerAs,
@@ -283,6 +323,8 @@ export const Playground: Story = {
         <Card
             as={as}
             borderRadius={borderRadius}
+            borderWidth={borderWidth}
+            borderStyle={borderStyle}
             backgroundColor={backgroundColor}
             padding={padding}
             style={{ width: '22rem' }}

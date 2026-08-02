@@ -4,8 +4,10 @@ import { Box } from '@components/layout/box'
 import CardBody from '@components/surfaces/card/components/card-body/CardBody.tsx'
 import CardFooter from '@components/surfaces/card/components/card-footer/CardFooter.tsx'
 import CardHeader from '@components/surfaces/card/components/card-header/CardHeader.tsx'
+import { CARD_STYLES } from '@components/surfaces/card/styles/Card.css.ts'
 import type { CardCompound } from '@components/surfaces/card/types'
 import type { CardProps } from '@components/surfaces/card/types/Card.props.ts'
+import { cn } from '@utils/cn.ts'
 
 /**
   * A surface container with a consistent background, border, shadow and
@@ -34,6 +36,7 @@ const Card = memo<CardProps>(({
     borderRadius = 'lg',
     borderWidth = '1px',
     borderColor = 'border',
+    borderStyle = 'solid',
     boxShadow = 'none',
     overflow = 'hidden',
     className,
@@ -46,9 +49,10 @@ const Card = memo<CardProps>(({
         borderRadius={borderRadius}
         borderWidth={borderWidth}
         borderColor={borderColor}
+        borderStyle={borderStyle}
         boxShadow={boxShadow}
         overflow={overflow}
-        className={className}
+        className={cn(CARD_STYLES.root, className)}
         {...props}
     />
 )) as unknown as CardCompound

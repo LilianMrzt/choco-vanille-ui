@@ -1,23 +1,62 @@
 import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Tabs } from '@/components/navigation/tabs'
 import type { TabsVariant } from '@components/navigation/tabs'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
-    listVariant?: TabsVariant
-    listBordered?: boolean
-    billingDisabled?: boolean
-    billingWidth?: string
-    billingStartIcon?: string
-    billingEndIcon?: string
-    activationMode?: 'automatic' | 'manual'
-}
+  listVariant?: TabsVariant;
+  listBordered?: boolean;
+  billingDisabled?: boolean;
+  billingWidth?: string;
+  billingStartIcon?: string;
+  billingEndIcon?: string;
+  activationMode?: 'automatic' | 'manual';
+};
 
 const VARIANTS: TabsVariant[] = ['default', 'pills']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute                 | Required    | Type                       | Notes                                            |
+| -------------------------------- | ----------- | -------------------------- | ------------------------------------------------ |
+| \`aria-label\` / \`aria-labelledby\` | Yes         | \`string\`                   | Required on \`Tabs.List\` to describe the tab set. |
+| \`defaultValue\`                   | Conditional | \`string\`                   | Uncontrolled initial active tab.                 |
+| \`orientation\`                    | No          | \`horizontal\` \| \`vertical\` | Determines tab navigation direction.             |
+
+**Sub-components**
+
+| Sub-component | Description |
+| ------------- | ----------- |
+| \`Tabs\` | Root context provider. |
+| \`Tabs.List\` | Container for tab triggers. |
+| \`Tabs.Trigger\` | Activates a tab panel. |
+| \`Tabs.Content\` | Panel shown for the active tab. |
+`
+
+const TabsDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta: Meta<TabsPlaygroundArgs> = {
     title: 'Navigation/Tabs',
@@ -25,6 +64,7 @@ const meta: Meta<TabsPlaygroundArgs> = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: TabsDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -37,39 +77,16 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 
 ~~~tsx
 <Tabs defaultValue="account">
-    <Tabs.List aria-label="User settings">
-        <Tabs.Trigger value="account" label="Account" />
-        <Tabs.Trigger value="password" label="Password" />
-    </Tabs.List>
-    <Tabs.Content value="account">Account settings</Tabs.Content>
-    <Tabs.Content value="password">Password settings</Tabs.Content>
+  <Tabs.List aria-label="User settings">
+    <Tabs.Trigger value="account" label="Account" />
+    <Tabs.Trigger value="password" label="Password" />
+  </Tabs.List>
+  <Tabs.Content value="account">Account settings</Tabs.Content>
+  <Tabs.Content value="password">Password settings</Tabs.Content>
 </Tabs>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute                          | Required    | Type      | Notes                                                           |
-| ----------------------------------------- | ----------- | --------- | --------------------------------------------------------------- |
-| \`aria-label\` / \`aria-labelledby\`          | Yes         | \`string\`  | Required on \`Tabs.List\` to describe the tab set.                |
-| \`value\`                                   | Conditional | \`string\`  | Controlled active tab value; pair with \`onValueChange\`.         |
-| \`defaultValue\`                            | Conditional | \`string\`  | Uncontrolled initial active tab value.                          |
-| \`disabled\` on \`Tabs.Trigger\`              | No          | \`boolean\` | Prevents a trigger from being activated.                        |
-| \`bordered\` on \`Tabs.List\`                 | No          | \`boolean\` | Shows a bottom divider under the list (\`default\` variant only). |
-| \`width\` on \`Tabs.Trigger\`                 | No          | \`string\`  | Overrides the trigger's default content-based width.            |
-| \`startIcon\` / \`endIcon\` on \`Tabs.Trigger\` | No          | \`string\`  | Iconify icon name rendered before/after the label.              |
-
-- Keyboard: \`ArrowLeft\` / \`ArrowRight\` moves focus between tabs; \`Home\` / \`End\` jump to first / last tab; \`Space\` / \`Enter\` activates the focused tab.
-- Active state is exposed to assistive technology via Radix's built-in ARIA semantics.
-
-**Sub-components**
-
-| Sub-component  | Description                                                                   |
-| -------------- | ----------------------------------------------------------------------------- |
-| \`Tabs\`         | Root context provider that manages the active tab state.                      |
-| \`Tabs.List\`    | Container for tab triggers. Requires an accessible name. Accepts a \`variant\`. |
-| \`Tabs.Trigger\` | Activates its associated tab panel.                                           |
-| \`Tabs.Content\` | Panel shown when its trigger is active.                                       |
-                `,
+        `,
             },
         },
     },
@@ -132,15 +149,24 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-                    "Interactive playground — use the Controls panel to experiment with orientation, activation mode, the list variant, its bottom divider, and the Billing trigger's disabled state, width, and icons.",
+          "Interactive playground — use the Controls panel to experiment with orientation, activation mode, the list variant, its bottom divider, and the Billing trigger's disabled state, width, and icons.",
             },
+            ...storySource(/* language=tsx */ `
+<Tabs defaultValue="account">
+    <Tabs.List aria-label="User settings">
+        <Tabs.Trigger value="account" label="Account" />
+        <Tabs.Trigger value="password" label="Password" />
+    </Tabs.List>
+    <Tabs.Content value="account">Account settings</Tabs.Content>
+    <Tabs.Content value="password">Password settings</Tabs.Content>
+</Tabs>`),
         },
     },
     render: ({
@@ -214,4 +240,61 @@ export const Playground: Story = {
         await userEvent.click(billingTab)
         await expect(passwordTab).toHaveAttribute('data-active')
     },
+}
+
+export const Orientations: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'The available horizontal and vertical tab orientations.',
+            },
+            ...storySource(/* language=tsx */ `
+<Tabs defaultValue="account" orientation="horizontal">
+    <Tabs.List aria-label="Horizontal settings">
+        <Tabs.Trigger value="account" label="Account" />
+        <Tabs.Trigger value="password" label="Password" />
+    </Tabs.List>
+</Tabs>
+<Tabs defaultValue="account" orientation="vertical">
+    <Tabs.List aria-label="Vertical settings">
+        <Tabs.Trigger value="account" label="Account" />
+        <Tabs.Trigger value="password" label="Password" />
+    </Tabs.List>
+</Tabs>`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '1.5rem' }}>
+            <Tabs
+                defaultValue={'account'}
+                orientation={'horizontal'}
+            >
+                <Tabs.List aria-label={'Horizontal settings'}>
+                    <Tabs.Trigger
+                        value={'account'}
+                        label={'Account'}
+                    />
+                    <Tabs.Trigger
+                        value={'password'}
+                        label={'Password'}
+                    />
+                </Tabs.List>
+            </Tabs>
+            <Tabs
+                defaultValue={'account'}
+                orientation={'vertical'}
+            >
+                <Tabs.List aria-label={'Vertical settings'}>
+                    <Tabs.Trigger
+                        value={'account'}
+                        label={'Account'}
+                    />
+                    <Tabs.Trigger
+                        value={'password'}
+                        label={'Password'}
+                    />
+                </Tabs.List>
+            </Tabs>
+        </div>
+    ),
 }

@@ -1,14 +1,69 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Link } from '@components/navigation/link'
 import type { IconSize } from '@components/foundation/icon'
-import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
+import type {
+    TypographySize,
+    TypographyWeight,
+} from '@components/foundation/typography'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
-const FONT_SIZES: TypographySize[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl']
-const FONT_WEIGHTS: TypographyWeight[] = ['thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black']
+const FONT_SIZES: TypographySize[] = [
+    '2xs',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    '6xl',
+]
+const FONT_WEIGHTS: TypographyWeight[] = [
+    'thin',
+    'extralight',
+    'light',
+    'normal',
+    'medium',
+    'semibold',
+    'bold',
+    'extrabold',
+    'black',
+]
 const ICON_SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type     | Notes                                      |
+| ---------------- | -------- | -------- | ------------------------------------------ |
+| \`label\` | Yes | \`string\` | Becomes the link's accessible name. |
+| \`href\` | No | \`string\` | Rendered as the native \`href\`. |
+| \`aria-*\` | No | — | Native link ARIA attributes are forwarded. |
+`
+
+const LinkDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Navigation/Link',
@@ -16,6 +71,7 @@ const meta = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: LinkDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -28,44 +84,23 @@ hyperlink. Optional start and end icons can be added with Iconify icon names.
 **Usage**
 
 ~~~tsx
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 
 function Example() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    return (
-        <Link
-            href="/dashboard"
-            label="Dashboard"
-            onClick={() => navigate('/dashboard')}
-            endIcon="lucide:arrow-right"
-        />
-    )
+  return (
+    <Link
+      href="/dashboard"
+      label="Dashboard"
+      onClick={() => navigate('/dashboard')}
+      endIcon="lucide:arrow-right"
+    />
+  );
 }
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type       | Notes                                                                          |
-| ---------------- | -------- | ---------- | ------------------------------------------------------------------------------ |
-| \`label\`          | ✅ Yes   | \`string\`   | Becomes the link's accessible name — always provide a meaningful value.        |
-| \`href\`           | No       | \`string\`   | Rendered as the native \`href\`. Defaults to \`#\`.                               |
-| \`onClick\`        | No       | \`function\`  | When provided, \`event.preventDefault()\` is called automatically.               |
-| \`startIcon\`      | No       | \`string\`    | Iconify icon name rendered before the label. Decorative by default.            |
-| \`endIcon\`        | No       | \`string\`    | Iconify icon name rendered after the label. Decorative by default.             |
-| \`fontSize\`       | No       | \`TypographySize\` | Size of the label text. Defaults to \`base\`.                              |
-| \`fontWeight\`     | No       | \`TypographyWeight\` | Weight of the label text. Defaults to \`medium\`.                        |
-| \`iconSize\`       | No       | \`IconSize\` | Size of the start/end icons. Defaults to \`md\`.                                |
-| \`aria-disabled\`  | No       | \`boolean\`   | Visually dims the link and removes pointer events when \`true\`.                 |
-| \`aria-*\`         | No       | —          | All native \`<a>\` ARIA attributes are forwarded to the underlying element.      |
-
-- The underlying element is a native \`<a>\`, so it is focusable, announced as a link by
-  screen readers, and keyboard-operable with Enter.
-- When \`onClick\` is supplied, the default browser navigation is suppressed so the
-  handler can perform client-side routing.
-- Icons are decorative by default; provide an \`aria-label\` on the Link if the icon
-  carries meaning on its own.
-                `,
+        `,
             },
         },
     },
@@ -89,15 +124,17 @@ function Example() {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
         docs: {
             description: {
                 story:
-                    'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(/* language=tsx */ `
+<Link href="/dashboard" label="Dashboard" endIcon="lucide:arrow-right" />`),
         },
     },
     play: async ({ canvasElement, args }) => {
@@ -106,4 +143,76 @@ export const Playground: Story = {
             canvas.getByRole('link', { name: args.label as string }),
         ).toBeInTheDocument()
     },
+}
+
+export const FontSizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Link label="2xs" fontSize="2xs" />
+<Link label="md" fontSize="md" />
+<Link label="6xl" fontSize="6xl" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+            {FONT_SIZES.map((fontSize) => (
+                <Link
+                    key={fontSize}
+                    label={fontSize}
+                    fontSize={fontSize}
+                />
+            ))}
+        </div>
+    ),
+}
+
+export const FontWeights: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Link label="thin" fontWeight="thin" />
+<Link label="medium" fontWeight="medium" />
+<Link label="black" fontWeight="black" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+            {FONT_WEIGHTS.map((fontWeight) => (
+                <Link
+                    key={fontWeight}
+                    label={fontWeight}
+                    fontWeight={fontWeight}
+                />
+            ))}
+        </div>
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Link label="Start icon" startIcon="lucide:arrow-left" />
+<Link label="End icon" endIcon="lucide:arrow-right" />
+<Link label="Both icons" startIcon="lucide:arrow-left" endIcon="lucide:arrow-right" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+            <Link
+                label={'Start icon'}
+                startIcon={'lucide:arrow-left'}
+            />
+            <Link
+                label={'End icon'}
+                endIcon={'lucide:arrow-right'}
+            />
+            <Link
+                label={'Both icons'}
+                startIcon={'lucide:arrow-left'}
+                endIcon={'lucide:arrow-right'}
+            />
+        </div>
+    ),
 }

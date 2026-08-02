@@ -144,6 +144,12 @@ function componentDescriptionHasSection(
   ).test(source);
 }
 
+function hasMarkdownSubcomponentsSection(source: string): boolean {
+  return /\b(?:const|let)\s+\w+\s*=\s*md[\s\S]*?(?:\*\*Sub-components\*\*|## Sub-components)/.test(
+    source,
+  );
+}
+
 function sourceCodeHasAlignedProps(sourceFile: SourceFile): number | undefined {
   for (const call of sourceFile.getDescendantsOfKind(
     SyntaxKind.CallExpression,
@@ -271,6 +277,34 @@ export function analyzeComponentStories(
         'Le contenu d’accessibilité ne suit pas les Controls dans la page Docs.',
         'Placer le bloc Markdown d’accessibilité immédiatement après `<Controls />`.',
       );
+    }
+
+    const hasSubcomponentsSection =
+      /\*\*Sub-components\*\*|## Sub-components/.test(source);
+    if (hasSubcomponentsSection) {
+      if (componentDescriptionHasSection(source, 'Sub-components')) {
+        addFinding(
+          findings,
+          root,
+          sourceFile,
+          'story-subcomponents-order',
+          0,
+          'Le tableau des sous-composants est placé dans la description du composant.',
+          'Placer le tableau dans un bloc Markdown rendu après `<Controls />` dans la page Docs.',
+        );
+      }
+
+      if (!hasMarkdownSubcomponentsSection(source)) {
+        addFinding(
+          findings,
+          root,
+          sourceFile,
+          'story-subcomponents-table',
+          0,
+          'La story ne contient pas de tableau des sous-composants dans un bloc Markdown dédié.',
+          'Ajouter le tableau `Sub-components` dans le contenu Markdown rendu après `<Controls />`.',
+        );
+      }
     }
 
     if (
