@@ -16,6 +16,7 @@ const Tooltip: FC<TooltipProps> = memo(({
     align: alignProp = 'center',
     delayDuration = 0,
     disabled = false,
+    arrow = false,
     className,
     open,
     defaultOpen,
@@ -44,13 +45,14 @@ const Tooltip: FC<TooltipProps> = memo(({
                     <BaseTooltip.Positioner
                         side={side}
                         align={align}
-                        sideOffset={6}
+                        sideOffset={arrow ? 11 : 6}
                         className={'isolate'}
                     >
                         <BaseTooltip.Popup
                             role={'tooltip'}
                             className={cn(TOOLTIP_STYLES.content, className)}
                         >
+                            {arrow && <BaseTooltip.Arrow className={TOOLTIP_STYLES.arrow} />}
                             {content}
                         </BaseTooltip.Popup>
                     </BaseTooltip.Positioner>

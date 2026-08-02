@@ -21,6 +21,8 @@ export type TooltipProps = {
   delayDuration?: number;
   /** Whether the tooltip is disabled. */
   disabled?: boolean;
+  /** Whether to render the tooltip arrow. @default false */
+  arrow?: boolean;
   /** Additional class names to apply to the tooltip content. */
   className?: string;
   /** Controls the open state when used as a controlled component. */

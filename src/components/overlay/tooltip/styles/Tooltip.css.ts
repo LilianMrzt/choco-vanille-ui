@@ -34,4 +34,29 @@ export const TOOLTIP_STYLES = {
             },
         },
     }),
+    arrow: style({
+        position: 'relative',
+        display: 'block',
+        width: 12,
+        height: 6,
+        backgroundColor: vars.color.popover,
+        clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+        selectors: {
+            '&[data-side="top"]': {
+                bottom: -6,
+            },
+            '&[data-side="bottom"]': {
+                top: -6,
+                transform: 'rotate(180deg)',
+            },
+            '&[data-side="left"]': {
+                right: -9,
+                transform: 'rotate(-90deg)',
+            },
+            '&[data-side="right"]': {
+                left: -9,
+                transform: 'rotate(90deg)',
+            },
+        },
+    }),
 }
