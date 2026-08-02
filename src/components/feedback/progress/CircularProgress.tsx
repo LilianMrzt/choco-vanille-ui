@@ -3,15 +3,14 @@ import {
     PROGRESS_SIZE_TO_STROKE_WIDTH,
 } from '@components/feedback/progress/constants'
 import { PROGRESS_STYLES } from '@components/feedback/progress/styles/Progress.css.ts'
-import type { ProgressBaseProps } from '@components/feedback/progress/types/Progress.props.ts'
+import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types/Progress.props.ts'
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
+import { clamp } from '@components/feedback/progress/utils/clamp.utils.ts'
 
-const clamp = (value: number) => Math.min(100, Math.max(0, value))
-
-const CircularProgress: FC<ProgressBaseProps> = memo(({
+const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,
     color,
     size = 'sm',

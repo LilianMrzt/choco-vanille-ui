@@ -119,7 +119,7 @@ It displays an image when available and falls back to initials or an icon.
         compoundRoot: 'Avatar',
         compoundStatus: 'online',
     },
-} satisfies Meta<typeof Avatar>
+} satisfies Meta<AvatarStoryArgs>
 
 export default meta
 
@@ -132,19 +132,11 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(`<Avatar initials="JD" color="primary" />`),
         },
     },
     args: {
         initials: 'JD',
-    },
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
-            },
-            ...storySource(`<Avatar initials="JD" color="primary" />`),
-        },
     },
     render: (args: AvatarStoryArgs) => {
         const {

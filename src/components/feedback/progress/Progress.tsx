@@ -1,5 +1,5 @@
 import { PROGRESS_STYLES } from '@components/feedback/progress/styles/Progress.css.ts'
-import type { ProgressBaseProps } from '@components/feedback/progress/types/Progress.props.ts'
+import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types/Progress.props.ts'
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
@@ -7,7 +7,7 @@ import { memo, type FC } from 'react'
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
-const Progress: FC<ProgressBaseProps> = memo(({
+const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,
     color,
     size = 'sm',

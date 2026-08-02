@@ -33,3 +33,9 @@ export type ProgressBaseProps = Omit<
    */
   quantityLabel?: string | true;
 } & ProgressAccessibleName
+
+export type ProgressRenderProps = ProgressBaseProps & {
+    label?: string
+    'aria-label'?: string
+    'aria-labelledby'?: string
+}
