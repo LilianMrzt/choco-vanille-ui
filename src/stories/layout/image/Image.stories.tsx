@@ -1,8 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Image } from '@components/layout/image'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const OBJECT_FIT = [
     undefined,
@@ -65,12 +74,33 @@ const BG = [
 const WH = [undefined, '100%', '50%', '200px', 'auto'] as const
 const MIN_MAX = [undefined, 'none', '100%', '200px'] as const
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`alt\` | Conditional | \`string\` | Use an empty string for decorative images. |
+| \`loading\` | No | \`'eager' \| 'lazy'\` | Use \`lazy\` below the fold. |
+`
+
+const ImageDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Layout/Image',
     component: Image,
     parameters: {
         layout: 'padded',
         docs: {
+            page: ImageDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A design-token-aware image primitive that renders a native \`<img>\` element and exposes layout props for object-fit, object-position, border-radius, padding, margin, background color, width, height, and aspect-ratio.
@@ -99,15 +129,6 @@ A design-token-aware image primitive that renders a native \`<img>\` element and
 />
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`alt\` | Conditional | \`string\` | Provide meaningful text. Use an empty string for decorative images. |
-| \`loading\` | No | \`'eager' \| 'lazy'\` | Use \`lazy\` for images below the fold. |
-| \`decoding\` | No | \`'async' \| 'sync' \| 'auto'\` | Defaults to \`auto\`. |
-
-- Always include an \`alt\` attribute. For purely decorative images, use \`alt=""\` so assistive technologies ignore them.
                 `,
             },
         },
@@ -148,6 +169,8 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(/* language=tsx */ `
+<Image src="https://picsum.photos/seed/shadcn/400/300" alt="A sample image" objectFit="cover" borderRadius="md" width="100%" aspectRatio="4 / 3" />`),
         },
     },
     play: async ({ canvasElement }) => {

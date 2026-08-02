@@ -1,10 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Flex } from '@components/layout/flex'
 import { Box } from '@components/layout/box'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const DIRECTION = ['row', 'column', 'row-reverse', 'column-reverse'] as const
 const WRAP = [undefined, 'nowrap', 'wrap', 'wrap-reverse'] as const
@@ -102,12 +111,33 @@ const POSITION = [
     'sticky',
 ] as const
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`as\` | No | HTML element | Use semantic elements for structural content. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Name landmark elements when needed. |
+`
+
+const FlexDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Layout/Flex',
     component: Flex,
     parameters: {
         layout: 'padded',
         docs: {
+            page: FlexDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A layout primitive that renders a \`<div>\` (or any element via the inherited \`as\` prop) with \`display: flex\` and a set of design-token-based props for direction, alignment, gap, padding, background and border-radius.
@@ -130,14 +160,6 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
 </Flex>
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`as\` | No | HTML element | Use semantic elements (\`nav\`, \`section\`, \`ul\`…) when the container has a structural or landmark role. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when using a landmark \`as\` value with multiple instances on the same page. |
-
-- \`Flex\` has no implicit ARIA semantics — it does not receive focus or announce itself as a landmark unless you set the correct \`as\` value.
                 `,
             },
         },
@@ -216,6 +238,12 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(/* language=tsx */ `
+<Flex flexDirection="row" alignItems="center" gap="sm">
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Item 1</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Item 2</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Item 3</Box>
+</Flex>`),
         },
     },
     render: (args) => (

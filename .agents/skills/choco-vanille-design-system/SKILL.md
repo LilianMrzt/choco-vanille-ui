@@ -724,9 +724,13 @@ Chaque story de composant contient, dans cet ordre :
 2. un unique playground interactif couvrant toutes les props publiques
    contrôlables ;
 3. les Controls du playground ;
-4. un tableau d'accessibilité ;
+4. un unique tableau d'accessibilité, dans le bloc Markdown situé après les Controls ;
 5. des exemples ciblés et comparatifs (variants, tailles, couleurs, états,
    slots ou composition) lorsque le contrat les justifie.
+
+La description du composant ne doit pas contenir un second tableau ou une
+seconde section d'accessibilité : cette information est centralisée dans le
+bloc Markdown dédié afin d'éviter toute duplication dans la page Docs.
 
 Utiliser une page Docs explicite afin de rendre cet ordre déterministe :
 
@@ -887,7 +891,8 @@ chaque slot public.
 - [ ] La story est une story de composant, pas une story MDX ou `overview`.
 - [ ] La description précède un playground unique et complet.
 - [ ] La page Docs rend le playground une seule fois, avec Controls.
-- [ ] Le tableau d'accessibilité suit les Controls.
+- [ ] Un seul tableau d'accessibilité suit les Controls ; la description n'en
+      contient pas de copie.
 - [ ] Chaque story exportée fournit son extrait `storySource`.
 - [ ] Les extraits ne contiennent ni alignement artificiel des props ni
       scaffolding `render()`.

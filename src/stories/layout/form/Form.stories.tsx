@@ -1,5 +1,13 @@
 import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Button } from '@/components/actions/button'
@@ -7,8 +15,29 @@ import { Form } from '@/components/layout/form'
 import { TextField } from '@/components/forms/text-field'
 import { Flex } from '@/components/layout/flex'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type FormPlaygroundArgs = ComponentProps<typeof Form>;
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`onSubmit\` | Conditional | \`function\` | Prevent the default action when handling submission in JavaScript. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Name the form when it has no visible heading. |
+`
+
+const FormDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta: Meta<FormPlaygroundArgs> = {
     title: 'Layout/Form',
@@ -16,6 +45,7 @@ const meta: Meta<FormPlaygroundArgs> = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: FormDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -48,15 +78,6 @@ Use \`Form\` whenever you collect user input that will be submitted as a unit. I
 </Form>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute                 | Required    | Type       | Notes                                                                                          |
-| -------------------------------- | ----------- | ---------- | ---------------------------------------------------------------------------------------------- |
-| \`onSubmit\`                       | Conditional | \`function\` | Handles submission. Remember to call \`event.preventDefault()\` when submitting with JavaScript. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\`   | Use when the form has no visible heading to describe its purpose.                              |
-| \`noValidate\`                     | No          | \`boolean\`  | Disables native validation; useful when you run your own validation logic.                     |
-
-- A \`<button type="submit">\` inside \`Form\` will submit it on click or when the user presses **Enter** inside a text field.
         `,
             },
         },
@@ -85,6 +106,14 @@ export const Playground: Story = {
                 story:
           'A simple sign-in form. Fill the fields and click **Sign in** (or press **Enter**) to trigger the submit handler.',
             },
+            ...storySource(/* language=tsx */ `
+<Form aria-label="Sign in form">
+    <Flex flexDirection="column" gap="md" alignItems="start">
+        <TextField label="Email" name="email" type="email" placeholder="you@example.com" autoComplete="email" />
+        <TextField label="Password" name="password" type="password" autoComplete="current-password" />
+        <Button type="submit" label="Sign in" />
+    </Flex>
+</Form>`),
         },
     },
     render: () => {

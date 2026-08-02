@@ -131,6 +131,10 @@ function hasAccessibilityTable(source: string): boolean {
   );
 }
 
+function accessibilitySectionCount(source: string): number {
+  return source.match(/\*\*Accessibility\*\*/g)?.length ?? 0;
+}
+
 function sourceCodeHasAlignedProps(sourceFile: SourceFile): number | undefined {
   for (const call of sourceFile.getDescendantsOfKind(
     SyntaxKind.CallExpression,
@@ -229,6 +233,18 @@ export function analyzeComponentStories(
         0,
         'La story ne contient pas le tableau d’accessibilité standard.',
         'Ajouter un tableau Markdown décrivant les props et attributs d’accessibilité pertinents.',
+      );
+    }
+
+    if (accessibilitySectionCount(source) > 1) {
+      addFinding(
+        findings,
+        root,
+        sourceFile,
+        'story-duplicate-accessibility',
+        0,
+        'La story contient plusieurs sections d’accessibilité dupliquées.',
+        'Conserver un seul tableau d’accessibilité dans le bloc Markdown placé après `<Controls />`.',
       );
     }
 

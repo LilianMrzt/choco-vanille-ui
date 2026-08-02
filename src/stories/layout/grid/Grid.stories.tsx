@@ -1,10 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Grid } from '@components/layout/grid'
 import { Box } from '@components/layout/box'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const COLUMNS = [
     undefined,
@@ -132,12 +141,33 @@ const POSITION = [
     'sticky',
 ] as const
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`as\` | No | HTML element | Use semantic elements for structural content. |
+| DOM order | — | — | Keep a logical DOM sequence. |
+`
+
+const GridDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Layout/Grid',
     component: Grid,
     parameters: {
         layout: 'padded',
         docs: {
+            page: GridDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A layout primitive that renders a \`<div>\` with \`display: grid\` and token-based props for columns, gap, auto-flow, alignment, padding, background, and border-radius.
@@ -153,14 +183,6 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
 </Grid>
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`as\` | No | HTML element | Use \`as="ul"\` with \`<li>\` children when the grid represents a list; no ARIA needed for purely decorative grids. |
-| DOM order | — | — | CSS grid order does not affect tab order or screen-reader reading order — keep a logical DOM sequence. |
-
-- \`Grid\` has no implicit ARIA semantics; add semantic \`as\` values when the content has a structural role.
                 `,
             },
         },
@@ -240,6 +262,18 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(/* language=tsx */ `
+<Grid columns={3} gap="md">
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 1</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 2</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 3</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 4</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 5</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 6</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 7</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 8</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 9</Box>
+</Grid>`),
         },
     },
     render: (args) => (

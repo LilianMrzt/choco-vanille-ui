@@ -1,5 +1,13 @@
 import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Checkbox } from '@/components/forms/checkbox'
@@ -8,11 +16,32 @@ import { Legend } from '@/components/layout/legend'
 import { RadioGroup } from '@/components/forms/radio-group'
 import { Flex } from '@/components/layout/flex'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type FieldsetPlaygroundArgs = ComponentProps<typeof Fieldset> & {
   legend?: string;
   disabled?: boolean;
 };
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`Legend\` | Yes | \`ReactNode\` | Provides the accessible name for the group. |
+| \`disabled\` | No | \`boolean\` | Disables all controls inside the fieldset. |
+`
+
+const FieldsetDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta: Meta<FieldsetPlaygroundArgs> = {
     title: 'Layout/Fieldset',
@@ -20,6 +49,7 @@ const meta: Meta<FieldsetPlaygroundArgs> = {
     parameters: {
         layout: 'centered',
         docs: {
+            page: FieldsetDocsPage,
             description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
@@ -53,16 +83,6 @@ Use \`Fieldset\` + \`Legend\` whenever several form controls belong to a single 
 </Fieldset>
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute   | Required | Type        | Notes                                                                                  |
-| ------------------ | -------- | ----------- | -------------------------------------------------------------------------------------- |
-| \`Legend\`           | ✅ Yes   | \`ReactNode\` | Provides the accessible name for the group. Place it as the first child of \`Fieldset\`. |
-| \`disabled\`         | No       | \`boolean\`   | Disables all form controls inside the fieldset.                                        |
-| \`aria-describedby\` | No       | \`string\`    | Can point to extra instructions for the whole group.                                   |
-
-- Do not use a heading alone as the group label; use \`Legend\` so the relationship is exposed to assistive technology.
-- When a visible legend is not desired, you can visually hide \`Legend\` while keeping it accessible.
         `,
             },
         },
@@ -101,6 +121,15 @@ export const Playground: Story = {
                 story:
           'Interactive playground — toggle the legend text and the disabled state from the Controls panel.',
             },
+            ...storySource(/* language=tsx */ `
+<Fieldset>
+    <Legend>Choose a plan</Legend>
+    <RadioGroup value="starter" aria-label="Choose a plan">
+        <RadioGroup.Item value="starter" label="Starter" />
+        <RadioGroup.Item value="pro" label="Pro" />
+        <RadioGroup.Item value="enterprise" label="Enterprise" />
+    </RadioGroup>
+</Fieldset>`),
         },
     },
     render: ({ legend, disabled }) => {
@@ -148,6 +177,15 @@ export const CheckboxGroup: Story = {
                 story:
           'A checkbox group inside a fieldset. The legend describes the whole set of options.',
             },
+            ...storySource(/* language=tsx */ `
+<Fieldset>
+    <Legend>Notification preferences</Legend>
+    <Flex flexDirection="column" gap="sm" alignItems="start">
+        <Checkbox label="Email" checked />
+        <Checkbox label="Push" />
+        <Checkbox label="SMS" />
+    </Flex>
+</Fieldset>`),
         },
     },
     render: () => {
@@ -196,4 +234,35 @@ export const CheckboxGroup: Story = {
         await expect(checkboxes).toHaveLength(3)
         await expect(canvas.getByRole('checkbox', { name: 'Email' })).toBeChecked()
     },
+}
+
+export const States: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Fieldset>
+    <Legend>Enabled group</Legend>
+    <Checkbox label="Email" />
+</Fieldset>
+<Fieldset disabled>
+    <Legend>Disabled group</Legend>
+    <Checkbox label="Push" />
+</Fieldset>`),
+        },
+    },
+    render: () => (
+        <Flex
+            flexDirection={'column'}
+            gap={'md'}
+        >
+            <Fieldset>
+                <Legend>Enabled group</Legend>
+                <Checkbox label={'Email'} />
+            </Fieldset>
+            <Fieldset disabled>
+                <Legend>Disabled group</Legend>
+                <Checkbox label={'Push'} />
+            </Fieldset>
+        </Flex>
+    ),
 }

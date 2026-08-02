@@ -1,9 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Box, type BoxVariant } from '@components/layout/box'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const BOX_VARIANTS: BoxVariant[] = [
     'div',
@@ -122,12 +131,33 @@ const POSITION = [
     'sticky',
 ] as const
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`as\` | No | HTML element | Prefer semantic elements for structural content. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Name landmark elements when needed. |
+`
+
+const BoxDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Layout/Box',
     component: Box,
     parameters: {
         layout: 'padded',
         docs: {
+            page: BoxDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A polymorphic layout primitive that renders as any HTML element and exposes design-token-based props for display, padding, margin, gap, background, border-radius, width, height, overflow, and position.
@@ -148,14 +178,6 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 </Box>
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`as\` | No | HTML element | Prefer semantic elements (\`section\`, \`article\`, \`nav\`, \`header\`…) over a generic \`div\` when the content has a structural role. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required on landmark elements (\`main\`, \`nav\`, \`aside\`) when multiple instances co-exist on a page. |
-
-- \`Box\` does not manage focus — for interactive containers (dialogs, drawers) compose it with an appropriate ARIA pattern or use a dedicated overlay component.
                 `,
             },
         },
@@ -223,6 +245,8 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(/* language=tsx */ `
+<Box as="div" padding="lg" backgroundColor="muted" borderRadius="md">Box content</Box>`),
         },
     },
     play: async ({ canvasElement, args }) => {
