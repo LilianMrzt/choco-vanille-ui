@@ -1,12 +1,14 @@
-import { useState, type ComponentProps, type ComponentType } from 'react'
+﻿import { useState, type ComponentProps, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import { SelectField } from '@components/forms/select'
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
+import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
-const SIZES: NonNullable<TextFieldInputRecipeVariants['size']>[] = [
+const SIZES: TextFieldSize[] = [
     'sm',
     'md',
     'lg',
@@ -47,13 +49,55 @@ type SelectPlaygroundArgs = Omit<ComponentProps<typeof SelectField>, 'options'> 
     optionsType?: 'flat' | 'grouped'
 }
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` on \`SelectField\` | Recommended | \`string\` | Visible label linked to the trigger. |
+| \`aria-label\` / \`aria-labelledby\` on \`Select.Trigger\` | Conditional | \`string\` | Required when \`label\` is omitted. |
+| \`disabled\` | No | \`boolean\` | Disables the trigger and all items. |
+| \`error\` on \`SelectField\` | No | \`string\` | Sets \`aria-invalid\` on the trigger. |
+| \`listboxAriaLabel\` on \`Select.Content\` | No | \`string\` | Accessible name for the listbox popup. |
+
+- Keyboard: \`Space\` / \`Enter\` opens the listbox; arrow keys navigate; \`Enter\` selects; \`Esc\` closes.
+- The trigger is a \`<button>\` with \`aria-haspopup="listbox"\` and \`aria-expanded\`.
+
+**Sub-components**
+
+| Sub-component | Description |
+|---|---|
+| \`Select\` | Root context provider. |
+| \`Select.Trigger\` | Button that opens the listbox. |
+| \`Select.Content\` | The floating listbox panel. |
+| \`Select.List\` | Scrollable list of listbox items. |
+| \`Select.Group\` | Semantic group of items. |
+| \`Select.Label\` | Non-interactive section heading. |
+| \`Select.Item\` | A single selectable option. |
+| \`Select.Separator\` | Horizontal divider between groups. |
+`
+
+const SelectDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Forms/Select',
     component: SelectField as ComponentType<SelectPlaygroundArgs>,
     parameters: {
         layout: 'centered',
         docs: {
-            description: {
+
+            page: SelectDocsPage,            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A styled select control built on top of \`@base-ui/react/select\`.
 
@@ -93,32 +137,6 @@ const [value, setValue] = useState('')
   </Select.Content>
 </Select>
 \`\`\`
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` on \`SelectField\` | Recommended | \`string\` | Visible label linked to the trigger. |
-| \`aria-label\` / \`aria-labelledby\` on \`Select.Trigger\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables the trigger and all items. |
-| \`error\` on \`SelectField\` | No | \`string\` | Sets \`aria-invalid\` on the trigger. |
-| \`listboxAriaLabel\` on \`Select.Content\` | No | \`string\` | Accessible name for the listbox popup. |
-
-- Keyboard: \`Space\` / \`Enter\` opens the listbox; arrow keys navigate; \`Enter\` selects; \`Esc\` closes.
-- The trigger is a \`<button>\` with \`aria-haspopup="listbox"\` and \`aria-expanded\`.
-
-**Sub-components**
-
-| Sub-component | Description |
-|---|---|
-| \`Select\` | Root context provider. |
-| \`Select.Trigger\` | Button that opens the listbox. |
-| \`Select.Content\` | The floating listbox panel. |
-| \`Select.List\` | Scrollable list of listbox items. |
-| \`Select.Group\` | Semantic group of items. |
-| \`Select.Label\` | Non-interactive section heading. |
-| \`Select.Item\` | A single selectable option. |
-| \`Select.Separator\` | Horizontal divider between groups. |
                 `,
             },
         },
@@ -162,10 +180,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<SelectField />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -194,4 +212,64 @@ export const Playground: Story = {
         await userEvent.keyboard('{Escape}')
         await waitFor(() => expect(screen.queryByRole('listbox')).not.toBeInTheDocument())
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<SelectField label="Small" size="sm" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="Medium" size="md" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="Large" size="lg" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <SelectField
+                label={'Small'}
+                size={'sm'}
+                options={FRUIT_OPTIONS}
+            />
+            <SelectField
+                label={'Medium'}
+                size={'md'}
+                options={FRUIT_OPTIONS}
+            />
+            <SelectField
+                label={'Large'}
+                size={'lg'}
+                options={FRUIT_OPTIONS}
+            />
+        </div>
+    ),
+}
+
+export const States: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`<SelectField label="Disabled" disabled options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <SelectField
+            label={'Disabled'}
+            disabled
+            options={FRUIT_OPTIONS}
+        />
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`<SelectField label="Fruit" startIcon="lucide:apple" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <SelectField
+            label={'Fruit'}
+            startIcon={'lucide:apple'}
+            options={FRUIT_OPTIONS}
+        />
+    ),
 }

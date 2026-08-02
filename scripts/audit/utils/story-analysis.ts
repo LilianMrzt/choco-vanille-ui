@@ -332,8 +332,17 @@ export function analyzeComponentStories(
         );
       }
 
+      const isFieldWrapperStory = /\bcomponent\s*:\s*[^,\n]*Field\b/.test(
+        source,
+      );
+      const hasCompoundPublicApi = component.exports.includes(
+        `${component.name}Compound`,
+      );
+
       if (
-        component.subComponents.length > 0
+        component.subComponents.length > 0 &&
+        hasCompoundPublicApi &&
+        !isFieldWrapperStory
       ) {
         const missingCompoundControls = component.subComponents
           .map((subComponent) =>

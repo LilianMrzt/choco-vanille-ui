@@ -1,49 +1,21 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
-import { TextField } from '@components/forms/text-field'
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
+import { TextField, type TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
-const SIZES: NonNullable<TextFieldInputRecipeVariants['size']>[] = [
+const SIZES: TextFieldSize[] = [
     'sm',
     'md',
     'lg',
 ]
 const TYPES = ['text', 'email', 'password', 'number', 'search', 'url'] as const
 
-const meta = {
-    title: 'Forms/TextField',
-    component: TextField,
-    parameters: {
-        layout: 'centered',
-        docs: {
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A styled text input built with a native \`<input>\` and \`<label>\` for accessible label binding.
-
-Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, password toggle and custom width.
-
-**Usage**
-
-~~~tsx
-// With start icon
-<TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
-
-// Password field — toggle auto-injected
-<TextField label="Password" type="password" />
-
-// Custom end action
-<TextField
-    label="Search"
-    endAction={
-        <IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />
-    }
-/>
-~~~
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
 
 **Accessibility**
 
@@ -58,6 +30,51 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 - The underlying element is a native \`<input>\`, so it is fully keyboard operable.
 - Do not rely on placeholder text alone as a label.
+`
+
+const TextFieldDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
+const meta = {
+    title: 'Forms/TextField',
+    component: TextField,
+    parameters: {
+        layout: 'centered',
+        docs: {
+
+            page: TextFieldDocsPage,            description: {
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
+A styled text input built with a native \`<input>\` and \`<label>\` for accessible label binding.
+
+Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, password toggle and custom width.
+
+**Usage**
+
+~~~tsx
+// With start icon
+<TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
+
+// Password field â€” toggle auto-injected
+<TextField label="Password" type="password" />
+
+// Custom end action
+<TextField
+    label="Search"
+    endAction={
+        <IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />
+    }
+/>
+~~~
                 `,
             },
         },
@@ -89,10 +106,10 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<TextField />`),
             description: {
                 story:
-                    'Interactive playground — use the Controls panel to experiment with every available prop.',
+                    'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -115,4 +132,55 @@ export const Playground: Story = {
             await expect(canvas.getByRole('textbox')).toBeInTheDocument()
         }
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<TextField label="Small" size="sm" />
+<TextField label="Medium" size="md" />
+<TextField label="Large" size="lg" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <TextField
+                label={'Small'}
+                size={'sm'}
+            />
+            <TextField
+                label={'Medium'}
+                size={'md'}
+            />
+            <TextField
+                label={'Large'}
+                size={'lg'}
+            />
+        </div>
+    ),
+}
+
+export const States: Story = {
+    parameters: {
+        docs: { ...storySource(`<TextField label="Disabled" disabled />`) },
+    },
+    render: () => (
+        <TextField
+            label={'Disabled'}
+            disabled
+        />
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: { ...storySource(`<TextField label="Search" startIcon="lucide:search" />`) },
+    },
+    render: () => (
+        <TextField
+            label={'Search'}
+            startIcon={'lucide:search'}
+        />
+    ),
 }

@@ -1,12 +1,14 @@
-import { useState, type ComponentProps, type ComponentType } from 'react'
+﻿import { useState, type ComponentProps, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import { AutocompleteField } from '@components/forms/autocomplete'
-import type { TextFieldInputRecipeVariants } from '@components/forms/text-field/styles/TextField.css.ts'
+import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
-const SIZES: NonNullable<TextFieldInputRecipeVariants['size']>[] = [
+const SIZES: TextFieldSize[] = [
     'sm',
     'md',
     'lg',
@@ -47,13 +49,42 @@ type AutocompletePlaygroundArgs = Omit<ComponentProps<typeof AutocompleteField>,
     optionsType?: 'flat' | 'grouped'
 }
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` on \`AutocompleteField\` | Recommended | \`string\` | Visible label linked to the input. |
+| \`aria-label\` / \`aria-labelledby\` on \`Autocomplete.Input\` | Conditional | \`string\` | Required when \`label\` is omitted. |
+| \`disabled\` | No | \`boolean\` | Disables the input and all items. |
+| \`error\` on \`AutocompleteField\` | No | \`string\` | Sets \`aria-invalid\` on the input. |
+| \`listboxAriaLabel\` on \`Autocomplete.Content\` | No | \`string\` | Accessible name for the listbox popup. |
+
+- Keyboard: typing filters the list; arrow keys navigate; \`Enter\` selects; \`Esc\` closes.
+- The input is a \`<input>\` with \`aria-autocomplete="list"\` and \`aria-expanded\`.
+`
+
+const AutocompleteDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Forms/Autocomplete',
     component: AutocompleteField as ComponentType<AutocompletePlaygroundArgs>,
     parameters: {
         layout: 'centered',
         docs: {
-            description: {
+
+            page: AutocompleteDocsPage,            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A styled autocomplete control built on top of \`@base-ui/react/autocomplete\`.
 
@@ -94,19 +125,6 @@ const [value, setValue] = useState('')
   </Autocomplete.Content>
 </Autocomplete>
 \`\`\`
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` on \`AutocompleteField\` | Recommended | \`string\` | Visible label linked to the input. |
-| \`aria-label\` / \`aria-labelledby\` on \`Autocomplete.Input\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables the input and all items. |
-| \`error\` on \`AutocompleteField\` | No | \`string\` | Sets \`aria-invalid\` on the input. |
-| \`listboxAriaLabel\` on \`Autocomplete.Content\` | No | \`string\` | Accessible name for the listbox popup. |
-
-- Keyboard: typing filters the list; arrow keys navigate; \`Enter\` selects; \`Esc\` closes.
-- The input is a \`<input>\` with \`aria-autocomplete="list"\` and \`aria-expanded\`.
                 `,
             },
         },
@@ -152,10 +170,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<AutocompleteField />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -183,4 +201,64 @@ export const Playground: Story = {
         await userEvent.keyboard('{Escape}')
         await waitFor(() => expect(screen.queryByRole('listbox')).not.toBeInTheDocument())
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<AutocompleteField label="Small" size="sm" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="Medium" size="md" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="Large" size="lg" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <AutocompleteField
+                label={'Small'}
+                size={'sm'}
+                options={FRUIT_OPTIONS}
+            />
+            <AutocompleteField
+                label={'Medium'}
+                size={'md'}
+                options={FRUIT_OPTIONS}
+            />
+            <AutocompleteField
+                label={'Large'}
+                size={'lg'}
+                options={FRUIT_OPTIONS}
+            />
+        </div>
+    ),
+}
+
+export const States: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`<AutocompleteField label="Disabled" disabled options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <AutocompleteField
+            label={'Disabled'}
+            disabled
+            options={FRUIT_OPTIONS}
+        />
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`<AutocompleteField label="Search" startIcon="lucide:search" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <AutocompleteField
+            label={'Search'}
+            startIcon={'lucide:search'}
+            options={FRUIT_OPTIONS}
+        />
+    ),
 }

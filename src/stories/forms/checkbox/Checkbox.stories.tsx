@@ -1,9 +1,41 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Checkbox } from '@/components/forms/checkbox'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` | Conditional | \`string\` | When provided, auto-associates with the checkbox via a generated \`id\`. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted to maintain an accessible name. |
+| \`disabled\` | No | \`boolean\` | Keeps the checkbox visible and announced; do not hide unavailable options. |
+| \`required\` | No | \`boolean\` | Marks the field as required for native form validation. |
+| \`checked\` | No | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`. |
+| \`indeterminate\` | No | \`boolean\` | Whether the checkbox is in a mixed state. |
+| \`defaultChecked\` | No | \`boolean\` | Uncontrolled initial checked state. |
+
+- Keyboard: \`Space\` toggles the checkbox when focused.
+- The checked state is exposed to assistive technology via Radix's built-in ARIA semantics.
+`
+
+const CheckboxDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Forms/Checkbox',
@@ -11,7 +43,8 @@ const meta = {
     parameters: {
         layout: 'centered',
         docs: {
-            description: {
+
+            page: CheckboxDocsPage,            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A styled checkbox control built on top of \`@base-ui/react/checkbox\`.
 Supports both controlled (\`checked\` + \`onCheckedChange\`) and uncontrolled (\`defaultChecked\`) modes, and renders an optional accessible inline label.
@@ -30,21 +63,6 @@ const [accepted, setAccepted] = useState(false)
   onCheckedChange={(val) => setAccepted(val === true)}
 />
 \`\`\`
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Conditional | \`string\` | When provided, auto-associates with the checkbox via a generated \`id\`. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted to maintain an accessible name. |
-| \`disabled\` | No | \`boolean\` | Keeps the checkbox visible and announced; do not hide unavailable options. |
-| \`required\` | No | \`boolean\` | Marks the field as required for native form validation. |
-| \`checked\` | No | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`. |
-| \`indeterminate\` | No | \`boolean\` | Whether the checkbox is in a mixed state. |
-| \`defaultChecked\` | No | \`boolean\` | Uncontrolled initial checked state. |
-
-- Keyboard: \`Space\` toggles the checkbox when focused.
-- The checked state is exposed to assistive technology via Radix's built-in ARIA semantics.
                 `,
             },
         },
@@ -73,10 +91,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<Checkbox />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -98,4 +116,14 @@ export const Playground: Story = {
         await userEvent.click(checkbox)
         await expect(checkbox).toBeChecked()
     },
+}
+
+export const States: Story = {
+    parameters: { docs: { ...storySource(`<Checkbox label="Disabled" disabled />`) } },
+    render: () => (
+        <Checkbox
+            label={'Disabled'}
+            disabled
+        />
+    ),
 }

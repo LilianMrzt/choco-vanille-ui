@@ -1,10 +1,12 @@
-import { type ComponentType, useState } from 'react'
+﻿import { type ComponentType, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 import type { DateRange } from 'react-day-picker'
 
 import { Calendar } from '@/components/forms/calendar'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const MODES = ['single', 'multiple', 'range'] as const
 
@@ -14,7 +16,39 @@ type CalendarArgs = {
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
     startYear?: number
     endYear?: number
+    compoundCaption?: string
+    compoundMonthButton?: string
+    compoundMonthView?: string
+    compoundYearButton?: string
+    compoundYearView?: string
 }
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+**Accessibility**
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`mode\` | âœ… Yes | \`'single' \\| 'multiple' \\| 'range'\` | Determines selection behaviour and ARIA semantics. |
+| \`aria-label\` | No | \`string\` | Accessible name for the calendar region. |
+| \`disabled\` | No | \`Date \\| Date[] \\| matcher\` | Prevents selection of matching dates. |
+| \`showOutsideDays\` | No | \`boolean\` | Shows days from adjacent months (default \`true\`). |
+
+- Day grid cells are native buttons and are keyboard operable.
+- Selected days are exposed via \`aria-pressed\` / \`aria-selected\` by react-day-picker.
+`
+
+const CalendarDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Forms/Calendar',
@@ -22,13 +56,14 @@ const meta = {
     parameters: {
         layout: 'centered',
         docs: {
-            description: {
+
+            page: CalendarDocsPage,            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A date-picker calendar built on top of \`react-day-picker\`.
 
 Supports **single**, **multiple**, and **range** selection modes.
 
-The header shows **[← Month Year →]** in day view. Clicking **Month** opens a 3×4 month picker; clicking **Year** opens a 3×4 year picker with decade pagination — no scrolling required.
+The header shows **[â† Month Year â†’]** in day view. Clicking **Month** opens a 3Ã—4 month picker; clicking **Year** opens a 3Ã—4 year picker with decade pagination â€” no scrolling required.
 
 **Usage**
 
@@ -41,18 +76,6 @@ const [date, setDate] = useState<Date>()
 const [range, setRange] = useState<DateRange>()
 <Calendar mode="range" selected={range} onSelect={setRange} />
 \`\`\`
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`mode\` | ✅ Yes | \`'single' \\| 'multiple' \\| 'range'\` | Determines selection behaviour and ARIA semantics. |
-| \`aria-label\` | No | \`string\` | Accessible name for the calendar region. |
-| \`disabled\` | No | \`Date \\| Date[] \\| matcher\` | Prevents selection of matching dates. |
-| \`showOutsideDays\` | No | \`boolean\` | Shows days from adjacent months (default \`true\`). |
-
-- Day grid cells are native buttons and are keyboard operable.
-- Selected days are exposed via \`aria-pressed\` / \`aria-selected\` by react-day-picker.
                 `,
             },
         },
@@ -63,6 +86,11 @@ const [range, setRange] = useState<DateRange>()
         weekStartsOn: { control: 'select', options: [0, 1, 2, 3, 4, 5, 6] },
         startYear: { control: 'number' },
         endYear: { control: 'number' },
+        compoundCaption: { control: 'text', table: { category: 'Compound: Caption' } },
+        compoundMonthButton: { control: 'text', table: { category: 'Compound: MonthButton' } },
+        compoundMonthView: { control: 'text', table: { category: 'Compound: MonthView' } },
+        compoundYearButton: { control: 'text', table: { category: 'Compound: YearButton' } },
+        compoundYearView: { control: 'text', table: { category: 'Compound: YearView' } },
     },
     args: {
         mode: 'single',
@@ -84,10 +112,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<Calendar />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to switch selection mode, toggle outside days, and adjust the year range.',
+          'Interactive playground â€” use the Controls panel to switch selection mode, toggle outside days, and adjust the year range.',
             },
         },
     },
@@ -131,4 +159,9 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('grid')).toBeInTheDocument()
     },
+}
+
+export const States: Story = {
+    parameters: { docs: { ...storySource(`<Calendar mode="single" />`) } },
+    render: () => <Calendar mode={'single'} />,
 }

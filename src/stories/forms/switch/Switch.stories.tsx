@@ -1,11 +1,39 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Switch, type SwitchSize } from '@components/forms/switch'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const SIZES: SwitchSize[] = ['sm', 'md', 'lg']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`label\` | Conditional | \`string\` | Provides the accessible name when no ARIA name is supplied. |
+| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
+| \`disabled\` | No | \`boolean\` | Disables the switch. |
+| \`required\` | No | \`boolean\` | Marks the switch as required for form validation. |
+| \`checked\` | No | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`. |
+| \`defaultChecked\` | No | \`boolean\` | Uncontrolled initial checked state. |
+
+- Keyboard: \`Space\` toggles the switch when focused.
+`
+
+const SwitchDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Forms/Switch',
@@ -13,7 +41,8 @@ const meta = {
     parameters: {
         layout: 'centered',
         docs: {
-            description: {
+
+            page: SwitchDocsPage,            description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
@@ -35,19 +64,6 @@ const [enabled, setEnabled] = useState(false)
 />
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute                 | Required    | Type      | Notes                                                                    |
-| -------------------------------- | ----------- | --------- | ------------------------------------------------------------------------ |
-| \`label\`                          | Conditional | \`string\`  | When provided, auto-associates with the switch via a generated \`id\`.     |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\`  | Required when \`label\` is omitted to maintain an accessible name.         |
-| \`disabled\`                       | No          | \`boolean\` | Keeps the switch visible and announced; do not hide unavailable options. |
-| \`required\`                       | No          | \`boolean\` | Marks the field as required for native form validation.                  |
-| \`checked\`                        | No          | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`.                   |
-| \`defaultChecked\`                 | No          | \`boolean\` | Uncontrolled initial checked state.                                      |
-
-- Keyboard: \`Space\` toggles the switch when focused.
-- The checked state is exposed to assistive technology via Radix's built-in ARIA semantics (\`role="switch"\`, \`aria-checked\`).
         `,
             },
         },
@@ -79,10 +95,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<Switch />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -109,4 +125,41 @@ export const Playground: Story = {
         await userEvent.click(switchControl)
         await expect(switchControl).toBeChecked()
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<Switch label="Small" size="sm" />
+<Switch label="Medium" size="md" />
+<Switch label="Large" size="lg" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Switch
+                label={'Small'}
+                size={'sm'}
+            />
+            <Switch
+                label={'Medium'}
+                size={'md'}
+            />
+            <Switch
+                label={'Large'}
+                size={'lg'}
+            />
+        </div>
+    ),
+}
+
+export const States: Story = {
+    parameters: { docs: { ...storySource(`<Switch label="Disabled" disabled />`) } },
+    render: () => (
+        <Switch
+            label={'Disabled'}
+            disabled
+        />
+    ),
 }

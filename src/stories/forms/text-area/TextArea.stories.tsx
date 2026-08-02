@@ -1,44 +1,16 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
-import { TextArea } from '@components/forms/text-area'
-import type { TextAreaRecipeVariants } from '@components/forms/text-area/styles/TextArea.css.ts'
+import { TextArea, type TextAreaSize } from '@components/forms/text-area'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
-const SIZES: NonNullable<TextAreaRecipeVariants['size']>[] = ['sm', 'md', 'lg']
+const SIZES: TextAreaSize[] = ['sm', 'md', 'lg']
 
-const meta = {
-    title: 'Forms/TextArea',
-    component: TextArea,
-    parameters: {
-        layout: 'centered',
-        docs: {
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A styled textarea built with a native \`<textarea>\` and \`<label>\` for accessible label binding.
-
-Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, custom width and native \`rows\`.
-
-**Usage**
-
-~~~tsx
-// Basic
-<TextArea label="Description" placeholder="Tell us more…" rows={4} />
-
-// With start icon
-<TextArea label="Comment" startIcon="lucide:message-square" />
-
-// Custom end action
-<TextArea
-    label="Bio"
-    endAction={
-        <IconButton icon="lucide:x" aria-label="Clear" variant="ghost" color="primary" />
-    }
-/>
-~~~
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
 
 **Accessibility**
 
@@ -53,6 +25,51 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 - The underlying element is a native \`<textarea>\`, so it is fully keyboard operable.
 - Do not rely on placeholder text alone as a label.
+`
+
+const TextAreaDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
+const meta = {
+    title: 'Forms/TextArea',
+    component: TextArea,
+    parameters: {
+        layout: 'centered',
+        docs: {
+
+            page: TextAreaDocsPage,            description: {
+                component: md /* language=markdown */ `
+<!--suppress HtmlUnknownAttribute -->
+
+A styled textarea built with a native \`<textarea>\` and \`<label>\` for accessible label binding.
+
+Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, custom width and native \`rows\`.
+
+**Usage**
+
+~~~tsx
+// Basic
+<TextArea label="Description" placeholder="Tell us moreâ€¦" rows={4} />
+
+// With start icon
+<TextArea label="Comment" startIcon="lucide:message-square" />
+
+// Custom end action
+<TextArea
+    label="Bio"
+    endAction={
+        <IconButton icon="lucide:x" aria-label="Clear" variant="ghost" color="primary" />
+    }
+/>
+~~~
                 `,
             },
         },
@@ -73,7 +90,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
     },
     args: {
         label: 'Description',
-        placeholder: 'Tell us more…',
+        placeholder: 'Tell us moreâ€¦',
         size: 'md',
         rows: 4,
         minRows: 2,
@@ -88,10 +105,10 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
     parameters: {
-        docs: {
+        docs: { ...storySource(`<TextArea />`),
             description: {
                 story:
-                    'Interactive playground — use the Controls panel to experiment with every available prop.',
+                    'Interactive playground â€” use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -114,4 +131,57 @@ export const Playground: Story = {
             await expect(canvas.getByRole('textbox')).toBeInTheDocument()
         }
     },
+}
+
+export const Sizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<TextArea label="Small" size="sm" />
+<TextArea label="Medium" size="md" />
+<TextArea label="Large" size="lg" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <TextArea
+                label={'Small'}
+                size={'sm'}
+            />
+            <TextArea
+                label={'Medium'}
+                size={'md'}
+            />
+            <TextArea
+                label={'Large'}
+                size={'lg'}
+            />
+        </div>
+    ),
+}
+
+export const States: Story = {
+    parameters: {
+        docs: { ...storySource(`<TextArea label="Disabled" disabled />`) },
+    },
+    render: () => (
+        <TextArea
+            label={'Disabled'}
+            disabled
+        />
+    ),
+}
+
+export const WithIcons: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`<TextArea label="Comment" startIcon="lucide:message-square" />`),
+        },
+    },
+    render: () => (
+        <TextArea
+            label={'Comment'}
+            startIcon={'lucide:message-square'}
+        />
+    ),
 }
