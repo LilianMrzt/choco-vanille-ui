@@ -1,4 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import {
@@ -9,6 +17,7 @@ import {
     type ProgressSize,
 } from '@components/feedback/progress'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const COLORS: ProgressColor[] = [
     'primary',
@@ -37,6 +46,29 @@ const BORDER_RADIUS: ProgressBorderRadius[] = [
     'full',
 ]
 
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`value\` | Yes | \`number\` | Current progress between 0 and 100. |
+| \`label\`, \`aria-label\`, \`aria-labelledby\` | One required | \`string\` | Names the progressbar. |
+| \`quantityLabel\` | No | \`string \| true\` | Shows a percentage or custom quantity. |
+
+- Both variants render with \`role="progressbar"\` and expose their value attributes.
+`
+
+const ProgressDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
+
 const meta = {
     title: 'Feedback/Progress',
     component: Progress,
@@ -58,17 +90,9 @@ A progress indicator with linear and circular variants.
 <CircularProgress value={90} color="warning" size="lg" label="Processing" />
 ~~~
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type             | Notes                                                   |
-| ---------------- | -------- | ---------------- | ------------------------------------------------------- |
-| \`value\`          | ✅ Yes   | \`number\`         | Current progress between 0 and 100.                     |
-| \`label\`, \`aria-label\`, \`aria-labelledby\` | One required | \`string\` | Names the progressbar. |
-| \`quantityLabel\`  | No       | \`string \| true\` | Pass \`true\` to show the percentage, or a custom string. |
-
-- Both variants render with \`role="progressbar"\` and forward \`aria-valuenow\`, \`aria-valuemin\`, and \`aria-valuemax\`.
         `,
             },
+            page: ProgressDocsPage,
         },
     },
     argTypes: {
@@ -101,6 +125,7 @@ export const Playground: Story = {
             description: {
                 story: 'Interactive playground for the linear Progress component.',
             },
+            ...storySource(`<Progress value={50} aria-label="Progress" color="primary" size="sm" />`),
         },
     },
     play: async ({ canvasElement }) => {
@@ -116,6 +141,7 @@ export const Sizes: Story = {
             description: {
                 story: 'The five height sizes for the linear progress.',
             },
+            ...storySource(`<Progress value={60} size="xs" label="XS" quantityLabel /><Progress value={60} size="sm" label="SM" quantityLabel /><Progress value={60} size="md" label="MD" quantityLabel /><Progress value={60} size="lg" label="LG" quantityLabel /><Progress value={60} size="xl" label="XL" quantityLabel />`),
         },
     },
     render: () => (
@@ -147,6 +173,7 @@ export const Colors: Story = {
             description: {
                 story: 'All available color intents for the linear progress.',
             },
+            ...storySource(`<Progress value={60} color="primary" label="primary" quantityLabel /><Progress value={60} color="success" label="success" quantityLabel /><Progress value={60} color="warning" label="warning" quantityLabel />`),
         },
     },
     render: () => (
@@ -179,6 +206,7 @@ export const WithLabels: Story = {
                 story:
           'Linear progress with a descriptive label and an automatic percentage.',
             },
+            ...storySource(`<Progress value={33} label="Uploading file" quantityLabel /><Progress value={66} label="Custom quantity label" quantityLabel="2/3" />`),
         },
     },
     render: () => (
@@ -212,6 +240,7 @@ export const BorderRadius: Story = {
                 story:
           'The linear progress track can be customized with different border radii.',
             },
+            ...storySource(`<Progress value={60} borderRadius="none" label="none" quantityLabel /><Progress value={60} borderRadius="sm" label="sm" quantityLabel /><Progress value={60} borderRadius="full" label="full" quantityLabel />`),
         },
     },
     render: () => (
@@ -244,6 +273,7 @@ export const Width: Story = {
                 story:
           'The linear progress width can be customized via the width prop.',
             },
+            ...storySource(`<Progress value={50} width="10rem" label="10rem" quantityLabel /><Progress value={50} width="50%" label="50%" quantityLabel /><Progress value={50} width="100%" label="100%" quantityLabel />`),
         },
     },
     render: () => (
@@ -283,6 +313,7 @@ export const Circular: Story = {
             description: {
                 story: 'Circular progress indicator with centered quantity label.',
             },
+            ...storySource(`<CircularProgress value={25} size="sm" quantityLabel aria-label="Progress" /><CircularProgress value={50} size="md" quantityLabel aria-label="Progress" /><CircularProgress value={75} size="lg" quantityLabel aria-label="Progress" />`),
         },
     },
     render: () => (
@@ -316,6 +347,7 @@ export const CircularColors: Story = {
             description: {
                 story: 'Circular progress in every available color intent.',
             },
+            ...storySource(`<CircularProgress value={60} color="primary" size="sm" quantityLabel aria-label="primary" /><CircularProgress value={60} color="success" size="sm" quantityLabel aria-label="success" /><CircularProgress value={60} color="warning" size="sm" quantityLabel aria-label="warning" />`),
         },
     },
     render: () => (
@@ -349,6 +381,7 @@ export const CircularWithLabel: Story = {
             description: {
                 story: 'Circular progress with a bottom label.',
             },
+            ...storySource(`<CircularProgress value={82} size="lg" label="Processing" quantityLabel />`),
         },
     },
     render: () => (

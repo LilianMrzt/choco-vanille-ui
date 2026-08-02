@@ -1,11 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Skeleton } from '@/components/feedback/skeleton'
 import type { SkeletonVariant } from '@components/feedback/skeleton'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const VARIANTS: SkeletonVariant[] = ['circular', 'rectangular', 'rounded']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`aria-hidden\` | — | — | Always set to \`true\`; screen readers ignore placeholders. |
+`
+
+const SkeletonDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
     title: 'Feedback/Skeleton',
@@ -27,15 +48,9 @@ The placeholder is hidden from assistive technologies via \`aria-hidden="true"\`
 <Skeleton variant="rectangular" width="16rem" height="8rem" />
 \`\`\`
 
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`aria-hidden\` | — | — | Always set to \`true\`; screen readers should ignore skeleton placeholders. |
-
-- Render Skeleton conditionally in place of real content; do not use it as a permanent visual element.
                 `,
             },
+            page: SkeletonDocsPage,
         },
     },
     argTypes: {
@@ -62,10 +77,39 @@ export const Playground: Story = {
                 story:
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(`<Skeleton variant="rounded" width="12rem" height="2.5rem" />`),
         },
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('generic', { hidden: true })).toBeInTheDocument()
     },
+}
+
+export const Variants: Story = {
+    parameters: {
+        docs: {
+            description: { story: 'All available skeleton shapes.' },
+            ...storySource(`<Skeleton variant="circular" width="2.5rem" height="2.5rem" /><Skeleton variant="rectangular" width="16rem" height="8rem" /><Skeleton variant="rounded" width="12rem" height="2.5rem" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Skeleton
+                variant={'circular'}
+                width={'2.5rem'}
+                height={'2.5rem'}
+            />
+            <Skeleton
+                variant={'rectangular'}
+                width={'16rem'}
+                height={'8rem'}
+            />
+            <Skeleton
+                variant={'rounded'}
+                width={'12rem'}
+                height={'2.5rem'}
+            />
+        </div>
+    ),
 }

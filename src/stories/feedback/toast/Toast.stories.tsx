@@ -1,4 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Button } from '@components/actions/button'
@@ -6,10 +14,43 @@ import type { ButtonColor, ButtonVariant } from '@components/actions/button/type
 import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const VARIANTS: ToastVariant[] = ['info', 'success', 'warning', 'error']
 
 const ROLES: ToastRole[] = ['alert', 'status', 'none']
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`role\` | No | \`alert\` \| \`status\` \| \`none\` | Defaults to \`status\`; use \`alert\` for urgent messages. |
+| \`closeLabel\` | No | \`string\` | Accessible label for the close button. |
+| \`onClose\` | No | \`() => void\` | Renders a keyboard-accessible close button. |
+
+**Sub-components**
+
+| Sub-component | Description |
+|---|---|
+| \`Toast\` | Root live-region container. |
+| \`Toast.Icon\` | Optional icon. |
+| \`Toast.Title\` | Toast heading. |
+| \`Toast.Description\` | Main message. |
+| \`Toast.Actions\` | Action container. |
+| \`Toast.Close\` | Dismiss button. |
+`
+
+const ToastDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 type ToastPlaygroundArgs = {
     variant?: ToastVariant
@@ -62,34 +103,9 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
   <Toast.Close aria-label="Dismiss warning" onClick={() => dismiss()} />
 </Toast>
 ~~~
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`role\` | No | \`alert\` \| \`status\` \| \`none\` | Defaults to \`status\`. Use \`alert\` for time-sensitive or error messages that need immediate attention. |
-| \`title\` | No | \`React.ReactNode\` | Provides a bold, accessible heading for the toast content. |
-| \`description\` | No | \`React.ReactNode\` | Main message content. Keep it concise so screen-reader users receive the full context. |
-| \`closeLabel\` | No | \`string\` | Accessible label for the close button. Defaults to \`"Close notification"\`. |
-| \`onClose\` | No | \`() => void\` | Renders the close button. Without it, users have no keyboard-accessible way to dismiss the toast. |
-| \`aria-*\` | No | — | All native \`<div>\` ARIA attributes are forwarded to the root element. |
-
-- The root element is a \`<div>\` with a live-region \`role\` (\`status\` or \`alert\`), so screen readers announce the toast when it appears.
-- When \`onClose\` is provided, a native \`<button>\` is rendered and is keyboard operable with \`Space\` / \`Enter\`.
-- Avoid using only an icon without a title or description; provide meaningful text content for the live region.
-
-**Sub-components**
-
-| Sub-component | Description |
-|---|---|
-| \`Toast\` | Root container that sets the variant context and live-region role. |
-| \`Toast.Icon\` | Optional icon. Defaults to the variant icon when omitted in prop mode. |
-| \`Toast.Title\` | Bold title rendered above the description. |
-| \`Toast.Description\` | Main message content. |
-| \`Toast.Actions\` | Horizontal container for action buttons or links. |
-| \`Toast.Close\` | Dismiss button. Requires an \`aria-label\` and an \`onClick\` handler. |
         `,
             },
+            page: ToastDocsPage,
         },
     },
     argTypes: {
@@ -109,11 +125,11 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
         },
         icon: {
             control: 'text',
-            table: { category: 'Toast.Icon' },
+            table: { category: 'Compound: Icon' },
         },
         title: {
             control: 'text',
-            table: { category: 'Toast.Title' },
+            table: { category: 'Compound: Title' },
         },
         showTitle: {
             control: 'boolean',
@@ -121,37 +137,37 @@ It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`e
         },
         description: {
             control: 'text',
-            table: { category: 'Toast.Description' },
+            table: { category: 'Compound: Description' },
         },
         showDescription: {
             control: 'boolean',
-            table: { category: 'Toast.Description' },
+            table: { category: 'Compound: Description' },
         },
         closeLabel: {
             control: 'text',
-            table: { category: 'Toast.Close' },
+            table: { category: 'Compound: Close' },
         },
         showClose: {
             control: 'boolean',
-            table: { category: 'Toast.Close' },
+            table: { category: 'Compound: Close' },
         },
         actionLabel: {
             control: 'text',
-            table: { category: 'Toast.Actions' },
+            table: { category: 'Compound: Actions' },
         },
         showActions: {
             control: 'boolean',
-            table: { category: 'Toast.Actions' },
+            table: { category: 'Compound: Actions' },
         },
         actionVariant: {
             control: 'select',
             options: ['contained', 'outlined', 'ghost'],
-            table: { category: 'Toast.Actions' },
+            table: { category: 'Compound: Actions' },
         },
         actionColor: {
             control: 'select',
             options: ['primary', 'secondary', 'destructive', 'success', 'warning', 'info'],
-            table: { category: 'Toast.Actions' },
+            table: { category: 'Compound: Actions' },
         },
     },
     args: {
@@ -181,6 +197,7 @@ export const Playground: Story = {
                 story:
                     'Interactive playground — use the Controls panel to experiment with every available prop, grouped by sub-component.',
             },
+            ...storySource(`<Toast variant="info"><Toast.Icon icon="mdi:information-outline" /><Toast.Title>Did you know?</Toast.Title><Toast.Description>Toasts are great for lightweight status updates.</Toast.Description><Toast.Close aria-label="Close notification" /></Toast>`),
         },
     },
     render: ({
@@ -202,9 +219,9 @@ export const Playground: Story = {
         <Toast
             variant={variant}
             role={role}
-            icon={icon}
             className={className}
         >
+            {icon && <Toast.Icon icon={icon} />}
             {showTitle && <Toast.Title>{title}</Toast.Title>}
             {showDescription && <Toast.Description>{description}</Toast.Description>}
             {showActions && (
@@ -242,4 +259,37 @@ export const Playground: Story = {
             ).toBeInTheDocument()
         }
     },
+}
+
+export const Variants: Story = {
+    parameters: {
+        docs: {
+            description: { story: 'All available toast intent variants.' },
+            ...storySource(`<Toast variant="info" title="Info" description="Information." /><Toast variant="success" title="Success" description="Completed." /><Toast variant="warning" title="Warning" description="Be careful." /><Toast variant="error" title="Error" description="Something went wrong." />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.75rem', width: '32rem' }}>
+            <Toast
+                variant={'info'}
+                title={'Info'}
+                description={'Information.'}
+            />
+            <Toast
+                variant={'success'}
+                title={'Success'}
+                description={'Completed.'}
+            />
+            <Toast
+                variant={'warning'}
+                title={'Warning'}
+                description={'Be careful.'}
+            />
+            <Toast
+                variant={'error'}
+                title={'Error'}
+                description={'Something went wrong.'}
+            />
+        </div>
+    ),
 }

@@ -1,14 +1,54 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import {
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { Callout } from '@/components/feedback/callout'
 import type { CalloutRole, CalloutVariant } from '@components/feedback/callout'
 import { IconRegistry } from '@constants/icons'
 import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
 
 const ROLES: CalloutRole[] = ['alert', 'status', undefined]
+
+const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+|---|---|---|---|
+| \`role\` on root | No | \`alert\` \| \`status\` | Defaults to \`status\`. Use \`alert\` only for urgent messages. |
+| \`aria-label\` on \`Callout.Icon\` | No | \`string\` | Provide when the icon conveys meaning on its own. |
+
+- The callout is a polite live region by default.
+
+**Sub-components**
+
+| Sub-component | Description |
+|---|---|
+| \`Callout\` | Root container that provides context. |
+| \`Callout.Icon\` | Leading icon. |
+| \`Callout.Title\` | Bold title text. |
+| \`Callout.Description\` | Secondary description text. |
+`
+
+const CalloutDocsPage = () => (
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 type CalloutPlaygroundArgs = {
     variant?: CalloutVariant
@@ -54,26 +94,9 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
     <Callout.Description>Something went wrong.</Callout.Description>
 </Callout>
 ~~~
-
-**Accessibility**
-
-| Prop / Attribute               | Required | Type                          | Notes                                                                                      |
-| ------------------------------ | -------- | ----------------------------- | ------------------------------------------------------------------------------------------ |
-| \`role\` on root                 | No       | \`alert\` \| \`status\` \| \`undefined\` | Defaults to \`status\` (polite). Use \`alert\` for critical, time-sensitive messages that must interrupt the screen reader, or pass \`undefined\` to omit the role. |
-| \`aria-label\` on \`Callout.Icon\` | No       | \`string\`                      | Provide when the icon conveys meaning on its own.                                          |
-
-- The callout is a polite live region by default (\`role="status"\`), so updates are announced without interrupting the user; switch to \`role="alert"\` only for urgent messages.
-
-**Sub-components**
-
-| Sub-component         | Description                                                            |
-| --------------------- | ---------------------------------------------------------------------- |
-| \`Callout\`             | Root container that sets the intent variant and provides context.      |
-| \`Callout.Icon\`        | Leading icon. Defaults to the variant icon when used inside \`Callout\`. |
-| \`Callout.Title\`       | Bold title text.                                                       |
-| \`Callout.Description\` | Secondary description text.                                            |
                 `,
             },
+            page: CalloutDocsPage,
         },
     },
     argTypes: {
@@ -83,17 +106,17 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
             table: { category: 'Callout' },
         },
         role: { control: 'select', options: ROLES, table: { category: 'Callout' } },
-        icon: { control: 'text', table: { category: 'Callout.Icon' } },
-        title: { control: 'text', table: { category: 'Callout.Title' } },
+        icon: { control: 'text', table: { category: 'Compound: Icon' } },
+        title: { control: 'text', table: { category: 'Compound: Title' } },
         description: {
             control: 'text',
-            table: { category: 'Callout.Description' },
+            table: { category: 'Compound: Description' },
         },
-        showIcon: { control: 'boolean', table: { category: 'Callout.Icon' } },
-        showTitle: { control: 'boolean', table: { category: 'Callout.Title' } },
+        showIcon: { control: 'boolean', table: { category: 'Compound: Icon' } },
+        showTitle: { control: 'boolean', table: { category: 'Compound: Title' } },
         showDescription: {
             control: 'boolean',
-            table: { category: 'Callout.Description' },
+            table: { category: 'Compound: Description' },
         },
         className: { control: 'text', table: { category: 'Callout' } },
     },
@@ -120,6 +143,7 @@ export const Playground: Story = {
                 story:
                     'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
+            ...storySource(`<Callout variant="info"><Callout.Icon icon="mdi:information-outline" /><Callout.Title>Did you know?</Callout.Title><Callout.Description>Callouts are great for inline status messages.</Callout.Description></Callout>`),
         },
     },
     render: ({
@@ -136,14 +160,48 @@ export const Playground: Story = {
         <Callout
             variant={variant}
             role={role}
-            icon={showIcon ? icon : undefined}
-            title={showTitle ? title : undefined}
-            description={showDescription ? description : undefined}
             className={className}
-        />
+        >
+            {showIcon && <Callout.Icon icon={icon} />}
+            {showTitle && <Callout.Title>{title}</Callout.Title>}
+            {showDescription && <Callout.Description>{description}</Callout.Description>}
+        </Callout>
     ),
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('status')).toBeInTheDocument()
     },
+}
+
+export const Variants: Story = {
+    parameters: {
+        docs: {
+            description: { story: 'All available callout intent variants.' },
+            ...storySource(`<Callout variant="info" title="Info" description="Information." /><Callout variant="success" title="Success" description="Completed." /><Callout variant="warning" title="Warning" description="Be careful." /><Callout variant="error" title="Error" description="Something went wrong." />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.75rem', width: '32rem' }}>
+            <Callout
+                variant={'info'}
+                title={'Info'}
+                description={'Information.'}
+            />
+            <Callout
+                variant={'success'}
+                title={'Success'}
+                description={'Completed.'}
+            />
+            <Callout
+                variant={'warning'}
+                title={'Warning'}
+                description={'Be careful.'}
+            />
+            <Callout
+                variant={'error'}
+                title={'Error'}
+                description={'Something went wrong.'}
+            />
+        </div>
+    ),
 }
