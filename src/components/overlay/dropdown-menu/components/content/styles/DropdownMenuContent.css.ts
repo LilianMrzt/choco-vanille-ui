@@ -20,6 +20,7 @@ export const DROPDOWN_MENU_CONTENT_STYLES = {
         color: vars.color.popoverForeground,
         padding: vars.space.xs,
         boxShadow: vars.shadow.lg,
+        outline: 'none',
         transformOrigin: 'var(--base-menu-content-transform-origin)',
 
         selectors: {

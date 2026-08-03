@@ -1,5 +1,6 @@
 export * from '@components/overlay/tooltip'
 export * from '@components/overlay/dropdown-menu'
+export * from '@components/overlay/context-menu'
 export * from '@components/overlay/popover'
 export * from '@components/overlay/hover-card'
 export * from '@components/overlay/dialog'
