@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
-import { Link } from '@components/navigation/link'
+import { Link, type LinkColor } from '@components/navigation/link'
 import type { IconSize } from '@components/foundation/icon'
 import type {
     TypographySize,
@@ -43,6 +43,15 @@ const FONT_WEIGHTS: TypographyWeight[] = [
     'black',
 ]
 const ICON_SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
+const LINK_COLORS: LinkColor[] = [
+    'primary',
+    'secondary',
+    'tertiary',
+    'destructive',
+    'success',
+    'warning',
+    'info',
+]
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -51,6 +60,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | ---------------- | -------- | -------- | ------------------------------------------ |
 | \`label\` | Yes | \`string\` | Becomes the link's accessible name. |
 | \`href\` | No | \`string\` | Rendered as the native \`href\`. |
+| \`color\` | No | \`LinkColor\` | Theme color of the link. Defaults to the semantic link color. |
 | \`aria-*\` | No | — | Native link ARIA attributes are forwarded. |
 `
 
@@ -107,6 +117,7 @@ function Example() {
     argTypes: {
         href: { control: 'text' },
         label: { control: 'text' },
+        color: { control: 'select', options: LINK_COLORS },
         startIcon: { control: 'text' },
         endIcon: { control: 'text' },
         fontSize: { control: 'select', options: FONT_SIZES },
@@ -163,6 +174,53 @@ export const FontSizes: Story = {
                     fontSize={fontSize}
                 />
             ))}
+        </div>
+    ),
+}
+
+export const Colors: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Link label="Primary" color="primary" />
+<Link label="Secondary" color="secondary" />
+<Link label="Tertiary" color="tertiary" />
+<Link label="Destructive" color="destructive" />
+<Link label="Success" color="success" />
+<Link label="Warning" color="warning" />
+<Link label="Info" color="info" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+            <Link
+                label={'Primary'}
+                color={'primary'}
+            />
+            <Link
+                label={'Secondary'}
+                color={'secondary'}
+            />
+            <Link
+                label={'Tertiary'}
+                color={'tertiary'}
+            />
+            <Link
+                label={'Destructive'}
+                color={'destructive'}
+            />
+            <Link
+                label={'Success'}
+                color={'success'}
+            />
+            <Link
+                label={'Warning'}
+                color={'warning'}
+            />
+            <Link
+                label={'Info'}
+                color={'info'}
+            />
         </div>
     ),
 }

@@ -13,6 +13,7 @@ const Link: React.FC<LinkProps> = memo(({
     onClick,
     ref,
     label,
+    color,
     startIcon,
     endIcon,
     fontSize = 'md',
@@ -34,7 +35,7 @@ const Link: React.FC<LinkProps> = memo(({
         <a
             ref={ref}
             href={href}
-            className={cn(LINK_STYLES.base, className)}
+            className={cn(LINK_STYLES.base, LINK_STYLES.color({ color }), className)}
             onClick={handleClick}
             {...props}
         >

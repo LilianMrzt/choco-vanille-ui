@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css'
+import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 
 export const LINK_STYLES = {
     base: style({
@@ -30,6 +32,13 @@ export const LINK_STYLES = {
                 pointerEvents: 'none',
                 opacity: 0.5,
             },
+        },
+    }),
+    color: recipe({
+        variants: {
+            color: createColorVariants('color', {
+                tertiary: vars.color.tertiaryForeground,
+            }),
         },
     }),
 }

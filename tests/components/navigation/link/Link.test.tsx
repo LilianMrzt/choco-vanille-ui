@@ -150,6 +150,14 @@ describe('Link', () => {
             )
             expect(getFirstChild(container).className).toContain('my-custom-class')
         })
+
+        it('applies a theme color variant', () => {
+            const { container } = render(<Link label={'Primary'} color={'primary'} />)
+
+            expect(getFirstChild(container).className).toContain(
+                LINK_STYLES.color({ color: 'primary' }),
+            )
+        })
     })
 
     describe('HTML attribute passthrough', () => {
