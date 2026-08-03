@@ -13,6 +13,7 @@ export const NavigationIcons = {
     close: 'lucide:x',
     chevronLeft: 'lucide:chevron-left',
     chevronRight: 'lucide:chevron-right',
+    chevronUp: 'lucide:chevron-up',
     chevronDown: 'lucide:chevron-down',
     ellipsisVertical: 'lucide:ellipsis-vertical',
     ellipsisHorizontal: 'lucide:ellipsis',
