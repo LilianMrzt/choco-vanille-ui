@@ -49,6 +49,15 @@ For every public API decision, use this order:
    Fusionner, Supprimer, Réécrire.
 4. **Implementation**: make the smallest complete change.
 
+Before creating a new visual or interactive primitive, search the public
+component barrels and the closest sibling components for an existing
+component that provides the same element semantics or interaction. Reuse that
+component whenever possible, including when it is rendered internally by a
+larger component. Do not duplicate buttons, icon buttons, links, fields or
+other public primitives with local markup and styles when their existing
+contracts cover the use case. If reuse is not possible, record the observable
+constraint and keep the new implementation limited to the missing behavior.
+
 Source confidence order:
 
 1. source code;
@@ -270,6 +279,10 @@ The forbidden direction is `props/types -> *.css.ts`.
 
 ### Shared and compound code
 
+- Prefer composition with existing public components for repeated UI
+  elements. For example, use `IconButton` for icon-only actions and `Button`
+  for text actions instead of recreating native `<button>` elements inside a
+  component.
 - Use a component-local `components/` directory for slots.
 - Use a family `_shared/` directory only when several public siblings reuse
   the code, as in the Button family.
@@ -829,6 +842,8 @@ chaque slot public.
 ### Creating a component
 
 - [ ] Find the closest exemplary component in the same family.
+- [ ] Search public barrels and sibling implementations for reusable
+      components for every repeated visual or interactive element.
 - [ ] Choose native HTML, Base UI passthrough or custom state deliberately.
 - [ ] Define `ComponentProps` from the actual root element or primitive.
 - [ ] Define variants/sizes/colors in `types/` and canonical values in
