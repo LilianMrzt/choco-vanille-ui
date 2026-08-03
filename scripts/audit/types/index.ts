@@ -53,6 +53,7 @@ export type ConsistencyFindingCategory =
   | 'controlled-state'
   | 'encapsulation'
   | 'exports'
+  | 'testing'
   | 'theme'
   | 'type-safety'
   | 'visual-consistency';

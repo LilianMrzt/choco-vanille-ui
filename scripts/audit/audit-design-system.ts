@@ -7,6 +7,7 @@ import { detectArchitecture } from './utils/architecture.ts';
 import { detectConsistency } from './utils/consistency.ts';
 import { generateOutputs } from './utils/output.ts';
 import { analyzeComponentStories } from './utils/story-analysis.ts';
+import { analyzeComponentTests } from './utils/test-analysis.ts';
 
 const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -36,6 +37,8 @@ async function main(): Promise<void> {
     graph.sourceFiles,
     components,
   );
+  const testFindings = await analyzeComponentTests(root, components);
+  consistencyFindings.push(...testFindings);
   await generateOutputs({
     components,
     implementationLeaks,

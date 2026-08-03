@@ -842,6 +842,8 @@ chaque slot public.
 ### Creating a component
 
 - [ ] Find the closest exemplary component in the same family.
+- [ ] Add the component story in `src/stories/**` in the same change; every
+      created public component has a consumer-oriented story.
 - [ ] Search public barrels and sibling implementations for reusable
       components for every repeated visual or interactive element.
 - [ ] Choose native HTML, Base UI passthrough or custom state deliberately.
@@ -855,7 +857,10 @@ chaque slot public.
 - [ ] Preserve callback payloads.
 - [ ] Export component, styles, props and public unions explicitly.
 - [ ] Add compound slots through the namespace.
-- [ ] Type-check, lint and run relevant tests.
+- [ ] Add unit tests in `tests/components/**` covering the public contract and
+      observable behavior.
+- [ ] Run the component unit tests, type-check, lint and
+      `npm run audit:design-system:check`; the component must pass the audit.
 
 ### Modifying a component
 
@@ -867,8 +872,11 @@ chaque slot public.
 - [ ] Check callback arguments at runtime.
 - [ ] Check accessible name, role, state and relationships.
 - [ ] Check the package barrel and generated declaration.
-- [ ] Keep the associated story coherent with the public API; when a consumer API (for example, props) changes, update the story. Story completeness can be addressed separately.
+- [ ] Keep the associated story coherent with the public API; when a consumer
+      API (for example, props) changes, update the story.
 - [ ] Update only relevant tests and stories.
+- [ ] Run the component unit tests and `npm run audit:design-system:check`;
+      the changed component must pass the audit.
 
 ### Adding a feature
 
