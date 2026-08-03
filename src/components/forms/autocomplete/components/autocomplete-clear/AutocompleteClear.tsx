@@ -4,8 +4,14 @@ import { memo, type FC } from 'react'
 /**
  * Clears the autocomplete input value when clicked.
  */
-const AutocompleteClear: FC<BaseAutocomplete.Clear.Props> = memo((props) => (
-    <BaseAutocomplete.Clear {...props} />
+const AutocompleteClear: FC<BaseAutocomplete.Clear.Props> = memo(({
+    keepMounted = true,
+    ...props
+}) => (
+    <BaseAutocomplete.Clear
+        keepMounted={keepMounted}
+        {...props}
+    />
 ))
 
 AutocompleteClear.displayName = 'Autocomplete.Clear'

@@ -3,6 +3,7 @@ import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.ts'
+import { AutocompleteListAriaLabelContext } from '@components/forms/autocomplete/components/autocomplete-content/AutocompleteContent.context.ts'
 import { useViewportShift } from '@hooks'
 import type { AutocompleteContentProps } from '@components/forms/autocomplete/components/autocomplete-content/types/AutocompleteContent.props.ts'
 
@@ -38,9 +39,10 @@ const AutocompleteContent: FC<AutocompleteContentProps> = memo(({
                 <BaseAutocomplete.Popup
                     ref={contentRef}
                     className={cn(AUTOCOMPLETE_CONTENT_STYLES.root, className)}
-                    aria-label={listboxAriaLabel}
                 >
-                    {children}
+                    <AutocompleteListAriaLabelContext.Provider value={listboxAriaLabel}>
+                        {children}
+                    </AutocompleteListAriaLabelContext.Provider>
                 </BaseAutocomplete.Popup>
             </BaseAutocomplete.Positioner>
         </BaseAutocomplete.Portal>

@@ -1,34 +1,34 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
-  Canvas,
-  Controls,
-  Description,
-  Markdown,
-  Stories,
-  Title,
-} from '@storybook/addon-docs/blocks';
-import { expect, userEvent, waitFor } from 'storybook/test';
-import { useState, type ComponentProps } from 'react';
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
+import { expect, userEvent, waitFor } from 'storybook/test'
+import { useState, type ComponentProps } from 'react'
 
-import { Button } from '@components/actions/button';
-import { IconButton } from '@components/actions/icon-button';
-import { Badge } from '@components/data-display/badge';
-import { Flex } from '@components/layout/flex';
+import { Button } from '@components/actions/button'
+import { IconButton } from '@components/actions/icon-button'
+import { Badge } from '@components/data-display/badge'
+import { Flex } from '@components/layout/flex'
 import {
-  Drawer,
-  type DrawerMode,
-  type DrawerPosition,
-  type DrawerSize,
-} from '@components/overlay/drawer';
-import { IconRegistry } from '@constants/icons';
+    Drawer,
+    type DrawerMode,
+    type DrawerPosition,
+    type DrawerSize,
+} from '@components/overlay/drawer'
+import { IconRegistry } from '@constants/icons'
 import {
-  DRAWER_MODES_ARRAY,
-  DRAWER_POSITIONS_ARRAY,
-  DRAWER_SIZES_ARRAY,
-} from '@components/overlay/drawer/constants';
-import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants';
-import { md } from '@stories/utils/markdown';
-import { storySource } from '@stories/utils/storySource';
+    DRAWER_MODES_ARRAY,
+    DRAWER_POSITIONS_ARRAY,
+    DRAWER_SIZES_ARRAY,
+} from '@components/overlay/drawer/constants'
+import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants'
+import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   showHeader?: boolean;
@@ -79,231 +79,250 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 - Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
 - In \`inline\` mode the collapsed panel is hidden with \`aria-hidden\` and \`inert\`.
 - In \`mini\` mode the panel stays visible and accessible when collapsed.
-`;
+`
 
 const DrawerDocsPage = () => (
-  <>
-    <Title />
-    <Description />
-    <Canvas />
-    <Controls />
-    <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-    <Stories includePrimary={false} />
-  </>
-);
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const renderDrawer = ({
-  defaultOpen,
-  mode,
-  position,
-  size,
-  withBackdrop,
-  collapsedWidth,
-  backgroundColor,
-  showHeader,
-  showFooter,
-  showNavigation,
-  showSettings,
-  navigationTitle,
-  settingsTitle,
-  firstNavItemLabel,
-  secondNavItemLabel,
-  thirdNavItemLabel,
-  fourthNavItemLabel,
-  navItemActive,
-  navItemDisabled,
-  navItemVariant,
-  navItemColor,
-  sectionItemLabel,
-  sectionItemDefaultExpanded,
-  sectionItemDisabled,
-  sectionItemColor,
+    defaultOpen,
+    mode,
+    position,
+    size,
+    withBackdrop,
+    collapsedWidth,
+    backgroundColor,
+    showHeader,
+    showFooter,
+    showNavigation,
+    showSettings,
+    navigationTitle,
+    settingsTitle,
+    firstNavItemLabel,
+    secondNavItemLabel,
+    thirdNavItemLabel,
+    fourthNavItemLabel,
+    navItemActive,
+    navItemDisabled,
+    navItemVariant,
+    navItemColor,
+    sectionItemLabel,
+    sectionItemDefaultExpanded,
+    sectionItemDisabled,
+    sectionItemColor,
 }: DrawerPlaygroundArgs) => {
-  const [open, setOpen] = useState(defaultOpen ?? false);
-  const isPortal = mode === 'portal';
-  const isMini = mode === 'mini';
+    const [open, setOpen] = useState(defaultOpen ?? false)
+    const isPortal = mode === 'portal'
+    const isMini = mode === 'mini'
 
-  return (
-    <div style={{ display: 'flex', height: '100%' }}>
-      <Drawer
-        open={open}
-        onOpenChange={setOpen}
-        mode={mode}
-        position={position}
-        size={size}
-        withBackdrop={withBackdrop}
-        collapsedWidth={collapsedWidth}
-        backgroundColor={backgroundColor}
-      >
-        {showHeader && (
-          <Drawer.Header>
-            <IconButton
-              icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
-              aria-label={open ? 'Collapse mini' : 'Expand mini'}
-              size={'sm'}
-              onClick={() => setOpen(!open)}
-            />
-          </Drawer.Header>
-        )}
-        <Drawer.Body as={'nav'} aria-label={'Main navigation'}>
-          <Flex flexDirection={'column'} gap={'lg'}>
-            {showNavigation && (
-              <Drawer.Section title={navigationTitle}>
-                <Drawer.NavItem
-                  label={firstNavItemLabel ?? 'Dashboard'}
-                  href={'/dashboard'}
-                  startIcon={IconRegistry.home}
-                  active={navItemActive}
-                  disabled={navItemDisabled}
-                  variant={navItemVariant}
-                  color={navItemColor}
-                />
-                <Drawer.NavItem
-                  label={secondNavItemLabel ?? 'Team'}
-                  href={'/team'}
-                  startIcon={IconRegistry.user}
-                  disabled={navItemDisabled}
-                  variant={navItemVariant}
-                  color={navItemColor}
-                />
-                <Drawer.NavItem
-                  label={'Messages'}
-                  href={'/messages'}
-                  startIcon={IconRegistry.mail}
-                  trailing={
-                    <Badge
-                      label={'3'}
-                      size={'sm'}
-                      color={'orange'}
-                      borderRadius={'sm'}
-                    />
-                  }
-                  disabled={navItemDisabled}
-                  variant={navItemVariant}
-                  color={navItemColor}
-                />
-              </Drawer.Section>
-            )}
-            {showSettings && (
-              <Drawer.Section title={settingsTitle}>
-                <Drawer.SectionItem
-                  label={sectionItemLabel ?? 'Section item'}
-                  startIcon={IconRegistry.settings}
-                  trailing={
-                    <Badge label={'Pro'} size={'sm'} color={'secondary'} />
-                  }
-                  defaultExpanded={sectionItemDefaultExpanded}
-                  disabled={sectionItemDisabled}
-                  color={sectionItemColor}
+    return (
+        <div style={{ display: 'flex', height: '100%' }}>
+            <Drawer
+                open={open}
+                onOpenChange={setOpen}
+                mode={mode}
+                position={position}
+                size={size}
+                withBackdrop={withBackdrop}
+                collapsedWidth={collapsedWidth}
+                backgroundColor={backgroundColor}
+            >
+                {showHeader && (
+                    <Drawer.Header>
+                        <IconButton
+                            icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
+                            aria-label={open ? 'Collapse mini' : 'Expand mini'}
+                            size={'sm'}
+                            onClick={() => setOpen(!open)}
+                        />
+                    </Drawer.Header>
+                )}
+                <Drawer.Body
+                    as={'nav'}
+                    aria-label={'Main navigation'}
                 >
-                  <Drawer.NavItem
-                    label={'Notifications'}
-                    href={'/notifications'}
-                    startIcon={IconRegistry.bell}
-                    trailing={
-                      <Badge
-                        label={'New'}
-                        size={'sm'}
-                        borderRadius={'sm'}
-                        color={'destructive'}
-                      />
-                    }
-                    disabled={navItemDisabled}
-                    variant={navItemVariant}
-                    color={navItemColor}
-                  />
-                  <Drawer.NavItem
-                    label={thirdNavItemLabel ?? 'Profile'}
-                    href={'/profile'}
-                    startIcon={IconRegistry.user}
-                    disabled={navItemDisabled}
-                    variant={navItemVariant}
-                    color={navItemColor}
-                  />
-                  <Drawer.NavItem
-                    label={fourthNavItemLabel ?? 'Billing'}
-                    href={'/billing'}
-                    startIcon={IconRegistry.creditCard}
-                    disabled={navItemDisabled}
-                    variant={navItemVariant}
-                    color={navItemColor}
-                  />
-                </Drawer.SectionItem>
-                <Drawer.NavItem
-                  label={thirdNavItemLabel ?? 'Profile'}
-                  href={'/profile'}
-                  startIcon={IconRegistry.user}
-                  disabled={navItemDisabled}
-                  variant={navItemVariant}
-                  color={navItemColor}
-                />
-              </Drawer.Section>
-            )}
-          </Flex>
-        </Drawer.Body>
-        {showFooter && (
-          <Drawer.Footer justifyContent={'start'}>
-            <Drawer.Section title={'Actions'}>
-              <Drawer.ActionItem
-                label={'Sign out'}
-                startIcon={IconRegistry.logOut}
-                color={'destructive'}
-              />
-            </Drawer.Section>
-          </Drawer.Footer>
-        )}
-      </Drawer>
+                    <Flex
+                        flexDirection={'column'}
+                        gap={'lg'}
+                    >
+                        {showNavigation && (
+                            <Drawer.Section title={navigationTitle}>
+                                <Drawer.NavItem
+                                    label={firstNavItemLabel ?? 'Dashboard'}
+                                    href={'/dashboard'}
+                                    startIcon={IconRegistry.home}
+                                    active={navItemActive}
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                                <Drawer.NavItem
+                                    label={secondNavItemLabel ?? 'Team'}
+                                    href={'/team'}
+                                    startIcon={IconRegistry.user}
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                                <Drawer.NavItem
+                                    label={'Messages'}
+                                    href={'/messages'}
+                                    startIcon={IconRegistry.mail}
+                                    trailing={
+                                  <Badge
+                                            label={'3'}
+                                            size={'sm'}
+                                            color={'orange'}
+                                            borderRadius={'sm'}
+                                        />
+                                    }
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                            </Drawer.Section>
+                        )}
+                        {showSettings && (
+                            <Drawer.Section title={settingsTitle}>
+                                <Drawer.SectionItem
+                                    label={sectionItemLabel ?? 'Section item'}
+                                    startIcon={IconRegistry.settings}
+                                    trailing={
+                                  <Badge
+                                            label={'Pro'}
+                                            size={'sm'}
+                                            color={'secondary'}
+                                        />
+                                    }
+                                    defaultExpanded={sectionItemDefaultExpanded}
+                                    disabled={sectionItemDisabled}
+                                    color={sectionItemColor}
+                                >
+                                    <Drawer.NavItem
+                                  label={'Notifications'}
+                                  href={'/notifications'}
+                                  startIcon={IconRegistry.bell}
+                                  trailing={
+                                            <Badge
+                                                label={'New'}
+                                                size={'sm'}
+                                                borderRadius={'sm'}
+                                                color={'destructive'}
+                                            />
+                                        }
+                                  disabled={navItemDisabled}
+                                  variant={navItemVariant}
+                                  color={navItemColor}
+                              />
+                                    <Drawer.NavItem
+                                  label={thirdNavItemLabel ?? 'Profile'}
+                                  href={'/profile'}
+                                  startIcon={IconRegistry.user}
+                                  disabled={navItemDisabled}
+                                  variant={navItemVariant}
+                                  color={navItemColor}
+                              />
+                                    <Drawer.NavItem
+                                  label={fourthNavItemLabel ?? 'Billing'}
+                                  href={'/billing'}
+                                  startIcon={IconRegistry.creditCard}
+                                  disabled={navItemDisabled}
+                                  variant={navItemVariant}
+                                  color={navItemColor}
+                              />
+                                </Drawer.SectionItem>
+                                <Drawer.NavItem
+                                    label={thirdNavItemLabel ?? 'Profile'}
+                                    href={'/profile'}
+                                    startIcon={IconRegistry.user}
+                                    disabled={navItemDisabled}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                            </Drawer.Section>
+                        )}
+                    </Flex>
+                </Drawer.Body>
+                {showFooter && (
+                    <Drawer.Footer justifyContent={'start'}>
+                        <Drawer.Section title={'Actions'}>
+                            <Drawer.ActionItem
+                                label={'Sign out'}
+                                startIcon={IconRegistry.logOut}
+                                color={'destructive'}
+                            />
+                        </Drawer.Section>
+                    </Drawer.Footer>
+                )}
+            </Drawer>
 
-      <div style={{ padding: '1rem' }}>
-        <Button
-          label={
-            isPortal
-              ? open
-                ? 'Close drawer'
-                : 'Open drawer'
-              : isMini
-                ? open
-                  ? 'Collapse mini'
-                  : 'Expand mini'
-                : open
-                  ? 'Collapse drawer'
-                  : 'Expand drawer'
-          }
-          variant={'contained'}
-          color={'primary'}
-          onClick={() => setOpen(!open)}
-        />
-      </div>
-    </div>
-  );
-};
+            <div style={{ padding: '1rem' }}>
+                <Button
+                    label={
+                        isPortal
+                            ? open
+                                ? 'Close drawer'
+                                : 'Open drawer'
+                            : isMini
+                                ? open
+                                    ? 'Collapse mini'
+                                    : 'Expand mini'
+                                : open
+                                    ? 'Collapse drawer'
+                                    : 'Expand drawer'
+                    }
+                    variant={'contained'}
+                    color={'primary'}
+                    onClick={() => setOpen(!open)}
+                />
+            </div>
+        </div>
+    )
+}
 
 const DrawerSizeSample = ({ size }: { size: DrawerSize }) => {
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
 
-  return (
-    <>
-      <Drawer open={open} onOpenChange={setOpen} mode="portal" size={size}>
-        <Drawer.Body>
-          <div style={{ padding: '1rem' }}>
-            <strong>size: {size}</strong>
-          </div>
-        </Drawer.Body>
-      </Drawer>
-      <Button label={size} variant="outlined" onClick={() => setOpen(true)} />
-    </>
-  );
-};
+    return (
+        <>
+            <Drawer
+                open={open}
+                onOpenChange={setOpen}
+                mode={'portal'}
+                size={size}
+            >
+                <Drawer.Body>
+                    <div style={{ padding: '1rem' }}>
+                        <strong>size: {size}</strong>
+                    </div>
+                </Drawer.Body>
+            </Drawer>
+            <Button
+                label={size}
+                variant={'outlined'}
+                onClick={() => setOpen(true)}
+            />
+        </>
+    )
+}
 
 const meta: Meta<DrawerPlaygroundArgs> = {
-  title: 'Overlay/Drawer',
-  component: Drawer,
-  parameters: {
-    layout: 'fullscreen',
-    docs: {
-      page: DrawerDocsPage,
-      description: {
-        component: md /* language=markdown */ `
+    title: 'Overlay/Drawer',
+    component: Drawer,
+    parameters: {
+        layout: 'fullscreen',
+        docs: {
+            page: DrawerDocsPage,
+            description: {
+                component: md /* language=markdown */ `
 A flexible drawer component with three render modes.
 
 Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
@@ -347,170 +366,170 @@ const [open, setOpen] = useState(false)
 | \`inline\` | Takes space in the layout when open, collapses to width \`0\` when closed. |
 | \`mini\`   | Stays visible when closed, collapsing to a narrow width.                 |
         `,
-      },
+            },
+        },
     },
-  },
-  argTypes: {
-    open: {
-      control: 'boolean',
-      table: { category: 'Drawer' },
+    argTypes: {
+        open: {
+            control: 'boolean',
+            table: { category: 'Drawer' },
+        },
+        defaultOpen: {
+            control: 'boolean',
+            table: { category: 'Drawer' },
+        },
+        mode: {
+            control: 'select',
+            options: DRAWER_MODES_ARRAY,
+            table: { category: 'Drawer' },
+        },
+        position: {
+            control: 'select',
+            options: DRAWER_POSITIONS_ARRAY,
+            table: { category: 'Drawer' },
+        },
+        size: {
+            control: 'select',
+            options: DRAWER_SIZES_ARRAY,
+            table: { category: 'Drawer' },
+        },
+        withBackdrop: {
+            control: 'boolean',
+            table: { category: 'Drawer' },
+        },
+        collapsedWidth: {
+            control: 'text',
+            table: { category: 'Drawer' },
+        },
+        backgroundColor: {
+            control: 'select',
+            options: [
+                'background',
+                'card',
+                'popover',
+                'muted',
+                'primary',
+                'secondary',
+                'transparent',
+            ],
+            table: { category: 'Drawer' },
+        },
+        showHeader: {
+            control: 'boolean',
+            table: { category: 'Drawer.Header' },
+        },
+        showFooter: {
+            control: 'boolean',
+            table: { category: 'Drawer.Footer' },
+        },
+        showNavigation: {
+            control: 'boolean',
+            table: { category: 'Drawer.Body' },
+        },
+        showSettings: {
+            control: 'boolean',
+            table: { category: 'Drawer.Body' },
+        },
+        navigationTitle: {
+            control: 'text',
+            table: { category: 'Drawer.Section' },
+        },
+        settingsTitle: {
+            control: 'text',
+            table: { category: 'Drawer.Section' },
+        },
+        firstNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        secondNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        thirdNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        fourthNavItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemActive: {
+            control: 'boolean',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemDisabled: {
+            control: 'boolean',
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemVariant: {
+            control: 'select',
+            options: ['default', 'outlined'],
+            table: { category: 'Drawer.NavItem' },
+        },
+        navItemColor: {
+            control: 'select',
+            options: DRAWER_ITEM_COLORS_ARRAY,
+            table: { category: 'Drawer.NavItem' },
+        },
+        sectionItemLabel: {
+            control: 'text',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemDefaultExpanded: {
+            control: 'boolean',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemDisabled: {
+            control: 'boolean',
+            table: { category: 'Drawer.SectionItem' },
+        },
+        sectionItemColor: {
+            control: 'select',
+            options: DRAWER_ITEM_COLORS_ARRAY,
+            table: { category: 'Drawer.SectionItem' },
+        },
     },
-    defaultOpen: {
-      control: 'boolean',
-      table: { category: 'Drawer' },
+    args: {
+        defaultOpen: false,
+        mode: 'portal' as DrawerMode,
+        position: 'left' as DrawerPosition,
+        size: 'md' as DrawerSize,
+        withBackdrop: true,
+        collapsedWidth: '3.875rem',
+        showHeader: true,
+        showFooter: true,
+        showNavigation: true,
+        showSettings: true,
+        navigationTitle: 'Navigation',
+        settingsTitle: 'Settings',
+        firstNavItemLabel: 'Dashboard',
+        secondNavItemLabel: 'Team',
+        thirdNavItemLabel: 'Profile',
+        fourthNavItemLabel: 'Billing',
+        navItemActive: true,
+        navItemDisabled: false,
+        navItemVariant: 'default',
+        navItemColor: 'primary',
+        sectionItemLabel: 'Section item ',
+        sectionItemDefaultExpanded: true,
+        sectionItemDisabled: false,
+        sectionItemColor: 'primary',
     },
-    mode: {
-      control: 'select',
-      options: DRAWER_MODES_ARRAY,
-      table: { category: 'Drawer' },
-    },
-    position: {
-      control: 'select',
-      options: DRAWER_POSITIONS_ARRAY,
-      table: { category: 'Drawer' },
-    },
-    size: {
-      control: 'select',
-      options: DRAWER_SIZES_ARRAY,
-      table: { category: 'Drawer' },
-    },
-    withBackdrop: {
-      control: 'boolean',
-      table: { category: 'Drawer' },
-    },
-    collapsedWidth: {
-      control: 'text',
-      table: { category: 'Drawer' },
-    },
-    backgroundColor: {
-      control: 'select',
-      options: [
-        'background',
-        'card',
-        'popover',
-        'muted',
-        'primary',
-        'secondary',
-        'transparent',
-      ],
-      table: { category: 'Drawer' },
-    },
-    showHeader: {
-      control: 'boolean',
-      table: { category: 'Drawer.Header' },
-    },
-    showFooter: {
-      control: 'boolean',
-      table: { category: 'Drawer.Footer' },
-    },
-    showNavigation: {
-      control: 'boolean',
-      table: { category: 'Drawer.Body' },
-    },
-    showSettings: {
-      control: 'boolean',
-      table: { category: 'Drawer.Body' },
-    },
-    navigationTitle: {
-      control: 'text',
-      table: { category: 'Drawer.Section' },
-    },
-    settingsTitle: {
-      control: 'text',
-      table: { category: 'Drawer.Section' },
-    },
-    firstNavItemLabel: {
-      control: 'text',
-      table: { category: 'Drawer.NavItem' },
-    },
-    secondNavItemLabel: {
-      control: 'text',
-      table: { category: 'Drawer.NavItem' },
-    },
-    thirdNavItemLabel: {
-      control: 'text',
-      table: { category: 'Drawer.NavItem' },
-    },
-    fourthNavItemLabel: {
-      control: 'text',
-      table: { category: 'Drawer.NavItem' },
-    },
-    navItemActive: {
-      control: 'boolean',
-      table: { category: 'Drawer.NavItem' },
-    },
-    navItemDisabled: {
-      control: 'boolean',
-      table: { category: 'Drawer.NavItem' },
-    },
-    navItemVariant: {
-      control: 'select',
-      options: ['default', 'outlined'],
-      table: { category: 'Drawer.NavItem' },
-    },
-    navItemColor: {
-      control: 'select',
-      options: DRAWER_ITEM_COLORS_ARRAY,
-      table: { category: 'Drawer.NavItem' },
-    },
-    sectionItemLabel: {
-      control: 'text',
-      table: { category: 'Drawer.SectionItem' },
-    },
-    sectionItemDefaultExpanded: {
-      control: 'boolean',
-      table: { category: 'Drawer.SectionItem' },
-    },
-    sectionItemDisabled: {
-      control: 'boolean',
-      table: { category: 'Drawer.SectionItem' },
-    },
-    sectionItemColor: {
-      control: 'select',
-      options: DRAWER_ITEM_COLORS_ARRAY,
-      table: { category: 'Drawer.SectionItem' },
-    },
-  },
-  args: {
-    defaultOpen: false,
-    mode: 'portal' as DrawerMode,
-    position: 'left' as DrawerPosition,
-    size: 'md' as DrawerSize,
-    withBackdrop: true,
-    collapsedWidth: '3.875rem',
-    showHeader: true,
-    showFooter: true,
-    showNavigation: true,
-    showSettings: true,
-    navigationTitle: 'Navigation',
-    settingsTitle: 'Settings',
-    firstNavItemLabel: 'Dashboard',
-    secondNavItemLabel: 'Team',
-    thirdNavItemLabel: 'Profile',
-    fourthNavItemLabel: 'Billing',
-    navItemActive: true,
-    navItemDisabled: false,
-    navItemVariant: 'default',
-    navItemColor: 'primary',
-    sectionItemLabel: 'Section item ',
-    sectionItemDefaultExpanded: true,
-    sectionItemDisabled: false,
-    sectionItemColor: 'primary',
-  },
-} satisfies Meta<DrawerPlaygroundArgs>;
+} satisfies Meta<DrawerPlaygroundArgs>
 
-export default meta;
+export default meta
 
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
+    parameters: {
+        docs: {
+            description: {
+                story:
           'Interactive playground — switch modes, positions and sizes from the Controls panel.',
-      },
-      ...storySource(/* language=tsx */ `
+            },
+            ...storySource(/* language=tsx */ `
 const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal" size="md">
@@ -531,52 +550,52 @@ const [open, setOpen] = useState(false)
 </Drawer>
 
 <Button label="Open drawer" variant="contained" color="primary" onClick={() => setOpen(true)} />`),
+        },
     },
-  },
-  render: renderDrawer,
-  play: async ({ canvasElement }) => {
-    await userEvent.click(canvasElement.querySelector('button')!);
+    render: renderDrawer,
+    play: async ({ canvasElement }) => {
+        await userEvent.click(canvasElement.querySelector('button')!)
 
-    await waitFor(() =>
-      expect(document.querySelector('[role="dialog"]')).toBeInTheDocument(),
-    );
-    await expect(document.querySelector('[role="dialog"]')).toHaveTextContent(
-      'Account settings',
-    );
+        await waitFor(() =>
+            expect(document.querySelector('[role="dialog"]')).toBeInTheDocument(),
+        )
+        await expect(document.querySelector('[role="dialog"]')).toHaveTextContent(
+            'Settings',
+        )
 
-    const navigation = document.querySelector('[role="navigation"]');
-    await expect(navigation).toBeInTheDocument();
-    await expect(navigation).toHaveTextContent('Dashboard');
+        const navigation = document.querySelector('[role="navigation"]')
+        await expect(navigation).toBeInTheDocument()
+        await expect(navigation).toHaveTextContent('Dashboard')
 
-    await userEvent.click(
+        await userEvent.click(
       document.querySelector('[aria-label="Close drawer"]')!,
-    );
+        )
 
-    await waitFor(() =>
-      expect(document.querySelector('[role="dialog"]')).not.toBeInTheDocument(),
-    );
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ height: '100vh' }}>
-        <Story />
-      </div>
-    ),
-  ],
-};
+        await waitFor(() =>
+            expect(document.querySelector('[role="dialog"]')).not.toBeInTheDocument(),
+        )
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
+}
 
 export const Inline: Story = {
-  args: {
-    defaultOpen: false,
-    mode: 'inline',
-    size: 'sm',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Inline drawer that takes layout space when open.',
-      },
-      ...storySource(/* language=tsx */ `
+    args: {
+        defaultOpen: false,
+        mode: 'inline',
+        size: 'sm',
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Inline drawer that takes layout space when open.',
+            },
+            ...storySource(/* language=tsx */ `
 const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="inline" size="sm">
@@ -586,31 +605,31 @@ const [open, setOpen] = useState(false)
     </Drawer.Section>
   </Drawer.Body>
 </Drawer>`),
+        },
     },
-  },
-  render: renderDrawer,
-  decorators: [
-    (Story) => (
-      <div style={{ height: '100vh' }}>
-        <Story />
-      </div>
-    ),
-  ],
-};
+    render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
+}
 
 export const Mini: Story = {
-  args: {
-    defaultOpen: false,
-    mode: 'mini',
-    size: 'sm',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
+    args: {
+        defaultOpen: false,
+        mode: 'mini',
+        size: 'sm',
+    },
+    parameters: {
+        docs: {
+            description: {
+                story:
           'Mini drawer that stays visible when closed, collapsing to a narrow width.',
-      },
-      ...storySource(/* language=tsx */ `
+            },
+            ...storySource(/* language=tsx */ `
 const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="mini" size="sm">
@@ -620,26 +639,26 @@ const [open, setOpen] = useState(false)
     </Drawer.Section>
   </Drawer.Body>
 </Drawer>`),
+        },
     },
-  },
-  render: renderDrawer,
-  decorators: [
-    (Story) => (
-      <div style={{ height: '100vh' }}>
-        <Story />
-      </div>
-    ),
-  ],
-};
+    render: renderDrawer,
+    decorators: [
+        (Story) => (
+            <div style={{ height: '100vh' }}>
+                <Story />
+            </div>
+        ),
+    ],
+}
 
 export const Sizes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
+    parameters: {
+        docs: {
+            description: {
+                story:
           'Portal drawer sizes rendered as explicit samples for every supported width.',
-      },
-      ...storySource(/* language=tsx */ `
+            },
+            ...storySource(/* language=tsx */ `
 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
   <Drawer open={false} onOpenChange={() => {}} mode="portal" size="sm">
     <Drawer.Body>
@@ -695,13 +714,16 @@ export const Sizes: Story = {
   </Drawer>
   <Button label="full" variant="outlined" />
 </div>`),
+        },
     },
-  },
-  render: () => (
-    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-      {DRAWER_SIZES_ARRAY.map((size) => (
-        <DrawerSizeSample key={size} size={size} />
-      ))}
-    </div>
-  ),
-};
+    render: () => (
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {DRAWER_SIZES_ARRAY.map((size) => (
+                <DrawerSizeSample
+                    key={size}
+                    size={size}
+                />
+            ))}
+        </div>
+    ),
+}

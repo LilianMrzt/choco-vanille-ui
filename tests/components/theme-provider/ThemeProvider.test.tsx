@@ -296,7 +296,8 @@ describe('ThemeProvider', () => {
                     <ThemeReader />
                 </ThemeProvider>,
             )
-            const wrapper = screen.getByTestId('theme').parentElement as HTMLElement
+            const wrapper = screen.getByTestId('theme').parentElement
+                ?.parentElement as HTMLElement
 
             expect(wrapper.hasAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe(false)
             expect(

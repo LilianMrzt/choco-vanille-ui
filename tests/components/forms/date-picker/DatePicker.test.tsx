@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DatePicker } from '@components/forms/date-picker'
@@ -27,15 +27,11 @@ describe('DatePicker', () => {
             expect(container.querySelector('input')).toBeTruthy()
         })
 
-        it('reflects the popup open state via aria-expanded', () => {
+        it('does not apply aria-expanded to the native date input', () => {
             render(<DatePicker label={'Pick a date'} />)
             const input = screen.getByLabelText('Pick a date')
 
-            expect(input.getAttribute('aria-expanded')).toBe('false')
-
-            fireEvent.keyDown(input, { key: 'ArrowDown', altKey: true })
-
-            expect(input.getAttribute('aria-expanded')).toBe('true')
+            expect(input.hasAttribute('aria-expanded')).toBe(false)
         })
 
         it('makes the calendar trigger button keyboard reachable', () => {

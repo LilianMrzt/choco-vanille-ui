@@ -93,7 +93,6 @@ const DatePicker = memo(
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
                     aria-haspopup={'dialog'}
-                    aria-expanded={open}
                     endAction={
                         <Popover.Trigger>
                             <IconButton

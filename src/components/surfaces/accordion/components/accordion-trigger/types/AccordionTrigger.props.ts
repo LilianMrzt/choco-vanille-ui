@@ -1,5 +1,7 @@
 import type { Accordion } from '@base-ui/react/accordion'
 
+import type { DataAttributes } from '@/types/DataAttributes.ts'
+
 export type AccordionTriggerProps = Omit<
   Accordion.Trigger.Props,
   'children' | 'render'
@@ -12,4 +14,4 @@ export type AccordionTriggerProps = Omit<
   endIcon?: string;
   /** Custom trigger content. Takes precedence over `label`. */
   children?: Accordion.Trigger.Props['children'];
-}
+} & DataAttributes
