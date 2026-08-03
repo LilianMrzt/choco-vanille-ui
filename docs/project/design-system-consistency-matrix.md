@@ -50,6 +50,7 @@ clés.
 | Progress | `xs`, `sm`, `md`, `lg`, `xl` | `sm` |
 | Drawer | `sm`, `md`, `lg`, `xl`, `2xl`, `full` | `md` |
 | Icon | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md` |
+| Spinner | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
 | Typography `fontSize` | `2xs` à `6xl` | selon le variant typographique |
 
 ### Règles
