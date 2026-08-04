@@ -20,8 +20,16 @@ import type { CheckboxProps } from '@components/forms/checkbox/types/Checkbox.pr
   * <Checkbox label="Accept terms" checked={accepted} onCheckedChange={setAccepted} />
   * ```
   */
-const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChange, ...props }) => {
+const Checkbox: FC<CheckboxProps> = memo(({
+    label,
+    id,
+    className,
+    onCheckedChange,
+    'aria-labelledby': ariaLabelledby,
+    ...props
+}) => {
     const generatedId = useId()
+    const labelId = useId()
     const checkboxId = id ?? (label ? generatedId : undefined)
 
     return (
@@ -34,12 +42,19 @@ const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChang
                 id={checkboxId}
                 className={cn(CHECKBOX_STYLES.root, className)}
                 onCheckedChange={onCheckedChange}
+                aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
                 {...props}
             >
                 <BaseCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
                         icon={IconRegistry.check}
                         size={'xs'}
+                        className={CHECKBOX_STYLES.checkIcon}
+                    />
+                    <Icon
+                        icon={IconRegistry.minus}
+                        size={'xs'}
+                        className={CHECKBOX_STYLES.indeterminateIcon}
                     />
                 </BaseCheckbox.Indicator>
             </BaseCheckbox.Root>
@@ -49,6 +64,7 @@ const Checkbox: FC<CheckboxProps> = memo(({ label, id, className, onCheckedChang
                     as={'label'}
                     variant={'label'}
                     color={'foreground'}
+                    id={labelId}
                     htmlFor={checkboxId}
                     className={CHECKBOX_STYLES.label}
                 >

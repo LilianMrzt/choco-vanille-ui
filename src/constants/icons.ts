@@ -28,6 +28,7 @@ export const FeedbackIcons = {
 
 export const FormIcons = {
     check: 'lucide:check',
+    minus: 'lucide:minus',
     radioIndicator: 'mdi:circle',
     eye: 'lucide:eye',
     eyeOff: 'lucide:eye-off',

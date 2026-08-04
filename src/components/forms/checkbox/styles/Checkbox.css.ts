@@ -73,6 +73,16 @@ export const CHECKBOX_STYLES = {
                 borderColor: vars.color.primary,
                 color: vars.color.primaryForeground,
             },
+            /* Standalone: indeterminate + hover (only when NOT disabled) */
+            '&[data-indeterminate]:not([data-disabled]):hover': {
+                backgroundColor: vars.color.primaryHover,
+                borderColor: vars.color.primaryHover,
+            },
+            /* Standalone: indeterminate + active (only when NOT disabled) */
+            '&[data-indeterminate]:not([data-disabled]):active': {
+                backgroundColor: vars.color.primaryActive,
+                borderColor: vars.color.primaryActive,
+            },
             /* Standalone: disabled */
             '&[data-disabled]': {
                 cursor: 'not-allowed',
@@ -100,6 +110,10 @@ export const CHECKBOX_STYLES = {
                 borderColor: vars.color.primary,
                 color: vars.color.primaryForeground,
             },
+            '[data-indeterminate][data-highlighted] &': {
+                backgroundColor: vars.color.primaryHover,
+                borderColor: vars.color.primaryHover,
+            },
             /* Dropdown: disabled parent — neutralize hover on span */
             '[data-disabled] &': {
                 cursor: 'not-allowed',
@@ -116,6 +130,21 @@ export const CHECKBOX_STYLES = {
         alignItems: 'center',
         justifyContent: 'center',
         color: 'inherit',
+    }),
+    checkIcon: style({
+        selectors: {
+            '[data-indeterminate] &': {
+                display: 'none',
+            },
+        },
+    }),
+    indeterminateIcon: style({
+        display: 'none',
+        selectors: {
+            '[data-indeterminate] &': {
+                display: 'block',
+            },
+        },
     }),
     /** Typography label associated with the checkbox control. */
     label: style({
