@@ -76,7 +76,13 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {
     parameters: {
         docs: {
-            ...storySource(`<CheckboxGroup allValues={['email', 'sms', 'push']}><CheckboxGroup.Header label="All notifications" /><CheckboxGroup.Item value="email" label="Email" /><CheckboxGroup.Item value="sms" label="SMS" /><CheckboxGroup.Item value="push" label="Push notifications" /></CheckboxGroup>`),
+            ...storySource(`
+<CheckboxGroup aria-label="Notification preferences">
+    <CheckboxGroup.Header label="All notifications" />
+    <CheckboxGroup.Item value="email" label="Email" />
+    <CheckboxGroup.Item value="sms" label="SMS" />
+    <CheckboxGroup.Item value="push" label="Push notifications" />
+</CheckboxGroup>`),
             description: { story: 'Interactive playground for the group and its checkbox items.' },
         },
     },
@@ -91,7 +97,6 @@ export const Playground: Story = {
 
         return (
             <CheckboxGroup
-                allValues={['email', 'sms', 'push']}
                 value={value}
                 onValueChange={setValue}
                 disabled={disabled}
@@ -123,11 +128,16 @@ export const Playground: Story = {
 
 export const States: Story = {
     parameters: {
-        docs: { ...storySource(`<CheckboxGroup disabled aria-label="Notifications"><CheckboxGroup.Item value="email" label="Email" /></CheckboxGroup>`) },
+        docs: {
+            ...storySource(`
+<CheckboxGroup allValues={['email']} disabled aria-label="Notifications">
+    <CheckboxGroup.Header label="All notifications" />
+    <CheckboxGroup.Item value="email" label="Email" />
+</CheckboxGroup>`),
+        },
     },
     render: () => (
         <CheckboxGroup
-            allValues={['email']}
             disabled
             aria-label={'Notifications'}
         >

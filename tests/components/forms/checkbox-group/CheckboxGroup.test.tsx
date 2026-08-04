@@ -21,6 +21,24 @@ describe('CheckboxGroup', () => {
         expect(screen.getAllByRole('checkbox')).toHaveLength(3)
     })
 
+    it('infers all values from direct items', async () => {
+        render(
+            <CheckboxGroup defaultValue={['email']} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All notifications'} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} />
+                <CheckboxGroup.Item value={'sms'} label={'SMS'} />
+            </CheckboxGroup>,
+        )
+
+        const header = screen.getByRole('checkbox', { name: 'All notifications' })
+        expect(header.getAttribute('data-indeterminate')).not.toBeNull()
+
+        await userEvent.click(header)
+
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('data-checked')).not.toBeNull()
+        expect(screen.getByRole('checkbox', { name: 'SMS' }).getAttribute('data-checked')).not.toBeNull()
+    })
+
     it('marks default values as checked', () => {
         renderGroup(['email', 'push'])
         expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('data-checked')).not.toBeNull()

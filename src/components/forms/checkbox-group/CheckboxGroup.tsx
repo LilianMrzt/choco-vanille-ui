@@ -6,6 +6,7 @@ import CheckboxGroupHeader from '@components/forms/checkbox-group/components/hea
 import { CheckboxGroupProvider } from '@components/forms/checkbox-group/context/CheckboxGroup.context.ts'
 import type { CheckboxGroupCompound } from '@components/forms/checkbox-group/types/CheckboxGroupCompound.ts'
 import type { CheckboxGroupProps } from '@components/forms/checkbox-group/types/CheckboxGroup.props.ts'
+import { getCheckboxGroupValues } from '@components/forms/checkbox-group/utils/getCheckboxGroupValues.utils.ts'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 
@@ -19,6 +20,9 @@ import { cn } from '@utils/cn.ts'
  *   <CheckboxGroup.Item value="email" label="Email" />
  *   <CheckboxGroup.Item value="sms" label="SMS" />
  * </CheckboxGroup>
+ *
+ * `allValues` is inferred from direct `CheckboxGroup.Item` children. Provide it
+ * explicitly only when the values are rendered indirectly or need an override.
  * ```
  */
 const CheckboxGroup = memo<CheckboxGroupProps>(({
@@ -26,10 +30,11 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
     children,
     value,
     defaultValue,
-    allValues = [],
+    allValues,
     onValueChange,
     ...props
 }) => {
+    const resolvedAllValues = allValues ?? getCheckboxGroupValues(children)
     const [internalValue, setInternalValue] = useState(defaultValue ?? [])
     const currentValue = value ?? internalValue
     const handleValueChange = useCallback(
@@ -46,12 +51,11 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
         <BaseCheckboxGroup
             className={cn(className)}
             onValueChange={handleValueChange}
-            value={value}
-            defaultValue={defaultValue}
-            allValues={allValues}
+            value={currentValue}
+            allValues={resolvedAllValues}
             {...props}
         >
-            <CheckboxGroupProvider value={{ value: currentValue, allValues, onValueChange: handleValueChange }}>
+            <CheckboxGroupProvider value={{ value: currentValue, allValues: resolvedAllValues, onValueChange: handleValueChange }}>
                 <Flex
                     flexDirection={'column'}
                     gap={'sm'}
