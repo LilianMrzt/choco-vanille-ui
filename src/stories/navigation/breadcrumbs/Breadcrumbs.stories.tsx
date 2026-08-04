@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ComponentProps } from 'react'
 import {
     Canvas,
     Controls,
@@ -18,10 +19,10 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | Prop / Attribute | Required | Type | Notes |
 | ---------------- | -------- | ---- | ----- |
 | \`aria-label\` | Yes | \`string\` | Names the breadcrumb navigation landmark. |
-| \`items\` | Yes | \`BreadcrumbItem[]\` | The last item is current unless another item sets \`current\`. |
-| \`color\` | No | \`LinkColor\` | Theme color applied to links unless an item overrides it. |
-| \`separator\` | No | \`"chevron" \| "slash" \| "dot" \| "reverseSlash" \| "dash"\` | Visual separator between items. Defaults to \`chevron\`. |
+| \`Breadcrumbs.Item\` | Yes | Compound slot | Provides each ordered breadcrumb item. |
+| \`current\` | No | \`boolean\` | Marks the item as the current page; the last item is current by default. |
 | \`aria-current\` | Automatic | \`"page"\` | Applied to the current breadcrumb item. |
+| \`separator\` | No | \`BreadcrumbsSeparator\` | Decorative separator between breadcrumb items. Defaults to \`chevron\`. |
 `
 
 const BreadcrumbsDocsPage = () => (
@@ -35,7 +36,11 @@ const BreadcrumbsDocsPage = () => (
     </>
 )
 
-const meta = {
+type BreadcrumbsStoryArgs = ComponentProps<typeof Breadcrumbs> & {
+    currentLabel: string
+}
+
+const meta: Meta<BreadcrumbsStoryArgs> = {
     title: 'Navigation/Breadcrumbs',
     component: Breadcrumbs,
     parameters: {
@@ -45,19 +50,17 @@ const meta = {
             description: {
                 component: md /* language=markdown */ `
 A breadcrumb trail helps users understand their location within a hierarchy.
-Ancestor items render as links and the current item is rendered as plain text.
+Compose it from \`Breadcrumbs.Item\` elements; ancestor items render as links
+and the current item is rendered as plain text.
 
 **Usage**
 
 ~~~tsx
-<Breadcrumbs
-  aria-label="Breadcrumb"
-  items={[
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Details" },
-  ]}
-/>
+<Breadcrumbs aria-label="Breadcrumb">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Details" />
+</Breadcrumbs>
 ~~~
                 `,
             },
@@ -65,75 +68,86 @@ Ancestor items render as links and the current item is rendered as plain text.
     },
     argTypes: {
         'aria-label': { control: 'text' },
-        items: { control: 'object' },
+        children: { table: { disable: true } },
         color: {
             control: 'select',
-            options: [
-                'primary',
-                'secondary',
-                'tertiary',
-                'destructive',
-                'success',
-                'warning',
-                'info',
-            ],
+            options: ['primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info'],
         },
         separator: {
             control: 'select',
             options: ['chevron', 'slash', 'dot', 'reverseSlash', 'dash'],
         },
+        currentLabel: {
+            control: 'text',
+            table: { category: 'Compound: Item' },
+        },
     },
     args: {
         'aria-label': 'Breadcrumb',
         color: 'primary',
-        items: [
-            { label: 'Home', href: '/' },
-            { label: 'Products', href: '/products' },
-            { label: 'Details' },
-        ],
+        separator: 'chevron',
+        currentLabel: 'Details',
+        children: <Breadcrumbs.Item label={'Details'} />,
     },
-} satisfies Meta<typeof Breadcrumbs>
+}
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<BreadcrumbsStoryArgs>
 
 export const Playground: Story = {
-    args: meta.args,
     parameters: {
         docs: {
-            description: {
-                story: 'Use the Controls panel to experiment with the breadcrumb contract.',
-            },
             ...storySource(/* language=tsx */ `
-<Breadcrumbs aria-label="Breadcrumb" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Details" }]} />`),
+<Breadcrumbs aria-label="Breadcrumb" color="primary" separator="chevron">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Details" />
+</Breadcrumbs>`),
         },
     },
+    render: ({ children: _children, currentLabel, ...args }) => (
+        <Breadcrumbs {...args}>
+            <Breadcrumbs.Item
+                label={'Home'}
+                href={'/'}
+            />
+            <Breadcrumbs.Item
+                label={'Products'}
+                href={'/products'}
+            />
+            <Breadcrumbs.Item label={currentLabel} />
+        </Breadcrumbs>
+    ),
 }
 
 export const CurrentItem: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Breadcrumbs
-  aria-label="Breadcrumb"
-  items={[
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products", current: true },
-    { label: "Details", href: "/products/details" },
-  ]}
-/>`),
+<Breadcrumbs aria-label="Breadcrumb">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" current />
+  <Breadcrumbs.Item label="Details" href="/products/details" />
+</Breadcrumbs>`),
         },
     },
     render: () => (
-        <Breadcrumbs
-            aria-label={'Breadcrumb'}
-            items={[
-                { label: 'Home', href: '/' },
-                { label: 'Products', href: '/products', current: true },
-                { label: 'Details', href: '/products/details' },
-            ]}
-        />
+        <Breadcrumbs aria-label={'Breadcrumb'}>
+            <Breadcrumbs.Item
+                label={'Home'}
+                href={'/'}
+            />
+            <Breadcrumbs.Item
+                label={'Products'}
+                href={'/products'}
+                current
+            />
+            <Breadcrumbs.Item
+                label={'Details'}
+                href={'/products/details'}
+            />
+        </Breadcrumbs>
     ),
 }
 
@@ -141,60 +155,52 @@ export const Separators: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Breadcrumbs aria-label="Chevron breadcrumb" separator="chevron" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Slash breadcrumb" separator="slash" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Dot breadcrumb" separator="dot" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Reverse slash breadcrumb" separator="reverseSlash" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Dash breadcrumb" separator="dash" items={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Current" }]} />`),
+<Breadcrumbs aria-label="Chevron breadcrumb" separator="chevron">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Current" />
+</Breadcrumbs>
+<Breadcrumbs aria-label="Slash breadcrumb" separator="slash">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Current" />
+</Breadcrumbs>
+<Breadcrumbs aria-label="Dot breadcrumb" separator="dot">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Current" />
+</Breadcrumbs>
+<Breadcrumbs aria-label="Reverse slash breadcrumb" separator="reverseSlash">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Current" />
+</Breadcrumbs>
+<Breadcrumbs aria-label="Dash breadcrumb" separator="dash">
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label="Current" />
+</Breadcrumbs>`),
         },
     },
     render: () => (
         <div style={{ display: 'grid', gap: '1rem' }}>
-            <Breadcrumbs
-                aria-label={'Chevron breadcrumb'}
-                separator={'chevron'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Slash breadcrumb'}
-                separator={'slash'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Dot breadcrumb'}
-                separator={'dot'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Reverse slash breadcrumb'}
-                separator={'reverseSlash'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Dash breadcrumb'}
-                separator={'dash'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products' },
-                    { label: 'Current' },
-                ]}
-            />
+            {(['chevron', 'slash', 'dot', 'reverseSlash', 'dash'] as const).map((separator) => (
+                <Breadcrumbs
+                    key={separator}
+                    aria-label={`${separator} breadcrumb`}
+                    separator={separator}
+                >
+                    <Breadcrumbs.Item
+                        label={'Home'}
+                        href={'/'}
+                    />
+                    <Breadcrumbs.Item
+                        label={'Products'}
+                        href={'/products'}
+                    />
+                    <Breadcrumbs.Item label={'Current'} />
+                </Breadcrumbs>
+            ))}
         </div>
     ),
 }
@@ -203,73 +209,30 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Breadcrumbs aria-label="Primary breadcrumb" color="primary" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Secondary breadcrumb" color="secondary" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Tertiary breadcrumb" color="tertiary" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Destructive breadcrumb" color="destructive" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Success breadcrumb" color="success" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Warning breadcrumb" color="warning" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />
-<Breadcrumbs aria-label="Info breadcrumb" color="info" items={[{ label: "Home", href: "/" }, { label: "Current" }]} />`),
+<Breadcrumbs aria-label="Primary breadcrumb" color="primary"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Secondary breadcrumb" color="secondary"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Tertiary breadcrumb" color="tertiary"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Destructive breadcrumb" color="destructive"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Success breadcrumb" color="success"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Warning breadcrumb" color="warning"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Info breadcrumb" color="info"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>`),
         },
     },
     render: () => (
         <div style={{ display: 'grid', gap: '1rem' }}>
-            <Breadcrumbs
-                aria-label={'Primary breadcrumb'}
-                color={'primary'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Secondary breadcrumb'}
-                color={'secondary'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Tertiary breadcrumb'}
-                color={'tertiary'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Destructive breadcrumb'}
-                color={'destructive'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Success breadcrumb'}
-                color={'success'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Warning breadcrumb'}
-                color={'warning'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
-            <Breadcrumbs
-                aria-label={'Info breadcrumb'}
-                color={'info'}
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Current' },
-                ]}
-            />
+            {(['primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info'] as const).map((color) => (
+                <Breadcrumbs
+                    key={color}
+                    aria-label={`${color} breadcrumb`}
+                    color={color}
+                >
+                    <Breadcrumbs.Item
+                        label={'Home'}
+                        href={'/'}
+                    />
+                    <Breadcrumbs.Item label={'Current'} />
+                </Breadcrumbs>
+            ))}
         </div>
     ),
 }

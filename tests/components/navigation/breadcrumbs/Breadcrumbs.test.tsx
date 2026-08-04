@@ -1,7 +1,8 @@
 import { createRef } from 'react'
-import { render, screen } from '@testing-library/react'
 import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
+import userEvent from '@testing-library/user-event'
 
 import { Breadcrumbs, BREADCRUMBS_STYLES } from '@components/navigation/breadcrumbs'
 
@@ -13,15 +14,28 @@ beforeAll(() => {
     })
 })
 
-const items = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Details' },
+const breadcrumbItems = [
+    <Breadcrumbs.Item
+        key={'home'}
+        label={'Home'}
+        href={'/'}
+    />,
+    <Breadcrumbs.Item
+        key={'products'}
+        label={'Products'}
+        href={'/products'}
+    />,
+    <Breadcrumbs.Item
+        key={'details'}
+        label={'Details'}
+    />,
 ]
 
 describe('Breadcrumbs', () => {
-    it('renders a named navigation landmark and ordered list', () => {
-        render(<Breadcrumbs aria-label="Breadcrumb" items={items} />)
+    it('renders compound items in a named navigation landmark and ordered list', () => {
+        render(
+            <Breadcrumbs aria-label="Breadcrumb">{breadcrumbItems}</Breadcrumbs>,
+        )
 
         expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toBeTruthy()
         expect(screen.getByRole('list')).toBeTruthy()
@@ -29,7 +43,9 @@ describe('Breadcrumbs', () => {
     })
 
     it('renders linked ancestors and marks the last item as current', () => {
-        render(<Breadcrumbs aria-label="Breadcrumb" items={items} />)
+        render(
+            <Breadcrumbs aria-label="Breadcrumb">{breadcrumbItems}</Breadcrumbs>,
+        )
 
         expect(screen.getByRole('link', { name: 'Home' }).getAttribute('href')).toBe('/')
         expect(screen.getByRole('link', { name: 'Products' }).getAttribute('href')).toBe(
@@ -40,14 +56,21 @@ describe('Breadcrumbs', () => {
 
     it('supports an explicitly current item', () => {
         render(
-            <Breadcrumbs
-                aria-label="Breadcrumb"
-                items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Products', href: '/products', current: true },
-                    { label: 'Details', href: '/products/details' },
-                ]}
-            />,
+            <Breadcrumbs aria-label="Breadcrumb">
+                <Breadcrumbs.Item
+                    label={'Home'}
+                    href={'/'}
+                />
+                <Breadcrumbs.Item
+                    label={'Products'}
+                    href={'/products'}
+                    current
+                />
+                <Breadcrumbs.Item
+                    label={'Details'}
+                    href={'/products/details'}
+                />
+            </Breadcrumbs>,
         )
 
         expect(screen.getByText('Products').getAttribute('aria-current')).toBe('page')
@@ -60,11 +83,14 @@ describe('Breadcrumbs', () => {
             <Breadcrumbs
                 aria-label="Breadcrumb"
                 color="primary"
-                items={[
-                    { label: 'Home', href: '/', color: 'secondary' },
-                    { label: 'Details' },
-                ]}
-            />,
+            >
+                <Breadcrumbs.Item
+                    label={'Home'}
+                    href={'/'}
+                    color={'secondary'}
+                />
+                <Breadcrumbs.Item label={'Details'} />
+            </Breadcrumbs>,
         )
 
         const links = container.querySelectorAll('a')
@@ -72,8 +98,33 @@ describe('Breadcrumbs', () => {
         expect(links[0].className).not.toContain('color_primary')
     })
 
+    it('forwards link events and attributes from an item', async () => {
+        const onClick = vi.fn()
+        const user = userEvent.setup()
+
+        render(
+            <Breadcrumbs aria-label="Breadcrumb">
+                <Breadcrumbs.Item
+                    label={'Home'}
+                    href={'/'}
+                    onClick={onClick}
+                    data-testid="home-breadcrumb"
+                />
+                <Breadcrumbs.Item label={'Details'} />
+            </Breadcrumbs>,
+        )
+
+        const home = screen.getByTestId('home-breadcrumb')
+        await user.click(home)
+
+        expect(home.getAttribute('href')).toBe('/')
+        expect(onClick).toHaveBeenCalledTimes(1)
+    })
+
     it('renders separators between items', () => {
-        const { container } = render(<Breadcrumbs aria-label="Breadcrumb" items={items} />)
+        const { container } = render(
+            <Breadcrumbs aria-label="Breadcrumb">{breadcrumbItems}</Breadcrumbs>,
+        )
 
         expect(container.querySelectorAll('svg')).toHaveLength(2)
     })
@@ -83,8 +134,7 @@ describe('Breadcrumbs', () => {
             <Breadcrumbs
                 aria-label="Slash breadcrumb"
                 separator="slash"
-                items={items}
-            />,
+            >{breadcrumbItems}</Breadcrumbs>,
         )
 
         expect(container.querySelectorAll('svg')).toHaveLength(0)
@@ -95,18 +145,15 @@ describe('Breadcrumbs', () => {
             <Breadcrumbs
                 aria-label="Dot breadcrumb"
                 separator="dot"
-                items={items}
-            />,
+            >{breadcrumbItems}</Breadcrumbs>,
         )
-
         expect(container.textContent).toContain('·')
 
         rerender(
             <Breadcrumbs
                 aria-label="Reverse slash breadcrumb"
                 separator="reverseSlash"
-                items={items}
-            />,
+            >{breadcrumbItems}</Breadcrumbs>,
         )
         expect(container.textContent).toContain('\\')
 
@@ -114,8 +161,7 @@ describe('Breadcrumbs', () => {
             <Breadcrumbs
                 aria-label="Dash breadcrumb"
                 separator="dash"
-                items={items}
-            />,
+            >{breadcrumbItems}</Breadcrumbs>,
         )
         expect(container.textContent).toContain('-')
     })
@@ -126,10 +172,9 @@ describe('Breadcrumbs', () => {
         render(
             <Breadcrumbs
                 aria-label="Breadcrumb"
-                items={items}
                 className="custom-breadcrumbs"
                 ref={ref}
-            />,
+            >{breadcrumbItems}</Breadcrumbs>,
         )
 
         expect(ref.current?.className).toContain('custom-breadcrumbs')

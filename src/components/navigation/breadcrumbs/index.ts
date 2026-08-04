@@ -2,7 +2,8 @@ export { default as Breadcrumbs } from '@components/navigation/breadcrumbs/Bread
 export { BREADCRUMBS_SEPARATORS } from '@components/navigation/breadcrumbs/constants'
 export { BREADCRUMBS_STYLES } from '@components/navigation/breadcrumbs/styles/Breadcrumbs.css.ts'
 export type {
-    BreadcrumbItem,
+    BreadcrumbsCompound,
     BreadcrumbsProps,
     BreadcrumbsSeparator,
 } from '@components/navigation/breadcrumbs/types'
+export type { BreadcrumbsItemProps } from '@components/navigation/breadcrumbs/components/breadcrumbs-item'
