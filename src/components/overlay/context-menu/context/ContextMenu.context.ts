@@ -9,4 +9,12 @@ type ContextMenuContextValue = {
 
 export const ContextMenuContext = createContext<ContextMenuContextValue | null>(null)
 
-export const useContextMenuContext = () => useContext(ContextMenuContext)
+export const useContextMenuContext = () => {
+    const context = useContext(ContextMenuContext)
+
+    if (!context) {
+        throw new Error('ContextMenu compound components must be rendered within ContextMenu.')
+    }
+
+    return context
+}

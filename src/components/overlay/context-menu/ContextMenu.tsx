@@ -1,5 +1,5 @@
 import { ContextMenu as BaseContextMenu } from '@base-ui/react/context-menu'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 
 import DropdownMenuCheckboxItem from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/DropdownMenuCheckboxItem.tsx'
 import DropdownMenuItem from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/DropdownMenuItem.tsx'
@@ -16,13 +16,20 @@ import ContextMenuContent from '@components/overlay/context-menu/components/cont
 import ContextMenuTrigger from '@components/overlay/context-menu/components/trigger/ContextMenuTrigger.tsx'
 import type { ContextMenuCompound } from '@components/overlay/context-menu/types/ContextMenuCompound.ts'
 import type { ContextMenuProps } from '@components/overlay/context-menu/types/ContextMenu.props.ts'
-import { ContextMenuContext } from '@components/overlay/context-menu/context/ContextMenu.context.ts'
+import {
+    ContextMenuContext,
+    type ContextMenuInputModality,
+} from '@components/overlay/context-menu/context/ContextMenu.context.ts'
 
 const ContextMenu = memo<ContextMenuProps>((props) => {
-    const [inputModality, setInputModality] = useState<'keyboard' | 'pointer'>('pointer')
+    const [inputModality, setInputModality] = useState<ContextMenuInputModality>('pointer')
+    const contextValue = useMemo(
+        () => ({ inputModality, setInputModality }),
+        [inputModality],
+    )
 
     return (
-        <ContextMenuContext.Provider value={{ inputModality, setInputModality }}>
+        <ContextMenuContext.Provider value={contextValue}>
             <BaseContextMenu.Root {...props} />
         </ContextMenuContext.Provider>
     )

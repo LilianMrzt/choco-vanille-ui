@@ -57,6 +57,21 @@ describe('ContextMenu', () => {
         expect(screen.getByText('Target').closest('[tabindex="0"]')).toBeTruthy()
     })
 
+    it('identifies the trigger as opening a menu', () => {
+        render(
+            <ContextMenu>
+                <ContextMenu.Trigger>
+                    <div>Target</div>
+                </ContextMenu.Trigger>
+                <ContextMenu.Content>
+                    <ContextMenu.Item label={'Item'} />
+                </ContextMenu.Content>
+            </ContextMenu>,
+        )
+
+        expect(screen.getByText('Target').getAttribute('aria-haspopup')).toBe('menu')
+    })
+
     it('focuses the first item when opened from the keyboard', async () => {
         const target = 'Target'
 

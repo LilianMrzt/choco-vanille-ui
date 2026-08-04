@@ -14,13 +14,13 @@ const ContextMenuTrigger: FC<ContextMenuTriggerProps> = memo(({
     const context = useContextMenuContext()
 
     const handlePointerDown: NonNullable<ContextMenuTriggerProps['onPointerDown']> = (event) => {
-        context?.setInputModality('pointer')
+        context.setInputModality('pointer')
         onPointerDown?.(event)
     }
 
     const handleKeyDown: NonNullable<ContextMenuTriggerProps['onKeyDown']> = (event) => {
         if (event.key === 'F10' || event.key === 'ContextMenu') {
-            context?.setInputModality('keyboard')
+            context.setInputModality('keyboard')
         }
         onKeyDown?.(event)
     }
@@ -28,6 +28,7 @@ const ContextMenuTrigger: FC<ContextMenuTriggerProps> = memo(({
     return (
         <BaseContextMenu.Trigger
             {...props}
+            aria-haspopup={'menu'}
             tabIndex={tabIndex}
             onPointerDown={handlePointerDown}
             onKeyDown={handleKeyDown}

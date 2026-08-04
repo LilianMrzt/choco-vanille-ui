@@ -21,7 +21,7 @@ const ContextMenuContent: FC<ContextMenuContentProps> = memo(({
     const setPopupRef = useCallback((node: HTMLDivElement | null) => {
         const cleanupViewportShift = contentRef(node)
 
-        if (!node || context?.inputModality !== 'keyboard') {
+        if (!node || context.inputModality !== 'keyboard') {
             return cleanupViewportShift
         }
 
@@ -53,13 +53,13 @@ const ContextMenuContent: FC<ContextMenuContentProps> = memo(({
                         CONTEXT_MENU_CONTENT_STYLES.root,
                         className,
                     )}
-                    data-input-modality={context?.inputModality}
+                    data-input-modality={context.inputModality}
                     onKeyDown={(event) => {
-                        context?.setInputModality('keyboard')
+                        context.setInputModality('keyboard')
                         props.onKeyDown?.(event)
                     }}
                     onPointerMove={(event) => {
-                        context?.setInputModality('pointer')
+                        context.setInputModality('pointer')
                         props.onPointerMove?.(event)
                     }}
                     style={{ width, flexGrow: '0', flexShrink: '0', ...style } as CSSProperties}
