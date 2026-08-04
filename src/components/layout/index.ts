@@ -1,6 +1,7 @@
 export * from '@components/layout/box'
 export * from '@components/layout/flex'
 export * from '@components/layout/grid'
+export * from '@components/layout/inset'
 export * from '@components/layout/image'
 export * from '@components/layout/separator'
 export * from '@components/layout/form'
