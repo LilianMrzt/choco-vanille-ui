@@ -2,7 +2,7 @@ import { ContextMenu as BaseContextMenu } from '@base-ui/react/context-menu'
 import { memo, useCallback, type CSSProperties, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 import { useContextMenuContext } from '@components/overlay/context-menu/context/ContextMenu.context.ts'
 import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
 import { CONTEXT_MENU_CONTENT_STYLES } from '@components/overlay/context-menu/components/content/styles/ContextMenuContent.css.ts'

@@ -15,7 +15,7 @@ const ToastClose: FC<ToastCloseProps> = memo(({
     return (
         <IconButton
             variant={'ghost'}
-            color={'secondary'}
+            color={'tertiary'}
             size={'xs'}
             icon={IconRegistry.close}
             aria-label={ariaLabel}

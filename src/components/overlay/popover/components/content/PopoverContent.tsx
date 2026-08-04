@@ -5,7 +5,7 @@ import { cn } from '@utils/cn.ts'
 import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
 import type { PopoverContentProps } from '@components/overlay/popover/components/content/types/PopoverContent.props.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
 /**
  * The panel that pops out from the trigger.

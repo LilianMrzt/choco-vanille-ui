@@ -3,7 +3,7 @@ import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { SELECT_CONTENT_STYLES } from '@components/forms/select/components/select-content/styles/SelectContent.css.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 import type { SelectContentProps } from '@components/forms/select/components/select-content/types/SelectContent.props.ts'
 
 /**

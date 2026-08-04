@@ -1,6 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
+import { TOAST_WIDTH } from '@components/feedback/toast/constants'
 
 export const TOAST_STYLES = {
     recipe: recipe({
@@ -12,7 +13,7 @@ export const TOAST_STYLES = {
             columnGap: vars.space.md,
             rowGap: 0,
             width: '100%',
-            maxWidth: '24rem',
+            maxWidth: TOAST_WIDTH,
             padding: vars.space.md,
             borderRadius: vars.radius.sm,
             backgroundColor: vars.color.card,

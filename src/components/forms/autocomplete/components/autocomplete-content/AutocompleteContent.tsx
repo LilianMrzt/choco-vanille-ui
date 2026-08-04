@@ -4,7 +4,7 @@ import { memo, type FC } from 'react'
 import { cn } from '@utils/cn.ts'
 import { AUTOCOMPLETE_CONTENT_STYLES } from '@components/forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.ts'
 import { AutocompleteListAriaLabelContext } from '@components/forms/autocomplete/components/autocomplete-content/AutocompleteContent.context.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 import type { AutocompleteContentProps } from '@components/forms/autocomplete/components/autocomplete-content/types/AutocompleteContent.props.ts'
 
 /**

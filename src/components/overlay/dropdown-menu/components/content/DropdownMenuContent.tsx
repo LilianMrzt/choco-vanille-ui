@@ -4,7 +4,7 @@ import { memo, type CSSProperties, type FC } from 'react'
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
 import type { DropdownMenuContentProps } from '@components/overlay/dropdown-menu/components/content/types/DropdownMenuContent.props.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
 /**
  * The panel that pops out from the trigger.

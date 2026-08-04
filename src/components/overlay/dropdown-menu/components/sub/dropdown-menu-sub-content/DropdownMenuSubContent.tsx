@@ -4,7 +4,7 @@ import { memo, type CSSProperties, type FC } from 'react'
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/styles/DropdownMenuSubContent.css.ts'
 import type { DropdownMenuSubContentProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/types/DropdownMenuSubContent.props.ts'
-import { useViewportShift } from '@hooks'
+import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
 /**
  * The panel that appears for a nested sub-menu.

@@ -11,8 +11,9 @@ import { expect, within } from 'storybook/test'
 
 import { Button } from '@components/actions/button'
 import type { ButtonColor, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
-import { Toast } from '@/components/feedback/toast'
+import { Toast, ToastProvider } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
+import { useNotification, useToast } from '@hooks'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -77,20 +78,51 @@ const meta: Meta<ToastPlaygroundArgs> = {
         docs: {
             description: {
                 component: md /* language=markdown */ `
-A toast component for surfacing brief, non-blocking notifications.
+A toast component for surfacing brief, non-blocking notifications. Mount
+\`ToastProvider\` once near the application root to activate the top-right toast
+and bottom-right persistent notification viewports. Use \`useToast\` for concise
+toasts and \`useNotification\` for persistent, composable notifications.
 
 It supports four intent variants — \`info\`, \`success\`, \`warning\`, and \`error\` — each with a default icon and color scheme. Render it with the convenient \`title\` / \`description\` / \`onClose\` props, or compose it manually with \`Toast.Icon\`, \`Toast.Title\`, \`Toast.Description\`, \`Toast.Actions\`, and \`Toast.Close\`.
 
 **Usage**
 
 ~~~tsx
-// Convenient prop-based API
-<Toast
-  variant="success"
-  title="Changes saved"
-  description="Your profile has been updated."
-  onClose={() => dismiss()}
-/>
+// Mount once near the application root.
+<ToastProvider />
+
+// Display a transient top-right toast.
+const SaveButton = () => {
+  const { showSuccess } = useToast()
+  return (
+    <Button
+      label="Save"
+      onClick={() =>
+        showSuccess({
+          title: "Changes saved",
+          description: "Your profile has been updated.",
+        })
+      }
+    />
+  )
+}
+
+// Display a persistent bottom-right notification.
+const UpdateButton = () => {
+  const { show } = useNotification()
+  return (
+    <Button
+      label="Show update"
+      onClick={() =>
+        show({
+          variant: "info",
+          title: "New version available",
+          description: "Reload when you are ready.",
+        })
+      }
+    />
+  )
+}
 
 // Compound composition
 <Toast variant="warning">
@@ -197,7 +229,14 @@ export const Playground: Story = {
                 story:
                     'Interactive playground — use the Controls panel to experiment with every available prop, grouped by sub-component.',
             },
-            ...storySource(`<Toast variant="info"><Toast.Icon icon="mdi:information-outline" /><Toast.Title>Did you know?</Toast.Title><Toast.Description>Toasts are great for lightweight status updates.</Toast.Description><Toast.Close aria-label="Close notification" /></Toast>`),
+            ...storySource(`
+<Toast variant="info">
+  <Toast.Title>Did you know?</Toast.Title>
+  <Toast.Description>
+    Toasts are great for lightweight status updates.
+  </Toast.Description>
+  <Toast.Close aria-label="Close notification" />
+</Toast>`),
         },
     },
     render: ({
@@ -265,7 +304,11 @@ export const Variants: Story = {
     parameters: {
         docs: {
             description: { story: 'All available toast intent variants.' },
-            ...storySource(`<Toast variant="info" title="Info" description="Information." /><Toast variant="success" title="Success" description="Completed." /><Toast variant="warning" title="Warning" description="Be careful." /><Toast variant="error" title="Error" description="Something went wrong." />`),
+            ...storySource(`
+<Toast variant="info" title="Info" description="Information." />
+<Toast variant="success" title="Success" description="Completed." />
+<Toast variant="warning" title="Warning" description="Be careful." />
+<Toast variant="error" title="Error" description="Something went wrong." />`),
         },
     },
     render: () => (
@@ -291,5 +334,81 @@ export const Variants: Story = {
                 description={'Something went wrong.'}
             />
         </div>
+    ),
+}
+
+const ToastTriggers = () => {
+    const { showSuccess } = useToast()
+    const { show: showNotification } = useNotification()
+
+    return (
+        <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <Button
+                label={'Show toast'}
+                onClick={() => {
+                    showSuccess({
+                        title: 'Changes saved',
+                        description: 'Your profile has been updated.',
+                    })
+                }}
+            />
+            <Button
+                label={'Show notification'}
+                onClick={() => {
+                    showNotification({
+                        variant: 'info',
+                        title: 'New version available',
+                        description: 'Reload when you are ready.',
+                    })
+                }}
+            />
+        </div>
+    )
+}
+
+export const Triggers: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story:
+                    'Use the two channels independently: toasts are transient, while notifications stay visible until dismissed.',
+            },
+            ...storySource(`
+const Example = () => {
+  const { showSuccess } = useToast()
+  const { show: showNotification } = useNotification()
+
+  return (
+    <>
+      <ToastProvider />
+      <Button
+        label="Show toast"
+        onClick={() =>
+          showSuccess({
+            title: "Changes saved",
+            description: "Your profile has been updated.",
+          })
+        }
+      />
+      <Button
+        label="Show notification"
+        onClick={() =>
+          showNotification({
+            variant: "info",
+            title: "New version available",
+            description: "Reload when you are ready.",
+          })
+        }
+      />
+    </>
+  )
+}`),
+        },
+    },
+    render: () => (
+        <>
+            <ToastProvider />
+            <ToastTriggers />
+        </>
     ),
 }
