@@ -116,6 +116,20 @@ describe('RichTextEditor', () => {
         expect(screen.getByText('Initial content')).toBeTruthy()
     })
 
+    it('uses RichTextRenderer without editor controls when read-only', () => {
+        render(
+            <RichTextEditor
+                label={'Description'}
+                defaultValue={INITIAL_VALUE}
+                readOnly
+            />,
+        )
+
+        expect(screen.getByText('Initial content')).toBeTruthy()
+        expect(screen.queryByRole('textbox')).toBeNull()
+        expect(screen.queryByRole('toolbar')).toBeNull()
+    })
+
     it('applies a heading only to the current block', async () => {
         render(
             <RichTextEditor
