@@ -21,7 +21,6 @@ export const DIALOG_STYLES = {
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.background,
         color: vars.color.foreground,
-        boxShadow: vars.shadow['2xl'],
         transform: 'translate(-50%, -50%)',
         selectors: {
             '&[data-open]': {

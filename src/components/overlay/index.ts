@@ -6,6 +6,7 @@ export * from '@components/overlay/hover-card'
 export * from '@components/overlay/dialog'
 export * from '@components/overlay/alert-dialog'
 export * from '@components/overlay/drawer'
+export * from '@components/overlay/panel'
 export {
     Backdrop,
 } from '@components/overlay/_shared/components/overlay-backdrop'
