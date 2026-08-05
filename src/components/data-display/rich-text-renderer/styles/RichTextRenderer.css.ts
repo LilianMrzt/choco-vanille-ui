@@ -25,6 +25,12 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} li + li`, {
     marginTop: vars.space.xs,
 })
 
+globalStyle(`${RICH_TEXT_RENDERER_STYLES} img`, {
+    display: 'block',
+    maxWidth: '100%',
+    height: 'auto',
+})
+
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} a`, {
     color: vars.color.link,
     textDecoration: 'underline',

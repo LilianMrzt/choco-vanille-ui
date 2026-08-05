@@ -58,6 +58,12 @@ globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror ul, ${RICH_TEXT_EDIT
     paddingLeft: vars.space['2xl'],
 })
 
+globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror img`, {
+    display: 'block',
+    maxWidth: '100%',
+    height: 'auto',
+})
+
 globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror > p:first-child:last-child:has(br)::before`, {
     content: 'attr(data-placeholder)',
     position: 'absolute',
