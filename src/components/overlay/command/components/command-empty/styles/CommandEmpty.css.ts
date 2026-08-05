@@ -1,0 +1,29 @@
+import { style } from '@vanilla-extract/css'
+
+import { vars } from '@theme/contract.css.ts'
+import { COMMAND_LIST_STYLES } from '@components/overlay/command/components/command-list/styles/CommandList.css.ts'
+
+/**
+ * Styles for `Command.Empty`.
+ *
+ * The empty state is hidden by default and revealed via CSS `:has()` when the
+ * list contains no visible options, eliminating the need for JavaScript-managed
+ * visible-count state.
+ */
+export const COMMAND_EMPTY_STYLES = {
+    root: style({
+        display: 'none',
+        padding: vars.space.lg,
+        textAlign: 'center',
+        fontSize: vars.fontSize.sm,
+        fontFamily: vars.fontFamily.sans,
+        color: vars.color.mutedForeground,
+
+        selectors: {
+            // Show when the list has no visible (non-hidden, non-disabled) options.
+            [`${COMMAND_LIST_STYLES.root}:not(:has([role="option"]:not([hidden]))) &`]: {
+                display: 'block',
+            },
+        },
+    }),
+}
