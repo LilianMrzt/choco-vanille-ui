@@ -352,6 +352,28 @@ describe('RichTextEditor', () => {
         expect(editor.textContent).toContain('!')
     })
 
+    it('restores the controlled value when its parent declines an update', async () => {
+        const initialValue: RichTextValue = {
+            type: 'doc',
+            content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Fixed content' }] }],
+        }
+
+        render(
+            <RichTextEditor
+                label={'Description'}
+                value={initialValue}
+                onValueChange={() => undefined}
+            />,
+        )
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        await userEvent.type(editor, ' changed')
+
+        await waitFor(() => {
+            expect(editor.textContent).toBe('Fixed content')
+        })
+    })
+
     it('renders its initial uncontrolled document', () => {
         render(
             <RichTextEditor
@@ -433,19 +455,24 @@ describe('RichTextEditor', () => {
 
     it('submits a required JSON document through its form field name', async () => {
         render(
-            <RichTextEditor
-                label={'Description'}
-                name={'description'}
-                required
-            />,
+            <form>
+                <RichTextEditor
+                    label={'Description'}
+                    name={'description'}
+                    required
+                />
+            </form>,
         )
 
         const submittedValue = document.querySelector('textarea[name="description"]') as HTMLTextAreaElement
+        const form = submittedValue.form as HTMLFormElement
         expect(submittedValue.name).toBe('description')
         expect(submittedValue.required).toBe(true)
+        expect(form.checkValidity()).toBe(false)
 
         await userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'Hello')
 
         expect(submittedValue.value).toContain('"Hello"')
+        expect(form.checkValidity()).toBe(true)
     })
 })

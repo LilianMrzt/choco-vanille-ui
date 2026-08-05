@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
-import { RichTextEditor, RICH_TEXT_COLOR_PALETTES, type RichTextValue } from '@components/forms/rich-text-editor'
+import {
+    RichTextEditor,
+    RICH_TEXT_COLOR_PALETTES,
+    type RichTextEditorProps,
+    type RichTextValue,
+} from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 import { vars } from '@theme/contract.css.ts'
@@ -118,15 +123,69 @@ const RichTextEditorDocsPage = () => (
     </>
 )
 
+type RichTextEditorPlaygroundArgs = RichTextEditorProps & {
+    useCompoundLayout?: boolean
+    showToolbarGroups?: boolean
+    showHistoryGroup?: boolean
+    showTextStyleGroup?: boolean
+    showTextAppearanceGroup?: boolean
+    showTextColorMenu?: boolean
+    showTextSizeMenu?: boolean
+    showLinkGroup?: boolean
+    showBlockFormatGroup?: boolean
+    showListsGroup?: boolean
+    showAlignmentGroup?: boolean
+    showImageGroup?: boolean
+    showToolbarSeparator?: boolean
+    showFormField?: boolean
+}
+
 const meta = {
     title: 'Forms/RichTextEditor',
-    component: RichTextEditor,
+    component: RichTextEditor as ComponentType<RichTextEditorPlaygroundArgs>,
     parameters: {
         layout: 'centered',
         docs: {
             page: RichTextEditorDocsPage,
             description: {
-                component: 'A Tiptap-powered rich-text field with accessible history, link, image, alignment, block, color, and text-formatting controls.',
+                component: md /* language=markdown */ `
+A Tiptap-powered rich-text editor with accessible history, link, image,
+alignment, block, color, and text-formatting controls.
+
+Use \`RichTextEditorField\` for the standard form-field layout, or compose
+\`RichTextEditor\` with the slots required by your toolbar.
+
+**Usage**
+
+\`\`\`tsx
+// Field wrapper
+const [value, setValue] = useState<RichTextValue>(initialValue)
+
+<RichTextEditorField
+  label="Description"
+  placeholder="Start writing..."
+  value={value}
+  onValueChange={setValue}
+/>
+\`\`\`
+
+\`\`\`tsx
+// Compound API
+<RichTextEditor label="Description" value={value} onValueChange={setValue}>
+  <RichTextEditor.Label>Description</RichTextEditor.Label>
+  <RichTextEditor.Toolbar>
+    <RichTextEditor.HistoryGroup />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.TextStyleGroup />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.TextAppearanceGroup />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.LinkGroup />
+  </RichTextEditor.Toolbar>
+  <RichTextEditor.EditorField />
+</RichTextEditor>
+\`\`\`
+`,
             },
         },
     },
@@ -135,22 +194,96 @@ const meta = {
             control: 'text',
             table: { category: 'Compound: Label' },
         },
-        placeholder: { control: 'text' },
+        placeholder: {
+            control: 'text',
+            table: { category: 'Compound: EditorField' },
+        },
         helperText: { control: 'text' },
         error: { control: 'text' },
         width: { control: 'text' },
-        disabled: { control: 'boolean' },
-        readOnly: { control: 'boolean' },
-        required: { control: 'boolean' },
-        name: { control: 'text' },
+        disabled: {
+            control: 'boolean',
+            table: { category: 'Compound: Toolbar' },
+        },
+        readOnly: {
+            control: 'boolean',
+            table: { category: 'Compound: EditorField' },
+        },
+        required: {
+            control: 'boolean',
+            table: { category: 'Compound: EditorField' },
+        },
+        name: {
+            control: 'text',
+            table: { category: 'Compound: EditorField' },
+        },
+        useCompoundLayout: {
+            control: 'boolean',
+            table: { category: 'Compound: Root' },
+        },
+        showToolbarGroups: {
+            control: 'boolean',
+            table: { category: 'Compound: ToolbarGroups' },
+        },
+        showHistoryGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: HistoryGroup' },
+        },
+        showTextStyleGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: TextStyleGroup' },
+        },
+        showTextAppearanceGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: TextAppearanceGroup' },
+        },
+        showTextColorMenu: {
+            control: 'boolean',
+            table: { category: 'Compound: TextColorMenu' },
+        },
+        showTextSizeMenu: {
+            control: 'boolean',
+            table: { category: 'Compound: TextSizeMenu' },
+        },
+        showLinkGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: LinkGroup' },
+        },
+        showBlockFormatGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: BlockFormatGroup' },
+        },
+        showListsGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: ListsGroup' },
+        },
+        showAlignmentGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: AlignmentGroup' },
+        },
+        showImageGroup: {
+            control: 'boolean',
+            table: { category: 'Compound: ImageGroup' },
+        },
+        showToolbarSeparator: {
+            control: 'boolean',
+            table: { category: 'Compound: ToolbarSeparator' },
+        },
+        showFormField: {
+            control: 'boolean',
+            table: { category: 'Compound: FormField' },
+        },
     },
     args: {
         label: 'Description',
         placeholder: 'Start writing...',
         helperText: 'Use the toolbar or standard keyboard shortcuts to format text.',
         width: '42rem',
+        useCompoundLayout: false,
+        showToolbarGroups: true,
+        showFormField: false,
     },
-} satisfies Meta<typeof RichTextEditor>
+} satisfies Meta<RichTextEditorPlaygroundArgs>
 
 export default meta
 
@@ -237,16 +370,58 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
 </div>`),
         },
     },
-    render: (args) => {
+    render: ({
+        useCompoundLayout,
+        showToolbarGroups,
+        showHistoryGroup,
+        showTextStyleGroup,
+        showTextAppearanceGroup,
+        showTextColorMenu,
+        showTextSizeMenu,
+        showLinkGroup,
+        showBlockFormatGroup,
+        showListsGroup,
+        showAlignmentGroup,
+        showImageGroup,
+        showToolbarSeparator,
+        showFormField,
+        ...args
+    }) => {
         const [value, setValue] = useState<RichTextValue>(INITIAL_VALUE)
+        const separator = showToolbarSeparator && <RichTextEditor.ToolbarSeparator />
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '42rem' }}>
-                <RichTextEditor
-                    {...args}
-                    value={value}
-                    onValueChange={setValue}
-                />
+                {useCompoundLayout ? (
+                    <RichTextEditor
+                        {...args}
+                        name={showFormField ? (args.name ?? 'description') : undefined}
+                        value={value}
+                        onValueChange={setValue}
+                    >
+                        <RichTextEditor.Label>{args.label ?? 'Description'}</RichTextEditor.Label>
+                        <RichTextEditor.Toolbar>
+                            {showToolbarGroups && <RichTextEditor.ToolbarGroups />}
+                            {showHistoryGroup && <><RichTextEditor.HistoryGroup />{separator}</>}
+                            {showTextStyleGroup && <><RichTextEditor.TextStyleGroup />{separator}</>}
+                            {showTextAppearanceGroup && <><RichTextEditor.TextAppearanceGroup />{separator}</>}
+                            {showTextColorMenu && <RichTextEditor.TextAppearanceGroup.TextColorMenu />}
+                            {showTextSizeMenu && <RichTextEditor.TextAppearanceGroup.TextSizeMenu />}
+                            {showLinkGroup && <><RichTextEditor.LinkGroup />{separator}</>}
+                            {showBlockFormatGroup && <><RichTextEditor.BlockFormatGroup />{separator}</>}
+                            {showListsGroup && <><RichTextEditor.ListsGroup />{separator}</>}
+                            {showAlignmentGroup && <><RichTextEditor.AlignmentGroup />{separator}</>}
+                            {showImageGroup && <RichTextEditor.ImageGroup />}
+                        </RichTextEditor.Toolbar>
+                        <RichTextEditor.EditorField />
+                    </RichTextEditor>
+                ) : (
+                    <RichTextEditor
+                        {...args}
+                        value={value}
+                        onValueChange={setValue}
+                    />
+                )}
                 <RichTextRenderer
                     value={value}
                     aria-label={'Rendered result'}
@@ -283,4 +458,71 @@ export const States: Story = {
             />
         </div>
     ),
+}
+
+export const CompoundUsage: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'RichTextEditor also exposes a compound API: pass `children` to compose the label, toolbar groups and editable document explicitly instead of using the default RichTextEditorField-style layout.',
+            },
+            ...storySource(`
+import { useState } from 'react'
+import { RichTextEditor, type RichTextValue } from '@choco-vanille/ui'
+
+const [value, setValue] = useState<RichTextValue>(initialValue)
+
+<RichTextEditor label="Description" value={value} onValueChange={setValue} width="42rem">
+    <RichTextEditor.Label>Description</RichTextEditor.Label>
+    <RichTextEditor.Toolbar>
+        <RichTextEditor.HistoryGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.TextStyleGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.TextAppearanceGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.LinkGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.BlockFormatGroup />
+        <RichTextEditor.ListsGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.AlignmentGroup />
+        <RichTextEditor.ToolbarSeparator />
+        <RichTextEditor.ImageGroup />
+    </RichTextEditor.Toolbar>
+    <RichTextEditor.EditorField />
+</RichTextEditor>`),
+        },
+    },
+    render: () => {
+        const [value, setValue] = useState<RichTextValue>(INITIAL_VALUE)
+
+        return (
+            <RichTextEditor
+                label={'Description'}
+                value={value}
+                onValueChange={setValue}
+                width={'42rem'}
+            >
+                <RichTextEditor.Label>Description</RichTextEditor.Label>
+                <RichTextEditor.Toolbar>
+                    <RichTextEditor.HistoryGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.TextStyleGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.TextAppearanceGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.LinkGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.BlockFormatGroup />
+                    <RichTextEditor.ListsGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.AlignmentGroup />
+                    <RichTextEditor.ToolbarSeparator />
+                    <RichTextEditor.ImageGroup />
+                </RichTextEditor.Toolbar>
+                <RichTextEditor.EditorField />
+            </RichTextEditor>
+        )
+    },
 }

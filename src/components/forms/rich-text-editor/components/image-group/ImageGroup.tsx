@@ -2,14 +2,19 @@ import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRef, useState } from 'react'
 
-import type { EditorToolbarProps } from '@components/forms/rich-text-editor/internal/editor-toolbar/types/EditorToolbar.props.ts'
+import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
 
 const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024
 
-const ImageToolbarGroup = ({ editor, disabled, onImageUpload }: EditorToolbarProps) => {
+const ImageGroup = () => {
+    const { editor, disabled, onImageUpload } = useRichTextEditorContext()
     const imageInputRef = useRef<HTMLInputElement>(null)
     const [open, setOpen] = useState(false)
+
+    if (!editor) {
+        return null
+    }
 
     return (
         <div
@@ -107,4 +112,6 @@ const ImageToolbarGroup = ({ editor, disabled, onImageUpload }: EditorToolbarPro
     )
 }
 
-export default ImageToolbarGroup
+ImageGroup.displayName = 'RichTextEditor.ImageGroup'
+
+export default ImageGroup

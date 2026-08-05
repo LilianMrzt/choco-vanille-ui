@@ -8,4 +8,6 @@ const ToolbarSeparator = () => (
     />
 )
 
+ToolbarSeparator.displayName = 'RichTextEditor.ToolbarSeparator'
+
 export default ToolbarSeparator

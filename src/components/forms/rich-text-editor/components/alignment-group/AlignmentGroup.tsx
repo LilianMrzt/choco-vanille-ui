@@ -1,11 +1,17 @@
 import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
-import type { EditorToolbarProps } from '@components/forms/rich-text-editor/internal/editor-toolbar/types/EditorToolbar.props.ts'
+
+import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
 
-const AlignmentToolbarGroup = ({ editor, disabled }: EditorToolbarProps) => {
+const AlignmentGroup = () => {
+    const { editor, disabled } = useRichTextEditorContext()
     const [open, setOpen] = useState(false)
+
+    if (!editor) {
+        return null
+    }
 
     return (
         <div
@@ -57,4 +63,6 @@ const AlignmentToolbarGroup = ({ editor, disabled }: EditorToolbarProps) => {
     )
 }
 
-export default AlignmentToolbarGroup
+AlignmentGroup.displayName = 'RichTextEditor.AlignmentGroup'
+
+export default AlignmentGroup

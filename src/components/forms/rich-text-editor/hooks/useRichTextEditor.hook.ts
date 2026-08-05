@@ -46,9 +46,11 @@ export const useRichTextEditor = ({
     ariaLabelledBy,
 }: UseRichTextEditorOptions): Editor | null => {
     const onValueChangeRef = useRef(onValueChange)
-    const lastEmittedValueRef = useRef<string | undefined>(undefined)
+    const controlledValueRef = useRef(value)
     const [, refresh] = useReducer((count: number) => count + 1, 0)
     const isDisabled = disabled || readOnly
+
+    controlledValueRef.current = value
 
     useEffect(() => {
         onValueChangeRef.current = onValueChange
@@ -123,9 +125,25 @@ export const useRichTextEditor = ({
         },
         onUpdate: ({ editor: updatedEditor }) => {
             const nextValue = updatedEditor.getJSON() as RichTextValue
+            const emittedValue = JSON.stringify(nextValue)
 
-            lastEmittedValueRef.current = JSON.stringify(nextValue)
             onValueChangeRef.current?.(nextValue)
+            refresh()
+
+            setTimeout(() => {
+                const controlledValue = controlledValueRef.current
+
+                if (
+                    controlledValue === undefined
+                    || JSON.stringify(controlledValue) === emittedValue
+                    || JSON.stringify(updatedEditor.getJSON()) !== emittedValue
+                ) {
+                    return
+                }
+
+                updatedEditor.commands.setContent(controlledValue, { emitUpdate: false })
+                refresh()
+            }, 0)
         },
         onTransaction: refresh,
     })
@@ -146,7 +164,7 @@ export const useRichTextEditor = ({
         const nextValue = JSON.stringify(value)
         const currentValue = JSON.stringify(editor.getJSON())
 
-        if (nextValue === lastEmittedValueRef.current || nextValue === currentValue) {
+        if (nextValue === currentValue) {
             return
         }
 

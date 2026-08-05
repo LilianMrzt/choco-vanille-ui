@@ -2,11 +2,11 @@ import { IconButton } from '@components/actions/icon-button'
 import { Icon } from '@components/foundation/icon'
 import { Popover } from '@components/overlay/popover'
 import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/constants/richTextColorPalettes.const.ts'
-import type { EditorToolbarProps } from '@components/forms/rich-text-editor/internal/editor-toolbar/types/EditorToolbar.props.ts'
+import type { RichTextEditorToolbarActionProps } from '@components/forms/rich-text-editor/internal/editor-toolbar/types/RichTextEditorToolbarAction.props.ts'
 import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
 import { useTextColorPopover } from '@components/forms/rich-text-editor/internal/editor-toolbar/components/text-style-toolbar-group/hooks/useTextColorPopover.hook.ts'
 
-const TextColorPopover = ({ editor, disabled }: EditorToolbarProps) => {
+const TextColorPopover = ({ editor, disabled }: RichTextEditorToolbarActionProps) => {
     const {
         colorButtonRefs,
         handleColorKeyDown,

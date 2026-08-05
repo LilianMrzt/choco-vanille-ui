@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import type { ReactNode } from 'react'
 
 import type { RichTextValue } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
 
@@ -30,6 +31,11 @@ type RichTextEditorBaseProps = {
     /** CSS width of the outer wrapper. Defaults to 100%. */
     width?: React.CSSProperties['width']
     className?: string
+    /**
+     * Compound slots (`RichTextEditor.Label`, `RichTextEditor.Toolbar`, `RichTextEditor.EditorField`, ...).
+     * When provided, RichTextEditor renders these children instead of its default layout.
+     */
+    children?: ReactNode
 }
 
 export type RichTextEditorProps = RichTextEditorBaseProps &
