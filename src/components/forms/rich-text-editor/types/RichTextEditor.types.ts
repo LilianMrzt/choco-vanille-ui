@@ -1,6 +1,5 @@
-import type { RICH_TEXT_COLORS, RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
+import type { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
 
-export type RichTextColor = (typeof RICH_TEXT_COLORS)[keyof typeof RICH_TEXT_COLORS]
 export type RichTextFontSize = keyof typeof RICH_TEXT_FONT_SIZES
 
 export type RichTextMark =

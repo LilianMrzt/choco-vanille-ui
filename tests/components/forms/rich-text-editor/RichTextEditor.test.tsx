@@ -74,6 +74,20 @@ describe('RichTextEditor', () => {
         })
     })
 
+    it('supports classic keyboard undo and redo shortcuts', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        await userEvent.type(editor, 'Hello')
+        await userEvent.keyboard('{Control>}z{/Control}')
+
+        expect(editor.textContent).not.toContain('Hello')
+
+        await userEvent.keyboard('{Control>}y{/Control}')
+
+        expect(editor.textContent).toContain('Hello')
+    })
+
     it('updates a formatting toggle before text is entered', async () => {
         render(<RichTextEditor label={'Description'} />)
 
@@ -87,7 +101,9 @@ describe('RichTextEditor', () => {
         render(<RichTextEditor label={'Description'} />)
 
         await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
-        expect(screen.getByRole('button', { name: 'primary text color' })).toBeTruthy()
+        expect(screen.getAllByRole('group', { name: /text colors$/ })).toHaveLength(7)
+        expect(screen.getByRole('button', { name: 'Ocean 1 text color' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Black 1 text color' })).toBeTruthy()
     })
 
     it('exposes the complete text size palette', async () => {
@@ -102,6 +118,45 @@ describe('RichTextEditor', () => {
             expect(screen.getByRole('menuitemradio', { name: 'sm' }).getAttribute('aria-checked')).toBe('true')
         })
 
+    })
+
+    it('shows the selected color and supports arrow navigation', async () => {
+        render(
+            <RichTextEditor
+                label={'Description'}
+                defaultValue={{
+                    type: 'doc',
+                    content: [{
+                        type: 'paragraph',
+                        content: [{
+                            type: 'text',
+                            text: 'Colored text',
+                            marks: [{
+                                type: 'textStyle',
+                                attrs: { color: '#3b82f6' },
+                            }],
+                        }],
+                    }],
+                }}
+            />,
+        )
+
+        await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
+
+        const selectedColor = screen.getByRole('button', { name: 'Ocean 2 text color' })
+        expect(selectedColor.getAttribute('data-selected')).toBe('true')
+        expect(selectedColor.querySelector('[aria-hidden="true"]')).toBeTruthy()
+
+        const firstColor = screen.getByRole('button', { name: 'Ocean 1 text color' })
+        firstColor.focus()
+        fireEvent.keyDown(firstColor, { key: 'ArrowRight' })
+
+        const nextColor = screen.getByRole('button', { name: 'Forest 1 text color' })
+        expect(document.activeElement).toBe(nextColor)
+
+        await userEvent.keyboard('{Enter}')
+
+        expect(screen.queryByRole('dialog', { name: 'Text color palette' })).toBeNull()
     })
 
     it('reflects the selected text size', async () => {

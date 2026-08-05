@@ -1,24 +1,20 @@
-import { RICH_TEXT_COLORS, RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
-import { RICH_TEXT_COLOR_VALUES } from '@components/forms/rich-text-editor/constants/richTextColorValues.const.ts'
-import type { RichTextColor } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
+import { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
+import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/constants/richTextColorPalettes.const.ts'
 
 const SAFE_PROTOCOL = /^(https?:|mailto:|tel:)/i
-
-export const getRichTextColorValue = (color: RichTextColor): string =>
-    RICH_TEXT_COLOR_VALUES[color]
 
 export const normalizeRichTextColorValue = (value: unknown): string | undefined => {
     if (typeof value !== 'string') {
         return undefined
     }
 
-    if (Object.values(RICH_TEXT_COLOR_VALUES).includes(value)) {
+    const paletteValues = RICH_TEXT_COLOR_PALETTES.flatMap((palette) => palette.colors)
+
+    if (paletteValues.some((paletteValue) => paletteValue === value)) {
         return value
     }
 
-    const color = (Object.values(RICH_TEXT_COLORS) as RichTextColor[]).find((item) => item === value)
-
-    return color ? getRichTextColorValue(color) : undefined
+    return undefined
 }
 
 export const normalizeRichTextFontSizeValue = (value: unknown): string | undefined =>

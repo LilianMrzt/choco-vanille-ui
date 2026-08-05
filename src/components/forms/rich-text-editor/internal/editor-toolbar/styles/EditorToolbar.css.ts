@@ -28,13 +28,27 @@ export const EDITOR_TOOLBAR_STYLES = {
         backgroundColor: vars.color.border,
     }),
     colorPicker: style({
+        display: 'flex',
+        flexDirection: 'column',
+        gap: vars.space.xs,
+    }),
+    paletteGrid: style({
         display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1.75rem)',
+        gridTemplateColumns: 'repeat(7, 1.75rem)',
+        gap: vars.space.xs,
+    }),
+    paletteColumn: style({
+        display: 'flex',
+        flexDirection: 'column',
         gap: vars.space.xs,
     }),
     colorSwatch: style({
         width: '1.75rem',
         height: '1.75rem',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
         border: `2px solid ${vars.color.card}`,
         borderRadius: vars.radius.sm,
         cursor: 'pointer',
@@ -47,5 +61,9 @@ export const EDITOR_TOOLBAR_STYLES = {
                 boxShadow: `0 0 0 2px ${vars.color.foreground}`,
             },
         },
+    }),
+    colorCheck: style({
+        color: 'white',
+        pointerEvents: 'none',
     }),
 }

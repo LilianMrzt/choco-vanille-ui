@@ -64,7 +64,7 @@ describe('RichTextRenderer', () => {
                                     text: ' colored',
                                     marks: [{
                                         type: 'textStyle',
-                                        attrs: { color: 'primary' },
+                                        attrs: { color: '#3b82f6' },
                                     }],
                                 },
                                 {
@@ -86,7 +86,7 @@ describe('RichTextRenderer', () => {
         expect(link.getAttribute('href')).toBe('https://example.com')
         expect(link.getAttribute('target')).toBe('_blank')
         expect(link.getAttribute('rel')).toBe('noopener noreferrer')
-        expect(screen.getByText('colored').getAttribute('style')).toContain('var(--color-primary)')
+        expect(screen.getByText('colored').getAttribute('style')).toContain('rgb(59, 130, 246)')
         expect(screen.queryByRole('link', { name: 'unsafe link' })).toBeNull()
     })
 })

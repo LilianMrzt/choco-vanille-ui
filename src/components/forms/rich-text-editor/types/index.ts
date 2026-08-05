@@ -1,7 +1,6 @@
 export type { RichTextEditorProps } from '@components/forms/rich-text-editor/types/RichTextEditor.props.ts'
 export type { RichTextEditorCompound } from '@components/forms/rich-text-editor/types/RichTextEditorCompound.ts'
 export type {
-    RichTextColor,
     RichTextContainerNode,
     RichTextFontSize,
     RichTextMark,

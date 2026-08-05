@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
-import { RichTextEditor, RICH_TEXT_COLORS, type RichTextValue } from '@components/forms/rich-text-editor'
+import { RichTextEditor, RICH_TEXT_COLOR_PALETTES, type RichTextValue } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 import { vars } from '@theme/contract.css.ts'
@@ -38,7 +38,7 @@ const INITIAL_VALUE: RichTextValue = {
                     marks: [{
                         type: 'textStyle',
                         attrs: {
-                            color: RICH_TEXT_COLORS.primary,
+                            color: RICH_TEXT_COLOR_PALETTES[0].colors[1],
                             fontSize: vars.fontSize['2xl'],
                         },
                     }],
@@ -116,7 +116,7 @@ const meta = {
         docs: {
             page: RichTextEditorDocsPage,
             description: {
-                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, semantic text colors, and safely validated links.',
+                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, color palettes, and safely validated links.',
             },
         },
     },
@@ -152,7 +152,7 @@ export const Playground: Story = {
                 story: 'Edit the document and see the semantic RichTextRenderer output update below it.',
             },
             ...storySource(`
-import { RichTextEditor, RichTextRenderer, RICH_TEXT_COLORS, vars } from '@choco-vanille/ui'
+import { RichTextEditor, RichTextRenderer, RICH_TEXT_COLOR_PALETTES, vars } from '@choco-vanille/ui'
 
 const initialValue = {
     type: 'doc',
@@ -177,7 +177,7 @@ const initialValue = {
                {
                    type: 'text',
                    text: 'colored large text',
-                   marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLORS.primary, fontSize: vars.fontSize['2xl'] } }],
+                   marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[1], fontSize: vars.fontSize['2xl'] } }],
                },
                { type: 'text', text: ' and ' },
                { type: 'text', text: 'safe links', marks: [{ type: 'link', attrs: { href: 'https://example.com' } }] },

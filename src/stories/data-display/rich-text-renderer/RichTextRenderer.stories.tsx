@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
-import type { RichTextValue } from '@components/forms/rich-text-editor'
+import { RICH_TEXT_COLOR_PALETTES, type RichTextValue } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -142,7 +142,7 @@ export const Colors: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'All supported semantic and decorative text colors.',
+                story: 'All supported rich-text palette colors.',
             },
             ...storySource(`
 <RichTextRenderer value={{
@@ -150,18 +150,12 @@ export const Colors: Story = {
     content: [{
         type: 'paragraph',
         content: [
-            { type: 'text', text: 'primary', marks: [{ type: 'textStyle', attrs: { color: 'primary' } }] },
-            { type: 'text', text: ' secondary', marks: [{ type: 'textStyle', attrs: { color: 'secondary' } }] },
-            { type: 'text', text: ' success', marks: [{ type: 'textStyle', attrs: { color: 'success' } }] },
-            { type: 'text', text: ' warning', marks: [{ type: 'textStyle', attrs: { color: 'warning' } }] },
-            { type: 'text', text: ' info', marks: [{ type: 'textStyle', attrs: { color: 'info' } }] },
-            { type: 'text', text: ' destructive', marks: [{ type: 'textStyle', attrs: { color: 'destructive' } }] },
-            { type: 'text', text: ' purple', marks: [{ type: 'textStyle', attrs: { color: 'purple' } }] },
-            { type: 'text', text: ' pink', marks: [{ type: 'textStyle', attrs: { color: 'pink' } }] },
-            { type: 'text', text: ' orange', marks: [{ type: 'textStyle', attrs: { color: 'orange' } }] },
-            { type: 'text', text: ' teal', marks: [{ type: 'textStyle', attrs: { color: 'teal' } }] },
-            { type: 'text', text: ' cyan', marks: [{ type: 'textStyle', attrs: { color: 'cyan' } }] },
-            { type: 'text', text: ' indigo', marks: [{ type: 'textStyle', attrs: { color: 'indigo' } }] },
+            { type: 'text', text: 'Ocean dark', marks: [{ type: 'textStyle', attrs: { color: '#1d4ed8' } }] },
+            { type: 'text', text: ' Ocean medium', marks: [{ type: 'textStyle', attrs: { color: '#3b82f6' } }] },
+            { type: 'text', text: ' Ocean light', marks: [{ type: 'textStyle', attrs: { color: '#60a5fa' } }] },
+            { type: 'text', text: ' Black dark', marks: [{ type: 'textStyle', attrs: { color: '#111827' } }] },
+            { type: 'text', text: ' Black medium', marks: [{ type: 'textStyle', attrs: { color: '#374151' } }] },
+            { type: 'text', text: ' Black light', marks: [{ type: 'textStyle', attrs: { color: '#9ca3af' } }] },
         ],
     }],
 }} />`),
@@ -176,63 +170,33 @@ export const Colors: Story = {
                     content: [
                         {
                             type: 'text',
-                            text: 'primary',
-                            marks: [{ type: 'textStyle', attrs: { color: 'primary' } }],
+                            text: 'Ocean dark',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[0] } }],
                         },
                         {
                             type: 'text',
-                            text: ' secondary',
-                            marks: [{ type: 'textStyle', attrs: { color: 'secondary' } }],
+                            text: ' Ocean medium',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[1] } }],
                         },
                         {
                             type: 'text',
-                            text: ' success',
-                            marks: [{ type: 'textStyle', attrs: { color: 'success' } }],
+                            text: ' Ocean light',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[2] } }],
                         },
                         {
                             type: 'text',
-                            text: ' warning',
-                            marks: [{ type: 'textStyle', attrs: { color: 'warning' } }],
+                            text: ' Black dark',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[6].colors[0] } }],
                         },
                         {
                             type: 'text',
-                            text: ' info',
-                            marks: [{ type: 'textStyle', attrs: { color: 'info' } }],
+                            text: ' Black medium',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[6].colors[1] } }],
                         },
                         {
                             type: 'text',
-                            text: ' destructive',
-                            marks: [{ type: 'textStyle', attrs: { color: 'destructive' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' purple',
-                            marks: [{ type: 'textStyle', attrs: { color: 'purple' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' pink',
-                            marks: [{ type: 'textStyle', attrs: { color: 'pink' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' orange',
-                            marks: [{ type: 'textStyle', attrs: { color: 'orange' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' teal',
-                            marks: [{ type: 'textStyle', attrs: { color: 'teal' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' cyan',
-                            marks: [{ type: 'textStyle', attrs: { color: 'cyan' } }],
-                        },
-                        {
-                            type: 'text',
-                            text: ' indigo',
-                            marks: [{ type: 'textStyle', attrs: { color: 'indigo' } }],
+                            text: ' Black light',
+                            marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[6].colors[2] } }],
                         },
                     ],
                 },

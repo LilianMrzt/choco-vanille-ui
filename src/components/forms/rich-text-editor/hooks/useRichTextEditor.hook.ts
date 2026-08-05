@@ -55,7 +55,6 @@ export const useRichTextEditor = ({
         extensions: [
             StarterKit.configure({
                 link: false,
-                undoRedo: false,
             }),
             TextStyle,
             FontSize,
