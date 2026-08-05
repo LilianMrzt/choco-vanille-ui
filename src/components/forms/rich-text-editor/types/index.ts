@@ -3,6 +3,7 @@ export type { RichTextEditorCompound } from '@components/forms/rich-text-editor/
 export type {
     RichTextColor,
     RichTextContainerNode,
+    RichTextFontSize,
     RichTextMark,
     RichTextNode,
     RichTextTextNode,

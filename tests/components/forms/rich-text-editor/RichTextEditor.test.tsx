@@ -1,9 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { RichTextEditor, type RichTextValue } from '@components/forms/rich-text-editor'
+import { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
 
 const INITIAL_VALUE: RichTextValue = {
     type: 'doc',
@@ -52,8 +53,7 @@ describe('RichTextEditor', () => {
         expect(screen.getByRole('textbox', { name: 'Description' })).toBeTruthy()
         expect(screen.getByRole('toolbar', { name: 'Text formatting' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Undo' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Redo' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Text size' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Paragraph' }).getAttribute('aria-pressed')).toBeNull()
     })
 
@@ -74,16 +74,6 @@ describe('RichTextEditor', () => {
         })
     })
 
-    it('undoes edits from the persistent toolbar', async () => {
-        render(<RichTextEditor label={'Description'} />)
-
-        const editor = screen.getByRole('textbox', { name: 'Description' })
-        await userEvent.type(editor, 'Hello')
-        await userEvent.click(screen.getByRole('button', { name: 'Undo' }))
-
-        expect(editor.textContent).not.toContain('Hello')
-    })
-
     it('updates a formatting toggle before text is entered', async () => {
         render(<RichTextEditor label={'Description'} />)
 
@@ -98,6 +88,48 @@ describe('RichTextEditor', () => {
 
         await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
         expect(screen.getByRole('button', { name: 'primary text color' })).toBeTruthy()
+    })
+
+    it('exposes the complete text size palette', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        const textSizeButton = screen.getByRole('button', { name: 'Text size' })
+        await userEvent.click(textSizeButton)
+
+        await waitFor(() => {
+            expect(screen.getByRole('menuitemradio', { name: '2xs' })).toBeTruthy()
+            expect(screen.getByRole('menuitemradio', { name: '6xl' })).toBeTruthy()
+            expect(screen.getByRole('menuitemradio', { name: 'sm' }).getAttribute('aria-checked')).toBe('true')
+        })
+
+    })
+
+    it('reflects the selected text size', async () => {
+        render(
+            <RichTextEditor
+                label={'Description'}
+                defaultValue={{
+                    type: 'doc',
+                    content: [{
+                        type: 'paragraph',
+                        content: [{
+                            type: 'text',
+                            text: 'Large text',
+                            marks: [{
+                                type: 'textStyle',
+                                attrs: { fontSize: RICH_TEXT_FONT_SIZES['2xl'] },
+                            }],
+                        }],
+                    }],
+                }}
+            />,
+        )
+
+        await userEvent.click(screen.getByRole('button', { name: 'Text size' }))
+
+        await waitFor(() => {
+            expect(screen.getByRole('menuitemradio', { name: '2xl' }).getAttribute('aria-checked')).toBe('true')
+        })
     })
 
     it('recognizes a safe URL when it is pasted', async () => {

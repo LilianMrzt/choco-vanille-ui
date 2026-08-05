@@ -5,6 +5,7 @@ import { vars } from '@theme/contract.css.ts'
 export const RICH_TEXT_RENDERER_STYLES = style({
     color: vars.color.foreground,
     fontFamily: vars.fontFamily.sans,
+    fontSize: vars.fontSize.sm,
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} > *:first-child`, {

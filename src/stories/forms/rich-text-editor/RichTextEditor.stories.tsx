@@ -3,16 +3,83 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
-import { RichTextEditor, type RichTextValue } from '@components/forms/rich-text-editor'
+import { RichTextEditor, RICH_TEXT_COLORS, type RichTextValue } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
+import { vars } from '@theme/contract.css.ts'
 
 const INITIAL_VALUE: RichTextValue = {
     type: 'doc',
     content: [
         {
+            type: 'heading',
+            attrs: { level: 2 },
+            content: [{ type: 'text', text: 'A complete rich-text example' }],
+        },
+        {
             type: 'paragraph',
-            content: [{ type: 'text', text: 'Select text, then apply formatting from the toolbar.' }],
+            content: [
+                { type: 'text', text: 'This example includes ' },
+                { type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
+                { type: 'text', text: ', ' },
+                { type: 'text', text: 'italic', marks: [{ type: 'italic' }] },
+                { type: 'text', text: ', and ' },
+                { type: 'text', text: 'underlined', marks: [{ type: 'underline' }] },
+                { type: 'text', text: ' text.' },
+            ],
+        },
+        {
+            type: 'paragraph',
+            content: [
+                { type: 'text', text: 'It also supports ' },
+                {
+                    type: 'text',
+                    text: 'colored large text',
+                    marks: [{
+                        type: 'textStyle',
+                        attrs: {
+                            color: RICH_TEXT_COLORS.primary,
+                            fontSize: vars.fontSize['2xl'],
+                        },
+                    }],
+                },
+                { type: 'text', text: ' and ' },
+                {
+                    type: 'text',
+                    text: 'safe links',
+                    marks: [{
+                        type: 'link',
+                        attrs: { href: 'https://example.com' },
+                    }],
+                },
+                { type: 'text', text: '.' },
+            ],
+        },
+        {
+            type: 'bulletList',
+            content: [
+                {
+                    type: 'listItem',
+                    content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Bulleted list item' }] }],
+                },
+                {
+                    type: 'listItem',
+                    content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Another list item' }] }],
+                },
+            ],
+        },
+        {
+            type: 'orderedList',
+            content: [
+                {
+                    type: 'listItem',
+                    content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Ordered list item' }] }],
+                },
+                {
+                    type: 'listItem',
+                    content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Another ordered item' }] }],
+                },
+            ],
         },
     ],
 }
@@ -85,6 +152,55 @@ export const Playground: Story = {
                 story: 'Edit the document and see the semantic RichTextRenderer output update below it.',
             },
             ...storySource(`
+import { RichTextEditor, RichTextRenderer, RICH_TEXT_COLORS, vars } from '@choco-vanille/ui'
+
+const initialValue = {
+    type: 'doc',
+    content: [
+        { type: 'heading', attrs: { level: 2 }, content: [{ type: 'text', text: 'A complete rich-text example' }] },
+        {
+            type: 'paragraph',
+            content: [
+               { type: 'text', text: 'This example includes ' },
+               { type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
+               { type: 'text', text: ', ' },
+               { type: 'text', text: 'italic', marks: [{ type: 'italic' }] },
+               { type: 'text', text: ', and ' },
+               { type: 'text', text: 'underlined', marks: [{ type: 'underline' }] },
+               { type: 'text', text: ' text.' },
+            ],
+        },
+        {
+            type: 'paragraph',
+            content: [
+               { type: 'text', text: 'It also supports ' },
+               {
+                   type: 'text',
+                   text: 'colored large text',
+                   marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLORS.primary, fontSize: vars.fontSize['2xl'] } }],
+               },
+               { type: 'text', text: ' and ' },
+               { type: 'text', text: 'safe links', marks: [{ type: 'link', attrs: { href: 'https://example.com' } }] },
+               { type: 'text', text: '.' },
+            ],
+        },
+        {
+            type: 'bulletList',
+            content: [
+               { type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Bulleted list item' }] }] },
+               { type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Another list item' }] }] },
+            ],
+        },
+        {
+            type: 'orderedList',
+            content: [
+               { type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Ordered list item' }] }] },
+               { type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Another ordered item' }] }] },
+            ],
+        },
+    ],
+}
+
 const [value, setValue] = useState(initialValue)
 
 <RichTextEditor label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />

@@ -8,11 +8,12 @@ export const EDITOR_TOOLBAR_STYLES = {
         flexWrap: 'wrap',
         gap: '0',
         padding: vars.space.xs,
+        marginBottom: `calc(-1 * ${vars.space.xs})`,
         border: `1px solid ${vars.color.input}`,
         borderBottom: 'none',
         borderTopLeftRadius: vars.radius.sm,
         borderTopRightRadius: vars.radius.sm,
-        backgroundColor: vars.color.muted,
+        backgroundColor: vars.color.card,
     }),
     group: style({
         display: 'flex',

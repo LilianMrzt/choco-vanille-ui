@@ -1,5 +1,6 @@
-import { isValidElement, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
+import { extractTextFromReactNode } from '@components/data-display/_shared/utils/extractText.utils.ts'
 import { Typography } from '@components/foundation/typography'
 import { Link } from '@components/navigation/link'
 import type {
@@ -9,24 +10,9 @@ import type {
 } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
 import {
     normalizeRichTextColorValue,
+    normalizeRichTextFontSizeValue,
     normalizeRichTextUrl,
 } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
-
-const extractText = (value: ReactNode): string => {
-    if (typeof value === 'string' || typeof value === 'number') {
-        return String(value)
-    }
-
-    if (Array.isArray(value)) {
-        return value.map(extractText).join('')
-    }
-
-    if (isValidElement<{ children?: ReactNode }>(value)) {
-        return extractText(value.props.children)
-    }
-
-    return ''
-}
 
 const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode =>
     marks.reduceRight<ReactNode>((children, mark) => {
@@ -53,14 +39,15 @@ const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode 
                 return <u>{children}</u>
             case 'textStyle': {
                 const color = normalizeRichTextColorValue(mark.attrs.color)
+                const fontSize = normalizeRichTextFontSizeValue(mark.attrs.fontSize)
 
-                return color
-                    ? <span style={{ color }}>{children}</span>
+                return color || fontSize
+                    ? <span style={{ color, fontSize }}>{children}</span>
                     : children
             }
             case 'link': {
                 const href = normalizeRichTextUrl(mark.attrs.href)
-                const label = extractText(children)
+                const label = extractTextFromReactNode(children)
 
                 return href && label ? (
                     <Link
