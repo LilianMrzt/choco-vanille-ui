@@ -9,5 +9,7 @@
  * `createGlobalThemeContract` enforces at build time). Only the values differ.
  */
 export { lightColors } from '@theme/colors/light.ts'
-export { darkColors } from '@theme/colors/dark.ts'
+export { lightEditorColors } from '@theme/colors/light.ts'
+export { darkColors, darkEditorColors } from '@theme/colors/dark.ts'
 export type { LightColors } from '@theme/colors/light.ts'
+export type { EditorColors } from '@theme/colors/light.ts'

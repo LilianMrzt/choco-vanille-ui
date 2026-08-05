@@ -14,7 +14,9 @@ export type { Theme } from '@theme/tokens/index.ts'
 // Color tokens by theme — useful for consuming projects building custom themes.
 export { lightColors } from '@theme/colors/light.ts'
 export { darkColors } from '@theme/colors/dark.ts'
-export type { LightColors } from '@theme/colors/light.ts'
+export { lightEditorColors } from '@theme/colors/light.ts'
+export { darkEditorColors } from '@theme/colors/dark.ts'
+export type { EditorColors, LightColors } from '@theme/colors/light.ts'
 
 // Theme types
 export type { ThemeColor, ThemeColorValue } from '@theme/types/index.ts'

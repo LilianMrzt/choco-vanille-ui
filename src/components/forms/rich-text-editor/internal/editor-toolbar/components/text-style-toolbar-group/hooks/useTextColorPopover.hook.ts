@@ -1,5 +1,6 @@
 import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/constants/richTextColorPalettes.const.ts'
 import type { Editor } from '@tiptap/react'
+import { vars } from '@theme/contract.css.ts'
 import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
 
 const COLORS_PER_PALETTE = 3
@@ -7,7 +8,7 @@ const COLORS_PER_PALETTE = 3
 export const useTextColorPopover = (editor: Editor) => {
     const colorButtonRefs = useRef<Array<HTMLButtonElement | null>>([])
     const [open, setOpen] = useState(false)
-    const selectedColor = editor.getAttributes('textStyle').color
+    const selectedColor = editor.getAttributes('textStyle').color ?? vars.editorColors.neutral.dark
 
     const focusColor = useCallback((paletteIndex: number, colorIndex: number) => {
         const targetIndex = paletteIndex * COLORS_PER_PALETTE + colorIndex

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
 import type { RichTextValue } from '@components/forms/rich-text-editor'
+import { vars } from '@theme/contract.css.ts'
 
 const VALUE: RichTextValue = {
     type: 'doc',
@@ -64,7 +65,7 @@ describe('RichTextRenderer', () => {
                                     text: ' colored',
                                     marks: [{
                                         type: 'textStyle',
-                                        attrs: { color: '#3b82f6' },
+                                        attrs: { color: vars.editorColors.ocean.base },
                                     }],
                                 },
                                 {
@@ -86,7 +87,7 @@ describe('RichTextRenderer', () => {
         expect(link.getAttribute('href')).toBe('https://example.com')
         expect(link.getAttribute('target')).toBe('_blank')
         expect(link.getAttribute('rel')).toBe('noopener noreferrer')
-        expect(screen.getByText('colored').getAttribute('style')).toContain('rgb(59, 130, 246)')
+        expect(screen.getByText('colored').getAttribute('style')).toContain(vars.editorColors.ocean.base)
         expect(screen.queryByRole('link', { name: 'unsafe link' })).toBeNull()
     })
 })

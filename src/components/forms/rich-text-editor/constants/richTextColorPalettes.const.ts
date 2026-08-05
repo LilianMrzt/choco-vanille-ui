@@ -1,30 +1,32 @@
+import { vars } from '@theme/contract.css.ts'
+
 export const RICH_TEXT_COLOR_PALETTES = [
     {
         name: 'Ocean',
-        colors: ['#1d4ed8', '#3b82f6', '#60a5fa'],
+        colors: [vars.editorColors.ocean.dark, vars.editorColors.ocean.base, vars.editorColors.ocean.light],
     },
     {
         name: 'Forest',
-        colors: ['#15803d', '#22c55e', '#86efac'],
+        colors: [vars.editorColors.forest.dark, vars.editorColors.forest.base, vars.editorColors.forest.light],
     },
     {
         name: 'Sunset',
-        colors: ['#c2410c', '#f97316', '#fdba74'],
+        colors: [vars.editorColors.sunset.dark, vars.editorColors.sunset.base, vars.editorColors.sunset.light],
     },
     {
         name: 'Berry',
-        colors: ['#be185d', '#ec4899', '#f9a8d4'],
+        colors: [vars.editorColors.berry.dark, vars.editorColors.berry.base, vars.editorColors.berry.light],
     },
     {
         name: 'Grape',
-        colors: ['#6b21a8', '#a855f7', '#d8b4fe'],
+        colors: [vars.editorColors.grape.dark, vars.editorColors.grape.base, vars.editorColors.grape.light],
     },
     {
         name: 'Aqua',
-        colors: ['#0f766e', '#14b8a6', '#99f6e4'],
+        colors: [vars.editorColors.aqua.dark, vars.editorColors.aqua.base, vars.editorColors.aqua.light],
     },
     {
         name: 'Black',
-        colors: ['#111827', '#374151', '#9ca3af'],
+        colors: [vars.editorColors.neutral.dark, vars.editorColors.neutral.base, vars.editorColors.neutral.light],
     },
 ] as const

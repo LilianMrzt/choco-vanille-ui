@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css'
 import { vars } from '@theme/contract.css.ts'
 
 export const RICH_TEXT_RENDERER_STYLES = style({
-    color: vars.color.foreground,
+    color: vars.editorColors.neutral.dark,
     fontFamily: vars.fontFamily.sans,
     fontSize: vars.fontSize.sm,
 })

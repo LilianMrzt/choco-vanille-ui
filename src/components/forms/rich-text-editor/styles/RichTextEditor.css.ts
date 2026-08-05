@@ -17,7 +17,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
         borderBottomLeftRadius: vars.radius.sm,
         borderBottomRightRadius: vars.radius.sm,
         backgroundColor: vars.color.card,
-        color: vars.color.foreground,
+        color: vars.editorColors.neutral.dark,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.md,
         lineHeight: vars.lineHeight.relaxed,

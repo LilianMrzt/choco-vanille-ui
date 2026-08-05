@@ -5,6 +5,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { RichTextEditor, type RichTextValue } from '@components/forms/rich-text-editor'
 import { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
+import { vars } from '@theme/contract.css.ts'
 
 const INITIAL_VALUE: RichTextValue = {
     type: 'doc',
@@ -103,7 +104,7 @@ describe('RichTextEditor', () => {
         await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
         expect(screen.getAllByRole('group', { name: /text colors$/ })).toHaveLength(7)
         expect(screen.getByRole('button', { name: 'Ocean 1 text color' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Black 1 text color' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Black 1 text color' }).getAttribute('data-selected')).toBe('true')
     })
 
     it('exposes the complete text size palette', async () => {
@@ -133,7 +134,7 @@ describe('RichTextEditor', () => {
                             text: 'Colored text',
                             marks: [{
                                 type: 'textStyle',
-                                attrs: { color: '#3b82f6' },
+                                attrs: { color: vars.editorColors.ocean.base },
                             }],
                         }],
                     }],

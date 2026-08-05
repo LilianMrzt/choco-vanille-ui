@@ -210,3 +210,43 @@ export const lightColors = {
 } as const
 
 export type LightColors = typeof lightColors
+
+export const lightEditorColors = {
+    ocean: {
+        dark: palette.blue[700],
+        base: palette.blue[500],
+        light: palette.blue[300],
+    },
+    forest: {
+        dark: palette.green[700],
+        base: palette.green[500],
+        light: palette.green[300],
+    },
+    sunset: {
+        dark: palette.orange[700],
+        base: palette.orange[500],
+        light: palette.orange[300],
+    },
+    berry: {
+        dark: palette.pink[700],
+        base: palette.pink[500],
+        light: palette.pink[300],
+    },
+    grape: {
+        dark: palette.purple[700],
+        base: palette.purple[500],
+        light: palette.purple[300],
+    },
+    aqua: {
+        dark: palette.teal[700],
+        base: palette.teal[500],
+        light: palette.teal[300],
+    },
+    neutral: {
+        dark: palette.neutral[900],
+        base: palette.neutral[700],
+        light: palette.neutral[400],
+    },
+} as const
+
+export type EditorColors = typeof lightEditorColors

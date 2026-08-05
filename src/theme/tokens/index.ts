@@ -1,4 +1,9 @@
-import { lightColors, darkColors } from '@theme/colors/index.ts'
+import {
+    darkColors,
+    darkEditorColors,
+    lightColors,
+    lightEditorColors,
+} from '@theme/colors/index.ts'
 import { duration, easing } from '@theme/tokens/motion.ts'
 import { radius } from '@theme/tokens/radii.ts'
 import { lightShadows, darkShadows, lightDropShadows, darkDropShadows } from '@theme/tokens/shadows.ts'
@@ -31,6 +36,7 @@ const sharedTokens = {
 
 export const lightTheme = {
     color: lightColors,
+    editorColors: lightEditorColors,
     shadow: lightShadows,
     dropShadow: lightDropShadows,
     ...sharedTokens,
@@ -38,6 +44,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     color: darkColors,
+    editorColors: darkEditorColors,
     shadow: darkShadows,
     dropShadow: darkDropShadows,
     ...sharedTokens,

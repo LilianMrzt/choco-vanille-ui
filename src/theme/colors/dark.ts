@@ -1,8 +1,18 @@
 import { palette } from '@theme/tokens/palette.ts'
 
-import { type LightColors } from '@theme/colors/light.ts'
+import { type EditorColors, type LightColors } from '@theme/colors/light.ts'
 
-export const darkColors: Record<keyof LightColors, string> = {
+type DarkColors = {
+    [Key in keyof LightColors]: string
+}
+
+type DarkEditorColors = {
+    [Color in keyof EditorColors]: {
+        [Tone in keyof EditorColors[Color]]: string
+    }
+}
+
+export const darkColors: DarkColors = {
     /* Base surfaces & text  */
     background: palette.neutral[950],
     foreground: palette.neutral[100],
@@ -186,4 +196,42 @@ export const darkColors: Record<keyof LightColors, string> = {
     /* Skeleton loading placeholders  */
     skeleton: palette.neutral[800],
     skeletonForeground: palette.neutral[700],
+}
+
+export const darkEditorColors: DarkEditorColors = {
+    ocean: {
+        dark: palette.blue[300],
+        base: palette.blue[500],
+        light: palette.blue[700],
+    },
+    forest: {
+        dark: palette.green[300],
+        base: palette.green[500],
+        light: palette.green[700],
+    },
+    sunset: {
+        dark: palette.orange[300],
+        base: palette.orange[500],
+        light: palette.orange[700],
+    },
+    berry: {
+        dark: palette.pink[300],
+        base: palette.pink[500],
+        light: palette.pink[700],
+    },
+    grape: {
+        dark: palette.purple[300],
+        base: palette.purple[500],
+        light: palette.purple[700],
+    },
+    aqua: {
+        dark: palette.teal[300],
+        base: palette.teal[500],
+        light: palette.teal[700],
+    },
+    neutral: {
+        dark: palette.neutral[100],
+        base: palette.neutral[300],
+        light: palette.neutral[500],
+    },
 }

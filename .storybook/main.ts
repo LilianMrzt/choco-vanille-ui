@@ -2,7 +2,6 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import type { StorybookConfig } from '@storybook/react-vite';
-import remarkGfm from 'remark-gfm';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -16,16 +15,7 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptions: {
-            remarkPlugins: [remarkGfm],
-          },
-        },
-      },
-    },
+    '@storybook/addon-docs',
   ],
 
   framework: {
