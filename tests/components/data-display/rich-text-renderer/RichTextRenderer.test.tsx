@@ -41,4 +41,52 @@ describe('RichTextRenderer', () => {
         expect(screen.getByRole('list')).toBeTruthy()
         expect(screen.getByText('Item').closest('li')).toBeTruthy()
     })
+
+    it('renders approved colors and only safe links', () => {
+        render(
+            <RichTextRenderer
+                value={{
+                    type: 'doc',
+                    content: [
+                        {
+                            type: 'paragraph',
+                            content: [
+                                {
+                                    type: 'text',
+                                    text: 'Secure link',
+                                    marks: [{
+                                        type: 'link',
+                                        attrs: { href: 'https://example.com' },
+                                    }],
+                                },
+                                {
+                                    type: 'text',
+                                    text: ' colored',
+                                    marks: [{
+                                        type: 'textStyle',
+                                        attrs: { color: 'primary' },
+                                    }],
+                                },
+                                {
+                                    type: 'text',
+                                    text: ' unsafe link',
+                                    marks: [{
+                                        type: 'link',
+                                        attrs: { href: 'javascript:alert(1)' },
+                                    }],
+                                },
+                            ],
+                        },
+                    ],
+                }}
+            />,
+        )
+
+        const link = screen.getByRole('link', { name: 'Secure link' })
+        expect(link.getAttribute('href')).toBe('https://example.com')
+        expect(link.getAttribute('target')).toBe('_blank')
+        expect(link.getAttribute('rel')).toBe('noopener noreferrer')
+        expect(screen.getByText('colored').getAttribute('style')).toContain('var(--color-primary)')
+        expect(screen.queryByRole('link', { name: 'unsafe link' })).toBeNull()
+    })
 })

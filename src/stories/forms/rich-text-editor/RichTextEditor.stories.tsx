@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
+import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
 import { RichTextEditor, type RichTextValue } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -48,7 +49,7 @@ const meta = {
         docs: {
             page: RichTextEditorDocsPage,
             description: {
-                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar.',
+                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, semantic text colors, and safely validated links.',
             },
         },
     },
@@ -80,18 +81,31 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {
     parameters: {
         docs: {
-            ...storySource('<RichTextEditor label="Description" placeholder="Start writing..." />'),
+            description: {
+                story: 'Edit the document and see the semantic RichTextRenderer output update below it.',
+            },
+            ...storySource(`
+const [value, setValue] = useState(initialValue)
+
+<RichTextEditor label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
+<RichTextRenderer value={value} aria-label="Rendered result" />`),
         },
     },
     render: (args) => {
         const [value, setValue] = useState<RichTextValue>(INITIAL_VALUE)
 
         return (
-            <RichTextEditor
-                {...args}
-                value={value}
-                onValueChange={setValue}
-            />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '42rem' }}>
+                <RichTextEditor
+                    {...args}
+                    value={value}
+                    onValueChange={setValue}
+                />
+                <RichTextRenderer
+                    value={value}
+                    aria-label={'Rendered result'}
+                />
+            </div>
         )
     },
 }

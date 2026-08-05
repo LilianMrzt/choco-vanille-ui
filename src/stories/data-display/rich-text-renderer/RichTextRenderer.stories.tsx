@@ -79,3 +79,164 @@ export const Playground: Story = {
         },
     },
 }
+
+export const Links: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story:
+          'Safe HTTP, mailto, telephone, and internal links are rendered as accessible anchors.',
+            },
+            ...storySource(`
+<RichTextRenderer value={{
+    type: 'doc',
+    content: [{
+        type: 'paragraph',
+        content: [
+            { type: 'text', text: 'Documentation', marks: [{ type: 'link', attrs: { href: 'https://example.com' } }] },
+            { type: 'text', text: ' | Contact', marks: [{ type: 'link', attrs: { href: 'mailto:hello@example.com' } }] },
+            { type: 'text', text: ' | Call us', marks: [{ type: 'link', attrs: { href: 'tel:+33123456789' } }] },
+            { type: 'text', text: ' | Internal page', marks: [{ type: 'link', attrs: { href: '/getting-started' } }] },
+        ],
+    }],
+}} />`),
+        },
+    },
+    args: {
+        value: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'paragraph',
+                    content: [
+                        {
+                            type: 'text',
+                            text: 'Documentation',
+                            marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' | Contact',
+                            marks: [
+                                { type: 'link', attrs: { href: 'mailto:hello@example.com' } },
+                            ],
+                        },
+                        {
+                            type: 'text',
+                            text: ' | Call us',
+                            marks: [{ type: 'link', attrs: { href: 'tel:+33123456789' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' | Internal page',
+                            marks: [{ type: 'link', attrs: { href: '/getting-started' } }],
+                        },
+                    ],
+                },
+            ],
+        },
+    },
+}
+
+export const Colors: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'All supported semantic and decorative text colors.',
+            },
+            ...storySource(`
+<RichTextRenderer value={{
+    type: 'doc',
+    content: [{
+        type: 'paragraph',
+        content: [
+            { type: 'text', text: 'primary', marks: [{ type: 'textStyle', attrs: { color: 'primary' } }] },
+            { type: 'text', text: ' secondary', marks: [{ type: 'textStyle', attrs: { color: 'secondary' } }] },
+            { type: 'text', text: ' success', marks: [{ type: 'textStyle', attrs: { color: 'success' } }] },
+            { type: 'text', text: ' warning', marks: [{ type: 'textStyle', attrs: { color: 'warning' } }] },
+            { type: 'text', text: ' info', marks: [{ type: 'textStyle', attrs: { color: 'info' } }] },
+            { type: 'text', text: ' destructive', marks: [{ type: 'textStyle', attrs: { color: 'destructive' } }] },
+            { type: 'text', text: ' purple', marks: [{ type: 'textStyle', attrs: { color: 'purple' } }] },
+            { type: 'text', text: ' pink', marks: [{ type: 'textStyle', attrs: { color: 'pink' } }] },
+            { type: 'text', text: ' orange', marks: [{ type: 'textStyle', attrs: { color: 'orange' } }] },
+            { type: 'text', text: ' teal', marks: [{ type: 'textStyle', attrs: { color: 'teal' } }] },
+            { type: 'text', text: ' cyan', marks: [{ type: 'textStyle', attrs: { color: 'cyan' } }] },
+            { type: 'text', text: ' indigo', marks: [{ type: 'textStyle', attrs: { color: 'indigo' } }] },
+        ],
+    }],
+}} />`),
+        },
+    },
+    args: {
+        value: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'paragraph',
+                    content: [
+                        {
+                            type: 'text',
+                            text: 'primary',
+                            marks: [{ type: 'textStyle', attrs: { color: 'primary' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' secondary',
+                            marks: [{ type: 'textStyle', attrs: { color: 'secondary' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' success',
+                            marks: [{ type: 'textStyle', attrs: { color: 'success' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' warning',
+                            marks: [{ type: 'textStyle', attrs: { color: 'warning' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' info',
+                            marks: [{ type: 'textStyle', attrs: { color: 'info' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' destructive',
+                            marks: [{ type: 'textStyle', attrs: { color: 'destructive' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' purple',
+                            marks: [{ type: 'textStyle', attrs: { color: 'purple' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' pink',
+                            marks: [{ type: 'textStyle', attrs: { color: 'pink' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' orange',
+                            marks: [{ type: 'textStyle', attrs: { color: 'orange' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' teal',
+                            marks: [{ type: 'textStyle', attrs: { color: 'teal' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' cyan',
+                            marks: [{ type: 'textStyle', attrs: { color: 'cyan' } }],
+                        },
+                        {
+                            type: 'text',
+                            text: ' indigo',
+                            marks: [{ type: 'textStyle', attrs: { color: 'indigo' } }],
+                        },
+                    ],
+                },
+            ],
+        },
+    },
+}

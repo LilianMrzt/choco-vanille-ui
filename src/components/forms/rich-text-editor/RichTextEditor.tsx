@@ -1,4 +1,7 @@
 import { useEditor, EditorContent } from '@tiptap/react'
+import Color from '@tiptap/extension-color'
+import Link from '@tiptap/extension-link'
+import { TextStyle } from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
 import { memo, useEffect, useId, useReducer, useRef } from 'react'
 
@@ -14,6 +17,7 @@ import type {
     RichTextEditorProps,
     RichTextValue,
 } from '@components/forms/rich-text-editor/types'
+import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 
 const EMPTY_DOCUMENT: RichTextValue = {
     type: 'doc',
@@ -48,7 +52,23 @@ const RichTextEditor = memo<RichTextEditorProps>(({
     }, [onValueChange])
 
     const editor = useEditor({
-        extensions: [StarterKit],
+        extensions: [
+            StarterKit.configure({ link: false }),
+            TextStyle,
+            Color,
+            Link.configure({
+                autolink: true,
+                linkOnPaste: true,
+                openOnClick: false,
+                enableClickSelection: true,
+                HTMLAttributes: {
+                    rel: 'noopener noreferrer',
+                    target: '_blank',
+                },
+                isAllowedUri: (url) => Boolean(normalizeRichTextUrl(url)),
+                shouldAutoLink: (url) => Boolean(normalizeRichTextUrl(url)),
+            }),
+        ],
         content: value ?? defaultValue ?? EMPTY_DOCUMENT,
         editable: !isDisabled,
         immediatelyRender: false,

@@ -52,8 +52,8 @@ describe('RichTextEditor', () => {
         expect(screen.getByRole('textbox', { name: 'Description' })).toBeTruthy()
         expect(screen.getByRole('toolbar', { name: 'Text formatting' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
-        expect(screen.queryByRole('button', { name: 'Undo' })).toBeNull()
-        expect(screen.queryByRole('button', { name: 'Redo' })).toBeNull()
+        expect(screen.getByRole('button', { name: 'Undo' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Redo' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Paragraph' }).getAttribute('aria-pressed')).toBeNull()
     })
 
@@ -74,6 +74,16 @@ describe('RichTextEditor', () => {
         })
     })
 
+    it('undoes edits from the persistent toolbar', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        await userEvent.type(editor, 'Hello')
+        await userEvent.click(screen.getByRole('button', { name: 'Undo' }))
+
+        expect(editor.textContent).not.toContain('Hello')
+    })
+
     it('updates a formatting toggle before text is entered', async () => {
         render(<RichTextEditor label={'Description'} />)
 
@@ -81,6 +91,67 @@ describe('RichTextEditor', () => {
         await userEvent.click(boldToggle)
 
         expect(boldToggle.getAttribute('aria-pressed')).toBe('true')
+    })
+
+    it('exposes design-system colors', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
+        expect(screen.getByRole('button', { name: 'primary text color' })).toBeTruthy()
+    })
+
+    it('recognizes a safe URL when it is pasted', async () => {
+        const onValueChange = vi.fn()
+        render(
+            <RichTextEditor
+                label={'Description'}
+                onValueChange={onValueChange}
+            />,
+        )
+
+        await userEvent.click(screen.getByRole('textbox', { name: 'Description' }))
+        await userEvent.paste('https://example.com')
+
+        expect(onValueChange.mock.calls.at(-1)?.[0]).toMatchObject({
+            content: [{
+                content: [{
+                    text: 'https://example.com',
+                    marks: [{
+                        type: 'link',
+                        attrs: { href: 'https://example.com' },
+                    }],
+                }],
+            }],
+        })
+    })
+
+    it('recognizes a safe URL when it is typed', async () => {
+        const onValueChange = vi.fn()
+        render(
+            <RichTextEditor
+                label={'Description'}
+                onValueChange={onValueChange}
+            />,
+        )
+
+        await userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'https://example.com ')
+
+        const latestValue = onValueChange.mock.calls.at(-1)?.[0] as RichTextValue | undefined
+        const firstNode = latestValue?.content?.[0]
+
+        if (!firstNode || firstNode.type === 'text') {
+            throw new Error('The editor must emit a paragraph containing the typed URL.')
+        }
+
+        expect(firstNode.content).toEqual(expect.arrayContaining([
+            expect.objectContaining({
+                text: 'https://example.com',
+                marks: [expect.objectContaining({
+                    type: 'link',
+                    attrs: expect.objectContaining({ href: 'https://example.com' }),
+                })],
+            }),
+        ]))
     })
 
     it('keeps the editor focused in controlled mode after typing', async () => {

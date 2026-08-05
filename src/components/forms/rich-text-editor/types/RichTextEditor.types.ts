@@ -1,6 +1,21 @@
-export type RichTextMark = {
-    type: 'bold' | 'italic' | 'underline'
-}
+import type { RICH_TEXT_COLORS } from '@components/forms/rich-text-editor/constants'
+
+export type RichTextColor = (typeof RICH_TEXT_COLORS)[keyof typeof RICH_TEXT_COLORS]
+
+export type RichTextMark =
+    | { type: 'bold' | 'italic' | 'underline' }
+    | {
+          type: 'textStyle'
+          attrs: { color?: string | null }
+      }
+    | {
+          type: 'link'
+          attrs: {
+              href: string
+              target?: string | null
+              rel?: string | null
+          }
+      }
 
 export type RichTextTextNode = {
     type: 'text'

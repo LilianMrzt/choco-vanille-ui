@@ -23,3 +23,13 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} ul, ${RICH_TEXT_RENDERER_STYLES} ol`, 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} li + li`, {
     marginTop: vars.space.xs,
 })
+
+globalStyle(`${RICH_TEXT_RENDERER_STYLES} a`, {
+    color: vars.color.link,
+    textDecoration: 'underline',
+    textUnderlineOffset: '0.15em',
+})
+
+globalStyle(`${RICH_TEXT_RENDERER_STYLES} a:hover`, {
+    color: vars.color.linkHover,
+})

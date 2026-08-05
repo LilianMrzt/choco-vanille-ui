@@ -1,11 +1,32 @@
-import type { ReactNode } from 'react'
+import { isValidElement, type ReactNode } from 'react'
 
 import { Typography } from '@components/foundation/typography'
+import { Link } from '@components/navigation/link'
 import type {
     RichTextMark,
     RichTextNode,
     RichTextTextNode,
 } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
+import {
+    normalizeRichTextColorValue,
+    normalizeRichTextUrl,
+} from '@components/forms/rich-text-editor/utils/richText.utils.ts'
+
+const extractText = (value: ReactNode): string => {
+    if (typeof value === 'string' || typeof value === 'number') {
+        return String(value)
+    }
+
+    if (Array.isArray(value)) {
+        return value.map(extractText).join('')
+    }
+
+    if (isValidElement<{ children?: ReactNode }>(value)) {
+        return extractText(value.props.children)
+    }
+
+    return ''
+}
 
 const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode =>
     marks.reduceRight<ReactNode>((children, mark) => {
@@ -30,6 +51,26 @@ const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode 
                 )
             case 'underline':
                 return <u>{children}</u>
+            case 'textStyle': {
+                const color = normalizeRichTextColorValue(mark.attrs.color)
+
+                return color
+                    ? <span style={{ color }}>{children}</span>
+                    : children
+            }
+            case 'link': {
+                const href = normalizeRichTextUrl(mark.attrs.href)
+                const label = extractText(children)
+
+                return href && label ? (
+                    <Link
+                        href={href}
+                        label={label}
+                        target={'_blank'}
+                        rel={'noopener noreferrer'}
+                    />
+                ) : children
+            }
         }
     }, content)
 
