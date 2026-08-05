@@ -7,6 +7,7 @@ export type { RichTextEditorCompound } from '@components/forms/rich-text-editor/
 export type { RichTextEditorLabelProps } from '@components/forms/rich-text-editor/components/rich-text-editor-label'
 export type {
     RichTextContainerNode,
+    RichTextImageNode,
     RichTextMark,
     RichTextNode,
     RichTextTextNode,

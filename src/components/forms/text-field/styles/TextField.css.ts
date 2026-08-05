@@ -57,7 +57,7 @@ export const TEXT_FIELD_STYLES = {
                 [TEXT_FIELD_SIZES.lg]: {
                     height: '2.75rem',
                     paddingInline: vars.space.lg,
-                    fontSize: vars.fontSize.base,
+                    fontSize: vars.fontSize.md,
                 },
             },
             hasError: {

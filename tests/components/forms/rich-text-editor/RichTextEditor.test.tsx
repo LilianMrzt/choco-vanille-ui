@@ -115,7 +115,7 @@ describe('RichTextEditor', () => {
         await waitFor(() => {
             expect(screen.getByRole('menuitemradio', { name: '2xs' })).toBeTruthy()
             expect(screen.getByRole('menuitemradio', { name: '6xl' })).toBeTruthy()
-            expect(screen.getByRole('menuitemradio', { name: 'sm' }).getAttribute('aria-checked')).toBe('true')
+            expect(screen.getByRole('menuitemradio', { name: 'md' }).getAttribute('aria-checked')).toBe('true')
         })
 
     })
@@ -212,6 +212,65 @@ describe('RichTextEditor', () => {
         })
     })
 
+    it('inserts an image URL when it is pasted', async () => {
+        const onValueChange = vi.fn()
+        render(
+            <RichTextEditor
+                label={'Description'}
+                onValueChange={onValueChange}
+            />,
+        )
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        await userEvent.click(editor)
+        await userEvent.paste('https://example.com/image.png')
+
+        expect(onValueChange.mock.calls.at(-1)?.[0]).toMatchObject({
+            content: [{
+                type: 'paragraph',
+                content: [{
+                    type: 'image',
+                    attrs: { src: 'https://example.com/image.png' },
+                }],
+            }],
+        })
+    })
+
+    it('inserts a pasted image file as a data URL', async () => {
+        const onValueChange = vi.fn()
+        render(
+            <RichTextEditor
+                label={'Description'}
+                onValueChange={onValueChange}
+            />,
+        )
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        const image = new File(['image'], 'image.png', { type: 'image/png' })
+        const clipboardData = {
+            items: [{
+                kind: 'file',
+                type: 'image/png',
+                getAsFile: () => image,
+            }],
+            getData: () => '',
+        }
+
+        fireEvent.paste(editor, { clipboardData })
+
+        await waitFor(() => {
+            expect(onValueChange.mock.calls.at(-1)?.[0]).toMatchObject({
+                content: [{
+                    type: 'paragraph',
+                    content: [{
+                        type: 'image',
+                        attrs: { src: expect.stringContaining('data:image/png;base64,') },
+                    }],
+                }],
+            })
+        })
+    })
+
     it('recognizes a safe URL when it is typed', async () => {
         const onValueChange = vi.fn()
         render(
@@ -226,7 +285,7 @@ describe('RichTextEditor', () => {
         const latestValue = onValueChange.mock.calls.at(-1)?.[0] as RichTextValue | undefined
         const firstNode = latestValue?.content?.[0]
 
-        if (!firstNode || firstNode.type === 'text') {
+        if (!firstNode || !('content' in firstNode)) {
             throw new Error('The editor must emit a paragraph containing the typed URL.')
         }
 

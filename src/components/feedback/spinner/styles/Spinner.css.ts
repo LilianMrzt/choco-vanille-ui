@@ -34,8 +34,8 @@ export const SPINNER_STYLES = {
                     height: vars.fontSize.sm,
                 },
                 md: {
-                    width: vars.fontSize.base,
-                    height: vars.fontSize.base,
+                    width: vars.fontSize.md,
+                    height: vars.fontSize.md,
                 },
                 lg: {
                     width: vars.fontSize.xl,

@@ -4,7 +4,7 @@ export const RICH_TEXT_FONT_SIZES = {
     '2xs': vars.fontSize['2xs'],
     xs: vars.fontSize.xs,
     sm: vars.fontSize.sm,
-    md: vars.fontSize.base,
+    md: vars.fontSize.md,
     lg: vars.fontSize.lg,
     xl: vars.fontSize.xl,
     '2xl': vars.fontSize['2xl'],

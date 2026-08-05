@@ -5,7 +5,7 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import type { EditorToolbarProps } from '@components/forms/rich-text-editor/internal/editor-toolbar/types/EditorToolbar.props.ts'
 
 const TextSizeMenu = ({ editor, disabled }: EditorToolbarProps) => {
-    const selectedFontSize = editor.getAttributes('textStyle').fontSize ?? RICH_TEXT_FONT_SIZES.sm
+    const selectedFontSize = editor.getAttributes('textStyle').fontSize ?? RICH_TEXT_FONT_SIZES.md
     const selectedFontSizeKey = (Object.keys(RICH_TEXT_FONT_SIZES) as RichTextFontSize[]).find(
         (fontSize) => RICH_TEXT_FONT_SIZES[fontSize] === selectedFontSize,
     )

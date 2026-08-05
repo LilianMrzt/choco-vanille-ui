@@ -48,12 +48,12 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 h6: {
                     scrollMarginTop: vars.space['3xl'],
-                    fontSize: vars.fontSize.base,
+                    fontSize: vars.fontSize.md,
                     fontWeight: vars.fontWeight.semibold,
                     letterSpacing: vars.letterSpacing.tight,
                 },
                 p: {
-                    fontSize: vars.fontSize.base,
+                    fontSize: vars.fontSize.md,
                     lineHeight: vars.lineHeight.loose,
                 },
                 span: {},
@@ -145,7 +145,7 @@ export const TYPOGRAPHY_STYLES = {
                 '2xs': { fontSize: vars.fontSize['2xs'] },
                 xs: { fontSize: vars.fontSize.xs },
                 sm: { fontSize: vars.fontSize.sm },
-                md: { fontSize: vars.fontSize.base },
+                md: { fontSize: vars.fontSize.md },
                 lg: { fontSize: vars.fontSize.lg },
                 xl: { fontSize: vars.fontSize.xl },
                 '2xl': { fontSize: vars.fontSize['2xl'] },

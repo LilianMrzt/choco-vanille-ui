@@ -18,7 +18,7 @@ const sizeDimensions = {
 const fallbackFontSizes = {
     sm: vars.fontSize.xs,
     md: vars.fontSize.sm,
-    lg: vars.fontSize.base,
+    lg: vars.fontSize.md,
     xl: vars.fontSize.lg,
 } as const
 

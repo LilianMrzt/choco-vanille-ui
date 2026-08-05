@@ -65,7 +65,7 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
                 lg: {
                     height: '2.75rem',
                     paddingInline: vars.space.lg,
-                    fontSize: vars.fontSize.base,
+                    fontSize: vars.fontSize.md,
                 },
             },
             hasError: {

@@ -19,7 +19,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
         backgroundColor: vars.color.card,
         color: vars.color.foreground,
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize.md,
         lineHeight: vars.lineHeight.relaxed,
         selectors: {
             '&:focus-within': {

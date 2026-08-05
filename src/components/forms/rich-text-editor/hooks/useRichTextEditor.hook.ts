@@ -1,5 +1,6 @@
 import { useEditor, type Editor } from '@tiptap/react'
 import Color from '@tiptap/extension-color'
+import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import { FontSize, TextStyle } from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
@@ -7,6 +8,7 @@ import { useEffect, useReducer, useRef } from 'react'
 
 import { EMPTY_RICH_TEXT_DOCUMENT } from '@components/forms/rich-text-editor/constants/richTextEmptyDocument.const.ts'
 import type { RichTextValue } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
+import { handleRichTextImagePaste } from '@components/forms/rich-text-editor/utils/richTextImagePaste.utils.ts'
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 
 type UseRichTextEditorOptions = {
@@ -59,6 +61,10 @@ export const useRichTextEditor = ({
             TextStyle,
             FontSize,
             Color,
+            Image.configure({
+                allowBase64: true,
+                inline: true,
+            }),
             Link.configure({
                 autolink: true,
                 linkOnPaste: true,
@@ -86,6 +92,7 @@ export const useRichTextEditor = ({
                 'data-placeholder': placeholder ?? '',
                 role: 'textbox',
             },
+            handlePaste: handleRichTextImagePaste,
         },
         onUpdate: ({ editor: updatedEditor }) => {
             const nextValue = updatedEditor.getJSON() as RichTextValue

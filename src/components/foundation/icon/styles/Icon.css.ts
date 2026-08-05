@@ -17,7 +17,7 @@ export const ICON_STYLES = {
             size: {
                 xs:    { width: vars.fontSize.xs,       height: vars.fontSize.xs },       // 12px
                 sm:    { width: vars.fontSize.sm,       height: vars.fontSize.sm },       // 14px
-                md:    { width: vars.fontSize.base,     height: vars.fontSize.base },     // 16px
+                md:    { width: vars.fontSize.md,       height: vars.fontSize.md },       // 16px
                 lg:    { width: vars.fontSize.xl,       height: vars.fontSize.xl },       // 20px
                 xl:    { width: vars.fontSize['2xl'],   height: vars.fontSize['2xl'] },   // 24px
                 '2xl': { width: vars.fontSize['4xl'],   height: vars.fontSize['4xl'] },   // 36px

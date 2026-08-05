@@ -56,6 +56,16 @@ const INITIAL_VALUE: RichTextValue = {
             ],
         },
         {
+            type: 'paragraph',
+            content: [{
+                type: 'image',
+                attrs: {
+                    src: 'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80',
+                    alt: 'Bold typography',
+                },
+            }],
+        },
+        {
             type: 'bulletList',
             content: [
                 {
@@ -116,7 +126,7 @@ const meta = {
         docs: {
             page: RichTextEditorDocsPage,
             description: {
-                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, color palettes, and safely validated links.',
+                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, color palettes, safely validated links, and pasted images.',
             },
         },
     },
@@ -152,7 +162,14 @@ export const Playground: Story = {
                 story: 'Edit the document and see the semantic RichTextRenderer output update below it.',
             },
             ...storySource(`
-import { RichTextEditor, RichTextRenderer, RICH_TEXT_COLOR_PALETTES, vars } from '@choco-vanille/ui'
+import { useState } from 'react'
+import {
+    RichTextEditor,
+    RichTextRenderer,
+    RICH_TEXT_COLOR_PALETTES,
+    type RichTextValue,
+    vars,
+} from '@choco-vanille/ui'
 
 const initialValue = {
     type: 'doc',
@@ -185,6 +202,16 @@ const initialValue = {
             ],
         },
         {
+            type: 'paragraph',
+            content: [{
+                type: 'image',
+                attrs: {
+                    src: 'https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80',
+                    alt: 'Bold typography',
+                },
+            }],
+        },
+        {
             type: 'bulletList',
             content: [
                { type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Bulleted list item' }] }] },
@@ -201,10 +228,12 @@ const initialValue = {
     ],
 }
 
-const [value, setValue] = useState(initialValue)
+const [value, setValue] = useState<RichTextValue>(initialValue)
 
-<RichTextEditor label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
-<RichTextRenderer value={value} aria-label="Rendered result" />`),
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '42rem' }}>
+    <RichTextEditor label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
+    <RichTextRenderer value={value} aria-label="Rendered result" />
+</div>`),
         },
     },
     render: (args) => {

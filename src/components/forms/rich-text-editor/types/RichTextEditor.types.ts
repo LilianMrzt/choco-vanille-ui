@@ -34,7 +34,16 @@ export type RichTextContainerNode = {
     }
 }
 
-export type RichTextNode = RichTextTextNode | RichTextContainerNode
+export type RichTextImageNode = {
+    type: 'image'
+    attrs: {
+        src: string
+        alt?: string | null
+        title?: string | null
+    }
+}
+
+export type RichTextNode = RichTextTextNode | RichTextContainerNode | RichTextImageNode
 
 /** Versioned JSON document emitted by RichTextEditor. */
 export type RichTextValue = {

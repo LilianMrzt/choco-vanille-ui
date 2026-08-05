@@ -71,6 +71,21 @@ export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
             return <span key={key}>{renderTextNode(node)}</span>
         }
 
+        if (node.type === 'image') {
+            const src = node.attrs.src.startsWith('data:image/')
+                ? node.attrs.src
+                : normalizeRichTextUrl(node.attrs.src)
+
+            return src ? (
+                <img
+                    key={key}
+                    src={src}
+                    alt={node.attrs.alt ?? ''}
+                    title={node.attrs.title ?? undefined}
+                />
+            ) : null
+        }
+
         const children = renderRichTextNodes(node.content)
 
         switch (node.type) {

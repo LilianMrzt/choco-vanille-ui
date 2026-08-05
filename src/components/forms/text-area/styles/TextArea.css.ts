@@ -60,7 +60,7 @@ export const TEXT_AREA_STYLES = {
                     minHeight: '5.5rem',
                     paddingInline: vars.space.lg,
                     paddingBlock: vars.space.lg,
-                    fontSize: vars.fontSize.base,
+                    fontSize: vars.fontSize.md,
                 },
             },
             hasError: {
