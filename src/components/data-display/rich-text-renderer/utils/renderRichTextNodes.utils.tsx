@@ -37,6 +37,10 @@ const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode 
                 )
             case 'underline':
                 return <u>{children}</u>
+            case 'strike':
+                return <s>{children}</s>
+            case 'code':
+                return <code>{children}</code>
             case 'textStyle': {
                 const color = normalizeRichTextColorValue(mark.attrs.color)
                 const fontSize = normalizeRichTextFontSizeValue(mark.attrs.fontSize)
@@ -82,11 +86,25 @@ export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
                     src={src}
                     alt={node.attrs.alt ?? ''}
                     title={node.attrs.title ?? undefined}
+                    style={node.attrs.width && /^\d+(?:\.\d+)?(?:%|px|rem|em)?$/.test(node.attrs.width)
+                        ? { width: node.attrs.width }
+                        : undefined}
                 />
             ) : null
         }
 
+        if (node.type === 'horizontalRule') {
+            return <hr key={key} />
+        }
+
+        if (node.type === 'hardBreak') {
+            return <br key={key} />
+        }
+
         const children = renderRichTextNodes(node.content)
+        const style = node.attrs?.textAlign
+            ? { textAlign: node.attrs.textAlign }
+            : undefined
 
         switch (node.type) {
             case 'paragraph':
@@ -94,6 +112,7 @@ export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
                     <Typography
                         key={key}
                         variant={'p'}
+                        style={style}
                     >
                         {children}
                     </Typography>
@@ -109,6 +128,7 @@ export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
                     <Typography
                         key={key}
                         variant={variant}
+                        style={style}
                     >
                         {children}
                     </Typography>
@@ -120,5 +140,9 @@ export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
                 return <ol key={key}>{children}</ol>
             case 'listItem':
                 return <li key={key}>{children}</li>
+            case 'blockquote':
+                return <blockquote key={key}>{children}</blockquote>
+            case 'codeBlock':
+                return <pre key={key}><code>{children}</code></pre>
         }
     })

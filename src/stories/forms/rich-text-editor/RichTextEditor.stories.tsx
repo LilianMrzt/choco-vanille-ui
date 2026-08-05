@@ -126,7 +126,7 @@ const meta = {
         docs: {
             page: RichTextEditorDocsPage,
             description: {
-                component: 'A Tiptap-powered rich-text field with a keyboard-accessible formatting toolbar, color palettes, safely validated links, and pasted images.',
+                component: 'A Tiptap-powered rich-text field with accessible history, link, image, alignment, block, color, and text-formatting controls.',
             },
         },
     },
@@ -142,6 +142,7 @@ const meta = {
         disabled: { control: 'boolean' },
         readOnly: { control: 'boolean' },
         required: { control: 'boolean' },
+        name: { control: 'text' },
     },
     args: {
         label: 'Description',

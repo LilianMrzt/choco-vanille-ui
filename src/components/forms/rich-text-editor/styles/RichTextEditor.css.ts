@@ -22,14 +22,14 @@ export const RICH_TEXT_EDITOR_STYLES = {
         fontSize: vars.fontSize.md,
         lineHeight: vars.lineHeight.relaxed,
         selectors: {
-            '&:focus-within': {
+            '&:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 borderColor: vars.color.primary,
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
             '&[data-invalid="true"]': {
                 borderColor: vars.color.destructive,
             },
-            '&[data-invalid="true"]:focus-within': {
+            '&[data-invalid="true"]:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
             },
             '&[data-disabled="true"]': {

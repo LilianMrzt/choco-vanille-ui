@@ -8,6 +8,8 @@ export type { RichTextEditorLabelProps } from '@components/forms/rich-text-edito
 export type {
     RichTextContainerNode,
     RichTextImageNode,
+    RichTextHardBreakNode,
+    RichTextHorizontalRuleNode,
     RichTextMark,
     RichTextNode,
     RichTextTextNode,

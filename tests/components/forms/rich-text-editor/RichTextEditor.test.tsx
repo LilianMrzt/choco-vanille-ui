@@ -55,7 +55,11 @@ describe('RichTextEditor', () => {
         expect(screen.getByRole('toolbar', { name: 'Text formatting' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text size' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Paragraph' }).getAttribute('aria-pressed')).toBeNull()
+        expect(screen.getByRole('button', { name: 'Add or edit link' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Image actions' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Undo' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Block format' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Text alignment' })).toBeTruthy()
     })
 
     it('emits a versioned document after typing', async () => {
@@ -73,6 +77,15 @@ describe('RichTextEditor', () => {
         expect(onValueChange.mock.calls.at(-1)?.[0]).toMatchObject({
             type: 'doc',
         })
+    })
+
+    it('marks pointer-focused editor content to suppress the keyboard focus ring', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        await userEvent.click(editor)
+
+        expect(editor.getAttribute('data-mouse-focus')).toBe('')
     })
 
     it('supports classic keyboard undo and redo shortcuts', async () => {
@@ -98,6 +111,19 @@ describe('RichTextEditor', () => {
         expect(boldToggle.getAttribute('aria-pressed')).toBe('true')
     })
 
+    it('moves focus between enabled toolbar controls with arrow keys', async () => {
+        render(<RichTextEditor label={'Description'} />)
+
+        screen.getByRole('button', { name: 'Bold' }).focus()
+        await userEvent.keyboard('{ArrowRight}')
+
+        expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Italic' }))
+
+        await userEvent.keyboard('{End}')
+
+        expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Image actions' }))
+    })
+
     it('exposes design-system colors', async () => {
         render(<RichTextEditor label={'Description'} />)
 
@@ -112,6 +138,9 @@ describe('RichTextEditor', () => {
 
         const textSizeButton = screen.getByRole('button', { name: 'Text size' })
         await userEvent.click(textSizeButton)
+        await waitFor(() => {
+            expect(screen.getByRole('button', { name: 'Text size' }).getAttribute('data-active')).toBe('true')
+        })
 
         await waitFor(() => {
             expect(screen.getByRole('menuitemradio', { name: '2xs' })).toBeTruthy()
@@ -371,7 +400,8 @@ describe('RichTextEditor', () => {
         selection.addRange(range)
         fireEvent(document, new Event('selectionchange'))
 
-        await userEvent.click(screen.getByRole('button', { name: 'Heading 1' }))
+        await userEvent.click(screen.getByRole('button', { name: 'Block format' }))
+        await userEvent.click(await screen.findByRole('menuitem', { name: 'Heading 1' }))
 
         expect(screen.getByText('First paragraph').tagName).toBe('H1')
         expect(screen.getByText('Second paragraph').tagName).toBe('P')
@@ -399,5 +429,23 @@ describe('RichTextEditor', () => {
         const editor = screen.getByRole('textbox', { name: 'Description' })
         expect(editor.getAttribute('aria-invalid')).toBe('true')
         expect(editor.getAttribute('aria-describedby')).toBeTruthy()
+    })
+
+    it('submits a required JSON document through its form field name', async () => {
+        render(
+            <RichTextEditor
+                label={'Description'}
+                name={'description'}
+                required
+            />,
+        )
+
+        const submittedValue = document.querySelector('textarea[name="description"]') as HTMLTextAreaElement
+        expect(submittedValue.name).toBe('description')
+        expect(submittedValue.required).toBe(true)
+
+        await userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'Hello')
+
+        expect(submittedValue.value).toContain('"Hello"')
     })
 })

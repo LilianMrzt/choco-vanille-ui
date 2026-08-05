@@ -29,6 +29,7 @@ const TextColorPopover = ({ editor, disabled }: EditorToolbarProps) => {
                     variant={'ghost'}
                     color={'primary'}
                     size={'sm'}
+                    active={open}
                     disabled={disabled}
                     onMouseDown={(event) => event.preventDefault()}
                 />

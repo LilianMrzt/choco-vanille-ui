@@ -18,6 +18,7 @@ const RichTextEditor = memo<RichTextEditorProps>(({
     value,
     defaultValue,
     onValueChange,
+    onImageUpload,
     label,
     helperText,
     error,
@@ -27,6 +28,7 @@ const RichTextEditor = memo<RichTextEditorProps>(({
     required = false,
     width,
     className,
+    name,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
 }) => {
@@ -76,6 +78,14 @@ const RichTextEditor = memo<RichTextEditorProps>(({
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy ?? (label ? labelId : undefined)}
                 />
+                {name && (
+                    <input
+                        type={'hidden'}
+                        name={name}
+                        value={JSON.stringify(value ?? defaultValue ?? EMPTY_RICH_TEXT_DOCUMENT)}
+                        disabled={disabled}
+                    />
+                )}
                 {(error || helperText) && (
                     <HelperText
                         id={helperId}
@@ -104,6 +114,7 @@ const RichTextEditor = memo<RichTextEditorProps>(({
             <EditorToolbar
                 editor={editor}
                 disabled={isDisabled}
+                onImageUpload={onImageUpload}
             />
             <div
                 className={cn(RICH_TEXT_EDITOR_STYLES.editor, className)}
@@ -112,6 +123,24 @@ const RichTextEditor = memo<RichTextEditorProps>(({
             >
                 <EditorContent editor={editor} />
             </div>
+            {name && (
+                <textarea
+                    name={name}
+                    value={editor.isEmpty ? '' : JSON.stringify(editor.getJSON())}
+                    disabled={disabled}
+                    required={required}
+                    readOnly
+                    tabIndex={-1}
+                    aria-hidden={'true'}
+                    style={{
+                        position: 'absolute',
+                        width: '1px',
+                        height: '1px',
+                        opacity: 0,
+                        pointerEvents: 'none',
+                    }}
+                />
+            )}
             {(error || helperText) && (
                 <HelperText
                     id={helperId}

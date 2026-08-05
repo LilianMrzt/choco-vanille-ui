@@ -90,4 +90,47 @@ describe('RichTextRenderer', () => {
         expect(screen.getByText('colored').getAttribute('style')).toContain(vars.editorColors.ocean.base)
         expect(screen.queryByRole('link', { name: 'unsafe link' })).toBeNull()
     })
+
+    it('renders every extended editor node and mark', () => {
+        render(
+            <RichTextRenderer
+                value={{
+                    type: 'doc',
+                    content: [
+                        {
+                            type: 'paragraph',
+                            attrs: { textAlign: 'center' },
+                            content: [
+                                { type: 'text', text: 'Centered', marks: [{ type: 'strike' }] },
+                                { type: 'hardBreak' },
+                                { type: 'text', text: 'line', marks: [{ type: 'code' }] },
+                            ],
+                        },
+                        {
+                            type: 'blockquote',
+                            content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Quoted' }] }],
+                        },
+                        {
+                            type: 'codeBlock',
+                            content: [{ type: 'text', text: 'const value = 1' }],
+                        },
+                        { type: 'horizontalRule' },
+                        {
+                            type: 'image',
+                            attrs: { src: 'https://example.com/image.png', alt: 'Example', width: '50%' },
+                        },
+                    ],
+                }}
+            />,
+        )
+
+        expect(screen.getByText('Centered').closest('p')?.style.textAlign).toBe('center')
+        expect(screen.getByText('Centered').tagName).toBe('S')
+        expect(screen.getByText('Centered').closest('p')?.querySelector('br')).toBeTruthy()
+        expect(screen.getByText('line').tagName).toBe('CODE')
+        expect(screen.getByText('Quoted').closest('blockquote')).toBeTruthy()
+        expect(screen.getByText('const value = 1').closest('pre')).toBeTruthy()
+        expect(document.querySelector('hr')).toBeTruthy()
+        expect(screen.getByRole('img', { name: 'Example' }).style.width).toBe('50%')
+    })
 })

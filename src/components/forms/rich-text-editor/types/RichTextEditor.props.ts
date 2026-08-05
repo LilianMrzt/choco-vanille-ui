@@ -9,6 +9,8 @@ type RichTextEditorBaseProps = {
     defaultValue?: RichTextValue
     /** Called whenever the document changes in either controlled mode. */
     onValueChange?: (value: RichTextValue) => void
+    /** Uploads an image selected from the toolbar and resolves to its public URL. */
+    onImageUpload?: (file: File) => Promise<string>
     /** Visible field label. Required unless an accessible ARIA name is supplied. */
     label?: string
     /** Help text rendered below the editor. Hidden when error is provided. */
@@ -23,6 +25,8 @@ type RichTextEditorBaseProps = {
     readOnly?: boolean
     /** Marks the editable document as required for form semantics. */
     required?: boolean
+    /** Form field name used to submit the JSON document value. */
+    name?: string
     /** CSS width of the outer wrapper. Defaults to 100%. */
     width?: React.CSSProperties['width']
     className?: string

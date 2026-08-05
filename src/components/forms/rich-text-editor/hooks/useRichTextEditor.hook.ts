@@ -2,6 +2,7 @@ import { useEditor, type Editor } from '@tiptap/react'
 import Color from '@tiptap/extension-color'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
+import TextAlign from '@tiptap/extension-text-align'
 import { FontSize, TextStyle } from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
 import { useEffect, useReducer, useRef } from 'react'
@@ -61,7 +62,20 @@ export const useRichTextEditor = ({
             TextStyle,
             FontSize,
             Color,
-            Image.configure({
+            Image.extend({
+                addAttributes() {
+                    return {
+                        ...this.parent?.(),
+                        width: {
+                            default: null,
+                            parseHTML: (element) => element.getAttribute('data-width'),
+                            renderHTML: (attributes) => attributes.width
+                                ? { 'data-width': attributes.width, style: `width: ${attributes.width}` }
+                                : {},
+                        },
+                    }
+                },
+            }).configure({
                 allowBase64: true,
                 inline: true,
             }),
@@ -77,6 +91,9 @@ export const useRichTextEditor = ({
                 isAllowedUri: (url) => Boolean(normalizeRichTextUrl(url)),
                 shouldAutoLink: (url) => Boolean(normalizeRichTextUrl(url)),
             }),
+            TextAlign.configure({
+                types: ['heading', 'paragraph'],
+            }),
         ],
         content: value ?? defaultValue ?? EMPTY_RICH_TEXT_DOCUMENT,
         editable: !isDisabled,
@@ -91,6 +108,16 @@ export const useRichTextEditor = ({
                 ...(required ? { 'aria-required': 'true' } : {}),
                 'data-placeholder': placeholder ?? '',
                 role: 'textbox',
+            },
+            handleDOMEvents: {
+                mousedown: (view) => {
+                    view.dom.setAttribute('data-mouse-focus', '')
+                    return false
+                },
+                blur: (view) => {
+                    view.dom.removeAttribute('data-mouse-focus')
+                    return false
+                },
             },
             handlePaste: handleRichTextImagePaste,
         },
