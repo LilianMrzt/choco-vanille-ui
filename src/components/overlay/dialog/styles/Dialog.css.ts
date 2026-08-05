@@ -1,23 +1,11 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
 import { fadeIn, fadeOut } from '@constants/animations'
+import { vars } from '@theme/contract.css.ts'
+import { OVERLAY_BACKDROP_STYLES } from '@components/overlay/_shared/styles/OverlayBackdrop.css.ts'
 
 export const DIALOG_STYLES = {
-    overlay: style({
-        position: 'fixed',
-        inset: 0,
-        zIndex: vars.zIndex.overlay,
-        backgroundColor: vars.color.overlay,
-        selectors: {
-            '&[data-open]': {
-                animation: `${fadeIn} ${vars.duration.normal} ${vars.easing.out} both`,
-            },
-            '&[data-closed]': {
-                animation: `${fadeOut} ${vars.duration.fast} ${vars.easing.in} both`,
-            },
-        },
-    }),
+    overlay: OVERLAY_BACKDROP_STYLES.root,
     content: style({
         position: 'fixed',
         left: '50%',

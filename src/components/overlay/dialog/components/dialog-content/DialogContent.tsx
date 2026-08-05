@@ -1,6 +1,7 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC } from 'react'
 
+import { OverlayBackdrop } from '@components/overlay/_shared/components/overlay-backdrop'
 import { DIALOG_STYLES } from '@components/overlay/dialog/styles/Dialog.css.ts'
 import type { DialogContentProps } from '@components/overlay/dialog/components/dialog-content/types/DialogContent.props.ts'
 import { cn } from '@utils/cn.ts'
@@ -25,7 +26,7 @@ const DialogContent: FC<DialogContentProps> = memo(({
 
     return (
         <BaseDialog.Portal>
-            <BaseDialog.Backdrop className={DIALOG_STYLES.overlay} />
+            <OverlayBackdrop />
             <BaseDialog.Popup
                 className={cn(DIALOG_STYLES.content, DIALOG_STYLES.contentSize[size], className)}
                 aria-label={accessibleName}
