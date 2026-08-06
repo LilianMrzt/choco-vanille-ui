@@ -15,6 +15,13 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
         return null
     }
 
+    const isParagraph = editor.isActive('paragraph')
+    const isHeading1 = editor.isActive('heading', { level: 1 })
+    const isHeading2 = editor.isActive('heading', { level: 2 })
+    const isHeading3 = editor.isActive('heading', { level: 3 })
+    const isBlockquote = editor.isActive('blockquote')
+    const isCodeBlock = editor.isActive('codeBlock')
+
     const toggleCurrentHeading = (level: 1 | 2) => {
         const { from } = editor.state.selection
 
@@ -180,16 +187,19 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.paragraph}
                             startIcon={'lucide:pilcrow'}
+                            active={isParagraph}
                             onClick={() => editor.chain().focus().setParagraph().run()}
                         />
                         <DropdownMenu.Item
                             label={labels.heading1}
                             startIcon={'lucide:heading-1'}
+                            active={isHeading1}
                             onClick={() => toggleCurrentHeading(1)}
                         />
                         <DropdownMenu.Item
                             label={labels.heading2}
                             startIcon={'lucide:heading-2'}
+                            active={isHeading2}
                             onClick={() =>
                                 editor.chain().focus().toggleHeading({ level: 2 }).run()
                             }
@@ -197,6 +207,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.heading3}
                             startIcon={'lucide:heading-3'}
+                            active={isHeading3}
                             onClick={() =>
                                 editor.chain().focus().toggleHeading({ level: 3 }).run()
                             }
@@ -205,11 +216,13 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.blockQuote}
                             startIcon={'lucide:quote'}
+                            active={isBlockquote}
                             onClick={() => editor.chain().focus().toggleBlockquote().run()}
                         />
                         <DropdownMenu.Item
                             label={labels.codeBlock}
                             startIcon={'lucide:square-code'}
+                            active={isCodeBlock}
                             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                         />
                         <DropdownMenu.Separator />

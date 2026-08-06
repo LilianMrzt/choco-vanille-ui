@@ -30,6 +30,7 @@ const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
             <DropdownMenu.Item
                 label={labels.addOrEditLink}
                 startIcon={'lucide:link'}
+                active={editor.isActive('link')}
                 onClick={handleSetLink}
             />
         )

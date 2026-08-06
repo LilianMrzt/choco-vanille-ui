@@ -23,6 +23,7 @@ import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/co
   */
 const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
     className,
+    active = false,
     destructive = false,
     startIcon,
     endIcon,
@@ -36,6 +37,7 @@ const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
             destructive && DROPDOWN_MENU_ITEM_STYLES.destructive,
             className,
         )}
+        data-active={active ? 'true' : undefined}
         {...props}
     >
         {startIcon && (

@@ -15,6 +15,9 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
         return null
     }
 
+    const isBulletList = editor.isActive('bulletList')
+    const isOrderedList = editor.isActive('orderedList')
+
     return (
         <div
             className={LISTS_GROUP_STYLES.root}
@@ -87,11 +90,13 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.bulletedList}
                             startIcon={'lucide:list'}
+                            active={isBulletList}
                             onClick={() => editor.chain().focus().toggleBulletList().run()}
                         />
                         <DropdownMenu.Item
                             label={labels.numberedList}
                             startIcon={'lucide:list-ordered'}
+                            active={isOrderedList}
                             onClick={() => editor.chain().focus().toggleOrderedList().run()}
                         />
                     </DropdownMenu.Content>

@@ -36,6 +36,10 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
             '&:not([data-disabled])[data-highlighted]:active': {
                 backgroundColor: vars.color.primarySubtleActive,
             },
+            '&:not([data-disabled])[data-active="true"]': {
+                backgroundColor: vars.color.primarySubtle,
+                color: vars.color.primarySubtleForeground,
+            },
             '&:focus-visible': {
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,

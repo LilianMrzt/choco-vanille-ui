@@ -7,6 +7,7 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { useState } from 'react'
 import type { TextSizeMenuProps } from '@components/forms/rich-text-editor/components/text-appearance-group/types/TextSizeMenu.props.ts'
+import { TEXT_SIZE_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextSizeMenu.css.ts'
 
 const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
     const [open, setOpen] = useState(false)
@@ -43,6 +44,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
+                        className={TEXT_SIZE_MENU_STYLES.trigger}
                         active={open}
                         disabled={disabled}
                     />
@@ -71,6 +73,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                         <DropdownMenu.Item
                             key={fontSize}
                             label={RICH_TEXT_FONT_SIZE_LABELS[fontSize]}
+                            active={fontSize === selectedFontSizeKey}
                             onMouseDown={(event) => event.preventDefault()}
                             onClick={() =>
                                 editor

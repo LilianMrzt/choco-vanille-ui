@@ -15,6 +15,11 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
         return null
     }
 
+    const currentAlignment =
+        editor.getAttributes('paragraph').textAlign
+        ?? editor.getAttributes('heading').textAlign
+        ?? 'left'
+
     return (
         <div
             className={ALIGNMENT_GROUP_STYLES.root}
@@ -125,11 +130,13 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.alignLeft}
                             startIcon={'lucide:align-left'}
+                            active={currentAlignment === 'left'}
                             onClick={() => editor.chain().focus().setTextAlign('left').run()}
                         />
                         <DropdownMenu.Item
                             label={labels.alignCenter}
                             startIcon={'lucide:align-center'}
+                            active={currentAlignment === 'center'}
                             onClick={() =>
                                 editor.chain().focus().setTextAlign('center').run()
                             }
@@ -137,11 +144,13 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.alignRight}
                             startIcon={'lucide:align-right'}
+                            active={currentAlignment === 'right'}
                             onClick={() => editor.chain().focus().setTextAlign('right').run()}
                         />
                         <DropdownMenu.Item
                             label={labels.justify}
                             startIcon={'lucide:align-justify'}
+                            active={currentAlignment === 'justify'}
                             onClick={() =>
                                 editor.chain().focus().setTextAlign('justify').run()
                             }
