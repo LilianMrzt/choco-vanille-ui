@@ -29,6 +29,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     <Tooltip
                         content={labels.bulletedList}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -46,6 +47,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     <Tooltip
                         content={labels.numberedList}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -70,6 +72,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     <Tooltip
                         content={labels.listsTrigger}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <DropdownMenu.Trigger>
@@ -82,7 +85,6 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                                 size={'sm'}
                                 active={listsOpen}
                                 disabled={disabled}
-                                title={labels.listsTrigger}
                             />
                         </DropdownMenu.Trigger>
                     </Tooltip>

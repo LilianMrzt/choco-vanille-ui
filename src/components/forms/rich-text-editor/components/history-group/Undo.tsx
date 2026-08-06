@@ -13,6 +13,7 @@ const Undo = () => {
         <Tooltip
             content={labels.undo}
             delayDuration={700}
+            openOnFocus={false}
             position={'top'}
         >
             <IconButton

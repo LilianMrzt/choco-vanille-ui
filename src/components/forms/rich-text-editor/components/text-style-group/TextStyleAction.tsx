@@ -25,6 +25,7 @@ const TextStyleAction = ({
         <Tooltip
             content={label}
             delayDuration={700}
+            openOnFocus={false}
             position={'top'}
         >
             <Toggle

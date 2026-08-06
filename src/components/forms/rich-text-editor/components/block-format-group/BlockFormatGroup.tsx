@@ -44,6 +44,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.paragraph}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -60,6 +61,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.heading1}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -76,6 +78,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.heading2}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -94,6 +97,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.heading3}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -112,6 +116,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.blockQuote}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -128,6 +133,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.codeBlock}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -144,6 +150,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.insertHorizontalRule}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -167,6 +174,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <Tooltip
                         content={labels.blockFormatTrigger}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <DropdownMenu.Trigger>
@@ -179,7 +187,6 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                                 size={'sm'}
                                 active={blockFormatOpen}
                                 disabled={disabled}
-                                title={labels.blockFormatTrigger}
                             />
                         </DropdownMenu.Trigger>
                     </Tooltip>

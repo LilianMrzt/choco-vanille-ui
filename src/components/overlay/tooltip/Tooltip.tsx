@@ -16,6 +16,7 @@ const Tooltip: FC<TooltipProps> = memo(({
     align: alignProp = 'center',
     delayDuration = 0,
     disabled = false,
+    openOnFocus = true,
     arrow = false,
     closeOnClick = true,
     className,
@@ -30,11 +31,21 @@ const Tooltip: FC<TooltipProps> = memo(({
         : { side: sideProp, align: alignProp }
 
     const { effectiveOpen, handleOpenChange } = useTooltip({ disabled, open, defaultOpen, onOpenChange })
+    const handleTooltipOpenChange = (
+        isOpen: boolean,
+        details: BaseTooltip.Root.ChangeEventDetails,
+    ) => {
+        if (!openOnFocus && details.reason === 'trigger-focus') {
+            return
+        }
+
+        handleOpenChange(isOpen)
+    }
 
     const root = (
         <BaseTooltip.Root
             open={effectiveOpen}
-            onOpenChange={handleOpenChange}
+            onOpenChange={handleTooltipOpenChange}
         >
             <BaseTooltip.Trigger
                 delay={delayDuration}

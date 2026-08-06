@@ -61,6 +61,7 @@ const TextColorMenu = () => {
             <Tooltip
                 content={labels.textColorTrigger}
                 delayDuration={700}
+                openOnFocus={false}
                 position={'top'}
             >
                 <Popover.Trigger>

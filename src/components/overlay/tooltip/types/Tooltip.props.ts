@@ -21,6 +21,8 @@ export type TooltipProps = {
   delayDuration?: number;
   /** Whether the tooltip is disabled. */
   disabled?: boolean;
+  /** Whether the tooltip opens when its trigger receives focus. Defaults to `true`. */
+  openOnFocus?: boolean;
   /** Whether to render the tooltip arrow. @default false */
   arrow?: boolean;
   /** Whether clicking the trigger closes the tooltip. @default true */

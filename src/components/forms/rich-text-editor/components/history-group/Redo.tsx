@@ -13,6 +13,7 @@ const Redo = () => {
         <Tooltip
             content={labels.redo}
             delayDuration={700}
+            openOnFocus={false}
             position={'top'}
         >
             <IconButton

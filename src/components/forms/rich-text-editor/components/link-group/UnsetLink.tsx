@@ -29,6 +29,7 @@ const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
         <Tooltip
             content={labels.removeLink}
             delayDuration={700}
+            openOnFocus={false}
             position={'top'}
         >
             <IconButton

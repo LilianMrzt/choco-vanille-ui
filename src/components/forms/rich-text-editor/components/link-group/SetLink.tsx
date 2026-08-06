@@ -40,6 +40,7 @@ const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
         <Tooltip
             content={labels.addOrEditLink}
             delayDuration={700}
+            openOnFocus={false}
             position={'top'}
         >
             <IconButton

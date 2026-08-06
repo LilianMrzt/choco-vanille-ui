@@ -25,6 +25,7 @@ const LinkGroup = () => {
                 <Tooltip
                     content={labels.linkGroupTrigger}
                     delayDuration={700}
+                    openOnFocus={false}
                     position={'top'}
                 >
                     <DropdownMenu.Trigger>
@@ -37,7 +38,6 @@ const LinkGroup = () => {
                             size={'sm'}
                             active={open}
                             disabled={disabled}
-                            title={labels.linkGroupTrigger}
                         />
                     </DropdownMenu.Trigger>
                 </Tooltip>

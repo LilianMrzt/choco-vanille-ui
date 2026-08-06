@@ -17,7 +17,7 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
             borderColor: variant === 'outlined'
                 ? vars.color.border
                 : 'transparent',
-            color: vars.color.mutedForeground,
+            color: vars.color[`${color}SubtleForeground`],
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color[`${color}Subtle`],

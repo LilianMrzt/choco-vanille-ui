@@ -31,6 +31,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <Tooltip
                         content={labels.alignLeft}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -48,6 +49,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <Tooltip
                         content={labels.alignCenter}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -67,6 +69,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <Tooltip
                         content={labels.alignRight}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -84,6 +87,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <Tooltip
                         content={labels.justify}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -110,6 +114,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <Tooltip
                         content={labels.alignmentTrigger}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <DropdownMenu.Trigger>
@@ -122,7 +127,6 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                                 size={'sm'}
                                 active={open}
                                 disabled={disabled}
-                                title={labels.alignmentTrigger}
                             />
                         </DropdownMenu.Trigger>
                     </Tooltip>

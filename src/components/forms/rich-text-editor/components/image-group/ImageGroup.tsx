@@ -30,6 +30,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <Tooltip
                         content={labels.insertImageUrl}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -51,6 +52,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <Tooltip
                         content={labels.uploadImage}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -67,6 +69,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <Tooltip
                         content={labels.editImageDetails}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -101,6 +104,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <Tooltip
                         content={labels.removeImage}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <IconButton
@@ -124,6 +128,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <Tooltip
                         content={labels.imageGroupTrigger}
                         delayDuration={700}
+                        openOnFocus={false}
                         position={'top'}
                     >
                         <DropdownMenu.Trigger>
@@ -136,7 +141,6 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                                 size={'sm'}
                                 active={open}
                                 disabled={disabled}
-                                title={labels.imageGroupTrigger}
                             />
                         </DropdownMenu.Trigger>
                     </Tooltip>
