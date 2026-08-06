@@ -10,7 +10,7 @@ import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
 const TextColorMenu = () => {
     const colorButtonRefs = useRef<Array<HTMLButtonElement | null>>([])
     const [open, setOpen] = useState(false)
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
     const focusColor = useCallback((paletteIndex: number, colorIndex: number) => {
         colorButtonRefs.current[paletteIndex * 3 + colorIndex]?.focus()
     }, [])
@@ -60,7 +60,7 @@ const TextColorMenu = () => {
             <Popover.Trigger>
                 <IconButton
                     type={'button'}
-                    aria-label={'Text color'}
+                    aria-label={labels.textColorTrigger}
                     variant={'ghost'}
                     color={'primary'}
                     size={'sm'}
@@ -75,7 +75,7 @@ const TextColorMenu = () => {
                 </IconButton>
             </Popover.Trigger>
             <Popover.Content
-                aria-label={'Text color palette'}
+                aria-label={labels.textColorPalette}
                 side={'bottom'}
                 align={'start'}
             >
@@ -86,7 +86,7 @@ const TextColorMenu = () => {
                                 key={palette.name}
                                 className={TEXT_COLOR_MENU_STYLES.paletteColumn}
                                 role={'group'}
-                                aria-label={`${palette.name} text colors`}
+                                aria-label={labels.textColorGroup(palette.name)}
                             >
                                 {palette.colors.map((color, colorIndex) => {
                                     const isSelected = selectedColor === color
@@ -100,7 +100,7 @@ const TextColorMenu = () => {
                                             type={'button'}
                                             className={TEXT_COLOR_MENU_STYLES.colorSwatch}
                                             style={{ backgroundColor: color }}
-                                            aria-label={`${palette.name} ${colorIndex + 1} text color`}
+                                            aria-label={labels.textColorSwatch(palette.name, colorIndex)}
                                             aria-pressed={isSelected}
                                             data-selected={isSelected || undefined}
                                             tabIndex={paletteIndex === 0 && colorIndex === 0 ? 0 : -1}

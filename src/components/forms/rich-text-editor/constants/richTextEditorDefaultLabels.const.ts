@@ -1,0 +1,64 @@
+import type { RichTextEditorLabels } from '@components/forms/rich-text-editor/types/RichTextEditorLabels.types.ts'
+
+export const RICH_TEXT_EDITOR_DEFAULT_LABELS: RichTextEditorLabels = {
+    toolbar: 'Text formatting',
+
+    historyGroup: 'History',
+    undo: 'Undo',
+    redo: 'Redo',
+
+    textStyleGroup: 'Text style',
+    bold: 'Bold',
+    italic: 'Italic',
+    underline: 'Underline',
+    strikethrough: 'Strikethrough',
+
+    textAppearanceGroup: 'Text appearance',
+    textSizeTrigger: 'Text size',
+    textSizeOptions: 'Text size options',
+    textColorTrigger: 'Text color',
+    textColorPalette: 'Text color palette',
+    textColorGroup: (paletteName) => `${paletteName} text colors`,
+    textColorSwatch: (paletteName, colorIndex) => `${paletteName} ${colorIndex + 1} text color`,
+
+    linkGroup: 'Links',
+    addOrEditLink: 'Add or edit link',
+    linkUrlPrompt: 'Link URL',
+    removeLink: 'Remove link',
+
+    imageGroup: 'Image actions',
+    imageGroupTrigger: 'Image actions',
+    imageOptions: 'Image options',
+    insertImageUrl: 'Insert image URL',
+    imageUrlPrompt: 'Image URL',
+    uploadImage: 'Upload image',
+    editImageDetails: 'Edit image details',
+    imageAltPrompt: 'Image alternative text',
+    imageWidthPrompt: 'Image width',
+    removeImage: 'Remove image',
+
+    blockFormatGroup: 'Block formatting',
+    blockFormatTrigger: 'Block format',
+    blockFormatOptions: 'Block format options',
+    paragraph: 'Paragraph',
+    heading1: 'Heading 1',
+    heading2: 'Heading 2',
+    heading3: 'Heading 3',
+    blockQuote: 'Block quote',
+    codeBlock: 'Code block',
+    insertHorizontalRule: 'Insert horizontal rule',
+
+    listsGroup: 'Lists',
+    listsTrigger: 'Lists',
+    listOptions: 'List options',
+    bulletedList: 'Bulleted list',
+    numberedList: 'Numbered list',
+
+    alignmentGroup: 'Text alignment',
+    alignmentTrigger: 'Text alignment',
+    alignmentOptions: 'Text alignment options',
+    alignLeft: 'Align left',
+    alignCenter: 'Align center',
+    alignRight: 'Align right',
+    justify: 'Justify',
+}

@@ -9,7 +9,7 @@ import type { ImageGroupProps } from '@components/forms/rich-text-editor/compone
 const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024
 
 const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
-    const { editor, disabled, onImageUpload } = useRichTextEditorContext()
+    const { editor, disabled, onImageUpload, labels } = useRichTextEditorContext()
     const imageInputRef = useRef<HTMLInputElement>(null)
     const [open, setOpen] = useState(false)
 
@@ -21,24 +21,24 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
         <div
             className={IMAGE_GROUP_STYLES.root}
             role={'group'}
-            aria-label={'Image actions'}
+            aria-label={labels.imageGroup}
         >
             {presentation === 'inline' ? (
                 <>
                     <IconButton
                         type={'button'}
                         icon={'lucide:image-plus'}
-                        aria-label={'Insert image URL'}
+                        aria-label={labels.insertImageUrl}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
                         disabled={disabled}
-                        onClick={() => { const src = window.prompt('Image URL'); if (src) { editor.chain().focus().setImage({ src }).run() } }}
+                        onClick={() => { const src = window.prompt(labels.imageUrlPrompt); if (src) { editor.chain().focus().setImage({ src }).run() } }}
                     />
                     <IconButton
                         type={'button'}
                         icon={'lucide:upload'}
-                        aria-label={'Upload image'}
+                        aria-label={labels.uploadImage}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -48,17 +48,17 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:image-up'}
-                        aria-label={'Edit image details'}
+                        aria-label={labels.editImageDetails}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
                         disabled={disabled || !editor.isActive('image')}
-                        onClick={() => { const attributes = editor.getAttributes('image'); const alt = window.prompt('Image alternative text', attributes.alt ?? ''); const width = window.prompt('Image width', attributes.width ?? '100%'); editor.chain().focus().updateAttributes('image', { ...(alt !== null ? { alt } : {}), ...(width !== null ? { width } : {}) }).run() }}
+                        onClick={() => { const attributes = editor.getAttributes('image'); const alt = window.prompt(labels.imageAltPrompt, attributes.alt ?? ''); const width = window.prompt(labels.imageWidthPrompt, attributes.width ?? '100%'); editor.chain().focus().updateAttributes('image', { ...(alt !== null ? { alt } : {}), ...(width !== null ? { width } : {}) }).run() }}
                     />
                     <IconButton
                         type={'button'}
                         icon={'lucide:trash-2'}
-                        aria-label={'Remove image'}
+                        aria-label={labels.removeImage}
                         variant={'ghost'}
                         color={'destructive'}
                         size={'sm'}
@@ -76,7 +76,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                         <IconButton
                             type={'button'}
                             icon={'lucide:image'}
-                            aria-label={'Image actions'}
+                            aria-label={labels.imageGroupTrigger}
                             variant={'ghost'}
                             color={'primary'}
                             size={'sm'}
@@ -84,12 +84,12 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                             disabled={disabled}
                         />
                     </DropdownMenu.Trigger>
-                    <DropdownMenu.Content aria-label={'Image options'}>
+                    <DropdownMenu.Content aria-label={labels.imageOptions}>
                         <DropdownMenu.Item
-                            label={'Insert image URL'}
+                            label={labels.insertImageUrl}
                             startIcon={'lucide:image-plus'}
                             onClick={() => {
-                                const src = window.prompt('Image URL')
+                                const src = window.prompt(labels.imageUrlPrompt)
 
                                 if (src) {
                                     editor.chain().focus().setImage({ src }).run()
@@ -97,19 +97,19 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                             }}
                         />
                         <DropdownMenu.Item
-                            label={'Upload image'}
+                            label={labels.uploadImage}
                             startIcon={'lucide:upload'}
                             onClick={() => imageInputRef.current?.click()}
                         />
                         <DropdownMenu.Separator />
                         <DropdownMenu.Item
-                            label={'Edit image details'}
+                            label={labels.editImageDetails}
                             startIcon={'lucide:image-up'}
                             disabled={!editor.isActive('image')}
                             onClick={() => {
                                 const attributes = editor.getAttributes('image')
-                                const alt = window.prompt('Image alternative text', attributes.alt ?? '')
-                                const width = window.prompt('Image width', attributes.width ?? '100%')
+                                const alt = window.prompt(labels.imageAltPrompt, attributes.alt ?? '')
+                                const width = window.prompt(labels.imageWidthPrompt, attributes.width ?? '100%')
 
                                 editor.chain().focus().updateAttributes('image', {
                                     ...(alt !== null ? { alt } : {}),
@@ -118,7 +118,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                             }}
                         />
                         <DropdownMenu.Item
-                            label={'Remove image'}
+                            label={labels.removeImage}
                             startIcon={'lucide:trash-2'}
                             destructive
                             disabled={!editor.isActive('image')}

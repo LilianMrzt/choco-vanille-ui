@@ -2,6 +2,7 @@ export type { RichTextEditorProps } from '@components/forms/rich-text-editor/typ
 export type { RichTextEditorFieldProps } from '@components/forms/rich-text-editor/types/RichTextEditorField.props.ts'
 export type { RichTextEditorToolbarPresentation } from '@components/forms/rich-text-editor/types/RichTextEditorToolbarPresentation.types.ts'
 export type { RichTextEditorCompound } from '@components/forms/rich-text-editor/types/RichTextEditorCompound.ts'
+export type { RichTextEditorLabels } from '@components/forms/rich-text-editor/types/RichTextEditorLabels.types.ts'
 export type {
     RichTextContainerNode,
     RichTextFontSize,

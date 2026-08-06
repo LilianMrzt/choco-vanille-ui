@@ -26,6 +26,7 @@ import ToolbarSeparator from '@components/forms/rich-text-editor/components/tool
 import { RichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { cn } from '@utils/cn.ts'
 import { EMPTY_RICH_TEXT_DOCUMENT } from '@components/forms/rich-text-editor/constants/richTextEmptyDocument.const.ts'
+import { RICH_TEXT_EDITOR_DEFAULT_LABELS } from '@components/forms/rich-text-editor/constants/richTextEditorDefaultLabels.const.ts'
 import { RICH_TEXT_EDITOR_STYLES } from '@components/forms/rich-text-editor/styles/RichTextEditor.css.ts'
 import { useRichTextEditor } from '@components/forms/rich-text-editor/hooks/useRichTextEditor.hook.ts'
 import type {
@@ -49,6 +50,7 @@ const RichTextEditor = memo<RichTextEditorProps>(({
     width,
     className,
     name,
+    labels,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     children,
@@ -91,6 +93,7 @@ const RichTextEditor = memo<RichTextEditorProps>(({
             ?? value
             ?? defaultValue
             ?? EMPTY_RICH_TEXT_DOCUMENT,
+        labels: { ...RICH_TEXT_EDITOR_DEFAULT_LABELS, ...labels },
     }
 
     if (!editor) {

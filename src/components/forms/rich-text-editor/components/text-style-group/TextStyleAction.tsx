@@ -36,45 +36,45 @@ const TextStyleAction = ({
 }
 
 export const Bold = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
     return (
         <TextStyleAction
             mark={'bold'}
             icon={'lucide:bold'}
-            label={'Bold'}
+            label={labels.bold}
             onToggle={() => editor?.chain().focus().toggleBold().run()}
         />
     )
 }
 export const Italic = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
     return (
         <TextStyleAction
             mark={'italic'}
             icon={'lucide:italic'}
-            label={'Italic'}
+            label={labels.italic}
             onToggle={() => editor?.chain().focus().toggleItalic().run()}
         />
     )
 }
 export const Underline = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
     return (
         <TextStyleAction
             mark={'underline'}
             icon={'lucide:underline'}
-            label={'Underline'}
+            label={labels.underline}
             onToggle={() => editor?.chain().focus().toggleUnderline().run()}
         />
     )
 }
 export const Strike = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
     return (
         <TextStyleAction
             mark={'strike'}
             icon={'lucide:strikethrough'}
-            label={'Strikethrough'}
+            label={labels.strikethrough}
             onToggle={() => editor?.chain().focus().toggleStrike().run()}
         />
     )

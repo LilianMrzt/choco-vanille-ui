@@ -2,40 +2,45 @@ import { memo, type FC } from 'react'
 
 import { TOOLBAR_STYLES } from '@components/forms/rich-text-editor/components/toolbar/styles/Toolbar.css.ts'
 import type { ToolbarProps } from '@components/forms/rich-text-editor/components/toolbar/types/Toolbar.props.ts'
+import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { cn } from '@utils/cn.ts'
 
-const Toolbar: FC<ToolbarProps> = memo(({ children, 'aria-label': ariaLabel, className }) => (
-    <div
-        className={cn(TOOLBAR_STYLES.root, className)}
-        role={'toolbar'}
-        aria-label={ariaLabel ?? 'Text formatting'}
-        onKeyDown={(event) => {
-            const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)'))
-            const currentIndex = buttons.indexOf(document.activeElement as HTMLButtonElement)
+const Toolbar: FC<ToolbarProps> = memo(({ children, 'aria-label': ariaLabel, className }) => {
+    const { labels } = useRichTextEditorContext()
 
-            if (currentIndex === -1) {
-                return
-            }
+    return (
+        <div
+            className={cn(TOOLBAR_STYLES.root, className)}
+            role={'toolbar'}
+            aria-label={ariaLabel ?? labels.toolbar}
+            onKeyDown={(event) => {
+                const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)'))
+                const currentIndex = buttons.indexOf(document.activeElement as HTMLButtonElement)
 
-            const nextIndex = event.key === 'ArrowRight'
-                ? (currentIndex + 1) % buttons.length
-                : event.key === 'ArrowLeft'
-                    ? (currentIndex - 1 + buttons.length) % buttons.length
-                    : event.key === 'Home'
-                        ? 0
-                        : event.key === 'End'
-                            ? buttons.length - 1
-                            : undefined
+                if (currentIndex === -1) {
+                    return
+                }
 
-            if (nextIndex !== undefined) {
-                event.preventDefault()
-                buttons[nextIndex].focus()
-            }
-        }}
-    >
-        {children}
-    </div>
-))
+                const nextIndex = event.key === 'ArrowRight'
+                    ? (currentIndex + 1) % buttons.length
+                    : event.key === 'ArrowLeft'
+                        ? (currentIndex - 1 + buttons.length) % buttons.length
+                        : event.key === 'Home'
+                            ? 0
+                            : event.key === 'End'
+                                ? buttons.length - 1
+                                : undefined
+
+                if (nextIndex !== undefined) {
+                    event.preventDefault()
+                    buttons[nextIndex].focus()
+                }
+            }}
+        >
+            {children}
+        </div>
+    )
+})
 
 Toolbar.displayName = 'RichTextEditor.Toolbar'
 

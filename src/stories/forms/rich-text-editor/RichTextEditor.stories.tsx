@@ -198,9 +198,31 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
 
 \`\`\`tsx
 // Compound API
-<RichTextEditor label="Description" value={value} onValueChange={setValue}>
+<RichTextEditor
+  label="Description"
+  value={value}
+  onValueChange={setValue}
+  labels={{
+    toolbar: 'Mise en forme',
+    historyGroup: 'Historique',
+    undo: 'Annuler',
+    redo: 'Rétablir',
+    textStyleGroup: 'Style du texte',
+    bold: 'Gras',
+    italic: 'Italique',
+    underline: 'Souligné',
+    strikethrough: 'Barré',
+    linkGroup: 'Liens',
+    addOrEditLink: 'Ajouter ou modifier le lien',
+    removeLink: 'Supprimer le lien',
+    blockFormatGroup: 'Format de bloc',
+    listsGroup: 'Listes',
+    alignmentGroup: 'Alignement du texte',
+    imageGroup: 'Actions sur les images',
+  }}
+>
   <RichTextEditor.Label>Description</RichTextEditor.Label>
-  <RichTextEditor.Toolbar>
+  <RichTextEditor.Toolbar aria-label="Mise en forme">
     <RichTextEditor.HistoryGroup />
     <RichTextEditor.ToolbarSeparator />
     <RichTextEditor.TextStyleGroup />
@@ -221,6 +243,23 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
   <RichTextEditor.HelperText />
 </RichTextEditor>
 \`\`\`
+
+Pass the optional \`labels\` prop to localize every compound toolbar slot
+without coupling the component to a specific i18n library:
+
+\`\`\`tsx
+<RichTextEditor
+  label="Description"
+  labels={{
+    toolbar: 'Mise en forme',
+    undo: 'Annuler',
+    redo: 'Rétablir',
+    bold: 'Gras',
+  }}
+>
+  {/* compound slots */}
+</RichTextEditor>
+\`\`\`
 `,
             },
         },
@@ -229,6 +268,11 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         label: {
             control: 'text',
             table: { category: 'Compound: Label' },
+        },
+        labels: {
+            control: 'object',
+            description: 'Localized accessible names and prompt messages for all compound toolbar slots.',
+            table: { category: 'Compound: Labels' },
         },
         placeholder: {
             control: 'text',
@@ -333,6 +377,12 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         label: 'Description',
         placeholder: 'Start writing...',
         helperText: 'Use the toolbar or standard keyboard shortcuts to format text.',
+        labels: {
+            toolbar: 'Text formatting',
+            undo: 'Undo',
+            redo: 'Redo',
+            bold: 'Bold',
+        },
         width: '42rem',
         useCompoundLayout: false,
         showToolbarGroups: true,
@@ -536,9 +586,32 @@ import { RichTextEditor, type RichTextValue } from '@choco-vanille/ui'
 
 const [value, setValue] = useState<RichTextValue>(initialValue)
 
-<RichTextEditor label="Description" value={value} onValueChange={setValue} width="42rem">
+<RichTextEditor
+    label="Description"
+    value={value}
+    onValueChange={setValue}
+    width="42rem"
+    labels={{
+        toolbar: 'Mise en forme',
+        historyGroup: 'Historique',
+        undo: 'Annuler',
+        redo: 'Rétablir',
+        textStyleGroup: 'Style du texte',
+        bold: 'Gras',
+        italic: 'Italique',
+        underline: 'Souligné',
+        strikethrough: 'Barré',
+        linkGroup: 'Liens',
+        addOrEditLink: 'Ajouter ou modifier le lien',
+        removeLink: 'Supprimer le lien',
+        blockFormatGroup: 'Format de bloc',
+        listsGroup: 'Listes',
+        alignmentGroup: 'Alignement du texte',
+        imageGroup: 'Actions sur les images',
+    }}
+>
     <RichTextEditor.Label>Description</RichTextEditor.Label>
-    <RichTextEditor.Toolbar>
+    <RichTextEditor.Toolbar aria-label="Mise en forme">
         <RichTextEditor.HistoryGroup />
         <RichTextEditor.ToolbarSeparator />
         <RichTextEditor.TextStyleGroup />

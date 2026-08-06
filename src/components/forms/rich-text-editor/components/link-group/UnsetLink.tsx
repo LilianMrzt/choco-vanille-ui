@@ -2,7 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 const UnsetLink = () => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -12,7 +12,7 @@ const UnsetLink = () => {
         <IconButton
             type={'button'}
             icon={'lucide:unlink'}
-            aria-label={'Remove link'}
+            aria-label={labels.removeLink}
             variant={'ghost'}
             color={'primary'}
             size={'sm'}

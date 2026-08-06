@@ -4,7 +4,7 @@ import Redo from '@components/forms/rich-text-editor/components/history-group/Re
 import Undo from '@components/forms/rich-text-editor/components/history-group/Undo.tsx'
 
 const HistoryGroup = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -14,7 +14,7 @@ const HistoryGroup = () => {
         <div
             className={HISTORY_GROUP_STYLES.root}
             role={'group'}
-            aria-label={'History'}
+            aria-label={labels.historyGroup}
         >
             <Undo />
             <Redo />

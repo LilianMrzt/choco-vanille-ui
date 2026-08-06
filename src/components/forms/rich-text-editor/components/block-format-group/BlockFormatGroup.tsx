@@ -7,7 +7,7 @@ import { BLOCK_FORMAT_GROUP_STYLES } from '@components/forms/rich-text-editor/co
 import type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group/types/BlockFormatGroup.props.ts'
 
 const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
     const [blockFormatOpen, setBlockFormatOpen] = useState(false)
 
     if (!editor) {
@@ -24,14 +24,14 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
         <div
             className={BLOCK_FORMAT_GROUP_STYLES.root}
             role={'group'}
-            aria-label={'Block formatting'}
+            aria-label={labels.blockFormatGroup}
         >
             {presentation === 'inline' ? (
                 <>
                     <IconButton
                         type={'button'}
                         icon={'lucide:pilcrow'}
-                        aria-label={'Paragraph'}
+                        aria-label={labels.paragraph}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -41,7 +41,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:heading-1'}
-                        aria-label={'Heading 1'}
+                        aria-label={labels.heading1}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -51,7 +51,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:heading-2'}
-                        aria-label={'Heading 2'}
+                        aria-label={labels.heading2}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -61,7 +61,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:heading-3'}
-                        aria-label={'Heading 3'}
+                        aria-label={labels.heading3}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -71,7 +71,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:quote'}
-                        aria-label={'Block quote'}
+                        aria-label={labels.blockQuote}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -81,7 +81,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:square-code'}
-                        aria-label={'Code block'}
+                        aria-label={labels.codeBlock}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -91,7 +91,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:minus'}
-                        aria-label={'Insert horizontal rule'}
+                        aria-label={labels.insertHorizontalRule}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -109,7 +109,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                         <IconButton
                             type={'button'}
                             icon={'lucide:pilcrow'}
-                            aria-label={'Block format'}
+                            aria-label={labels.blockFormatTrigger}
                             variant={'ghost'}
                             color={'primary'}
                             size={'sm'}
@@ -117,41 +117,41 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
                             disabled={disabled}
                         />
                     </DropdownMenu.Trigger>
-                    <DropdownMenu.Content aria-label={'Block format options'}>
+                    <DropdownMenu.Content aria-label={labels.blockFormatOptions}>
                         <DropdownMenu.Item
-                            label={'Paragraph'}
+                            label={labels.paragraph}
                             startIcon={'lucide:pilcrow'}
                             onClick={() => editor.chain().focus().setParagraph().run()}
                         />
                         <DropdownMenu.Item
-                            label={'Heading 1'}
+                            label={labels.heading1}
                             startIcon={'lucide:heading-1'}
                             onClick={() => toggleCurrentHeading(1)}
                         />
                         <DropdownMenu.Item
-                            label={'Heading 2'}
+                            label={labels.heading2}
                             startIcon={'lucide:heading-2'}
                             onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
                         />
                         <DropdownMenu.Item
-                            label={'Heading 3'}
+                            label={labels.heading3}
                             startIcon={'lucide:heading-3'}
                             onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
                         />
                         <DropdownMenu.Separator />
                         <DropdownMenu.Item
-                            label={'Block quote'}
+                            label={labels.blockQuote}
                             startIcon={'lucide:quote'}
                             onClick={() => editor.chain().focus().toggleBlockquote().run()}
                         />
                         <DropdownMenu.Item
-                            label={'Code block'}
+                            label={labels.codeBlock}
                             startIcon={'lucide:square-code'}
                             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                         />
                         <DropdownMenu.Separator />
                         <DropdownMenu.Item
-                            label={'Insert horizontal rule'}
+                            label={labels.insertHorizontalRule}
                             startIcon={'lucide:minus'}
                             onClick={() => editor.chain().focus().setHorizontalRule().run()}
                         />

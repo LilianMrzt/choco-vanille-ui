@@ -2,6 +2,7 @@ import type * as React from 'react'
 import type { ReactNode } from 'react'
 
 import type { RichTextValue } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
+import type { RichTextEditorLabels } from '@components/forms/rich-text-editor/types/RichTextEditorLabels.types.ts'
 
 type RichTextEditorBaseProps = {
     /** Controlled, versioned document value. */
@@ -31,6 +32,12 @@ type RichTextEditorBaseProps = {
     /** CSS width of the outer wrapper. Defaults to 100%. */
     width?: React.CSSProperties['width']
     className?: string
+    /**
+     * Localizable accessible labels for every toolbar control and user-facing
+     * prompt string. Provide only the keys you want to override; English
+     * defaults are used for every omitted key.
+     */
+    labels?: Partial<RichTextEditorLabels>
     /**
      * Compound slots (`RichTextEditor.Label`, `RichTextEditor.Toolbar`, `RichTextEditor.EditorField`, ...).
      */

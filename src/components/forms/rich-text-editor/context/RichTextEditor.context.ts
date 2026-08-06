@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 import type { Editor } from '@tiptap/react'
 import type { RichTextValue } from '@components/forms/rich-text-editor/types/RichTextEditor.types.ts'
+import type { RichTextEditorLabels } from '@components/forms/rich-text-editor/types/RichTextEditorLabels.types.ts'
 
 export type RichTextEditorContextValue = {
     editor: Editor | null
@@ -17,6 +18,7 @@ export type RichTextEditorContextValue = {
     name?: string
     required: boolean
     renderedValue: RichTextValue
+    labels: RichTextEditorLabels
 }
 
 export const RichTextEditorContext = createContext<RichTextEditorContextValue | undefined>(undefined)

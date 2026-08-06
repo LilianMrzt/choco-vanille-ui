@@ -2,7 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 const Redo = () => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -12,7 +12,7 @@ const Redo = () => {
         <IconButton
             type={'button'}
             icon={'lucide:redo-2'}
-            aria-label={'Redo'}
+            aria-label={labels.redo}
             variant={'ghost'}
             color={'primary'}
             size={'sm'}

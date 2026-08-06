@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const TextSizeMenu = () => {
     const [open, setOpen] = useState(false)
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -29,7 +29,7 @@ const TextSizeMenu = () => {
                 <IconButton
                     type={'button'}
                     icon={'lucide:text-cursor-input'}
-                    aria-label={'Text size'}
+                    aria-label={labels.textSizeTrigger}
                     variant={'ghost'}
                     color={'primary'}
                     size={'sm'}
@@ -38,7 +38,7 @@ const TextSizeMenu = () => {
                 />
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
-                aria-label={'Text size options'}
+                aria-label={labels.textSizeOptions}
                 side={'bottom'}
                 align={'start'}
             >

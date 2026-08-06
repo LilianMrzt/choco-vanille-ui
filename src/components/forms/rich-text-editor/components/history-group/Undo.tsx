@@ -2,7 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 const Undo = () => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -12,7 +12,7 @@ const Undo = () => {
         <IconButton
             type={'button'}
             icon={'lucide:undo-2'}
-            aria-label={'Undo'}
+            aria-label={labels.undo}
             variant={'ghost'}
             color={'primary'}
             size={'sm'}

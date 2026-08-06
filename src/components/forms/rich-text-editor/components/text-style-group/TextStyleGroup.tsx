@@ -3,7 +3,7 @@ import { TEXT_STYLE_GROUP_STYLES } from '@components/forms/rich-text-editor/comp
 import { Bold, Italic, Strike, Underline } from '@components/forms/rich-text-editor/components/text-style-group/TextStyleAction.tsx'
 
 const TextStyleGroup = () => {
-    const { editor } = useRichTextEditorContext()
+    const { editor, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -13,7 +13,7 @@ const TextStyleGroup = () => {
         <div
             className={TEXT_STYLE_GROUP_STYLES.root}
             role={'group'}
-            aria-label={'Text style'}
+            aria-label={labels.textStyleGroup}
         >
             <Bold />
             <Italic />

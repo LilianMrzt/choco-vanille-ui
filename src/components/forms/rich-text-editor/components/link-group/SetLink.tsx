@@ -3,7 +3,7 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 
 const SetLink = () => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
@@ -13,7 +13,7 @@ const SetLink = () => {
         <IconButton
             type={'button'}
             icon={'lucide:link'}
-            aria-label={'Add or edit link'}
+            aria-label={labels.addOrEditLink}
             variant={'ghost'}
             color={'primary'}
             size={'sm'}
@@ -21,7 +21,7 @@ const SetLink = () => {
             onMouseDown={(event) => event.preventDefault()}
             onClick={() => {
                 const currentHref = editor.getAttributes('link').href as string | undefined
-                const nextHref = window.prompt('Link URL', currentHref ?? 'https://')
+                const nextHref = window.prompt(labels.linkUrlPrompt, currentHref ?? 'https://')
                 const href = nextHref ? normalizeRichTextUrl(nextHref) : undefined
 
                 if (href) {

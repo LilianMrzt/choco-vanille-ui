@@ -7,7 +7,7 @@ import { LISTS_GROUP_STYLES } from '@components/forms/rich-text-editor/component
 import type { ListsGroupProps } from '@components/forms/rich-text-editor/components/lists-group/types/ListsGroup.props.ts'
 
 const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
-    const { editor, disabled } = useRichTextEditorContext()
+    const { editor, disabled, labels } = useRichTextEditorContext()
     const [listsOpen, setListsOpen] = useState(false)
 
     if (!editor) {
@@ -18,14 +18,14 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
         <div
             className={LISTS_GROUP_STYLES.root}
             role={'group'}
-            aria-label={'Lists'}
+            aria-label={labels.listsGroup}
         >
             {presentation === 'inline' ? (
                 <>
                     <IconButton
                         type={'button'}
                         icon={'lucide:list'}
-                        aria-label={'Bulleted list'}
+                        aria-label={labels.bulletedList}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -36,7 +36,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     <IconButton
                         type={'button'}
                         icon={'lucide:list-ordered'}
-                        aria-label={'Numbered list'}
+                        aria-label={labels.numberedList}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -55,7 +55,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                         <IconButton
                             type={'button'}
                             icon={'lucide:list'}
-                            aria-label={'Lists'}
+                            aria-label={labels.listsTrigger}
                             variant={'ghost'}
                             color={'primary'}
                             size={'sm'}
@@ -63,14 +63,14 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                             disabled={disabled}
                         />
                     </DropdownMenu.Trigger>
-                    <DropdownMenu.Content aria-label={'List options'}>
+                    <DropdownMenu.Content aria-label={labels.listOptions}>
                         <DropdownMenu.Item
-                            label={'Bulleted list'}
+                            label={labels.bulletedList}
                             startIcon={'lucide:list'}
                             onClick={() => editor.chain().focus().toggleBulletList().run()}
                         />
                         <DropdownMenu.Item
-                            label={'Numbered list'}
+                            label={labels.numberedList}
                             startIcon={'lucide:list-ordered'}
                             onClick={() => editor.chain().focus().toggleOrderedList().run()}
                         />
