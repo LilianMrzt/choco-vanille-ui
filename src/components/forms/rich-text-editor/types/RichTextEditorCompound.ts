@@ -9,6 +9,7 @@ import type {
     Undo,
 } from '@components/forms/rich-text-editor/components/history-group'
 import type { ImageGroup } from '@components/forms/rich-text-editor/components/image-group'
+import type { HelperText } from '@components/forms/rich-text-editor/components/helper-text'
 import type {
     LinkGroup,
     SetLink,
@@ -27,12 +28,15 @@ import type {
 import type { Toolbar } from '@components/forms/rich-text-editor/components/toolbar'
 import type { ToolbarGroups } from '@components/forms/rich-text-editor/components/toolbar-groups'
 import type { ToolbarSeparator } from '@components/forms/rich-text-editor/components/toolbar-separator'
+import type { ReadOnlyField } from '@components/forms/rich-text-editor/components/read-only-field'
 
 import type { RichTextEditorProps } from '@components/forms/rich-text-editor/types/RichTextEditor.props.ts'
 
 export type RichTextEditorCompound = NamedExoticComponent<RichTextEditorProps> & {
     Label: typeof RichTextEditorLabel
     EditorField: typeof EditorField
+    ReadOnlyField: typeof ReadOnlyField
+    HelperText: typeof HelperText
     Toolbar: typeof Toolbar
     ToolbarGroups: typeof ToolbarGroups
     ToolbarSeparator: typeof ToolbarSeparator

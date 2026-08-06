@@ -104,7 +104,7 @@ export const useRichTextEditor = ({
             attributes: {
                 ...(error || helperText ? { 'aria-describedby': helperId } : {}),
                 ...(error ? { 'aria-invalid': 'true' } : {}),
-                ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
+                ...(ariaLabel || label ? { 'aria-label': ariaLabel ?? label } : {}),
                 ...(ariaLabelledBy || label ? { 'aria-labelledby': ariaLabelledBy ?? labelId } : {}),
                 'aria-multiline': 'true',
                 ...(required ? { 'aria-required': 'true' } : {}),

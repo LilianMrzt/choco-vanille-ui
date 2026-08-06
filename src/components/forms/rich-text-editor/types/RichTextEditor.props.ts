@@ -33,9 +33,8 @@ type RichTextEditorBaseProps = {
     className?: string
     /**
      * Compound slots (`RichTextEditor.Label`, `RichTextEditor.Toolbar`, `RichTextEditor.EditorField`, ...).
-     * When provided, RichTextEditor renders these children instead of its default layout.
      */
-    children?: ReactNode
+    children: ReactNode
 }
 
 export type RichTextEditorProps = RichTextEditorBaseProps &

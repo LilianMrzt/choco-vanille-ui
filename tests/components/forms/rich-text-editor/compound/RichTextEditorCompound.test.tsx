@@ -2,7 +2,11 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeAll, describe, expect, it } from 'vitest'
 
-import { RichTextEditor, RichTextEditorField } from '@components/forms/rich-text-editor'
+// @ts-expect-error RichTextEditor is the compound root and requires explicit children.
+const ROOT_WITHOUT_CHILDREN: RichTextEditorProps = { label: 'Description' }
+void ROOT_WITHOUT_CHILDREN
+
+import { RichTextEditor, RichTextEditorField, type RichTextEditorProps } from '@components/forms/rich-text-editor'
 
 beforeAll(() => {
     Object.defineProperty(document, 'elementFromPoint', {
@@ -58,6 +62,33 @@ describe('RichTextEditor compound API', () => {
 
         expect(label.id).toBeTruthy()
         expect(editor.getAttribute('aria-labelledby')).toBe(label.id)
+    })
+
+    it('keeps the compound editor named when the visible label slot is omitted', () => {
+        render(
+            <RichTextEditor label={'Description'}>
+                <RichTextEditor.EditorField />
+            </RichTextEditor>,
+        )
+
+        expect(screen.getByRole('textbox', { name: 'Description' })).toBeTruthy()
+    })
+
+    it('connects helper text when the compound composition includes the slot', () => {
+        render(
+            <RichTextEditor
+                label={'Description'}
+                error={'A description is required.'}
+            >
+                <RichTextEditor.EditorField />
+                <RichTextEditor.HelperText />
+            </RichTextEditor>,
+        )
+
+        const editor = screen.getByRole('textbox', { name: 'Description' })
+        const helper = screen.getByRole('alert')
+
+        expect(editor.getAttribute('aria-describedby')).toBe(helper.id)
     })
 
     it('renders RichTextEditor.Toolbar with the toolbar role', () => {
@@ -170,6 +201,30 @@ describe('RichTextEditor compound API', () => {
 
         const submittedValue = document.querySelector('textarea[name="description"]') as HTMLTextAreaElement
         expect(submittedValue.value).toContain('"Hello"')
+    })
+
+    it('composes the read-only field and helper text slots', () => {
+        render(
+            <RichTextEditorField
+                label={'Description'}
+                defaultValue={{
+                    type: 'doc',
+                    content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Read-only content' }] }],
+                }}
+                readOnly
+                helperText={'This content is not editable.'}
+                name={'description'}
+            />,
+        )
+
+        const renderer = screen.getByText('Read-only content')
+        const helper = screen.getByRole('status')
+        const submittedValue = document.querySelector('textarea[name="description"]') as HTMLTextAreaElement
+
+        expect(renderer).toBeTruthy()
+        expect(renderer.closest('[aria-describedby]')).toBeTruthy()
+        expect(helper.textContent).toContain('This content is not editable.')
+        expect(submittedValue.required).toBe(false)
     })
 })
 

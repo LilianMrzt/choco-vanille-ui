@@ -8,6 +8,8 @@ export type { RichTextEditorFieldProps } from '@components/forms/rich-text-edito
 export type { RichTextEditorCompound } from '@components/forms/rich-text-editor/types/RichTextEditorCompound.ts'
 export type { RichTextEditorLabelProps } from '@components/forms/rich-text-editor/components/rich-text-editor-label'
 export type { EditorFieldProps } from '@components/forms/rich-text-editor/components/editor-field'
+export type { RichTextEditorHelperTextProps } from '@components/forms/rich-text-editor/components/helper-text'
+export type { ReadOnlyFieldProps } from '@components/forms/rich-text-editor/components/read-only-field'
 export type { ToolbarProps } from '@components/forms/rich-text-editor/components/toolbar'
 export type { TextAppearanceGroupCompound } from '@components/forms/rich-text-editor/components/text-appearance-group'
 export type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group'

@@ -10,6 +10,12 @@ export type { EditorFieldProps } from '@components/forms/rich-text-editor/compon
 export { Toolbar } from '@components/forms/rich-text-editor/components/toolbar'
 export type { ToolbarProps } from '@components/forms/rich-text-editor/components/toolbar'
 
+export { HelperText } from '@components/forms/rich-text-editor/components/helper-text'
+export type { RichTextEditorHelperTextProps } from '@components/forms/rich-text-editor/components/helper-text'
+
+export { ReadOnlyField } from '@components/forms/rich-text-editor/components/read-only-field'
+export type { ReadOnlyFieldProps } from '@components/forms/rich-text-editor/components/read-only-field'
+
 export { ToolbarGroups } from '@components/forms/rich-text-editor/components/toolbar-groups'
 export { ToolbarSeparator } from '@components/forms/rich-text-editor/components/toolbar-separator'
 export { HistoryGroup } from '@components/forms/rich-text-editor/components/history-group'

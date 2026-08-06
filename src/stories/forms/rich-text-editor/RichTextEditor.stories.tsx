@@ -5,8 +5,9 @@ import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storyb
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
 import {
     RichTextEditor,
+    RichTextEditorField,
     RICH_TEXT_COLOR_PALETTES,
-    type RichTextEditorProps,
+    type RichTextEditorFieldProps,
     type RichTextValue,
 } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
@@ -117,6 +118,8 @@ The toolbar is a named \`toolbar\`; its icon actions have accessible names and e
 | --- | --- |
 | \`RichTextEditor.Label\` | Visible label connected to the editable document. |
 | \`RichTextEditor.EditorField\` | Editable Tiptap document and optional form-value proxy. |
+| \`RichTextEditor.ReadOnlyField\` | Rendered document and non-required form-value proxy for read-only mode. |
+| \`RichTextEditor.HelperText\` | Context-driven helper or error message. |
 | \`RichTextEditor.Toolbar\` | Named toolbar container with arrow-key navigation. |
 | \`RichTextEditor.ToolbarGroups\` | Default complete toolbar composition. |
 | \`RichTextEditor.ToolbarSeparator\` | Visual and semantic separator between toolbar groups. |
@@ -143,7 +146,7 @@ const RichTextEditorDocsPage = () => (
     </>
 )
 
-type RichTextEditorPlaygroundArgs = RichTextEditorProps & {
+type RichTextEditorPlaygroundArgs = RichTextEditorFieldProps & {
     useCompoundLayout?: boolean
     showToolbarGroups?: boolean
     showHistoryGroup?: boolean
@@ -166,7 +169,7 @@ type RichTextEditorPlaygroundArgs = RichTextEditorProps & {
 
 const meta = {
     title: 'Forms/RichTextEditor',
-    component: RichTextEditor as ComponentType<RichTextEditorPlaygroundArgs>,
+    component: RichTextEditorField as ComponentType<RichTextEditorPlaygroundArgs>,
     parameters: {
         layout: 'centered',
         docs: {
@@ -215,6 +218,7 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
     <RichTextEditor.ImageGroup presentation="inline" />
   </RichTextEditor.Toolbar>
   <RichTextEditor.EditorField />
+  <RichTextEditor.HelperText />
 </RichTextEditor>
 \`\`\`
 `,
@@ -230,7 +234,10 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
             control: 'text',
             table: { category: 'Compound: EditorField' },
         },
-        helperText: { control: 'text' },
+        helperText: {
+            control: 'text',
+            table: { category: 'Compound: HelperText' },
+        },
         error: { control: 'text' },
         width: { control: 'text' },
         disabled: {
@@ -239,7 +246,7 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         },
         readOnly: {
             control: 'boolean',
-            table: { category: 'Compound: EditorField' },
+            table: { category: 'Compound: ReadOnlyField' },
         },
         required: {
             control: 'boolean',
@@ -413,7 +420,7 @@ const initialValue = {
 const [value, setValue] = useState<RichTextValue>(initialValue)
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '42rem' }}>
-    <RichTextEditor label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
+    <RichTextEditorField label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
     <RichTextRenderer value={value} aria-label="Rendered result" />
 </div>`),
         },
@@ -470,9 +477,10 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
                             {showImageGroup && <RichTextEditor.ImageGroup />}
                         </RichTextEditor.Toolbar>
                         <RichTextEditor.EditorField />
+                        <RichTextEditor.HelperText />
                     </RichTextEditor>
                 ) : (
-                    <RichTextEditor
+                    <RichTextEditorField
                         {...args}
                         value={value}
                         onValueChange={setValue}
@@ -491,24 +499,24 @@ export const States: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<RichTextEditor label="Read only" defaultValue={value} readOnly />
-<RichTextEditor label="Disabled" defaultValue={value} disabled />
-<RichTextEditor label="With error" error="A description is required." />`),
+<RichTextEditorField label="Read only" defaultValue={value} readOnly />
+<RichTextEditorField label="Disabled" defaultValue={value} disabled />
+<RichTextEditorField label="With error" error="A description is required." />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '42rem' }}>
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Read only'}
                 defaultValue={INITIAL_VALUE}
                 readOnly
             />
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Disabled'}
                 defaultValue={INITIAL_VALUE}
                 disabled
             />
-            <RichTextEditor
+            <RichTextEditorField
                 label={'With error'}
                 error={'A description is required.'}
             />
@@ -547,6 +555,7 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         <RichTextEditor.ImageGroup />
     </RichTextEditor.Toolbar>
     <RichTextEditor.EditorField />
+    <RichTextEditor.HelperText />
 </RichTextEditor>`),
         },
     },
@@ -578,6 +587,7 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
                     <RichTextEditor.ImageGroup />
                 </RichTextEditor.Toolbar>
                 <RichTextEditor.EditorField />
+                <RichTextEditor.HelperText />
             </RichTextEditor>
         )
     },

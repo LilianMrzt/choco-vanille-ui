@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
-import { RichTextEditor, type RichTextValue } from '@components/forms/rich-text-editor'
+import { RichTextEditorField, type RichTextValue } from '@components/forms/rich-text-editor'
 import { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
 import { vars } from '@theme/contract.css.ts'
 
@@ -49,7 +49,7 @@ beforeAll(() => {
 
 describe('RichTextEditor', () => {
     it('renders a labelled editable document and its toolbar', () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         expect(screen.getByRole('textbox', { name: 'Description' })).toBeTruthy()
         expect(screen.getByRole('toolbar', { name: 'Text formatting' })).toBeTruthy()
@@ -65,7 +65,7 @@ describe('RichTextEditor', () => {
     it('emits a versioned document after typing', async () => {
         const onValueChange = vi.fn()
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 onValueChange={onValueChange}
             />,
@@ -80,7 +80,7 @@ describe('RichTextEditor', () => {
     })
 
     it('marks pointer-focused editor content to suppress the keyboard focus ring', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         const editor = screen.getByRole('textbox', { name: 'Description' })
         await userEvent.click(editor)
@@ -89,7 +89,7 @@ describe('RichTextEditor', () => {
     })
 
     it('supports classic keyboard undo and redo shortcuts', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         const editor = screen.getByRole('textbox', { name: 'Description' })
         await userEvent.type(editor, 'Hello')
@@ -103,7 +103,7 @@ describe('RichTextEditor', () => {
     })
 
     it('updates a formatting toggle before text is entered', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         const boldToggle = screen.getByRole('button', { name: 'Bold' })
         await userEvent.click(boldToggle)
@@ -112,7 +112,7 @@ describe('RichTextEditor', () => {
     })
 
     it('moves focus between enabled toolbar controls with arrow keys', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         screen.getByRole('button', { name: 'Bold' }).focus()
         await userEvent.keyboard('{ArrowRight}')
@@ -125,7 +125,7 @@ describe('RichTextEditor', () => {
     })
 
     it('exposes design-system colors', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         await userEvent.click(screen.getByRole('button', { name: 'Text color' }))
         expect(screen.getAllByRole('group', { name: /text colors$/ })).toHaveLength(7)
@@ -134,7 +134,7 @@ describe('RichTextEditor', () => {
     })
 
     it('exposes the complete text size palette', async () => {
-        render(<RichTextEditor label={'Description'} />)
+        render(<RichTextEditorField label={'Description'} />)
 
         const textSizeButton = screen.getByRole('button', { name: 'Text size' })
         await userEvent.click(textSizeButton)
@@ -152,7 +152,7 @@ describe('RichTextEditor', () => {
 
     it('shows the selected color and supports arrow navigation', async () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 defaultValue={{
                     type: 'doc',
@@ -191,7 +191,7 @@ describe('RichTextEditor', () => {
 
     it('reflects the selected text size', async () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 defaultValue={{
                     type: 'doc',
@@ -220,7 +220,7 @@ describe('RichTextEditor', () => {
     it('recognizes a safe URL when it is pasted', async () => {
         const onValueChange = vi.fn()
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 onValueChange={onValueChange}
             />,
@@ -245,7 +245,7 @@ describe('RichTextEditor', () => {
     it('inserts an image URL when it is pasted', async () => {
         const onValueChange = vi.fn()
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 onValueChange={onValueChange}
             />,
@@ -269,7 +269,7 @@ describe('RichTextEditor', () => {
     it('inserts a pasted image file as a data URL', async () => {
         const onValueChange = vi.fn()
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 onValueChange={onValueChange}
             />,
@@ -304,7 +304,7 @@ describe('RichTextEditor', () => {
     it('recognizes a safe URL when it is typed', async () => {
         const onValueChange = vi.fn()
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 onValueChange={onValueChange}
             />,
@@ -335,7 +335,7 @@ describe('RichTextEditor', () => {
             const [value, setValue] = useState<RichTextValue>(INITIAL_VALUE)
 
             return (
-                <RichTextEditor
+                <RichTextEditorField
                     label={'Description'}
                     value={value}
                     onValueChange={setValue}
@@ -359,7 +359,7 @@ describe('RichTextEditor', () => {
         }
 
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 value={initialValue}
                 onValueChange={() => undefined}
@@ -376,7 +376,7 @@ describe('RichTextEditor', () => {
 
     it('renders its initial uncontrolled document', () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 defaultValue={INITIAL_VALUE}
             />,
@@ -387,7 +387,7 @@ describe('RichTextEditor', () => {
 
     it('uses RichTextRenderer without editor controls when read-only', () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 defaultValue={INITIAL_VALUE}
                 readOnly
@@ -401,7 +401,7 @@ describe('RichTextEditor', () => {
 
     it('applies a heading only to the current block', async () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 defaultValue={TWO_PARAGRAPHS_VALUE}
             />,
@@ -431,7 +431,7 @@ describe('RichTextEditor', () => {
 
     it('disables formatting actions when disabled', () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 disabled
             />,
@@ -442,7 +442,7 @@ describe('RichTextEditor', () => {
 
     it('connects error text to the editable document', () => {
         render(
-            <RichTextEditor
+            <RichTextEditorField
                 label={'Description'}
                 error={'A description is required.'}
             />,
@@ -456,7 +456,7 @@ describe('RichTextEditor', () => {
     it('submits a required JSON document through its form field name', async () => {
         render(
             <form>
-                <RichTextEditor
+                <RichTextEditorField
                     label={'Description'}
                     name={'description'}
                     required
