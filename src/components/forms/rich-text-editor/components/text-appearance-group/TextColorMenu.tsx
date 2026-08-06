@@ -1,4 +1,5 @@
 import { IconButton } from '@components/actions/icon-button'
+import { Tooltip } from '@components/overlay/tooltip'
 import { Icon } from '@components/foundation/icon'
 import { Popover } from '@components/overlay/popover'
 import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/constants/richTextColorPalettes.const.ts'
@@ -57,24 +58,29 @@ const TextColorMenu = () => {
             open={open}
             onOpenChange={setOpen}
         >
-            <Popover.Trigger>
-                <IconButton
-                    type={'button'}
-                    aria-label={labels.textColorTrigger}
-                    variant={'ghost'}
-                    color={'primary'}
-                    size={'sm'}
-                    active={open}
-                    disabled={disabled}
-                    onMouseDown={(event) => event.preventDefault()}
-                    title={labels.textColorTrigger}
-                >
-                    <span
-                        className={TEXT_COLOR_MENU_STYLES.selectedColor}
-                        style={{ backgroundColor: selectedColor }}
-                    />
-                </IconButton>
-            </Popover.Trigger>
+            <Tooltip
+                content={labels.textColorTrigger}
+                delayDuration={700}
+                position={'top'}
+            >
+                <Popover.Trigger>
+                    <IconButton
+                        type={'button'}
+                        aria-label={labels.textColorTrigger}
+                        variant={'ghost'}
+                        color={'primary'}
+                        size={'sm'}
+                        active={open}
+                        disabled={disabled}
+                        onMouseDown={(event) => event.preventDefault()}
+                    >
+                        <span
+                            className={TEXT_COLOR_MENU_STYLES.selectedColor}
+                            style={{ backgroundColor: selectedColor }}
+                        />
+                    </IconButton>
+                </Popover.Trigger>
+            </Tooltip>
             <Popover.Content
                 aria-label={labels.textColorPalette}
                 side={'bottom'}
