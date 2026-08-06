@@ -55,6 +55,10 @@ export type RichTextEditorLabels = {
     linkGroup: string
     /** `aria-label` for the Add / edit link button. */
     addOrEditLink: string
+    /** `aria-label` for the link actions dropdown trigger. */
+    linkGroupTrigger: string
+    /** `aria-label` for the link actions dropdown content. */
+    linkOptions: string
     /** `window.prompt` message asking for a link URL. */
     linkUrlPrompt: string
     /** `aria-label` for the Remove link button. */

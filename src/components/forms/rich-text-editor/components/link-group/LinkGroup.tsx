@@ -2,9 +2,13 @@ import { LINK_GROUP_STYLES } from '@components/forms/rich-text-editor/components
 import SetLink from '@components/forms/rich-text-editor/components/link-group/SetLink.tsx'
 import UnsetLink from '@components/forms/rich-text-editor/components/link-group/UnsetLink.tsx'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import { IconButton } from '@components/actions/icon-button'
+import { useState } from 'react'
 
 const LinkGroup = () => {
-    const { labels } = useRichTextEditorContext()
+    const { disabled, labels } = useRichTextEditorContext()
+    const [open, setOpen] = useState(false)
 
     return (
         <div
@@ -12,8 +16,28 @@ const LinkGroup = () => {
             role={'group'}
             aria-label={labels.linkGroup}
         >
-            <SetLink />
-            <UnsetLink />
+            <DropdownMenu
+                modal={false}
+                open={open}
+                onOpenChange={setOpen}
+            >
+                <DropdownMenu.Trigger>
+                    <IconButton
+                        type={'button'}
+                        icon={'lucide:link'}
+                        aria-label={labels.linkGroupTrigger}
+                        variant={'ghost'}
+                        color={'primary'}
+                        size={'sm'}
+                        active={open}
+                        disabled={disabled}
+                    />
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content aria-label={labels.linkOptions}>
+                    <SetLink presentation={'menu'} />
+                    <UnsetLink presentation={'menu'} />
+                </DropdownMenu.Content>
+            </DropdownMenu>
         </div>
     )
 }

@@ -62,26 +62,24 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                 aria-label={labels.textSizeOptions}
                 side={'bottom'}
                 align={'start'}
+                width={'6rem'}
             >
-                <DropdownMenu.RadioGroup value={selectedFontSizeKey ?? ''}>
-                    {(Object.keys(RICH_TEXT_FONT_SIZES) as RichTextFontSize[]).map(
-                        (fontSize) => (
-                            <DropdownMenu.RadioItem
-                                key={fontSize}
-                                value={fontSize}
-                                label={RICH_TEXT_FONT_SIZE_LABELS[fontSize]}
-                                onMouseDown={(event) => event.preventDefault()}
-                                onClick={() =>
-                                    editor
-                                        .chain()
-                                        .focus()
-                                        .setFontSize(RICH_TEXT_FONT_SIZES[fontSize])
-                                        .run()
-                                }
-                            />
-                        ),
-                    )}
-                </DropdownMenu.RadioGroup>
+                {(Object.keys(RICH_TEXT_FONT_SIZES) as RichTextFontSize[]).map(
+                    (fontSize) => (
+                        <DropdownMenu.Item
+                            key={fontSize}
+                            label={RICH_TEXT_FONT_SIZE_LABELS[fontSize]}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() =>
+                                editor
+                                    .chain()
+                                    .focus()
+                                    .setFontSize(RICH_TEXT_FONT_SIZES[fontSize])
+                                    .run()
+                            }
+                        />
+                    ),
+                )}
             </DropdownMenu.Content>
         </DropdownMenu>
     )

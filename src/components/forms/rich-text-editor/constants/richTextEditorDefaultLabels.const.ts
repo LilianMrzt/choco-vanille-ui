@@ -26,6 +26,8 @@ export const RICH_TEXT_EDITOR_DEFAULT_LABELS: RichTextEditorLabels = {
 
     linkGroup: 'Links',
     addOrEditLink: 'Add or edit link',
+    linkGroupTrigger: 'Link actions',
+    linkOptions: 'Link options',
     linkUrlPrompt: 'Link URL',
     removeLink: 'Remove link',
 

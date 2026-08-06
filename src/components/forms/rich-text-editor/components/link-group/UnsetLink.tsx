@@ -1,11 +1,27 @@
 import { IconButton } from '@components/actions/icon-button'
+import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
-const UnsetLink = () => {
+type UnsetLinkProps = {
+    presentation?: 'icon' | 'menu'
+}
+
+const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
 
     if (!editor) {
         return null
+    }
+
+    if (presentation === 'menu') {
+        return (
+            <DropdownMenu.Item
+                label={labels.removeLink}
+                startIcon={'lucide:unlink'}
+                disabled={!editor.isActive('link')}
+                onClick={() => editor.chain().focus().unsetLink().run()}
+            />
+        )
     }
 
     return (
