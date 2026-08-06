@@ -110,6 +110,26 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`disabled\` / \`readOnly\` | No | \`boolean\` | Prevent editing and disable formatting actions. |
 
 The toolbar is a named \`toolbar\`; its icon actions have accessible names and expose their active formatting state.
+
+## Compound slots
+
+| Slot | Purpose |
+| --- | --- |
+| \`RichTextEditor.Label\` | Visible label connected to the editable document. |
+| \`RichTextEditor.EditorField\` | Editable Tiptap document and optional form-value proxy. |
+| \`RichTextEditor.Toolbar\` | Named toolbar container with arrow-key navigation. |
+| \`RichTextEditor.ToolbarGroups\` | Default complete toolbar composition. |
+| \`RichTextEditor.ToolbarSeparator\` | Visual and semantic separator between toolbar groups. |
+| \`RichTextEditor.HistoryGroup\` / \`.Undo\` / \`.Redo\` | History controls or their individual actions. |
+| \`RichTextEditor.TextStyleGroup\` / \`.Bold\` / \`.Italic\` / \`.Underline\` / \`.Strike\` | Text-mark formatting controls or individual toggles. |
+| \`RichTextEditor.TextAppearanceGroup\` | Convenience group for the menu-only text color and size controls. |
+| \`RichTextEditor.TextAppearanceGroup.TextColorMenu\` | Text-color palette; its trigger shows the currently selected color. |
+| \`RichTextEditor.TextAppearanceGroup.TextSizeMenu\` | Text-size selection menu. |
+| \`RichTextEditor.LinkGroup\` / \`.SetLink\` / \`.UnsetLink\` | Link controls or their individual actions. |
+| \`RichTextEditor.BlockFormatGroup\` | Block-format actions; use \`presentation="inline"\` for direct toolbar actions. |
+| \`RichTextEditor.ListsGroup\` | List actions; use \`presentation="inline"\` for direct toolbar actions. |
+| \`RichTextEditor.AlignmentGroup\` | Alignment actions; use \`presentation="inline"\` for direct toolbar actions. |
+| \`RichTextEditor.ImageGroup\` | Image actions; use \`presentation="inline"\` for direct toolbar actions. |
 `
 
 const RichTextEditorDocsPage = () => (
@@ -127,11 +147,15 @@ type RichTextEditorPlaygroundArgs = RichTextEditorProps & {
     useCompoundLayout?: boolean
     showToolbarGroups?: boolean
     showHistoryGroup?: boolean
+    showUndo?: boolean
+    showRedo?: boolean
     showTextStyleGroup?: boolean
     showTextAppearanceGroup?: boolean
     showTextColorMenu?: boolean
     showTextSizeMenu?: boolean
     showLinkGroup?: boolean
+    showSetLink?: boolean
+    showUnsetLink?: boolean
     showBlockFormatGroup?: boolean
     showListsGroup?: boolean
     showAlignmentGroup?: boolean
@@ -181,6 +205,14 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
     <RichTextEditor.TextAppearanceGroup />
     <RichTextEditor.ToolbarSeparator />
     <RichTextEditor.LinkGroup />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.BlockFormatGroup presentation="inline" />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.ListsGroup presentation="inline" />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.AlignmentGroup presentation="inline" />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.ImageGroup presentation="inline" />
   </RichTextEditor.Toolbar>
   <RichTextEditor.EditorField />
 </RichTextEditor>
@@ -229,6 +261,14 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
             control: 'boolean',
             table: { category: 'Compound: HistoryGroup' },
         },
+        showUndo: {
+            control: 'boolean',
+            table: { category: 'Compound: Undo' },
+        },
+        showRedo: {
+            control: 'boolean',
+            table: { category: 'Compound: Redo' },
+        },
         showTextStyleGroup: {
             control: 'boolean',
             table: { category: 'Compound: TextStyleGroup' },
@@ -248,6 +288,14 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         showLinkGroup: {
             control: 'boolean',
             table: { category: 'Compound: LinkGroup' },
+        },
+        showSetLink: {
+            control: 'boolean',
+            table: { category: 'Compound: SetLink' },
+        },
+        showUnsetLink: {
+            control: 'boolean',
+            table: { category: 'Compound: UnsetLink' },
         },
         showBlockFormatGroup: {
             control: 'boolean',
@@ -374,11 +422,15 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
         useCompoundLayout,
         showToolbarGroups,
         showHistoryGroup,
+        showUndo,
+        showRedo,
         showTextStyleGroup,
         showTextAppearanceGroup,
         showTextColorMenu,
         showTextSizeMenu,
         showLinkGroup,
+        showSetLink,
+        showUnsetLink,
         showBlockFormatGroup,
         showListsGroup,
         showAlignmentGroup,
@@ -403,11 +455,15 @@ const [value, setValue] = useState<RichTextValue>(initialValue)
                         <RichTextEditor.Toolbar>
                             {showToolbarGroups && <RichTextEditor.ToolbarGroups />}
                             {showHistoryGroup && <><RichTextEditor.HistoryGroup />{separator}</>}
+                            {showUndo && <RichTextEditor.Undo />}
+                            {showRedo && <RichTextEditor.Redo />}
                             {showTextStyleGroup && <><RichTextEditor.TextStyleGroup />{separator}</>}
                             {showTextAppearanceGroup && <><RichTextEditor.TextAppearanceGroup />{separator}</>}
                             {showTextColorMenu && <RichTextEditor.TextAppearanceGroup.TextColorMenu />}
                             {showTextSizeMenu && <RichTextEditor.TextAppearanceGroup.TextSizeMenu />}
                             {showLinkGroup && <><RichTextEditor.LinkGroup />{separator}</>}
+                            {showSetLink && <RichTextEditor.SetLink />}
+                            {showUnsetLink && <RichTextEditor.UnsetLink />}
                             {showBlockFormatGroup && <><RichTextEditor.BlockFormatGroup />{separator}</>}
                             {showListsGroup && <><RichTextEditor.ListsGroup />{separator}</>}
                             {showAlignmentGroup && <><RichTextEditor.AlignmentGroup />{separator}</>}

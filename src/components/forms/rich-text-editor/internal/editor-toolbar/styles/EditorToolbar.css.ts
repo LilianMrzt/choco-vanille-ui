@@ -66,4 +66,11 @@ export const EDITOR_TOOLBAR_STYLES = {
         color: 'white',
         pointerEvents: 'none',
     }),
+    selectedColor: style({
+        display: 'block',
+        width: '0.875rem',
+        height: '0.875rem',
+        borderRadius: '50%',
+        border: `1px solid ${vars.color.border}`,
+    }),
 }

@@ -24,7 +24,6 @@ const TextColorPopover = ({ editor, disabled }: RichTextEditorToolbarActionProps
             <Popover.Trigger>
                 <IconButton
                     type={'button'}
-                    icon={'lucide:palette'}
                     aria-label={'Text color'}
                     variant={'ghost'}
                     color={'primary'}
@@ -32,7 +31,12 @@ const TextColorPopover = ({ editor, disabled }: RichTextEditorToolbarActionProps
                     active={open}
                     disabled={disabled}
                     onMouseDown={(event) => event.preventDefault()}
-                />
+                >
+                    <span
+                        className={EDITOR_TOOLBAR_STYLES.selectedColor}
+                        style={{ backgroundColor: selectedColor }}
+                    />
+                </IconButton>
             </Popover.Trigger>
             <Popover.Content
                 aria-label={'Text color palette'}

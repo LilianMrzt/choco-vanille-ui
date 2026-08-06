@@ -10,6 +10,10 @@ export type { RichTextEditorLabelProps } from '@components/forms/rich-text-edito
 export type { EditorFieldProps } from '@components/forms/rich-text-editor/components/editor-field'
 export type { ToolbarProps } from '@components/forms/rich-text-editor/components/toolbar'
 export type { TextAppearanceGroupCompound } from '@components/forms/rich-text-editor/components/text-appearance-group'
+export type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group'
+export type { ListsGroupProps } from '@components/forms/rich-text-editor/components/lists-group'
+export type { AlignmentGroupProps } from '@components/forms/rich-text-editor/components/alignment-group'
+export type { ImageGroupProps } from '@components/forms/rich-text-editor/components/image-group'
 export type {
     RichTextContainerNode,
     RichTextImageNode,

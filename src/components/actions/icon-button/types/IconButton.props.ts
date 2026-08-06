@@ -10,15 +10,24 @@ export type IconButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children' | 'aria-label' | 'color'
 > &
-  {
+  (
+    | {
+        /** Iconify icon name rendered inside the button. */
+        icon: string
+        children?: never
+      }
+    | {
+        icon?: never
+        /** Custom icon content rendered inside the button. */
+        children: React.ReactNode
+      }
+  ) & {
     variant?: IconButtonVariant
     color?: IconButtonColor
     /** Button size. Defaults to `md`. */
     size?: IconButtonSize
     /** Ref forwarded to the underlying `<button>` element. */
     ref?: React.Ref<HTMLButtonElement>;
-    /** Iconify icon name rendered inside the button. */
-    icon: string;
     /** Accessible label for the button (used as aria-label). */
     'aria-label': string;
     /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */

@@ -12,6 +12,7 @@ const IconButton: FC<IconButtonProps> = ({
     size = ICON_BUTTON_SIZES.md,
     className,
     icon,
+    children,
     active,
     ref,
     ...props
@@ -25,11 +26,13 @@ const IconButton: FC<IconButtonProps> = ({
             {...props}
             data-active={active ? 'true' : undefined}
         >
-            <Icon
-                icon={icon}
-                size={iconSize}
-                className={BUTTON_SHARED_STYLES.icon}
-            />
+            {children ?? (
+                <Icon
+                    icon={icon as string}
+                    size={iconSize}
+                    className={BUTTON_SHARED_STYLES.icon}
+                />
+            )}
         </button>
     )
 }

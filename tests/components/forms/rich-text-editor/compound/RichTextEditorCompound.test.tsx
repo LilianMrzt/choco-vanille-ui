@@ -115,6 +115,29 @@ describe('RichTextEditor compound API', () => {
         expect(boldToggle.getAttribute('aria-pressed')).toBe('true')
     })
 
+    it('renders menu-capable groups as direct toolbar actions', () => {
+        render(
+            <RichTextEditor label={'Description'}>
+                <RichTextEditor.Toolbar>
+                    <RichTextEditor.BlockFormatGroup presentation={'inline'} />
+                    <RichTextEditor.ListsGroup presentation={'inline'} />
+                    <RichTextEditor.AlignmentGroup presentation={'inline'} />
+                    <RichTextEditor.ImageGroup presentation={'inline'} />
+                </RichTextEditor.Toolbar>
+                <RichTextEditor.EditorField />
+            </RichTextEditor>,
+        )
+
+        expect(screen.getByRole('button', { name: 'Heading 1' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Bulleted list' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Align center' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Insert image URL' })).toBeTruthy()
+        expect(screen.queryByRole('button', { name: 'Block format' })).toBeNull()
+        expect(screen.queryByRole('button', { name: 'Lists' })).toBeNull()
+        expect(screen.queryByRole('button', { name: 'Text alignment' })).toBeNull()
+        expect(screen.queryByRole('button', { name: 'Image actions' })).toBeNull()
+    })
+
     it('exposes the TextAppearanceGroup sub-slots', () => {
         render(
             <RichTextEditor label={'Description'}>

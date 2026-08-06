@@ -7,13 +7,21 @@ import AlignmentGroup from '@components/forms/rich-text-editor/components/alignm
 import BlockFormatGroup from '@components/forms/rich-text-editor/components/block-format-group/BlockFormatGroup.tsx'
 import EditorField from '@components/forms/rich-text-editor/components/editor-field/EditorField.tsx'
 import HistoryGroup from '@components/forms/rich-text-editor/components/history-group/HistoryGroup.tsx'
+import { Redo, Undo } from '@components/forms/rich-text-editor/components/history-group'
 import ImageGroup from '@components/forms/rich-text-editor/components/image-group/ImageGroup.tsx'
 import LinkGroup from '@components/forms/rich-text-editor/components/link-group/LinkGroup.tsx'
+import { SetLink, UnsetLink } from '@components/forms/rich-text-editor/components/link-group'
 import ListsGroup from '@components/forms/rich-text-editor/components/lists-group/ListsGroup.tsx'
 import { RichTextEditorLabel } from '@components/forms/rich-text-editor/components/rich-text-editor-label'
 import { RichTextEditorFormField } from '@components/forms/rich-text-editor/components/rich-text-editor-form-field'
 import TextAppearanceGroup from '@components/forms/rich-text-editor/components/text-appearance-group/TextAppearanceGroup.tsx'
 import TextStyleGroup from '@components/forms/rich-text-editor/components/text-style-group/TextStyleGroup.tsx'
+import {
+    Bold,
+    Italic,
+    Strike,
+    Underline,
+} from '@components/forms/rich-text-editor/components/text-style-group'
 import Toolbar from '@components/forms/rich-text-editor/components/toolbar/Toolbar.tsx'
 import ToolbarGroups from '@components/forms/rich-text-editor/components/toolbar-groups/ToolbarGroups.tsx'
 import ToolbarSeparator from '@components/forms/rich-text-editor/components/toolbar-separator/ToolbarSeparator.tsx'
@@ -190,9 +198,17 @@ RichTextEditor.Toolbar = Toolbar
 RichTextEditor.ToolbarGroups = ToolbarGroups
 RichTextEditor.ToolbarSeparator = ToolbarSeparator
 RichTextEditor.HistoryGroup = HistoryGroup
+RichTextEditor.Undo = Undo
+RichTextEditor.Redo = Redo
 RichTextEditor.TextStyleGroup = TextStyleGroup
+RichTextEditor.Bold = Bold
+RichTextEditor.Italic = Italic
+RichTextEditor.Underline = Underline
+RichTextEditor.Strike = Strike
 RichTextEditor.TextAppearanceGroup = TextAppearanceGroup
 RichTextEditor.LinkGroup = LinkGroup
+RichTextEditor.SetLink = SetLink
+RichTextEditor.UnsetLink = UnsetLink
 RichTextEditor.BlockFormatGroup = BlockFormatGroup
 RichTextEditor.ListsGroup = ListsGroup
 RichTextEditor.AlignmentGroup = AlignmentGroup
