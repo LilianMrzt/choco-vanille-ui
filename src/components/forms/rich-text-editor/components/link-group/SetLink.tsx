@@ -1,5 +1,6 @@
 import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 
@@ -35,17 +36,23 @@ const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
     }
 
     return (
-        <IconButton
-            type={'button'}
-            icon={'lucide:link'}
-            aria-label={labels.addOrEditLink}
-            variant={'ghost'}
-            color={'primary'}
-            size={'sm'}
-            disabled={disabled}
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={handleSetLink}
-        />
+        <Tooltip
+            content={labels.addOrEditLink}
+            delayDuration={700}
+            position={'top'}
+        >
+            <IconButton
+                type={'button'}
+                icon={'lucide:link'}
+                aria-label={labels.addOrEditLink}
+                variant={'ghost'}
+                color={'primary'}
+                size={'sm'}
+                disabled={disabled}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={handleSetLink}
+            />
+        </Tooltip>
     )
 }
 

@@ -23,6 +23,8 @@ export type TooltipProps = {
   disabled?: boolean;
   /** Whether to render the tooltip arrow. @default false */
   arrow?: boolean;
+  /** Whether clicking the trigger closes the tooltip. @default true */
+  closeOnClick?: boolean;
   /** Additional class names to apply to the tooltip content. */
   className?: string;
   /** Controls the open state when used as a controlled component. */

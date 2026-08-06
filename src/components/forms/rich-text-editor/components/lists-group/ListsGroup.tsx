@@ -1,4 +1,5 @@
 import { IconButton } from '@components/actions/icon-button'
+import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
@@ -22,28 +23,40 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
         >
             {presentation === 'inline' ? (
                 <>
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:list'}
-                        aria-label={labels.bulletedList}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().toggleBulletList().run()}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:list-ordered'}
-                        aria-label={labels.numberedList}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                    />
+                    <Tooltip
+                        content={labels.bulletedList}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:list'}
+                            aria-label={labels.bulletedList}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() => editor.chain().focus().toggleBulletList().run()}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.numberedList}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:list-ordered'}
+                            aria-label={labels.numberedList}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                        />
+                    </Tooltip>
                 </>
             ) : (
                 <DropdownMenu
@@ -51,18 +64,25 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     open={listsOpen}
                     onOpenChange={setListsOpen}
                 >
-                    <DropdownMenu.Trigger>
-                        <IconButton
-                            type={'button'}
-                            icon={'lucide:list'}
-                            aria-label={labels.listsTrigger}
-                            variant={'ghost'}
-                            color={'primary'}
-                            size={'sm'}
-                            active={listsOpen}
-                            disabled={disabled}
-                        />
-                    </DropdownMenu.Trigger>
+                    <Tooltip
+                        content={labels.listsTrigger}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <DropdownMenu.Trigger>
+                            <IconButton
+                                type={'button'}
+                                icon={'lucide:list'}
+                                aria-label={labels.listsTrigger}
+                                variant={'ghost'}
+                                color={'primary'}
+                                size={'sm'}
+                                active={listsOpen}
+                                disabled={disabled}
+                                title={labels.listsTrigger}
+                            />
+                        </DropdownMenu.Trigger>
+                    </Tooltip>
                     <DropdownMenu.Content aria-label={labels.listOptions}>
                         <DropdownMenu.Item
                             label={labels.bulletedList}

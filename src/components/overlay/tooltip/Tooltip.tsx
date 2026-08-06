@@ -17,6 +17,7 @@ const Tooltip: FC<TooltipProps> = memo(({
     delayDuration = 0,
     disabled = false,
     arrow = false,
+    closeOnClick = true,
     className,
     open,
     defaultOpen,
@@ -37,6 +38,7 @@ const Tooltip: FC<TooltipProps> = memo(({
         >
             <BaseTooltip.Trigger
                 delay={delayDuration}
+                closeOnClick={closeOnClick}
                 render={children}
             />
 

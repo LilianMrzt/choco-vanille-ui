@@ -1,4 +1,5 @@
 import { IconButton } from '@components/actions/icon-button'
+import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRef, useState } from 'react'
 
@@ -9,7 +10,8 @@ import type { ImageGroupProps } from '@components/forms/rich-text-editor/compone
 const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024
 
 const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
-    const { editor, disabled, onImageUpload, labels } = useRichTextEditorContext()
+    const { editor, disabled, onImageUpload, labels } =
+    useRichTextEditorContext()
     const imageInputRef = useRef<HTMLInputElement>(null)
     const [open, setOpen] = useState(false)
 
@@ -25,46 +27,93 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
         >
             {presentation === 'inline' ? (
                 <>
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:image-plus'}
-                        aria-label={labels.insertImageUrl}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onClick={() => { const src = window.prompt(labels.imageUrlPrompt); if (src) { editor.chain().focus().setImage({ src }).run() } }}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:upload'}
-                        aria-label={labels.uploadImage}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onClick={() => imageInputRef.current?.click()}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:image-up'}
-                        aria-label={labels.editImageDetails}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled || !editor.isActive('image')}
-                        onClick={() => { const attributes = editor.getAttributes('image'); const alt = window.prompt(labels.imageAltPrompt, attributes.alt ?? ''); const width = window.prompt(labels.imageWidthPrompt, attributes.width ?? '100%'); editor.chain().focus().updateAttributes('image', { ...(alt !== null ? { alt } : {}), ...(width !== null ? { width } : {}) }).run() }}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:trash-2'}
-                        aria-label={labels.removeImage}
-                        variant={'ghost'}
-                        color={'destructive'}
-                        size={'sm'}
-                        disabled={disabled || !editor.isActive('image')}
-                        onClick={() => editor.chain().focus().deleteSelection().run()}
-                    />
+                    <Tooltip
+                        content={labels.insertImageUrl}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:image-plus'}
+                            aria-label={labels.insertImageUrl}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onClick={() => {
+                                const src = window.prompt(labels.imageUrlPrompt)
+                                if (src) {
+                                    editor.chain().focus().setImage({ src }).run()
+                                }
+                            }}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.uploadImage}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:upload'}
+                            aria-label={labels.uploadImage}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onClick={() => imageInputRef.current?.click()}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.editImageDetails}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:image-up'}
+                            aria-label={labels.editImageDetails}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled || !editor.isActive('image')}
+                            onClick={() => {
+                                const attributes = editor.getAttributes('image')
+                                const alt = window.prompt(
+                                    labels.imageAltPrompt,
+                                    attributes.alt ?? '',
+                                )
+                                const width = window.prompt(
+                                    labels.imageWidthPrompt,
+                                    attributes.width ?? '100%',
+                                )
+                                editor
+                                    .chain()
+                                    .focus()
+                                    .updateAttributes('image', {
+                                        ...(alt !== null ? { alt } : {}),
+                                        ...(width !== null ? { width } : {}),
+                                    })
+                                    .run()
+                            }}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.removeImage}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:trash-2'}
+                            aria-label={labels.removeImage}
+                            variant={'ghost'}
+                            color={'destructive'}
+                            size={'sm'}
+                            disabled={disabled || !editor.isActive('image')}
+                            onClick={() => editor.chain().focus().deleteSelection().run()}
+                        />
+                    </Tooltip>
                 </>
             ) : (
                 <DropdownMenu
@@ -72,18 +121,25 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     open={open}
                     onOpenChange={setOpen}
                 >
-                    <DropdownMenu.Trigger>
-                        <IconButton
-                            type={'button'}
-                            icon={'lucide:image'}
-                            aria-label={labels.imageGroupTrigger}
-                            variant={'ghost'}
-                            color={'primary'}
-                            size={'sm'}
-                            active={open}
-                            disabled={disabled}
-                        />
-                    </DropdownMenu.Trigger>
+                    <Tooltip
+                        content={labels.imageGroupTrigger}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <DropdownMenu.Trigger>
+                            <IconButton
+                                type={'button'}
+                                icon={'lucide:image'}
+                                aria-label={labels.imageGroupTrigger}
+                                variant={'ghost'}
+                                color={'primary'}
+                                size={'sm'}
+                                active={open}
+                                disabled={disabled}
+                                title={labels.imageGroupTrigger}
+                            />
+                        </DropdownMenu.Trigger>
+                    </Tooltip>
                     <DropdownMenu.Content aria-label={labels.imageOptions}>
                         <DropdownMenu.Item
                             label={labels.insertImageUrl}
@@ -108,13 +164,23 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                             disabled={!editor.isActive('image')}
                             onClick={() => {
                                 const attributes = editor.getAttributes('image')
-                                const alt = window.prompt(labels.imageAltPrompt, attributes.alt ?? '')
-                                const width = window.prompt(labels.imageWidthPrompt, attributes.width ?? '100%')
+                                const alt = window.prompt(
+                                    labels.imageAltPrompt,
+                                    attributes.alt ?? '',
+                                )
+                                const width = window.prompt(
+                                    labels.imageWidthPrompt,
+                                    attributes.width ?? '100%',
+                                )
 
-                                editor.chain().focus().updateAttributes('image', {
-                                    ...(alt !== null ? { alt } : {}),
-                                    ...(width !== null ? { width } : {}),
-                                }).run()
+                                editor
+                                    .chain()
+                                    .focus()
+                                    .updateAttributes('image', {
+                                        ...(alt !== null ? { alt } : {}),
+                                        ...(width !== null ? { width } : {}),
+                                    })
+                                    .run()
                             }}
                         />
                         <DropdownMenu.Item
@@ -136,7 +202,11 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     const file = event.currentTarget.files?.[0]
                     event.currentTarget.value = ''
 
-                    if (!file || !file.type.startsWith('image/') || file.size > MAX_IMAGE_FILE_SIZE) {
+                    if (
+                        !file ||
+            !file.type.startsWith('image/') ||
+            file.size > MAX_IMAGE_FILE_SIZE
+                    ) {
                         return
                     }
 
@@ -144,10 +214,14 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                         ? await onImageUpload(file)
                         : await new Promise<string>((resolve, reject) => {
                             const reader = new FileReader()
-                            reader.onload = () => typeof reader.result === 'string'
-                                ? resolve(reader.result)
-                                : reject(new Error('Unable to read the image file.'))
-                            reader.onerror = () => reject(reader.error ?? new Error('Unable to read the image file.'))
+                            reader.onload = () =>
+                                typeof reader.result === 'string'
+                                    ? resolve(reader.result)
+                                    : reject(new Error('Unable to read the image file.'))
+                            reader.onerror = () =>
+                                reject(
+                                    reader.error ?? new Error('Unable to read the image file.'),
+                                )
                             reader.readAsDataURL(file)
                         })
 

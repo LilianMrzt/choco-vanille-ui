@@ -67,6 +67,7 @@ const TextColorMenu = () => {
                     active={open}
                     disabled={disabled}
                     onMouseDown={(event) => event.preventDefault()}
+                    title={labels.textColorTrigger}
                 >
                     <span
                         className={TEXT_COLOR_MENU_STYLES.selectedColor}

@@ -1,4 +1,5 @@
 import { IconButton } from '@components/actions/icon-button'
+import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
@@ -22,50 +23,78 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
         >
             {presentation === 'inline' ? (
                 <>
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:align-left'}
-                        aria-label={labels.alignLeft}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().setTextAlign('left').run()}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:align-center'}
-                        aria-label={labels.alignCenter}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().setTextAlign('center').run()}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:align-right'}
-                        aria-label={labels.alignRight}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                    />
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:align-justify'}
-                        aria-label={labels.justify}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        disabled={disabled}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-                    />
+                    <Tooltip
+                        content={labels.alignLeft}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:align-left'}
+                            aria-label={labels.alignLeft}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() => editor.chain().focus().setTextAlign('left').run()}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.alignCenter}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:align-center'}
+                            aria-label={labels.alignCenter}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() =>
+                                editor.chain().focus().setTextAlign('center').run()
+                            }
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.alignRight}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:align-right'}
+                            aria-label={labels.alignRight}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() => editor.chain().focus().setTextAlign('right').run()}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content={labels.justify}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:align-justify'}
+                            aria-label={labels.justify}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            disabled={disabled}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onClick={() =>
+                                editor.chain().focus().setTextAlign('justify').run()
+                            }
+                        />
+                    </Tooltip>
                 </>
             ) : (
                 <DropdownMenu
@@ -73,18 +102,25 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     open={open}
                     onOpenChange={setOpen}
                 >
-                    <DropdownMenu.Trigger>
-                        <IconButton
-                            type={'button'}
-                            icon={'lucide:align-left'}
-                            aria-label={labels.alignmentTrigger}
-                            variant={'ghost'}
-                            color={'primary'}
-                            size={'sm'}
-                            active={open}
-                            disabled={disabled}
-                        />
-                    </DropdownMenu.Trigger>
+                    <Tooltip
+                        content={labels.alignmentTrigger}
+                        delayDuration={700}
+                        position={'top'}
+                    >
+                        <DropdownMenu.Trigger>
+                            <IconButton
+                                type={'button'}
+                                icon={'lucide:align-left'}
+                                aria-label={labels.alignmentTrigger}
+                                variant={'ghost'}
+                                color={'primary'}
+                                size={'sm'}
+                                active={open}
+                                disabled={disabled}
+                                title={labels.alignmentTrigger}
+                            />
+                        </DropdownMenu.Trigger>
+                    </Tooltip>
                     <DropdownMenu.Content aria-label={labels.alignmentOptions}>
                         <DropdownMenu.Item
                             label={labels.alignLeft}
@@ -94,7 +130,9 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.alignCenter}
                             startIcon={'lucide:align-center'}
-                            onClick={() => editor.chain().focus().setTextAlign('center').run()}
+                            onClick={() =>
+                                editor.chain().focus().setTextAlign('center').run()
+                            }
                         />
                         <DropdownMenu.Item
                             label={labels.alignRight}
@@ -104,7 +142,9 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         <DropdownMenu.Item
                             label={labels.justify}
                             startIcon={'lucide:align-justify'}
-                            onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+                            onClick={() =>
+                                editor.chain().focus().setTextAlign('justify').run()
+                            }
                         />
                     </DropdownMenu.Content>
                 </DropdownMenu>

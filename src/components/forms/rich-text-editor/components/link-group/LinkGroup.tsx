@@ -4,6 +4,7 @@ import UnsetLink from '@components/forms/rich-text-editor/components/link-group/
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { IconButton } from '@components/actions/icon-button'
+import { Tooltip } from '@components/overlay/tooltip'
 import { useState } from 'react'
 
 const LinkGroup = () => {
@@ -21,18 +22,25 @@ const LinkGroup = () => {
                 open={open}
                 onOpenChange={setOpen}
             >
-                <DropdownMenu.Trigger>
-                    <IconButton
-                        type={'button'}
-                        icon={'lucide:link'}
-                        aria-label={labels.linkGroupTrigger}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                        active={open}
-                        disabled={disabled}
-                    />
-                </DropdownMenu.Trigger>
+                <Tooltip
+                    content={labels.linkGroupTrigger}
+                    delayDuration={700}
+                    position={'top'}
+                >
+                    <DropdownMenu.Trigger>
+                        <IconButton
+                            type={'button'}
+                            icon={'lucide:link'}
+                            aria-label={labels.linkGroupTrigger}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                            active={open}
+                            disabled={disabled}
+                            title={labels.linkGroupTrigger}
+                        />
+                    </DropdownMenu.Trigger>
+                </Tooltip>
                 <DropdownMenu.Content aria-label={labels.linkOptions}>
                     <SetLink presentation={'menu'} />
                     <UnsetLink presentation={'menu'} />

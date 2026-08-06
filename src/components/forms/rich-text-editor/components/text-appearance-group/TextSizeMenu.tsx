@@ -39,6 +39,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                         label={selectedFontSizeLabel}
                         endIcon={'lucide:chevron-down'}
                         aria-label={labels.textSizeTrigger}
+                        title={labels.textSizeTrigger}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}
@@ -50,6 +51,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                         type={'button'}
                         icon={'lucide:text-cursor-input'}
                         aria-label={labels.textSizeTrigger}
+                        title={labels.textSizeTrigger}
                         variant={'ghost'}
                         color={'primary'}
                         size={'sm'}

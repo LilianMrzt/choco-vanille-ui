@@ -1,5 +1,6 @@
 import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 type UnsetLinkProps = {
@@ -25,17 +26,23 @@ const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
     }
 
     return (
-        <IconButton
-            type={'button'}
-            icon={'lucide:unlink'}
-            aria-label={labels.removeLink}
-            variant={'ghost'}
-            color={'primary'}
-            size={'sm'}
-            disabled={disabled || !editor.isActive('link')}
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={() => editor.chain().focus().unsetLink().run()}
-        />
+        <Tooltip
+            content={labels.removeLink}
+            delayDuration={700}
+            position={'top'}
+        >
+            <IconButton
+                type={'button'}
+                icon={'lucide:unlink'}
+                aria-label={labels.removeLink}
+                variant={'ghost'}
+                color={'primary'}
+                size={'sm'}
+                disabled={disabled || !editor.isActive('link')}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => editor.chain().focus().unsetLink().run()}
+            />
+        </Tooltip>
     )
 }
 

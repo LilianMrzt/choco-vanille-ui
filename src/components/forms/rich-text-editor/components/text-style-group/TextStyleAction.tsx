@@ -1,4 +1,5 @@
 import { Toggle } from '@components/actions/toggle'
+import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 type TextStyleActionProps = {
@@ -21,17 +22,23 @@ const TextStyleAction = ({
     }
 
     return (
-        <Toggle
-            icon={icon}
-            aria-label={label}
-            pressed={editor.isActive(mark)}
-            variant={'ghost'}
-            color={'primary'}
-            size={'sm'}
-            disabled={disabled}
-            onMouseDown={(event) => event.preventDefault()}
-            onPressedChange={onToggle}
-        />
+        <Tooltip
+            content={label}
+            delayDuration={700}
+            position={'top'}
+        >
+            <Toggle
+                icon={icon}
+                aria-label={label}
+                pressed={editor.isActive(mark)}
+                variant={'ghost'}
+                color={'primary'}
+                size={'sm'}
+                disabled={disabled}
+                onMouseDown={(event) => event.preventDefault()}
+                onPressedChange={onToggle}
+            />
+        </Tooltip>
     )
 }
 
