@@ -1,12 +1,12 @@
 import { memo, type FC } from 'react'
 
-import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
+import { TOOLBAR_STYLES } from '@components/forms/rich-text-editor/components/toolbar/styles/Toolbar.css.ts'
 import type { ToolbarProps } from '@components/forms/rich-text-editor/components/toolbar/types/Toolbar.props.ts'
 import { cn } from '@utils/cn.ts'
 
 const Toolbar: FC<ToolbarProps> = memo(({ children, 'aria-label': ariaLabel, className }) => (
     <div
-        className={cn(EDITOR_TOOLBAR_STYLES.root, className)}
+        className={cn(TOOLBAR_STYLES.root, className)}
         role={'toolbar'}
         aria-label={ariaLabel ?? 'Text formatting'}
         onKeyDown={(event) => {

@@ -1,5 +1,5 @@
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
+import { HISTORY_GROUP_STYLES } from '@components/forms/rich-text-editor/components/history-group/styles/HistoryGroup.css.ts'
 import Redo from '@components/forms/rich-text-editor/components/history-group/Redo.tsx'
 import Undo from '@components/forms/rich-text-editor/components/history-group/Undo.tsx'
 
@@ -12,7 +12,7 @@ const HistoryGroup = () => {
 
     return (
         <div
-            className={EDITOR_TOOLBAR_STYLES.group}
+            className={HISTORY_GROUP_STYLES.root}
             role={'group'}
             aria-label={'History'}
         >

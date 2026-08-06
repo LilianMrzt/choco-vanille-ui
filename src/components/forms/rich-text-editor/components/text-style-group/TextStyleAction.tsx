@@ -1,14 +1,19 @@
-import ToolbarButton from '@components/forms/rich-text-editor/internal/editor-toolbar/components/toolbar-button/ToolbarButton.tsx'
+import { Toggle } from '@components/actions/toggle'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 type TextStyleActionProps = {
-    mark: 'bold' | 'italic' | 'underline' | 'strike'
-    icon: string
-    label: string
-    onToggle: () => void
-}
+  mark: 'bold' | 'italic' | 'underline' | 'strike';
+  icon: string;
+  label: string;
+  onToggle: () => void;
+};
 
-const TextStyleAction = ({ mark, icon, label, onToggle }: TextStyleActionProps) => {
+const TextStyleAction = ({
+    mark,
+    icon,
+    label,
+    onToggle,
+}: TextStyleActionProps) => {
     const { editor, disabled } = useRichTextEditorContext()
 
     if (!editor) {
@@ -16,11 +21,15 @@ const TextStyleAction = ({ mark, icon, label, onToggle }: TextStyleActionProps) 
     }
 
     return (
-        <ToolbarButton
+        <Toggle
             icon={icon}
-            label={label}
+            aria-label={label}
             pressed={editor.isActive(mark)}
+            variant={'ghost'}
+            color={'primary'}
+            size={'sm'}
             disabled={disabled}
+            onMouseDown={(event) => event.preventDefault()}
             onPressedChange={onToggle}
         />
     )

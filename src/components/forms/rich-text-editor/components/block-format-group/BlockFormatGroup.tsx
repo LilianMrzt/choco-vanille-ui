@@ -3,7 +3,7 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
+import { BLOCK_FORMAT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/block-format-group/styles/BlockFormatGroup.css.ts'
 import type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group/types/BlockFormatGroup.props.ts'
 
 const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
@@ -22,7 +22,7 @@ const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
 
     return (
         <div
-            className={EDITOR_TOOLBAR_STYLES.group}
+            className={BLOCK_FORMAT_GROUP_STYLES.root}
             role={'group'}
             aria-label={'Block formatting'}
         >

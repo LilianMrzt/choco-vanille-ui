@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import TextColorMenu from '@components/forms/rich-text-editor/components/text-appearance-group/TextColorMenu.tsx'
 import TextSizeMenu from '@components/forms/rich-text-editor/components/text-appearance-group/TextSizeMenu.tsx'
-import { EDITOR_TOOLBAR_STYLES } from '@components/forms/rich-text-editor/internal/editor-toolbar/styles/EditorToolbar.css.ts'
+import { TEXT_APPEARANCE_GROUP_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextAppearanceGroup.css.ts'
 
 type TextAppearanceGroupCompound = FC & {
     TextColorMenu: typeof TextColorMenu
@@ -11,7 +11,7 @@ type TextAppearanceGroupCompound = FC & {
 
 const TextAppearanceGroup = (() => (
     <div
-        className={EDITOR_TOOLBAR_STYLES.group}
+        className={TEXT_APPEARANCE_GROUP_STYLES.root}
         role={'group'}
         aria-label={'Text appearance'}
     >
