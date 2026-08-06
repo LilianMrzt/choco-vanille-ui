@@ -2,6 +2,9 @@ import type { RichTextEditorLabels } from '@components/forms/rich-text-editor/ty
 
 export const RICH_TEXT_EDITOR_DEFAULT_LABELS: RichTextEditorLabels = {
     toolbar: 'Text formatting',
+    fontSizeAndBlockFormatGroup: 'Font size and block format',
+    alignmentAndListsGroup: 'Alignment and lists',
+    linksAndImagesGroup: 'Links and images',
 
     historyGroup: 'History',
     undo: 'Undo',

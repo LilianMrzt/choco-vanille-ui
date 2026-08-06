@@ -18,6 +18,7 @@ export type { ReadOnlyFieldProps } from '@components/forms/rich-text-editor/comp
 
 export { ToolbarGroups } from '@components/forms/rich-text-editor/components/toolbar-groups'
 export { ToolbarSeparator } from '@components/forms/rich-text-editor/components/toolbar-separator'
+export { ToolbarGroup } from '@components/forms/rich-text-editor/components/toolbar-group'
 export { HistoryGroup } from '@components/forms/rich-text-editor/components/history-group'
 export { TextStyleGroup } from '@components/forms/rich-text-editor/components/text-style-group'
 

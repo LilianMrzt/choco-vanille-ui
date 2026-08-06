@@ -7,6 +7,5 @@ export const BLOCK_FORMAT_GROUP_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space.xs,
-        paddingInline: vars.space.xs,
     }),
 }

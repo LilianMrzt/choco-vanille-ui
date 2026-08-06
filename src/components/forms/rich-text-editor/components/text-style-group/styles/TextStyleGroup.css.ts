@@ -7,6 +7,5 @@ export const TEXT_STYLE_GROUP_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space.xs,
-        paddingInline: vars.space.xs,
     }),
 }

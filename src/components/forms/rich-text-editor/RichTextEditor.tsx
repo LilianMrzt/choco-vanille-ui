@@ -22,6 +22,7 @@ import {
 } from '@components/forms/rich-text-editor/components/text-style-group'
 import Toolbar from '@components/forms/rich-text-editor/components/toolbar/Toolbar.tsx'
 import ToolbarGroups from '@components/forms/rich-text-editor/components/toolbar-groups/ToolbarGroups.tsx'
+import ToolbarGroup from '@components/forms/rich-text-editor/components/toolbar-group/ToolbarGroup.tsx'
 import ToolbarSeparator from '@components/forms/rich-text-editor/components/toolbar-separator/ToolbarSeparator.tsx'
 import { RichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { cn } from '@utils/cn.ts'
@@ -119,6 +120,7 @@ RichTextEditor.ReadOnlyField = ReadOnlyField
 RichTextEditor.HelperText = HelperText
 RichTextEditor.Toolbar = Toolbar
 RichTextEditor.ToolbarGroups = ToolbarGroups
+RichTextEditor.ToolbarGroup = ToolbarGroup
 RichTextEditor.ToolbarSeparator = ToolbarSeparator
 RichTextEditor.HistoryGroup = HistoryGroup
 RichTextEditor.Undo = Undo

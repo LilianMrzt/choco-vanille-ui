@@ -4,10 +4,11 @@ import TextColorMenu from '@components/forms/rich-text-editor/components/text-ap
 import TextSizeMenu from '@components/forms/rich-text-editor/components/text-appearance-group/TextSizeMenu.tsx'
 import { TEXT_APPEARANCE_GROUP_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextAppearanceGroup.css.ts'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import type { TextSizeMenuProps } from '@components/forms/rich-text-editor/components/text-appearance-group/types/TextSizeMenu.props.ts'
 
 type TextAppearanceGroupCompound = FC & {
     TextColorMenu: typeof TextColorMenu
-    TextSizeMenu: typeof TextSizeMenu
+    TextSizeMenu: FC<TextSizeMenuProps>
 }
 
 const TextAppearanceGroup = (() => {

@@ -7,6 +7,12 @@ export type RichTextEditorLabels = {
     // Toolbar
     /** Default `aria-label` for the toolbar when no `aria-label` prop is provided. */
     toolbar: string
+    /** `aria-label` for the combined font-size and block-format group. */
+    fontSizeAndBlockFormatGroup: string
+    /** `aria-label` for the combined alignment and lists group. */
+    alignmentAndListsGroup: string
+    /** `aria-label` for the combined links and images group. */
+    linksAndImagesGroup: string
 
     // History
     /** `aria-label` for the history group. */
