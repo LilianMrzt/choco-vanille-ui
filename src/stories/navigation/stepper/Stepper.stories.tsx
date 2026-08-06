@@ -53,7 +53,7 @@ const meta = {
                 component: md /* language=markdown */ `
 A progress indicator for multi-step journeys, onboarding and complex forms.
 Use \`onStepChange\` to make completed or upcoming steps selectable.
-        `,
+                `,
             },
         },
     },
@@ -156,6 +156,63 @@ export const Orientations: Story = {
   <Stepper.Item label={'Account'} />
   <Stepper.Item label={'Preferences'} />
   <Stepper.Item label={'Review'} />
+</Stepper>`),
+        },
+    },
+}
+
+export const Sizes: Story = {
+    args: meta.args,
+    render: () => (
+        <div style={{ display: 'grid', gap: '2rem', minWidth: '32rem' }}>
+            <Stepper
+                aria-label={'Medium progress'}
+                currentStep={2}
+            >
+                <Stepper.Item
+                    label={'Account'}
+                    size={'md'}
+                />
+                <Stepper.Item
+                    label={'Preferences'}
+                    size={'md'}
+                />
+                <Stepper.Item
+                    label={'Review'}
+                    size={'md'}
+                />
+            </Stepper>
+            <Stepper
+                aria-label={'Small progress'}
+                currentStep={2}
+            >
+                <Stepper.Item
+                    label={'Account'}
+                    size={'sm'}
+                />
+                <Stepper.Item
+                    label={'Preferences'}
+                    size={'sm'}
+                />
+                <Stepper.Item
+                    label={'Review'}
+                    size={'sm'}
+                />
+            </Stepper>
+        </div>
+    ),
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Stepper aria-label={'Medium progress'} currentStep={2}>
+  <Stepper.Item label={'Account'} size={'md'} />
+  <Stepper.Item label={'Preferences'} size={'md'} />
+  <Stepper.Item label={'Review'} size={'md'} />
+</Stepper>
+<Stepper aria-label={'Small progress'} currentStep={2}>
+  <Stepper.Item label={'Account'} size={'sm'} />
+  <Stepper.Item label={'Preferences'} size={'sm'} />
+  <Stepper.Item label={'Review'} size={'sm'} />
 </Stepper>`),
         },
     },

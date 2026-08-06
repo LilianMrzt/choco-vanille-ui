@@ -57,4 +57,25 @@ describe('Stepper.Item', () => {
             'itemContentCentered',
         )
     })
+
+    it('renders the small size for compact stepper layouts', () => {
+        render(
+            <Stepper
+                aria-label={'Progress'}
+                currentStep={1}
+            >
+                <Stepper.Item
+                    label={'Account'}
+                    size={'sm'}
+                />
+            </Stepper>,
+        )
+
+        expect(
+            screen.getByText('1').closest('[class*="markerSmall"]'),
+        ).toBeTruthy()
+        expect(screen.getByText('Account').className).toContain(
+            'labelSmall',
+        )
+    })
 })

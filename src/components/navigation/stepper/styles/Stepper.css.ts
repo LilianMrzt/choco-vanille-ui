@@ -49,6 +49,11 @@ export const STEPPER_STYLES = {
         lineHeight: 1,
         textAlign: 'center',
     }),
+    markerSmall: style({
+        width: '1.5rem',
+        height: '1.5rem',
+        fontSize: vars.fontSize.xs,
+    }),
     markerValue: style({
         display: 'flex',
         width: '100%',
@@ -77,6 +82,10 @@ export const STEPPER_STYLES = {
     contentCentered: style({
         paddingTop: 0,
     }),
+    contentSmall: style({
+        gap: 0,
+        paddingTop: 0,
+    }),
     itemContentCentered: style({
         alignSelf: 'center',
     }),
@@ -85,9 +94,15 @@ export const STEPPER_STYLES = {
         fontWeight: vars.fontWeight.medium,
         textAlign: 'start',
     }),
+    labelSmall: style({
+        fontSize: vars.fontSize.xs,
+    }),
     description: style({
         color: vars.color.textSecondary,
         textAlign: 'start',
+    }),
+    descriptionSmall: style({
+        fontSize: vars.fontSize['2xs'],
     }),
     connector: style({
         display: 'block',

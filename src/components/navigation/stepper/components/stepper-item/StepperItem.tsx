@@ -3,24 +3,26 @@ import { memo, useContext } from 'react'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { StepperItemContext } from '@components/navigation/stepper/context/Stepper.context.ts'
+import { STEPPER_ITEM_SIZES } from '@components/navigation/stepper/constants'
 import { STEPPER_STYLES } from '@components/navigation/stepper/styles/Stepper.css.ts'
 import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types/StepperItem.props.ts'
 import { cn } from '@utils/cn.ts'
 
 const StepperItem = memo(
-    ({ label, description, disabled, children }: StepperItemProps) => {
+    ({
+        label,
+        description,
+        disabled,
+        size = STEPPER_ITEM_SIZES.md,
+        children,
+    }: StepperItemProps) => {
         const context = useContext(StepperItemContext)
 
         if (!context) {
             throw new Error('Stepper.Item must be rendered inside Stepper.')
         }
 
-        const {
-            stepNumber,
-            isCurrent,
-            isCompleted,
-            onStepChange,
-        } = context
+        const { stepNumber, isCurrent, isCompleted, onStepChange } = context
         const isInteractive = Boolean(onStepChange)
         const hasCustomContent = children !== undefined
         const isTitleOnly = !hasCustomContent && !description
@@ -48,13 +50,14 @@ const StepperItem = memo(
                 className={cn(
                     STEPPER_STYLES.content,
                     isTitleOnly && STEPPER_STYLES.contentCentered,
+                    size === 'sm' && STEPPER_STYLES.contentSmall,
                 )}
             >
                 <Typography
                     as={'span'}
                     variant={'span'}
                     fontSize={'sm'}
-                    className={STEPPER_STYLES.label}
+                    className={cn(STEPPER_STYLES.label, size === 'sm' && STEPPER_STYLES.labelSmall)}
                 >
                     {label}
                 </Typography>
@@ -62,8 +65,11 @@ const StepperItem = memo(
                     <Typography
                         as={'span'}
                         variant={'span'}
-                        fontSize={'xs'}
-                        className={STEPPER_STYLES.description}
+                        fontSize={size === 'sm' ? '2xs' : 'xs'}
+                        className={cn(
+                            STEPPER_STYLES.description,
+                            size === 'sm' && STEPPER_STYLES.descriptionSmall,
+                        )}
                     >
                         {description}
                     </Typography>
@@ -78,6 +84,7 @@ const StepperItem = memo(
                         STEPPER_STYLES.marker,
                         isCurrent && STEPPER_STYLES.markerCurrent,
                         isCompleted && STEPPER_STYLES.markerCompleted,
+                        size === 'sm' && STEPPER_STYLES.markerSmall,
                     )}
                     aria-hidden={'true'}
                 >
