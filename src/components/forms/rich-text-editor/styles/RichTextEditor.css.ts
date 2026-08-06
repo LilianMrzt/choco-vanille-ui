@@ -24,13 +24,13 @@ export const RICH_TEXT_EDITOR_STYLES = {
         selectors: {
             '&:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 borderColor: vars.color.primary,
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: 'none',
             },
             '&[data-invalid="true"]': {
                 borderColor: vars.color.destructive,
             },
             '&[data-invalid="true"]:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
+                boxShadow: 'none',
             },
             '&[data-disabled="true"]': {
                 cursor: 'not-allowed',

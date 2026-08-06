@@ -28,7 +28,7 @@ export const TEXT_FIELD_STYLES = {
                 '&:focus-visible': {
                     outline: 'none',
                     borderColor: vars.color.primary,
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    boxShadow: 'none',
                 },
                 // Click focus (data-mouse-focus set by JS): primary border, NO ring.
                 '&[data-mouse-focus]:focus-visible': {
@@ -69,7 +69,7 @@ export const TEXT_FIELD_STYLES = {
                         },
                         '&:focus-visible': {
                             borderColor: vars.color.destructive,
-                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
+                            boxShadow: 'none',
                         },
                         '&[data-mouse-focus]:focus-visible': {
                             boxShadow: 'none',
