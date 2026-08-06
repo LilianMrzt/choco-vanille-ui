@@ -12,6 +12,7 @@ import type { FC } from 'react'
 
 const Toggle: FC<ToggleProps> = ({
     variant,
+    subtle,
     color,
     size = 'md',
     radius,
@@ -30,7 +31,7 @@ const Toggle: FC<ToggleProps> = ({
         <BaseToggle
             ref={ref}
             data-icon-only={icon ? '' : undefined}
-            className={cn(TOGGLE_STYLES.recipe({ variant, color, size, radius }), className)}
+            className={cn(TOGGLE_STYLES.recipe({ variant, color, size, radius, subtle }), className)}
             {...props}
         >
             {icon ? (

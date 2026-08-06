@@ -15,6 +15,8 @@ export type ToggleProps = Omit<
 > &
     ToggleContent & {
         variant?: ToggleVariant
+        /** Uses the low-emphasis appearance for the selected variant. */
+        subtle?: boolean
         color?: ToggleColor
         /** Toggle size. Defaults to `md`. */
         size?: ToggleSize

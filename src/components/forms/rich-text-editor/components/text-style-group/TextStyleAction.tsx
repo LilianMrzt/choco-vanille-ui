@@ -32,6 +32,7 @@ const TextStyleAction = ({
                 aria-label={label}
                 pressed={editor.isActive(mark)}
                 variant={'ghost'}
+                subtle
                 color={'primary'}
                 size={'sm'}
                 disabled={disabled}

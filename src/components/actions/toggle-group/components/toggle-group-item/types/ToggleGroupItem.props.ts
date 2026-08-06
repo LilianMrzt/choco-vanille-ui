@@ -15,6 +15,7 @@ export type ToggleGroupItemProps = Omit<
     ToggleContent & {
         value: string
         variant?: ToggleVariant
+        subtle?: boolean
         color?: ToggleColor
         size?: ToggleSize
         radius?: ToggleRadius

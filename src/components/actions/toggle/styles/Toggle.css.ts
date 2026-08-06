@@ -3,12 +3,49 @@ import { recipe } from '@vanilla-extract/recipes'
 import { vars } from '@theme/contract.css.ts'
 import { radius } from '@theme/tokens/radii.ts'
 import {
+    BUTTON_COLORS_ARRAY,
     BUTTON_COLORS,
     BUTTON_SIZES,
 } from '@components/actions/_shared/buttons/constants'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 
 const pressedSelector = '&[data-pressed]'
+const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
+    (['ghost', 'outlined'] as const).map((variant) => ({
+        variants: { variant, color, subtle: true },
+        style: {
+            borderColor: variant === 'outlined'
+                ? vars.color.border
+                : 'transparent',
+            color: vars.color.mutedForeground,
+            selectors: {
+                '&:hover': {
+                    backgroundColor: vars.color[`${color}Subtle`],
+                    color: vars.color[`${color}SubtleForeground`],
+                },
+                '&:active': {
+                    backgroundColor: vars.color[`${color}SubtleActive`],
+                    color: vars.color[`${color}SubtleForeground`],
+                },
+                [pressedSelector]: {
+                    backgroundColor: vars.color[`${color}SubtleActive`],
+                    color: vars.color[`${color}SubtleForeground`],
+                    borderColor: variant === 'outlined'
+                        ? vars.color[color]
+                        : 'transparent',
+                },
+                [`${pressedSelector}:hover`]: {
+                    backgroundColor: vars.color[`${color}Subtle`],
+                    color: vars.color[`${color}SubtleForeground`],
+                },
+                [`${pressedSelector}:active`]: {
+                    backgroundColor: vars.color[`${color}SubtleActive`],
+                    color: vars.color[`${color}SubtleForeground`],
+                },
+            },
+        },
+    })),
+)
 
 export const TOGGLE_STYLES = {
     recipe: recipe({
@@ -43,6 +80,12 @@ export const TOGGLE_STYLES = {
                 ghost: {
                     borderColor: 'transparent',
                 },
+            },
+            subtle: {
+                true: {
+                    backgroundColor: 'transparent',
+                },
+                false: {},
             },
             color: {
                 [BUTTON_COLORS.primary]: {
@@ -232,6 +275,7 @@ export const TOGGLE_STYLES = {
                 full: { borderRadius: radius.full },
             },
         },
+        compoundVariants: subtleCompoundVariants,
         defaultVariants: {
             variant: 'outlined',
             color: BUTTON_COLORS.primary,

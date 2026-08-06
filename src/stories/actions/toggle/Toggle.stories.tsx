@@ -19,7 +19,10 @@ import {
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
-const VARIANTS: ToggleVariant[] = ['outlined', 'ghost']
+const VARIANTS: ToggleVariant[] = [
+    'outlined',
+    'ghost',
+]
 const COLORS: ToggleColor[] = [
     'primary',
     'secondary',
@@ -90,6 +93,7 @@ Text mode requires \`label\`. Icon-only mode requires both \`icon\` and
         icon: { control: 'text' },
         'aria-label': { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
+        subtle: { control: 'boolean' },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
         startIcon: { control: 'text' },
@@ -125,7 +129,9 @@ export const Variants: Story = {
         docs: {
             ...storySource(/* language=tsx */ `
 <Toggle label="outlined" variant="outlined" />
-<Toggle label="ghost" variant="ghost" />`),
+<Toggle label="ghost" variant="ghost" />
+<Toggle label="outlined subtle" variant="outlined" subtle />
+<Toggle label="ghost subtle" variant="ghost" subtle />`),
         },
     },
     render: () => (
