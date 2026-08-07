@@ -3,10 +3,7 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
-
-type SetLinkProps = {
-    presentation?: 'icon' | 'menu'
-}
+import type { SetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/SetLink.props.ts'
 
 const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()

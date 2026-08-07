@@ -1,13 +1,7 @@
 import { Toggle } from '@components/actions/toggle'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-
-type TextStyleActionProps = {
-  mark: 'bold' | 'italic' | 'underline' | 'strike';
-  icon: string;
-  label: string;
-  onToggle: () => void;
-};
+import type { TextStyleActionProps } from '@components/forms/rich-text-editor/components/text-style-group/types/TextStyleAction.props.ts'
 
 const TextStyleAction = ({
     mark,

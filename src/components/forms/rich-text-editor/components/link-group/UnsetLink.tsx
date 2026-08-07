@@ -2,10 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-
-type UnsetLinkProps = {
-    presentation?: 'icon' | 'menu'
-}
+import type { UnsetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/UnsetLink.props.ts'
 
 const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()

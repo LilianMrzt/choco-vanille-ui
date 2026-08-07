@@ -1,3 +1,5 @@
 export { default as LinkGroup } from '@components/forms/rich-text-editor/components/link-group/LinkGroup.tsx'
 export { default as SetLink } from '@components/forms/rich-text-editor/components/link-group/SetLink.tsx'
 export { default as UnsetLink } from '@components/forms/rich-text-editor/components/link-group/UnsetLink.tsx'
+export type { SetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/SetLink.props.ts'
+export type { UnsetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/UnsetLink.props.ts'

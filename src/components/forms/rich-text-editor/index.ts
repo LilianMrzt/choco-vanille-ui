@@ -20,6 +20,10 @@ export type { ListsGroupProps } from '@components/forms/rich-text-editor/compone
 export type { AlignmentGroupProps } from '@components/forms/rich-text-editor/components/alignment-group'
 export type { ImageGroupProps } from '@components/forms/rich-text-editor/components/image-group'
 export type {
+    SetLinkProps,
+    UnsetLinkProps,
+} from '@components/forms/rich-text-editor/components/link-group'
+export type {
     RichTextContainerNode,
     RichTextImageNode,
     RichTextHardBreakNode,
