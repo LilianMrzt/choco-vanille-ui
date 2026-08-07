@@ -55,7 +55,7 @@ Available ramps: `neutral`, `brand` (violet-indigo), `secondary` (warm golden-or
 Each ramp: steps `50` → `950` (lighter → darker).
 
 ```ts
-import { palette } from '@my-org/ui-kit'
+import { palette } from '@choco-vanille/ui'
 
 palette.brand[600]  // 'oklch(0.548 0.237 285)' — light primary
 palette.red[500]    // 'oklch(0.637 0.237 25.3)'
@@ -102,7 +102,7 @@ Every **interactive intent** (`primary`, `secondary`, `tertiary`, `success`, `wa
 
 #### Interactive intents (solid + subtle)
 
-Each of the six intents exposes the nine tokens described above. Solid steps deepen on hover/active (light) or lighten (dark); subtle steps tint progressively.
+Each of the seven intents exposes the nine tokens described above. Solid steps deepen on hover/active (light) or lighten (dark); subtle steps tint progressively.
 
 | Intent | Solid (light) | Subtle surface (light) |
 |---|---|---|
@@ -129,7 +129,7 @@ Each of the six intents exposes the nine tokens described above. Solid steps dee
 ## Layer 3 — CSS variable contract (`contract.css.ts`)
 
 `createGlobalThemeContract` turns the token shape into typed `var(--…)` references.  
-Every leaf maps: `vars.color.primaryHover` → `--color-primary-hover`.
+Every leaf maps: `vars.color.primaryHover` → `--color-primaryHover`.
 
 ### Theme registration
 
@@ -184,4 +184,3 @@ Theme-dependent (dark shadows are deeper): `none` · `xs` · `sm` · `md` · `lg
 **Durations** — `instant`(0ms) · `fast`(100ms) · `normal`(150ms) · `moderate`(200ms) · `slow`(300ms) · `slower`(500ms)
 
 **Easings** — `standard` · `out` (enter) · `in` (exit) · `emphasized` (spring) · `linear`
-

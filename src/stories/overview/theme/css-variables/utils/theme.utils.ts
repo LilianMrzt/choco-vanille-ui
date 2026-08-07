@@ -89,9 +89,9 @@ export const buildPlainCssScaffold = (): string => {
     ].join('\n')
 
     return [
-        '/* @my-org/ui-kit — Plain CSS override scaffold                        */',
+        '/* @choco-vanille/ui — Plain CSS override scaffold                    */',
         '/* Fill in only the tokens you want to change, delete the rest.        */',
-        '/* Import this file AFTER @my-org/ui-kit/styles.css.                  */',
+        '/* Import kit components in the application entry before using tokens.  */',
         '',
         ':root {',
         rootBlock,
@@ -128,10 +128,10 @@ export const buildVanillaExtractSnippet = (): string => {
     ].join('\n')
 
     return [
-        '// @my-org/ui-kit — Vanilla Extract token reference              ',
+        '// @choco-vanille/ui — Vanilla Extract token reference          ',
         '// Use any path below inside a *.css.ts file for full autocomplete.',
         '',
-        "import { vars } from '@my-org/ui-kit';",
+        "import { vars } from '@choco-vanille/ui';",
         "import { style } from '@vanilla-extract/css';",
         '',
         '// Available token paths ',
@@ -155,7 +155,7 @@ export const buildMuiThemeSnippet = (): string => {
     const allColorVars = colorRows.map(r => r.variable).join(', ')
 
     return [
-        '// @my-org/ui-kit — MUI createTheme bridge                              ',
+        '// @choco-vanille/ui — MUI createTheme bridge                          ',
         '// Feed kit CSS variables into MUI palette so both libraries share one  ',
         '// source of truth. MUI resolves var() at runtime → dark mode and       ',
         '// scoped overrides (data-theme / data-brand) apply automatically.      ',
@@ -209,12 +209,11 @@ export const buildTailwindTheme = (): string => {
     ].join('\n')
 
     return [
-        '/* @my-org/ui-kit — Tailwind v4 @theme mapping                        */',
+        '/* @choco-vanille/ui — Tailwind v4 @theme mapping                    */',
         '/* Rename the left-hand side to your own Tailwind token names and     */',
         '/* delete any tokens you don\'t need.                                  */',
         '',
         '@import \'tailwindcss\';',
-        '@import \'@my-org/ui-kit/styles.css\';',
         '',
         '@theme {',
         sections,
@@ -255,7 +254,7 @@ export const buildThemeCSS = (): string => {
     ].join('\n')
 
     return [
-        '/* @my-org/ui-kit — theme override template                           */',
+        '/* @choco-vanille/ui — theme override template                       */',
         '/* Change the values you want to override and delete the rest.        */',
         '',
         ':root {',

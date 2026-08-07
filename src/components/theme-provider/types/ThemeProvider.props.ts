@@ -40,7 +40,8 @@ export interface ThemeProviderProps extends React.HTMLAttributes<HTMLDivElement>
 
     /**
      * Duration applied to every transition while the color scheme changes.
-     * @default 100
+     * Set to `0` to disable the optional transition.
+     * @default 0
      */
     themeTransitionDuration?: number
 

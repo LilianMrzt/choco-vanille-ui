@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
@@ -9,28 +9,31 @@ export const useThemeTransition = (
     resolvedTheme: string,
     duration: number,
 ) => {
-    const [settledTheme, setSettledTheme] = useState(resolvedTheme)
-    const isTransitioning = settledTheme !== resolvedTheme
+    const previousTheme = useRef(resolvedTheme)
+    const [isTransitioning, setIsTransitioning] = useState(false)
 
     useIsomorphicLayoutEffect(() => {
-        if (!isTransitioning) {
-            return
-        }
-
         const transitionDuration = Math.max(0, duration)
 
         if (transitionDuration === 0) {
-            setSettledTheme(resolvedTheme)
+            previousTheme.current = resolvedTheme
+            setIsTransitioning(false)
             return
         }
 
+        if (previousTheme.current === resolvedTheme) {
+            return
+        }
+
+        previousTheme.current = resolvedTheme
+
+        setIsTransitioning(true)
         const timeout = window.setTimeout(
-            () => setSettledTheme(resolvedTheme),
+            () => setIsTransitioning(false),
             transitionDuration,
         )
-
         return () => window.clearTimeout(timeout)
-    }, [duration, isTransitioning, resolvedTheme])
+    }, [duration, resolvedTheme])
 
     return isTransitioning
 }

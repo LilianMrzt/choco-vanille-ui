@@ -11,13 +11,10 @@ Both [Styled Components](https://styled-components.com/) and [Emotion](https://e
 
 ---
 
-## 0. Load the kit stylesheet
+## 0. Application setup
 
-Import the kit stylesheet once from the consumer application's entry point.
-The styled-components or Emotion runtime does not replace this import.
-
-<Source language="ts" code={`// main.tsx
-import '@my-org/ui-kit/styles.css';`} />
+Import a kit component from `@choco-vanille/ui` in the application entry. The
+styled-components or Emotion runtime then resolves the same token variables.
 
 ---
 
@@ -184,7 +181,7 @@ To inject a **dark-specific override** from a styled component, use a global sty
 
 <Source language="tsx" code={`// Styled Components
 import { createGlobalStyle } from 'styled-components';
-import { THEME_DARK_CLASS } from '@my-org/ui-kit';
+import { THEME_DARK_CLASS } from '@choco-vanille/ui';
 
 export const DarkBrandOverride = createGlobalStyle\`
   [data-theme="dark"],

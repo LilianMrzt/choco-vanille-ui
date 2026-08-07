@@ -29,12 +29,9 @@ A React 19 component library built with **Vite**, **Vanilla Extract** (zero-runt
   code={`yarn add @choco-vanille/ui react react-dom`}
 />
 
-Import the stylesheet once in your entry point:
-
-<Source
-  language="ts"
-  code={`import '@choco-vanille/ui/styles.css';`}
-/>
+Import the components from the package entry; its static CSS imports load the
+required styles in bundlers that support CSS imports. For CSS-only or unusual
+build pipelines, explicitly import `@choco-vanille/ui/styles.css` once.
 
 ---
 

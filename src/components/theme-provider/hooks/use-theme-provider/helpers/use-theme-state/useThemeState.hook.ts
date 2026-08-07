@@ -20,6 +20,10 @@ export const useThemeState = ({
     const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(getSystemTheme)
 
     useEffect(() => {
+        if (activeTheme !== 'system') {
+            return
+        }
+
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
         const handleChange = (event: MediaQueryListEvent) => {
             setSystemTheme(event.matches ? 'dark' : 'light')
@@ -27,7 +31,7 @@ export const useThemeState = ({
 
         mediaQuery.addEventListener('change', handleChange)
         return () => mediaQuery.removeEventListener('change', handleChange)
-    }, [])
+    }, [activeTheme])
 
     const setTheme = useCallback((nextTheme: ThemeValue) => {
         if (controlledTheme === undefined) {

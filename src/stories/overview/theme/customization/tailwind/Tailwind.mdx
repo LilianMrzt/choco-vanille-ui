@@ -29,27 +29,25 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
 })`} />
 
-Then import Tailwind and the kit stylesheet in your main CSS file. **Import the kit *before* your
-own rules** so your overrides come later in source order and win (both target `:root`, so the last
-declaration wins).
+Import Tailwind in your main CSS file. Importing a kit component from
+`@choco-vanille/ui` loads its CSS; keep your overrides in the application CSS.
 
 <Source language="css" code={`/* index.css */
 @import 'tailwindcss';
-@import '@my-org/ui-kit/styles.css';
 
 /* ↓ your overrides / @theme go below this line */`} />
 
-> The kit does **not** auto-inject its CSS — you import `styles.css` yourself, exactly once, here.
-> That single import point is what makes the override order predictable.
+> The kit's token layer has lower cascade priority than your unlayered application
+> rules, so no manual stylesheet ordering is required.
 
 ---
 
 ## 2. Override the kit's colours
 
 Redefine the kit's CSS variables under `:root` (and `[data-theme="dark"]` / `.${THEME_DARK_CLASS}` for dark mode). Place them
-**after** the `@import` above.
+in your application stylesheet.
 
-<Source language="css" code={`/* index.css — after the imports */
+<Source language="css" code={`/* index.css */
 
 /* Light */
 :root {
@@ -143,8 +141,7 @@ Use this when your app has a different naming convention. Tailwind creates a new
 
 ## Tailwind v3
 
-Same rule — import the kit stylesheet before your overrides — then point config tokens at the kit's
-variables.
+Point config tokens at the kit's variables.
 
 <Source language="js" code={`// tailwind.config.js
 export default {

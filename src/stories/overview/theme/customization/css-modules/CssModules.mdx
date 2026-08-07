@@ -11,15 +11,11 @@ CSS Modules scope **class names** by default, but **CSS custom properties are no
 
 ---
 
-## 0. Load the kit stylesheet
+## 0. Application setup
 
-Import the kit stylesheet once from the consumer application's entry point.
-The CSS Modules file only adds application styles; it does not load the kit's
-token contract.
-
-<Source language="ts" code={`// main.tsx
-import '@my-org/ui-kit/styles.css';
-import './app.css';`} />
+Import a kit component from `@choco-vanille/ui` in the application entry. The
+CSS Modules file only adds application styles; it reads the token contract
+already loaded by the package import.
 
 ---
 

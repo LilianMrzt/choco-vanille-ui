@@ -59,6 +59,9 @@ globalStyle(
     `[${THEME_TRANSITION_ATTRIBUTE}] *::before, ` +
     `[${THEME_TRANSITION_ATTRIBUTE}] *::after`,
     {
-        transition: `all var(${THEME_TRANSITION_DURATION_VAR}) linear !important`,
+        transitionProperty:
+            'color, background-color, border-color, outline-color, box-shadow, fill, stroke',
+        transitionDuration: `var(${THEME_TRANSITION_DURATION_VAR})`,
+        transitionTimingFunction: 'linear',
     },
 )

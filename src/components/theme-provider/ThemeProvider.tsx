@@ -40,7 +40,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
     theme: controlledTheme,
     defaultTheme = 'system',
     scope = 'document',
-    themeTransitionDuration = 100,
+    themeTransitionDuration = 0,
     onThemeChange,
     tokens,
     style,
@@ -66,8 +66,12 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
         [isTransitioning, themeTransitionDuration],
     )
     const containerStyle = useMemo(
-        () => ({ ...tokenStyles, ...style, ...transitionStyle }),
-        [style, tokenStyles, transitionStyle],
+        () => ({
+            ...(scope === 'subtree' ? tokenStyles : {}),
+            ...style,
+            ...(scope === 'subtree' ? transitionStyle : {}),
+        }),
+        [scope, style, tokenStyles, transitionStyle],
     )
     const contextValue = useMemo(
         () => ({ theme: activeTheme, resolvedTheme, setTheme }),
@@ -81,8 +85,12 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
     return (
         <ThemeContext.Provider value={contextValue}>
             <div
-                data-theme={resolvedTheme}
-                {...(isTransitioning ? { [THEME_TRANSITION_ATTRIBUTE]: '' } : {})}
+                {...(scope === 'subtree' ? { 'data-theme': resolvedTheme } : {})}
+                {...(
+                    scope === 'subtree' && isTransitioning
+                        ? { [THEME_TRANSITION_ATTRIBUTE]: '' }
+                        : {}
+                )}
                 style={containerStyle}
                 {...divProps}
             >

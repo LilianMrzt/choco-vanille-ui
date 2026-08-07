@@ -13,7 +13,7 @@ Every token is a plain **CSS custom property** on `:root`, so you can re-skin th
 
 ## How it works in one minute
 
-1. The kit ships a single stylesheet (`@my-org/ui-kit/styles.css`) that declares every token as a CSS custom property on `:root`.
+1. Importing components from `@choco-vanille/ui` loads the generated styles through static CSS imports in compatible bundlers.
 2. Components read those variables — they never hard-code colours, spacing, or radii.
 3. To customize, you **redefine the variable** in a scope (global `:root` or a scoped selector). The cascade does the rest.
 
@@ -45,7 +45,7 @@ It doesn't change how the kit reads tokens or how you override them. What it doe
 - Manages the `data-theme` attribute on a wrapper element, or on `<html>` with `scope="document"` (the same attribute Plain CSS / Tailwind / Vanilla Extract all rely on).
 - Follows `prefers-color-scheme` in `'system'` mode and updates reactively when the OS preference changes.
 - Exposes a `setTheme` / `useTheme` hook so any React component can toggle the theme without touching the DOM directly.
-- Accepts a `tokens` prop that injects CSS custom properties as inline styles — still the same CSS variables, just set at runtime instead of in a stylesheet.
+- Accepts a typed `tokens` prop for semantic **color** variables at runtime. Override spacing, typography, radii, motion, and other variables in CSS.
 
 In short: **you keep your existing customization approach unchanged; `ThemeProvider` only adds React state management around the `data-theme` attribute**. Its default document scope makes body-mounted portals inherit the application theme; use `scope="subtree"` for independent themed zones. Skip it if you manage `data-theme` another way (server-rendered attribute, a state manager, a URL param, etc.).
 

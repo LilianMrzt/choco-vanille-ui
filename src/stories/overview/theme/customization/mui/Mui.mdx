@@ -13,13 +13,10 @@ So MUI can't _drive_ this kit's theme. But there's a genuinely useful pattern: i
 
 ---
 
-## 0. Load the kit stylesheet
+## 0. Application setup
 
-Import the kit stylesheet once before rendering either library. MUI's
-`ThemeProvider` does not load the kit's CSS variables.
-
-<Source language="ts" code={`// main.tsx
-import '@my-org/ui-kit/styles.css';`} />
+Import a kit component from `@choco-vanille/ui`; MUI's `ThemeProvider` does
+not load the kit's CSS variables itself.
 
 ---
 
@@ -100,7 +97,7 @@ You do **not** need MUI's `palette.mode: 'dark'` machinery for the kit's tokens.
 
 > **React app?** If you need programmatic theme switching, wrap both providers with the kit's `<ThemeProvider>` — it manages `data-theme` via React state and MUI's palette continues reading the same `var(--color-*)` variables unchanged.
 
-<Source language="tsx" code={`import { ThemeProvider as KitThemeProvider } from '@my-org/ui-kit';
+<Source language="tsx" code={`import { ThemeProvider as KitThemeProvider } from '@choco-vanille/ui';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { muiTheme } from './theme';
 

@@ -20,7 +20,7 @@ export const useThemeProvider = ({
         defaultTheme,
         onThemeChange,
     })
-    const tokenStyles = useThemeTokenStyles(tokens)
+    const tokenStyles = useThemeTokenStyles(scope === 'subtree' ? tokens : undefined)
     const isTransitioning = useThemeTransition(
         themeState.resolvedTheme,
         themeTransitionDuration,

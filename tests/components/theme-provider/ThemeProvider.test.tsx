@@ -81,14 +81,14 @@ describe('ThemeProvider', () => {
         expect(screen.getByText('child')).toBeTruthy()
     })
 
-    it('sets data-theme on the wrapper div', () => {
+    it('sets data-theme on html for document scope', () => {
         render(
             <ThemeProvider theme={'dark'}>
                 <span>child</span>
             </ThemeProvider>,
         )
         const wrapper = screen.getByText('child').parentElement as HTMLElement
-        expect(wrapper.getAttribute('data-theme')).toBe('dark')
+        expect(wrapper.hasAttribute('data-theme')).toBe(false)
         expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
     })
 
@@ -242,9 +242,12 @@ describe('ThemeProvider', () => {
                     <span>child</span>
                 </ThemeProvider>,
             )
-            const wrapper = screen.getByText('child').parentElement as HTMLElement
-            expect(wrapper.style.getPropertyValue('--color-primary')).toBe('red')
-            expect(wrapper.style.getPropertyValue('--color-ring')).toBe('blue')
+            expect(
+                document.documentElement.style.getPropertyValue('--color-primary'),
+            ).toBe('red')
+            expect(document.documentElement.style.getPropertyValue('--color-ring')).toBe(
+                'blue',
+            )
         })
 
         it('merges custom style with token styles', () => {
@@ -257,8 +260,10 @@ describe('ThemeProvider', () => {
                     <span>child</span>
                 </ThemeProvider>,
             )
+            expect(
+                document.documentElement.style.getPropertyValue('--color-primary'),
+            ).toBe('red')
             const wrapper = screen.getByText('child').parentElement as HTMLElement
-            expect(wrapper.style.getPropertyValue('--color-primary')).toBe('red')
             expect(wrapper.style.padding).toBe('1rem')
         })
     })
@@ -287,12 +292,16 @@ describe('ThemeProvider', () => {
         ).toBe('')
     })
 
-    it('forces transitions for the default duration when the resolved theme changes', () => {
+    it('applies a transition only when an explicit duration is configured', () => {
         vi.useFakeTimers()
 
         try {
             const { unmount } = render(
-                <ThemeProvider defaultTheme={'light'}>
+                <ThemeProvider
+                    scope={'subtree'}
+                    defaultTheme={'light'}
+                    themeTransitionDuration={100}
+                >
                     <ThemeReader />
                 </ThemeProvider>,
             )
@@ -300,38 +309,35 @@ describe('ThemeProvider', () => {
                 ?.parentElement as HTMLElement
 
             expect(wrapper.hasAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe(false)
-            expect(
-                document.documentElement.hasAttribute(THEME_TRANSITION_ATTRIBUTE),
-            ).toBe(false)
-
             fireEvent.click(screen.getByRole('button', { name: 'set dark' }))
 
             expect(wrapper.getAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe('')
             expect(
                 wrapper.style.getPropertyValue(THEME_TRANSITION_DURATION_VAR),
             ).toBe('100ms')
-            expect(
-                document.documentElement.getAttribute(THEME_TRANSITION_ATTRIBUTE),
-            ).toBe('')
-            expect(
-                document.documentElement.style.getPropertyValue(
-                    THEME_TRANSITION_DURATION_VAR,
-                ),
-            ).toBe('100ms')
-
             act(() => {
                 vi.advanceTimersByTime(100)
             })
 
             expect(wrapper.hasAttribute(THEME_TRANSITION_ATTRIBUTE)).toBe(false)
-            expect(
-                document.documentElement.hasAttribute(THEME_TRANSITION_ATTRIBUTE),
-            ).toBe(false)
 
             unmount()
         } finally {
             vi.useRealTimers()
         }
+    })
+
+    it('does not subscribe to system preference changes for a fixed theme', () => {
+        const matchMedia = vi.fn().mockReturnValue(createMatchMediaMock(false))
+        Object.defineProperty(window, 'matchMedia', { writable: true, value: matchMedia })
+
+        render(
+            <ThemeProvider theme={'dark'}>
+                <span>child</span>
+            </ThemeProvider>,
+        )
+
+        expect(matchMedia).toHaveBeenCalledTimes(1)
     })
 
     it('displayName is "ThemeProvider"', () => {

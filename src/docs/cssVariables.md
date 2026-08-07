@@ -1,6 +1,6 @@
 # CSS Variables
 
-Importing `@my-org/ui-kit/styles.css` registers every design token as a **CSS custom property** on `:root`. Override any of them — from plain CSS, Tailwind, or Vanilla Extract — to re-skin the kit.
+Importing from `@choco-vanille/ui` loads these variables in compatible bundlers. `@choco-vanille/ui/styles.css` remains available for explicit stylesheet loading. Override any token — from plain CSS, Tailwind, or Vanilla Extract — to re-skin the kit.
 
 > The interactive reference with live, resolved values lives in Storybook:
 > **Overview / Theme / CSS Variables**, **/ Colors** and **/ Tokens**.
@@ -36,4 +36,3 @@ Each interactive intent exposes: `--color-{intent}`, `{intent}Hover`, `{intent}A
 > The exact resolved values are derived from `src/theme/tokens/` and `src/theme/colors/`. They are intentionally **not duplicated here** to avoid drift — read them live in the Storybook stories above.
 
 See [customization.md](./customization.md) to override these variables.
-

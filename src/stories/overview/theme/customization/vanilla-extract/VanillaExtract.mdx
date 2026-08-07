@@ -11,14 +11,11 @@ This is how the kit itself is built, and the only approach that gives you **full
 
 ---
 
-## 0. Load the kit stylesheet
+## 0. Application setup
 
-Import the kit stylesheet once from the consumer application's entry point.
-The typed `vars` contract references the generated CSS variables; it does not
-emit the library stylesheet.
-
-<Source language="ts" code={`// main.tsx
-import '@my-org/ui-kit/styles.css';`} />
+Import a kit component from `@choco-vanille/ui` in the application entry.
+The typed `vars` contract references the CSS variables loaded by that package
+import; it does not emit a second stylesheet.
 
 ---
 
@@ -28,7 +25,7 @@ Import `vars` from the kit and reference tokens directly — full autocomplete, 
 
 <Source language="ts" code={`// MyCard.css.ts
 import { style } from '@vanilla-extract/css';
-import { vars } from '@my-org/ui-kit';
+import { vars } from '@choco-vanille/ui';
 
 export const card = style({
   background:   vars.color.card,
@@ -50,7 +47,7 @@ override helper, so the same customization remains possible with any CSS tool.
 
 <Source language="ts" code={`// brand.css.ts
 import { globalStyle } from '@vanilla-extract/css';
-import { vars } from '@my-org/ui-kit';
+import { vars } from '@choco-vanille/ui';
 
 globalStyle('[data-brand="acme"]', {
   vars: {
@@ -95,7 +92,7 @@ To give a token a **dark-specific** value, target the dark scope with
 
 <Source language="ts" code={`// brand.css.ts
 import { globalStyle } from '@vanilla-extract/css';
-import { vars } from '@my-org/ui-kit';
+import { vars } from '@choco-vanille/ui';
 
 globalStyle('[data-theme="dark"]', {
   vars: {
