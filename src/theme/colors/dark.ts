@@ -14,7 +14,7 @@ type DarkEditorColors = {
 
 export const darkColors: DarkColors = {
     /* Base surfaces & text  */
-    background: palette.neutral[950],
+    background: palette.neutral[800],
     foreground: palette.neutral[100],
 
     /* Text hierarchy */
@@ -23,13 +23,13 @@ export const darkColors: DarkColors = {
     textTertiary: palette.neutral[500],
 
     /* Elevated surfaces — a hair lighter than the page for depth */
-    card: palette.neutral[900],
+    card: palette.neutral[700],
     cardForeground: palette.neutral[100],
-    popover: palette.neutral[900],
+    popover: palette.neutral[700],
     popoverForeground: palette.neutral[100],
 
     /* Muted */
-    muted: palette.neutral[800],
+    muted: palette.neutral[600],
     mutedForeground: palette.neutral[400],
 
     /* Scrim behind modals / drawers */
@@ -40,11 +40,11 @@ export const darkColors: DarkColors = {
     primaryHover: palette.brand[400],
     primaryActive: palette.brand[300],
     primaryForeground: palette.neutral[950],
-    primarySubtle: palette.brand[950],
-    primarySubtleHover: palette.brand[900],
-    primarySubtleActive: palette.brand[800],
+    primarySubtle: palette.brand[900],
+    primarySubtleHover: palette.brand[800],
+    primarySubtleActive: palette.brand[700],
     primarySubtleForeground: palette.brand[200],
-    primarySubtleBorder: palette.brand[800],
+    primarySubtleBorder: palette.brand[700],
 
     /* Links — higher contrast hover/active for clear affordance */
     link: palette.brand[500],
@@ -56,137 +56,137 @@ export const darkColors: DarkColors = {
     secondaryHover: palette.secondary[400],
     secondaryActive: palette.secondary[300],
     secondaryForeground: palette.neutral[950],
-    secondarySubtle: palette.secondary[950],
-    secondarySubtleHover: palette.secondary[900],
-    secondarySubtleActive: palette.secondary[800],
+    secondarySubtle: palette.secondary[900],
+    secondarySubtleHover: palette.secondary[800],
+    secondarySubtleActive: palette.secondary[700],
     secondarySubtleForeground: palette.secondary[200],
-    secondarySubtleBorder: palette.secondary[800],
+    secondarySubtleBorder: palette.secondary[700],
 
     /* Tertiary (low-emphasis neutral intent)  */
-    tertiary: palette.neutral[800],
-    tertiaryHover: palette.neutral[700],
-    tertiaryActive: palette.neutral[600],
+    tertiary: palette.neutral[600],
+    tertiaryHover: palette.neutral[500],
+    tertiaryActive: palette.neutral[400],
     tertiaryForeground: palette.neutral[100],
-    tertiarySubtle: palette.neutral[800],
-    tertiarySubtleHover: palette.neutral[700],
-    tertiarySubtleActive: palette.neutral[600],
+    tertiarySubtle: palette.neutral[600],
+    tertiarySubtleHover: palette.neutral[500],
+    tertiarySubtleActive: palette.neutral[400],
     tertiarySubtleForeground: palette.neutral[100],
-    tertiarySubtleBorder: palette.neutral[700],
+    tertiarySubtleBorder: palette.neutral[500],
 
     /* Status: success  */
     success: palette.green[500],
     successHover: palette.green[400],
     successActive: palette.green[300],
     successForeground: palette.neutral[950],
-    successSubtle: palette.green[950],
-    successSubtleHover: palette.green[900],
-    successSubtleActive: palette.green[800],
+    successSubtle: palette.green[900],
+    successSubtleHover: palette.green[800],
+    successSubtleActive: palette.green[700],
     successSubtleForeground: palette.green[200],
-    successSubtleBorder: palette.green[800],
+    successSubtleBorder: palette.green[700],
 
     /* Status: warning  */
     warning: palette.amber[400],
     warningHover: palette.amber[300],
     warningActive: palette.amber[200],
     warningForeground: palette.neutral[950],
-    warningSubtle: palette.amber[950],
-    warningSubtleHover: palette.amber[900],
-    warningSubtleActive: palette.amber[800],
+    warningSubtle: palette.amber[900],
+    warningSubtleHover: palette.amber[800],
+    warningSubtleActive: palette.amber[700],
     warningSubtleForeground: palette.amber[200],
-    warningSubtleBorder: palette.amber[800],
+    warningSubtleBorder: palette.amber[700],
 
     /* Status: info  */
     info: palette.blue[500],
     infoHover: palette.blue[400],
     infoActive: palette.blue[300],
     infoForeground: palette.neutral[950],
-    infoSubtle: palette.blue[950],
-    infoSubtleHover: palette.blue[900],
-    infoSubtleActive: palette.blue[800],
+    infoSubtle: palette.blue[900],
+    infoSubtleHover: palette.blue[800],
+    infoSubtleActive: palette.blue[700],
     infoSubtleForeground: palette.blue[200],
-    infoSubtleBorder: palette.blue[800],
+    infoSubtleBorder: palette.blue[700],
 
     /* Status: destructive / danger  */
     destructive: palette.red[500],
     destructiveHover: palette.red[400],
     destructiveActive: palette.red[300],
     destructiveForeground: palette.neutral[950],
-    destructiveSubtle: palette.red[950],
-    destructiveSubtleHover: palette.red[900],
-    destructiveSubtleActive: palette.red[800],
+    destructiveSubtle: palette.red[900],
+    destructiveSubtleHover: palette.red[800],
+    destructiveSubtleActive: palette.red[700],
     destructiveSubtleForeground: palette.red[200],
-    destructiveSubtleBorder: palette.red[800],
+    destructiveSubtleBorder: palette.red[700],
 
     /* Accent: purple  */
     purple: palette.purple[500],
     purpleHover: palette.purple[400],
     purpleActive: palette.purple[300],
     purpleForeground: palette.neutral[950],
-    purpleSubtle: palette.purple[950],
-    purpleSubtleHover: palette.purple[900],
-    purpleSubtleActive: palette.purple[800],
+    purpleSubtle: palette.purple[900],
+    purpleSubtleHover: palette.purple[800],
+    purpleSubtleActive: palette.purple[700],
     purpleSubtleForeground: palette.purple[200],
-    purpleSubtleBorder: palette.purple[800],
+    purpleSubtleBorder: palette.purple[700],
 
     /* Accent: pink  */
     pink: palette.pink[500],
     pinkHover: palette.pink[400],
     pinkActive: palette.pink[300],
     pinkForeground: palette.neutral[950],
-    pinkSubtle: palette.pink[950],
-    pinkSubtleHover: palette.pink[900],
-    pinkSubtleActive: palette.pink[800],
+    pinkSubtle: palette.pink[900],
+    pinkSubtleHover: palette.pink[800],
+    pinkSubtleActive: palette.pink[700],
     pinkSubtleForeground: palette.pink[200],
-    pinkSubtleBorder: palette.pink[800],
+    pinkSubtleBorder: palette.pink[700],
 
     /* Accent: orange  */
     orange: palette.orange[500],
     orangeHover: palette.orange[400],
     orangeActive: palette.orange[300],
     orangeForeground: palette.neutral[950],
-    orangeSubtle: palette.orange[950],
-    orangeSubtleHover: palette.orange[900],
-    orangeSubtleActive: palette.orange[800],
+    orangeSubtle: palette.orange[900],
+    orangeSubtleHover: palette.orange[800],
+    orangeSubtleActive: palette.orange[700],
     orangeSubtleForeground: palette.orange[200],
-    orangeSubtleBorder: palette.orange[800],
+    orangeSubtleBorder: palette.orange[700],
 
     /* Accent: teal  */
     teal: palette.teal[500],
     tealHover: palette.teal[400],
     tealActive: palette.teal[300],
     tealForeground: palette.neutral[950],
-    tealSubtle: palette.teal[950],
-    tealSubtleHover: palette.teal[900],
-    tealSubtleActive: palette.teal[800],
+    tealSubtle: palette.teal[900],
+    tealSubtleHover: palette.teal[800],
+    tealSubtleActive: palette.teal[700],
     tealSubtleForeground: palette.teal[200],
-    tealSubtleBorder: palette.teal[800],
+    tealSubtleBorder: palette.teal[700],
 
     /* Accent: cyan  */
     cyan: palette.cyan[500],
     cyanHover: palette.cyan[400],
     cyanActive: palette.cyan[300],
     cyanForeground: palette.neutral[950],
-    cyanSubtle: palette.cyan[950],
-    cyanSubtleHover: palette.cyan[900],
-    cyanSubtleActive: palette.cyan[800],
+    cyanSubtle: palette.cyan[900],
+    cyanSubtleHover: palette.cyan[800],
+    cyanSubtleActive: palette.cyan[700],
     cyanSubtleForeground: palette.cyan[200],
-    cyanSubtleBorder: palette.cyan[800],
+    cyanSubtleBorder: palette.cyan[700],
 
     /* Accent: indigo  */
     indigo: palette.indigo[500],
     indigoHover: palette.indigo[400],
     indigoActive: palette.indigo[300],
     indigoForeground: palette.neutral[950],
-    indigoSubtle: palette.indigo[950],
-    indigoSubtleHover: palette.indigo[900],
-    indigoSubtleActive: palette.indigo[800],
+    indigoSubtle: palette.indigo[900],
+    indigoSubtleHover: palette.indigo[800],
+    indigoSubtleActive: palette.indigo[700],
     indigoSubtleForeground: palette.indigo[200],
-    indigoSubtleBorder: palette.indigo[800],
+    indigoSubtleBorder: palette.indigo[700],
 
     /* Lines, fields & focus  */
-    border: palette.neutral[800],
-    borderStrong: palette.neutral[700],
-    input: palette.neutral[700],
+    border: palette.neutral[600],
+    borderStrong: palette.neutral[500],
+    input: palette.neutral[500],
     ring: palette.brand[500],
 
     /* Highlight  */
@@ -194,8 +194,8 @@ export const darkColors: DarkColors = {
     highlightForeground: palette.neutral[950],
 
     /* Skeleton loading placeholders  */
-    skeleton: palette.neutral[800],
-    skeletonForeground: palette.neutral[700],
+    skeleton: palette.neutral[600],
+    skeletonForeground: palette.neutral[500],
 }
 
 export const darkEditorColors: DarkEditorColors = {
