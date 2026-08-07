@@ -35,6 +35,7 @@ const AutocompleteContent: FC<AutocompleteContentProps> = memo(({
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
+                className={AUTOCOMPLETE_CONTENT_STYLES.positioner}
             >
                 <BaseAutocomplete.Popup
                     ref={contentRef}

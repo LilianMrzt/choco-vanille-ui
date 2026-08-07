@@ -9,6 +9,9 @@ import {
 } from '@constants/animations'
 
 export const DROPDOWN_MENU_CONTENT_STYLES = {
+    positioner: style({
+        zIndex: vars.zIndex.dropdown,
+    }),
     root: style({
         zIndex: vars.zIndex.dropdown,
         overflow: 'hidden',

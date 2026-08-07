@@ -16,6 +16,9 @@ import {
  * Listbox popup — visually identical to the DropdownMenu panel.
  */
 export const SELECT_CONTENT_STYLES = {
+    positioner: style({
+        zIndex: vars.zIndex.dropdown,
+    }),
     root: style({
         zIndex: vars.zIndex.dropdown,
         minWidth: 'var(--anchor-width)',

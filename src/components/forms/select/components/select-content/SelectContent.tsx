@@ -36,6 +36,7 @@ const SelectContent: FC<SelectContentProps> = memo(({
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
+                className={SELECT_CONTENT_STYLES.positioner}
             >
                 <BaseSelect.Popup
                     ref={contentRef}

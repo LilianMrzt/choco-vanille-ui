@@ -45,6 +45,7 @@ const ContextMenuContent: FC<ContextMenuContentProps> = memo(({
                 sideOffset={sideOffset}
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
+                className={DROPDOWN_MENU_CONTENT_STYLES.positioner}
             >
                 <BaseContextMenu.Popup
                     ref={setPopupRef}

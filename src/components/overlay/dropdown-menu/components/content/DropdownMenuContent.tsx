@@ -37,6 +37,7 @@ const DropdownMenuContent: FC<DropdownMenuContentProps> = memo(({
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
+                className={DROPDOWN_MENU_CONTENT_STYLES.positioner}
             >
                 <BaseMenu.Popup
                     ref={contentRef}

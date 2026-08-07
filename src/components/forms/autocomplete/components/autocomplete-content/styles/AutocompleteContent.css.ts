@@ -16,6 +16,9 @@ import {
  * Autocomplete popup panel — visually identical to the Select content panel.
  */
 export const AUTOCOMPLETE_CONTENT_STYLES = {
+    positioner: style({
+        zIndex: vars.zIndex.dropdown,
+    }),
     root: style({
         zIndex: vars.zIndex.dropdown,
         minWidth: 'var(--anchor-width)',

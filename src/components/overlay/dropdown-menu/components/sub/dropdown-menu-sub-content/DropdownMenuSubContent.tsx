@@ -3,6 +3,7 @@ import { memo, type CSSProperties, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
 import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/styles/DropdownMenuSubContent.css.ts'
+import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
 import type { DropdownMenuSubContentProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/types/DropdownMenuSubContent.props.ts'
 import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
@@ -29,6 +30,7 @@ const DropdownMenuSubContent: FC<DropdownMenuSubContentProps> = memo(({
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
+                className={DROPDOWN_MENU_CONTENT_STYLES.positioner}
             >
                 <BaseMenu.Popup
                     ref={contentRef}
