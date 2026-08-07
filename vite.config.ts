@@ -4,8 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 import react from '@vitejs/plugin-react';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import dts from 'vite-plugin-dts';
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
@@ -20,10 +21,33 @@ const isExternal = (id: string) =>
 
 const assetFileNames = 'ui-kit[extname]';
 
+const aggregateStylesheet = (): Plugin => ({
+  name: 'aggregate-stylesheet',
+  apply: 'build',
+  enforce: 'post',
+  generateBundle(_options, bundle) {
+    const styles = Object.values(bundle)
+      .filter(
+        (output): output is Extract<typeof output, { type: 'asset' }> =>
+          output.type === 'asset' && output.fileName.endsWith('.css'),
+      )
+      .map((asset) => asset.source.toString())
+      .join('\n');
+
+    this.emitFile({
+      type: 'asset',
+      fileName: 'styles.css',
+      source: styles,
+    });
+  },
+});
+
 export default defineConfig({
   plugins: [
     react(),
     vanillaExtractPlugin(),
+    libInjectCss(),
+    aggregateStylesheet(),
     dts({
       tsconfigPath: './tsconfig.build.json',
       include: ['src'],

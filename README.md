@@ -29,13 +29,7 @@ yarn add @choco-vanille/ui react react-dom
 pnpm add @choco-vanille/ui react react-dom
 ```
 
-Import the stylesheet once (e.g. in your root layout/entry):
-
-```ts
-import '@choco-vanille/ui/styles.css';
-```
-
-Then use components:
+The package entry automatically loads its stylesheet. Then use components:
 
 ```tsx
 import { Typography } from '@choco-vanille/ui';
@@ -50,6 +44,9 @@ export function Example() {
   );
 }
 ```
+
+For integrations that require explicit CSS loading, the stylesheet remains
+available at `@choco-vanille/ui/styles.css`.
 
 ## Components
 
