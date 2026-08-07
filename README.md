@@ -38,14 +38,14 @@ import '@choco-vanille/ui/styles.css';
 Then use components:
 
 ```tsx
-import { Text } from '@choco-vanille/ui';
+import { Typography } from '@choco-vanille/ui';
 
 export function Example() {
   return (
     <>
-      <Text variant="h1">Hello world</Text>
-      <Text variant="muted">A typographic primitive.</Text>
-      <Text variant="code">@choco-vanille/ui</Text>
+      <Typography variant="h1">Hello world</Typography>
+      <Typography variant="muted">A typographic primitive.</Typography>
+      <Typography variant="code">@choco-vanille/ui</Typography>
     </>
   );
 }
@@ -56,14 +56,14 @@ export function Example() {
 | Category | Components |
 |---|---|
 | **Foundation** | `Icon`, `Typography` |
-| **Layout** | `Box`, `Flex`, `Grid`, `Image`, `Separator`, `Form`, `Fieldset`, `Legend` |
+| **Layout** | `Box`, `Flex`, `Grid`, `Inset`, `Image`, `Separator`, `Form`, `Fieldset`, `Legend` |
 | **Actions** | `Button`, `IconButton`, `Toggle`, `ToggleGroup` |
-| **Forms** | `Autocomplete`, `Calendar`, `Checkbox`, `DatePicker`, `RadioGroup`, `Select`, `Switch`, `TextArea`, `TextField` |
-| **Data Display** | `Avatar`, `AvatarGroup`, `Badge`, `Table` |
+| **Forms** | `Autocomplete`, `Calendar`, `Checkbox`, `CheckboxGroup`, `DatePicker`, `RadioGroup`, `RichTextEditor`, `Select`, `Slider`, `Switch`, `TextArea`, `TextField`, `NumberField` |
+| **Data Display** | `Avatar`, `AvatarGroup`, `Badge`, `RichTextRenderer`, `Table` |
 | **Surfaces** | `Accordion`, `Card`, `Collapsible` |
-| **Navigation** | `Tabs`, `Link` |
-| **Overlay** | `Tooltip`, `DropdownMenu`, `Popover`, `HoverCard`, `Dialog`, `Drawer` |
-| **Feedback** | `Skeleton`, `Callout`, `Toast`, `Progress` |
+| **Navigation** | `Tabs`, `Link`, `Pagination`, `Breadcrumbs`, `Stepper`, `StepIndicator` |
+| **Overlay** | `Tooltip`, `DropdownMenu`, `ContextMenu`, `Popover`, `HoverCard`, `Dialog`, `AlertDialog`, `Drawer`, `Panel`, `Command` |
+| **Feedback** | `Skeleton`, `Callout`, `Toast`, `Progress`, `EmptyState`, `Spinner` |
 | **Theme** | `ThemeProvider`, `useTheme` |
 
 ## Theming
