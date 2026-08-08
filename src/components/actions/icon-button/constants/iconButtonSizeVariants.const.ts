@@ -2,8 +2,8 @@ import { ICON_BUTTON_SIZES } from '@components/actions/icon-button/constants/ico
 
 export const ICON_BUTTON_SIZE_VARIANTS = {
     [ICON_BUTTON_SIZES.xs]: {
-        height: '2rem',
-        width: '2rem',
+        height: '1.5rem',
+        width: '1.5rem',
     },
     [ICON_BUTTON_SIZES.sm]: {
         height: '2.25rem',

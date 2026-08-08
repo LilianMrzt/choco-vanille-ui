@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { Children, isValidElement, memo, useCallback } from 'react'
 
 import { TOAST_STYLES } from '@components/feedback/toast/styles/Toast.css.ts'
 import { ToastActions } from '@components/feedback/toast/components/toast-actions'
@@ -40,6 +40,9 @@ const Toast = memo<ToastProps>(({
 }) => {
     const isCompound = children !== undefined
     const showDefaultIcon = isCompound && !hasIconChild(children)
+    const hasActions = isCompound && Children.toArray(children).some(
+        (child) => isValidElement(child) && child.type === ToastActions,
+    )
 
     const handleClose = useCallback(() => {
         onClose?.()
@@ -50,7 +53,10 @@ const Toast = memo<ToastProps>(({
             <Box
                 as={'div'}
                 ref={ref}
-                className={cn(TOAST_STYLES.recipe({ variant }), className)}
+                className={cn(
+                    TOAST_STYLES.recipe({ variant, actions: hasActions }),
+                    className,
+                )}
                 role={role === 'none' ? undefined : role}
                 {...props}
             >

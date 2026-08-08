@@ -11,7 +11,7 @@ import { expect, within } from 'storybook/test'
 
 import { Button } from '@components/actions/button'
 import type { ButtonColor, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
-import { Toast, ToastProvider } from '@/components/feedback/toast'
+import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
 import { useNotification, useToast } from '@hooks'
 import { md } from '@stories/utils/markdown'
@@ -406,9 +406,6 @@ const Example = () => {
         },
     },
     render: () => (
-        <>
-            <ToastProvider />
-            <ToastTriggers />
-        </>
+        <ToastTriggers />
     ),
 }

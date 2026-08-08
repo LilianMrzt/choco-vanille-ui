@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
 import { Toaster } from 'sonner'
 
 import {
@@ -17,38 +15,27 @@ const TOASTER_OPTIONS = {
 } as const
 
 /**
- * Mounts two Sonner `Toaster` instances via a portal on `document.body`:
- * one at `top-right` for transient toasts and one at `bottom-right` for
- * persistent notifications. Wrap the application root with this provider.
+ * Mounts two Sonner `Toaster` instances: one at `top-right` for transient
+ * toasts and one at `bottom-right` for persistent notifications. Sonner
+ * positions the mounted viewports independently of the application layout.
  */
 const ToastProvider = ({ children }: ToastProviderProps) => {
-    const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null)
-
-    useEffect(() => {
-        setPortalRoot(document.body)
-    }, [])
-
     return (
         <>
             {children}
-            {portalRoot && createPortal(
-                <>
-                    <Toaster
-                        id={TOAST_CHANNELS.toasts}
-                        position={'top-right'}
-                        toastOptions={TOASTER_OPTIONS}
-                        containerAriaLabel={'Toasts'}
-                    />
-                    <Toaster
-                        id={TOAST_CHANNELS.notifications}
-                        position={'bottom-right'}
-                        expand={true}
-                        toastOptions={TOASTER_OPTIONS}
-                        containerAriaLabel={'Notifications'}
-                    />
-                </>,
-                portalRoot,
-            )}
+            <Toaster
+                id={TOAST_CHANNELS.toasts}
+                position={'top-right'}
+                toastOptions={TOASTER_OPTIONS}
+                containerAriaLabel={'Toasts'}
+            />
+            <Toaster
+                id={TOAST_CHANNELS.notifications}
+                position={'bottom-right'}
+                expand={true}
+                toastOptions={TOASTER_OPTIONS}
+                containerAriaLabel={'Notifications'}
+            />
         </>
     )
 }

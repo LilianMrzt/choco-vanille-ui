@@ -1,8 +1,17 @@
 import type { Preview } from '@storybook/react-vite';
 import { addIcon } from '@iconify/react';
+import {
+  createElement,
+  Fragment,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react';
+import { createPortal } from 'react-dom';
 
 // Register the design tokens (`:root` CSS variables) and global base styles.
 import '../src/theme';
+import { ToastProvider } from '../src/components/feedback/toast';
 
 // Pre-load all icons used in stories so Iconify renders them synchronously
 // without making network requests (important for browser-based test runners).
@@ -30,7 +39,31 @@ addIcon('mdi:circle', {
     height: 24,
 });
 
+const StorybookToastPortal = ({ story }: { story: ReactNode }) => {
+  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPortalRoot(document.body);
+  }, []);
+
+  return createElement(
+    Fragment,
+    null,
+    story,
+    portalRoot
+      ? createPortal(createElement(ToastProvider), portalRoot)
+      : null,
+  );
+};
+
 const preview: Preview = {
+  decorators: [
+    (Story) =>
+      createElement(
+        StorybookToastPortal,
+        { story: createElement(Story) },
+      ),
+  ],
   tags: ['autodocs'],
   parameters: {
     options: {

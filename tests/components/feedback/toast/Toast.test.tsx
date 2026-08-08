@@ -147,6 +147,31 @@ describe('Toast', () => {
             expect(screen.getByText('Retry')).toBeTruthy()
         })
 
+        it('only includes the actions grid row when Toast.Actions is present', () => {
+            const withoutActions = render(
+                <Toast>
+                    <Toast.Description>Something happened</Toast.Description>
+                </Toast>,
+            )
+            expect(withoutActions.container.firstElementChild?.className).toContain(
+                TOAST_STYLES.recipe({ variant: 'info', actions: false }),
+            )
+
+            withoutActions.unmount()
+
+            const withActions = render(
+                <Toast>
+                    <Toast.Description>Something happened</Toast.Description>
+                    <Toast.Actions>
+                        <button type="button">Undo</button>
+                    </Toast.Actions>
+                </Toast>,
+            )
+            expect(withActions.container.firstElementChild?.className).toContain(
+                TOAST_STYLES.recipe({ variant: 'info', actions: true }),
+            )
+        })
+
         it('exposes Toast.Actions on the compound component', () => {
             expect(Toast.Actions).toBeDefined()
             expect(Toast.Actions.displayName).toBe('Toast.Actions')

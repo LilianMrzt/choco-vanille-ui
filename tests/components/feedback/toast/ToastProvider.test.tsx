@@ -15,7 +15,7 @@ describe('ToastProvider', () => {
         const toasts = screen.getByLabelText(/^Toasts/)
         const notifications = screen.getByLabelText(/^Notifications/)
 
-        expect(container.contains(toasts)).toBe(false)
-        expect(container.contains(notifications)).toBe(false)
+        expect(container.contains(toasts)).toBe(true)
+        expect(container.contains(notifications)).toBe(true)
     })
 })
