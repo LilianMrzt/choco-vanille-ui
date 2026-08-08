@@ -30,8 +30,8 @@ export const lightColors = {
 
     /* Text hierarchy */
     text: palette.neutral[950],
-    textSecondary: palette.neutral[700],
-    textTertiary: palette.neutral[500],
+    textSecondary: palette.neutral[600],
+    textTertiary: palette.neutral[400],
 
     /* Elevated surfaces */
     card: palette.neutral[0],
@@ -41,7 +41,7 @@ export const lightColors = {
 
     /* Muted — quiet backgrounds & secondary text */
     muted: palette.neutral[100],
-    mutedForeground: palette.neutral[600],
+    mutedForeground: palette.neutral[500],
 
     /* Scrim behind modals / drawers */
     overlay: 'oklch(0 0 0 / 0.5)',

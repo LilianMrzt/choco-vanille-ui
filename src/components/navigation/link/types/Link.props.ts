@@ -21,7 +21,7 @@ export type LinkProps = Omit<
     endIcon?: string
     /** Typography size of the label. Defaults to `base`. */
     fontSize?: TypographySize
-    /** Typography weight of the label. Defaults to `medium`. */
+    /** Typography weight of the label. Defaults to `normal`. */
     fontWeight?: TypographyWeight
     /** Size of the start/end icons. Defaults to `md`. */
     iconSize?: IconSize

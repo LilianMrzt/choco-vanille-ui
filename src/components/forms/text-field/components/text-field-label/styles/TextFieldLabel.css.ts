@@ -16,4 +16,7 @@ export const TEXT_FIELD_LABEL_STYLES = {
             },
         },
     }),
+    requiredIndicator: style({
+        color: vars.color.destructive,
+    }),
 }

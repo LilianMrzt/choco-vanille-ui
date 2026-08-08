@@ -59,6 +59,8 @@ const TextField = memo<TextFieldProps>((props) => {
         error,
         helperText,
         label,
+        required,
+        showRequiredIndicator = true,
         endAction,
         size: sizeProp,
         placeholder,
@@ -104,6 +106,7 @@ const TextField = memo<TextFieldProps>((props) => {
                 <TextFieldLabel
                     htmlFor={inputId}
                     disabled={disabled}
+                    required={required && showRequiredIndicator}
                 >
                     {label}
                 </TextFieldLabel>
@@ -127,6 +130,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     // `type` is resolved by useTextField for password toggling.
                     type={resolvedType}
                     disabled={disabled}
+                    required={required}
                     aria-invalid={hasError || undefined}
                     aria-describedby={error || helperText ? helperId : undefined}
                     onMouseDown={handleMouseDown}

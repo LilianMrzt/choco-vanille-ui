@@ -4,13 +4,21 @@ import type {
     TextFieldLabelProps
 } from '@components/forms/text-field/components/text-field-label/types/TextFieldLabel.props.ts'
 
-const TextFieldLabel: FC<TextFieldLabelProps> = memo(({ htmlFor, disabled, children }) => (
+const TextFieldLabel: FC<TextFieldLabelProps> = memo(({ htmlFor, disabled, required, children }) => (
     <label
         htmlFor={htmlFor}
         className={TEXT_FIELD_LABEL_STYLES.root}
         data-disabled={disabled ? '' : undefined}
     >
         {children}
+        {required && (
+            <span
+                className={TEXT_FIELD_LABEL_STYLES.requiredIndicator}
+                aria-hidden={'true'}
+            >
+                {' *'}
+            </span>
+        )}
     </label>
 ))
 

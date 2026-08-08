@@ -28,6 +28,23 @@ describe('TextField', () => {
             expect(label.htmlFor).toBe(input.id)
         })
 
+        it('renders a required indicator by default for required fields', () => {
+            render(<TextField label={'Email'} required />)
+            expect(screen.getByText('*')).toBeTruthy()
+        })
+
+        it('can hide the required indicator while preserving native required semantics', () => {
+            render(
+                <TextField
+                    label={'Email'}
+                    required
+                    showRequiredIndicator={false}
+                />,
+            )
+            expect(screen.queryByText('*')).toBeNull()
+            expect((screen.getByRole('textbox') as HTMLInputElement).required).toBe(true)
+        })
+
         it('renders helper text linked via aria-describedby', () => {
             render(
                 <TextField

@@ -22,7 +22,7 @@ export const TEXT_FIELD_STYLES = {
             ].join(', '),
             selectors: {
                 '&::placeholder': {
-                    color: vars.color.mutedForeground,
+                    color: vars.color.textTertiary,
                 },
                 // Keyboard focus: full ring + primary border.
                 '&:focus-visible': {

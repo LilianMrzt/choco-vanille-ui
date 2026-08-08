@@ -11,8 +11,10 @@ export type TextFieldProps = Omit<
   {
     /** Input size. @default 'md' */
     size?: TextFieldSize
-    /** Text label rendered above the input, linked via Radix Label for accessibility. */
+    /** Text label rendered above the input, linked to the input for accessibility. */
     label?: string
+    /** Shows a red required marker next to the label when `required` is true. Defaults to `true`. */
+    showRequiredIndicator?: boolean
     /** Helper text rendered below the input. Hidden when `error` is provided. */
     helperText?: string
     /** Error message rendered below the input. When set, the input is styled in its error state. */
