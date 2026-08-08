@@ -13,6 +13,7 @@ const SIZES: TextFieldSize[] = [
     'md',
     'lg',
 ]
+const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -152,6 +153,7 @@ const [value, setValue] = useState('')
             options: SIZES,
             table: { category: 'SelectField' },
         },
+        fontSize: { control: 'select', options: FONT_SIZES, table: { category: 'SelectField' } },
         startIcon: { control: 'text', table: { category: 'SelectField' } },
         disabled: { control: 'boolean', table: { category: 'SelectField' } },
         required: { control: 'boolean', table: { category: 'SelectField' } },
@@ -166,6 +168,7 @@ const [value, setValue] = useState('')
         label: 'Fruit',
         placeholder: 'Pick a fruit',
         size: 'md',
+        fontSize: 'md',
         disabled: false,
         required: false,
         listboxAriaLabel: 'Fruits',
@@ -240,6 +243,37 @@ export const Sizes: Story = {
                 size={'lg'}
                 options={FRUIT_OPTIONS}
             />
+        </div>
+    ),
+}
+
+export const FontSizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<SelectField label="2xs" fontSize="2xs" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="xs" fontSize="xs" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="sm" fontSize="sm" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="md" fontSize="md" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="lg" fontSize="lg" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="xl" fontSize="xl" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="2xl" fontSize="2xl" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="3xl" fontSize="3xl" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="4xl" fontSize="4xl" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="5xl" fontSize="5xl" options={[{ value: "apple", label: "Apple" }]} />
+<SelectField label="6xl" fontSize="6xl" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {FONT_SIZES.map((fontSize) => (
+                <SelectField
+                    key={fontSize}
+                    label={fontSize}
+                    fontSize={fontSize}
+                    options={FRUIT_OPTIONS}
+                />
+            ))}
         </div>
     ),
 }

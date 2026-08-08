@@ -5,6 +5,7 @@ import { NUMBER_FIELD_INPUT_STYLES } from '@components/forms/number-field/compon
 import type { NumberFieldInputProps } from '@components/forms/number-field/components/number-field-input/types'
 import { cn } from '@utils/cn.ts'
 import NumberFieldSteppers from '@components/forms/number-field/components/number-field-steppers/NumberFieldSteppers.tsx'
+import { vars } from '@theme/contract.css.ts'
 
 const NumberFieldInput = ({
     inputProps,
@@ -13,6 +14,7 @@ const NumberFieldInput = ({
     describedBy,
     hasError,
     size,
+    fontSize,
 }: NumberFieldInputProps) => (
     <BaseNumberField.Group className={NUMBER_FIELD_INPUT_STYLES.group}>
         <BaseNumberField.Input
@@ -29,6 +31,7 @@ const NumberFieldInput = ({
                 }),
                 className,
             )}
+            style={{ fontSize: vars.fontSize[fontSize], ...inputProps.style }}
         />
         <NumberFieldSteppers />
     </BaseNumberField.Group>

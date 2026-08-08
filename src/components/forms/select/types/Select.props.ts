@@ -1,6 +1,7 @@
 import type * as React from 'react'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
 
 /**
  * Props for the convenience `SelectField` wrapper.
@@ -38,6 +39,8 @@ export type SelectFieldProps = {
     placeholder?: string
     /** Visual size of the trigger. */
     size?: TextFieldSize
+    /** Font size applied to the label and trigger text. @default 'md' */
+    fontSize?: TypographySize
     /** CSS width of the outer wrapper. Defaults to `100%`. */
     width?: React.CSSProperties['width']
     /** Whether the field is disabled. */

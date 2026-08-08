@@ -12,6 +12,7 @@ import type { TextFieldCompound } from '@components/forms/text-field/types'
 import { Flex } from '@components/layout/flex'
 import { IconRegistry } from '@constants/icons'
 import { cn } from '@utils/cn.ts'
+import { vars } from '@theme/contract.css.ts'
 import { memo, useCallback } from 'react'
 import type { TextFieldProps } from '@/components'
 
@@ -63,12 +64,14 @@ const TextField = memo<TextFieldProps>((props) => {
         showRequiredIndicator = true,
         endAction,
         size: sizeProp,
+        fontSize: fontSizeProp = 'md',
         placeholder,
         value,
         onChange,
         onKeyDown,
         onKeyUp,
         ref,
+        style: inputStyle,
         type: _type,
         ...inputProps
     } = props
@@ -107,6 +110,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     htmlFor={inputId}
                     disabled={disabled}
                     required={required && showRequiredIndicator}
+                    fontSize={fontSizeProp}
                 >
                     {label}
                 </TextFieldLabel>
@@ -151,6 +155,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     {...inputProps}
+                    style={{ fontSize: vars.fontSize[fontSizeProp], ...inputStyle }}
                 />
 
                 {hasEndAction && (

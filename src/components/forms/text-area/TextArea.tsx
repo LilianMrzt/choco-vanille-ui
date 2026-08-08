@@ -10,6 +10,7 @@ import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.
 import type { TextAreaCompound } from '@components/forms/text-area/types'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
+import { vars } from '@theme/contract.css.ts'
 import { memo, useCallback, useRef } from 'react'
 import type { TextAreaProps } from '@/components'
 
@@ -58,12 +59,14 @@ const TextArea = memo<TextAreaProps>((props) => {
         label,
         endAction,
         size: sizeProp,
+        fontSize: fontSizeProp = 'md',
         placeholder,
         value,
         onChange,
         onKeyDown,
         onKeyUp,
         ref: forwardedRef,
+        style: textareaStyle,
         rows,
         minRows,
         maxRows,
@@ -113,6 +116,7 @@ const TextArea = memo<TextAreaProps>((props) => {
                 <TextAreaLabel
                     htmlFor={inputId}
                     disabled={disabled}
+                    fontSize={fontSizeProp}
                 >
                     {label}
                 </TextAreaLabel>
@@ -155,6 +159,7 @@ const TextArea = memo<TextAreaProps>((props) => {
                     onKeyUp={onKeyUp}
                     rows={autoResizeEnabled ? (minRows ?? rows) : rows}
                     {...textareaProps}
+                    style={{ fontSize: vars.fontSize[fontSizeProp], ...textareaStyle }}
                 />
 
                 {hasEndAction && <TextAreaEndAction>{endAction}</TextAreaEndAction>}

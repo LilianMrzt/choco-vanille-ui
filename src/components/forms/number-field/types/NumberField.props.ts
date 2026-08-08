@@ -3,6 +3,7 @@ import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
 import type { NumberFieldSize } from '@components/forms/number-field/types/NumberField.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
 
 type NumberFieldRootProps = Pick<
   BaseNumberField.Root.Props,
@@ -43,6 +44,8 @@ export type NumberFieldProps = Omit<
   NumberFieldRootProps & {
     /** Input size. @default 'md' */
     size?: NumberFieldSize;
+    /** Font size applied to the label and input text. @default 'md' */
+    fontSize?: TypographySize;
     /** Text label rendered above the input, linked to the number input. */
     label?: string;
     /** Helper text rendered below the input. Hidden when `error` is provided. */

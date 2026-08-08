@@ -4,7 +4,7 @@ import { vars } from '@theme'
 export const TEXT_AREA_LABEL_STYLES = {
     root: style({
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize.md,
         fontWeight: vars.fontWeight.medium,
         lineHeight: vars.lineHeight.normal,
         color: vars.color.foreground,

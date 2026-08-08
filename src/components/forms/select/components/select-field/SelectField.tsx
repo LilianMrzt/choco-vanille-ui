@@ -34,6 +34,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
     startIcon,
     placeholder,
     size = 'md',
+    fontSize = 'md',
     width,
     disabled,
     required,
@@ -77,6 +78,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
                 <TextFieldLabel
                     htmlFor={triggerId}
                     disabled={disabled}
+                    fontSize={fontSize}
                 >
                     {label}
                 </TextFieldLabel>
@@ -98,6 +100,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
                     placeholder={placeholder}
                     startIcon={startIcon}
                     size={size}
+                    fontSize={fontSize}
                     hasError={hasError}
                     aria-describedby={error || helperText ? helperId : undefined}
                     aria-invalid={hasError || undefined}

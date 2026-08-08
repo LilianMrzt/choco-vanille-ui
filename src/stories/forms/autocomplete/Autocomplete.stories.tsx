@@ -13,6 +13,7 @@ const SIZES: TextFieldSize[] = [
     'md',
     'lg',
 ]
+const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -140,6 +141,7 @@ const [value, setValue] = useState('')
             options: SIZES,
             table: { category: 'AutocompleteField' },
         },
+        fontSize: { control: 'select', options: FONT_SIZES, table: { category: 'AutocompleteField' } },
         startIcon: { control: 'text', table: { category: 'AutocompleteField' } },
         disabled: { control: 'boolean', table: { category: 'AutocompleteField' } },
         required: { control: 'boolean', table: { category: 'AutocompleteField' } },
@@ -155,6 +157,7 @@ const [value, setValue] = useState('')
         label: 'Fruit',
         placeholder: 'Search a fruit',
         size: 'md',
+        fontSize: 'md',
         disabled: false,
         required: false,
         listboxAriaLabel: 'Fruits',
@@ -229,6 +232,37 @@ export const Sizes: Story = {
                 size={'lg'}
                 options={FRUIT_OPTIONS}
             />
+        </div>
+    ),
+}
+
+export const FontSizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<AutocompleteField label="2xs" fontSize="2xs" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="xs" fontSize="xs" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="sm" fontSize="sm" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="md" fontSize="md" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="lg" fontSize="lg" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="xl" fontSize="xl" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="2xl" fontSize="2xl" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="3xl" fontSize="3xl" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="4xl" fontSize="4xl" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="5xl" fontSize="5xl" options={[{ value: "apple", label: "Apple" }]} />
+<AutocompleteField label="6xl" fontSize="6xl" options={[{ value: "apple", label: "Apple" }]} />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {FONT_SIZES.map((fontSize) => (
+                <AutocompleteField
+                    key={fontSize}
+                    label={fontSize}
+                    fontSize={fontSize}
+                    options={FRUIT_OPTIONS}
+                />
+            ))}
         </div>
     ),
 }

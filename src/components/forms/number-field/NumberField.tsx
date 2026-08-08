@@ -20,6 +20,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
         error,
         width,
         size: sizeProp = 'md',
+        fontSize = 'md',
         className,
         disabled,
         required,
@@ -65,6 +66,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
                 <TextFieldLabel
                     htmlFor={inputId}
                     disabled={disabled}
+                    fontSize={fontSize}
                 >
                     {label}
                 </TextFieldLabel>
@@ -100,6 +102,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
                     describedBy={describedBy}
                     hasError={hasError}
                     size={sizeProp}
+                    fontSize={fontSize}
                 />
             </BaseNumberField.Root>
 

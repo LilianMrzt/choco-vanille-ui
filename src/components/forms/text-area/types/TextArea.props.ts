@@ -2,6 +2,7 @@ import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
 import type { TextAreaSize } from '@components/forms/text-area/types/TextArea.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -11,6 +12,8 @@ export type TextAreaProps = Omit<
   {
     /** Text label rendered above the textarea, linked via Radix Label for accessibility. */
     label?: string
+    /** Font size applied to the label and textarea text. @default 'md' */
+    fontSize?: TypographySize
     /** Helper text rendered below the textarea. Hidden when `error` is provided. */
     helperText?: string
     /** Error message rendered below the textarea. When set, the textarea is styled in its error state. */

@@ -34,6 +34,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
     startIcon,
     placeholder,
     size = 'md',
+    fontSize = 'md',
     width,
     disabled,
     required,
@@ -77,6 +78,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
                 <TextFieldLabel
                     htmlFor={inputId}
                     disabled={disabled}
+                    fontSize={fontSize}
                 >
                     {label}
                 </TextFieldLabel>
@@ -111,6 +113,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
                             placeholder={placeholder}
                             startIcon={startIcon}
                             size={size}
+                            fontSize={fontSize}
                             hasError={hasError}
                             aria-describedby={error || helperText ? helperId : undefined}
                             aria-invalid={hasError || undefined}

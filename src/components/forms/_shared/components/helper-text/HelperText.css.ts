@@ -4,7 +4,7 @@ import { vars } from '@theme/contract.css.ts'
 
 const base = {
     fontFamily: vars.fontFamily.sans,
-    fontSize: vars.fontSize.xs,
+    fontSize: vars.fontSize.sm,
     lineHeight: vars.lineHeight.normal,
 }
 

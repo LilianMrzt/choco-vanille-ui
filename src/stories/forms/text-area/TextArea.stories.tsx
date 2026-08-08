@@ -8,6 +8,7 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: TextAreaSize[] = ['sm', 'md', 'lg']
+const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -85,6 +86,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         minRows: { control: 'number' },
         maxRows: { control: 'number' },
         size: { control: 'select', options: SIZES },
+        fontSize: { control: 'select', options: FONT_SIZES },
         disabled: { control: 'boolean' },
         required: { control: 'boolean' },
     },
@@ -92,6 +94,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         label: 'Description',
         placeholder: 'Tell us moreâ€¦',
         size: 'md',
+        fontSize: 'md',
         rows: 4,
         minRows: 2,
         maxRows: 6,
@@ -156,6 +159,36 @@ export const Sizes: Story = {
                 label={'Large'}
                 size={'lg'}
             />
+        </div>
+    ),
+}
+
+export const FontSizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<TextArea label="2xs" fontSize="2xs" />
+<TextArea label="xs" fontSize="xs" />
+<TextArea label="sm" fontSize="sm" />
+<TextArea label="md" fontSize="md" />
+<TextArea label="lg" fontSize="lg" />
+<TextArea label="xl" fontSize="xl" />
+<TextArea label="2xl" fontSize="2xl" />
+<TextArea label="3xl" fontSize="3xl" />
+<TextArea label="4xl" fontSize="4xl" />
+<TextArea label="5xl" fontSize="5xl" />
+<TextArea label="6xl" fontSize="6xl" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {FONT_SIZES.map((fontSize) => (
+                <TextArea
+                    key={fontSize}
+                    label={fontSize}
+                    fontSize={fontSize}
+                />
+            ))}
         </div>
     ),
 }

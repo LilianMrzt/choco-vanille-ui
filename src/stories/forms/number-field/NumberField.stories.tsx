@@ -17,6 +17,7 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: NumberFieldSize[] = ['sm', 'md', 'lg']
+const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 **Accessibility**
@@ -61,6 +62,7 @@ A numeric field with min/max constraints, keyboard and button increments, and Te
         helperText: { control: 'text' },
         error: { control: 'text' },
         size: { control: 'select', options: SIZES },
+        fontSize: { control: 'select', options: FONT_SIZES },
         min: { control: 'number' },
         max: { control: 'number' },
         step: { control: 'number' },
@@ -75,6 +77,7 @@ A numeric field with min/max constraints, keyboard and button increments, and Te
         max: 10,
         step: 1,
         size: 'md',
+        fontSize: 'md',
     },
 } satisfies Meta<typeof NumberField>
 
@@ -132,6 +135,37 @@ export const Sizes: Story = {
                 size={'lg'}
                 defaultValue={1}
             />
+        </div>
+    ),
+}
+
+export const FontSizes: Story = {
+    parameters: {
+        docs: {
+            ...storySource(`
+<NumberField label="2xs" fontSize="2xs" defaultValue={1} />
+<NumberField label="xs" fontSize="xs" defaultValue={1} />
+<NumberField label="sm" fontSize="sm" defaultValue={1} />
+<NumberField label="md" fontSize="md" defaultValue={1} />
+<NumberField label="lg" fontSize="lg" defaultValue={1} />
+<NumberField label="xl" fontSize="xl" defaultValue={1} />
+<NumberField label="2xl" fontSize="2xl" defaultValue={1} />
+<NumberField label="3xl" fontSize="3xl" defaultValue={1} />
+<NumberField label="4xl" fontSize="4xl" defaultValue={1} />
+<NumberField label="5xl" fontSize="5xl" defaultValue={1} />
+<NumberField label="6xl" fontSize="6xl" defaultValue={1} />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {FONT_SIZES.map((fontSize) => (
+                <NumberField
+                    key={fontSize}
+                    label={fontSize}
+                    fontSize={fontSize}
+                    defaultValue={1}
+                />
+            ))}
         </div>
     ),
 }

@@ -2,6 +2,7 @@ import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
 
 export type TextFieldProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -11,6 +12,8 @@ export type TextFieldProps = Omit<
   {
     /** Input size. @default 'md' */
     size?: TextFieldSize
+    /** Font size applied to the label and input text. @default 'md' */
+    fontSize?: TypographySize
     /** Text label rendered above the input, linked to the input for accessibility. */
     label?: string
     /** Shows a red required marker next to the label when `required` is true. Defaults to `true`. */

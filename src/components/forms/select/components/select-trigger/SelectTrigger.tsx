@@ -12,6 +12,7 @@ import {
 import { cn } from '@utils/cn.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
 import useSelectTrigger from '@components/forms/select/components/select-trigger/hooks/useSelectTrigger.hook.ts'
+import { vars } from '@theme/contract.css.ts'
 
 /**
   * The trigger button that opens the listbox.
@@ -26,6 +27,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
     placeholder,
     startIcon,
     size = 'md',
+    fontSize = 'md',
     hasError = false,
     width,
     children,
@@ -55,7 +57,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
                 }),
                 className,
             )}
-            style={mergedStyle}
+            style={{ fontSize: vars.fontSize[fontSize], ...mergedStyle }}
             onMouseDown={handleMouseDown}
             onFocus={handleFocus}
             onBlur={handleBlur}
