@@ -2,6 +2,10 @@ import { memo, type FC } from 'react'
 
 import type { TableColProps } from '@components/data-display/table/components/table-col/types/TableCol.props.ts'
 
+/**
+ * `<col>` slot for `Table.ColGroup`. Accepts explicit `width`, `minWidth`,
+ * and `maxWidth` values applied as inline styles.
+ */
 const TableCol: FC<TableColProps> = memo(({ width, minWidth, maxWidth, style, ref, ...props }) => (
     <col
         ref={ref}

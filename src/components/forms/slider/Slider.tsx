@@ -8,6 +8,11 @@ import { SLIDER_STYLES } from '@components/forms/slider/styles/Slider.css.ts'
 import type { SliderProps } from '@components/forms/slider/types'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Range input backed by Base UI Slider with a visible label, helper/error
+ * text, and design-token `size` and `color` props. Supports both single-value
+ * and multi-thumb range mode (pass an array for `value`/`defaultValue`).
+ */
 export const Slider: FC<SliderProps> = memo(({
     label,
     showValue = false,

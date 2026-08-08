@@ -6,6 +6,10 @@ import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Close button slot for `Toast`. Renders a ghost `xs` `IconButton` with
+ * a close icon. Requires `aria-label` for accessibility.
+ */
 const ToastClose: FC<ToastCloseProps> = memo(({
     'aria-label': ariaLabel,
     color: _color,

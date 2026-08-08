@@ -36,6 +36,18 @@ import type {
     RichTextValue,
 } from '@components/forms/rich-text-editor/types'
 
+/**
+ * Full-featured rich-text editor compound backed by TipTap. Manages a
+ * controlled/uncontrolled JSON document value and provides context to all
+ * slot components.
+ *
+ * Compound slots: `RichTextEditor.Label`, `.EditorField`, `.ReadOnlyField`,
+ * `.HelperText`, `.Toolbar`, `.ToolbarGroups`, `.ToolbarGroup`,
+ * `.ToolbarSeparator`, `.HistoryGroup`, `.Undo`, `.Redo`,
+ * `.TextStyleGroup`, `.Bold`, `.Italic`, `.Underline`, `.Strike`,
+ * `.TextAppearanceGroup`, `.LinkGroup`, `.SetLink`, `.UnsetLink`,
+ * `.BlockFormatGroup`, `.ListsGroup`, `.AlignmentGroup`, `.ImageGroup`.
+ */
 const RichTextEditor = memo<RichTextEditorProps>(({
     value,
     defaultValue,

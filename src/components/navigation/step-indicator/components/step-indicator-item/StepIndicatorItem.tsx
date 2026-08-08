@@ -5,6 +5,11 @@ import { StepIndicatorContext } from '@components/navigation/step-indicator/cont
 import type { StepIndicatorItemProps } from '@components/navigation/step-indicator/components/step-indicator-item/types/StepIndicatorItem.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Single dot step slot for `StepIndicator`. Renders as a `<button>` with
+ * `aria-label` and `aria-current="step"` when `onStepChange` is in context,
+ * otherwise as a `role="img"` `<span>`.
+ */
 const StepIndicatorItem = memo(
     ({ label, disabled, ref }: StepIndicatorItemProps) => {
         const context = useContext(StepIndicatorContext)

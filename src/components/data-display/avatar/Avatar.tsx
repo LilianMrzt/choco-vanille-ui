@@ -7,6 +7,13 @@ import type { AvatarCompound } from '@components/data-display/avatar/types/index
 import type { AvatarProps } from '@components/data-display/avatar/types/Avatar.props.ts'
 import { memo } from 'react'
 
+/**
+ * Displays a user avatar with an optional image, initials fallback, icon
+ * fallback, and online/presence status indicator.
+ *
+ * Compound slots: `Avatar.Root`, `Avatar.Image`, `Avatar.Fallback`,
+ * `Avatar.Status`.
+ */
 const Avatar = memo<AvatarProps>(({
     src,
     alt,

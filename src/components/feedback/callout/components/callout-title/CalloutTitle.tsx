@@ -3,6 +3,10 @@ import type { CalloutTitleProps } from '@components/feedback/callout/components/
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Title text slot for `Callout`. Renders semibold small typography and
+ * forwards all `Typography` props.
+ */
 const CalloutTitle: FC<CalloutTitleProps> = memo(({
     children,
     className,

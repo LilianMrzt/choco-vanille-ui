@@ -13,6 +13,13 @@ import type { StepIndicatorProps } from '@components/navigation/step-indicator/t
 import type { StepIndicatorCompound } from '@components/navigation/step-indicator/types/StepIndicatorCompound.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Minimal dot-based step progress indicator rendered as a `<nav>` with an
+ * ordered list. Tracks `currentStep` to derive completed and current states
+ * for each `StepIndicator.Item`.
+ *
+ * Compound slot: `StepIndicator.Item`.
+ */
 const StepIndicator = memo(
     ({
         'aria-label': ariaLabel,

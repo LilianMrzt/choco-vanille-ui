@@ -3,6 +3,12 @@ import type { ImageProps } from '@components/layout/image/types/Image.props.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, useMemo, type FC } from 'react'
 
+/**
+ * `<img>` wrapper with design-token props for `objectFit`, `objectPosition`,
+ * `borderRadius`, spacing, and `backgroundColor`. Dimensional props
+ * (`width`, `height`, `aspectRatio`) are applied as inline styles.
+ * Always provide a meaningful `alt` text.
+ */
 const Image: FC<ImageProps> = memo(({
     alt,
     objectFit,

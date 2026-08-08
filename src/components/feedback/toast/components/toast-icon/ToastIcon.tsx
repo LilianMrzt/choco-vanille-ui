@@ -9,6 +9,11 @@ import { Icon } from '@components/foundation/icon'
 import { cn } from '@utils/cn.ts'
 import { memo, useContext, type FC } from 'react'
 
+/**
+ * Icon slot for `Toast`. Reads `variant` from context to resolve the
+ * default icon and color. Override both with explicit `icon` and `color`
+ * props.
+ */
 const ToastIcon: FC<ToastIconProps> = memo(({
     icon,
     color,

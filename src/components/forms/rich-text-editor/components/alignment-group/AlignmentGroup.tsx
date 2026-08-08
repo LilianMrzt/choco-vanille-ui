@@ -7,6 +7,11 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { ALIGNMENT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/alignment-group/styles/AlignmentGroup.css.ts'
 import type { AlignmentGroupProps } from '@components/forms/rich-text-editor/components/alignment-group/types/AlignmentGroup.props.ts'
 
+/**
+ * Toolbar group for text alignment commands: left, center, right, and
+ * justify. Use `presentation="inline"` for individual icon buttons or
+ * `"menu"` (default) for a dropdown trigger.
+ */
 const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
     const [open, setOpen] = useState(false)

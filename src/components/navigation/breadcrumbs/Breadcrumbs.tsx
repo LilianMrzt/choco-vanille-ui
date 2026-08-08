@@ -17,6 +17,14 @@ import { BREADCRUMBS_STYLES } from '@components/navigation/breadcrumbs/styles/Br
 import type { BreadcrumbsCompound } from '@components/navigation/breadcrumbs/types/BreadcrumbsCompound.ts'
 import type { BreadcrumbsProps } from '@components/navigation/breadcrumbs/types/Breadcrumbs.props.ts'
 
+/**
+ * Breadcrumb trail rendered as a `<nav>` with an ordered list. Each child
+ * `BreadcrumbsItem` is separated by the configured `separator` (chevron icon
+ * or a text symbol). The last item (or the one with `current`) receives
+ * `aria-current="page"`.
+ *
+ * Compound slot: `Breadcrumbs.Item`.
+ */
 const Breadcrumbs = memo(({
     'aria-label': ariaLabel,
     children,

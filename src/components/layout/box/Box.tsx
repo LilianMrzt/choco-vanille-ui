@@ -3,6 +3,12 @@ import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, useMemo, type FC } from 'react'
 
+/**
+ * Polymorphic layout primitive. Maps design-token props (padding, margin,
+ * gap, border, background, box-shadow) to Vanilla Extract atomic classes
+ * and passes layout props (display, flex, position, overflow) as inline
+ * styles. Use the `as` prop to change the rendered element.
+ */
 const Box: FC<BoxProps> = memo(({
     as: Element = 'div',
     borderRadius,

@@ -6,6 +6,11 @@ import { CalloutContext } from '@components/feedback/callout/context/Callout.con
 import { cn } from '@utils/cn.ts'
 import { memo, useContext, type FC } from 'react'
 
+/**
+ * Icon slot for `Callout`. Reads `variant` from context to resolve the
+ * default icon and color. Override both with explicit `icon` and `color`
+ * props.
+ */
 const CalloutIcon: FC<CalloutIconProps> = memo(({
     icon,
     color,

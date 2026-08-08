@@ -16,6 +16,14 @@ import type { StepperProps } from '@components/navigation/stepper/types/Stepper.
 import type { StepperCompound } from '@components/navigation/stepper/types/StepperCompound.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Step-by-step progress navigator rendered as a `<nav>` with an ordered list.
+ * Supports horizontal and vertical `orientation`. When `onStepChange` is
+ * provided each step becomes interactive. Tracks `currentStep` to derive
+ * completed and current states for slot rendering.
+ *
+ * Compound slot: `Stepper.Item`.
+ */
 const Stepper = memo(
     ({
         'aria-label': ariaLabel,

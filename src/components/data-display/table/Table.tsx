@@ -13,6 +13,14 @@ import type { TableProps } from '@components/data-display/table/types/Table.prop
 import { cn } from '@utils/cn.ts'
 import { memo } from 'react'
 
+/**
+ * Responsive scrollable `<table>` compound with striped, bordered, and
+ * fixed-column variants. Scrollable container is keyboard-focusable for
+ * WCAG 2.1 SC 2.1.1 compliance.
+ *
+ * Compound slots: `Table.Header`, `.Body`, `.Footer`, `.Row`, `.Head`,
+ * `.Cell`, `.Caption`, `.ColGroup`, `.Col`.
+ */
 const Table = memo<TableProps>(({
     size,
     striped,

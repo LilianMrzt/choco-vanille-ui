@@ -5,6 +5,11 @@ import { RichTextEditorFormField } from '@components/forms/rich-text-editor/comp
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { ReadOnlyFieldProps } from '@components/forms/rich-text-editor/components/read-only-field/types/ReadOnlyField.props.ts'
 
+/**
+ * Read-only rendered view of the editor document. Uses `RichTextRenderer`
+ * and forwards ARIA naming/description attributes from `RichTextEditor`
+ * context. Also emits the hidden form field when `name` is set.
+ */
 const ReadOnlyField: FC<ReadOnlyFieldProps> = memo(({ className }) => {
     const {
         ariaLabel,

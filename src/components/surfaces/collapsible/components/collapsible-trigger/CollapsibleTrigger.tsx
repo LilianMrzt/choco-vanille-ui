@@ -10,6 +10,11 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Toggle trigger slot for `Collapsible` backed by Base UI Collapsible.Trigger.
+ * Renders `label` with optional `startIcon`/`endIcon`, or custom `children`.
+ * Always appends a rotating chevron to indicate the open/closed state.
+ */
 const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
     className,
     children,

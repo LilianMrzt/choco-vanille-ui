@@ -5,6 +5,11 @@ import { memo, type FC } from 'react'
 
 import Box from '@components/layout/box/Box.tsx'
 
+/**
+ * CSS grid container built on `Box`. Supports token-based `columns`,
+ * `gridAutoRows`, `gridTemplateRows`, `gridAutoFlow`, alignment axes,
+ * and `gap`. Accepts all `Box` props for additional layout customization.
+ */
 const Grid: FC<GridProps> = memo(({
     columns,
     gridAutoRows,

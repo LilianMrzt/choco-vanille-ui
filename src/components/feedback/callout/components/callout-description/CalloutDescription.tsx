@@ -3,6 +3,10 @@ import type { CalloutDescriptionProps } from '@components/feedback/callout/compo
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Description text slot for `Callout`. Renders secondary-colored small
+ * typography and forwards all `Typography` props.
+ */
 const CalloutDescription: FC<CalloutDescriptionProps> = memo(({
     children,
     className,

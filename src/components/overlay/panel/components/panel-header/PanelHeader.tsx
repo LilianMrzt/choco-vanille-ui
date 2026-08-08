@@ -8,6 +8,12 @@ import type { PanelHeaderProps } from '@components/overlay/panel/components/pane
 import { IconRegistry } from '@constants/icons'
 import { usePanelContext } from '@components/overlay/panel/context/Panel.context.ts'
 
+/**
+ * Panel heading area with an optional `title`, `description`, custom
+ * `actions`, and an auto-rendered close button. Registers the title
+ * presence with `Panel` context so `Panel.Content` can set
+ * `aria-labelledby` automatically.
+ */
 const PanelHeader: FC<PanelHeaderProps> = memo(
     ({
         as: Element = 'div',

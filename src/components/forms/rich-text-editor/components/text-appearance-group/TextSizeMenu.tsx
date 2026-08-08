@@ -9,6 +9,12 @@ import { useState } from 'react'
 import type { TextSizeMenuProps } from '@components/forms/rich-text-editor/components/text-appearance-group/types/TextSizeMenu.props.ts'
 import { TEXT_SIZE_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextSizeMenu.css.ts'
 
+/**
+ * Font-size picker toolbar control for `TextAppearanceGroup`. Renders a
+ * `DropdownMenu` showing available rich-text font sizes. Use
+ * `presentation="select"` (default) for a labeled button trigger or
+ * `"icon"` for an icon-only trigger.
+ */
 const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
     const [open, setOpen] = useState(false)
     const { editor, disabled, labels } = useRichTextEditorContext()

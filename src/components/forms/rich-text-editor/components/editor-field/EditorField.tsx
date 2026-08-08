@@ -7,6 +7,11 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { RICH_TEXT_EDITOR_STYLES } from '@components/forms/rich-text-editor/styles/RichTextEditor.css.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Editable TipTap content area slot for use inside `RichTextEditor`.
+ * Renders the `EditorContent` and, when `name` is set in context,
+ * an invisible form field for native form submission.
+ */
 const EditorField: FC<EditorFieldProps> = memo(({ className }) => {
     const { editor, disabled, error, name, required } = useRichTextEditorContext()
 

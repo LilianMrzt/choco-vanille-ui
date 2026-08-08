@@ -51,6 +51,7 @@ export type ConsistencyFindingCategory =
   | 'accessibility'
   | 'callbacks'
   | 'controlled-state'
+  | 'documentation'
   | 'encapsulation'
   | 'exports'
   | 'testing'

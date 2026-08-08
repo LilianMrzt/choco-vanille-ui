@@ -3,6 +3,11 @@ import type { SpinnerProps } from '@components/feedback/spinner/types/Spinner.pr
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Animated loading spinner rendered as a `<span>` with `role="status"`.
+ * Supports design-token `size` and `color` props. Screen readers announce
+ * the element; pair with a visually-hidden label for descriptive text.
+ */
 const Spinner: FC<SpinnerProps> = memo(({
     size,
     color,

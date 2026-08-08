@@ -6,6 +6,11 @@ import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
 import { ICON_BUTTON_SIZE_TO_ICON_SIZE, ICON_BUTTON_SIZES } from '@components/actions/icon-button/constants'
 
+/**
+ * Icon-only action button. Requires `aria-label` for accessibility.
+ * Supports `variant` (contained|outlined|ghost), semantic `color`,
+ * `size` (xs|sm|md|lg), and an Iconify `icon` identifier.
+ */
 const IconButton: FC<IconButtonProps> = ({
     variant,
     color,

@@ -5,6 +5,11 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 import type { SetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/SetLink.props.ts'
 
+/**
+ * Toolbar control that prompts the user for a URL and applies a hyperlink to
+ * the current selection. Use `presentation="icon"` (default) for a standalone
+ * icon button or `"menu"` for a `DropdownMenu.Item` inside `LinkGroup`.
+ */
 const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
 

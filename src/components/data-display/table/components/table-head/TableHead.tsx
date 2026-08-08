@@ -21,6 +21,11 @@ const ariaSortMap = {
     none: 'none',
 } as const
 
+/**
+ * `<th>` slot for `Table`. Supports `align`, `sortable`, and `sortDirection`
+ * (asc|desc|none). When sortable, the header is keyboard-focusable and sets
+ * `aria-sort` and `scope="col"` automatically.
+ */
 const TableHead: FC<TableHeadProps> = memo(({
     align,
     sortable,

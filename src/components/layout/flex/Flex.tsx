@@ -5,6 +5,11 @@ import { memo, type FC } from 'react'
 
 import Box from '@components/layout/box/Box.tsx'
 
+/**
+ * Flex container built on `Box`. Sets `display: flex` (or `inline-flex`
+ * when `inline` is true) with a configurable `gap` token. Accepts all
+ * `Box` props for additional layout customization.
+ */
 const Flex: FC<FlexProps> = memo(({
     inline,
     gap = 'sm',

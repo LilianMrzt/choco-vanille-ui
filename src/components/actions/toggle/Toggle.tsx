@@ -10,6 +10,12 @@ import type { ToggleProps } from '@components/actions/toggle/types/Toggle.props.
 import { cn } from '@utils/cn.ts'
 import type { FC } from 'react'
 
+/**
+ * Two-state toggle button backed by Base UI Toggle. Supports text mode
+ * (requires `label`) and icon-only mode (pass `icon`). Accepts
+ * `variant` (outlined|ghost), semantic `color`, `size`, and the full
+ * Base UI controlled/uncontrolled state contract.
+ */
 const Toggle: FC<ToggleProps> = ({
     variant,
     subtle,

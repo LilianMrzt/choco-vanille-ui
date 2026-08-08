@@ -7,6 +7,12 @@ import { memo, type FC } from 'react'
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
+/**
+ * Horizontal `role="progressbar"` with label, optional quantity display,
+ * design-token `size` (xs|sm|md|lg|xl), `color`, and `borderRadius`.
+ * Requires an accessible name via `label`, `aria-label`, or
+ * `aria-labelledby`.
+ */
 const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,
     color,

@@ -7,6 +7,11 @@ import { usePagination } from '@components/navigation/pagination/hooks/usePagina
 import { PAGINATION_STYLES } from '@components/navigation/pagination/styles/Pagination.css.ts'
 import type { PaginationProps } from '@components/navigation/pagination/types/Pagination.props.ts'
 
+/**
+ * Numbered page navigation rendered as a `<nav>` with Previous/Next icon
+ * buttons and page buttons with ellipsis truncation. Requires `currentPage`,
+ * `totalPages`, `onPageChange`, `previousLabel`, and `nextLabel`.
+ */
 const Pagination: FC<PaginationProps> = ({
     'aria-label': ariaLabel,
     currentPage,

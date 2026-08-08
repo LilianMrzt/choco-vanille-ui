@@ -5,6 +5,10 @@ import { OVERLAY_BACKDROP_STYLES } from '@components/overlay/_shared/styles/Over
 import type { OverlayBackdropProps } from '@components/overlay/_shared/components/overlay-backdrop/types/OverlayBackdrop.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Translucent `BaseDialog.Backdrop` shared by overlay components (Dialog,
+ * Panel, Drawer). Accepts an optional `className` for per-overlay styling.
+ */
 const OverlayBackdrop: FC<OverlayBackdropProps> = memo(({ className, ...props }) => (
     <BaseDialog.Backdrop
         className={cn(OVERLAY_BACKDROP_STYLES.root, className)}

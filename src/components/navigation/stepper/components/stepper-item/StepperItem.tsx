@@ -8,6 +8,11 @@ import { STEPPER_STYLES } from '@components/navigation/stepper/styles/Stepper.cs
 import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types/StepperItem.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Individual step slot for `Stepper`. Displays a numbered marker (check icon
+ * when completed), a label, and an optional description. Renders a `<button>`
+ * when `onStepChange` is present in context, otherwise a static `<span>`.
+ */
 const StepperItem = memo(
     ({
         label,

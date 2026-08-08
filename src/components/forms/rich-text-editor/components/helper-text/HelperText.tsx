@@ -4,6 +4,11 @@ import SharedHelperText from '@components/forms/_shared/components/helper-text/H
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { RichTextEditorHelperTextProps } from '@components/forms/rich-text-editor/components/helper-text/types/HelperText.props.ts'
 
+/**
+ * Helper and error text slot for use inside `RichTextEditor`. Reads
+ * `error` and `helperText` from context and renders nothing when both
+ * are absent.
+ */
 const HelperText: FC<RichTextEditorHelperTextProps> = memo((props) => {
     const { error, helperText, helperId } = useRichTextEditorContext()
     const content = error ?? helperText

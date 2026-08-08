@@ -4,6 +4,12 @@ import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { UnsetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/UnsetLink.props.ts'
 
+/**
+ * Toolbar control that removes the hyperlink from the current selection.
+ * Use `presentation="icon"` (default) for a standalone icon button or
+ * `"menu"` for a `DropdownMenu.Item` inside `LinkGroup`. Disabled when
+ * the cursor is not on a link.
+ */
 const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
 

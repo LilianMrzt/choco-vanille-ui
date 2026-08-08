@@ -7,6 +7,11 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { LISTS_GROUP_STYLES } from '@components/forms/rich-text-editor/components/lists-group/styles/ListsGroup.css.ts'
 import type { ListsGroupProps } from '@components/forms/rich-text-editor/components/lists-group/types/ListsGroup.props.ts'
 
+/**
+ * Toolbar group for list commands: bulleted and numbered lists. Use
+ * `presentation="inline"` for individual icon buttons or `"menu"` (default)
+ * for a dropdown trigger.
+ */
 const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
     const [listsOpen, setListsOpen] = useState(false)

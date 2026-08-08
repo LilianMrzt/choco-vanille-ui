@@ -4,6 +4,10 @@ import { TABLE_BODY_STYLES } from '@components/data-display/table/components/tab
 import type { TableBodyProps } from '@components/data-display/table/components/table-body/types/TableBody.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * `<tbody>` slot for `Table`. Applies the table body base styles and
+ * forwards all native `<tbody>` attributes.
+ */
 const TableBody: FC<TableBodyProps> = memo(({ className, ref, ...props }) => (
     <tbody
         ref={ref}

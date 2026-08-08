@@ -5,6 +5,11 @@ import { Box } from '@components/layout/box'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Presence/status indicator slot for `Avatar`. Renders a colored dot with
+ * `role="status"` and an accessible label derived from `label` or the
+ * `status` value.
+ */
 const AvatarStatus: FC<AvatarStatusProps> = memo(({
     status = AVATAR_STATUS.online,
     size,

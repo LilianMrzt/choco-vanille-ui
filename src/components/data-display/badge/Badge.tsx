@@ -7,6 +7,10 @@ import { Box } from '@components/layout/box'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Inline label chip with variant, color, size, and optional leading/trailing
+ * icons. Renders as a `<span>` with a Typography label and decorative Icons.
+ */
 const Badge: FC<BadgeProps> = memo(({
     label,
     variant,

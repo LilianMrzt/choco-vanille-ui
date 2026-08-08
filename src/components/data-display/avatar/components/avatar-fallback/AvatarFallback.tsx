@@ -11,6 +11,11 @@ import {
 } from '@components/data-display/avatar/components/avatar-fallback/constants/sizeToTypography.const.ts'
 import { IconRegistry } from '@constants'
 
+/**
+ * Fallback content slot for `Avatar.Root`. Renders initials (up to 2
+ * characters), a custom `icon`, or a default user icon when the image
+ * fails to load or no `src` is provided.
+ */
 const AvatarFallback: FC<AvatarFallbackProps> = memo(({
     initials,
     icon,

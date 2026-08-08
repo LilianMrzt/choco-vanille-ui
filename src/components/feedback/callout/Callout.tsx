@@ -13,6 +13,14 @@ import { cn } from '@utils/cn.ts'
 
 const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
+/**
+ * Informational callout with `variant` (info|success|warning|error), an
+ * optional `icon`, `title`, and `description`. Renders with `role="status"`
+ * by default; pass `role="alert"` for urgent feedback. Supports compound
+ * children via `Callout.Icon`, `.Title`, and `.Description` slots.
+ *
+ * Compound slots: `Callout.Icon`, `Callout.Title`, `Callout.Description`.
+ */
 const Callout = memo<CalloutProps>((calloutProps) => {
     const {
         variant = 'info',

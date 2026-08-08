@@ -7,6 +7,10 @@ import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useState } from 'react'
 
+/**
+ * Toolbar group containing a dropdown with `SetLink` and `UnsetLink`
+ * controls. Renders a link icon button trigger with the menu inside.
+ */
 const LinkGroup = () => {
     const { disabled, labels } = useRichTextEditorContext()
     const [open, setOpen] = useState(false)

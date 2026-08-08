@@ -6,6 +6,10 @@ import { RICH_TEXT_RENDERER_STYLES } from '@components/data-display/rich-text-re
 import type { RichTextRendererProps } from '@components/data-display/rich-text-renderer/types'
 import { renderRichTextNodes } from '@components/data-display/rich-text-renderer/utils/renderRichTextNodes.utils.tsx'
 
+/**
+ * Renders a structured rich-text document (TipTap JSON) as themed HTML.
+ * Read-only; pair with `RichTextEditor` for editing.
+ */
 const RichTextRenderer = memo<RichTextRendererProps>(({
     value,
     className,

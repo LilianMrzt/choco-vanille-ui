@@ -6,6 +6,19 @@ import { cn } from '@utils/cn.ts'
 import { vars } from '@theme/contract.css.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
+/**
+ * Renders text with the library's semantic element, typography scale, and theme tokens.
+ *
+ * The rendered element defaults to the element associated with `variant` and can
+ * be overridden with `as` when a different HTML semantic is required.
+ *
+ * @example
+ * ```tsx
+ * <Typography variant="h1" fontSize="4xl" fontWeight="bold">
+ *   Welcome
+ * </Typography>
+ * ```
+ */
 const Typography: FC<TypographyProps> = memo(({
     as,
     variant,

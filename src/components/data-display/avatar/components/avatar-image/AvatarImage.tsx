@@ -5,6 +5,10 @@ import type { AvatarImageProps } from '@components/data-display/avatar/component
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Image slot for `Avatar.Root` backed by Base UI Avatar.Image. Fires
+ * `onLoadingStatusChange` and falls back to `AvatarFallback` on error.
+ */
 const AvatarImage: FC<AvatarImageProps> = memo(({
     src,
     alt,

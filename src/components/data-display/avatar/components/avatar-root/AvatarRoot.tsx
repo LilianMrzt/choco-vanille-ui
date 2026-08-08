@@ -5,6 +5,10 @@ import type { AvatarRootProps } from '@components/data-display/avatar/components
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Root container slot for `Avatar`. Applies size, shape, and color recipe
+ * classes and wraps Base UI Avatar.Root.
+ */
 const AvatarRoot: FC<AvatarRootProps> = memo(({
     size,
     shape,

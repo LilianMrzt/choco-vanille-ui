@@ -15,6 +15,16 @@ import { cn } from '@utils/cn.ts'
 
 const { hasIconChild } = createIconChildUtils(ToastIcon)
 
+/**
+ * Notification card compound with `variant` (info|success|warning|error),
+ * optional `icon`, `title`, `description`, and a close button. Renders with
+ * `role="status"` by default; pass `role="alert"` for urgent messages.
+ * Supports compound children via `Toast.Icon`, `.Title`, `.Description`,
+ * `.Actions`, and `.Close` slots.
+ *
+ * Compound slots: `Toast.Icon`, `Toast.Title`, `Toast.Description`,
+ * `Toast.Actions`, `Toast.Close`.
+ */
 const Toast = memo<ToastProps>(({
     variant = 'info',
     role = 'status',

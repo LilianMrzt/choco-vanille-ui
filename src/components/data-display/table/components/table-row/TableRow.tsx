@@ -4,6 +4,11 @@ import { TABLE_ROW_STYLES } from '@components/data-display/table/components/tabl
 import type { TableRowProps } from '@components/data-display/table/components/table-row/types/TableRow.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * `<tr>` slot for `Table`. Supports `hoverable`, `selectable`, `selected`,
+ * and `intent` variants. When selectable, the row is keyboard-focusable and
+ * sets `aria-selected`.
+ */
 const TableRow: FC<TableRowProps> = memo(({
     hoverable,
     selectable,

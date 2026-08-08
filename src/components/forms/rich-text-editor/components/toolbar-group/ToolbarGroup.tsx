@@ -2,6 +2,10 @@ import { TOOLBAR_GROUP_STYLES } from '@components/forms/rich-text-editor/compone
 import type { ToolbarGroupProps } from '@components/forms/rich-text-editor/components/toolbar-group/types/ToolbarGroup.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Logical `role="group"` container for related toolbar controls inside
+ * a `Toolbar`. Requires an `aria-label` to name the group.
+ */
 const ToolbarGroup = ({
     children,
     className,

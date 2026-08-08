@@ -6,6 +6,10 @@ import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import { memo, useContext, type FC } from 'react'
 
+/**
+ * Title text slot for `Toast`. Reads `variant` from context to resolve the
+ * text color and renders semibold small typography.
+ */
 const ToastTitle: FC<ToastTitleProps> = memo(({
     children,
     className,

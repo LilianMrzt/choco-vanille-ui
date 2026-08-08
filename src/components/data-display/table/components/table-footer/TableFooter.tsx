@@ -4,6 +4,10 @@ import { TABLE_FOOTER_STYLES } from '@components/data-display/table/components/t
 import type { TableFooterProps } from '@components/data-display/table/components/table-footer/types/TableFooter.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * `<tfoot>` slot for `Table`. Applies footer base styles and forwards all
+ * native `<tfoot>` attributes.
+ */
 const TableFooter: FC<TableFooterProps> = memo(({ className, ref, ...props }) => (
     <tfoot
         ref={ref}

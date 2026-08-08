@@ -4,6 +4,10 @@ import { TABLE_CAPTION_STYLES } from '@components/data-display/table/components/
 import type { TableCaptionProps } from '@components/data-display/table/components/table-caption/types/TableCaption.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * `<caption>` slot for `Table`. Provides an accessible title for the table
+ * and forwards all native `<caption>` attributes.
+ */
 const TableCaption: FC<TableCaptionProps> = memo(({ className, ref, ...props }) => (
     <caption
         ref={ref}

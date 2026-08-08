@@ -8,6 +8,13 @@ import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
 import { useTooltip } from '@components/overlay/tooltip/hooks/use-tooltip/useTooltip.hook.ts'
 
+/**
+ * Floating tooltip backed by Base UI Tooltip. Wraps a trigger child and
+ * shows `content` in a portal positioner. Shares timing via a
+ * `TooltipProvider` when available; otherwise falls back to a local
+ * provider. Supports `position` shorthand or explicit `side`/`align`.
+ * Set `disabled` to suppress the popup without removing the trigger.
+ */
 const Tooltip: FC<TooltipProps> = memo(({
     children,
     content,

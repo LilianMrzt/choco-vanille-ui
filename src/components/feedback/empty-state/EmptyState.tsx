@@ -5,6 +5,11 @@ import type { EmptyStateProps } from '@components/feedback/empty-state/types/Emp
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Centered placeholder for empty data states. Renders a heading `title`,
+ * a descriptive paragraph, and an optional `action` slot for a call-to-action
+ * button or link.
+ */
 const EmptyState: FC<EmptyStateProps> = memo(({
     title,
     description,

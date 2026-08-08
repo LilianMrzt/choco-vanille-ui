@@ -15,6 +15,14 @@ import type {
     PanelProps,
 } from '@components/overlay/panel/types'
 
+/**
+ * Slide-in side panel backed by Base UI Dialog. Manages an auto-generated
+ * `titleId` and tracks whether `Panel.Header` has rendered a title for
+ * automatic `aria-labelledby`.
+ *
+ * Compound slots: `Panel.Trigger`, `.Content`, `.Header`, `.Body`,
+ * `.Footer`, `.Title`, `.Description`, `.Close`.
+ */
 const Panel = memo<PanelProps>((props) => {
     const titleId = useId()
     const [hasTitle, setHasTitle] = useState(false)

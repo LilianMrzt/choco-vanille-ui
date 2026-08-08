@@ -856,6 +856,72 @@ function detectCompoundExportProblems(
   }
 }
 
+function detectMissingComponentJsDoc(
+  context: ConsistencyContext,
+  findings: ConsistencyFinding[],
+): void {
+  // Only check component source files: .tsx, not stories/tests, not in
+  // styles/hooks/utils/context subdirectories.
+  const componentSources = context.components.filter(
+    (component) =>
+      component.scope === 'public' &&
+      component.sourcePath.endsWith('.tsx') &&
+      !/(^|[\\/])(styles|hooks|utils|context)([\\/]|$)/.test(
+        component.sourcePath,
+      ),
+  );
+
+  for (const component of componentSources) {
+    const sourceFile = context.sourceFiles.find(
+      (candidate) =>
+        normalize(candidate.getFilePath()) === normalize(component.sourcePath),
+    );
+    if (!sourceFile) continue;
+
+    const expectedName = component.name;
+
+    // Find the top-level statement that declares the main component value.
+    let declarationPosition: number | undefined;
+    let hasJsDoc = false;
+
+    for (const statement of sourceFile.getStatements()) {
+      if (Node.isVariableStatement(statement)) {
+        const match = statement
+          .getDeclarations()
+          .find((declaration) => declaration.getName() === expectedName);
+        if (match) {
+          declarationPosition = statement.getStart();
+          hasJsDoc = statement.getJsDocs().length > 0;
+          break;
+        }
+      }
+      if (
+        Node.isFunctionDeclaration(statement) &&
+        statement.getName() === expectedName
+      ) {
+        declarationPosition = statement.getStart();
+        hasJsDoc = statement.getJsDocs().length > 0;
+        break;
+      }
+    }
+
+    if (declarationPosition === undefined || hasJsDoc) continue;
+
+    addFinding(findings, context.root, {
+      rule: 'missing-component-jsdoc',
+      severity: 'error',
+      category: 'documentation',
+      component: component.name,
+      sourceFile,
+      position: declarationPosition,
+      message: `Le composant public ${expectedName} n'a pas de JSDoc adjacent à son implémentation.`,
+      evidence: `Aucun commentaire /** ... */ immédiatement avant la déclaration de ${expectedName} dans ${sourceFile.getBaseName()}.`,
+      remediation:
+        'Ajouter un commentaire JSDoc /** ... */ immédiatement avant la déclaration du composant.',
+    });
+  }
+}
+
 function detectThemeProblems(
   context: ConsistencyContext,
   findings: ConsistencyFinding[],
@@ -965,6 +1031,7 @@ export function detectConsistency(
   detectObservableAriaProblems(context, publicFiles, findings);
   detectCompoundExportProblems(context, findings);
   detectThemeProblems(context, findings);
+  detectMissingComponentJsDoc(context, findings);
 
   return [
     ...new Map(findings.map((item) => [findingKey(item), item])).values(),

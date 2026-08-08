@@ -7,6 +7,11 @@ import type { CollapsiblePanelProps } from '@components/surfaces/collapsible/com
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Animated content panel slot for `Collapsible` backed by Base UI
+ * Collapsible.Panel. Content is kept in the DOM by default (`keepMounted`).
+ * Accepts a `padding` token applied as `paddingBottom`.
+ */
 const CollapsiblePanel: FC<CollapsiblePanelProps> = memo(({
     className,
     padding = 'md',

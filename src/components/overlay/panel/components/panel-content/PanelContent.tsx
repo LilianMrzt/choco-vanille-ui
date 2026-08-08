@@ -7,6 +7,12 @@ import { PANEL_STYLES } from '@components/overlay/panel/styles/Panel.css.ts'
 import type { PanelContentProps } from '@components/overlay/panel/components/panel-content/types/PanelContent.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Animated panel portal that renders an `OverlayBackdrop` and a
+ * `BaseDialog.Popup`. Slides in from the `position` side (left|right).
+ * Resolves an accessible name from `aria-label`, `aria-labelledby`, or the
+ * title registered by `Panel.Header`.
+ */
 const PanelContent: FC<PanelContentProps> = memo(
     ({
         className,

@@ -7,6 +7,11 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * Styled `<a>` element with optional start/end icons and typography tokens.
+ * Prevents default navigation when `onClick` is provided, enabling SPA
+ * routing adapters. Requires a visible `label` or icon-accessible content.
+ */
 const Link: React.FC<LinkProps> = memo(({
     href = '#',
     className,

@@ -4,6 +4,11 @@ import Box from '@components/layout/box/Box.tsx'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Animated loading placeholder with `variant` (circular|rectangular|rounded),
+ * explicit `width`/`height`, and `aria-hidden` so assistive technology ignores
+ * it while content loads.
+ */
 const Skeleton: FC<SkeletonProps> = memo(({
     variant,
     width,

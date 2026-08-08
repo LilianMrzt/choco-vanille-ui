@@ -7,6 +7,11 @@ import { useRichTextEditorContext } from '@components/forms/rich-text-editor/con
 import { BLOCK_FORMAT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/block-format-group/styles/BlockFormatGroup.css.ts'
 import type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group/types/BlockFormatGroup.props.ts'
 
+/**
+ * Toolbar group for block-level format commands: paragraph, headings H1–H3,
+ * blockquote, code block, and horizontal rule. Use `presentation="inline"`
+ * for individual icon buttons or `"menu"` (default) for a dropdown trigger.
+ */
 const BlockFormatGroup = ({ presentation = 'menu' }: BlockFormatGroupProps) => {
     const { editor, disabled, labels } = useRichTextEditorContext()
     const [blockFormatOpen, setBlockFormatOpen] = useState(false)

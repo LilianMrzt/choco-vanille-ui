@@ -9,6 +9,13 @@ import type { ImageGroupProps } from '@components/forms/rich-text-editor/compone
 
 const MAX_IMAGE_FILE_SIZE = 10 * 1024 * 1024
 
+/**
+ * Toolbar group for image commands: insert by URL, upload from disk, edit
+ * attributes, and remove. Use `presentation="inline"` for individual icon
+ * buttons or `"menu"` (default) for a dropdown trigger. Calls
+ * `onImageUpload` from context when provided; otherwise reads the file as a
+ * data URL (max 10 MB).
+ */
 const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
     const { editor, disabled, onImageUpload, labels } =
     useRichTextEditorContext()

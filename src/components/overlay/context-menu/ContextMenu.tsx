@@ -21,6 +21,14 @@ import {
     type ContextMenuInputModality,
 } from '@components/overlay/context-menu/context/ContextMenu.context.ts'
 
+/**
+ * Right-click context-menu compound backed by Base UI ContextMenu. Shares
+ * its item and group slot components with `DropdownMenu`.
+ *
+ * Compound slots: `ContextMenu.Trigger`, `.Content`, `.Group`,
+ * `.RadioGroup`, `.Item`, `.CheckboxItem`, `.RadioItem`, `.Label`,
+ * `.Separator`, `.Shortcut`, `.Sub`, `.SubTrigger`, `.SubContent`.
+ */
 const ContextMenu = memo<ContextMenuProps>((props) => {
     const [inputModality, setInputModality] = useState<ContextMenuInputModality>('pointer')
     const contextValue = useMemo(

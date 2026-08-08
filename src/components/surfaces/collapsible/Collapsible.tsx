@@ -9,6 +9,12 @@ import type { CollapsibleProps } from '@components/surfaces/collapsible/types/Co
 import type { CollapsibleCompound } from '@components/surfaces/collapsible/types'
 import { Flex } from '@components/layout/flex'
 
+/**
+ * Collapsible panel/trigger compound backed by Base UI Collapsible. Expands
+ * and collapses its panel with animated height. Defaults to `width: 100%`.
+ *
+ * Compound slots: `Collapsible.Trigger`, `Collapsible.Panel`.
+ */
 const Collapsible = memo<CollapsibleProps>(({ className, width, ...props }) => (
     <Flex
         flexDirection={'column'}

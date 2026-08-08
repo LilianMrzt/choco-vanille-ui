@@ -4,6 +4,10 @@ import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Actions slot for `Toast`. A flex row that aligns call-to-action buttons
+ * at the end of the notification card.
+ */
 const ToastActions: FC<ToastActionsProps> = memo(({
     children,
     className,

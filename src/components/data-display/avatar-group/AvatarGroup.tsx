@@ -17,6 +17,10 @@ import { cn } from '@utils/cn.ts'
 
 const defaultOverflowLabel = (count: number) => `${count} more`
 
+/**
+ * Stacks multiple `Avatar` components horizontally with configurable overlap
+ * spacing. Renders an overflow avatar when the visible count exceeds `max`.
+ */
 const AvatarGroup: FC<AvatarGroupProps> = memo(({
     children,
     max,

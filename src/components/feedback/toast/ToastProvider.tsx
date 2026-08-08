@@ -16,6 +16,11 @@ const TOASTER_OPTIONS = {
     },
 } as const
 
+/**
+ * Mounts two Sonner `Toaster` instances via a portal on `document.body`:
+ * one at `top-right` for transient toasts and one at `bottom-right` for
+ * persistent notifications. Wrap the application root with this provider.
+ */
 const ToastProvider = ({ children }: ToastProviderProps) => {
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null)
 

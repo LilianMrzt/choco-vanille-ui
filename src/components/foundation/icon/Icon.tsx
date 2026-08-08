@@ -6,6 +6,11 @@ import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
+/**
+ * Iconify icon wrapper. Decorative by default (`aria-hidden`). Pass
+ * `aria-label` to emit `role="img"` for informative icons. An icon inside
+ * a named control should remain decorative — the control owns the name.
+ */
 const Icon: FC<IconProps> = memo(({
     icon,
     size,

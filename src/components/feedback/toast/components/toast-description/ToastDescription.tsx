@@ -4,6 +4,10 @@ import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
+/**
+ * Description text slot for `Toast`. Renders secondary-colored small
+ * typography and forwards all `Typography` props.
+ */
 const ToastDescription: FC<ToastDescriptionProps> = memo(({
     children,
     className,

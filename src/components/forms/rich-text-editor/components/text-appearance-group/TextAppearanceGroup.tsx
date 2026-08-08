@@ -11,6 +11,14 @@ type TextAppearanceGroupCompound = FC & {
     TextSizeMenu: FC<TextSizeMenuProps>
 }
 
+/**
+ * Toolbar group that combines `TextColorMenu` and `TextSizeMenu` controls
+ * for text appearance. Renders a `role="group"` with an aria-label from
+ * the editor's label context.
+ *
+ * Compound sub-components: `TextAppearanceGroup.TextColorMenu`,
+ * `TextAppearanceGroup.TextSizeMenu`.
+ */
 const TextAppearanceGroup = (() => {
     const { labels } = useRichTextEditorContext()
 

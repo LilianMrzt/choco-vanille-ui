@@ -4,6 +4,10 @@ import { TABLE_CELL_STYLES } from '@components/data-display/table/components/tab
 import type { TableCellProps } from '@components/data-display/table/components/table-cell/types/TableCell.props.ts'
 import { cn } from '@utils/cn.ts'
 
+/**
+ * `<td>` slot for `Table`. Supports `align`, `numeric`, and `truncate`
+ * variants and forwards all native `<td>` attributes.
+ */
 const TableCell: FC<TableCellProps> = memo(({
     align,
     numeric,

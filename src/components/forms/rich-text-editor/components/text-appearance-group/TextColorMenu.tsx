@@ -8,6 +8,12 @@ import { TEXT_COLOR_MENU_STYLES } from '@components/forms/rich-text-editor/compo
 import { vars } from '@theme/contract.css.ts'
 import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
 
+/**
+ * Color picker toolbar control for `TextAppearanceGroup`. Opens a
+ * `Popover` with a palette grid. Uses keyboard arrow navigation within
+ * the color swatches and applies the selected color as a TipTap
+ * `textStyle` mark.
+ */
 const TextColorMenu = () => {
     const colorButtonRefs = useRef<Array<HTMLButtonElement | null>>([])
     const [open, setOpen] = useState(false)

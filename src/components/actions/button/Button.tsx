@@ -8,6 +8,11 @@ import type { FC } from 'react'
 import { BUTTON_SIZE_TO_FONT_SIZE, buttonSizeToIconSize } from '@components/actions/button/constants'
 import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 
+/**
+ * Text-label action button. Requires a visible `label`. Supports
+ * `variant` (contained|outlined|ghost), semantic `color`, `size`
+ * (sm|md|lg), and optional `startIcon`/`endIcon` Iconify identifiers.
+ */
 const Button: FC<ButtonProps> = ({
     variant,
     color,

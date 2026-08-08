@@ -10,6 +10,12 @@ import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 import { clamp } from '@components/feedback/progress/utils/clamp.utils.ts'
 
+/**
+ * Circular SVG `role="progressbar"` with an optional center quantity label
+ * and an outer text label. Shares `size` (xs|sm|md|lg|xl) and `color` tokens
+ * with `Progress`. Requires an accessible name via `label`, `aria-label`, or
+ * `aria-labelledby`.
+ */
 const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,
     color,

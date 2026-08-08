@@ -6,6 +6,13 @@ import { resolveInsetPadding } from '@components/layout/inset/utils/resolveInset
 import { cn } from '@utils/cn.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
+/**
+ * Negative-margin utility that pulls content to the edge of its parent's
+ * padding on a given `side` (all|x|y|top|right|bottom|left). The `space`
+ * token matches the parent's padding so inset content bleeds flush to the
+ * container border. The `clip` prop controls border-box vs padding-box
+ * clipping.
+ */
 const Inset: FC<InsetProps> = memo(({
     space,
     side = 'all',
