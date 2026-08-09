@@ -29,7 +29,34 @@ const Separator: FC<SeparatorProps> = memo(({
             {...props}
             aria-orientation={orientation}
         >
-            {hasLabel ? <Typography variant={'label'}>{label}</Typography> : null}
+            {hasLabel ? (
+                <>
+                    <Box
+                        as={'span'}
+                        className={cn(
+                            SEPARATOR_STYLES.line,
+                            orientation === 'horizontal'
+                                ? SEPARATOR_STYLES.horizontalLine
+                                : SEPARATOR_STYLES.verticalLine,
+                        )}
+                    />
+                    <Typography
+                        variant={'label'}
+                        flexShrink={0}
+                    >
+                        {label}
+                    </Typography>
+                    <Box
+                        as={'span'}
+                        className={cn(
+                            SEPARATOR_STYLES.line,
+                            orientation === 'horizontal'
+                                ? SEPARATOR_STYLES.horizontalLine
+                                : SEPARATOR_STYLES.verticalLine,
+                        )}
+                    />
+                </>
+            ) : null}
         </Box>
     )
 })

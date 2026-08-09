@@ -22,7 +22,7 @@ export const NUMBER_FIELD_STEPPERS_STYLES = {
         minHeight: 0,
         padding: 0,
         border: 0,
-        borderLeft: `1px solid ${vars.color.input}`,
+        borderLeft: `1px solid ${vars.color.border}`,
         backgroundColor: 'transparent',
         color: vars.color.mutedForeground,
         cursor: 'pointer',

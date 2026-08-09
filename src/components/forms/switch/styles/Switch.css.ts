@@ -18,7 +18,7 @@ export const SWITCH_STYLES = {
             border: 'none',
             padding: 0,
             position: 'relative',
-            backgroundColor: vars.color.input,
+            backgroundColor: vars.color.border,
             cursor: 'pointer',
             outline: 'none',
             transition: [

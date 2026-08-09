@@ -120,7 +120,6 @@ Each of the seven intents exposes the nine tokens described above. Solid steps d
 |---|---|
 | `border` | Dividers, card outlines |
 | `borderStrong` | Stronger dividers, hovered borders, neutral outlines |
-| `input` | Input field borders |
 | `ring` | Focus ring |
 | `highlight` / `highlightForeground` | `<mark>` element |
 

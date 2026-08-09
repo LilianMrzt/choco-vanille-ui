@@ -10,7 +10,7 @@ export const TEXT_AREA_STYLES = {
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
             borderRadius: vars.radius.sm,
-            border: `1px solid ${vars.color.input}`,
+            border: `1px solid ${vars.color.border}`,
             backgroundColor: vars.color.card,
             color: vars.color.foreground,
             outline: 'none',

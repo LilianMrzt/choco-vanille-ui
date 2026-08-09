@@ -1,4 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes'
+import { style } from '@vanilla-extract/css'
 
 import { SEPARATOR_ORIENTATIONS } from '@components/layout/separator/constants/index.ts'
 import { vars } from '@theme/contract.css.ts'
@@ -7,6 +8,20 @@ import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 const colorVariants = createColorVariants('color')
 
 export const SEPARATOR_STYLES = {
+    line: style({
+        flex: 1,
+        minWidth: 0,
+        backgroundColor: 'currentColor',
+    }),
+
+    horizontalLine: style({
+        height: '1px',
+    }),
+
+    verticalLine: style({
+        width: '1px',
+    }),
+
     recipe: recipe({
         base: {
             flexShrink: 0,
@@ -31,15 +46,9 @@ export const SEPARATOR_STYLES = {
                 true: {
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: vars.space.md,
                     backgroundColor: 'transparent',
-                    selectors: {
-                        '&::before, &::after': {
-                            content: '""',
-                            flex: 1,
-                            backgroundColor: 'currentColor',
-                        },
-                    },
                 },
                 false: {},
             },
@@ -53,11 +62,6 @@ export const SEPARATOR_STYLES = {
                 },
                 style: {
                     height: 'auto',
-                    selectors: {
-                        '&::before, &::after': {
-                            height: '1px',
-                        },
-                    },
                 },
             },
             {
@@ -68,12 +72,6 @@ export const SEPARATOR_STYLES = {
                 style: {
                     flexDirection: 'column',
                     width: 'auto',
-                    selectors: {
-                        '&::before, &::after': {
-                            width: '1px',
-                            height: 'auto',
-                        },
-                    },
                 },
             },
         ],

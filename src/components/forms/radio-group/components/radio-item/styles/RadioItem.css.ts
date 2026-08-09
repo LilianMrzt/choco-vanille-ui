@@ -15,7 +15,7 @@ export const RADIO_ITEM_STYLES = {
         width: '1rem',
         height: '1rem',
         borderRadius: vars.radius.full,
-        border: `1.5px solid ${vars.color.input}`,
+        border: `1.5px solid ${vars.color.border}`,
         padding: 0,
         display: 'flex',
         alignItems: 'center',

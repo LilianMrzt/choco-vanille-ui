@@ -186,7 +186,6 @@ export const darkColors: DarkColors = {
     /* Lines, fields & focus  */
     border: palette.neutral[500],
     borderStrong: palette.neutral[500],
-    input: palette.neutral[500],
     ring: palette.brand[500],
 
     /* Highlight  */

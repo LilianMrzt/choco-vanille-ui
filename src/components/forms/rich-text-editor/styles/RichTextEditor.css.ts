@@ -13,7 +13,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
     editor: style({
         minHeight: '10rem',
         padding: vars.space.md,
-        border: `1px solid ${vars.color.input}`,
+        border: `1px solid ${vars.color.border}`,
         borderBottomLeftRadius: vars.radius.sm,
         borderBottomRightRadius: vars.radius.sm,
         backgroundColor: vars.color.card,

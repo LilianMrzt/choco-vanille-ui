@@ -197,7 +197,6 @@ export const lightColors = {
     /* Lines, fields & focus  */
     border: palette.neutral[300],
     borderStrong: palette.neutral[300],
-    input: palette.neutral[300],
     ring: palette.brand[600],
 
     /* Highlight (Typography <mark>)  */

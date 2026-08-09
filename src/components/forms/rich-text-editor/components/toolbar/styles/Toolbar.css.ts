@@ -9,7 +9,7 @@ export const TOOLBAR_STYLES = {
         gap: '0',
         padding: vars.space.xs,
         marginBottom: `calc(-1 * ${vars.space.xs})`,
-        border: `1px solid ${vars.color.input}`,
+        border: `1px solid ${vars.color.border}`,
         borderBottom: 'none',
         borderTopLeftRadius: vars.radius.sm,
         borderTopRightRadius: vars.radius.sm,

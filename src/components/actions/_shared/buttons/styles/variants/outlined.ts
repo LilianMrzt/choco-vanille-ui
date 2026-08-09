@@ -11,7 +11,7 @@ export const outlinedCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.outlined,
     (color) => ({
         borderColor: color === BUTTON_COLORS.tertiary
-            ? vars.color.input
+            ? vars.color.border
             : vars.color[color],
         backgroundColor: vars.color.card,
         color: vars.color[`${color}SubtleForeground` as ColorVarKey],
