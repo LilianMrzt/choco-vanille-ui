@@ -1,105 +1,114 @@
-import { Meta, Source, Subtitle, Title } from '@storybook/addon-docs/blocks'
+import { Meta, Source, Subtitle, Title } from '@storybook/addon-docs/blocks';
 
 <Meta title="Guidelines/Icons" />
 
 <Title />
 
 <Subtitle>
-    How to define and correctly use icons in your project with the{' '}
-    <code>Icon</code> component and a centralised <strong>IconRegistry</strong>.
+  How to define and correctly use icons in your project with the{' '}
+  <code>Icon</code> component and local SVG components.
 </Subtitle>
 
 ---
 
 ## 1 — The `Icon` component
 
-The `Icon` component gives access to over 200,000 icons from 150+ icon sets. Simply pass an Iconify identifier to the `icon` prop.
+The `Icon` component renders a locally bundled SVG component passed to the `icon` prop. The library keeps its internal icon registry private; consumers provide the SVG component they need.
 
 <Source
     language="tsx"
     code={`import { Icon } from '@choco-vanille/ui'
+import SearchIcon from './assets/SearchIcon.svg?react'
+import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
 
 // Decorative icon — hidden from screen readers
 
-<Icon icon="lucide:home" />
+<Icon icon={SearchIcon} />
 
 // Semantic icon — announced with an accessible label
 
-<Icon icon="lucide:triangle-alert" aria-label="Warning" />`}
+<Icon icon={TriangleAlertIcon} aria-label="Warning" />`}
 />
 
 ---
 
-## 2 — Defining an `IconRegistry` in your project
+## 2 — Providing local SVG components
 
-Rather than scattering Iconify strings (`"lucide:home"`, `"ph:gear"`, …) throughout your components, **centralise them in a registry**.
+Import the SVG components you want to use and keep a registry in your consumer
+project. The registry used by the library itself is internal and is not part of
+the public package API.
 
 This gives you:
 
-| Benefit                | Details                                               |
-| ---------------------- | ----------------------------------------------------- |
-| 🔄 **Maintainability** | Switching icon sets? Only one file to update.         |
-| 🔒 **Type-safety**     | TypeScript restricts the allowed values.              |
-| 📖 **Consistency**     | Developers always know where to find available icons. |
-| 🔍 **Traceability**    | Easily find where an icon is used.                    |
+<table>
+  <thead>
+    <tr>
+      <th>Benefit</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        🔄 <strong>Maintainability</strong>
+      </td>
+      <td>
+        SVG assets can be replaced without changing the <code>Icon</code> API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        🔒 <strong>Type-safety</strong>
+      </td>
+      <td>
+        The <code>icon</code> prop accepts SVG React components.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        📖 <strong>Consistency</strong>
+      </td>
+      <td>
+        All icons use the same <code>Icon</code> accessibility boundary.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        🔍 <strong>Traceability</strong>
+      </td>
+      <td>The SVG source remains easy to locate.</td>
+    </tr>
+  </tbody>
+</table>
 
-### Creating the registry
+### Using local icons in your components
 
-Create a `src/icons/registry.ts` file in your application:
+Keep the registry in the consumer project, for example in
+`src/icons/registry.ts`:
 
 <Source
-    language="ts"
-    code={`// src/icons/registry.ts
+    language="tsx"
+    code={`import SearchIcon from './assets/SearchIcon.svg?react'
+import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
+import CloseIcon from './assets/CloseIcon.svg?react'
 
-/\*\*
+export const IconRegistry = {
+    search: SearchIcon,
+    warning: TriangleAlertIcon,
+    close: CloseIcon,
+} as const`}
+/>
 
-- IconRegistry — maps a semantic name to its Iconify identifier.
--
-- Iconify format: "<set>:<icon>"
-- Browse available sets at https://icon-sets.iconify.design/
--
-- Conventions:
-- - camelCase for keys → arrowRight, not arrow-right
-- - Group by functional domain if the registry grows large
-        \*/
-        export const IconRegistry = {
-        // Navigation
-        home: 'lucide:home',
-        arrowRight: 'lucide:arrow-right',
-        arrowLeft: 'lucide:arrow-left',
-        close: 'lucide:x',
-
-                // Actions
-                settings:   'lucide:settings',
-                edit:       'lucide:pencil',
-                delete:     'lucide:trash-2',
-                add:        'lucide:plus',
-                search:     'lucide:search',
-
-                // Feedback
-                success:    'lucide:circle-check',
-                warning:    'lucide:triangle-alert',
-                error:      'lucide:circle-x',
-                info:       'lucide:info',
-
-                // State
-                loading:    'lucide:loader-circle',
-
-        } as const`}
-        />
-
-### Using it in your components
-
-Simply use the `Icon` component directly with a value from the registry:
+Then import that registry from the consumer project, not from the UI kit:
 
 <Source
     language="tsx"
     code={`import { Icon } from '@choco-vanille/ui'
 import { IconRegistry } from '@/icons/registry'
 
-<Icon icon={IconRegistry.home} />
-<Icon icon={IconRegistry.settings} size="lg" aria-label="Settings" />
-<Icon icon={IconRegistry.loading} spin />`}
+<Icon icon={IconRegistry.search} />
+<Icon icon={IconRegistry.warning} size="lg" aria-label="Warning" />
+<Icon icon={IconRegistry.close} spin />`}
 />
 
 ---
@@ -108,22 +117,64 @@ import { IconRegistry } from '@/icons/registry'
 
 ### Accessibility
 
-| Situation                                         | Recommendation                                                |
-| ------------------------------------------------- | ------------------------------------------------------------- |
-| **Decorative** icon (accompanied by a text label) | Omit `aria-label` → `aria-hidden="true"` is set automatically |
-| **Standalone** meaningful icon                    | Pass `aria-label` with an explicit description                |
+<table>
+  <thead>
+    <tr>
+      <th>Situation</th>
+      <th>Recommendation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Decorative</strong> icon (accompanied by a text label)
+      </td>
+      <td>
+        Omit <code>aria-label</code>; <code>aria-hidden="true"</code> is set
+        automatically.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Standalone</strong> meaningful icon
+      </td>
+      <td>
+        Pass <code>aria-label</code> with an explicit description.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-### Choosing the right icon set
+### SVG setup
 
-We recommend using a **single icon set** per project to ensure visual consistency.
+Configure your project to transform SVG files into React components with
+`vite-plugin-svgr`. Without this Vite plugin, the `?react` imports used by the
+registry will not work.
 
-Browse available sets at [icon-sets.iconify.design](https://icon-sets.iconify.design/).
+<Source language="bash" code={`pnpm add -D vite-plugin-svgr`} />
+
+<Source
+    language="ts"
+    code={`import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import svgr from 'vite-plugin-svgr'
+
+export default defineConfig({
+    plugins: [react(), svgr()],
+})`}
+/>
+
+### Choosing icons
+
+Use the local SVG that matches the component's meaning. Library components use
+their private registry internally; consumer components should use the
+consumer-owned registry instead.
 
 ### Naming keys
 
 ```
-✅  home, arrowRight, deleteUser, loadingSpinner
-❌  arrow-right, ArrowRight, ARROW_RIGHT, icon_home
+✅  search, chevronRight, user, imagePlus
+❌  SearchIcon, search-icon, SEARCH_ICON, icon_search
 ```
 
 Use **camelCase** and **semantic names** (what the icon represents) rather than descriptive names (its shape).

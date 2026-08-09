@@ -11,6 +11,9 @@ import { useState, type ComponentProps } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Command, type CommandSize } from '@components/overlay/command'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
+import TrashIcon from '@resources/asset/TrashIcon.svg?react'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -98,16 +101,16 @@ Compose with \`Command.Trigger\`, \`Command.Content\`, \`Command.Input\`, \`Comm
     <Command.Input placeholder="Search actions…" />
     <Command.List aria-label="Commands">
       <Command.Group label="Actions">
-        <Command.Item icon="lucide:pencil" shortcut="⌘E" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} shortcut="⌘E" onSelect={() => {}}>
           Edit profile
         </Command.Item>
-        <Command.Item icon="lucide:settings" shortcut="⌘S" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} shortcut="⌘S" onSelect={() => {}}>
           Settings
         </Command.Item>
       </Command.Group>
       <Command.Separator />
       <Command.Group label="Navigation">
-        <Command.Item icon="lucide:home" onSelect={() => {}}>
+        <Command.Item icon={UserIcon} onSelect={() => {}}>
           Go to dashboard
         </Command.Item>
       </Command.Group>
@@ -196,22 +199,22 @@ export const Playground: Story = {
     <Command.Input placeholder="Search actions…" />
     <Command.List aria-label="Commands">
       <Command.Group label="Actions">
-        <Command.Item icon="lucide:pencil" shortcut="⌘E" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} shortcut="⌘E" onSelect={() => {}}>
           Edit profile
         </Command.Item>
-        <Command.Item icon="lucide:settings" shortcut="⌘S" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} shortcut="⌘S" onSelect={() => {}}>
           Settings
         </Command.Item>
-        <Command.Item icon="lucide:trash-2" disabled>
+        <Command.Item icon={TrashIcon} disabled>
           Delete account
         </Command.Item>
       </Command.Group>
       <Command.Separator />
       <Command.Group label="Navigation">
-        <Command.Item icon="lucide:home" shortcut="⌘H" onSelect={() => {}}>
+        <Command.Item icon={UserIcon} shortcut="⌘H" onSelect={() => {}}>
           Go to dashboard
         </Command.Item>
-        <Command.Item icon="lucide:user" shortcut="⌘P" onSelect={() => {}}>
+        <Command.Item icon={UserIcon} shortcut="⌘P" onSelect={() => {}}>
           My profile
         </Command.Item>
       </Command.Group>
@@ -251,21 +254,21 @@ export const Playground: Story = {
                     {showGroup1 && (
                         <Command.Group label={'Actions'}>
                             <Command.Item
-                                icon={showIcons ? 'lucide:pencil' : undefined}
+                                icon={showIcons ? SearchIcon : undefined}
                                 shortcut={showShortcuts ? '⌘E' : undefined}
                                 onSelect={() => {}}
                             >
                                 Edit profile
                             </Command.Item>
                             <Command.Item
-                                icon={showIcons ? 'lucide:settings' : undefined}
+                                icon={showIcons ? SearchIcon : undefined}
                                 shortcut={showShortcuts ? '⌘S' : undefined}
                                 onSelect={() => {}}
                             >
                                 Settings
                             </Command.Item>
                             <Command.Item
-                                icon={showIcons ? 'lucide:trash-2' : undefined}
+                                icon={showIcons ? TrashIcon : undefined}
                                 disabled
                             >
                                 Delete account
@@ -276,14 +279,14 @@ export const Playground: Story = {
                     {showGroup2 && (
                         <Command.Group label={'Navigation'}>
                             <Command.Item
-                                icon={showIcons ? 'lucide:home' : undefined}
+                                icon={showIcons ? UserIcon : undefined}
                                 shortcut={showShortcuts ? '⌘H' : undefined}
                                 onSelect={() => {}}
                             >
                                 Go to dashboard
                             </Command.Item>
                             <Command.Item
-                                icon={showIcons ? 'lucide:user' : undefined}
+                                icon={showIcons ? UserIcon : undefined}
                                 shortcut={showShortcuts ? '⌘P' : undefined}
                                 onSelect={() => {}}
                             >
@@ -390,13 +393,13 @@ export const States: Story = {
     <Command.Input placeholder="Search…" />
     <Command.List aria-label="Commands">
       <Command.Group label="States">
-        <Command.Item icon="lucide:pencil" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} onSelect={() => {}}>
           Default item
         </Command.Item>
-        <Command.Item icon="lucide:settings" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} onSelect={() => {}}>
           Another item
         </Command.Item>
-        <Command.Item icon="lucide:trash-2" disabled>
+        <Command.Item icon={TrashIcon} disabled>
           Disabled item
         </Command.Item>
       </Command.Group>
@@ -413,19 +416,19 @@ export const States: Story = {
                 <Command.List aria-label={'Commands'}>
                     <Command.Group label={'States'}>
                         <Command.Item
-                            icon={'lucide:pencil'}
+                            icon={SearchIcon}
                             onSelect={() => {}}
                         >
                             Default item
                         </Command.Item>
                         <Command.Item
-                            icon={'lucide:settings'}
+                            icon={SearchIcon}
                             onSelect={() => {}}
                         >
                             Another item
                         </Command.Item>
                         <Command.Item
-                            icon={'lucide:trash-2'}
+                            icon={TrashIcon}
                             disabled
                         >
                             Disabled item
@@ -454,10 +457,10 @@ export const WithIcons: Story = {
         <Command.Item onSelect={() => {}}>
           No icon
         </Command.Item>
-        <Command.Item icon="lucide:pencil" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} onSelect={() => {}}>
           With icon
         </Command.Item>
-        <Command.Item icon="lucide:settings" shortcut="⌘S" onSelect={() => {}}>
+        <Command.Item icon={SearchIcon} shortcut="⌘S" onSelect={() => {}}>
           Icon and shortcut
         </Command.Item>
       </Command.Group>
@@ -477,13 +480,13 @@ export const WithIcons: Story = {
                             No icon
                         </Command.Item>
                         <Command.Item
-                            icon={'lucide:pencil'}
+                            icon={SearchIcon}
                             onSelect={() => {}}
                         >
                             With icon
                         </Command.Item>
                         <Command.Item
-                            icon={'lucide:settings'}
+                            icon={SearchIcon}
                             shortcut={'⌘S'}
                             onSelect={() => {}}
                         >
@@ -521,10 +524,10 @@ function ControlledCommandExample() {
           <Command.Input placeholder="Search…" />
           <Command.List aria-label="Commands">
             <Command.Group label="Actions">
-              <Command.Item icon="lucide:pencil" shortcut="⌘E" onSelect={() => setOpen(false)}>
+              <Command.Item icon={SearchIcon} shortcut="⌘E" onSelect={() => setOpen(false)}>
                 Edit profile
               </Command.Item>
-              <Command.Item icon="lucide:settings" shortcut="⌘S" onSelect={() => setOpen(false)}>
+              <Command.Item icon={SearchIcon} shortcut="⌘S" onSelect={() => setOpen(false)}>
                 Settings
               </Command.Item>
             </Command.Group>
@@ -557,14 +560,14 @@ function ControlledCommandExample() {
                         <Command.List aria-label={'Commands'}>
                             <Command.Group label={'Actions'}>
                                 <Command.Item
-                                    icon={'lucide:pencil'}
+                                    icon={SearchIcon}
                                     shortcut={'⌘E'}
                                     onSelect={() => setOpen(false)}
                                 >
                                     Edit profile
                                 </Command.Item>
                                 <Command.Item
-                                    icon={'lucide:settings'}
+                                    icon={SearchIcon}
                                     shortcut={'⌘S'}
                                     onSelect={() => setOpen(false)}
                                 >

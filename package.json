@@ -1,6 +1,6 @@
 {
   "name": "@choco-vanille/ui",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "A React 19 UI kit built with Vanilla Extract and Base UI primitives.",
   "type": "module",
   "license": "MIT",
@@ -59,7 +59,6 @@
   },
   "dependencies": {
     "@base-ui/react": "1.6.0",
-    "@iconify/react": "^6.0.2",
     "@tiptap/extension-color": "3.29.2",
     "@tiptap/extension-image": "3.29.2",
     "@tiptap/extension-link": "3.29.2",
@@ -111,6 +110,7 @@
     "vite": "7.3.6",
     "vite-plugin-dts": "5.0.3",
     "vite-plugin-lib-inject-css": "^2.2.2",
+    "vite-plugin-svgr": "^4.5.0",
     "vitest": "^4.1.9"
   },
   "publishConfig": {

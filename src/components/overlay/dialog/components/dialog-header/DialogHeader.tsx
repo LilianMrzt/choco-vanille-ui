@@ -5,7 +5,7 @@ import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
 import { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/styles/DialogHeader.css.ts'
-import { IconRegistry } from '@constants/icons'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import type { DialogHeaderProps } from '@components/overlay/dialog/components/dialog-header/types/DialogHeader.props.ts'
 
 /**
@@ -89,7 +89,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
                 >
                     <DialogClose>
                         <IconButton
-                            icon={IconRegistry.close}
+                            icon={CloseIcon}
                             aria-label={'Close dialog'}
                             variant={'ghost'}
                             color={'primary'}

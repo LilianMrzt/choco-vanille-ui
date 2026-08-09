@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import type { IconComponent } from '@components/foundation/icon'
 
 import type {
     IconButtonColor,
@@ -12,8 +13,8 @@ export type IconButtonProps = Omit<
 > &
   (
     | {
-        /** Iconify icon name rendered inside the button. */
-        icon: string
+        /** SVG component rendered inside the button. */
+        icon: IconComponent
         children?: never
       }
     | {

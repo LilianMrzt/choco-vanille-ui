@@ -2,6 +2,10 @@ import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
+import AlignCenterIcon from '@resources/asset/AlignCenterIcon.svg?react'
+import AlignJustifyIcon from '@resources/asset/AlignJustifyIcon.svg?react'
+import AlignLeftIcon from '@resources/asset/AlignLeftIcon.svg?react'
+import AlignRightIcon from '@resources/asset/AlignRightIcon.svg?react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { ALIGNMENT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/alignment-group/styles/AlignmentGroup.css.ts'
@@ -41,7 +45,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:align-left'}
+                            icon={AlignLeftIcon}
                             aria-label={labels.alignLeft}
                             variant={'ghost'}
                             color={'primary'}
@@ -59,7 +63,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:align-center'}
+                            icon={AlignCenterIcon}
                             aria-label={labels.alignCenter}
                             variant={'ghost'}
                             color={'primary'}
@@ -79,7 +83,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:align-right'}
+                            icon={AlignRightIcon}
                             aria-label={labels.alignRight}
                             variant={'ghost'}
                             color={'primary'}
@@ -97,7 +101,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:align-justify'}
+                            icon={AlignJustifyIcon}
                             aria-label={labels.justify}
                             variant={'ghost'}
                             color={'primary'}
@@ -125,7 +129,7 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         <DropdownMenu.Trigger>
                             <IconButton
                                 type={'button'}
-                                icon={'lucide:align-left'}
+                                icon={AlignLeftIcon}
                                 aria-label={labels.alignmentTrigger}
                                 variant={'ghost'}
                                 color={'primary'}
@@ -138,13 +142,13 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                     <DropdownMenu.Content aria-label={labels.alignmentOptions}>
                         <DropdownMenu.Item
                             label={labels.alignLeft}
-                            startIcon={'lucide:align-left'}
+                            startIcon={AlignLeftIcon}
                             active={currentAlignment === 'left'}
                             onClick={() => editor.chain().focus().setTextAlign('left').run()}
                         />
                         <DropdownMenu.Item
                             label={labels.alignCenter}
-                            startIcon={'lucide:align-center'}
+                            startIcon={AlignCenterIcon}
                             active={currentAlignment === 'center'}
                             onClick={() =>
                                 editor.chain().focus().setTextAlign('center').run()
@@ -152,13 +156,13 @@ const AlignmentGroup = ({ presentation = 'menu' }: AlignmentGroupProps) => {
                         />
                         <DropdownMenu.Item
                             label={labels.alignRight}
-                            startIcon={'lucide:align-right'}
+                            startIcon={AlignRightIcon}
                             active={currentAlignment === 'right'}
                             onClick={() => editor.chain().focus().setTextAlign('right').run()}
                         />
                         <DropdownMenu.Item
                             label={labels.justify}
-                            startIcon={'lucide:align-justify'}
+                            startIcon={AlignJustifyIcon}
                             active={currentAlignment === 'justify'}
                             onClick={() =>
                                 editor.chain().focus().setTextAlign('justify').run()

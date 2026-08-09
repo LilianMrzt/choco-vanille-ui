@@ -1,5 +1,5 @@
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons.ts'
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { type FC } from 'react'
 
@@ -12,7 +12,7 @@ const RotatingChevron: FC<RotatingChevronProps> = ({
     ...props
 }) => (
     <Icon
-        icon={IconRegistry.chevronDown}
+        icon={ChevronDownIcon}
         className={cn(ROTATING_CHEVRON_STYLES.chevron, className)}
         data-expanded={expanded}
         aria-hidden

@@ -12,7 +12,7 @@ export type DrawerSectionItemProps = Omit<
   /** Visible text label for the section header. */
   label: string;
   /** Icon rendered before the label. */
-  startIcon: string;
+  startIcon: IconComponent;
   /** Items rendered inside the collapsible section. */
   children: ReactNode;
   /** Optional content rendered at the end of the header (e.g. a badge). */
@@ -30,3 +30,4 @@ export type DrawerSectionItemProps = Omit<
   /** Accessible label for the section header. Defaults to `label`. */
   'aria-label'?: string;
 };
+import type { IconComponent } from '@components/foundation/icon'

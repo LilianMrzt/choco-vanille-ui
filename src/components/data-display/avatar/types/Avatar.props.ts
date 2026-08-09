@@ -8,6 +8,7 @@ import type {
     AvatarSize,
     AvatarStatus,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type AvatarProps =
   React.HTMLAttributes<HTMLSpanElement> &
@@ -18,8 +19,8 @@ export type AvatarProps =
     alt?: string;
     /** Initials displayed when the image fails to load or is omitted. */
     initials?: string;
-    /** Iconify icon name displayed as a fallback when no initials are provided. */
-    icon?: string;
+    /** SVG component displayed as a fallback when no initials are provided. */
+    icon?: IconComponent;
     /** Size variant. Defaults to `md`. */
     size?: AvatarSize;
     /** Shape variant. Defaults to `circle`. */

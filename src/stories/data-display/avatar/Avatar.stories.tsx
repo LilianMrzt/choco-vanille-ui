@@ -17,6 +17,7 @@ import {
     type AvatarSize,
     type AvatarStatus,
 } from '@components/data-display/avatar'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -86,7 +87,7 @@ It displays an image when available and falls back to initials or an icon.
 ~~~tsx
 <Avatar src="https://github.com/shadcn.png" alt="shadcn" />
 <Avatar initials="JD" />
-<Avatar icon="lucide:user" color="secondary" />
+<Avatar icon={UserIcon} color="secondary" />
 <Avatar status="online" statusSize="lg" />
 ~~~
 
@@ -259,11 +260,11 @@ export const WithIconFallback: Story = {
     parameters: {
         docs: {
             description: { story: 'Avatar with an icon fallback.' },
-            ...storySource(`<Avatar icon="lucide:user" color="secondary" />`),
+            ...storySource(`<Avatar icon={UserIcon} color="secondary" />`),
         },
     },
     args: {
-        icon: 'lucide:user',
+        icon: UserIcon,
         color: 'secondary',
     },
 }

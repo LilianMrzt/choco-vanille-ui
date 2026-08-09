@@ -1,5 +1,6 @@
 import type { ButtonColorShared, ButtonSizeShared } from '@components/actions/_shared/buttons/types'
 import type { Radius } from '@theme/tokens/radii.ts'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type ToggleVariant = 'ghost' | 'outlined'
 export type ToggleColor = ButtonColorShared
@@ -10,13 +11,13 @@ export type ToggleLabelContent = {
     label: string
     icon?: never
     'aria-label'?: string
-    startIcon?: string
-    endIcon?: string
+    startIcon?: IconComponent
+    endIcon?: IconComponent
 }
 
 export type ToggleIconContent = {
     label?: never
-    icon: string
+    icon: IconComponent
     'aria-label': string
     startIcon?: never
     endIcon?: never

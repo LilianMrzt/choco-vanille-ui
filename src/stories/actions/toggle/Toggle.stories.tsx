@@ -16,6 +16,9 @@ import {
     type ToggleSize,
     type ToggleVariant,
 } from '@components/actions'
+import BoldIcon from '@resources/asset/BoldIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
+import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -74,7 +77,7 @@ A two-state control that can be used on its own or as an item in \`ToggleGroup\`
 
 ~~~tsx
 <Toggle label="Bold" />
-<Toggle icon="lucide:bold" aria-label="Bold" />
+<Toggle icon={BoldIcon} aria-label="Bold" />
 
 <ToggleGroup>
   <ToggleGroup.Item value="bold" label="Bold" />
@@ -221,25 +224,25 @@ export const WithIcons: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Toggle label="Bold" startIcon="lucide:bold" />
-<Toggle label="Next" endIcon="lucide:arrow-right" />
-<Toggle label="Upload" startIcon="lucide:upload" endIcon="lucide:arrow-right" />`),
+<Toggle label="Bold" startIcon={BoldIcon} />
+<Toggle label="Next" endIcon={ChevronRightIcon} />
+<Toggle label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
             <Toggle
                 label={'Bold'}
-                startIcon={'lucide:bold'}
+                startIcon={BoldIcon}
             />
             <Toggle
                 label={'Next'}
-                endIcon={'lucide:arrow-right'}
+                endIcon={ChevronRightIcon}
             />
             <Toggle
                 label={'Upload'}
-                startIcon={'lucide:upload'}
-                endIcon={'lucide:arrow-right'}
+                startIcon={UploadIcon}
+                endIcon={ChevronRightIcon}
             />
         </div>
     ),
@@ -248,13 +251,13 @@ export const WithIcons: Story = {
 export const IconOnly: Story = {
     args: {
         label: undefined,
-        icon: 'lucide:bold',
+        icon: BoldIcon,
         'aria-label': 'Bold',
     },
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Toggle icon="lucide:bold" aria-label="Bold" />`),
+<Toggle icon={BoldIcon} aria-label="Bold" />`),
         },
     },
     play: async ({ canvasElement }) => {

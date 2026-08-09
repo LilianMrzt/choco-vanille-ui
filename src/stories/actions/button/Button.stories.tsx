@@ -15,6 +15,9 @@ import {
     type ButtonSize,
     type ButtonVariant,
 } from '@components/actions/button'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
+import TrashIcon from '@resources/asset/TrashIcon.svg?react'
+import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -72,8 +75,8 @@ An optional start or end icon can be placed around the label.
 ~~~tsx
 <Button label="Save" />
 <Button label="Save" variant="contained" color="primary" />
-<Button label="Delete" variant="outlined" color="destructive" startIcon="lucide:trash-2" />
-<Button label="Next" variant="ghost" endIcon="lucide:arrow-right" />
+<Button label="Delete" variant="outlined" color="destructive" startIcon={TrashIcon} />
+<Button label="Next" variant="ghost" endIcon={ChevronRightIcon} />
 ~~~
         `,
             },
@@ -229,9 +232,9 @@ The icon size and color are derived automatically from the button's current \`va
         `,
             },
             ...storySource(/* language=tsx */ `
-<Button label="Delete" startIcon="lucide:trash-2" variant="outlined" color="destructive" />
-<Button label="Next" endIcon="lucide:arrow-right" />
-<Button label="Upload" startIcon="lucide:upload" endIcon="lucide:arrow-right" color="primary" />`),
+<Button label="Delete" startIcon={TrashIcon} variant="outlined" color="destructive" />
+<Button label="Next" endIcon={ChevronRightIcon} />
+<Button label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} color="primary" />`),
         },
     },
     render: () => (
@@ -245,18 +248,18 @@ The icon size and color are derived automatically from the button's current \`va
         >
             <Button
                 label={'Delete'}
-                startIcon={'lucide:trash-2'}
+                startIcon={TrashIcon}
                 variant={'outlined'}
                 color={'destructive'}
             />
             <Button
                 label={'Next'}
-                endIcon={'lucide:arrow-right'}
+                endIcon={ChevronRightIcon}
             />
             <Button
                 label={'Upload'}
-                startIcon={'lucide:upload'}
-                endIcon={'lucide:arrow-right'}
+                startIcon={UploadIcon}
+                endIcon={ChevronRightIcon}
                 color={'primary'}
             />
         </div>

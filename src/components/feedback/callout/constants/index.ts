@@ -1,12 +1,16 @@
-import { IconRegistry } from '@constants/icons'
+import CircleCheckIcon from '@resources/asset/CircleCheckIcon.svg?react'
+import CircleErrorIcon from '@resources/asset/CircleErrorIcon.svg?react'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
+import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 import type { CalloutVariant } from '@components/feedback/callout/types/Callout.types.ts'
 import type { ThemeColor } from '@theme'
+import type { IconComponent } from '@components/foundation/icon'
 
-export const VARIANT_TO_ICON: Record<CalloutVariant, string> = {
-    info: IconRegistry.info,
-    success: IconRegistry.success,
-    warning: IconRegistry.warning,
-    error: IconRegistry.error,
+export const VARIANT_TO_ICON: Record<CalloutVariant, IconComponent> = {
+    info: InfoIcon,
+    success: CircleCheckIcon,
+    warning: TriangleAlertIcon,
+    error: CircleErrorIcon,
 }
 
 export const VARIANT_TO_COLOR: Record<CalloutVariant, ThemeColor> = {

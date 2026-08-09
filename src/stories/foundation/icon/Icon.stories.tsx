@@ -13,7 +13,7 @@ import type { CSSProperties } from 'react'
 import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
 import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
-import { IconRegistry } from '@constants/icons'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -95,19 +95,18 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A thin wrapper around \`@iconify/react\` that maps design-token sizes and theme colors onto any Iconify icon.
+A thin wrapper around locally bundled SVG components that maps design-token sizes and theme colors onto each icon.
 
-Pass any valid Iconify icon name as the \`icon\` prop (e.g. \`"lucide:home"\`, \`"lucide:check"\`).
-Browse all available icons at [icones.js.org](https://icones.js.org).
+Pass a locally bundled SVG component as the \`icon\` prop.
 
 **Usage**
 
 ~~~tsx
 // Decorative icon (hidden from assistive technology)
-<Icon icon="lucide:home" size="md" />
+<Icon icon={SearchIcon} size="md" />
 
 // Meaningful icon (announced by screen readers)
-<Icon icon="lucide:triangle-alert" size="md" aria-label="Warning" />
+<Icon icon={TriangleAlertIcon} size="md" aria-label="Warning" />
 ~~~
 
 **Performance**
@@ -131,7 +130,7 @@ Browse all available icons at [icones.js.org](https://icones.js.org).
         'aria-label': { control: 'text' },
     },
     args: {
-        icon: IconRegistry.home,
+        icon: SearchIcon,
         size: 'md',
     },
 } satisfies Meta<typeof Icon>
@@ -149,7 +148,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to change the icon name, size, color, padding, border, background, and spin animation.',
             },
             ...storySource(/* language=tsx */ `
-<Icon icon="lucide:home" size="md" />`),
+<Icon icon={SearchIcon} size="md" />`),
         },
     },
     play: async ({ canvasElement }) => {
@@ -164,12 +163,12 @@ export const Sizes: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Icon icon="lucide:home" size="xs" aria-label="xs" />
-<Icon icon="lucide:home" size="sm" aria-label="sm" />
-<Icon icon="lucide:home" size="md" aria-label="md" />
-<Icon icon="lucide:home" size="lg" aria-label="lg" />
-<Icon icon="lucide:home" size="xl" aria-label="xl" />
-<Icon icon="lucide:home" size="2xl" aria-label="2xl" />`),
+<Icon icon={SearchIcon} size="xs" aria-label="xs" />
+<Icon icon={SearchIcon} size="sm" aria-label="sm" />
+<Icon icon={SearchIcon} size="md" aria-label="md" />
+<Icon icon={SearchIcon} size="lg" aria-label="lg" />
+<Icon icon={SearchIcon} size="xl" aria-label="xl" />
+<Icon icon={SearchIcon} size="2xl" aria-label="2xl" />`),
         },
     },
     render: () => (
@@ -177,7 +176,7 @@ export const Sizes: Story = {
             {SIZES.map((size) => (
                 <Icon
                     key={size}
-                    icon={'lucide:home'}
+                    icon={SearchIcon}
                     size={size}
                     aria-label={size}
                 />

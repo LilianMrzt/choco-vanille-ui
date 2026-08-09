@@ -11,14 +11,15 @@ import {
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Accordion } from '@components/surfaces/accordion'
-import { IconRegistry } from '@constants/icons'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
+import type { IconComponent } from '@components/foundation/icon'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 type AccordionPlaygroundArgs = ComponentProps<typeof Accordion> & {
   firstDisabled?: boolean;
-  firstStartIcon?: string;
-  firstEndIcon?: string;
+  firstStartIcon?: IconComponent;
+  firstEndIcon?: IconComponent;
 };
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -112,8 +113,8 @@ Compose \`Accordion\`, \`Accordion.Item\`, \`Accordion.Trigger\`, and \`Accordio
         multiple: false,
         disabled: false,
         firstDisabled: false,
-        firstStartIcon: IconRegistry.info,
-        firstEndIcon: '',
+        firstStartIcon: InfoIcon,
+        firstEndIcon: undefined,
     },
     decorators: [
         (Story) => (

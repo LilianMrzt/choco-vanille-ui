@@ -2,6 +2,8 @@ import type { FC } from 'react'
 
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
+import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Flex } from '@components/layout/flex'
 import { usePagination } from '@components/navigation/pagination/hooks/usePagination.hook.ts'
 import { PAGINATION_STYLES } from '@components/navigation/pagination/styles/Pagination.css.ts'
@@ -59,7 +61,7 @@ const Pagination: FC<PaginationProps> = ({
                         variant={'ghost'}
                         color={'tertiary'}
                         size={'sm'}
-                        icon={'lucide:chevron-left'}
+                        icon={ChevronLeftIcon}
                         disabled={isFirstPage}
                         aria-label={previousLabel}
                         onClick={goToPreviousPage}
@@ -102,7 +104,7 @@ const Pagination: FC<PaginationProps> = ({
                         variant={'ghost'}
                         color={'tertiary'}
                         size={'sm'}
-                        icon={'lucide:chevron-right'}
+                        icon={ChevronRightIcon}
                         disabled={isLastPage}
                         aria-label={nextLabel}
                         onClick={goToNextPage}

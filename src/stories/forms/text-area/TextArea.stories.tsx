@@ -1,9 +1,10 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
 import { TextArea, type TextAreaSize } from '@components/forms/text-area'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -61,13 +62,13 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 <TextArea label="Description" placeholder="Tell us moreâ€¦" rows={4} />
 
 // With start icon
-<TextArea label="Comment" startIcon="lucide:message-square" />
+<TextArea label="Comment" startIcon={InfoIcon} />
 
 // Custom end action
 <TextArea
     label="Bio"
     endAction={
-        <IconButton icon="lucide:x" aria-label="Clear" variant="ghost" color="primary" />
+        <IconButton icon={CloseIcon} aria-label="Clear" variant="ghost" color="primary" />
     }
 />
 ~~~
@@ -208,13 +209,13 @@ export const States: Story = {
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TextArea label="Comment" startIcon="lucide:message-square" />`),
+            ...storySource(`<TextArea label="Comment" startIcon={InfoIcon} />`),
         },
     },
     render: () => (
         <TextArea
             label={'Comment'}
-            startIcon={'lucide:message-square'}
+            startIcon={InfoIcon}
         />
     ),
 }

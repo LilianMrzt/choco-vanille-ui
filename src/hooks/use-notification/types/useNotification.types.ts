@@ -11,7 +11,7 @@ export type ShowNotificationOptions = {
     /** Optional supporting message. */
     description?: string
     /** Iconify icon name. Defaults to the variant icon. */
-    icon?: string
+    icon?: IconComponent
     /** Complete Toast compound content, replacing the default layout. */
     children?: React.ReactNode
     /** Auto-dismiss delay in milliseconds. Defaults to persistent (`0`). */
@@ -22,3 +22,4 @@ export type UseNotificationReturn = {
     show: (options: ShowNotificationOptions) => ToastId
     dismiss: (id: ToastId) => void
 }
+import type { IconComponent } from '@components/foundation/icon'

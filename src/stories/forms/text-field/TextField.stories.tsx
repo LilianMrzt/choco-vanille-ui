@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -11,6 +11,7 @@ import {
 import { expect, within } from 'storybook/test'
 
 import { TextField, type TextFieldSize } from '@components/forms/text-field'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -66,7 +67,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 ~~~tsx
 // With start icon
-<TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
+<TextField label="Email" startIcon={SearchIcon} placeholder="you@example.com" />
 
 // Password field â€” toggle auto-injected
 <TextField label="Password" type="password" />
@@ -75,7 +76,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 <TextField
     label="Search"
     endAction={
-        <IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />
+        <IconButton icon={SearchIcon} aria-label="Search" variant="ghost" color="primary" />
     }
 />
 ~~~
@@ -216,11 +217,11 @@ export const States: Story = {
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TextField label="Search" startIcon="lucide:search" />`),
+            ...storySource(`<TextField label="Search" startIcon={SearchIcon} />`),
         },
     },
     render: () => <TextField
         label={'Search'}
-        startIcon={'lucide:search'}
+        startIcon={SearchIcon}
                   />,
 }

@@ -4,6 +4,7 @@ import { Icon } from '@components/foundation/icon'
 import { Popover } from '@components/overlay/popover'
 import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/constants/richTextColorPalettes.const.ts'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { TEXT_COLOR_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextColorMenu.css.ts'
 import { vars } from '@theme/contract.css.ts'
 import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
@@ -130,7 +131,7 @@ const TextColorMenu = () => {
                                             {isSelected && (
                                                 <span className={TEXT_COLOR_MENU_STYLES.colorCheck}>
                                                     <Icon
-                                                        icon={'lucide:check'}
+                                                        icon={CheckIcon}
                                                         size={'sm'}
                                                     />
                                                 </span>

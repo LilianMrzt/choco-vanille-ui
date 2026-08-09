@@ -1,4 +1,4 @@
-﻿import { useState, type ComponentProps } from 'react'
+import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -11,15 +11,16 @@ import {
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Collapsible } from '@components/surfaces/collapsible'
-import { IconRegistry } from '@constants/icons'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
+import type { IconComponent } from '@components/foundation/icon'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 type CollapsiblePlaygroundArgs = ComponentProps<typeof Collapsible> & {
   triggerLabel?: string;
   triggerWidth?: string;
-  triggerStartIcon?: string;
-  triggerEndIcon?: string;
+  triggerStartIcon?: IconComponent;
+  triggerEndIcon?: IconComponent;
   panelPadding?: 'none' | 'xs' | 'sm' | 'md' | 'lg';
 };
 
@@ -104,8 +105,8 @@ Compose \`Collapsible\`, \`Collapsible.Trigger\`, and \`Collapsible.Panel\`.
         defaultOpen: false,
         disabled: false,
         triggerLabel: 'Toggle content',
-        triggerStartIcon: IconRegistry.info,
-        triggerEndIcon: '',
+        triggerStartIcon: InfoIcon,
+        triggerEndIcon: undefined,
         panelPadding: 'md',
     },
     decorators: [

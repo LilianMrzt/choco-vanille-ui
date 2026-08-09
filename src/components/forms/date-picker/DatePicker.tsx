@@ -4,7 +4,7 @@ import { Popover } from '@components/overlay/popover'
 import { IconButton } from '@components/actions/icon-button'
 import { useDatePicker } from '@components/forms/date-picker/hooks/useDatePicker.hook.ts'
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePicker.css.ts'
-import { IconRegistry } from '@constants/icons'
+import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
 import { memo, useCallback, useMemo, useRef } from 'react'
@@ -96,7 +96,7 @@ const DatePicker = memo(
                     endAction={
                         <Popover.Trigger>
                             <IconButton
-                                icon={IconRegistry.calendar}
+                                icon={CalendarIcon}
                                 aria-label={'Open calendar'}
                                 variant={'ghost'}
                                 color={'primary'}

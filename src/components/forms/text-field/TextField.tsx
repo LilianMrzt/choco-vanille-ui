@@ -10,7 +10,8 @@ import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldCompound } from '@components/forms/text-field/types'
 import { Flex } from '@components/layout/flex'
-import { IconRegistry } from '@constants/icons'
+import EyeIcon from '@resources/asset/EyeIcon.svg?react'
+import EyeOffIcon from '@resources/asset/EyeOffIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { vars } from '@theme/contract.css.ts'
 import { memo, useCallback } from 'react'
@@ -84,7 +85,7 @@ const TextField = memo<TextFieldProps>((props) => {
 
     const resolvedEndAction = isPassword ? (
         <IconButton
-            icon={showPassword ? IconRegistry.eyeOff : IconRegistry.eye}
+            icon={showPassword ? EyeOffIcon : EyeIcon}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
             variant={'ghost'}
             color={'primary'}

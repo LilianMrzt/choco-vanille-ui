@@ -2,7 +2,8 @@ import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import { memo, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import MinusIcon from '@resources/asset/MinusIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
@@ -47,12 +48,12 @@ const Checkbox: FC<CheckboxProps> = memo(({
             >
                 <BaseCheckbox.Indicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
-                        icon={IconRegistry.check}
+                        icon={CheckIcon}
                         size={'xs'}
                         className={CHECKBOX_STYLES.checkIcon}
                     />
                     <Icon
-                        icon={IconRegistry.minus}
+                        icon={MinusIcon}
                         size={'xs'}
                         className={CHECKBOX_STYLES.indeterminateIcon}
                     />

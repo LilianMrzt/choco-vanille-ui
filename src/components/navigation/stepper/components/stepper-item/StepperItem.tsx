@@ -1,6 +1,7 @@
 import { memo, useContext } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import { StepperItemContext } from '@components/navigation/stepper/context/Stepper.context.ts'
 import { STEPPER_ITEM_SIZES } from '@components/navigation/stepper/constants'
@@ -33,7 +34,7 @@ const StepperItem = memo(
         const isTitleOnly = !hasCustomContent && !description
         const marker = isCompleted ? (
             <Icon
-                icon={'lucide:check'}
+                icon={CheckIcon}
                 size={'sm'}
             />
         ) : (

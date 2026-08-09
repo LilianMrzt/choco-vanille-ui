@@ -1,4 +1,5 @@
 import type { ToastVariant } from '@components/feedback/toast'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type ToastId = number | string
 
@@ -7,8 +8,8 @@ export type ShowToastOptions = {
     title: string
     /** Optional supporting message. */
     description?: string
-    /** Iconify icon name. Defaults to the variant icon. */
-    icon?: string
+    /** SVG component. Defaults to the variant icon. */
+    icon?: IconComponent
     /** Auto-dismiss delay in milliseconds. Defaults to `5000`. */
     duration?: number
 }

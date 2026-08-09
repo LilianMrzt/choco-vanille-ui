@@ -4,6 +4,8 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import ListIcon from '@resources/asset/ListIcon.svg?react'
+import ListOrderedIcon from '@resources/asset/ListOrderedIcon.svg?react'
 import { LISTS_GROUP_STYLES } from '@components/forms/rich-text-editor/components/lists-group/styles/ListsGroup.css.ts'
 import type { ListsGroupProps } from '@components/forms/rich-text-editor/components/lists-group/types/ListsGroup.props.ts'
 
@@ -39,7 +41,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:list'}
+                            icon={ListIcon}
                             aria-label={labels.bulletedList}
                             variant={'ghost'}
                             color={'primary'}
@@ -57,7 +59,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:list-ordered'}
+                            icon={ListOrderedIcon}
                             aria-label={labels.numberedList}
                             variant={'ghost'}
                             color={'primary'}
@@ -83,7 +85,7 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                         <DropdownMenu.Trigger>
                             <IconButton
                                 type={'button'}
-                                icon={'lucide:list'}
+                                icon={ListIcon}
                                 aria-label={labels.listsTrigger}
                                 variant={'ghost'}
                                 color={'primary'}
@@ -96,13 +98,13 @@ const ListsGroup = ({ presentation = 'menu' }: ListsGroupProps) => {
                     <DropdownMenu.Content aria-label={labels.listOptions}>
                         <DropdownMenu.Item
                             label={labels.bulletedList}
-                            startIcon={'lucide:list'}
+                            startIcon={ListIcon}
                             active={isBulletList}
                             onClick={() => editor.chain().focus().toggleBulletList().run()}
                         />
                         <DropdownMenu.Item
                             label={labels.numberedList}
-                            startIcon={'lucide:list-ordered'}
+                            startIcon={ListOrderedIcon}
                             active={isOrderedList}
                             onClick={() => editor.chain().focus().toggleOrderedList().run()}
                         />

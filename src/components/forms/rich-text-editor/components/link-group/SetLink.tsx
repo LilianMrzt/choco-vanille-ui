@@ -2,6 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import LinkIcon from '@resources/asset/LinkIcon.svg?react'
 import { normalizeRichTextUrl } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 import type { SetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/SetLink.props.ts'
 
@@ -31,7 +32,7 @@ const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
         return (
             <DropdownMenu.Item
                 label={labels.addOrEditLink}
-                startIcon={'lucide:link'}
+                startIcon={LinkIcon}
                 active={editor.isActive('link')}
                 onClick={handleSetLink}
             />
@@ -47,7 +48,7 @@ const SetLink = ({ presentation = 'icon' }: SetLinkProps) => {
         >
             <IconButton
                 type={'button'}
-                icon={'lucide:link'}
+                icon={LinkIcon}
                 aria-label={labels.addOrEditLink}
                 variant={'ghost'}
                 color={'primary'}

@@ -2,6 +2,7 @@ import { LINK_GROUP_STYLES } from '@components/forms/rich-text-editor/components
 import SetLink from '@components/forms/rich-text-editor/components/link-group/SetLink.tsx'
 import UnsetLink from '@components/forms/rich-text-editor/components/link-group/UnsetLink.tsx'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import LinkIcon from '@resources/asset/LinkIcon.svg?react'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
@@ -35,7 +36,7 @@ const LinkGroup = () => {
                     <DropdownMenu.Trigger>
                         <IconButton
                             type={'button'}
-                            icon={'lucide:link'}
+                            icon={LinkIcon}
                             aria-label={labels.linkGroupTrigger}
                             variant={'ghost'}
                             color={'primary'}

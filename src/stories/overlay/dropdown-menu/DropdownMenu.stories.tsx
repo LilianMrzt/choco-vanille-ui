@@ -1,20 +1,25 @@
-import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
-  Canvas,
-  Controls,
-  Description,
-  Markdown,
-  Stories,
-  Title,
-} from '@storybook/addon-docs/blocks';
-import { expect, userEvent, within, waitFor } from 'storybook/test';
+    Canvas,
+    Controls,
+    Description,
+    Markdown,
+    Stories,
+    Title,
+} from '@storybook/addon-docs/blocks'
+import { expect, userEvent, within, waitFor } from 'storybook/test'
 
-import { DropdownMenu } from '@/components/overlay/dropdown-menu';
-import { Button } from '@/components/actions/button';
-import { IconRegistry } from '@constants/icons';
-import { md } from '@stories/utils/markdown';
-import { storySource } from '@stories/utils/storySource';
+import { DropdownMenu } from '@/components/overlay/dropdown-menu'
+import { Button } from '@/components/actions/button'
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
+import TrashIcon from '@resources/asset/TrashIcon.svg?react'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
+import { md } from '@stories/utils/markdown'
+import { storySource } from '@stories/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -47,28 +52,28 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`DropdownMenu.Sub\`          | Root for a nested sub-menu.                                                                      |
 | \`DropdownMenu.SubTrigger\`   | An item that reveals the nested sub-menu on hover or keyboard focus.                             |
 | \`DropdownMenu.SubContent\`   | The floating panel for the nested sub-menu content.                                              |
-`;
+`
 
 const DropdownMenuDocsPage = () => (
-  <>
-    <Title />
-    <Description />
-    <Canvas />
-    <Controls />
-    <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-    <Stories includePrimary={false} />
-  </>
-);
+    <>
+        <Title />
+        <Description />
+        <Canvas />
+        <Controls />
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
+        <Stories includePrimary={false} />
+    </>
+)
 
 const meta = {
-  title: 'Overlay/DropdownMenu',
-  component: DropdownMenu,
-  parameters: {
-    layout: 'centered',
-    docs: {
-      page: DropdownMenuDocsPage,
-      description: {
-        component: md /* language=markdown */ `
+    title: 'Overlay/DropdownMenu',
+    component: DropdownMenu,
+    parameters: {
+        layout: 'centered',
+        docs: {
+            page: DropdownMenuDocsPage,
+            description: {
+                component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
 A fully composable dropdown menu built on top of \`@base-ui/react/menu\`.
@@ -79,7 +84,7 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 ~~~tsx
 <DropdownMenu>
   <DropdownMenu.Trigger>
-    <Button label="Options" endIcon={IconRegistry.chevronDown} />
+    <Button label="Options" endIcon={ChevronDownIcon} />
   </DropdownMenu.Trigger>
 
   <DropdownMenu.Content>
@@ -87,19 +92,19 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
       <DropdownMenu.Label label="Account" />
       <DropdownMenu.Item
         label="Profile"
-        startIcon={IconRegistry.user}
+        startIcon={UserIcon}
         shortcut="⇧⌘P"
       />
       <DropdownMenu.Item
         label="Settings"
-        startIcon={IconRegistry.settings}
+        startIcon={SearchIcon}
         shortcut="⌘S"
       />
     </DropdownMenu.Group>
     <DropdownMenu.Separator />
     <DropdownMenu.Item
       label="Log out"
-      startIcon={IconRegistry.logOut}
+      startIcon={CloseIcon}
       destructive
     />
   </DropdownMenu.Content>
@@ -107,224 +112,236 @@ It supports regular items with icons and keyboard shortcuts, checkbox items, rad
 ~~~
 
         `,
-      },
+            },
+        },
     },
-  },
-  argTypes: {
-    modal: { control: 'boolean', table: { category: 'DropdownMenu' } },
-    defaultOpen: { control: 'boolean', table: { category: 'DropdownMenu' } },
-  },
-  args: {
-    modal: true,
-    defaultOpen: false,
-  },
-} satisfies Meta<typeof DropdownMenu>;
+    argTypes: {
+        modal: { control: 'boolean', table: { category: 'DropdownMenu' } },
+        defaultOpen: { control: 'boolean', table: { category: 'DropdownMenu' } },
+    },
+    args: {
+        modal: true,
+        defaultOpen: false,
+    },
+} satisfies Meta<typeof DropdownMenu>
 
-export default meta;
+export default meta
 
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
+    parameters: {
+        docs: {
+            description: {
+                story:
           'Interactive playground — this example showcases every available building block: regular items, a nested sub-menu, checkbox items, a radio group, and a destructive item.',
-      },
-      ...storySource(/* language=tsx */ `
+            },
+            ...storySource(/* language=tsx */ `
 <DropdownMenu>
   <DropdownMenu.Trigger>
-    <Button label="Open menu" endIcon={IconRegistry.chevronDown} />
+    <Button label="Open menu" endIcon={ChevronDownIcon} />
   </DropdownMenu.Trigger>
 
   <DropdownMenu.Content>
     <DropdownMenu.Group>
       <DropdownMenu.Label label="Account" />
-      <DropdownMenu.Item label="Profile" startIcon={IconRegistry.user} shortcut="⇧⌘P" />
-      <DropdownMenu.Item label="Settings" startIcon={IconRegistry.settings} shortcut="⌘S" />
+      <DropdownMenu.Item label="Profile" startIcon={UserIcon} shortcut="⇧⌘P" />
+      <DropdownMenu.Item label="Settings" startIcon={SearchIcon} shortcut="⌘S" />
     </DropdownMenu.Group>
 
     <DropdownMenu.Separator />
 
-    <DropdownMenu.Item label="Log out" startIcon={IconRegistry.logOut} destructive />
+    <DropdownMenu.Item label="Log out" startIcon={CloseIcon} destructive />
   </DropdownMenu.Content>
 </DropdownMenu>`),
+        },
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Base UI wraps the page in aria-hidden when the menu is open (modal=true),
+                        // which causes the trigger button to appear inside an aria-hidden container.
+                        // This is intentional Base UI behavior — focus moves into the menu portal.
+                        id: 'aria-hidden-focus',
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
-    a11y: {
-      config: {
-        rules: [
-          {
-            // Base UI wraps the page in aria-hidden when the menu is open (modal=true),
-            // which causes the trigger button to appear inside an aria-hidden container.
-            // This is intentional Base UI behavior — focus moves into the menu portal.
-            id: 'aria-hidden-focus',
-            enabled: false,
-          },
-        ],
-      },
-    },
-  },
-  render: (args) => {
-    const [showStatus, setShowStatus] = useState(true);
-    const [showActivity, setShowActivity] = useState(false);
-    const [position, setPosition] = useState('bottom');
+    render: (args) => {
+        const [showStatus, setShowStatus] = useState(true)
+        const [showActivity, setShowActivity] = useState(false)
+        const [position, setPosition] = useState('bottom')
 
-    return (
-      <DropdownMenu {...args}>
-        <DropdownMenu.Trigger>
-          <Button label={'Open menu'} endIcon={IconRegistry.chevronDown} />
-        </DropdownMenu.Trigger>
+        return (
+            <DropdownMenu {...args}>
+                <DropdownMenu.Trigger>
+                    <Button
+                        label={'Open menu'}
+                        endIcon={ChevronDownIcon}
+                    />
+                </DropdownMenu.Trigger>
 
-        <DropdownMenu.Content>
-          <DropdownMenu.Group>
-            <DropdownMenu.Label label={'Account'} />
-            <DropdownMenu.Item
-              label={'Profile'}
-              startIcon={IconRegistry.user}
-              shortcut={'⇧⌘P'}
-            />
-            <DropdownMenu.Item
-              label={'Settings'}
-              startIcon={IconRegistry.settings}
-              shortcut={'⌘S'}
-            />
-            <DropdownMenu.Sub>
-              <DropdownMenu.SubTrigger
-                label={'SubMenu Right'}
-                startIcon={IconRegistry.userPlus}
-              />
-              <DropdownMenu.SubContent>
-                <DropdownMenu.Item
-                  label={'Email'}
-                  startIcon={IconRegistry.mail}
-                />
-                <DropdownMenu.Item
-                  label={'Message'}
-                  startIcon={IconRegistry.message}
-                />
-                <DropdownMenu.Separator />
-                <DropdownMenu.Item
-                  label={'More…'}
-                  startIcon={IconRegistry.ellipsisHorizontal}
-                />
-              </DropdownMenu.SubContent>
-            </DropdownMenu.Sub>
-            <DropdownMenu.Sub>
-              <DropdownMenu.SubTrigger
-                label={'SubMenu Left'}
-                startIcon={IconRegistry.userPlus}
-              />
-              <DropdownMenu.SubContent side={'left'}>
-                <DropdownMenu.Label label={'Appearance'} />
-                <DropdownMenu.CheckboxItem
-                  label={'Show status bar'}
-                  checked={showStatus}
-                  onCheckedChange={setShowStatus}
-                />
-                <DropdownMenu.CheckboxItem
-                  label={'Show activity bar'}
-                  checked={showActivity}
-                  onCheckedChange={setShowActivity}
-                />
-                <DropdownMenu.Sub>
-                  <DropdownMenu.SubTrigger
-                    label={'SubMenu Left'}
-                    startIcon={IconRegistry.userPlus}
-                  />
-                  <DropdownMenu.SubContent side={'left'}>
-                    <DropdownMenu.Label label={'Appearance'} />
-                    <DropdownMenu.CheckboxItem
-                      label={'Show status bar'}
-                      checked={showStatus}
-                      onCheckedChange={setShowStatus}
-                    />
-                    <DropdownMenu.CheckboxItem
-                      label={'Show activity bar'}
-                      checked={showActivity}
-                      onCheckedChange={setShowActivity}
-                    />
-                    <DropdownMenu.Sub>
-                      <DropdownMenu.SubTrigger
-                        label={'SubMenu Right'}
-                        startIcon={IconRegistry.userPlus}
-                      />
-                      <DropdownMenu.SubContent side={'right'}>
+                <DropdownMenu.Content>
+                    <DropdownMenu.Group>
+                        <DropdownMenu.Label label={'Account'} />
+                        <DropdownMenu.Item
+                            label={'Profile'}
+                            startIcon={UserIcon}
+                            shortcut={'⇧⌘P'}
+                        />
+                        <DropdownMenu.Item
+                            label={'Settings'}
+                            startIcon={SearchIcon}
+                            shortcut={'⌘S'}
+                        />
+                        <DropdownMenu.Sub>
+                            <DropdownMenu.SubTrigger
+                                label={'SubMenu Right'}
+                                startIcon={UserIcon}
+                            />
+                            <DropdownMenu.SubContent>
+                                <DropdownMenu.Item
+                                    label={'Email'}
+                                    startIcon={SearchIcon}
+                                />
+                                <DropdownMenu.Item
+                                    label={'Message'}
+                                    startIcon={InfoIcon}
+                                />
+                                <DropdownMenu.Separator />
+                                <DropdownMenu.Item
+                                    label={'More…'}
+                                    startIcon={SearchIcon}
+                                />
+                            </DropdownMenu.SubContent>
+                        </DropdownMenu.Sub>
+                        <DropdownMenu.Sub>
+                            <DropdownMenu.SubTrigger
+                                label={'SubMenu Left'}
+                                startIcon={UserIcon}
+                            />
+                            <DropdownMenu.SubContent side={'left'}>
+                                <DropdownMenu.Label label={'Appearance'} />
+                                <DropdownMenu.CheckboxItem
+                                    label={'Show status bar'}
+                                    checked={showStatus}
+                                    onCheckedChange={setShowStatus}
+                                />
+                                <DropdownMenu.CheckboxItem
+                                    label={'Show activity bar'}
+                                    checked={showActivity}
+                                    onCheckedChange={setShowActivity}
+                                />
+                                <DropdownMenu.Sub>
+                                    <DropdownMenu.SubTrigger
+                                        label={'SubMenu Left'}
+                                        startIcon={UserIcon}
+                                    />
+                                    <DropdownMenu.SubContent side={'left'}>
+                                        <DropdownMenu.Label label={'Appearance'} />
+                                        <DropdownMenu.CheckboxItem
+                                            label={'Show status bar'}
+                                            checked={showStatus}
+                                            onCheckedChange={setShowStatus}
+                                        />
+                                        <DropdownMenu.CheckboxItem
+                                            label={'Show activity bar'}
+                                            checked={showActivity}
+                                            onCheckedChange={setShowActivity}
+                                        />
+                                        <DropdownMenu.Sub>
+                                            <DropdownMenu.SubTrigger
+                                                label={'SubMenu Right'}
+                                                startIcon={UserIcon}
+                                            />
+                                            <DropdownMenu.SubContent side={'right'}>
+                                                <DropdownMenu.Label label={'Appearance'} />
+                                                <DropdownMenu.CheckboxItem
+                                                    label={'Show status bar'}
+                                                    checked={showStatus}
+                                                    onCheckedChange={setShowStatus}
+                                                />
+                                                <DropdownMenu.CheckboxItem
+                                                    label={'Show activity bar'}
+                                                    checked={showActivity}
+                                                    onCheckedChange={setShowActivity}
+                                                />
+                                            </DropdownMenu.SubContent>
+                                        </DropdownMenu.Sub>
+                                    </DropdownMenu.SubContent>
+                                </DropdownMenu.Sub>
+                            </DropdownMenu.SubContent>
+                        </DropdownMenu.Sub>
+                        <DropdownMenu.Item
+                            label={'API (unavailable)'}
+                            startIcon={InfoIcon}
+                            disabled
+                        />
+                    </DropdownMenu.Group>
+
+                    <DropdownMenu.Separator />
+                    <DropdownMenu.Group>
                         <DropdownMenu.Label label={'Appearance'} />
                         <DropdownMenu.CheckboxItem
-                          label={'Show status bar'}
-                          checked={showStatus}
-                          onCheckedChange={setShowStatus}
+                            label={'Show status bar'}
+                            checked={showStatus}
+                            onCheckedChange={setShowStatus}
                         />
                         <DropdownMenu.CheckboxItem
-                          label={'Show activity bar'}
-                          checked={showActivity}
-                          onCheckedChange={setShowActivity}
+                            label={'Show activity bar'}
+                            checked={showActivity}
+                            onCheckedChange={setShowActivity}
                         />
-                      </DropdownMenu.SubContent>
-                    </DropdownMenu.Sub>
-                  </DropdownMenu.SubContent>
-                </DropdownMenu.Sub>
-              </DropdownMenu.SubContent>
-            </DropdownMenu.Sub>
-            <DropdownMenu.Item
-              label={'API (unavailable)'}
-              startIcon={IconRegistry.cloudOff}
-              disabled
-            />
-          </DropdownMenu.Group>
+                    </DropdownMenu.Group>
 
-          <DropdownMenu.Separator />
-          <DropdownMenu.Group>
-            <DropdownMenu.Label label={'Appearance'} />
-            <DropdownMenu.CheckboxItem
-              label={'Show status bar'}
-              checked={showStatus}
-              onCheckedChange={setShowStatus}
-            />
-            <DropdownMenu.CheckboxItem
-              label={'Show activity bar'}
-              checked={showActivity}
-              onCheckedChange={setShowActivity}
-            />
-          </DropdownMenu.Group>
+                    <DropdownMenu.Separator />
+                    <DropdownMenu.RadioGroup
+                        value={position}
+                        onValueChange={(value) => setPosition(value)}
+                    >
+                        <DropdownMenu.Label label={'Panel position'} />
+                        <DropdownMenu.RadioItem
+                            label={'Top'}
+                            value={'top'}
+                        />
+                        <DropdownMenu.RadioItem
+                            label={'Bottom'}
+                            value={'bottom'}
+                        />
+                        <DropdownMenu.RadioItem
+                            label={'Right'}
+                            value={'right'}
+                        />
+                    </DropdownMenu.RadioGroup>
 
-          <DropdownMenu.Separator />
-          <DropdownMenu.RadioGroup
-            value={position}
-            onValueChange={(value) => setPosition(value)}
-          >
-            <DropdownMenu.Label label={'Panel position'} />
-            <DropdownMenu.RadioItem label={'Top'} value={'top'} />
-            <DropdownMenu.RadioItem label={'Bottom'} value={'bottom'} />
-            <DropdownMenu.RadioItem label={'Right'} value={'right'} />
-          </DropdownMenu.RadioGroup>
-
-          <DropdownMenu.Separator />
-          <DropdownMenu.Group>
-            <DropdownMenu.Item
-              label={'Delete (unavailable)'}
-              startIcon={IconRegistry.trash}
-              shortcut={'⌫'}
-              destructive
-              disabled
-            />
-            <DropdownMenu.Item
-              label={'Log out'}
-              startIcon={IconRegistry.logOut}
-              destructive
-            />
-          </DropdownMenu.Group>
-        </DropdownMenu.Content>
-      </DropdownMenu>
-    );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const trigger = canvas.getByRole('button', { name: /open menu/i });
-    await expect(trigger).toBeInTheDocument();
-    await userEvent.click(trigger);
-    await waitFor(() =>
-      expect(document.querySelector('[role="menu"]')).toBeTruthy(),
-    );
-  },
-};
+                    <DropdownMenu.Separator />
+                    <DropdownMenu.Group>
+                        <DropdownMenu.Item
+                            label={'Delete (unavailable)'}
+                            startIcon={TrashIcon}
+                            shortcut={'⌫'}
+                            destructive
+                            disabled
+                        />
+                        <DropdownMenu.Item
+                            label={'Log out'}
+                            startIcon={CloseIcon}
+                            destructive
+                        />
+                    </DropdownMenu.Group>
+                </DropdownMenu.Content>
+            </DropdownMenu>
+        )
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement)
+        const trigger = canvas.getByRole('button', { name: /open menu/i })
+        await expect(trigger).toBeInTheDocument()
+        await userEvent.click(trigger)
+        await waitFor(() =>
+            expect(document.querySelector('[role="menu"]')).toBeTruthy(),
+        )
+    },
+}

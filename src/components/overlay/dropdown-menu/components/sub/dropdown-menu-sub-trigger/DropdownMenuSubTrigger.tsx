@@ -6,7 +6,7 @@ import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-m
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types/DropdownMenuSubTrigger.props.ts'
 
@@ -52,7 +52,7 @@ const DropdownMenuSubTrigger: FC<DropdownMenuSubTriggerProps> = memo(({
             aria-hidden
         >
             <Icon
-                icon={IconRegistry.chevronRight}
+                icon={ChevronRightIcon}
                 size={'xs'}
             />
         </Flex>

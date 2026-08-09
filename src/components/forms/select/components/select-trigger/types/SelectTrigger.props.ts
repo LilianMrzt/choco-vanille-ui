@@ -9,7 +9,7 @@ export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     /** Placeholder shown when no option is selected. */
     placeholder?: string
     /** Iconify icon name rendered on the left side of the trigger. */
-    startIcon?: string
+    startIcon?: IconComponent
     /** Visual size of the trigger. Defaults to `md`. */
     size?: TextFieldSize
     /** Font size applied to the trigger text. @default 'md' */
@@ -19,3 +19,4 @@ export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     /** CSS width of the trigger. */
     width?: React.CSSProperties['width']
 }
+import type { IconComponent } from '@components/foundation/icon'

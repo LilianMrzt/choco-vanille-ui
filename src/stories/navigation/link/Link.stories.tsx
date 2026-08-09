@@ -10,6 +10,8 @@ import {
 import { expect, within } from 'storybook/test'
 
 import { Link, type LinkColor } from '@components/navigation/link'
+import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import type { IconSize } from '@components/foundation/icon'
 import type {
     TypographySize,
@@ -104,7 +106,7 @@ function Example() {
       href="/dashboard"
       label="Dashboard"
       onClick={() => navigate('/dashboard')}
-      endIcon="lucide:arrow-right"
+      endIcon={ChevronRightIcon}
     />
   );
 }
@@ -145,7 +147,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
             ...storySource(/* language=tsx */ `
-<Link href="/dashboard" label="Dashboard" endIcon="lucide:arrow-right" />`),
+<Link href="/dashboard" label="Dashboard" endIcon={ChevronRightIcon} />`),
         },
     },
     play: async ({ canvasElement, args }) => {
@@ -251,25 +253,25 @@ export const WithIcons: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Link label="Start icon" startIcon="lucide:arrow-left" />
-<Link label="End icon" endIcon="lucide:arrow-right" />
-<Link label="Both icons" startIcon="lucide:arrow-left" endIcon="lucide:arrow-right" />`),
+<Link label="Start icon" startIcon={ChevronLeftIcon} />
+<Link label="End icon" endIcon={ChevronRightIcon} />
+<Link label="Both icons" startIcon={ChevronLeftIcon} endIcon={ChevronRightIcon} />`),
         },
     },
     render: () => (
         <div style={{ display: 'grid', gap: '0.5rem' }}>
             <Link
                 label={'Start icon'}
-                startIcon={'lucide:arrow-left'}
+                startIcon={ChevronLeftIcon}
             />
             <Link
                 label={'End icon'}
-                endIcon={'lucide:arrow-right'}
+                endIcon={ChevronRightIcon}
             />
             <Link
                 label={'Both icons'}
-                startIcon={'lucide:arrow-left'}
-                endIcon={'lucide:arrow-right'}
+                startIcon={ChevronLeftIcon}
+                endIcon={ChevronRightIcon}
             />
         </div>
     ),

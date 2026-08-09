@@ -20,7 +20,11 @@ import {
     type DrawerPosition,
     type DrawerSize,
 } from '@components/overlay/drawer'
-import { IconRegistry } from '@constants/icons'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 import {
     DRAWER_MODES_ARRAY,
     DRAWER_POSITIONS_ARRAY,
@@ -138,7 +142,7 @@ const renderDrawer = ({
                 {showHeader && (
                     <Drawer.Header>
                         <IconButton
-                            icon={open ? 'lucide:panel-left-close' : 'lucide:panel-left-open'}
+                            icon={open ? CloseIcon : ChevronRightIcon}
                             aria-label={open ? 'Collapse mini' : 'Expand mini'}
                             size={'sm'}
                             onClick={() => setOpen(!open)}
@@ -158,7 +162,7 @@ const renderDrawer = ({
                                 <Drawer.NavItem
                                     label={firstNavItemLabel ?? 'Dashboard'}
                                     href={'/dashboard'}
-                                    startIcon={IconRegistry.home}
+                                    startIcon={UserIcon}
                                     active={navItemActive}
                                     disabled={navItemDisabled}
                                     variant={navItemVariant}
@@ -167,7 +171,7 @@ const renderDrawer = ({
                                 <Drawer.NavItem
                                     label={secondNavItemLabel ?? 'Team'}
                                     href={'/team'}
-                                    startIcon={IconRegistry.user}
+                                    startIcon={UserIcon}
                                     disabled={navItemDisabled}
                                     variant={navItemVariant}
                                     color={navItemColor}
@@ -175,9 +179,9 @@ const renderDrawer = ({
                                 <Drawer.NavItem
                                     label={'Messages'}
                                     href={'/messages'}
-                                    startIcon={IconRegistry.mail}
+                                    startIcon={SearchIcon}
                                     trailing={
-                                  <Badge
+                                        <Badge
                                             label={'3'}
                                             size={'sm'}
                                             color={'orange'}
@@ -194,9 +198,9 @@ const renderDrawer = ({
                             <Drawer.Section title={settingsTitle}>
                                 <Drawer.SectionItem
                                     label={sectionItemLabel ?? 'Section item'}
-                                    startIcon={IconRegistry.settings}
+                                    startIcon={SearchIcon}
                                     trailing={
-                                  <Badge
+                                        <Badge
                                             label={'Pro'}
                                             size={'sm'}
                                             color={'secondary'}
@@ -207,10 +211,10 @@ const renderDrawer = ({
                                     color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
-                                  label={'Notifications'}
-                                  href={'/notifications'}
-                                  startIcon={IconRegistry.bell}
-                                  trailing={
+                                        label={'Notifications'}
+                                        href={'/notifications'}
+                                        startIcon={InfoIcon}
+                                        trailing={
                                             <Badge
                                                 label={'New'}
                                                 size={'sm'}
@@ -218,31 +222,31 @@ const renderDrawer = ({
                                                 color={'destructive'}
                                             />
                                         }
-                                  disabled={navItemDisabled}
-                                  variant={navItemVariant}
-                                  color={navItemColor}
-                              />
+                                        disabled={navItemDisabled}
+                                        variant={navItemVariant}
+                                        color={navItemColor}
+                                    />
                                     <Drawer.NavItem
-                                  label={thirdNavItemLabel ?? 'Profile'}
-                                  href={'/profile'}
-                                  startIcon={IconRegistry.user}
-                                  disabled={navItemDisabled}
-                                  variant={navItemVariant}
-                                  color={navItemColor}
-                              />
+                                        label={thirdNavItemLabel ?? 'Profile'}
+                                        href={'/profile'}
+                                        startIcon={UserIcon}
+                                        disabled={navItemDisabled}
+                                        variant={navItemVariant}
+                                        color={navItemColor}
+                                    />
                                     <Drawer.NavItem
-                                  label={fourthNavItemLabel ?? 'Billing'}
-                                  href={'/billing'}
-                                  startIcon={IconRegistry.creditCard}
-                                  disabled={navItemDisabled}
-                                  variant={navItemVariant}
-                                  color={navItemColor}
-                              />
+                                        label={fourthNavItemLabel ?? 'Billing'}
+                                        href={'/billing'}
+                                        startIcon={UserIcon}
+                                        disabled={navItemDisabled}
+                                        variant={navItemVariant}
+                                        color={navItemColor}
+                                    />
                                 </Drawer.SectionItem>
                                 <Drawer.NavItem
                                     label={thirdNavItemLabel ?? 'Profile'}
                                     href={'/profile'}
-                                    startIcon={IconRegistry.user}
+                                    startIcon={UserIcon}
                                     disabled={navItemDisabled}
                                     variant={navItemVariant}
                                     color={navItemColor}
@@ -256,7 +260,7 @@ const renderDrawer = ({
                         <Drawer.Section title={'Actions'}>
                             <Drawer.ActionItem
                                 label={'Sign out'}
-                                startIcon={IconRegistry.logOut}
+                                startIcon={CloseIcon}
                                 color={'destructive'}
                             />
                         </Drawer.Section>
@@ -339,16 +343,16 @@ const [open, setOpen] = useState(false)
     <Typography as="h2" fontSize="lg" fontWeight="semibold" color="foreground" ellipsis style={{ flex: '1 1 0%' }}>
       Settings
     </Typography>
-    <IconButton icon="lucide:x" aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />
+    <IconButton icon={CloseIcon} aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />
   </Drawer.Header>
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
     </Drawer.Section>
     <Drawer.Section title="Account">
-      <Drawer.SectionItem label="Account" startIcon="lucide:user">
+      <Drawer.SectionItem label="Account" startIcon={UserIcon}>
         <Drawer.NavItem label="Profile" href="/profile" />
-        <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+        <Drawer.ActionItem label="Sign out" startIcon={CloseIcon} />
       </Drawer.SectionItem>
     </Drawer.Section>
   </Drawer.Body>
@@ -534,17 +538,17 @@ const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal" size="md">
   <Drawer.Header>
-    <IconButton icon="lucide:panel-left-close" aria-label="Close drawer" size="sm" onClick={() => setOpen(false)} />
+    <IconButton icon={CloseIcon} aria-label="Close drawer" size="sm" onClick={() => setOpen(false)} />
   </Drawer.Header>
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" active />
-      <Drawer.NavItem label="Team" href="/team" startIcon="lucide:user" />
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} active />
+      <Drawer.NavItem label="Team" href="/team" startIcon={UserIcon} />
     </Drawer.Section>
   </Drawer.Body>
   <Drawer.Footer justifyContent="start">
     <Drawer.Section title="Actions">
-      <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" color="destructive" />
+      <Drawer.ActionItem label="Sign out" startIcon={CloseIcon} color="destructive" />
     </Drawer.Section>
   </Drawer.Footer>
 </Drawer>
@@ -601,7 +605,7 @@ const [open, setOpen] = useState(false)
 <Drawer open={open} onOpenChange={setOpen} mode="inline" size="sm">
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
     </Drawer.Section>
   </Drawer.Body>
 </Drawer>`),
@@ -635,7 +639,7 @@ const [open, setOpen] = useState(false)
 <Drawer open={open} onOpenChange={setOpen} mode="mini" size="sm">
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon="lucide:home" />
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
     </Drawer.Section>
   </Drawer.Body>
 </Drawer>`),

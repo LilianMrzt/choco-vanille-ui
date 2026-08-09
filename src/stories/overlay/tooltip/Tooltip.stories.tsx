@@ -81,7 +81,7 @@ Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
 
 ~~~tsx
 <Tooltip content="Edit this item">
-  <IconButton icon="lucide:pencil" aria-label="Edit" />
+  <IconButton icon={SearchIcon} aria-label="Edit" />
 </Tooltip>
 ~~~
         `,

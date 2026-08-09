@@ -2,6 +2,10 @@ import { Toggle } from '@components/actions/toggle'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { TextStyleActionProps } from '@components/forms/rich-text-editor/components/text-style-group/types/TextStyleAction.props.ts'
+import BoldIcon from '@resources/asset/BoldIcon.svg?react'
+import ItalicIcon from '@resources/asset/ItalicIcon.svg?react'
+import StrikethroughIcon from '@resources/asset/StrikethroughIcon.svg?react'
+import UnderlineIcon from '@resources/asset/UnderlineIcon.svg?react'
 
 const TextStyleAction = ({
     mark,
@@ -43,7 +47,7 @@ export const Bold = () => {
     return (
         <TextStyleAction
             mark={'bold'}
-            icon={'lucide:bold'}
+            icon={BoldIcon}
             label={labels.bold}
             onToggle={() => editor?.chain().focus().toggleBold().run()}
         />
@@ -54,7 +58,7 @@ export const Italic = () => {
     return (
         <TextStyleAction
             mark={'italic'}
-            icon={'lucide:italic'}
+            icon={ItalicIcon}
             label={labels.italic}
             onToggle={() => editor?.chain().focus().toggleItalic().run()}
         />
@@ -65,7 +69,7 @@ export const Underline = () => {
     return (
         <TextStyleAction
             mark={'underline'}
-            icon={'lucide:underline'}
+            icon={UnderlineIcon}
             label={labels.underline}
             onToggle={() => editor?.chain().focus().toggleUnderline().run()}
         />
@@ -76,7 +80,7 @@ export const Strike = () => {
     return (
         <TextStyleAction
             mark={'strike'}
-            icon={'lucide:strikethrough'}
+            icon={StrikethroughIcon}
             label={labels.strikethrough}
             onToggle={() => editor?.chain().focus().toggleStrike().run()}
         />

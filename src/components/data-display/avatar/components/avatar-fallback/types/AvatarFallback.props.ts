@@ -7,7 +7,7 @@ export type AvatarFallbackProps = HTMLAttributes<HTMLSpanElement> & {
   /** Initials displayed when the image fails to load or is omitted. */
   initials?: string;
   /** Iconify icon name displayed as a fallback when no initials are provided. */
-  icon?: string;
+  icon?: IconComponent;
   /** Size variant used to scale the fallback text. */
   size?: AvatarSize;
   /** Delay in milliseconds before showing the fallback. */
@@ -15,3 +15,4 @@ export type AvatarFallbackProps = HTMLAttributes<HTMLSpanElement> & {
   /** Additional CSS class names. */
   className?: string;
 };
+import type { IconComponent } from '@components/foundation/icon'

@@ -2,7 +2,7 @@ import { Select as BaseSelect } from '@base-ui/react/select'
 import { type CSSProperties, memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 import { Box } from '@components/layout/box'
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import {
@@ -71,7 +71,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
             {children ?? <BaseSelect.Value placeholder={placeholder} />}
             <Box className={SELECT_TRIGGER_END_ICON}>
                 <Icon
-                    icon={IconRegistry.chevronDown}
+                    icon={ChevronDownIcon}
                     size={'md'}
                     color={'mutedForeground'}
                 />

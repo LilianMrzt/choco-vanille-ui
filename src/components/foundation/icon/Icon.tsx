@@ -1,5 +1,3 @@
-import { Icon as Iconify } from '@iconify/react'
-
 import { Box } from '@components/layout/box'
 import { ICON_STYLES } from '@components/foundation/icon/styles/Icon.css.ts'
 import type { IconProps } from '@components/foundation/icon/types/Icon.props.ts'
@@ -7,12 +5,12 @@ import { cn } from '@utils/cn.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
 /**
- * Iconify icon wrapper. Decorative by default (`aria-hidden`). Pass
+ * SVG icon wrapper. Decorative by default (`aria-hidden`). Pass
  * `aria-label` to emit `role="img"` for informative icons. An icon inside
  * a named control should remain decorative — the control owns the name.
  */
 const Icon: FC<IconProps> = memo(({
-    icon,
+    icon: IconComponent,
     size,
     spin,
     color,
@@ -50,8 +48,9 @@ const Icon: FC<IconProps> = memo(({
             borderStyle={borderStyle}
             borderRadius={borderRadius}
         >
-            <Iconify
-                icon={icon}
+            <IconComponent
+                width={undefined}
+                height={undefined}
                 aria-hidden={isDecorative}
                 aria-label={ariaLabel}
                 role={isDecorative ? undefined : 'img'}

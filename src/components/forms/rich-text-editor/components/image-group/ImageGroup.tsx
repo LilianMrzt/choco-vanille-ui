@@ -4,6 +4,10 @@ import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRef, useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import ImageIcon from '@resources/asset/ImageIcon.svg?react'
+import ImagePlusIcon from '@resources/asset/ImagePlusIcon.svg?react'
+import TrashIcon from '@resources/asset/TrashIcon.svg?react'
+import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { IMAGE_GROUP_STYLES } from '@components/forms/rich-text-editor/components/image-group/styles/ImageGroup.css.ts'
 import type { ImageGroupProps } from '@components/forms/rich-text-editor/components/image-group/types/ImageGroup.props.ts'
 
@@ -42,7 +46,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:image-plus'}
+                            icon={ImagePlusIcon}
                             aria-label={labels.insertImageUrl}
                             variant={'ghost'}
                             color={'primary'}
@@ -64,7 +68,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:upload'}
+                            icon={UploadIcon}
                             aria-label={labels.uploadImage}
                             variant={'ghost'}
                             color={'primary'}
@@ -81,7 +85,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:image-up'}
+                            icon={ImagePlusIcon}
                             aria-label={labels.editImageDetails}
                             variant={'ghost'}
                             color={'primary'}
@@ -116,7 +120,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     >
                         <IconButton
                             type={'button'}
-                            icon={'lucide:trash-2'}
+                            icon={TrashIcon}
                             aria-label={labels.removeImage}
                             variant={'ghost'}
                             color={'destructive'}
@@ -141,7 +145,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                         <DropdownMenu.Trigger>
                             <IconButton
                                 type={'button'}
-                                icon={'lucide:image'}
+                                icon={ImageIcon}
                                 aria-label={labels.imageGroupTrigger}
                                 variant={'ghost'}
                                 color={'primary'}
@@ -154,7 +158,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                     <DropdownMenu.Content aria-label={labels.imageOptions}>
                         <DropdownMenu.Item
                             label={labels.insertImageUrl}
-                            startIcon={'lucide:image-plus'}
+                            startIcon={ImagePlusIcon}
                             onClick={() => {
                                 const src = window.prompt(labels.imageUrlPrompt)
 
@@ -165,13 +169,13 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                         />
                         <DropdownMenu.Item
                             label={labels.uploadImage}
-                            startIcon={'lucide:upload'}
+                            startIcon={UploadIcon}
                             onClick={() => imageInputRef.current?.click()}
                         />
                         <DropdownMenu.Separator />
                         <DropdownMenu.Item
                             label={labels.editImageDetails}
-                            startIcon={'lucide:image-up'}
+                            startIcon={ImagePlusIcon}
                             disabled={!editor.isActive('image')}
                             onClick={() => {
                                 const attributes = editor.getAttributes('image')
@@ -196,7 +200,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                         />
                         <DropdownMenu.Item
                             label={labels.removeImage}
-                            startIcon={'lucide:trash-2'}
+                            startIcon={TrashIcon}
                             destructive
                             disabled={!editor.isActive('image')}
                             onClick={() => editor.chain().focus().deleteSelection().run()}

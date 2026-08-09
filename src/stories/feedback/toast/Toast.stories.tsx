@@ -13,6 +13,7 @@ import { Button } from '@components/actions/button'
 import type { ButtonColor, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
 import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
+import type { IconComponent } from '@components/foundation/icon'
 import { useNotification, useToast } from '@hooks'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -56,7 +57,7 @@ const ToastDocsPage = () => (
 type ToastPlaygroundArgs = {
     variant?: ToastVariant
     role?: ToastRole
-    icon?: string
+    icon?: IconComponent
     title?: string
     description?: string
     closeLabel?: string
@@ -152,7 +153,7 @@ const UpdateButton = () => {
             table: { category: 'Toast' },
         },
         className: {
-            control: 'text',
+            control: false,
             table: { category: 'Toast' },
         },
         icon: {

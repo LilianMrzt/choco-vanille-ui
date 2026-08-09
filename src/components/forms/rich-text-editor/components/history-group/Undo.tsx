@@ -1,6 +1,7 @@
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import UndoIcon from '@resources/asset/UndoIcon.svg?react'
 
 const Undo = () => {
     const { editor, disabled, labels } = useRichTextEditorContext()
@@ -18,7 +19,7 @@ const Undo = () => {
         >
             <IconButton
                 type={'button'}
-                icon={'lucide:undo-2'}
+                icon={UndoIcon}
                 aria-label={labels.undo}
                 variant={'ghost'}
                 color={'primary'}

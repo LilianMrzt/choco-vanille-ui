@@ -1,7 +1,9 @@
 import { memo, useCallback, type FC, type KeyboardEvent } from 'react'
 
-import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import { Icon, type IconComponent } from '@components/foundation/icon'
+import SortAscIcon from '@resources/asset/SortAscIcon.svg?react'
+import SortDescIcon from '@resources/asset/SortDescIcon.svg?react'
+import SortIcon from '@resources/asset/SortIcon.svg?react'
 import { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/styles/TableHead.css.ts'
 import type {
     TableHeadProps,
@@ -9,10 +11,10 @@ import type {
 } from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
 import { cn } from '@utils/cn.ts'
 
-const SORT_ICONS: Record<TableSortDirection, string> = {
-    none: IconRegistry.sort,
-    asc: IconRegistry.sortAsc,
-    desc: IconRegistry.sortDesc,
+const SORT_ICONS: Record<TableSortDirection, IconComponent> = {
+    none: SortIcon,
+    asc: SortAscIcon,
+    desc: SortDescIcon,
 }
 
 const ariaSortMap = {

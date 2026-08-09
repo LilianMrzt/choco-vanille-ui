@@ -7,6 +7,7 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import { defineConfig, type Plugin } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
+import svgr from 'vite-plugin-svgr';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
@@ -45,6 +46,7 @@ const aggregateStylesheet = (): Plugin => ({
 export default defineConfig({
   plugins: [
     react(),
+    svgr(),
     vanillaExtractPlugin(),
     libInjectCss(),
     aggregateStylesheet(),
@@ -63,6 +65,7 @@ export default defineConfig({
       '@constants': resolve(root, 'src/constants'),
       '@utils': resolve(root, 'src/utils'),
       '@hooks': resolve(root, 'src/hooks'),
+      '@resources': resolve(root, 'src/resources'),
       '@stories': resolve(root, 'src/stories'),
       '@tests': resolve(root, 'tests'),
       '@scripts': resolve(root, 'scripts'),

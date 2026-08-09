@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import type { IconComponent } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
@@ -34,7 +35,7 @@ export type AutocompleteFieldProps = {
     /** Error message rendered below the input. When set, the input is styled in its error state. */
     error?: string
     /** Iconify icon name rendered on the left side of the input. */
-    startIcon?: string
+    startIcon?: IconComponent
     /** Placeholder shown when the input is empty. */
     placeholder?: string
     /** Visual size of the input. */

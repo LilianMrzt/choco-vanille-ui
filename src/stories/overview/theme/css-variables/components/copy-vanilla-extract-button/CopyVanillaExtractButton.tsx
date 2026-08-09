@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 import { Button } from '@components/actions/button'
-import { IconRegistry } from '@constants/icons'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 import { buildVanillaExtractSnippet } from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
 
@@ -24,7 +25,7 @@ export const CopyVanillaExtractButton = () => {
             variant={'outlined'}
             color={copied ? 'success' : 'secondary'}
             label={copied ? 'Copied!' : 'Copy Vanilla Extract snippet'}
-            startIcon={copied ? IconRegistry.check : IconRegistry.clipboardList}
+            startIcon={copied ? CheckIcon : SearchIcon}
             onClick={handleClick}
         />
     )

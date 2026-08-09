@@ -2,6 +2,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import UnlinkIcon from '@resources/asset/UnlinkIcon.svg?react'
 import type { UnsetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/UnsetLink.props.ts'
 
 /**
@@ -21,7 +22,7 @@ const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
         return (
             <DropdownMenu.Item
                 label={labels.removeLink}
-                startIcon={'lucide:unlink'}
+                startIcon={UnlinkIcon}
                 disabled={!editor.isActive('link')}
                 onClick={() => editor.chain().focus().unsetLink().run()}
             />
@@ -37,7 +38,7 @@ const UnsetLink = ({ presentation = 'icon' }: UnsetLinkProps) => {
         >
             <IconButton
                 type={'button'}
-                icon={'lucide:unlink'}
+                icon={UnlinkIcon}
                 aria-label={labels.removeLink}
                 variant={'ghost'}
                 color={'primary'}

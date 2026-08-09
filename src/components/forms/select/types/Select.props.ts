@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import type { IconComponent } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
@@ -34,7 +35,7 @@ export type SelectFieldProps = {
     /** Error message rendered below the trigger. When set, the trigger is styled in its error state. */
     error?: string
     /** Iconify icon name rendered on the left side of the trigger. */
-    startIcon?: string
+    startIcon?: IconComponent
     /** Placeholder shown when no option is selected. */
     placeholder?: string
     /** Visual size of the trigger. */

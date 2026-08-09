@@ -3,6 +3,7 @@ import type { RefAttributes } from 'react'
 
 import type { TextAreaSize } from '@components/forms/text-area/types/TextArea.types.ts'
 import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -19,7 +20,7 @@ export type TextAreaProps = Omit<
     /** Error message rendered below the textarea. When set, the textarea is styled in its error state. */
     error?: string
     /** Iconify icon name rendered on the left side of the textarea. */
-    startIcon?: string
+    startIcon?: IconComponent
     /** Custom action element (e.g. `<IconButton>`) rendered on the right side of the textarea. */
     endAction?: React.ReactNode
     /** CSS width of the outer wrapper. Defaults to `100%`. */

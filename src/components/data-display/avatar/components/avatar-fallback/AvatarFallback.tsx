@@ -9,7 +9,7 @@ import { memo, type FC } from 'react'
 import {
     AVATAR_SIZE_TO_TYPOGRAPHY_SIZE
 } from '@components/data-display/avatar/components/avatar-fallback/constants/sizeToTypography.const.ts'
-import { IconRegistry } from '@constants'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 /**
  * Fallback content slot for `Avatar.Root`. Renders initials (up to 2
@@ -36,7 +36,7 @@ const AvatarFallback: FC<AvatarFallbackProps> = memo(({
     ) : icon ? (
         <Icon icon={icon} />
     ) : (
-        <Icon icon={IconRegistry.user} />
+        <Icon icon={UserIcon} />
     )
 
     return (

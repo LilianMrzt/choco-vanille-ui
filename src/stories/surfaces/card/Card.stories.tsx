@@ -18,7 +18,7 @@ import {
     type TypographyProps,
 } from '@components/foundation/typography'
 import type { BoxSpace } from '@components/layout/box'
-import { IconRegistry } from '@constants/icons'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -135,7 +135,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
     actions={
       <IconButton
-        icon={IconRegistry.ellipsisVertical}
+        icon={SearchIcon}
         aria-label="More"
         variant="ghost"
         color="primary"
@@ -344,7 +344,7 @@ export const Playground: Story = {
                 }
                 actions={
                     <IconButton
-                        icon={IconRegistry.ellipsisVertical}
+                        icon={SearchIcon}
                         aria-label={'More options'}
                         variant={'ghost'}
                         color={'primary'}

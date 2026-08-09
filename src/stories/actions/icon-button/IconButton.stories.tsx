@@ -15,7 +15,7 @@ import type {
     IconButtonSize,
     IconButtonVariant,
 } from '@components/actions/icon-button'
-import { IconRegistry } from '@constants/icons'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -71,8 +71,8 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
 **Usage**
 
 ~~~tsx
-<IconButton icon="lucide:pencil" aria-label="Edit item" />
-<IconButton icon="lucide:trash-2" aria-label="Delete item" color="destructive" variant="ghost" />
+<IconButton icon={SearchIcon} aria-label="Edit item" />
+<IconButton icon={TrashIcon} aria-label="Delete item" color="destructive" variant="ghost" />
 ~~~
         `,
             },
@@ -88,7 +88,7 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
         active: { control: 'boolean' },
     },
     args: {
-        icon: IconRegistry.pencil,
+        icon: SearchIcon,
         'aria-label': 'Edit item',
     },
 } satisfies Meta<typeof IconButton>
@@ -106,7 +106,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
             ...storySource(/* language=tsx */ `
-<IconButton icon="lucide:pencil" aria-label="Edit item" />`),
+<IconButton icon={SearchIcon} aria-label="Edit item" />`),
         },
     },
     play: async ({ canvasElement, args }) => {
@@ -121,9 +121,9 @@ export const Variants: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<IconButton icon="lucide:pencil" aria-label="contained" variant="contained" />
-<IconButton icon="lucide:pencil" aria-label="outlined" variant="outlined" />
-<IconButton icon="lucide:pencil" aria-label="ghost" variant="ghost" />`),
+<IconButton icon={SearchIcon} aria-label="contained" variant="contained" />
+<IconButton icon={SearchIcon} aria-label="outlined" variant="outlined" />
+<IconButton icon={SearchIcon} aria-label="ghost" variant="ghost" />`),
         },
     },
     render: () => (
@@ -131,7 +131,7 @@ export const Variants: Story = {
             {VARIANTS.map((variant) => (
                 <IconButton
                     key={variant}
-                    icon={IconRegistry.pencil}
+                    icon={SearchIcon}
                     aria-label={variant}
                     variant={variant}
                 />
@@ -144,13 +144,13 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<IconButton icon="lucide:pencil" aria-label="primary" color="primary" />
-<IconButton icon="lucide:pencil" aria-label="secondary" color="secondary" />
-<IconButton icon="lucide:pencil" aria-label="tertiary" color="tertiary" />
-<IconButton icon="lucide:pencil" aria-label="destructive" color="destructive" />
-<IconButton icon="lucide:pencil" aria-label="success" color="success" />
-<IconButton icon="lucide:pencil" aria-label="warning" color="warning" />
-<IconButton icon="lucide:pencil" aria-label="info" color="info" />`),
+<IconButton icon={SearchIcon} aria-label="primary" color="primary" />
+<IconButton icon={SearchIcon} aria-label="secondary" color="secondary" />
+<IconButton icon={SearchIcon} aria-label="tertiary" color="tertiary" />
+<IconButton icon={SearchIcon} aria-label="destructive" color="destructive" />
+<IconButton icon={SearchIcon} aria-label="success" color="success" />
+<IconButton icon={SearchIcon} aria-label="warning" color="warning" />
+<IconButton icon={SearchIcon} aria-label="info" color="info" />`),
         },
     },
     render: () => (
@@ -158,7 +158,7 @@ export const Colors: Story = {
             {COLORS.map((color) => (
                 <IconButton
                     key={color}
-                    icon={IconRegistry.pencil}
+                    icon={SearchIcon}
                     aria-label={color}
                     color={color}
                 />
@@ -171,10 +171,10 @@ export const Sizes: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<IconButton icon="lucide:pencil" aria-label="xs" size="xs" />
-<IconButton icon="lucide:pencil" aria-label="sm" size="sm" />
-<IconButton icon="lucide:pencil" aria-label="md" size="md" />
-<IconButton icon="lucide:pencil" aria-label="lg" size="lg" />`),
+<IconButton icon={SearchIcon} aria-label="xs" size="xs" />
+<IconButton icon={SearchIcon} aria-label="sm" size="sm" />
+<IconButton icon={SearchIcon} aria-label="md" size="md" />
+<IconButton icon={SearchIcon} aria-label="lg" size="lg" />`),
         },
     },
     render: () => (
@@ -182,7 +182,7 @@ export const Sizes: Story = {
             {SIZES.map((size) => (
                 <IconButton
                     key={size}
-                    icon={IconRegistry.pencil}
+                    icon={SearchIcon}
                     aria-label={size}
                     size={size}
                 />
@@ -195,19 +195,19 @@ export const States: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<IconButton icon="lucide:pencil" aria-label="Disabled" disabled />
-<IconButton icon="lucide:pencil" aria-label="Active" active />`),
+<IconButton icon={SearchIcon} aria-label="Disabled" disabled />
+<IconButton icon={SearchIcon} aria-label="Active" active />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', gap: '0.75rem' }}>
             <IconButton
-                icon={IconRegistry.pencil}
+                icon={SearchIcon}
                 aria-label={'Disabled'}
                 disabled
             />
             <IconButton
-                icon={IconRegistry.pencil}
+                icon={SearchIcon}
                 aria-label={'Active'}
                 active
             />

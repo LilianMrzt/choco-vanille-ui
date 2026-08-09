@@ -2,7 +2,7 @@ import { Select as BaseSelect } from '@base-ui/react/select'
 import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/styles/SelectItem.css.ts'
 import type { SelectItemProps } from '@components/forms/select/components/select-item/types/SelectItem.props.ts'
@@ -23,7 +23,7 @@ const SelectItem: FC<SelectItemProps> = memo(({
         <span className={SELECT_ITEM_STYLES.indicator}>
             <BaseSelect.ItemIndicator>
                 <Icon
-                    icon={IconRegistry.check}
+                    icon={CheckIcon}
                     size={'xs'}
                 />
             </BaseSelect.ItemIndicator>

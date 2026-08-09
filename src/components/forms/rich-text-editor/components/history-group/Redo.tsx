@@ -1,6 +1,7 @@
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import RedoIcon from '@resources/asset/RedoIcon.svg?react'
 
 const Redo = () => {
     const { editor, disabled, labels } = useRichTextEditorContext()
@@ -18,7 +19,7 @@ const Redo = () => {
         >
             <IconButton
                 type={'button'}
-                icon={'lucide:redo-2'}
+                icon={RedoIcon}
                 aria-label={labels.redo}
                 variant={'ghost'}
                 color={'primary'}

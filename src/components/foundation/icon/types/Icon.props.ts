@@ -1,14 +1,19 @@
-import type { IconProps as IconifyProps } from '@iconify/react'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, SVGProps } from 'react'
 
 import type {
     BoxBorderRadius,
     BoxColor,
     BoxSpace,
 } from '@components/layout/box/types/Box.types.ts'
-import type { IconColor, IconSize } from '@components/foundation/icon/types/Icon.types.ts'
+import type {
+    IconColor,
+    IconComponent,
+    IconSize,
+} from '@components/foundation/icon/types/Icon.types.ts'
 
-export type IconProps = Omit<IconifyProps, 'aria-hidden' | 'role'> & {
+export type IconProps = Omit<SVGProps<SVGSVGElement>, 'aria-hidden' | 'role' | 'color'> & {
+    /** Locally bundled SVG component to render. */
+    icon: IconComponent
     /** Icon size. Defaults to `md`. */
     size?: IconSize
     /** Whether the icon should continuously rotate. */
@@ -27,4 +32,4 @@ export type IconProps = Omit<IconifyProps, 'aria-hidden' | 'role'> & {
     borderStyle?: CSSProperties['borderStyle']
     /** Border radius token applied to the wrapper. */
     borderRadius?: BoxBorderRadius
-  }
+}

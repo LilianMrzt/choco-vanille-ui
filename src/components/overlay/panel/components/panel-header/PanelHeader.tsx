@@ -5,7 +5,7 @@ import { IconButton } from '@components/actions/icon-button'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import type { PanelHeaderProps } from '@components/overlay/panel/components/panel-header/types/PanelHeader.props.ts'
-import { IconRegistry } from '@constants/icons'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { usePanelContext } from '@components/overlay/panel/context/Panel.context.ts'
 
 /**
@@ -93,7 +93,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
             <BaseDialog.Close
                 render={
                     <IconButton
-                        icon={IconRegistry.close}
+                        icon={CloseIcon}
                         aria-label={closeLabel}
                         variant={'ghost'}
                         color={'primary'}

@@ -1,9 +1,10 @@
-﻿import { useState, type ComponentProps, type ComponentType } from 'react'
+import { useState, type ComponentProps, type ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 
 import { AutocompleteField } from '@components/forms/autocomplete'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -285,13 +286,13 @@ export const States: Story = {
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<AutocompleteField label="Search" startIcon="lucide:search" options={[{ value: "apple", label: "Apple" }]} />`),
+            ...storySource(`<AutocompleteField label="Search" startIcon={SearchIcon} options={[{ value: "apple", label: "Apple" }]} />`),
         },
     },
     render: () => (
         <AutocompleteField
             label={'Search'}
-            startIcon={'lucide:search'}
+            startIcon={SearchIcon}
             options={FRUIT_OPTIONS}
         />
     ),

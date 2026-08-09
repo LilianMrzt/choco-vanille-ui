@@ -1,4 +1,4 @@
-import type { IconSize } from '@components/foundation/icon'
+import type { IconComponent, IconSize } from '@components/foundation/icon'
 import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
 import type { LinkColor } from '@components/navigation/link/types/Link.types.ts'
 import type * as React from 'react'
@@ -15,10 +15,10 @@ export type LinkProps = Omit<
     label: string
     /** Theme color of the link. Defaults to the semantic link color. */
     color?: LinkColor
-    /** Optional Iconify icon name rendered before the label. */
-    startIcon?: string
-    /** Optional Iconify icon name rendered after the label. */
-    endIcon?: string
+    /** Optional SVG component rendered before the label. */
+    startIcon?: IconComponent
+    /** Optional SVG component rendered after the label. */
+    endIcon?: IconComponent
     /** Typography size of the label. Defaults to `base`. */
     fontSize?: TypographySize
     /** Typography weight of the label. Defaults to `normal`. */

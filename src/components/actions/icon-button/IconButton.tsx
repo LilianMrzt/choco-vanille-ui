@@ -9,7 +9,7 @@ import { ICON_BUTTON_SIZE_TO_ICON_SIZE, ICON_BUTTON_SIZES } from '@components/ac
 /**
  * Icon-only action button. Requires `aria-label` for accessibility.
  * Supports `variant` (contained|outlined|ghost), semantic `color`,
- * `size` (xs|sm|md|lg), and an Iconify `icon` identifier.
+ *  `size` (xs|sm|md|lg), and a local SVG `icon` component.
  */
 const IconButton: FC<IconButtonProps> = ({
     variant,
@@ -31,13 +31,13 @@ const IconButton: FC<IconButtonProps> = ({
             {...props}
             data-active={active ? 'true' : undefined}
         >
-            {children ?? (
+            {children ?? (icon ? (
                 <Icon
-                    icon={icon as string}
+                    icon={icon}
                     size={iconSize}
                     className={BUTTON_SHARED_STYLES.icon}
                 />
-            )}
+            ) : null)}
         </button>
     )
 }

@@ -1,7 +1,7 @@
 import { IconButton } from '@components/actions/icon-button'
 import type { ToastCloseProps } from '@components/feedback/toast/components/toast-close/types/ToastClose.props.ts'
 import { TOAST_CLOSE_STYLES } from '@components/feedback/toast/components/toast-close/styles/ToastClose.css.ts'
-import { IconRegistry } from '@constants/icons'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
@@ -21,7 +21,7 @@ const ToastClose: FC<ToastCloseProps> = memo(({
             variant={'ghost'}
             color={'tertiary'}
             size={'xs'}
-            icon={IconRegistry.close}
+            icon={CloseIcon}
             aria-label={ariaLabel}
             className={cn(TOAST_CLOSE_STYLES.close, className)}
             style={{ marginInlineStart: vars.space.xs, color: vars.color.mutedForeground }}

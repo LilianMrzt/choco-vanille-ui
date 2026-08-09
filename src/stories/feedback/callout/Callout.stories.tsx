@@ -11,7 +11,8 @@ import { expect, within } from 'storybook/test'
 
 import { Callout } from '@/components/feedback/callout'
 import type { CalloutRole, CalloutVariant } from '@components/feedback/callout'
-import { IconRegistry } from '@constants/icons'
+import type { IconComponent } from '@components/foundation/icon'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -53,7 +54,7 @@ const CalloutDocsPage = () => (
 type CalloutPlaygroundArgs = {
     variant?: CalloutVariant
     role?: CalloutRole
-    icon?: string
+    icon?: IconComponent
     title?: string
     description?: string
     showIcon?: boolean
@@ -89,7 +90,7 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
 
 // Compound API
 <Callout variant="error">
-    <Callout.Icon icon={IconRegistry.error} />
+    <Callout.Icon icon={CircleErrorIcon} />
     <Callout.Title>Error</Callout.Title>
     <Callout.Description>Something went wrong.</Callout.Description>
 </Callout>
@@ -123,7 +124,7 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
     args: {
         variant: 'info',
         role: 'status',
-        icon: IconRegistry.info,
+        icon: InfoIcon,
         title: 'Did you know?',
         description: 'Callouts are great for inline status messages.',
         showIcon: true,

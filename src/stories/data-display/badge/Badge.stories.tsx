@@ -11,7 +11,8 @@ import { expect, within } from 'storybook/test'
 
 import { Badge } from '@/components/data-display/badge'
 import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-display/badge'
-import { IconRegistry } from '@constants/icons'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -195,26 +196,26 @@ export const WithIcons: Story = {
             description: {
                 story: 'Badges can display an optional start or end icon.',
             },
-            ...storySource(`<Badge label="Start icon" startIcon={IconRegistry.check} />`),
+            ...storySource(`<Badge label="Start icon" startIcon={CheckIcon} />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
             <Badge
                 label={'Start icon'}
-                startIcon={IconRegistry.check}
+                startIcon={CheckIcon}
                 color={'success'}
             />
             <Badge
                 label={'End icon'}
-                endIcon={IconRegistry.chevronRight}
+                endIcon={ChevronRightIcon}
                 color={'primary'}
                 variant={'outlined'}
             />
             <Badge
                 label={'Both icons'}
-                startIcon={IconRegistry.check}
-                endIcon={IconRegistry.chevronRight}
+                startIcon={CheckIcon}
+                endIcon={ChevronRightIcon}
                 color={'info'}
                 variant={'contained'}
             />

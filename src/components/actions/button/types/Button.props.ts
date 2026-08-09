@@ -1,5 +1,6 @@
 import type * as React from 'react'
 
+import type { IconComponent } from '@components/foundation/icon'
 import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
 
 export type ButtonProps = Omit<
@@ -17,10 +18,10 @@ export type ButtonProps = Omit<
     ref?: React.Ref<HTMLButtonElement>;
     /** The text content rendered inside the button via the Typography component. */
     label: string;
-    /** Iconify icon name rendered before the label. Size and color are derived from the Button variant and size. */
-    startIcon?: string;
-    /** Iconify icon name rendered after the label. Size and color are derived from the Button variant and size. */
-    endIcon?: string;
+    /** SVG component rendered before the label. */
+    startIcon?: IconComponent;
+    /** SVG component rendered after the label. */
+    endIcon?: IconComponent;
     /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */
     active?: boolean;
   };

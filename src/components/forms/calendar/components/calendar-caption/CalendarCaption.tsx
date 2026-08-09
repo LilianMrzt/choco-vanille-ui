@@ -7,7 +7,8 @@ import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/c
 import { useCalendarCaption } from '@components/forms/calendar/components/calendar-caption/hooks/useCalendarCaption.hook.ts'
 import type { CalendarCaptionProps } from '@components/forms/calendar/components/calendar-caption/types/CalendarCaption.props.ts'
 import Flex from '@components/layout/flex/Flex.tsx'
-import { IconRegistry } from '@constants/icons'
+import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { DEFAULT_CALENDAR_CAPTION_LABELS } from '@components/forms/calendar/components/calendar-caption/constants'
 
 /**
@@ -67,7 +68,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
             className={CALENDAR_CAPTION_STYLES.monthCaption}
         >
             <IconButton
-                icon={IconRegistry.chevronLeft}
+                icon={ChevronLeftIcon}
                 aria-label={prevLabel}
                 variant={'ghost'}
                 color={'tertiary'}
@@ -116,7 +117,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
             </Flex>
 
             <IconButton
-                icon={IconRegistry.chevronRight}
+                icon={ChevronRightIcon}
                 aria-label={nextLabel}
                 variant={'ghost'}
                 color={'tertiary'}

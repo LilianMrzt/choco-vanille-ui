@@ -2,7 +2,8 @@ import { memo, type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
 import { COMMAND_INPUT_STYLES } from '@components/overlay/command/components/command-input/styles/CommandInput.css.ts'
 import type { CommandInputProps } from '@components/overlay/command/components/command-input/types/CommandInput.props.ts'
@@ -54,7 +55,7 @@ const CommandInput: FC<CommandInputProps> = memo(({
                 aria-hidden
             >
                 <Icon
-                    icon={IconRegistry.search}
+                    icon={SearchIcon}
                     size={'sm'}
                 />
             </span>
@@ -78,7 +79,7 @@ const CommandInput: FC<CommandInputProps> = memo(({
             {search && (
                 <IconButton
                     type={'button'}
-                    icon={IconRegistry.close}
+                    icon={CloseIcon}
                     aria-label={defaultClearAriaLabel}
                     variant={'ghost'}
                     size={'xs'}

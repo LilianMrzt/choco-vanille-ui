@@ -6,6 +6,7 @@ import {
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import BreadcrumbsItem from '@components/navigation/breadcrumbs/components/breadcrumbs-item/BreadcrumbsItem.tsx'
 import type { BreadcrumbsItemProps } from '@components/navigation/breadcrumbs/components/breadcrumbs-item/types/BreadcrumbsItem.props.ts'
@@ -61,7 +62,7 @@ const Breadcrumbs = memo(({
                             {index > 0 &&
                                 (separator === BREADCRUMBS_SEPARATORS.chevron ? (
                                     <Icon
-                                        icon={'lucide:chevron-right'}
+                                        icon={ChevronRightIcon}
                                         size={'sm'}
                                         className={BREADCRUMBS_STYLES.separator}
                                     />

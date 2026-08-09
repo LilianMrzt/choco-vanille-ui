@@ -3,6 +3,7 @@ import type { RefAttributes } from 'react'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type TextFieldProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -22,8 +23,8 @@ export type TextFieldProps = Omit<
     helperText?: string
     /** Error message rendered below the input. When set, the input is styled in its error state. */
     error?: string
-    /** Iconify icon name rendered on the left side of the input. */
-    startIcon?: string
+    /** SVG component rendered on the left side of the input. */
+    startIcon?: IconComponent
     /**
      * Custom action element (e.g. `<IconButton>`) rendered on the right side of the input.
      * Ignored when `type="password"` (the toggle button takes precedence).

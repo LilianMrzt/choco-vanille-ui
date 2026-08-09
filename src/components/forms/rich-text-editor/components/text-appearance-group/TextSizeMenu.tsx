@@ -5,6 +5,8 @@ import type { RichTextFontSize } from '@components/forms/rich-text-editor/types'
 import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
+import TextCursorInputIcon from '@resources/asset/TextCursorInputIcon.svg?react'
 import { useState } from 'react'
 import type { TextSizeMenuProps } from '@components/forms/rich-text-editor/components/text-appearance-group/types/TextSizeMenu.props.ts'
 import { TEXT_SIZE_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextSizeMenu.css.ts'
@@ -44,7 +46,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                     <Button
                         type={'button'}
                         label={selectedFontSizeLabel}
-                        endIcon={'lucide:chevron-down'}
+                        endIcon={ChevronDownIcon}
                         aria-label={labels.textSizeTrigger}
                         variant={'ghost'}
                         color={'primary'}
@@ -56,7 +58,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                 ) : (
                     <IconButton
                         type={'button'}
-                        icon={'lucide:text-cursor-input'}
+                        icon={TextCursorInputIcon}
                         aria-label={labels.textSizeTrigger}
                         variant={'ghost'}
                         color={'primary'}

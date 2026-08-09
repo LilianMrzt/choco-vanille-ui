@@ -12,7 +12,8 @@ import { expect, userEvent, within } from 'storybook/test'
 
 import { Tabs } from '@/components/navigation/tabs'
 import type { TabsVariant } from '@components/navigation/tabs'
-import { IconRegistry } from '@constants/icons'
+import type { IconComponent } from '@components/foundation/icon'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -21,8 +22,8 @@ type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
   listBordered?: boolean;
   billingDisabled?: boolean;
   billingWidth?: string;
-  billingStartIcon?: string;
-  billingEndIcon?: string;
+  billingStartIcon?: IconComponent;
+  billingEndIcon?: IconComponent;
   activationMode?: 'automatic' | 'manual';
 };
 
@@ -135,8 +136,8 @@ Compose \`Tabs\`, \`Tabs.List\`, \`Tabs.Trigger\`, and \`Tabs.Content\`.
         listBordered: false,
         billingDisabled: true,
         billingWidth: '',
-        billingStartIcon: IconRegistry.creditCard,
-        billingEndIcon: '',
+        billingStartIcon: UserIcon,
+        billingEndIcon: undefined,
     },
     decorators: [
         (Story) => (

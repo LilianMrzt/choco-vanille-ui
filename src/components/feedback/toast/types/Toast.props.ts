@@ -2,6 +2,7 @@ import type * as React from 'react'
 
 import type { RefAttributes } from 'react'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast/types/Toast.types.ts'
+import type { IconComponent } from '@components/foundation/icon'
 
 export type ToastProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -15,8 +16,8 @@ export type ToastProps = Omit<
     title?: React.ReactNode;
     /** Main message content of the toast. */
     description?: React.ReactNode;
-    /** Iconify icon name. Defaults to the variant icon when omitted. */
-    icon?: string;
+    /** SVG component. Defaults to the variant icon when omitted. */
+    icon?: IconComponent;
     /** ARIA live-region role. Defaults to `status`. */
     role?: ToastRole;
     /** Accessible label for the close button. Rendered only when `onClose` is provided. */

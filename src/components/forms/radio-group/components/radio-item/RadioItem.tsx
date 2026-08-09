@@ -2,7 +2,7 @@ import { Radio } from '@base-ui/react/radio'
 import { memo, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import { IconRegistry } from '@constants/icons'
+import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
@@ -42,7 +42,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
             >
                 <Radio.Indicator className={RADIO_ITEM_STYLES.indicator}>
                     <Icon
-                        icon={IconRegistry.radioIndicator}
+                        icon={CircleIcon}
                         size={'xs'}
                     />
                 </Radio.Indicator>

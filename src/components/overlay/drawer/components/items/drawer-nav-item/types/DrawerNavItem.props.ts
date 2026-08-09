@@ -1,4 +1,4 @@
-import type { IconSize } from '@components/foundation/icon'
+import type { IconComponent, IconSize } from '@components/foundation/icon'
 import type {
     DrawerItemColor,
     DrawerItemVariant,
@@ -17,7 +17,7 @@ export type DrawerNavItemProps = Omit<
     /** Destination URL. @default '#' */
     href?: string;
     /** Icon rendered before the label. */
-    startIcon: string;
+    startIcon: IconComponent;
     /** Whether the item represents the current page. */
     active?: boolean;
     /** Disables the item and sets `aria-disabled`. */
