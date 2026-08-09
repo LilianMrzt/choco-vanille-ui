@@ -12,8 +12,8 @@ export const ICON_BUTTON_SIZES = {
 export const ICON_BUTTON_SIZES_ARRAY = Object.values(ICON_BUTTON_SIZES)
 
 export const ICON_BUTTON_SIZE_TO_ICON_SIZE: Record<NonNullable<IconButtonSize>, IconSize> = {
-    xs: 'xs',
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
+    xs: 'sm',
+    sm: 'md',
+    md: 'lg',
+    lg: 'xl',
 }

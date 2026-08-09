@@ -12,8 +12,6 @@ export const BUTTON_SHARED_STYLES = {
     /** Reset for icons rendered inside buttons. */
     icon: style({
         pointerEvents: 'none',
-        width: vars.fontSize.md,
-        height: vars.fontSize.md,
         flexShrink: 0,
     }),
 
