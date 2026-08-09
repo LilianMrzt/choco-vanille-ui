@@ -35,6 +35,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | --- | --- | --- | --- |
 | \`aria-hidden\` | No | \`boolean\` | Hide decorative separators from assistive technologies. |
 | \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Controls visual and ARIA orientation. |
+| \`label\` | No | \`string\` | Displays text between two separator lines. |
 `
 
 const SeparatorDocsPage = () => (
@@ -86,6 +87,7 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
     argTypes: {
         orientation: { control: 'select', options: ORIENTATION },
         color: { control: 'select', options: THEME_COLORS },
+        label: { control: 'text' },
     },
     args: {
         orientation: 'horizontal',
@@ -107,7 +109,7 @@ export const Playground: Story = {
 <Box padding="lg" backgroundColor="card" borderRadius="md">
     <Flex flexDirection="column" gap="md">
         <span>Above</span>
-        <Separator orientation="horizontal" />
+        <Separator orientation="horizontal" label="Or continue" />
         <span>Below</span>
     </Flex>
 </Box>`),
@@ -149,6 +151,32 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('separator')).toBeInTheDocument()
     },
+}
+
+export const WithLabel: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Flex flexDirection="column" gap="lg">
+    <Separator label="Or continue" />
+    <Flex alignItems="center" gap="md" height="120px">
+        <span>Left</span>
+        <Separator orientation="vertical" label="Or" />
+        <span>Right</span>
+    </Flex>
+</Flex>`),
+        },
+    },
+    render: () => (
+        <Flex flexDirection={'column'} gap={'lg'}>
+            <Separator label={'Or continue'} />
+            <Flex alignItems={'center'} gap={'md'} height={'120px'}>
+                <span>Left</span>
+                <Separator orientation={'vertical'} label={'Or'} />
+                <span>Right</span>
+            </Flex>
+        </Flex>
+    ),
 }
 
 export const Colors: Story = {

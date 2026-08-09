@@ -20,7 +20,7 @@ export const darkColors: DarkColors = {
     /* Text hierarchy */
     text: palette.neutral[100],
     textSecondary: palette.neutral[300],
-    textTertiary: palette.neutral[500],
+    textTertiary: palette.neutral[400],
 
     /* Elevated surfaces — a hair lighter than the page for depth */
     card: palette.neutral[700],
@@ -184,7 +184,7 @@ export const darkColors: DarkColors = {
     indigoSubtleBorder: palette.indigo[700],
 
     /* Lines, fields & focus  */
-    border: palette.neutral[600],
+    border: palette.neutral[500],
     borderStrong: palette.neutral[500],
     input: palette.neutral[500],
     ring: palette.brand[500],

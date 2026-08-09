@@ -195,7 +195,7 @@ export const lightColors = {
     indigoSubtleBorder: palette.indigo[200],
 
     /* Lines, fields & focus  */
-    border: palette.neutral[200],
+    border: palette.neutral[300],
     borderStrong: palette.neutral[300],
     input: palette.neutral[300],
     ring: palette.brand[600],

@@ -9,4 +9,6 @@ export type SeparatorProps = Omit<BoxProps, 'children' | 'aria-orientation'> & {
   orientation?: SeparatorOrientation
   /** The theme color token applied to the separator's background color. */
   color?: SeparatorColor
+  /** Optional text displayed between the separator lines. */
+  label?: string
 }

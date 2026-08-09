@@ -1,5 +1,5 @@
 import { vars } from '@theme/contract.css.ts'
-import { BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
+import { BUTTON_COLORS, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 import { createButtonCompoundVariantUtils } from '@components/actions/_shared/buttons/styles/variants/utils/createButtonCompoundVariant.utils.ts'
 
 type ColorVarKey = keyof typeof vars.color
@@ -10,7 +10,10 @@ type ColorVarKey = keyof typeof vars.color
 export const outlinedCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.outlined,
     (color) => ({
-        borderColor: vars.color[color],
+        borderColor: color === BUTTON_COLORS.tertiary
+            ? vars.color.input
+            : vars.color[color],
+        backgroundColor: vars.color.card,
         color: vars.color[`${color}SubtleForeground` as ColorVarKey],
         selectors: {
             '&:hover': {

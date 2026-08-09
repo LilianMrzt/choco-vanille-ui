@@ -60,6 +60,16 @@ describe('Separator', () => {
         })
     })
 
+    describe('label', () => {
+        it('renders the label between the separator lines', () => {
+            const { container } = render(<Separator label="Or continue" />)
+            const separator = getFirstChild(container)
+
+            expect(separator.textContent).toBe('Or continue')
+            expect(separator.className).toContain('hasLabel')
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(<Separator data-testid="separator" />)
