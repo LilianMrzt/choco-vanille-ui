@@ -70,6 +70,13 @@ describe('Separator', () => {
         })
     })
 
+    describe('text color', () => {
+        it('accepts a theme color for the label', () => {
+            const { container } = render(<Separator label="Or continue" textColor="primary" />)
+            expect(getFirstChild(container).textContent).toBe('Or continue')
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(<Separator data-testid="separator" />)

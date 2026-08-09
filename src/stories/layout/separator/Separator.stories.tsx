@@ -36,6 +36,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`aria-hidden\` | No | \`boolean\` | Hide decorative separators from assistive technologies. |
 | \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Controls visual and ARIA orientation. |
 | \`label\` | No | \`string\` | Displays text between two separator lines. |
+| \`textColor\` | No | \`ThemeColor\` | Color of the label; defaults to \`textTertiary\`. |
 `
 
 const SeparatorDocsPage = () => (
@@ -87,6 +88,7 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
     argTypes: {
         orientation: { control: 'select', options: ORIENTATION },
         color: { control: 'select', options: THEME_COLORS },
+        textColor: { control: 'select', options: THEME_COLORS },
         label: { control: 'text' },
     },
     args: {

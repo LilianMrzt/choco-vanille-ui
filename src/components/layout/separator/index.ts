@@ -4,4 +4,5 @@ export type { SeparatorProps } from '@components/layout/separator/types/Separato
 export type {
     SeparatorColor,
     SeparatorOrientation,
+    SeparatorTextColor,
 } from '@components/layout/separator/types/Separator.types.ts'

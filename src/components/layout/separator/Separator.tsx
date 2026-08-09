@@ -12,6 +12,7 @@ import { memo, type FC } from 'react'
 const Separator: FC<SeparatorProps> = memo(({
     orientation = 'horizontal',
     color,
+    textColor = 'textTertiary',
     label,
     className,
     ...props
@@ -42,6 +43,7 @@ const Separator: FC<SeparatorProps> = memo(({
                     />
                     <Typography
                         variant={'label'}
+                        color={textColor}
                         flexShrink={0}
                     >
                         {label}
