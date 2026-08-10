@@ -6,11 +6,16 @@ import { cn } from '@utils/cn.ts'
 import { vars } from '@theme/contract.css.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
+const isTypographyVariant = (value: string): value is TypographyVariant =>
+    Object.prototype.hasOwnProperty.call(TYPOGRAPHY_ELEMENT_MAP, value)
+
 /**
  * Renders text with the library's semantic element, typography scale, and theme tokens.
  *
  * The rendered element defaults to the element associated with `variant` and can
- * be overridden with `as` when a different HTML semantic is required.
+ * be overridden with `as` when a different HTML semantic is required. When
+ * `variant` is omitted, a known typography element passed to `as` also selects
+ * its matching visual variant.
  *
  * @example
  * ```tsx
@@ -42,7 +47,9 @@ const Typography: FC<TypographyProps> = memo(({
     ref,
     ...props
 }) => {
-    const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[(variant as TypographyVariant) ?? 'span'] ?? 'span'
+    const inferredVariant = typeof as === 'string' && isTypographyVariant(as) ? as : undefined
+    const resolvedVariant = variant ?? inferredVariant ?? 'span'
+    const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[resolvedVariant]
 
     const computedStyle: CSSProperties = {
         textTransform,
@@ -61,7 +68,7 @@ const Typography: FC<TypographyProps> = memo(({
     return (
         <Element
             ref={ref}
-            className={cn(TYPOGRAPHY_STYLES.recipe({ variant, fontSize, fontWeight, ellipsis, maxLines, color }), className)}
+            className={cn(TYPOGRAPHY_STYLES.recipe({ variant: resolvedVariant, fontSize, fontWeight, ellipsis, maxLines, color }), className)}
             style={computedStyle}
             {...props}
         />

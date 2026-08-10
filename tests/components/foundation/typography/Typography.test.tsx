@@ -2,6 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
+import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
 // Helpers
 
@@ -49,6 +50,11 @@ describe('Typography', () => {
                 <Typography variant="h1" as="span">heading</Typography>,
             )
             expect(getFirstChild(container).tagName.toLowerCase()).toBe('span')
+        })
+
+        it('infers the visual variant from a known `as` element', () => {
+            const { container } = render(<Typography as="h1">heading</Typography>)
+            expect(getFirstChild(container).className).toContain(variantClass('h1'))
         })
 
         it('still applies the variant CSS classes when `as` is set', () => {
@@ -115,6 +121,13 @@ describe('Typography', () => {
             const className = getFirstChild(container).className
             expect(className).toContain(fontSizeClass('sm'))
             expect(className).toContain(variantClass('h1'))
+        })
+
+        it('keeps truncated text wrapping at word boundaries by default', () => {
+            expect(truncateTextStyles(2)).toMatchObject({
+                overflowWrap: 'break-word',
+                wordBreak: 'normal',
+            })
         })
     })
 

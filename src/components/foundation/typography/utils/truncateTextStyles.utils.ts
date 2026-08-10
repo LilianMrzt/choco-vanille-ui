@@ -5,6 +5,6 @@ export const truncateTextStyles = (maxLines: number) => ({
     WebkitLineClamp: maxLines,
     WebkitBoxOrient: 'vertical' as const,
     whiteSpace: 'normal' as const,
-    overflowWrap: 'anywhere' as const,
-    wordBreak: 'break-all' as const,
+    overflowWrap: 'break-word' as const,
+    wordBreak: 'normal' as const,
 })

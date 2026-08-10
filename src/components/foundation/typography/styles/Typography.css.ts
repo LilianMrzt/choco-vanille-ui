@@ -6,48 +6,55 @@ import { truncateTextStyles } from '@components/foundation/typography/utils/trun
 
 const colorVariants = createColorVariants('color')
 
+const headingStyles = {
+    scrollMarginTop: vars.space['3xl'],
+    lineHeight: vars.lineHeight.tight,
+    textWrap: 'balance' as const,
+}
+
 export const TYPOGRAPHY_STYLES = {
     recipe: recipe({
         base: {
             margin: 0,
             transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
+            fontFamily: vars.fontFamily.sans,
+            lineHeight: vars.lineHeight.normal,
         },
 
         variants: {
             variant: {
                 h1: {
-                    scrollMarginTop: vars.space['3xl'],
-                    fontSize: vars.fontSize['5xl'],
-                    fontWeight: vars.fontWeight.extrabold,
-                    letterSpacing: vars.letterSpacing.tight,
-                    textWrap: 'balance',
-                },
-                h2: {
-                    scrollMarginTop: vars.space['3xl'],
-                    fontSize: vars.fontSize['4xl'],
-                    fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
-                },
-                h3: {
-                    scrollMarginTop: vars.space['3xl'],
+                    ...headingStyles,
                     fontSize: vars.fontSize['3xl'],
                     fontWeight: vars.fontWeight.semibold,
                     letterSpacing: vars.letterSpacing.tight,
                 },
-                h4: {
-                    scrollMarginTop: vars.space['3xl'],
+                h2: {
+                    ...headingStyles,
                     fontSize: vars.fontSize['2xl'],
                     fontWeight: vars.fontWeight.semibold,
                     letterSpacing: vars.letterSpacing.tight,
                 },
-                h5: {
-                    scrollMarginTop: vars.space['3xl'],
+                h3: {
+                    ...headingStyles,
                     fontSize: vars.fontSize.xl,
                     fontWeight: vars.fontWeight.semibold,
                     letterSpacing: vars.letterSpacing.tight,
                 },
+                h4: {
+                    ...headingStyles,
+                    fontSize: vars.fontSize.lg,
+                    fontWeight: vars.fontWeight.semibold,
+                    letterSpacing: vars.letterSpacing.tight,
+                },
+                h5: {
+                    ...headingStyles,
+                    fontSize: vars.fontSize.md,
+                    fontWeight: vars.fontWeight.semibold,
+                    letterSpacing: vars.letterSpacing.tight,
+                },
                 h6: {
-                    scrollMarginTop: vars.space['3xl'],
+                    ...headingStyles,
                     fontSize: vars.fontSize.md,
                     fontWeight: vars.fontWeight.semibold,
                     letterSpacing: vars.letterSpacing.tight,
@@ -188,7 +195,7 @@ export const TYPOGRAPHY_STYLES = {
         },
 
         defaultVariants: {
-            variant: 'p',
+            variant: 'span',
         },
     }),
 }

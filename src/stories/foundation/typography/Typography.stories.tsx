@@ -81,6 +81,8 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`title\` (for \`abbr\`)    | Conditional | \`string\`                           | Required when \`variant="abbr"\` to expose the expanded form to screen readers and hover tooltips.                   |
 | \`htmlFor\` (for \`label\`) | Conditional | \`string\`                           | Links a \`label\` variant to its form control; alternative is wrapping the control as a child.                       |
 
+When \`variant\` is omitted, a known typography element passed to \`as\` also selects its matching style.
+
 - Respect heading hierarchy: use one \`h1\` per page and nest levels in order without skipping.
 - Pair \`del\` and \`ins\` together to communicate document revisions accessibly.
 `
