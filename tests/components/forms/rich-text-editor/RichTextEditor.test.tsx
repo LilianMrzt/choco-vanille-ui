@@ -55,9 +55,8 @@ describe('RichTextEditor', () => {
         expect(screen.getByRole('toolbar', { name: 'Text formatting' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text size' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Add or edit link' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Link actions' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Image actions' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Undo' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Block format' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text alignment' })).toBeTruthy()
     })
@@ -143,9 +142,9 @@ describe('RichTextEditor', () => {
         })
 
         await waitFor(() => {
-            expect(screen.getByRole('menuitemradio', { name: '2xs' })).toBeTruthy()
-            expect(screen.getByRole('menuitemradio', { name: '6xl' })).toBeTruthy()
-            expect(screen.getByRole('menuitemradio', { name: 'md' }).getAttribute('aria-checked')).toBe('true')
+            expect(screen.getByRole('menuitem', { name: '10px' })).toBeTruthy()
+            expect(screen.getByRole('menuitem', { name: '60px' })).toBeTruthy()
+            expect(screen.getByRole('menuitem', { name: '16px' }).getAttribute('data-active')).toBe('true')
         })
 
     })
@@ -213,7 +212,7 @@ describe('RichTextEditor', () => {
         await userEvent.click(screen.getByRole('button', { name: 'Text size' }))
 
         await waitFor(() => {
-            expect(screen.getByRole('menuitemradio', { name: '2xl' }).getAttribute('aria-checked')).toBe('true')
+            expect(screen.getByRole('menuitem', { name: '24px' }).getAttribute('data-active')).toBe('true')
         })
     })
 

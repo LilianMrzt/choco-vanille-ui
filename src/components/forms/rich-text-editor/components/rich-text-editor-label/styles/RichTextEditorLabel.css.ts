@@ -1,20 +1,5 @@
-import { style } from '@vanilla-extract/css'
-
-import { vars } from '@theme'
+import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
 
 export const RICH_TEXT_EDITOR_LABEL_STYLES = {
-    root: style({
-        fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.sm,
-        fontWeight: vars.fontWeight.medium,
-        lineHeight: vars.lineHeight.normal,
-        color: vars.color.foreground,
-        userSelect: 'none',
-        selectors: {
-            '&[data-disabled]': {
-                cursor: 'not-allowed',
-                opacity: 0.45,
-            },
-        },
-    }),
+    root: FORM_LABEL_STYLES.root,
 }

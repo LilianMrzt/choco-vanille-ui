@@ -1,32 +1,15 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { Link, LINK_STYLES } from '@components/navigation/link'
-
-// Preload a test icon so Iconify renders synchronously in JSDOM
-beforeAll(() => {
-    addIcon('lucide:home', {
-        body: '<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:external-link', {
-        body: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:arrow-right', {
-        body: '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
+import LinkIcon from '@resources/asset/LinkIcon.svg?react'
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 describe('Link', () => {
     describe('default rendering', () => {
@@ -47,7 +30,9 @@ describe('Link', () => {
         })
 
         it('forwards a custom href', () => {
-            const { container } = render(<Link href="/dashboard" label={'Dashboard'} />)
+            const { container } = render(
+                <Link href="/dashboard" label={'Dashboard'} />,
+            )
             expect(getFirstChild(container).getAttribute('href')).toBe('/dashboard')
         })
     })
@@ -67,7 +52,9 @@ describe('Link', () => {
         })
 
         it('does not prevent default when onClick is omitted', async () => {
-            const { container } = render(<Link href="/dashboard" label={'Dashboard'} />)
+            const { container } = render(
+                <Link href="/dashboard" label={'Dashboard'} />,
+            )
             const link = getFirstChild(container)
 
             await userEvent.click(link)
@@ -79,28 +66,28 @@ describe('Link', () => {
     describe('icons', () => {
         it('renders a start icon when provided', () => {
             const { container } = render(
-                <Link label={'Home'} startIcon="lucide:home" />,
+                <Link label={'Home'} startIcon={UserIcon} />,
             )
             expect(container.querySelector('svg')).toBeTruthy()
         })
 
         it('renders an end icon when provided', () => {
             const { container } = render(
-                <Link label={'External'} endIcon="lucide:external-link" />,
+                <Link label={'External'} endIcon={LinkIcon} />,
             )
             expect(container.querySelector('svg')).toBeTruthy()
         })
 
         it('renders both icons when provided', () => {
             const { container } = render(
-                <Link label={'Home'} startIcon="lucide:home" endIcon="lucide:arrow-right" />,
+                <Link label={'Home'} startIcon={UserIcon} endIcon={ChevronRightIcon} />,
             )
             expect(container.querySelectorAll('svg')).toHaveLength(2)
         })
 
         it('defaults icon size to md', () => {
             const { container } = render(
-                <Link label={'Home'} startIcon="lucide:home" />,
+                <Link label={'Home'} startIcon={UserIcon} />,
             )
             const icon = container.querySelector('svg')
             expect(icon).toBeTruthy()
@@ -108,7 +95,7 @@ describe('Link', () => {
 
         it('forwards a custom icon size', () => {
             const { container } = render(
-                <Link label={'Home'} startIcon="lucide:home" iconSize="lg" />,
+                <Link label={'Home'} startIcon={UserIcon} iconSize="lg" />,
             )
             expect(container.querySelector('svg')).toBeTruthy()
         })
@@ -152,7 +139,9 @@ describe('Link', () => {
         })
 
         it('applies a theme color variant', () => {
-            const { container } = render(<Link label={'Primary'} color={'primary'} />)
+            const { container } = render(
+                <Link label={'Primary'} color={'primary'} />,
+            )
 
             expect(getFirstChild(container).className).toContain(
                 LINK_STYLES.color({ color: 'primary' }),
@@ -162,8 +151,12 @@ describe('Link', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<Link data-testid="nav-link" label={'Home'} />)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('nav-link')
+            const { container } = render(
+                <Link data-testid="nav-link" label={'Home'} />,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'nav-link',
+            )
         })
 
         it('forwards aria-* attributes', () => {
@@ -189,7 +182,9 @@ describe('Link', () => {
     describe('disabled state', () => {
         it('forwards aria-disabled to the anchor', () => {
             const { container } = render(<Link aria-disabled label={'Home'} />)
-            expect(getFirstChild(container).getAttribute('aria-disabled')).toBe('true')
+            expect(getFirstChild(container).getAttribute('aria-disabled')).toBe(
+                'true',
+            )
         })
     })
 

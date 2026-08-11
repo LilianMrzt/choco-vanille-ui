@@ -1,22 +1,8 @@
-import { addIcon } from '@iconify/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Select from '@components/forms/select/Select.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:check', {
-        body: '<path d="M20 6 9 17l-5-5"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 const openSelect = async () => {
     await userEvent.click(screen.getByRole('combobox'))
@@ -58,7 +44,9 @@ describe('SelectSeparator', () => {
                 </Select>,
             )
             await openSelect()
-            const separator = document.querySelector('[role="separator"]') as HTMLElement
+            const separator = document.querySelector(
+                '[role="separator"]',
+            ) as HTMLElement
             expect(separator.className.length).toBeGreaterThan(0)
         })
 

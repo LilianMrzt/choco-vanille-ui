@@ -1,27 +1,9 @@
-import { addIcon } from '@iconify/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { SelectField } from '@components/forms/select'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:check', {
-        body: '<path d="M20 6 9 17l-5-5"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:mail', {
-        body: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -80,10 +62,7 @@ describe('SelectField', () => {
 
         it('links helper text to trigger via aria-describedby', () => {
             render(
-                <SelectField
-                    helperText={'Choose wisely.'}
-                    options={FRUIT_OPTIONS}
-                />,
+                <SelectField helperText={'Choose wisely.'} options={FRUIT_OPTIONS} />,
             )
             const trigger = screen.getByRole('combobox')
             expect(trigger.getAttribute('aria-describedby')).toBeTruthy()
@@ -102,18 +81,17 @@ describe('SelectField', () => {
         })
 
         it('renders a start icon when startIcon is provided', () => {
-            render(<SelectField startIcon={'lucide:mail'} options={FRUIT_OPTIONS} />)
+            render(<SelectField startIcon={CircleIcon} options={FRUIT_OPTIONS} />)
             expect(document.querySelector('svg')).toBeTruthy()
         })
 
         it('renders the placeholder when no value is selected', () => {
             render(
-                <SelectField
-                    placeholder={'Pick a fruit'}
-                    options={FRUIT_OPTIONS}
-                />,
+                <SelectField placeholder={'Pick a fruit'} options={FRUIT_OPTIONS} />,
             )
-            expect(screen.getByRole('combobox').textContent).toContain('Pick a fruit')
+            expect(screen.getByRole('combobox').textContent).toContain(
+                'Pick a fruit',
+            )
         })
 
         it('shows the selected value text in the trigger', async () => {
@@ -133,7 +111,9 @@ describe('SelectField', () => {
 
         it('calls onValueChange with the selected value', async () => {
             const handleChange = vi.fn()
-            render(<SelectField options={FRUIT_OPTIONS} onValueChange={handleChange} />)
+            render(
+                <SelectField options={FRUIT_OPTIONS} onValueChange={handleChange} />,
+            )
             const trigger = screen.getByRole('combobox')
             trigger.focus()
             await userEvent.keyboard('{ArrowDown}')
@@ -162,12 +142,16 @@ describe('SelectField', () => {
     describe('states', () => {
         it('disables the trigger when disabled is true', () => {
             render(<SelectField disabled options={FRUIT_OPTIONS} />)
-            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(true)
+            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(
+                true,
+            )
         })
 
         it('does not set aria-invalid without an error', () => {
             render(<SelectField options={FRUIT_OPTIONS} />)
-            expect(screen.getByRole('combobox').getAttribute('aria-invalid')).toBeNull()
+            expect(
+                screen.getByRole('combobox').getAttribute('aria-invalid'),
+            ).toBeNull()
         })
     })
 

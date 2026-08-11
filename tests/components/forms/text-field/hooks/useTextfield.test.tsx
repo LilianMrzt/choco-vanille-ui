@@ -3,6 +3,7 @@ import { renderHook, act } from '@testing-library/react'
 
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 describe('useTextField', () => {
     it('uses the provided id when available', () => {
@@ -68,7 +69,7 @@ describe('useTextField', () => {
 
     it('reports whether a start icon is present', () => {
         const { result } = renderHook(() =>
-            useTextField({ startIcon: 'lucide:mail' } as TextFieldProps),
+            useTextField({ startIcon: SearchIcon } as TextFieldProps),
         )
 
         expect(result.current.hasStartIcon).toBe(true)

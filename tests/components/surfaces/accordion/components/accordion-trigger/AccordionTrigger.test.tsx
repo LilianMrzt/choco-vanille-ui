@@ -1,21 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Accordion from '@components/surfaces/accordion/Accordion.tsx'
 import AccordionTrigger from '@components/surfaces/accordion/components/accordion-trigger/AccordionTrigger.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 
 /** Helper: render a minimal accordion with a single item using AccordionTrigger. */
-const buildTrigger = (triggerProps: React.ComponentProps<typeof AccordionTrigger> = {}) =>
+const buildTrigger = (
+    triggerProps: React.ComponentProps<typeof AccordionTrigger> = {},
+) =>
     render(
         <Accordion defaultValue={[]}>
             <Accordion.Item value="item-1">
@@ -40,15 +34,25 @@ describe('AccordionTrigger', () => {
 
     describe('startIcon prop', () => {
         it('renders an SVG when a startIcon is provided', () => {
-            const { container } = buildTrigger({ label: 'Section', startIcon: 'lucide:chevron-down' })
-            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(1)
+            const { container } = buildTrigger({
+                label: 'Section',
+                startIcon: ChevronDownIcon,
+            })
+            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(
+                1,
+            )
         })
     })
 
     describe('endIcon prop', () => {
         it('renders an SVG when an endIcon is provided', () => {
-            const { container } = buildTrigger({ label: 'Section', endIcon: 'lucide:chevron-down' })
-            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(1)
+            const { container } = buildTrigger({
+                label: 'Section',
+                endIcon: ChevronDownIcon,
+            })
+            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(
+                1,
+            )
         })
     })
 
@@ -68,7 +72,10 @@ describe('AccordionTrigger', () => {
         })
 
         it('prioritises the label over children when both are provided', () => {
-            buildTrigger({ label: 'Label wins', children: <span>Children lose</span> })
+            buildTrigger({
+                label: 'Label wins',
+                children: <span>Children lose</span>,
+            })
             expect(screen.getByText('Label wins')).toBeTruthy()
             expect(screen.queryByText('Children lose')).toBeFalsy()
         })
@@ -91,14 +98,20 @@ describe('AccordionTrigger', () => {
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = buildTrigger({ label: 'Section', className: 'my-trigger' })
+            const { container } = buildTrigger({
+                label: 'Section',
+                className: 'my-trigger',
+            })
             expect(container.querySelector('.my-trigger')).toBeTruthy()
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = buildTrigger({ label: 'Section', 'data-testid': 'trigger' })
+            const { container } = buildTrigger({
+                label: 'Section',
+                'data-testid': 'trigger',
+            })
             expect(container.querySelector('[data-testid="trigger"]')).toBeTruthy()
         })
     })

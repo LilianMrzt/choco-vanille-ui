@@ -3,6 +3,7 @@ import { renderHook, act } from '@testing-library/react'
 
 import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.tsx'
 import type { TextAreaProps } from '@components/forms/text-area/types/TextArea.props.ts'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 
 describe('useTextArea', () => {
     it('uses the provided id when available', () => {
@@ -43,7 +44,7 @@ describe('useTextArea', () => {
 
     it('reports whether a start icon is present', () => {
         const { result } = renderHook(() =>
-            useTextArea({ startIcon: 'lucide:message-square' } as TextAreaProps),
+            useTextArea({ startIcon: InfoIcon } as TextAreaProps),
         )
 
         expect(result.current.hasStartIcon).toBe(true)

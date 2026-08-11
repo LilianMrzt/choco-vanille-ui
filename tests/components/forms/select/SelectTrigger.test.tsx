@@ -1,28 +1,10 @@
 import { createRef } from 'react'
-import { addIcon } from '@iconify/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Select from '@components/forms/select/Select.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:check', {
-        body: '<path d="M20 6 9 17l-5-5"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:search', {
-        body: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 describe('SelectTrigger', () => {
     describe('default rendering', () => {
@@ -53,7 +35,9 @@ describe('SelectTrigger', () => {
                     <Select.Trigger placeholder={'Select an option'} />
                 </Select>,
             )
-            expect(screen.getByRole('combobox').textContent).toContain('Select an option')
+            expect(screen.getByRole('combobox').textContent).toContain(
+                'Select an option',
+            )
         })
     })
 
@@ -61,7 +45,7 @@ describe('SelectTrigger', () => {
         it('renders an additional icon when startIcon is provided', () => {
             render(
                 <Select>
-                    <Select.Trigger startIcon={'lucide:search'} />
+                    <Select.Trigger startIcon={SearchIcon} />
                 </Select>,
             )
             // Both start icon and chevron → at least 2 SVGs
@@ -77,7 +61,9 @@ describe('SelectTrigger', () => {
                         <Select.Trigger size={size} />
                     </Select>,
                 )
-                expect(screen.getByRole('combobox').className.length).toBeGreaterThan(0)
+                expect(screen.getByRole('combobox').className.length).toBeGreaterThan(
+                    0,
+                )
                 unmount()
             }
         })
@@ -101,7 +87,9 @@ describe('SelectTrigger', () => {
                     <Select.Trigger />
                 </Select>,
             )
-            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(true)
+            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(
+                true,
+            )
         })
     })
 
@@ -142,7 +130,9 @@ describe('SelectTrigger', () => {
             await waitFor(() => {
                 // BaseSelect.Value in jsdom renders the raw value string; the
                 // placeholder is no longer shown once a value is selected.
-                expect(screen.getByRole('combobox').textContent).not.toContain('Pick one')
+                expect(screen.getByRole('combobox').textContent).not.toContain(
+                    'Pick one',
+                )
             })
         })
     })
@@ -165,9 +155,9 @@ describe('SelectTrigger', () => {
                     <Select.Trigger width={'12rem'} />
                 </Select>,
             )
-            expect(
-                (screen.getByRole('combobox') as HTMLElement).style.width,
-            ).toBe('12rem')
+            expect((screen.getByRole('combobox') as HTMLElement).style.width).toBe(
+                '12rem',
+            )
         })
     })
 

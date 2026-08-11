@@ -1,28 +1,21 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
-import { Button, BUTTON_STYLES, type ButtonVariant, type ButtonColor, type ButtonSize } from '@components/actions/button'
-
-// Preload test icons so Iconify renders synchronously in JSDOM.
-beforeAll(() => {
-    addIcon('lucide:check', {
-        body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:arrow-right', {
-        body: '<path d="M5 12h14M12 5l7 7-7 7"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import { describe, expect, it, vi } from 'vitest'
+import {
+    Button,
+    BUTTON_STYLES,
+    type ButtonVariant,
+    type ButtonColor,
+    type ButtonSize,
+} from '@components/actions/button'
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 // Helper
 
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 // Suites
 
@@ -43,8 +36,8 @@ describe('Button', () => {
             const { container } = render(
                 <Button
                     label="Save"
-                    startIcon="lucide:check"
-                    endIcon="lucide:arrow-right"
+                    startIcon={CheckIcon}
+                    endIcon={ChevronRightIcon}
                 />,
             )
             expect(container.querySelectorAll('svg').length).toBe(2)
@@ -54,24 +47,40 @@ describe('Button', () => {
     describe('variant styling', () => {
         const variants: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 
-        it.each(variants)('applies a non-empty class for variant="%s"', (variant) => {
-            const { container } = render(<Button variant={variant} label={'btn'} />)
-            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
-        })
+        it.each(variants)(
+            'applies a non-empty class for variant="%s"',
+            (variant) => {
+                const { container } = render(
+                    <Button variant={variant} label={'btn'} />,
+                )
+                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+            },
+        )
 
         it('falls back to the contained variant when none is provided', () => {
             const { container } = render(<Button label={'btn'} />)
-            expect(getFirstChild(container).className).toBe(BUTTON_STYLES.recipe({ variant: 'contained', size: 'md' }))
+            expect(getFirstChild(container).className).toBe(
+                BUTTON_STYLES.recipe({ variant: 'contained', size: 'md' }),
+            )
         })
 
         it('produces distinct class names for each variant', () => {
-            const classNames = variants.map((variant) => BUTTON_STYLES.recipe({ variant }))
+            const classNames = variants.map((variant) =>
+                BUTTON_STYLES.recipe({ variant }),
+            )
             expect(new Set(classNames).size).toBe(variants.length)
         })
     })
 
     describe('color styling', () => {
-        const colors: ButtonColor[] = ['primary', 'secondary', 'destructive', 'success', 'warning', 'info']
+        const colors: ButtonColor[] = [
+            'primary',
+            'secondary',
+            'destructive',
+            'success',
+            'warning',
+            'info',
+        ]
 
         it.each(colors)('applies a non-empty class for color="%s"', (color) => {
             const { container } = render(<Button color={color} label={'btn'} />)
@@ -100,7 +109,9 @@ describe('Button', () => {
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = render(<Button className={'my-custom-class'} label={'btn'} />)
+            const { container } = render(
+                <Button className={'my-custom-class'} label={'btn'} />,
+            )
             expect(getFirstChild(container).className).toContain('my-custom-class')
         })
 
@@ -115,7 +126,9 @@ describe('Button', () => {
     describe('disabled state', () => {
         it('is disabled when disabled prop is passed', () => {
             render(<Button disabled label={'btn'} />)
-            expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(true)
+            expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(
+                true,
+            )
         })
     })
 
@@ -138,13 +151,17 @@ describe('Button', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<Button data-testid={'btn'} label={'btn'} />)
+            const { container } = render(
+                <Button data-testid={'btn'} label={'btn'} />,
+            )
             expect(getFirstChild(container).getAttribute('data-testid')).toBe('btn')
         })
 
         it('forwards aria-* attributes', () => {
             render(<Button aria-label={'Save document'} label={'btn'} />)
-            expect(screen.getByRole('button', { name: 'Save document' })).toBeTruthy()
+            expect(
+                screen.getByRole('button', { name: 'Save document' }),
+            ).toBeTruthy()
         })
 
         it('forwards type attribute', () => {

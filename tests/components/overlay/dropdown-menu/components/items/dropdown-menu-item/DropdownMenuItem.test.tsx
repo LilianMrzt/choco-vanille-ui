@@ -3,12 +3,16 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import BoldIcon from '@resources/asset/BoldIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('DropdownMenuItem', () => {
     it('renders an actionable menu item', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Edit'} />
                 </DropdownMenu.Content>
@@ -22,7 +26,9 @@ describe('DropdownMenuItem', () => {
         const onClick = vi.fn()
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item label={'Edit'} onClick={onClick} />
                 </DropdownMenu.Content>
@@ -36,12 +42,14 @@ describe('DropdownMenuItem', () => {
     it('renders start and end icons', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Item
                         label={'Edit'}
-                        startIcon={'lucide:pencil'}
-                        endIcon={'lucide:arrow-right'}
+                        startIcon={BoldIcon}
+                        endIcon={ChevronRightIcon}
                     />
                 </DropdownMenu.Content>
             </DropdownMenu>,

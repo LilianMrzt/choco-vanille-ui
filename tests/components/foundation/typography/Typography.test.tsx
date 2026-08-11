@@ -2,6 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
+import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
 // Helpers
@@ -81,6 +82,13 @@ describe('Typography', () => {
         it('applies the fontWeight class', () => {
             const { container } = render(<Typography fontWeight="bold">text</Typography>)
             expect(getFirstChild(container).className).toContain(fontWeightClass('bold'))
+        })
+
+        it('uses the shared form label style for variant="label"', () => {
+            const { container } = render(
+                <Typography variant="label">Label</Typography>,
+            )
+            expect(getFirstChild(container).className).toContain(FORM_LABEL_STYLES.root)
         })
 
         it('applies the ellipsis class when ellipsis=true', () => {

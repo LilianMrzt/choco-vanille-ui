@@ -1,18 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteClear from '@components/forms/autocomplete/components/autocomplete-clear/AutocompleteClear.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteClear', () => {
     describe('default rendering', () => {
@@ -52,7 +43,9 @@ describe('AutocompleteClear', () => {
                 </Autocomplete>,
             )
             await userEvent.type(screen.getByRole('combobox'), 'app')
-            expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe('app')
+            expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe(
+                'app',
+            )
             const clearButton = document.querySelector<HTMLButtonElement>(
                 'button[aria-label="Clear"]',
             )
@@ -68,7 +61,9 @@ describe('AutocompleteClear', () => {
                 <Autocomplete>
                     <Autocomplete.InputGroup>
                         <Autocomplete.Input placeholder="Search" />
-                        <AutocompleteClear aria-label="Clear" data-testid="clear-btn">×</AutocompleteClear>
+                        <AutocompleteClear aria-label="Clear" data-testid="clear-btn">
+              ×
+                        </AutocompleteClear>
                     </Autocomplete.InputGroup>
                     <Autocomplete.Content>
                         <Autocomplete.List>

@@ -1,7 +1,6 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
     Avatar,
@@ -12,14 +11,7 @@ import {
     type AvatarStatus,
 } from '@components/data-display/avatar'
 import { AvatarGroup } from '@components/data-display/avatar-group'
-
-beforeAll(() => {
-    addIcon('lucide:user', {
-        body: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
@@ -47,7 +39,7 @@ describe('Avatar', () => {
         })
 
         it('renders a custom icon fallback', () => {
-            const { container } = render(<Avatar icon={'lucide:user'} />)
+            const { container } = render(<Avatar icon={UserIcon} />)
             expect(container.querySelectorAll('svg')).toHaveLength(1)
         })
 
@@ -138,11 +130,7 @@ describe('Avatar', () => {
 
         it('uses a custom accessible status label when provided', () => {
             render(
-                <Avatar
-                    status={'online'}
-                    statusLabel={'En ligne'}
-                    initials={'A'}
-                />,
+                <Avatar status={'online'} statusLabel={'En ligne'} initials={'A'} />,
             )
             expect(screen.getByRole('status').getAttribute('aria-label')).toBe(
                 'En ligne',
@@ -161,9 +149,7 @@ describe('Avatar', () => {
         })
 
         it('forwards role to the root element', () => {
-            const { container } = render(
-                <Avatar role={'button'} initials={'JD'} />,
-            )
+            const { container } = render(<Avatar role={'button'} initials={'JD'} />)
             expect(getFirstChild(container).getAttribute('role')).toBe('button')
         })
     })
@@ -244,10 +230,7 @@ describe('AvatarGroup', () => {
 
     it('supports a custom overflow label for i18n', () => {
         render(
-            <AvatarGroup
-                max={2}
-                overflowLabel={(count) => `${count} de plus`}
-            >
+            <AvatarGroup max={2} overflowLabel={(count) => `${count} de plus`}>
                 <Avatar initials="A" />
                 <Avatar initials="B" />
                 <Avatar initials="C" />

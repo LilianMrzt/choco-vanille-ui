@@ -32,7 +32,6 @@
       "@utils/*": ["./src/utils/*"],
       "@hooks": ["./src/hooks/index.ts"],
       "@hooks/*": ["./src/hooks/*"],
-      "@resources": ["./src/resources/index.ts"],
       "@resources/*": ["./src/resources/*"],
       "@stories/*": ["./src/stories/*"],
       "@tests/*": ["./tests/*"],

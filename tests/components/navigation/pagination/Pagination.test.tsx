@@ -1,23 +1,8 @@
-import { addIcon } from '@iconify/react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Pagination from '@components/navigation/pagination/Pagination.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-left', {
-        body: '<path d="m15 18-6-6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:chevron-right', {
-        body: '<path d="m9 18 6-6-6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
 // Minimal required props
 const defaultProps = {
     'aria-label': 'Pagination',
@@ -37,7 +22,9 @@ describe('Pagination', () => {
 
         it('applies the aria-label to the nav element', () => {
             render(<Pagination {...defaultProps} aria-label={'Page navigation'} />)
-            expect(screen.getByRole('navigation', { name: 'Page navigation' })).toBeTruthy()
+            expect(
+                screen.getByRole('navigation', { name: 'Page navigation' }),
+            ).toBeTruthy()
         })
 
         it('renders page buttons', () => {
@@ -49,7 +36,9 @@ describe('Pagination', () => {
 
         it('renders a Previous button', () => {
             render(<Pagination {...defaultProps} />)
-            expect(screen.getByRole('button', { name: 'Previous page' })).toBeTruthy()
+            expect(
+                screen.getByRole('button', { name: 'Previous page' }),
+            ).toBeTruthy()
         })
 
         it('renders a Next button', () => {
@@ -75,25 +64,33 @@ describe('Pagination', () => {
     describe('boundary behavior', () => {
         it('disables the Previous button on the first page', () => {
             render(<Pagination {...defaultProps} currentPage={1} />)
-            const prevBtn = screen.getByRole('button', { name: 'Previous page' }) as HTMLButtonElement
+            const prevBtn = screen.getByRole('button', {
+                name: 'Previous page',
+            }) as HTMLButtonElement
             expect(prevBtn.disabled).toBe(true)
         })
 
         it('disables the Next button on the last page', () => {
             render(<Pagination {...defaultProps} currentPage={10} />)
-            const nextBtn = screen.getByRole('button', { name: 'Next page' }) as HTMLButtonElement
+            const nextBtn = screen.getByRole('button', {
+                name: 'Next page',
+            }) as HTMLButtonElement
             expect(nextBtn.disabled).toBe(true)
         })
 
         it('enables the Previous button when not on the first page', () => {
             render(<Pagination {...defaultProps} currentPage={5} />)
-            const prevBtn = screen.getByRole('button', { name: 'Previous page' }) as HTMLButtonElement
+            const prevBtn = screen.getByRole('button', {
+                name: 'Previous page',
+            }) as HTMLButtonElement
             expect(prevBtn.disabled).toBe(false)
         })
 
         it('enables the Next button when not on the last page', () => {
             render(<Pagination {...defaultProps} currentPage={5} />)
-            const nextBtn = screen.getByRole('button', { name: 'Next page' }) as HTMLButtonElement
+            const nextBtn = screen.getByRole('button', {
+                name: 'Next page',
+            }) as HTMLButtonElement
             expect(nextBtn.disabled).toBe(false)
         })
     })
@@ -121,7 +118,9 @@ describe('Pagination', () => {
                     onPageChange={handlePageChange}
                 />,
             )
-            await userEvent.click(screen.getByRole('button', { name: 'Previous page' }))
+            await userEvent.click(
+                screen.getByRole('button', { name: 'Previous page' }),
+            )
             expect(handlePageChange).toHaveBeenCalledWith(4)
         })
 
@@ -157,7 +156,9 @@ describe('Pagination', () => {
     describe('custom className', () => {
         it('merges a custom className onto the nav element', () => {
             render(<Pagination {...defaultProps} className={'custom-pagination'} />)
-            expect(screen.getByRole('navigation').className).toContain('custom-pagination')
+            expect(screen.getByRole('navigation').className).toContain(
+                'custom-pagination',
+            )
         })
     })
 

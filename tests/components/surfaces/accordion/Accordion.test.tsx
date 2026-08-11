@@ -1,19 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Accordion from '@components/surfaces/accordion/Accordion.tsx'
 
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
-const buildAccordion = (props: Partial<React.ComponentProps<typeof Accordion>> = {}) =>
+const buildAccordion = (
+    props: Partial<React.ComponentProps<typeof Accordion>> = {},
+) =>
     render(
         <Accordion defaultValue={[]} {...props}>
             <Accordion.Item value="item-1">
@@ -125,7 +118,9 @@ describe('Accordion', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = buildAccordion({ 'data-testid': 'accordion' } as never)
+            const { container } = buildAccordion({
+                'data-testid': 'accordion',
+            } as never)
             expect(container.querySelector('[data-testid="accordion"]')).toBeTruthy()
         })
     })

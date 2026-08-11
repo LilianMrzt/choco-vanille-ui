@@ -65,9 +65,17 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 span: {},
                 label: {
-                    fontSize: vars.fontSize.sm,
+                    fontSize: vars.fontSize.md,
                     fontWeight: vars.fontWeight.medium,
-                    lineHeight: vars.lineHeight.none,
+                    lineHeight: vars.lineHeight.normal,
+                    color: vars.color.foreground,
+                    userSelect: 'none',
+                    selectors: {
+                        '&[data-disabled]': {
+                            cursor: 'not-allowed',
+                            opacity: 0.45,
+                        },
+                    },
                 },
                 small: {
                     fontSize: vars.fontSize.sm,

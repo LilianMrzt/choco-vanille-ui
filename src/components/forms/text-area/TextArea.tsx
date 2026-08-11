@@ -1,8 +1,8 @@
 import {
-    TextAreaLabel,
     TextAreaStartIcon,
     TextAreaEndAction,
 } from '@components/forms/text-area/components/index.ts'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { TEXT_AREA_STYLES } from '@components/forms/text-area/styles/TextArea.css.ts'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { useAutoResizeTextArea } from '@components/forms/text-area/hooks/useAutoResizeTextArea.hook.tsx'
@@ -113,13 +113,13 @@ const TextArea = memo<TextAreaProps>((props) => {
             style={width !== undefined ? { width } : undefined}
         >
             {label && (
-                <TextAreaLabel
+                <FormLabel
                     htmlFor={inputId}
                     disabled={disabled}
                     fontSize={fontSizeProp}
                 >
                     {label}
-                </TextAreaLabel>
+                </FormLabel>
             )}
 
             <Flex
@@ -178,7 +178,7 @@ const TextArea = memo<TextAreaProps>((props) => {
 }) as unknown as TextAreaCompound
 
 TextArea.displayName = 'TextArea'
-TextArea.Label = TextAreaLabel
+TextArea.Label = FormLabel
 TextArea.StartIcon = TextAreaStartIcon
 TextArea.EndAction = TextAreaEndAction
 

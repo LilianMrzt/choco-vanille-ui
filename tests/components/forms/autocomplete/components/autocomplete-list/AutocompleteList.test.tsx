@@ -1,19 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteList from '@components/forms/autocomplete/components/autocomplete-list/AutocompleteList.tsx'
 import AutocompleteItem from '@components/forms/autocomplete/components/autocomplete-item/AutocompleteItem.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteList', () => {
     describe('default rendering', () => {

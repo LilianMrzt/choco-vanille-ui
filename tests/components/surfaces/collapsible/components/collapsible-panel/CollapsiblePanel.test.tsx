@@ -1,20 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Collapsible from '@components/surfaces/collapsible/Collapsible.tsx'
 import CollapsiblePanel from '@components/surfaces/collapsible/components/collapsible-panel/CollapsiblePanel.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
 /** Render an open collapsible so the panel is visible. */
-const buildPanel = (panelProps: React.ComponentProps<typeof CollapsiblePanel> = {}) =>
+const buildPanel = (
+    panelProps: React.ComponentProps<typeof CollapsiblePanel> = {},
+) =>
     render(
         <Collapsible defaultOpen={true}>
             <Collapsible.Trigger label="Toggle" />
@@ -46,21 +38,29 @@ describe('CollapsiblePanel', () => {
         it('applies an inline paddingBottom style based on the spacing token', () => {
             const { container } = buildPanel({ children: 'Content', padding: 'md' })
             // The panel or its wrapper should have a paddingBottom style set
-            const el = container.querySelector('[style*="padding"]') as HTMLElement | null
+            const el = container.querySelector(
+                '[style*="padding"]',
+            ) as HTMLElement | null
             expect(el).toBeTruthy()
         })
     })
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = buildPanel({ children: 'Content', className: 'my-panel' })
+            const { container } = buildPanel({
+                children: 'Content',
+                className: 'my-panel',
+            })
             expect(container.querySelector('.my-panel')).toBeTruthy()
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = buildPanel({ children: 'Content', 'data-testid': 'panel' })
+            const { container } = buildPanel({
+                children: 'Content',
+                'data-testid': 'panel',
+            })
             expect(container.querySelector('[data-testid="panel"]')).toBeTruthy()
         })
     })

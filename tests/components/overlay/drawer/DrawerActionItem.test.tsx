@@ -1,23 +1,15 @@
-import { addIcon } from '@iconify/react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:log-out', {
-        body: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 
 describe('Drawer.ActionItem', () => {
     it('renders a button with the label', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+                <Drawer.ActionItem                 label="Sign out" startIcon={CloseIcon} />
             </Drawer>,
         )
 
@@ -27,7 +19,7 @@ describe('Drawer.ActionItem', () => {
     it('renders a start icon', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Sign out" startIcon="lucide:log-out" />
+                <Drawer.ActionItem label="Sign out" startIcon={CloseIcon} />
             </Drawer>,
         )
 
@@ -38,7 +30,11 @@ describe('Drawer.ActionItem', () => {
         const onClick = vi.fn()
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Action" startIcon="lucide:log-out" onClick={onClick} />
+                <Drawer.ActionItem
+                    label="Action"
+                    startIcon={CloseIcon}
+                    onClick={onClick}
+                />
             </Drawer>,
         )
 
@@ -50,17 +46,23 @@ describe('Drawer.ActionItem', () => {
     it('disables the button', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Disabled" startIcon="lucide:log-out" disabled />
+                <Drawer.ActionItem label="Disabled" startIcon={CloseIcon} disabled />
             </Drawer>,
         )
 
-        expect(screen.getByRole('button', { name: 'Disabled' }).hasAttribute('disabled')).toBe(true)
+        expect(
+            screen.getByRole('button', { name: 'Disabled' }).hasAttribute('disabled'),
+        ).toBe(true)
     })
 
     it('forwards data-* attributes', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.ActionItem label="Test" startIcon="lucide:log-out" data-testid="action-item" />
+                <Drawer.ActionItem
+                    label="Test"
+                    startIcon={CloseIcon}
+                    data-testid="action-item"
+                />
             </Drawer>,
         )
 

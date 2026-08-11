@@ -1,8 +1,9 @@
 import { Fragment, type FC, memo, useCallback, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
-import { TextFieldLabel, TextFieldStartIcon } from '@components/forms/text-field/components'
+import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import type { AutocompleteFieldProps } from '@components/forms/autocomplete/types/Autocomplete.props.ts'
 import useAutocompleteField from '@components/forms/autocomplete/components/autocomplete-field/hooks/useAutocompleteField.hook.ts'
@@ -75,13 +76,13 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
             className={className}
         >
             {label && (
-                <TextFieldLabel
+                <FormLabel
                     htmlFor={inputId}
                     disabled={disabled}
                     fontSize={fontSize}
                 >
                     {label}
-                </TextFieldLabel>
+                </FormLabel>
             )}
 
             <Flex

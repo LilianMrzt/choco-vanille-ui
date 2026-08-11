@@ -1,20 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Accordion from '@components/surfaces/accordion/Accordion.tsx'
 import AccordionContent from '@components/surfaces/accordion/components/accordion-content/AccordionContent.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
 /** Render an open single-item accordion so the Content panel is visible. */
-const buildContent = (contentProps: React.ComponentProps<typeof AccordionContent> = {}) =>
+const buildContent = (
+    contentProps: React.ComponentProps<typeof AccordionContent> = {},
+) =>
     render(
         <Accordion defaultValue={['item-1']}>
             <Accordion.Item value="item-1">
@@ -52,21 +44,30 @@ describe('AccordionContent', () => {
 
     describe('keepMounted prop', () => {
         it('mounts the panel in the DOM when keepMounted is true (default)', () => {
-            const { container } = buildContent({ children: 'Mounted content', keepMounted: true })
+            const { container } = buildContent({
+                children: 'Mounted content',
+                keepMounted: true,
+            })
             expect(container.textContent).toContain('Mounted content')
         })
     })
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = buildContent({ children: 'Content', className: 'my-content' })
+            const { container } = buildContent({
+                children: 'Content',
+                className: 'my-content',
+            })
             expect(container.querySelector('.my-content')).toBeTruthy()
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = buildContent({ children: 'Content', 'data-testid': 'panel' })
+            const { container } = buildContent({
+                children: 'Content',
+                'data-testid': 'panel',
+            })
             expect(container.querySelector('[data-testid="panel"]')).toBeTruthy()
         })
     })

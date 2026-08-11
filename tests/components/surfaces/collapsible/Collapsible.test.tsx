@@ -1,19 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Collapsible from '@components/surfaces/collapsible/Collapsible.tsx'
 
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
-const buildCollapsible = (props: Partial<React.ComponentProps<typeof Collapsible>> = {}) =>
+const buildCollapsible = (
+    props: Partial<React.ComponentProps<typeof Collapsible>> = {},
+) =>
     render(
         <Collapsible defaultOpen={false} {...props}>
             <Collapsible.Trigger label="Toggle" />

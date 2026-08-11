@@ -1,18 +1,11 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { TextArea } from '@components/forms/text-area'
-
-beforeAll(() => {
-    addIcon('lucide:message-square', {
-        body: '<path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 
 describe('TextArea', () => {
     describe('rendering', () => {
@@ -43,7 +36,7 @@ describe('TextArea', () => {
         })
 
         it('renders a start icon', () => {
-            render(<TextArea startIcon={'lucide:message-square'} />)
+            render(<TextArea startIcon={InfoIcon} />)
             expect(document.querySelector('svg')).toBeTruthy()
         })
 
@@ -152,7 +145,7 @@ describe('TextArea', () => {
 
     describe('compound sub-components', () => {
         it('exposes Label, StartIcon and EndAction', () => {
-            expect(TextArea.Label).toBeTruthy()
+            expect(TextArea.Label).toBe(FormLabel)
             expect(TextArea.StartIcon).toBeTruthy()
             expect(TextArea.EndAction).toBeTruthy()
         })

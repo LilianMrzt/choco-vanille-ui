@@ -1,32 +1,18 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
     ToggleGroup,
     TOGGLE_GROUP_STYLES,
 } from '@components/actions/toggle-group'
-
-// Preload test icons so Iconify renders synchronously in JSDOM.
-beforeAll(() => {
-    addIcon('lucide:check', {
-        body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:arrow-right', {
-        body: '<path d="M5 12h14M12 5l7 7-7 7"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 
 // Helper
 
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 // A reusable three-item group helper.
 const TestGroup = (props: React.ComponentProps<typeof ToggleGroup>) => (
@@ -61,16 +47,16 @@ describe('ToggleGroup', () => {
     describe('orientation', () => {
         it('defaults to horizontal orientation', () => {
             const { container } = render(<TestGroup />)
-            expect(
-                getFirstChild(container).getAttribute('data-orientation'),
-            ).toBe('horizontal')
+            expect(getFirstChild(container).getAttribute('data-orientation')).toBe(
+                'horizontal',
+            )
         })
 
         it('applies vertical orientation when specified', () => {
             const { container } = render(<TestGroup orientation={'vertical'} />)
-            expect(
-                getFirstChild(container).getAttribute('data-orientation'),
-            ).toBe('vertical')
+            expect(getFirstChild(container).getAttribute('data-orientation')).toBe(
+                'vertical',
+            )
         })
 
         it('applies distinct class names for each orientation', () => {
@@ -86,9 +72,7 @@ describe('ToggleGroup', () => {
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = render(
-                <TestGroup className={'my-group'} />,
-            )
+            const { container } = render(<TestGroup className={'my-group'} />)
             expect(getFirstChild(container).className).toContain('my-group')
         })
 
@@ -111,7 +95,9 @@ describe('ToggleGroup', () => {
         it('starts with the specified item pressed when defaultValue is set', () => {
             render(<TestGroup defaultValue={['bold']} />)
             expect(
-                screen.getByRole('button', { name: 'Bold' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
         })
 
@@ -119,7 +105,9 @@ describe('ToggleGroup', () => {
             render(<TestGroup />)
             await userEvent.click(screen.getByRole('button', { name: 'Bold' }))
             expect(
-                screen.getByRole('button', { name: 'Bold' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
         })
 
@@ -127,10 +115,14 @@ describe('ToggleGroup', () => {
             render(<TestGroup defaultValue={['bold']} />)
             await userEvent.click(screen.getByRole('button', { name: 'Italic' }))
             expect(
-                screen.getByRole('button', { name: 'Bold' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('data-pressed'),
             ).toBeNull()
             expect(
-                screen.getByRole('button', { name: 'Italic' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Italic' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
         })
 
@@ -139,10 +131,14 @@ describe('ToggleGroup', () => {
             await userEvent.click(screen.getByRole('button', { name: 'Bold' }))
             await userEvent.click(screen.getByRole('button', { name: 'Italic' }))
             expect(
-                screen.getByRole('button', { name: 'Bold' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
             expect(
-                screen.getByRole('button', { name: 'Italic' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Italic' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
         })
     })
@@ -151,23 +147,22 @@ describe('ToggleGroup', () => {
         it('renders the specified item as pressed when value is provided', () => {
             render(<TestGroup value={['italic']} onValueChange={() => {}} />)
             expect(
-                screen.getByRole('button', { name: 'Italic' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Italic' })
+                    .getAttribute('data-pressed'),
             ).not.toBeNull()
             expect(
-                screen.getByRole('button', { name: 'Bold' }).getAttribute('data-pressed'),
+                screen
+                    .getByRole('button', { name: 'Bold' })
+                    .getAttribute('data-pressed'),
             ).toBeNull()
         })
 
         it('calls onValueChange with the new value array when an item is clicked', async () => {
             const onValueChange = vi.fn()
-            render(
-                <TestGroup value={[]} onValueChange={onValueChange} />,
-            )
+            render(<TestGroup value={[]} onValueChange={onValueChange} />)
             await userEvent.click(screen.getByRole('button', { name: 'Bold' }))
-            expect(onValueChange).toHaveBeenCalledWith(
-                ['bold'],
-                expect.anything(),
-            )
+            expect(onValueChange).toHaveBeenCalledWith(['bold'], expect.anything())
         })
     })
 
@@ -183,9 +178,7 @@ describe('ToggleGroup', () => {
 
         it('does not press a disabled item on click', async () => {
             render(<TestGroup />)
-            await userEvent.click(
-                screen.getByRole('button', { name: 'Underline' }),
-            )
+            await userEvent.click(screen.getByRole('button', { name: 'Underline' }))
             expect(
                 screen
                     .getByRole('button', { name: 'Underline' })
@@ -218,12 +211,10 @@ describe('ToggleGroup', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(
-                <TestGroup data-testid={'group'} />,
+            const { container } = render(<TestGroup data-testid={'group'} />)
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'group',
             )
-            expect(
-                getFirstChild(container).getAttribute('data-testid'),
-            ).toBe('group')
         })
     })
 
@@ -255,9 +246,7 @@ describe('ToggleGroup', () => {
                     <ToggleGroup.Item value={'x'} label={'Option X'} />
                 </ToggleGroup>,
             )
-            expect(
-                screen.getByRole('button', { name: 'Option X' }),
-            ).toBeTruthy()
+            expect(screen.getByRole('button', { name: 'Option X' })).toBeTruthy()
         })
 
         it('ToggleGroup.Item accepts an icon prop for icon-only mode', () => {
@@ -265,7 +254,7 @@ describe('ToggleGroup', () => {
                 <ToggleGroup aria-label={'Group'}>
                     <ToggleGroup.Item
                         value={'check'}
-                        icon={'lucide:check'}
+                        icon={CheckIcon}
                         aria-label={'Check'}
                     />
                 </ToggleGroup>,

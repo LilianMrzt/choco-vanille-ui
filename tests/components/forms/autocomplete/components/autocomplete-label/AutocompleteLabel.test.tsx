@@ -1,19 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteGroup from '@components/forms/autocomplete/components/autocomplete-group/AutocompleteGroup.tsx'
 import AutocompleteLabel from '@components/forms/autocomplete/components/autocomplete-label/AutocompleteLabel.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteLabel', () => {
     describe('default rendering', () => {
@@ -48,7 +39,9 @@ describe('AutocompleteLabel', () => {
                     <Autocomplete.Content>
                         <Autocomplete.List>
                             <AutocompleteGroup>
-                                <AutocompleteLabel data-testid="group-label">Group</AutocompleteLabel>
+                                <AutocompleteLabel data-testid="group-label">
+                  Group
+                                </AutocompleteLabel>
                                 <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
                             </AutocompleteGroup>
                         </Autocomplete.List>
@@ -56,7 +49,9 @@ describe('AutocompleteLabel', () => {
                 </Autocomplete>,
             )
             await userEvent.click(screen.getByRole('combobox'))
-            expect(document.querySelector('[data-testid="group-label"]')).toBeTruthy()
+            expect(
+                document.querySelector('[data-testid="group-label"]'),
+            ).toBeTruthy()
         })
     })
 

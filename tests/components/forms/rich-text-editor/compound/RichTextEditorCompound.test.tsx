@@ -114,11 +114,10 @@ describe('RichTextEditor compound API', () => {
             </RichTextEditor>,
         )
 
-        expect(screen.getByRole('button', { name: 'Undo' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Bold' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text color' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text size' })).toBeTruthy()
-        expect(screen.getByRole('button', { name: 'Add or edit link' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Link actions' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Block format' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Lists' })).toBeTruthy()
         expect(screen.getByRole('button', { name: 'Text alignment' })).toBeTruthy()

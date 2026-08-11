@@ -1,18 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteCollection from '@components/forms/autocomplete/components/autocomplete-collection/AutocompleteCollection.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteCollection', () => {
     describe('default rendering', () => {
@@ -49,7 +40,9 @@ describe('AutocompleteCollection', () => {
 
     describe('displayName', () => {
         it('is set to "Autocomplete.Collection"', () => {
-            expect(AutocompleteCollection.displayName).toBe('Autocomplete.Collection')
+            expect(AutocompleteCollection.displayName).toBe(
+                'Autocomplete.Collection',
+            )
         })
     })
 })

@@ -2,12 +2,15 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('DropdownMenuSubTrigger', () => {
     it('renders a sub-menu trigger', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
                         <DropdownMenu.SubTrigger label={'More'} />
@@ -25,12 +28,14 @@ describe('DropdownMenuSubTrigger', () => {
     it('renders a start icon when provided', () => {
         render(
             <DropdownMenu defaultOpen>
-                <DropdownMenu.Trigger><button type={'button'}>Open</button></DropdownMenu.Trigger>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
                     <DropdownMenu.Sub>
                         <DropdownMenu.SubTrigger
                             label={'More'}
-                            startIcon={'lucide:chevron-right'}
+                            startIcon={ChevronRightIcon}
                         />
                         <DropdownMenu.SubContent>
                             <DropdownMenu.Item label={'Nested'} />

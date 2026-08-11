@@ -850,6 +850,7 @@ describe('Command', () => {
                 </Command>,
             )
 
+            await userEvent.click(screen.getByRole('combobox'))
             await userEvent.keyboard('{ArrowDown}')
 
             const input = screen.getByRole('combobox')

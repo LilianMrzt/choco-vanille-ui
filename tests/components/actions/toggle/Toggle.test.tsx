@@ -1,8 +1,7 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
     Toggle,
@@ -11,26 +10,14 @@ import {
     type ToggleColor,
     type ToggleSize,
 } from '@components/actions/toggle'
-
-// Preload test icons so Iconify renders synchronously in JSDOM.
-beforeAll(() => {
-    addIcon('lucide:check', {
-        body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:arrow-right', {
-        body: '<path d="M5 12h14M12 5l7 7-7 7"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 // Helper
 
 const getButton = () => screen.getByRole('button')
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 // Suites
 
@@ -48,20 +35,18 @@ describe('Toggle', () => {
 
         it('renders an icon-only button when icon prop is provided', () => {
             const { container } = render(
-                <Toggle icon={'lucide:check'} aria-label={'Check'} />,
+                <Toggle icon={CheckIcon} aria-label={'Check'} />,
             )
             expect(container.querySelector('svg')).toBeTruthy()
-            expect(
-                getFirstChild(container).getAttribute('data-icon-only'),
-            ).toBe('')
+            expect(getFirstChild(container).getAttribute('data-icon-only')).toBe('')
         })
 
         it('renders start and end icons alongside the label', () => {
             const { container } = render(
                 <Toggle
                     label={'Save'}
-                    startIcon={'lucide:check'}
-                    endIcon={'lucide:arrow-right'}
+                    startIcon={CheckIcon}
+                    endIcon={ChevronRightIcon}
                 />,
             )
             expect(container.querySelectorAll('svg').length).toBe(2)
@@ -78,12 +63,15 @@ describe('Toggle', () => {
     describe('variant styling', () => {
         const variants: ToggleVariant[] = ['ghost', 'outlined']
 
-        it.each(variants)('applies a non-empty class for variant="%s"', (variant) => {
-            const { container } = render(
-                <Toggle variant={variant} label={'btn'} />,
-            )
-            expect(getFirstChild(container).className.length).toBeGreaterThan(0)
-        })
+        it.each(variants)(
+            'applies a non-empty class for variant="%s"',
+            (variant) => {
+                const { container } = render(
+                    <Toggle variant={variant} label={'btn'} />,
+                )
+                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+            },
+        )
 
         it('falls back to the outlined variant when none is provided', () => {
             const { container } = render(<Toggle label={'btn'} />)
@@ -111,16 +99,12 @@ describe('Toggle', () => {
         ]
 
         it.each(colors)('applies a non-empty class for color="%s"', (color) => {
-            const { container } = render(
-                <Toggle color={color} label={'btn'} />,
-            )
+            const { container } = render(<Toggle color={color} label={'btn'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
         it('produces distinct class names for each color', () => {
-            const classNames = colors.map((color) =>
-                TOGGLE_STYLES.recipe({ color }),
-            )
+            const classNames = colors.map((color) => TOGGLE_STYLES.recipe({ color }))
             expect(new Set(classNames).size).toBe(colors.length)
         })
     })
@@ -129,16 +113,12 @@ describe('Toggle', () => {
         const sizes: ToggleSize[] = ['sm', 'md', 'lg']
 
         it.each(sizes)('applies a non-empty class for size="%s"', (size) => {
-            const { container } = render(
-                <Toggle size={size} label={'btn'} />,
-            )
+            const { container } = render(<Toggle size={size} label={'btn'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
 
         it('produces distinct class names for each size', () => {
-            const classNames = sizes.map((size) =>
-                TOGGLE_STYLES.recipe({ size }),
-            )
+            const classNames = sizes.map((size) => TOGGLE_STYLES.recipe({ size }))
             expect(new Set(classNames).size).toBe(sizes.length)
         })
     })
@@ -162,9 +142,7 @@ describe('Toggle', () => {
     describe('pressed state — uncontrolled', () => {
         it('starts unpressed by default', () => {
             const { container } = render(<Toggle label={'Bold'} />)
-            expect(
-                getFirstChild(container).getAttribute('data-pressed'),
-            ).toBeNull()
+            expect(getFirstChild(container).getAttribute('data-pressed')).toBeNull()
         })
 
         it('becomes pressed after a click', async () => {
@@ -179,15 +157,11 @@ describe('Toggle', () => {
             const { container } = render(<Toggle label={'Bold'} />)
             await userEvent.click(getButton())
             await userEvent.click(getButton())
-            expect(
-                getFirstChild(container).getAttribute('data-pressed'),
-            ).toBeNull()
+            expect(getFirstChild(container).getAttribute('data-pressed')).toBeNull()
         })
 
         it('starts pressed when defaultPressed={true}', () => {
-            const { container } = render(
-                <Toggle defaultPressed label={'Bold'} />,
-            )
+            const { container } = render(<Toggle defaultPressed label={'Bold'} />)
             expect(
                 getFirstChild(container).getAttribute('data-pressed'),
             ).not.toBeNull()
@@ -196,35 +170,24 @@ describe('Toggle', () => {
 
     describe('pressed state — controlled', () => {
         it('renders as pressed when pressed={true}', () => {
-            const { container } = render(
-                <Toggle pressed label={'Bold'} />,
-            )
+            const { container } = render(<Toggle pressed label={'Bold'} />)
             expect(
                 getFirstChild(container).getAttribute('data-pressed'),
             ).not.toBeNull()
         })
 
         it('renders as unpressed when pressed={false}', () => {
-            const { container } = render(
-                <Toggle pressed={false} label={'Bold'} />,
-            )
-            expect(
-                getFirstChild(container).getAttribute('data-pressed'),
-            ).toBeNull()
+            const { container } = render(<Toggle pressed={false} label={'Bold'} />)
+            expect(getFirstChild(container).getAttribute('data-pressed')).toBeNull()
         })
     })
 
     describe('onPressedChange callback', () => {
         it('calls onPressedChange with true when an unpressed toggle is clicked', async () => {
             const onPressedChange = vi.fn()
-            render(
-                <Toggle label={'Bold'} onPressedChange={onPressedChange} />,
-            )
+            render(<Toggle label={'Bold'} onPressedChange={onPressedChange} />)
             await userEvent.click(getButton())
-            expect(onPressedChange).toHaveBeenCalledWith(
-                true,
-                expect.anything(),
-            )
+            expect(onPressedChange).toHaveBeenCalledWith(true, expect.anything())
         })
 
         it('calls onPressedChange with false when a pressed toggle is clicked', async () => {
@@ -237,19 +200,14 @@ describe('Toggle', () => {
                 />,
             )
             await userEvent.click(getButton())
-            expect(onPressedChange).toHaveBeenCalledWith(
-                false,
-                expect.anything(),
-            )
+            expect(onPressedChange).toHaveBeenCalledWith(false, expect.anything())
         })
     })
 
     describe('disabled state', () => {
         it('marks the button as disabled', () => {
             render(<Toggle disabled label={'Bold'} />)
-            expect(
-                (getButton() as HTMLButtonElement).disabled,
-            ).toBe(true)
+            expect((getButton() as HTMLButtonElement).disabled).toBe(true)
         })
 
         it('does not call onClick when disabled', async () => {
@@ -265,18 +223,18 @@ describe('Toggle', () => {
             const { container } = render(
                 <Toggle data-testid={'toggle'} label={'btn'} />,
             )
-            expect(
-                getFirstChild(container).getAttribute('data-testid'),
-            ).toBe('toggle')
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'toggle',
+            )
         })
 
         it('forwards aria-* attributes', () => {
             const { container } = render(
                 <Toggle aria-describedby={'hint'} label={'Bold'} />,
             )
-            expect(
-                getFirstChild(container).getAttribute('aria-describedby'),
-            ).toBe('hint')
+            expect(getFirstChild(container).getAttribute('aria-describedby')).toBe(
+                'hint',
+            )
         })
     })
 

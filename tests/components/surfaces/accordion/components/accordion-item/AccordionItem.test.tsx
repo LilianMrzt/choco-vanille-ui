@@ -1,18 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Accordion from '@components/surfaces/accordion/Accordion.tsx'
 import AccordionItem from '@components/surfaces/accordion/components/accordion-item/AccordionItem.tsx'
 import { ACCORDION_ITEM_STYLES } from '@components/surfaces/accordion/components/accordion-item/styles/AccordionItem.css.ts'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AccordionItem', () => {
     describe('default rendering', () => {
@@ -85,7 +76,9 @@ describe('AccordionItem', () => {
                     </AccordionItem>
                 </Accordion>,
             )
-            expect(container.querySelector('[data-testid="accordion-item"]')).toBeTruthy()
+            expect(
+                container.querySelector('[data-testid="accordion-item"]'),
+            ).toBeTruthy()
         })
     })
 

@@ -1,28 +1,10 @@
 import { createRef } from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { Select, SelectField } from '@components/forms/select'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:check', {
-        body: '<path d="M20 6 9 17l-5-5"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:apple', {
-        body: '<path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20Z"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -91,18 +73,17 @@ describe('SelectField', () => {
         })
 
         it('renders a start icon', () => {
-            render(<SelectField startIcon={'lucide:apple'} options={FRUIT_OPTIONS} />)
+            render(<SelectField startIcon={CircleIcon} options={FRUIT_OPTIONS} />)
             expect(document.querySelector('svg')).toBeTruthy()
         })
 
         it('renders the placeholder when no value is selected', () => {
             render(
-                <SelectField
-                    placeholder={'Pick a fruit'}
-                    options={FRUIT_OPTIONS}
-                />,
+                <SelectField placeholder={'Pick a fruit'} options={FRUIT_OPTIONS} />,
             )
-            expect(screen.getByRole('combobox').textContent).toContain('Pick a fruit')
+            expect(screen.getByRole('combobox').textContent).toContain(
+                'Pick a fruit',
+            )
         })
     })
 
@@ -118,10 +99,7 @@ describe('SelectField', () => {
         it('selects an option with the keyboard', async () => {
             const handleChange = vi.fn()
             render(
-                <SelectField
-                    options={FRUIT_OPTIONS}
-                    onValueChange={handleChange}
-                />,
+                <SelectField options={FRUIT_OPTIONS} onValueChange={handleChange} />,
             )
             const trigger = screen.getByRole('combobox')
             trigger.focus()
@@ -151,7 +129,9 @@ describe('SelectField', () => {
     describe('states', () => {
         it('disables the trigger when disabled is true', () => {
             render(<SelectField disabled options={FRUIT_OPTIONS} />)
-            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(true)
+            expect((screen.getByRole('combobox') as HTMLButtonElement).disabled).toBe(
+                true,
+            )
         })
 
         it('applies a custom width to the wrapper', () => {
@@ -186,7 +166,9 @@ describe('SelectField', () => {
             await waitFor(() => {
                 expect(document.querySelector('[data-open]')).not.toBeNull()
             })
-            const disabledOption = screen.getByText('Raspberry').closest('[role="option"]') as HTMLElement
+            const disabledOption = screen
+                .getByText('Raspberry')
+                .closest('[role="option"]') as HTMLElement
             expect(disabledOption.getAttribute('data-disabled')).toBe('')
         })
     })

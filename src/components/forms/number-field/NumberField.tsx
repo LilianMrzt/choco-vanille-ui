@@ -1,7 +1,7 @@
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field'
 import { memo, useId } from 'react'
 
-import { TextFieldLabel } from '@components/forms/text-field/components'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import NumberFieldInput from '@components/forms/number-field/components/number-field-input/NumberFieldInput.tsx'
 import { NUMBER_FIELD_STYLES } from '@components/forms/number-field/styles/NumberField.css.ts'
@@ -63,13 +63,13 @@ const NumberField = memo<NumberFieldProps>((props) => {
             style={width !== undefined ? { width } : undefined}
         >
             {label && (
-                <TextFieldLabel
+                <FormLabel
                     htmlFor={inputId}
                     disabled={disabled}
                     fontSize={fontSize}
                 >
                     {label}
-                </TextFieldLabel>
+                </FormLabel>
             )}
 
             <BaseNumberField.Root

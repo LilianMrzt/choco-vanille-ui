@@ -1,17 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteInputGroup from '@components/forms/autocomplete/components/autocomplete-input-group/AutocompleteInputGroup.tsx'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteInputGroup', () => {
     describe('default rendering', () => {
@@ -71,7 +62,9 @@ describe('AutocompleteInputGroup', () => {
 
     describe('displayName', () => {
         it('is set to "Autocomplete.InputGroup"', () => {
-            expect(AutocompleteInputGroup.displayName).toBe('Autocomplete.InputGroup')
+            expect(AutocompleteInputGroup.displayName).toBe(
+                'Autocomplete.InputGroup',
+            )
         })
     })
 })

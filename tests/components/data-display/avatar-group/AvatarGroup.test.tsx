@@ -1,20 +1,11 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { Avatar } from '@components/data-display/avatar'
 import AvatarGroup from '@components/data-display/avatar-group/AvatarGroup.tsx'
 import { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/constants'
 import type { AvatarGroupSpacing } from '@components/data-display/avatar-group/types/AvatarGroup.props.ts'
-
-beforeAll(() => {
-    addIcon('lucide:user', {
-        body: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AvatarGroup', () => {
     describe('default rendering', () => {
@@ -114,7 +105,13 @@ describe('AvatarGroup', () => {
         })
 
         it('renders without crashing for each spacing value', () => {
-            for (const spacing of ['none', 'sm', 'md', 'lg', 'xl'] as AvatarGroupSpacing[]) {
+            for (const spacing of [
+                'none',
+                'sm',
+                'md',
+                'lg',
+                'xl',
+            ] as AvatarGroupSpacing[]) {
                 const { unmount } = render(
                     <AvatarGroup spacing={spacing}>
                         <Avatar initials="A" />
@@ -134,7 +131,9 @@ describe('AvatarGroup', () => {
                     <Avatar initials="A" />
                 </AvatarGroup>,
             )
-            expect((container.firstElementChild as HTMLElement).className).toContain('my-group')
+            expect((container.firstElementChild as HTMLElement).className).toContain(
+                'my-group',
+            )
         })
     })
 
@@ -158,7 +157,9 @@ describe('AvatarGroup', () => {
                     <Avatar initials="A" />
                 </AvatarGroup>,
             )
-            expect(container.querySelector('[data-testid="avatar-group"]')).toBeTruthy()
+            expect(
+                container.querySelector('[data-testid="avatar-group"]'),
+            ).toBeTruthy()
         })
     })
 

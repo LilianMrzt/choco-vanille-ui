@@ -1,6 +1,6 @@
 import { IconButton } from '@components/actions/icon-button'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import {
-    TextFieldLabel,
     TextFieldStartIcon,
     TextFieldEndAction,
 } from '@components/forms/text-field/components/index.ts'
@@ -107,14 +107,14 @@ const TextField = memo<TextFieldProps>((props) => {
             style={width !== undefined ? { width } : undefined}
         >
             {label && (
-                <TextFieldLabel
+                <FormLabel
                     htmlFor={inputId}
                     disabled={disabled}
                     required={required && showRequiredIndicator}
                     fontSize={fontSizeProp}
                 >
                     {label}
-                </TextFieldLabel>
+                </FormLabel>
             )}
 
             <Flex
@@ -177,7 +177,7 @@ const TextField = memo<TextFieldProps>((props) => {
 }) as unknown as TextFieldCompound
 
 TextField.displayName = 'TextField'
-TextField.Label = TextFieldLabel
+TextField.Label = FormLabel
 TextField.StartIcon = TextFieldStartIcon
 TextField.EndAction = TextFieldEndAction
 

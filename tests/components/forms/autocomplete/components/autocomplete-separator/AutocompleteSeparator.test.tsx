@@ -1,19 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteSeparator from '@components/forms/autocomplete/components/autocomplete-separator/AutocompleteSeparator.tsx'
 import { AUTOCOMPLETE_SEPARATOR_STYLES } from '@components/forms/autocomplete/components/autocomplete-separator/styles/AutocompleteSeparator.css.ts'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteSeparator', () => {
     describe('default rendering', () => {

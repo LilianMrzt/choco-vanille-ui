@@ -1,19 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteItem from '@components/forms/autocomplete/components/autocomplete-item/AutocompleteItem.tsx'
 import { AUTOCOMPLETE_ITEM_STYLES } from '@components/forms/autocomplete/components/autocomplete-item/styles/AutocompleteItem.css.ts'
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
 
 describe('AutocompleteItem', () => {
     describe('default rendering', () => {
@@ -70,7 +61,9 @@ describe('AutocompleteItem', () => {
                     </Autocomplete.InputGroup>
                     <Autocomplete.Content>
                         <Autocomplete.List>
-                            <AutocompleteItem value="apple" className="my-item">Apple</AutocompleteItem>
+                            <AutocompleteItem value="apple" className="my-item">
+                Apple
+                            </AutocompleteItem>
                         </Autocomplete.List>
                     </Autocomplete.Content>
                 </Autocomplete>,

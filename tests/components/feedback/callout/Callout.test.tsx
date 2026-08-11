@@ -1,37 +1,13 @@
 import { createRef } from 'react'
 import { render } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
     Callout,
     CALLOUT_STYLES,
     type CalloutVariant,
 } from '@components/feedback/callout'
-
-// Preload the default variant icons so Iconify renders synchronously in JSDOM.
-beforeAll(() => {
-    addIcon('lucide:info', {
-        body: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:circle-check', {
-        body: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:triangle-alert', {
-        body: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:circle-x', {
-        body: '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
@@ -92,7 +68,7 @@ describe('Callout', () => {
         it('renders Callout.Icon, Callout.Title and Callout.Description', () => {
             const { getByText } = render(
                 <Callout variant="warning">
-                    <Callout.Icon icon="lucide:triangle-alert" />
+                    <Callout.Icon icon={TriangleAlertIcon} />
                     <Callout.Title>Compound Title</Callout.Title>
                     <Callout.Description>Compound Description</Callout.Description>
                 </Callout>,
@@ -109,7 +85,7 @@ describe('Callout', () => {
         it('does not render a duplicate icon when Callout.Icon is provided as a child', () => {
             const { container } = render(
                 <Callout variant="warning">
-                    <Callout.Icon icon="lucide:triangle-alert" />
+                    <Callout.Icon icon={TriangleAlertIcon} />
                     <Callout.Title>Title</Callout.Title>
                 </Callout>,
             )

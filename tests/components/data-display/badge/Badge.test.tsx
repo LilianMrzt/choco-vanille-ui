@@ -1,7 +1,6 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
     Badge,
@@ -10,25 +9,13 @@ import {
     type BadgeSize,
     type BadgeVariant,
 } from '@components/data-display/badge'
-
-// Preload a test icon so Iconify renders synchronously in JSDOM
-beforeAll(() => {
-    addIcon('lucide:check', {
-        body: '<path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:x', {
-        body: '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>',
-        width: 24,
-        height: 24,
-    })
-})
+import CheckIcon from '@resources/asset/CheckIcon.svg?react'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 
 // Helpers
 
 const getFirstChild = (container: HTMLElement) =>
-    container.firstElementChild as HTMLElement
+  container.firstElementChild as HTMLElement
 
 // Suites
 
@@ -47,25 +34,21 @@ describe('Badge', () => {
 
         it('renders a start icon when startIcon is provided', () => {
             const { container } = render(
-                <Badge label={'Beta'} startIcon={'lucide:check'} />,
+                <Badge label={'Beta'} startIcon={CheckIcon} />,
             )
             expect(container.querySelectorAll('svg')).toHaveLength(1)
         })
 
         it('renders an end icon when endIcon is provided', () => {
             const { container } = render(
-                <Badge label={'Beta'} endIcon={'lucide:x'} />,
+                <Badge label={'Beta'} endIcon={CloseIcon} />,
             )
             expect(container.querySelectorAll('svg')).toHaveLength(1)
         })
 
         it('renders both icons when both are provided', () => {
             const { container } = render(
-                <Badge
-                    label={'Beta'}
-                    startIcon={'lucide:check'}
-                    endIcon={'lucide:x'}
-                />,
+                <Badge label={'Beta'} startIcon={CheckIcon} endIcon={CloseIcon} />,
             )
             expect(container.querySelectorAll('svg')).toHaveLength(2)
         })

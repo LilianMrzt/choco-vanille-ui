@@ -1,19 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteTrigger from '@components/forms/autocomplete/components/autocomplete-trigger/AutocompleteTrigger.tsx'
 
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
-const buildTrigger = (triggerProps: React.ComponentProps<typeof AutocompleteTrigger> = {}) =>
+const buildTrigger = (
+    triggerProps: React.ComponentProps<typeof AutocompleteTrigger> = {},
+) =>
     render(
         <Autocomplete>
             <Autocomplete.InputGroup>
@@ -49,7 +42,9 @@ describe('AutocompleteTrigger', () => {
     describe('aria-label prop', () => {
         it('accepts a custom aria-label', () => {
             buildTrigger({ 'aria-label': 'Ouvrir les options' })
-            expect(screen.getByRole('button', { name: 'Ouvrir les options' })).toBeTruthy()
+            expect(
+                screen.getByRole('button', { name: 'Ouvrir les options' }),
+            ).toBeTruthy()
         })
     })
 
@@ -63,7 +58,9 @@ describe('AutocompleteTrigger', () => {
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = buildTrigger({ 'data-testid': 'ac-trigger' })
-            expect(container.querySelector('[data-testid="ac-trigger"]')).toBeTruthy()
+            expect(
+                container.querySelector('[data-testid="ac-trigger"]'),
+            ).toBeTruthy()
         })
     })
 

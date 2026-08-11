@@ -1,20 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { addIcon } from '@iconify/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Collapsible from '@components/surfaces/collapsible/Collapsible.tsx'
 import CollapsibleTrigger from '@components/surfaces/collapsible/components/collapsible-trigger/CollapsibleTrigger.tsx'
+import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
-const buildTrigger = (triggerProps: React.ComponentProps<typeof CollapsibleTrigger> = {}) =>
+const buildTrigger = (
+    triggerProps: React.ComponentProps<typeof CollapsibleTrigger> = {},
+) =>
     render(
         <Collapsible defaultOpen={false}>
             <CollapsibleTrigger {...triggerProps} />
@@ -37,15 +31,25 @@ describe('CollapsibleTrigger', () => {
 
     describe('startIcon prop', () => {
         it('renders an SVG when a startIcon is provided', () => {
-            const { container } = buildTrigger({ label: 'Section', startIcon: 'lucide:chevron-down' })
-            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(1)
+            const { container } = buildTrigger({
+                label: 'Section',
+                startIcon: ChevronDownIcon,
+            })
+            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(
+                1,
+            )
         })
     })
 
     describe('endIcon prop', () => {
         it('renders an SVG when an endIcon is provided', () => {
-            const { container } = buildTrigger({ label: 'Section', endIcon: 'lucide:chevron-down' })
-            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(1)
+            const { container } = buildTrigger({
+                label: 'Section',
+                endIcon: ChevronDownIcon,
+            })
+            expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(
+                1,
+            )
         })
     })
 
@@ -63,7 +67,10 @@ describe('CollapsibleTrigger', () => {
         })
 
         it('prioritises the label over children when both are provided', () => {
-            buildTrigger({ label: 'Label wins', children: <span>Children lose</span> })
+            buildTrigger({
+                label: 'Label wins',
+                children: <span>Children lose</span>,
+            })
             expect(screen.getByText('Label wins')).toBeTruthy()
             expect(screen.queryByText('Children lose')).toBeFalsy()
         })
@@ -86,14 +93,20 @@ describe('CollapsibleTrigger', () => {
 
     describe('CSS class application', () => {
         it('merges a custom className', () => {
-            const { container } = buildTrigger({ label: 'Toggle', className: 'my-trigger' })
+            const { container } = buildTrigger({
+                label: 'Toggle',
+                className: 'my-trigger',
+            })
             expect(container.querySelector('.my-trigger')).toBeTruthy()
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = buildTrigger({ label: 'Toggle', 'data-testid': 'trigger' })
+            const { container } = buildTrigger({
+                label: 'Toggle',
+                'data-testid': 'trigger',
+            })
             expect(container.querySelector('[data-testid="trigger"]')).toBeTruthy()
         })
     })

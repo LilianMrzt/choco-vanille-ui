@@ -1,10 +1,14 @@
 export { default as TextField } from '@components/forms/text-field/TextField.tsx'
 export { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField.css.ts'
-export { TEXT_FIELD_LABEL_STYLES } from '@components/forms/text-field/components/text-field-label/styles/TextFieldLabel.css.ts'
+export {
+    FORM_LABEL_STYLES as TEXT_FIELD_LABEL_STYLES,
+} from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
 export { TEXT_FIELD_START_ICON_STYLES } from '@components/forms/text-field/components/text-field-start-icon/styles/TextFieldStartIcon.css.ts'
 export { TEXT_FIELD_END_ACTION_STYLES } from '@components/forms/text-field/components/text-field-end-action/styles/TextFieldEndAction.css.ts'
 export type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
 export type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-export type { TextFieldLabelProps } from '@components/forms/text-field/components/text-field-label/types/TextFieldLabel.props.ts'
+export type {
+    FormLabelProps as TextFieldLabelProps,
+} from '@components/forms/_shared/components/form-label/types/FormLabel.props.ts'
 export type { TextFieldStartIconProps } from '@components/forms/text-field/components/text-field-start-icon/types/TextFieldStartIcon.types.ts'
 export type { TextFieldEndActionProps } from '@components/forms/text-field/components/text-field-end-action/types/TextFieldEndAction.props.ts'

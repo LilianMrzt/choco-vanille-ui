@@ -1,26 +1,11 @@
-import { addIcon } from '@iconify/react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import Select from '@components/forms/select/Select.tsx'
 
 // SelectContent renders inside a BaseSelect.Portal → Positioner → Popup.
 // It only mounts in the DOM when the Select is open.
-
-beforeAll(() => {
-    addIcon('lucide:chevron-down', {
-        body: '<path d="m6 9 6 6 6-6"/>',
-        width: 24,
-        height: 24,
-    })
-    addIcon('lucide:check', {
-        body: '<path d="M20 6 9 17l-5-5"/>',
-        width: 24,
-        height: 24,
-    })
-})
-
 /** Opens the Select by clicking the trigger. */
 const openSelect = async () => {
     await userEvent.click(screen.getByRole('combobox'))
@@ -108,7 +93,9 @@ describe('SelectContent', () => {
                 </Select>,
             )
             await openSelect()
-            const popup = document.querySelector('[aria-label="Fruit list"]') as HTMLElement
+            const popup = document.querySelector(
+                '[aria-label="Fruit list"]',
+            ) as HTMLElement
             expect(popup).toBeTruthy()
         })
     })
