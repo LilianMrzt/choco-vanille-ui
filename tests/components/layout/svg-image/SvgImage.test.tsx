@@ -53,6 +53,25 @@ describe('SvgImage', () => {
     })
 
     describe('styles and attributes', () => {
+        it('applies a theme color class', () => {
+            const { container, rerender } = render(
+                <SvgImage image={TestSvg} color="primary" />,
+            )
+            const primaryClassName = container
+                .querySelector('svg')
+                ?.getAttribute('class')
+
+            rerender(<SvgImage image={TestSvg} color="secondary" />)
+
+            const secondaryClassName = container
+                .querySelector('svg')
+                ?.getAttribute('class')
+
+            expect(primaryClassName).toBeTruthy()
+            expect(secondaryClassName).toBeTruthy()
+            expect(secondaryClassName).not.toBe(primaryClassName)
+        })
+
         it('applies image dimensions as inline styles', () => {
             render(
                 <SvgImage

@@ -12,6 +12,7 @@ const SvgImage: FC<SvgImageProps> = memo(
         image: ImageComponent,
         alt,
         'aria-label': ariaLabel,
+        color,
         objectFit,
         objectPosition,
         borderRadius,
@@ -51,6 +52,7 @@ const SvgImage: FC<SvgImageProps> = memo(
                 backgroundColor,
             ],
         )
+        const colorClassName = SVG_IMAGE_STYLES.color({ color })
 
         return (
             <ImageComponent
@@ -58,7 +60,7 @@ const SvgImage: FC<SvgImageProps> = memo(
                 aria-hidden={accessibleLabel === undefined}
                 aria-label={accessibleLabel}
                 role={accessibleLabel === undefined ? undefined : 'img'}
-                className={cn(recipeClassName, className)}
+                className={cn(recipeClassName, colorClassName, className)}
                 style={{
                     width,
                     minWidth,

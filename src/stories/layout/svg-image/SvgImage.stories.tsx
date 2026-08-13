@@ -11,6 +11,7 @@ import { expect, within } from 'storybook/test'
 
 import { SvgImage } from '@components/layout/svg-image'
 import ImageIcon from '@resources/asset/ImageIcon.svg?react'
+import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -73,6 +74,22 @@ const BG = [
     'secondarySubtle',
 ] as const
 const DIMENSIONS = [undefined, 'auto', '100%', '50%', '200px'] as const
+const COLORS = [
+    'transparent',
+    'primary',
+    'secondary',
+    'tertiary',
+    'destructive',
+    'success',
+    'warning',
+    'info',
+    'purple',
+    'pink',
+    'orange',
+    'teal',
+    'cyan',
+    'indigo',
+] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -106,7 +123,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A design-token-aware wrapper for locally bundled SVG components. Unlike \`Icon\`, \`SvgImage\` does not impose a fixed size scale and instead exposes image-like dimensions and object positioning.
+A design-token-aware wrapper for locally bundled SVG components. Unlike \`Icon\`, \`SvgImage\` does not impose a fixed size scale and instead exposes image-like dimensions, object positioning, and theme colors.
 
 **Usage**
 
@@ -124,6 +141,7 @@ import Logo from './Logo.svg?react'
         image: { control: false },
         alt: { control: 'text' },
         'aria-label': { control: 'text' },
+        color: { control: 'select', options: THEME_COLORS },
         objectFit: { control: 'select', options: OBJECT_FIT },
         objectPosition: { control: 'select', options: OBJECT_POSITION },
         borderRadius: { control: 'select', options: ROUNDED },
@@ -141,6 +159,7 @@ import Logo from './Logo.svg?react'
     args: {
         image: ImageIcon,
         alt: 'Image illustration',
+        color: 'primary',
         width: '200px',
         height: '200px',
         objectFit: 'contain',
@@ -159,7 +178,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to change the SVG image dimensions, object positioning, spacing, background, and accessible name.',
             },
             ...storySource(/* language=tsx */ `
-<SvgImage image={ImageIcon} alt="Image illustration" width="200px" height="200px" objectFit="contain" />`),
+<SvgImage image={ImageIcon} alt="Image illustration" color="primary" width="200px" height="200px" objectFit="contain" />`),
         },
     },
     play: async ({ canvasElement }) => {
@@ -168,6 +187,42 @@ export const Playground: Story = {
             canvas.getByRole('img', { name: 'Image illustration' }),
         ).toBeInTheDocument()
     },
+}
+
+export const Colors: Story = {
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<SvgImage image={ImageIcon} alt="transparent" color="transparent" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="primary" color="primary" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="secondary" color="secondary" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="tertiary" color="tertiary" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="destructive" color="destructive" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="success" color="success" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="warning" color="warning" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="info" color="info" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="purple" color="purple" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="pink" color="pink" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="orange" color="orange" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="teal" color="teal" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="cyan" color="cyan" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="indigo" color="indigo" width="96px" height="96px" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            {COLORS.map((color) => (
+                <SvgImage
+                    key={color}
+                    image={ImageIcon}
+                    alt={color}
+                    color={color}
+                    width={'96px'}
+                    height={'96px'}
+                />
+            ))}
+        </div>
+    ),
 }
 
 export const ObjectFits: Story = {
