@@ -17,7 +17,7 @@ import {
     Typography,
     type TypographyProps,
 } from '@components/foundation/typography'
-import type { BoxSpace } from '@components/layout/box'
+import type { BoxSpace, BoxVariant } from '@components/layout/box'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -37,6 +37,29 @@ type CardPlaygroundArgs = ComponentProps<typeof Card> & {
   footerActionLabel?: string;
 };
 
+const CARD_ELEMENTS: BoxVariant[] = [
+    'div',
+    'section',
+    'article',
+    'aside',
+    'main',
+    'header',
+    'footer',
+    'nav',
+    'ul',
+    'ol',
+    'li',
+    'form',
+    'fieldset',
+    'figure',
+    'figcaption',
+    'details',
+    'summary',
+    'dialog',
+    'address',
+    'span',
+]
+
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
 
@@ -44,7 +67,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | ---------------- | ----------- | ------------------------------------ | ---------------------------------------------------- |
 | \`title\`          | Recommended | \`string\`                             | Provides an accessible heading for card content.     |
 | \`titleAs\`        | No          | \`h1\`–\`h6\`                            | Choose the heading level that fits the page outline. |
-| \`as\`             | No          | \`div\`, \`section\`, \`article\`, \`aside\` | Use the semantically correct element.                |
+| \`as\`             | No          | Supported HTML element                      | Use the semantically correct element.                |
 
 **Sub-components**
 
@@ -156,7 +179,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     argTypes: {
         as: {
             control: 'select',
-            options: ['div', 'section', 'article', 'aside'],
+            options: CARD_ELEMENTS,
             table: { category: 'Card' },
         },
         borderRadius: {

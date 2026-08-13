@@ -1,8 +1,6 @@
 import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
 
-export type CardProps = Omit<BoxProps, 'as' | 'backgroundColor' | 'color' | 'borderRadius' | 'borderWidth' | 'borderColor' | 'boxShadow' | 'overflow' | 'borderStyle'> & {
-  /** The HTML element to render. @default 'div' */
-  as?: 'div' | 'section' | 'article' | 'aside'
+export type CardProps = Omit<BoxProps, 'backgroundColor' | 'color' | 'borderRadius' | 'borderWidth' | 'borderColor' | 'boxShadow' | 'overflow' | 'borderStyle'> & {
   /** Background color token. @default 'card' */
   backgroundColor?: BoxProps['backgroundColor']
   /** Text color token. @default 'cardForeground' */

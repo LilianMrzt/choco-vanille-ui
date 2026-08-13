@@ -30,6 +30,11 @@ describe('Card', () => {
             const { container } = render(<Card as="section">content</Card>)
             expect(getFirstChild(container).tagName.toLowerCase()).toBe('section')
         })
+
+        it('supports semantic list elements', () => {
+            const { container } = render(<Card as="li">content</Card>)
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe('li')
+        })
     })
 
     describe('CSS class application', () => {
