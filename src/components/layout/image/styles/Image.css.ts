@@ -10,6 +10,7 @@ export const IMAGE_STYLES = {
         base: {
             maxWidth: '100%',
             height: 'auto',
+            flexShrink: 0
         },
 
         variants: {
