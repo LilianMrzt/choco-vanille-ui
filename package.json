@@ -1,6 +1,6 @@
 {
   "name": "@choco-vanille/ui",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "A React 19 UI kit built with Vanilla Extract and Base UI primitives.",
   "type": "module",
   "license": "MIT",

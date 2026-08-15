@@ -23,6 +23,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
     ({
         label,
         startIcon,
+        endIcon,
         children,
         trailing,
         hideTooltip = false,
@@ -80,6 +81,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                         <DrawerItemContent
                             label={label}
                             startIcon={startIcon}
+                            endIcon={endIcon}
                             trailing={trailing}
                             endChevronIcon
                             expanded={expanded}

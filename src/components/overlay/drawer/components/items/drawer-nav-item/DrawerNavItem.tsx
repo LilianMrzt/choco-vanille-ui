@@ -16,6 +16,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     label,
     href = '#',
     startIcon,
+    endIcon,
     trailing,
     active,
     disabled,
@@ -58,6 +59,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
                 <DrawerItemContent
                     label={label}
                     startIcon={startIcon}
+                    endIcon={endIcon}
                     trailing={trailing}
                     iconSize={iconSize}
                 />

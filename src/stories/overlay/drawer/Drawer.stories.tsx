@@ -179,6 +179,7 @@ const renderDrawer = ({
                                     label={secondNavItemLabel ?? 'Team'}
                                     href={'/team'}
                                     startIcon={UserIcon}
+                                    endIcon={ChevronRightIcon}
                                     disabled={navItemDisabled}
                                     hideTooltip={navItemHideTooltip}
                                     variant={navItemVariant}
@@ -208,6 +209,7 @@ const renderDrawer = ({
                                 <Drawer.SectionItem
                                     label={sectionItemLabel ?? 'Section item'}
                                     startIcon={SearchIcon}
+                                    endIcon={InfoIcon}
                                     trailing={
                                         <Badge
                                             label={'Pro'}
@@ -362,10 +364,10 @@ const [open, setOpen] = useState(false)
   </Drawer.Header>
   <Drawer.Body as="nav" aria-label="Main navigation">
     <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
+      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} endIcon={ChevronRightIcon} />
     </Drawer.Section>
     <Drawer.Section title="Account">
-      <Drawer.SectionItem label="Account" startIcon={UserIcon}>
+      <Drawer.SectionItem label="Account" startIcon={UserIcon} endIcon={InfoIcon}>
         <Drawer.NavItem label="Profile" href="/profile" />
         <Drawer.ActionItem label="Sign out" startIcon={CloseIcon} />
       </Drawer.SectionItem>

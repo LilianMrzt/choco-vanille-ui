@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('Drawer.NavItem', () => {
@@ -30,6 +31,20 @@ describe('Drawer.NavItem', () => {
         )
 
         expect(document.querySelector('svg')).toBeTruthy()
+    })
+
+    it('renders an end icon', () => {
+        render(
+            <Drawer defaultOpen>
+                <Drawer.NavItem
+                    label="Next"
+                    startIcon={UserIcon}
+                    endIcon={ChevronRightIcon}
+                />
+            </Drawer>,
+        )
+
+        expect(document.querySelectorAll('svg')).toHaveLength(2)
     })
 
     it('renders trailing content', () => {

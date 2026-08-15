@@ -13,6 +13,8 @@ export type DrawerSectionItemProps = Omit<
   label: string;
   /** Icon rendered before the label. */
   startIcon: IconComponent;
+  /** Icon rendered after the label and trailing content, before the expansion chevron. */
+  endIcon?: IconComponent;
   /** Items rendered inside the collapsible section. */
   children: ReactNode;
   /** Optional content rendered at the end of the header (e.g. a badge). */

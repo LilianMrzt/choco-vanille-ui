@@ -17,6 +17,7 @@ import { Tooltip } from '@components'
 const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
     label,
     startIcon,
+    endIcon,
     trailing,
     hideTooltip = false,
     variant = 'default',
@@ -52,6 +53,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
                 <DrawerItemContent
                     label={label}
                     startIcon={startIcon}
+                    endIcon={endIcon}
                     trailing={trailing}
                     iconSize={iconSize}
                 />

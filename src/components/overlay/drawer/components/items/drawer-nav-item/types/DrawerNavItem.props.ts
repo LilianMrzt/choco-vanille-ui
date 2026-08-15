@@ -18,6 +18,8 @@ export type DrawerNavItemProps = Omit<
     href?: string;
     /** Icon rendered before the label. */
     startIcon: IconComponent;
+    /** Icon rendered after the label and trailing content. */
+    endIcon?: IconComponent;
     /** Whether the item represents the current page. */
     active?: boolean;
     /** Disables the item and sets `aria-disabled`. */

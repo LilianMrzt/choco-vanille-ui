@@ -8,6 +8,8 @@ export type DrawerItemContentProps = {
     label: string
     /** Icon rendered before the label. */
     startIcon: IconComponent
+    /** Icon rendered after the label and trailing content. */
+    endIcon?: IconComponent
     /** Optional icon rendered at the end of the row. */
     endChevronIcon?: boolean
     /** Whether the drawer item is expanded. */

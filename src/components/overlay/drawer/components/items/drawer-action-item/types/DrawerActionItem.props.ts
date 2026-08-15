@@ -16,6 +16,8 @@ export type DrawerActionItemProps = Omit<
     label: string;
     /** Icon rendered before the label. */
     startIcon: IconComponent;
+    /** Icon rendered after the label and trailing content. */
+    endIcon?: IconComponent;
     /** Visual variant for the row. @default 'default' */
     variant?: DrawerItemVariant;
     /** Color intent for the row. @default 'primary' */

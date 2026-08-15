@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('DrawerItemContent', () => {
@@ -26,6 +27,18 @@ describe('DrawerItemContent', () => {
             )
             expect(screen.getByTestId('badge')).toBeTruthy()
             expect(screen.getByTestId('badge').textContent).toBe('3')
+        })
+
+        it('renders an end icon', () => {
+            render(
+                <DrawerItemContent
+                    label={'Next'}
+                    startIcon={UserIcon}
+                    endIcon={ChevronRightIcon}
+                />,
+            )
+
+            expect(document.querySelectorAll('svg')).toHaveLength(2)
         })
 
         it('does not render a chevron when endChevronIcon is false', () => {

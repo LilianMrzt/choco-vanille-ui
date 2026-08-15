@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
+import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 
 describe('Drawer.ActionItem', () => {
@@ -24,6 +25,20 @@ describe('Drawer.ActionItem', () => {
         )
 
         expect(document.querySelector('svg')).toBeTruthy()
+    })
+
+    it('renders an end icon', () => {
+        render(
+            <Drawer defaultOpen>
+                <Drawer.ActionItem
+                    label="Next"
+                    startIcon={CloseIcon}
+                    endIcon={ChevronRightIcon}
+                />
+            </Drawer>,
+        )
+
+        expect(document.querySelectorAll('svg')).toHaveLength(2)
     })
 
     it('calls onClick when clicked', async () => {

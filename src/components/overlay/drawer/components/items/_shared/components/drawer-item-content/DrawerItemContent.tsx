@@ -17,6 +17,7 @@ import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/
 const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
     label,
     startIcon,
+    endIcon,
     endChevronIcon,
     expanded,
     iconSize,
@@ -46,6 +47,12 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
                     {label}
                 </Typography>
                 {trailing}
+                {endIcon && (
+                    <Icon
+                        icon={endIcon}
+                        size={resolvedIconSize}
+                    />
+                )}
                 {endChevronIcon && (
                     <RotatingChevron
                         expanded={expanded ?? false}

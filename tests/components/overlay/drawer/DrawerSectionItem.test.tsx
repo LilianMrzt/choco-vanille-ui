@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
 import CircleIcon from '@resources/asset/CircleIcon.svg?react'
+import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('Drawer.SectionItem', () => {
@@ -21,6 +22,26 @@ describe('Drawer.SectionItem', () => {
         )
 
         expect(screen.getByRole('button', { name: 'Settings' })).toBeTruthy()
+    })
+
+    it('renders an end icon before the expansion chevron', () => {
+        render(
+            <Drawer defaultOpen>
+                <Drawer.SectionItem
+                    label="Settings"
+                    startIcon={CircleIcon}
+                    endIcon={InfoIcon}
+                >
+                    <Drawer.NavItem
+                        label="Profile"
+                        href="/profile"
+                        startIcon={UserIcon}
+                    />
+                </Drawer.SectionItem>
+            </Drawer>,
+        )
+
+        expect(document.querySelectorAll('svg').length).toBeGreaterThanOrEqual(3)
     })
 
     it('toggles children when the header is clicked', async () => {
