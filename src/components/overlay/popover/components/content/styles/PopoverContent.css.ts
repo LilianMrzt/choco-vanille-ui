@@ -13,6 +13,9 @@ import {
 } from '@constants/animations'
 
 export const POPOVER_CONTENT_STYLES = {
+    positioner: style({
+        zIndex: vars.zIndex.popover,
+    }),
     root: style({
         zIndex: vars.zIndex.popover,
         minWidth: '11rem',

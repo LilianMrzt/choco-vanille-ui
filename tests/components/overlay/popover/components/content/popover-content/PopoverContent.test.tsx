@@ -2,9 +2,24 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Popover } from '@components/overlay/popover'
+import { POPOVER_CONTENT_STYLES, Popover } from '@components/overlay/popover'
 
 describe('PopoverContent', () => {
+    it('applies the stacking style to the positioner', () => {
+        render(
+            <Popover defaultOpen>
+                <Popover.Trigger>
+                    <button type={'button'}>Open</button>
+                </Popover.Trigger>
+                <Popover.Content>Content</Popover.Content>
+            </Popover>,
+        )
+
+        expect(screen.getByRole('presentation').className).toContain(
+            POPOVER_CONTENT_STYLES.positioner,
+        )
+    })
+
     it('renders content when the popover is open by default', () => {
         render(
             <Popover defaultOpen>

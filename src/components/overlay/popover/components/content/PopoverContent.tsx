@@ -46,6 +46,7 @@ const PopoverContent: FC<PopoverContentProps> = memo(({
                 side={side}
                 align={align}
                 sideOffset={sideOffset}
+                className={POPOVER_CONTENT_STYLES.positioner}
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none', fallbackAxisSide: 'none' }}
             >
