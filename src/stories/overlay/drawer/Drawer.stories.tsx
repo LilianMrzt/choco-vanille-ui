@@ -350,6 +350,21 @@ Compose with \`Drawer.Header\`, \`Drawer.Body\` and \`Drawer.Footer\`.
 Use \`Drawer.Section\` to group \`Drawer.NavItem\`, \`Drawer.ActionItem\`
 and \`Drawer.SectionItem\` elements inside the body.
 
+For client-side routing, provide both \`href\` and \`onClick\`. When
+\`onClick\` is provided, \`Drawer.NavItem\` prevents native anchor navigation
+automatically, so the callback only needs to call the router:
+
+~~~tsx
+const navigate = useNavigate()
+
+<Drawer.NavItem
+  label="Dashboard"
+  href="/dashboard"
+  startIcon={UserIcon}
+  onClick={() => navigate("/dashboard")}
+/>
+~~~
+
 **Usage**
 
 ~~~tsx

@@ -104,6 +104,30 @@ describe('Drawer.NavItem', () => {
         expect(onClick).toHaveBeenCalledTimes(1)
     })
 
+    it('prevents native navigation before a router callback runs', async () => {
+        const navigate = vi.fn()
+        let defaultPrevented = false
+
+        render(
+            <Drawer mode="mini">
+                <Drawer.NavItem
+                    label="Dashboard"
+                    href="/dashboard"
+                    startIcon={UserIcon}
+                    onClick={(event) => {
+                        defaultPrevented = event.defaultPrevented
+                        navigate('/dashboard')
+                    }}
+                />
+            </Drawer>,
+        )
+
+        await userEvent.click(screen.getByRole('link', { name: 'Dashboard' }))
+
+        expect(defaultPrevented).toBe(true)
+        expect(navigate).toHaveBeenCalledWith('/dashboard')
+    })
+
     it('forwards data-* attributes', () => {
         render(
             <Drawer defaultOpen>

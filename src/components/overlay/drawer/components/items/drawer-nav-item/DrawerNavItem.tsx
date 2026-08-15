@@ -10,7 +10,9 @@ import { Tooltip } from '@components'
  * A navigation row rendered inside a `Drawer`.
  *
  * Behaves like a link, supports icons, an active state and graceful close
- * animation when the drawer is dismissed.
+ * animation when the drawer is dismissed. When `onClick` is provided, native
+ * anchor navigation is prevented before the callback runs, so client-side
+ * routers can navigate without reloading the page.
  */
 const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     label,
