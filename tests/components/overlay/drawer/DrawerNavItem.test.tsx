@@ -102,4 +102,20 @@ describe('Drawer.NavItem', () => {
 
         expect(screen.getByTestId('nav-item')).toBeTruthy()
     })
+
+    it('does not show the tooltip when hideTooltip is true', async () => {
+        render(
+            <Drawer mode="mini">
+                <Drawer.NavItem
+                    label="Action"
+                    startIcon={UserIcon}
+                    hideTooltip
+                />
+            </Drawer>,
+        )
+
+        await userEvent.hover(screen.getByRole('link', { name: 'Action' }))
+
+        expect(screen.queryByRole('tooltip')).toBeNull()
+    })
 })

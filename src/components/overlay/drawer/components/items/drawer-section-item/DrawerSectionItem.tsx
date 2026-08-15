@@ -25,6 +25,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
         startIcon,
         children,
         trailing,
+        hideTooltip = false,
         sectionLabel,
         'aria-label': ariaLabel,
         defaultExpanded = false,
@@ -63,7 +64,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                 <Tooltip
                     position={'right'}
                     content={label}
-                    disabled={open}
+                    disabled={open || hideTooltip}
                 >
                     <button
                         type={'button'}

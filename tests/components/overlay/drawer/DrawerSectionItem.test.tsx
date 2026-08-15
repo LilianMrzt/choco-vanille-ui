@@ -132,4 +132,22 @@ describe('Drawer.SectionItem', () => {
 
         expect(header.getAttribute('aria-expanded')).toBe('true')
     })
+
+    it('does not show the tooltip when hideTooltip is true', async () => {
+        render(
+            <Drawer mode="mini">
+                <Drawer.SectionItem
+                    label="Settings"
+                    startIcon={CircleIcon}
+                    hideTooltip
+                >
+                    <Drawer.NavItem label="Profile" startIcon={UserIcon} />
+                </Drawer.SectionItem>
+            </Drawer>,
+        )
+
+        await userEvent.hover(screen.getByRole('button', { name: 'Settings' }))
+
+        expect(screen.queryByRole('tooltip')).toBeNull()
+    })
 })

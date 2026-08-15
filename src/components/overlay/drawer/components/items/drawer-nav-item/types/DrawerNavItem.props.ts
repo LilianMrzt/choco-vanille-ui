@@ -32,4 +32,6 @@ export type DrawerNavItemProps = Omit<
     iconSize?: IconSize;
     /** Optional content rendered before the end icon (e.g. a badge). */
     trailing?: ReactNode;
+    /** Whether to suppress the tooltip when the drawer is collapsed. @default false */
+    hideTooltip?: boolean;
   };

@@ -47,6 +47,7 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   fourthNavItemLabel?: string;
   navItemActive?: boolean;
   navItemDisabled?: boolean;
+  navItemHideTooltip?: boolean;
   navItemVariant?: 'default' | 'outlined';
   navItemColor?:
     | 'primary'
@@ -59,6 +60,7 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   sectionItemLabel?: string;
   sectionItemDefaultExpanded?: boolean;
   sectionItemDisabled?: boolean;
+  sectionItemHideTooltip?: boolean;
   sectionItemColor?:
     | 'primary'
     | 'secondary'
@@ -67,6 +69,7 @@ type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
     | 'success'
     | 'warning'
     | 'info';
+  actionItemHideTooltip?: boolean;
 };
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -116,12 +119,15 @@ const renderDrawer = ({
     fourthNavItemLabel,
     navItemActive,
     navItemDisabled,
+    navItemHideTooltip,
     navItemVariant,
     navItemColor,
     sectionItemLabel,
     sectionItemDefaultExpanded,
     sectionItemDisabled,
+    sectionItemHideTooltip,
     sectionItemColor,
+    actionItemHideTooltip,
 }: DrawerPlaygroundArgs) => {
     const [open, setOpen] = useState(defaultOpen ?? false)
     const isPortal = mode === 'portal'
@@ -165,6 +171,7 @@ const renderDrawer = ({
                                     startIcon={UserIcon}
                                     active={navItemActive}
                                     disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -173,6 +180,7 @@ const renderDrawer = ({
                                     href={'/team'}
                                     startIcon={UserIcon}
                                     disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -189,6 +197,7 @@ const renderDrawer = ({
                                         />
                                     }
                                     disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -208,6 +217,7 @@ const renderDrawer = ({
                                     }
                                     defaultExpanded={sectionItemDefaultExpanded}
                                     disabled={sectionItemDisabled}
+                                    hideTooltip={sectionItemHideTooltip}
                                     color={sectionItemColor}
                                 >
                                     <Drawer.NavItem
@@ -223,6 +233,7 @@ const renderDrawer = ({
                                             />
                                         }
                                         disabled={navItemDisabled}
+                                        hideTooltip={navItemHideTooltip}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -231,6 +242,7 @@ const renderDrawer = ({
                                         href={'/profile'}
                                         startIcon={UserIcon}
                                         disabled={navItemDisabled}
+                                        hideTooltip={navItemHideTooltip}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -239,6 +251,7 @@ const renderDrawer = ({
                                         href={'/billing'}
                                         startIcon={UserIcon}
                                         disabled={navItemDisabled}
+                                        hideTooltip={navItemHideTooltip}
                                         variant={navItemVariant}
                                         color={navItemColor}
                                     />
@@ -248,6 +261,7 @@ const renderDrawer = ({
                                     href={'/profile'}
                                     startIcon={UserIcon}
                                     disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
@@ -262,6 +276,7 @@ const renderDrawer = ({
                                 label={'Sign out'}
                                 startIcon={CloseIcon}
                                 color={'destructive'}
+                                hideTooltip={actionItemHideTooltip}
                             />
                         </Drawer.Section>
                     </Drawer.Footer>
@@ -466,6 +481,10 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.NavItem' },
         },
+        navItemHideTooltip: {
+            control: 'boolean',
+            table: { category: 'Drawer.NavItem' },
+        },
         navItemVariant: {
             control: 'select',
             options: ['default', 'outlined'],
@@ -488,10 +507,18 @@ const [open, setOpen] = useState(false)
             control: 'boolean',
             table: { category: 'Drawer.SectionItem' },
         },
+        sectionItemHideTooltip: {
+            control: 'boolean',
+            table: { category: 'Drawer.SectionItem' },
+        },
         sectionItemColor: {
             control: 'select',
             options: DRAWER_ITEM_COLORS_ARRAY,
             table: { category: 'Drawer.SectionItem' },
+        },
+        actionItemHideTooltip: {
+            control: 'boolean',
+            table: { category: 'Drawer.ActionItem' },
         },
     },
     args: {
@@ -513,12 +540,15 @@ const [open, setOpen] = useState(false)
         fourthNavItemLabel: 'Billing',
         navItemActive: true,
         navItemDisabled: false,
+        navItemHideTooltip: false,
         navItemVariant: 'default',
         navItemColor: 'primary',
         sectionItemLabel: 'Section item ',
         sectionItemDefaultExpanded: true,
         sectionItemDisabled: false,
+        sectionItemHideTooltip: false,
         sectionItemColor: 'primary',
+        actionItemHideTooltip: false,
     },
 } satisfies Meta<DrawerPlaygroundArgs>
 

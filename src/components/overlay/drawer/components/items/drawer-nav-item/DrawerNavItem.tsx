@@ -25,6 +25,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
     className,
     style,
     onClick,
+    hideTooltip = false,
     ref,
     ...props
 }) => {
@@ -39,7 +40,7 @@ const DrawerNavItem: FC<DrawerNavItemProps> = memo(({
         <Tooltip
             position={'right'}
             content={label}
-            disabled={open}
+            disabled={open || hideTooltip}
         >
             <a
                 ref={ref}

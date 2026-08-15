@@ -18,6 +18,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
     label,
     startIcon,
     trailing,
+    hideTooltip = false,
     variant = 'default',
     color = 'primary',
     iconSize,
@@ -33,7 +34,7 @@ const DrawerActionItem: FC<DrawerActionItemProps> = memo(({
         <Tooltip
             position={'right'}
             content={label}
-            disabled={open}
+            disabled={open || hideTooltip}
         >
             <button
                 ref={ref}

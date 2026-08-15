@@ -68,4 +68,20 @@ describe('Drawer.ActionItem', () => {
 
         expect(screen.getByTestId('action-item')).toBeTruthy()
     })
+
+    it('does not show the tooltip when hideTooltip is true', async () => {
+        render(
+            <Drawer mode="mini">
+                <Drawer.ActionItem
+                    label="Action"
+                    startIcon={CloseIcon}
+                    hideTooltip
+                />
+            </Drawer>,
+        )
+
+        await userEvent.hover(screen.getByRole('button', { name: 'Action' }))
+
+        expect(screen.queryByRole('tooltip')).toBeNull()
+    })
 })
