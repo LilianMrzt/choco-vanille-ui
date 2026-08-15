@@ -2,6 +2,7 @@ import { Popover as BasePopover } from '@base-ui/react/popover'
 import { memo } from 'react'
 
 import PopoverContent from '@components/overlay/popover/components/content/PopoverContent.tsx'
+import PopoverItem from '@components/overlay/popover/components/item/PopoverItem.tsx'
 import PopoverTrigger from '@components/overlay/popover/components/trigger/PopoverTrigger.tsx'
 import type { PopoverCompound } from '@components/overlay/popover/types'
 import type { PopoverProps } from '@components/overlay/popover/types/Popover.props.ts'
@@ -17,5 +18,6 @@ const Popover = memo<PopoverProps>((props) => (
 Popover.displayName = 'Popover'
 Popover.Trigger = PopoverTrigger
 Popover.Content = PopoverContent
+Popover.Item = PopoverItem
 
 export default Popover

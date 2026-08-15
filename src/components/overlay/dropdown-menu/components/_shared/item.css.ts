@@ -32,8 +32,15 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
                 backgroundColor: vars.color.primarySubtle,
                 color: vars.color.primarySubtleForeground,
             },
+            '&:not([data-disabled]):hover': {
+                backgroundColor: vars.color.primarySubtle,
+                color: vars.color.primarySubtleForeground,
+            },
             // pressed / active — slightly stronger blue tint
             '&:not([data-disabled])[data-highlighted]:active': {
+                backgroundColor: vars.color.primarySubtleActive,
+            },
+            '&:not([data-disabled]):active': {
                 backgroundColor: vars.color.primarySubtleActive,
             },
             '&:not([data-disabled])[data-active="true"]': {
@@ -61,7 +68,14 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
                 backgroundColor: vars.color.destructiveSubtle,
                 color: vars.color.destructiveSubtleForeground,
             },
+            '&:not([data-disabled]):hover': {
+                backgroundColor: vars.color.destructiveSubtle,
+                color: vars.color.destructiveSubtleForeground,
+            },
             '&:not([data-disabled])[data-highlighted]:active': {
+                backgroundColor: vars.color.destructiveSubtleHover,
+            },
+            '&:not([data-disabled]):active': {
                 backgroundColor: vars.color.destructiveSubtleHover,
             },
             '&:focus-visible': {
