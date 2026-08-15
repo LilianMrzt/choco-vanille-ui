@@ -49,6 +49,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
             },
             '&:focus-visible': {
                 outline: 'none',
+                zIndex: 1,
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
             '&[data-disabled]': {
@@ -80,6 +81,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
             },
             '&:focus-visible': {
                 outline: 'none',
+                zIndex: 1,
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
             },
         },
