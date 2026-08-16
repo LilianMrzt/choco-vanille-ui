@@ -12,7 +12,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space.sm,
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         paddingBlock: vars.space.xs2,
         paddingInline: vars.space.sm,
         fontSize: vars.fontSize.sm,

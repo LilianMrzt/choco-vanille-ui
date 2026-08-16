@@ -6,7 +6,7 @@ export const CALLOUT_STYLES = {
     recipe: recipe({
         base: {
             padding: vars.space.md,
-            borderRadius: vars.radius.md,
+            borderRadius: vars.radius.sm,
             borderWidth: '1px',
             borderStyle: 'solid',
         },

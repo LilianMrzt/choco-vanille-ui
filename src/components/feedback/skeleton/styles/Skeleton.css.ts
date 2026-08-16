@@ -20,7 +20,7 @@ export const SKELETON_STYLES = {
                     flexShrink: 0,
                 },
                 rounded: {
-                    borderRadius: vars.radius.md,
+                    borderRadius: vars.radius.sm,
                     flexShrink: 0,
                 },
             },

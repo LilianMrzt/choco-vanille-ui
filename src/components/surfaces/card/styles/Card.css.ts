@@ -6,7 +6,7 @@ export const CARD_STYLES = {
     root: style({
         backgroundColor: vars.color.card,
         color: vars.color.cardForeground,
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius.md,
         border: `1px solid ${vars.color.border}`,
         boxShadow: vars.shadow.none,
         overflow: 'hidden',

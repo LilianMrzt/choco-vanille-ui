@@ -5,7 +5,7 @@ export type CardProps = Omit<BoxProps, 'backgroundColor' | 'color' | 'borderRadi
   backgroundColor?: BoxProps['backgroundColor']
   /** Text color token. @default 'cardForeground' */
   color?: BoxProps['color']
-  /** Border radius token. @default 'lg' */
+  /** Border radius token. @default 'md' */
   borderRadius?: BoxProps['borderRadius']
   /** Border width. @default '1px' */
   borderWidth?: BoxProps['borderWidth']

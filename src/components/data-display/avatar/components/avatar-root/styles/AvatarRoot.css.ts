@@ -24,7 +24,7 @@ const fallbackFontSizes = {
 
 const shapeRadiusMap = {
     [AVATAR_SHAPES.circle]: vars.radius.full,
-    [AVATAR_SHAPES.square]: vars.radius.md,
+    [AVATAR_SHAPES.square]: vars.radius.xs,
 } as const
 
 export const AVATAR_STYLES = {

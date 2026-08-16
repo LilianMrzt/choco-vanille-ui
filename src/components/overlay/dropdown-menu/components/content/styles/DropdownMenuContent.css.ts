@@ -15,7 +15,7 @@ export const DROPDOWN_MENU_CONTENT_STYLES = {
     root: style({
         zIndex: vars.zIndex.dropdown,
         overflow: 'hidden',
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius.md,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.popover,
         flexGrow: 0,

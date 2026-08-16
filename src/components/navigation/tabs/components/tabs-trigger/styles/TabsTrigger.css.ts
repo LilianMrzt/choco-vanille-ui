@@ -45,7 +45,7 @@ export const TABS_TRIGGER_STYLES = {
                 default: {
                     marginBottom: '-1px',
                     borderBottom: `2px solid transparent`,
-                    borderRadius: `${vars.radius.sm} ${vars.radius.sm} 0 0`,
+                    borderRadius: `${vars.radius.xs} ${vars.radius.xs} 0 0`,
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.primarySubtle,
@@ -66,7 +66,7 @@ export const TABS_TRIGGER_STYLES = {
                     },
                 },
                 pills: {
-                    borderRadius: vars.radius.sm,
+                    borderRadius: vars.radius.xs,
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.primarySubtle,

@@ -21,7 +21,7 @@ export const BUTTON_SHARED_STYLES = {
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: vars.lineHeight.none,
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         border: '1px solid transparent',
         cursor: 'pointer',
         fontFamily: vars.fontFamily.sans,

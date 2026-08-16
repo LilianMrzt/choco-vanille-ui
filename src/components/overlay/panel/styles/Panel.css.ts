@@ -14,7 +14,7 @@ const content = style({
     maxWidth: '100%',
     overflow: 'hidden',
     border: 'none',
-    borderRadius: vars.radius.lg,
+    borderRadius: vars.radius.md,
     backgroundColor: vars.color.background,
     color: vars.color.foreground,
     transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,

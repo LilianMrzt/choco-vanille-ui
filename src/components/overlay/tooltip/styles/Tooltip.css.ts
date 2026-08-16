@@ -15,7 +15,7 @@ const fadeZoomOut = keyframes({
 export const TOOLTIP_STYLES = {
     content: style({
         zIndex: vars.zIndex.tooltip,
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         backgroundColor: vars.color.popover,
         color: vars.color.popoverForeground,
         paddingInline: vars.space.md,

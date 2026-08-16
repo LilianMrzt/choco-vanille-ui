@@ -17,7 +17,7 @@ export const DIALOG_STYLES = {
         maxWidth: '32rem',
         maxHeight: 'calc(100% - 2rem)',
         overflow: 'hidden',
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius.md,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.background,
         color: vars.color.foreground,
