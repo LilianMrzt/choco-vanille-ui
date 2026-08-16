@@ -47,6 +47,14 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
                 backgroundColor: vars.color.primarySubtle,
                 color: vars.color.primarySubtleForeground,
             },
+            '&:not([data-disabled])[data-active="true"]:hover': {
+                backgroundColor: vars.color.primarySubtleHover,
+                color: vars.color.primarySubtleForeground,
+            },
+            '&:not([data-disabled])[data-active="true"]:active': {
+                backgroundColor: vars.color.primarySubtleActive,
+                color: vars.color.primarySubtleForeground,
+            },
             '&:focus-visible': {
                 outline: 'none',
                 zIndex: 1,
@@ -78,6 +86,18 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
             },
             '&:not([data-disabled]):active': {
                 backgroundColor: vars.color.destructiveSubtleHover,
+            },
+            '&:not([data-disabled])[data-active="true"]': {
+                backgroundColor: vars.color.destructiveSubtle,
+                color: vars.color.destructiveSubtleForeground,
+            },
+            '&:not([data-disabled])[data-active="true"]:hover': {
+                backgroundColor: vars.color.destructiveSubtleHover,
+                color: vars.color.destructiveSubtleForeground,
+            },
+            '&:not([data-disabled])[data-active="true"]:active': {
+                backgroundColor: vars.color.destructiveSubtleActive,
+                color: vars.color.destructiveSubtleForeground,
             },
             '&:focus-visible': {
                 outline: 'none',
