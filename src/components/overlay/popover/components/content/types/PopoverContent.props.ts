@@ -1,5 +1,6 @@
 import type { Popover as BasePopover } from '@base-ui/react/popover'
 
+import type { BoxProps } from '@components/layout/box'
 import type {
     PopoverAlign,
     PopoverPosition,
@@ -15,6 +16,10 @@ export type PopoverContentProps = Omit<BasePopover.Popup.Props, 'className'> & {
    * @example 'top-start' | 'right' | 'bottom-end' | 'left-start'
    */
   position?: PopoverPosition;
+  /** Padding token applied to all sides of the panel. @default 'md' */
+  padding?: BoxProps['padding'];
+  /** CSS width applied to the panel. */
+  width?: BoxProps['width'];
   /** Side of the trigger to render the content. @default 'bottom' */
   side?: PopoverSide;
   /** Alignment along the trigger axis. @default 'center' */

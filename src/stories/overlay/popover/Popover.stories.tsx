@@ -10,7 +10,7 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { expect, userEvent, within, waitFor } from 'storybook/test';
 
-import { Popover } from '@/components/overlay/popover';
+import { Popover, type PopoverContentProps } from '@/components/overlay/popover';
 import { Button } from '@/components/actions/button';
 import SearchIcon from '@resources/asset/SearchIcon.svg?react';
 import TrashIcon from '@resources/asset/TrashIcon.svg?react';
@@ -20,6 +20,7 @@ import { storySource } from '@stories/utils/storySource';
 type PopoverPlaygroundArgs = ComponentProps<typeof Popover> & {
   triggerLabel?: string;
   contentWidth?: string;
+  contentPadding?: PopoverContentProps['padding'];
   itemLabel?: string;
   itemDisabled?: boolean;
   itemDestructive?: boolean;
@@ -105,6 +106,28 @@ Use it to display rich content, forms, or action items attached to a trigger ele
       control: 'text',
       table: { category: 'Compound: Content' },
     },
+    contentPadding: {
+      control: 'select',
+      options: [
+        'none',
+        'px',
+        'xxs',
+        'xs',
+        'xs2',
+        'sm',
+        'sm2',
+        'md',
+        'md2',
+        'lg',
+        'lg2',
+        'xl',
+        '2xl',
+        '3xl',
+        '4xl',
+        '5xl',
+      ],
+      table: { category: 'Compound: Content' },
+    },
     itemLabel: {
       control: 'text',
       table: { category: 'Compound: Item' },
@@ -123,6 +146,7 @@ Use it to display rich content, forms, or action items attached to a trigger ele
     defaultOpen: false,
     triggerLabel: 'Open popover',
     contentWidth: '20rem',
+    contentPadding: 'md',
     itemLabel: 'Edit',
     itemDisabled: false,
     itemDestructive: false,
@@ -148,7 +172,7 @@ const [open, setOpen] = useState(false)
     <Button label="Open popover" />
   </Popover.Trigger>
 
-  <Popover.Content style={{ width: '20rem' }}>
+  <Popover.Content width={'20rem'} padding={'md'}>
     <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
       Popover title
     </h4>
@@ -164,6 +188,7 @@ const [open, setOpen] = useState(false)
   render: ({
     triggerLabel,
     contentWidth,
+    contentPadding,
     itemLabel,
     itemDisabled,
     itemDestructive,
@@ -176,7 +201,10 @@ const [open, setOpen] = useState(false)
           <Button label={triggerLabel ?? 'Open popover'} />
         </Popover.Trigger>
 
-        <Popover.Content style={{ width: contentWidth || '20rem' }}>
+        <Popover.Content
+          width={contentWidth || '20rem'}
+          padding={contentPadding}
+        >
           <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
             Popover title
           </h4>

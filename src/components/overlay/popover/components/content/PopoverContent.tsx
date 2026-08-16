@@ -20,6 +20,8 @@ import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hoo
 const PopoverContent: FC<PopoverContentProps> = memo(({
     className,
     position,
+    padding = 'md',
+    width,
     side: sideProp = 'bottom',
     align: alignProp = 'center',
     sideOffset = 6,
@@ -27,6 +29,7 @@ const PopoverContent: FC<PopoverContentProps> = memo(({
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     defaultAriaLabel = 'Popover',
+    style,
     ...props
 }) => {
     const contentRef = useViewportShift(collisionPadding)
@@ -52,9 +55,17 @@ const PopoverContent: FC<PopoverContentProps> = memo(({
             >
                 <BasePopover.Popup
                     ref={contentRef}
-                    className={cn(POPOVER_CONTENT_STYLES.root, className)}
+                    className={cn(
+                        POPOVER_CONTENT_STYLES.root,
+                        POPOVER_CONTENT_STYLES.padding({ padding }),
+                        className,
+                    )}
                     aria-label={accessibleName}
                     aria-labelledby={ariaLabelledBy}
+                    style={{
+                        width,
+                        ...style,
+                    }}
                     {...props}
                 />
             </BasePopover.Positioner>

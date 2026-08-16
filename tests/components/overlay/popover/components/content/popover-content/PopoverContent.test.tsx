@@ -30,8 +30,33 @@ describe('PopoverContent', () => {
             </Popover>,
         )
 
-        expect(screen.getByRole('dialog', { name: 'Popover' })).toBeTruthy()
+        const content = screen.getByRole('dialog', { name: 'Popover' })
+
+        expect(content).toBeTruthy()
+        expect(content.className).toContain(
+            POPOVER_CONTENT_STYLES.padding({ padding: 'md' }),
+        )
         expect(screen.getByText('Content')).toBeTruthy()
+    })
+
+    it('applies Box-compatible padding and width props', () => {
+        render(
+            <Popover defaultOpen>
+                <Popover.Trigger>
+                    <button type={'button'}>Open</button>
+                </Popover.Trigger>
+                <Popover.Content padding={'xs'} width={'18rem'}>
+                    Content
+                </Popover.Content>
+            </Popover>,
+        )
+
+        const content = screen.getByRole('dialog', { name: 'Popover' })
+
+        expect(content.className).toContain(
+            POPOVER_CONTENT_STYLES.padding({ padding: 'xs' }),
+        )
+        expect(content.style.width).toBe('18rem')
     })
 
     it('does not render content when the popover is closed', () => {
