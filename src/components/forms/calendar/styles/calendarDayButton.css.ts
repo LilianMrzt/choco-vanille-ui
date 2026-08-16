@@ -8,7 +8,7 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         border: 'none',
         backgroundColor: 'transparent',
         color: vars.color.foreground,
@@ -96,7 +96,7 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button`, {
     backgroundColor: vars.color.primary,
     color: vars.color.primaryForeground,
-    borderRadius: `${vars.radius.sm} 0 0 ${vars.radius.sm}`,
+    borderRadius: `${vars.radius.xs} 0 0 ${vars.radius.xs}`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:hover:not(:disabled)`, {
     backgroundColor: vars.color.primaryHover,
@@ -109,7 +109,7 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:active:not(:disabl
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button`, {
     backgroundColor: vars.color.primary,
     color: vars.color.primaryForeground,
-    borderRadius: `0 ${vars.radius.sm} ${vars.radius.sm} 0`,
+    borderRadius: `0 ${vars.radius.xs} ${vars.radius.xs} 0`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button:hover:not(:disabled)`, {
     backgroundColor: vars.color.primaryHover,

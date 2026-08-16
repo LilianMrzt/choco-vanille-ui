@@ -11,7 +11,7 @@ export const SELECT_ITEM_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space.sm,
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         paddingBlock: vars.space.xs2,
         paddingInline: vars.space.sm,
         paddingLeft: '1.75rem',

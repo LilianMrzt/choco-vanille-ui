@@ -9,7 +9,7 @@ export const TEXT_AREA_STYLES = {
             width: '100%',
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
-            borderRadius: vars.radius.sm,
+            borderRadius: vars.radius.xs,
             border: `1px solid ${vars.color.border}`,
             backgroundColor: vars.color.card,
             color: vars.color.foreground,

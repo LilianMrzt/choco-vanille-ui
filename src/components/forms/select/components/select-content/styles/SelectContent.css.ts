@@ -24,7 +24,7 @@ export const SELECT_CONTENT_STYLES = {
         minWidth: 'var(--anchor-width)',
         maxHeight: 'var(--available-height)',
         overflow: 'hidden',
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius.md,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.popover,
         color: vars.color.popoverForeground,

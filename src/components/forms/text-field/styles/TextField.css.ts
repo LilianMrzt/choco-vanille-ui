@@ -8,7 +8,7 @@ export const TEXT_FIELD_STYLES = {
             width: '100%',
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
-            borderRadius: vars.radius.sm,
+            borderRadius: vars.radius.xs,
             border: `1px solid ${vars.color.border}`,
             // White background by default (card token = white surface in light/dark themes).
             // Override via the `style` prop: `<TextField style={{ backgroundColor: '…' }} />`

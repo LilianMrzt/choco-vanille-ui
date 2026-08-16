@@ -7,7 +7,7 @@ export const CALENDAR_MONTH_VIEW_STYLES = {
         alignItems: 'center',
         justifyContent: 'center',
         height: '2.5rem',
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         border: 'none',
         backgroundColor: 'transparent',
         color: vars.color.foreground,

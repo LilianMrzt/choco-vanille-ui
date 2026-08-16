@@ -11,8 +11,8 @@ export const TOOLBAR_STYLES = {
         marginBottom: `calc(-1 * ${vars.space.xs})`,
         border: `1px solid ${vars.color.border}`,
         borderBottom: 'none',
-        borderTopLeftRadius: vars.radius.sm,
-        borderTopRightRadius: vars.radius.sm,
+        borderTopLeftRadius: vars.radius.xs,
+        borderTopRightRadius: vars.radius.xs,
         backgroundColor: vars.color.card,
     }),
 }

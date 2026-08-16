@@ -26,7 +26,7 @@ export const TEXT_COLOR_MENU_STYLES = {
         justifyContent: 'center',
         position: 'relative',
         border: `2px solid ${vars.color.card}`,
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius.xs,
         cursor: 'pointer',
         selectors: {
             '&:focus-visible': {

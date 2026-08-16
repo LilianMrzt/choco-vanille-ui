@@ -20,7 +20,7 @@ export const POPOVER_CONTENT_STYLES = {
         zIndex: vars.zIndex.popover,
         minWidth: '11rem',
         overflow: 'hidden',
-        borderRadius: vars.radius.md,
+        borderRadius: vars.radius.sm,
         border: `1px solid ${vars.color.border}`,
         backgroundColor: vars.color.popover,
         color: vars.color.popoverForeground,
