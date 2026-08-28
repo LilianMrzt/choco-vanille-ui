@@ -184,6 +184,51 @@ export const Playground: Story = {
     },
 }
 
+export const HeaderActions: Story = {
+    render: () => (
+        <Panel>
+            <Panel.Trigger>
+                <Button
+                    label={'Open panel with actions'}
+                    variant={'outlined'}
+                    color={'primary'}
+                />
+            </Panel.Trigger>
+            <Panel.Content>
+                <Panel.Header
+                    title={'Panel settings with a long title that stays on one line'}
+                    description={'Additional context is truncated when it exceeds the available header width.'}
+                    actions={
+                        <Button
+                            label={'Save'}
+                            variant={'ghost'}
+                            color={'primary'}
+                            size={'sm'}
+                        />
+                    }
+                />
+            </Panel.Content>
+        </Panel>
+    ),
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+<Panel>
+    <Panel.Trigger>
+        <Button label="Open panel with actions" variant="outlined" color="primary" />
+    </Panel.Trigger>
+    <Panel.Content>
+        <Panel.Header
+            title="Panel settings with a long title that stays on one line"
+            description="Additional context is truncated when it exceeds the available header width."
+            actions={<Button label="Save" variant="ghost" color="primary" size="sm" />}
+        />
+    </Panel.Content>
+</Panel>`),
+        },
+    },
+}
+
 export const Positions: Story = {
     render: () => (
         <>

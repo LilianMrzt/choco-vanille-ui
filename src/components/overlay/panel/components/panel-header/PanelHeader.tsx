@@ -5,12 +5,14 @@ import { IconButton } from '@components/actions/icon-button'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import type { PanelHeaderProps } from '@components/overlay/panel/components/panel-header/types/PanelHeader.props.ts'
+import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/styles/PanelHeader.css.ts'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { usePanelContext } from '@components/overlay/panel/context/Panel.context.ts'
 
 /**
  * Panel heading area with an optional `title`, `description`, custom
- * `actions`, and an auto-rendered close button. Registers the title
+ * `actions`, and an auto-rendered close button. Actions are arranged before
+ * the close button in the trailing row. Registers the title
  * presence with `Panel` context so `Panel.Content` can set
  * `aria-labelledby` automatically.
  */
@@ -54,6 +56,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                         flexDirection={'column'}
                         alignItems={'start'}
                         gap={'xs'}
+                        className={PANEL_HEADER_STYLES.content}
                     >
                         {title && (
                             <BaseDialog.Title
@@ -64,6 +67,8 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                         fontSize={'lg'}
                                         fontWeight={'semibold'}
                                         color={'foreground'}
+                                        width={'100%'}
+                                        ellipsis={true}
                                         {...titleProps}
                                     >
                                         {title}
@@ -76,9 +81,11 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                 render={
                                     <Typography
                                         as={'p'}
-                                        id={descriptionProps?.id}
                                         fontSize={'sm'}
                                         color={'mutedForeground'}
+                                        width={'100%'}
+                                        ellipsis={true}
+                                        {...descriptionProps}
                                     >
                                         {description}
                                     </Typography>
@@ -88,20 +95,28 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                     </Flex>
                 )}
                 {children}
-                {actions ??
-        (showCloseButton && (
-            <BaseDialog.Close
-                render={
-                    <IconButton
-                        icon={CloseIcon}
-                        aria-label={closeLabel}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                    />
-                }
-            />
-        ))}
+                {(actions || showCloseButton) && (
+                    <Flex
+                        alignItems={'center'}
+                        gap={'xs'}
+                        className={PANEL_HEADER_STYLES.actions}
+                    >
+                        {actions}
+                        {showCloseButton && (
+                            <BaseDialog.Close
+                                render={
+                                    <IconButton
+                                        icon={CloseIcon}
+                                        aria-label={closeLabel}
+                                        variant={'ghost'}
+                                        color={'primary'}
+                                        size={'sm'}
+                                    />
+                                }
+                            />
+                        )}
+                    </Flex>
+                )}
             </Flex>
         )
     },

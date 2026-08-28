@@ -11,6 +11,7 @@ export type PanelHeaderProps = Omit<FlexProps, 'as'> & {
   titleProps?: TypographyProps;
   description?: string;
   descriptionProps?: TypographyProps;
+  /** Content rendered immediately before the close button. */
   actions?: React.ReactNode;
   showCloseButton?: boolean;
   closeLabel?: string;
