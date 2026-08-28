@@ -89,6 +89,7 @@ export const STATUS_BADGE_STYLES = {
     indicator: recipe({
         base: {
             position: 'absolute',
+            zIndex: vars.zIndex.docked,
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
