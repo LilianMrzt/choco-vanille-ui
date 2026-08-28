@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react'
 type PanelContextValue = {
     titleId: string
     hasTitle: boolean
+    withBackdrop: boolean
     setHasTitle: (hasTitle: boolean) => void
 }
 

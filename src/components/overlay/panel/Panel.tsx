@@ -23,12 +23,12 @@ import type {
  * Compound slots: `Panel.Trigger`, `.Content`, `.Header`, `.Body`,
  * `.Footer`, `.Title`, `.Description`, `.Close`.
  */
-const Panel = memo<PanelProps>((props) => {
+const Panel = memo<PanelProps>(({ withBackdrop = true, ...props }) => {
     const titleId = useId()
     const [hasTitle, setHasTitle] = useState(false)
     const contextValue = useMemo(
-        () => ({ titleId, hasTitle, setHasTitle }),
-        [hasTitle, titleId],
+        () => ({ titleId, hasTitle, withBackdrop, setHasTitle }),
+        [hasTitle, titleId, withBackdrop],
     )
 
     return (

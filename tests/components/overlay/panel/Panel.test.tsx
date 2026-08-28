@@ -43,6 +43,17 @@ describe('Panel', () => {
         expect(screen.getByRole('dialog', { name: 'Panel' })).toBeTruthy()
     })
 
+    it('does not render the backdrop when withBackdrop is false', () => {
+        render(
+            <Panel defaultOpen withBackdrop={false}>
+                <Panel.Content>Panel content</Panel.Content>
+            </Panel>,
+        )
+
+        expect(screen.getByRole('dialog', { name: 'Panel' })).toBeTruthy()
+        expect(screen.queryByRole('presentation')).toBeNull()
+    })
+
     it('opens from the trigger and closes with the panel close button', async () => {
         render(
             <Panel>

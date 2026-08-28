@@ -37,7 +37,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`Panel.Content aria-label\` | No          | \`string\` | Supplies a localizable fallback name. |
 
 - Focus is trapped inside the panel while it is open.
-- Pressing \`Escape\` or clicking the backdrop closes the panel.
+- Pressing \`Escape\` closes the panel; clicking the backdrop also closes it when \`withBackdrop\` is enabled.
 - The panel slides from the configured \`position\`.
 `
 
@@ -75,6 +75,10 @@ A modal side panel built on Base UI Dialog. Compose it with \`Panel.Trigger\`, \
             control: 'boolean',
             table: { category: 'Panel' },
         },
+        withBackdrop: {
+            control: 'boolean',
+            table: { category: 'Panel' },
+        },
         position: {
             control: 'select',
             options: POSITIONS,
@@ -100,6 +104,7 @@ A modal side panel built on Base UI Dialog. Compose it with \`Panel.Trigger\`, \
     args: {
         defaultOpen: false,
         modal: true,
+        withBackdrop: true,
         position: 'right',
         width: '33.333vw',
         title: 'Panel settings',
@@ -116,7 +121,7 @@ export const Playground: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Panel>
+<Panel withBackdrop>
     <Panel.Trigger>
         <Button label="Open panel" variant="contained" color="primary" />
     </Panel.Trigger>
@@ -139,6 +144,7 @@ export const Playground: Story = {
     render: ({
         defaultOpen,
         modal,
+        withBackdrop,
         position,
         width,
         title,
@@ -148,6 +154,7 @@ export const Playground: Story = {
         <Panel
             defaultOpen={defaultOpen}
             modal={modal}
+            withBackdrop={withBackdrop}
         >
             <Panel.Trigger>
                 <Button

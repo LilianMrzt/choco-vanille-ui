@@ -25,7 +25,7 @@ const PanelContent: FC<PanelContentProps> = memo(
         style,
         ...props
     }) => {
-        const { hasTitle, titleId } = usePanelContext()
+        const { hasTitle, titleId, withBackdrop } = usePanelContext()
         const accessibleName =
       ariaLabel ?? (!ariaLabelledBy && !hasTitle ? defaultAriaLabel : undefined)
         const labelledBy = ariaLabelledBy ?? (hasTitle ? titleId : undefined)
@@ -34,7 +34,9 @@ const PanelContent: FC<PanelContentProps> = memo(
 
         return (
             <BaseDialog.Portal>
-                <OverlayBackdrop className={PANEL_STYLES.backdrop} />
+                {withBackdrop && (
+                    <OverlayBackdrop className={PANEL_STYLES.backdrop} />
+                )}
                 <BaseDialog.Popup
                     className={cn(
                         PANEL_STYLES.content,
