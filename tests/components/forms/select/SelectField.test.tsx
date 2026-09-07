@@ -41,8 +41,16 @@ describe('SelectField', () => {
         it('renders a label linked to the trigger when label is provided', () => {
             render(<SelectField label={'Fruit'} options={FRUIT_OPTIONS} />)
             const trigger = screen.getByRole('combobox')
-            const label = screen.getByText('Fruit') as HTMLLabelElement
-            expect(label.htmlFor).toBe(trigger.id)
+            const label = screen.getByText('Fruit') as HTMLSpanElement
+            expect(label.id).toBe(trigger.getAttribute('aria-labelledby'))
+        })
+
+        it('does not open the trigger when its label is clicked', async () => {
+            render(<SelectField label={'Fruit'} options={FRUIT_OPTIONS} />)
+
+            await userEvent.click(screen.getByText('Fruit'))
+
+            expect(document.querySelector('[data-open]')).toBeNull()
         })
 
         it('does not render a label when label is omitted', () => {

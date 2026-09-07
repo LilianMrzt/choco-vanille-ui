@@ -6,8 +6,8 @@ import { DatePicker } from '@components/forms/date-picker'
 describe('DatePicker', () => {
     describe('accessibility', () => {
         it('annotates the input with aria-haspopup', () => {
-            render(<DatePicker label={'Pick a date'} />)
-            const input = screen.getByLabelText('Pick a date')
+            const { container } = render(<DatePicker label={'Pick a date'} />)
+            const input = container.querySelector('input') as HTMLInputElement
             expect(input.getAttribute('aria-haspopup')).toBe('dialog')
         })
 
@@ -28,8 +28,8 @@ describe('DatePicker', () => {
         })
 
         it('does not apply aria-expanded to the native date input', () => {
-            render(<DatePicker label={'Pick a date'} />)
-            const input = screen.getByLabelText('Pick a date')
+            const { container } = render(<DatePicker label={'Pick a date'} />)
+            const input = container.querySelector('input') as HTMLInputElement
 
             expect(input.hasAttribute('aria-expanded')).toBe(false)
         })

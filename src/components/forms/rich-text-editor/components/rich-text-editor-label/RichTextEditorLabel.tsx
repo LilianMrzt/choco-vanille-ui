@@ -5,7 +5,7 @@ import type { RichTextEditorLabelProps } from '@components/forms/rich-text-edito
 import { RichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 
 /**
- * Visible `<label>` for the rich-text editor field. Reads `labelId` from
+ * Visible label text for the rich-text editor field. Reads `labelId` from
  * the `RichTextEditor` context to link the label to the editor control.
  */
 const RichTextEditorLabel: FC<RichTextEditorLabelProps> = memo(({ id, disabled, children }) => {

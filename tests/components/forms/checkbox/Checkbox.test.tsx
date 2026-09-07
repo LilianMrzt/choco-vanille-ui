@@ -28,10 +28,10 @@ describe('Checkbox', () => {
     })
 
     describe('label', () => {
-        it('renders a <label> element when label prop is provided', () => {
+        it('renders plain text when label prop is provided', () => {
             render(<Checkbox label={'Accept terms'} />)
             expect(screen.getByText('Accept terms')).toBeTruthy()
-            expect(screen.getByText('Accept terms').tagName.toLowerCase()).toBe('label')
+            expect(screen.getByText('Accept terms').tagName.toLowerCase()).toBe('span')
         })
 
         it('associates the label with the checkbox via aria-labelledby', () => {
@@ -89,6 +89,14 @@ describe('Checkbox', () => {
             await userEvent.click(getCheckbox())
             expect(getCheckbox().getAttribute('data-checked')).not.toBeNull()
             await userEvent.click(getCheckbox())
+            expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
+        })
+
+        it('does not toggle when its label is clicked', async () => {
+            render(<Checkbox label={'Accept terms'} />)
+
+            await userEvent.click(screen.getByText('Accept terms'))
+
             expect(getCheckbox().getAttribute('data-unchecked')).not.toBeNull()
         })
     })

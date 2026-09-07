@@ -6,30 +6,35 @@ import { cn } from '@utils/cn.ts'
 import { vars } from '@theme/contract.css.ts'
 
 /**
- * Reusable label for form controls with the standard typography and disabled
- * presentation.
+ * Non-interactive form label text. Use `aria-labelledby` on the control when
+ * rendering this label next to it.
  */
-const FormLabel: FC<FormLabelProps> = memo(
-    ({ className, style, fontSize = 'md', disabled, required, ref, children, ...props }) => (
-        <label
-            {...props}
-            ref={ref}
-            className={cn(FORM_LABEL_STYLES.root, className)}
-            style={{ fontSize: vars.fontSize[fontSize], ...style }}
-            data-disabled={disabled ? '' : undefined}
-        >
-            {children}
-            {required && (
-                <span
-                    className={FORM_LABEL_STYLES.requiredIndicator}
-                    aria-hidden={'true'}
-                >
-                    {' *'}
-                </span>
-            )}
-        </label>
-    ),
-)
+const FormLabel: FC<FormLabelProps> = memo(({
+    className,
+    style,
+    fontSize = 'md',
+    disabled,
+    required,
+    children,
+    ...props
+}) => (
+    <span
+        {...props}
+        className={cn(FORM_LABEL_STYLES.root, className)}
+        style={{ fontSize: vars.fontSize[fontSize], ...style }}
+        data-disabled={disabled ? '' : undefined}
+    >
+        {children}
+        {required && (
+            <span
+                className={FORM_LABEL_STYLES.requiredIndicator}
+                aria-hidden={'true'}
+            >
+                {' *'}
+            </span>
+        )}
+    </span>
+))
 
 FormLabel.displayName = 'FormLabel'
 

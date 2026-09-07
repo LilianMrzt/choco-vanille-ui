@@ -15,7 +15,7 @@ import { memo, useCallback, useRef } from 'react'
 import type { TextAreaProps } from '@/components'
 
 /**
-  * A styled textarea built with a native `<textarea>` and `<label>`.
+  * A styled textarea built with a native `<textarea>` and selectable label text.
   *
   * - `startIcon` - Iconify icon name rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
@@ -70,9 +70,11 @@ const TextArea = memo<TextAreaProps>((props) => {
         rows,
         minRows,
         maxRows,
+        'aria-labelledby': ariaLabelledBy,
         ...textareaProps
     } = props
     const size = sizeProp ?? 'md'
+    const labelId = label && inputId ? `${inputId}-label` : undefined
 
     const innerRef = useRef<HTMLTextAreaElement>(null)
     const setRef = useCallback(
@@ -114,7 +116,7 @@ const TextArea = memo<TextAreaProps>((props) => {
         >
             {label && (
                 <FormLabel
-                    htmlFor={inputId}
+                    id={labelId}
                     disabled={disabled}
                     fontSize={fontSizeProp}
                 >
@@ -138,6 +140,7 @@ const TextArea = memo<TextAreaProps>((props) => {
                     ref={setRef}
                     id={inputId}
                     disabled={disabled}
+                    aria-labelledby={ariaLabelledBy ?? labelId}
                     aria-invalid={hasError || undefined}
                     aria-describedby={error || helperText ? helperId : undefined}
                     onMouseDown={handleMouseDown}

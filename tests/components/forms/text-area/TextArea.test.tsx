@@ -17,8 +17,8 @@ describe('TextArea', () => {
         it('renders a label linked to the textarea', () => {
             render(<TextArea label={'Description'} />)
             const textarea = screen.getByRole('textbox')
-            const label = screen.getByText('Description') as HTMLLabelElement
-            expect(label.htmlFor).toBe(textarea.id)
+            const label = screen.getByText('Description') as HTMLSpanElement
+            expect(label.id).toBe(textarea.getAttribute('aria-labelledby'))
         })
 
         it('renders helper text linked via aria-describedby', () => {

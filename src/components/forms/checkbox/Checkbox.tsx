@@ -4,7 +4,7 @@ import { memo, useId, type FC } from 'react'
 import { Icon } from '@components/foundation/icon'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import MinusIcon from '@resources/asset/MinusIcon.svg?react'
-import { Typography } from '@components/foundation/typography'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import { CHECKBOX_STYLES } from '@components/forms/checkbox/styles/Checkbox.css.ts'
@@ -61,16 +61,12 @@ const Checkbox: FC<CheckboxProps> = memo(({
             </BaseCheckbox.Root>
 
             {label && (
-                <Typography
-                    as={'label'}
-                    variant={'label'}
-                    color={'foreground'}
+                <FormLabel
                     id={labelId}
-                    htmlFor={checkboxId}
                     className={CHECKBOX_STYLES.label}
                 >
                     {label}
-                </Typography>
+                </FormLabel>
             )}
         </Flex>
     )

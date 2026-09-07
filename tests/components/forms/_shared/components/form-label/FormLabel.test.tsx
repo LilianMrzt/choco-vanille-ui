@@ -6,13 +6,13 @@ import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-lab
 import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/styles/Typography.css.ts'
 
 describe('FormLabel', () => {
-    it('renders a label with the shared Typography label style', () => {
-        render(<FormLabel htmlFor={'field'}>Name</FormLabel>)
+    it('renders selectable text with the shared label style', () => {
+        render(<FormLabel id={'field-label'}>Name</FormLabel>)
 
         const label = screen.getByText('Name')
 
-        expect(label.tagName.toLowerCase()).toBe('label')
-        expect(label.getAttribute('for')).toBe('field')
+        expect(label.tagName.toLowerCase()).toBe('span')
+        expect(label.id).toBe('field-label')
         expect(label.className).toContain(FORM_LABEL_STYLES.root)
         expect(FORM_LABEL_STYLES.root).toBe(TYPOGRAPHY_STYLES.recipe({ variant: 'label' }))
     })

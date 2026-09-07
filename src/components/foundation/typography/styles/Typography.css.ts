@@ -69,7 +69,6 @@ export const TYPOGRAPHY_STYLES = {
                     fontWeight: vars.fontWeight.medium,
                     lineHeight: vars.lineHeight.normal,
                     color: vars.color.foreground,
-                    userSelect: 'none',
                     selectors: {
                         '&[data-disabled]': {
                             cursor: 'not-allowed',

@@ -148,8 +148,6 @@ export const CHECKBOX_STYLES = {
     }),
     /** Typography label associated with the checkbox control. */
     label: style({
-        cursor: 'pointer',
-        userSelect: 'none',
         selectors: {
             /* Mirrors disabled opacity when the paired checkbox is disabled */
             '[data-disabled] ~ &': {

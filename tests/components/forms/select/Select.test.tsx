@@ -42,8 +42,8 @@ describe('SelectField', () => {
         it('renders a label linked to the trigger', () => {
             render(<SelectField label={'Fruit'} options={FRUIT_OPTIONS} />)
             const trigger = screen.getByRole('combobox')
-            const label = screen.getByText('Fruit') as HTMLLabelElement
-            expect(label.htmlFor).toBe(trigger.id)
+            const label = screen.getByText('Fruit') as HTMLSpanElement
+            expect(label.id).toBe(trigger.getAttribute('aria-labelledby'))
         })
 
         it('renders helper text linked via aria-describedby', () => {

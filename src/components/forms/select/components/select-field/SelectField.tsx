@@ -58,6 +58,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
     })
 
     const items = useMemo(() => flattenItems(options), [options])
+    const labelId = label ? `${triggerId}-label` : undefined
 
     const handleSelectValueChange = useCallback(
         (v: string | null) => { if (v !== null) { handleValueChange(v) } },
@@ -76,7 +77,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
         >
             {label && (
                 <FormLabel
-                    htmlFor={triggerId}
+                    id={labelId}
                     disabled={disabled}
                     fontSize={fontSize}
                 >
@@ -101,6 +102,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
                     startIcon={startIcon}
                     size={size}
                     fontSize={fontSize}
+                    aria-labelledby={labelId}
                     hasError={hasError}
                     aria-describedby={error || helperText ? helperId : undefined}
                     aria-invalid={hasError || undefined}

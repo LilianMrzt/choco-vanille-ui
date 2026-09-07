@@ -59,7 +59,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A styled text input built with a native \`<input>\` and \`<label>\` for accessible label binding.
+A styled text input built with a native \`<input>\` and selectable label text connected with \`aria-labelledby\`.
 
 Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, password toggle and custom width.
 

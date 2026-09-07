@@ -18,7 +18,7 @@ import { memo, useCallback } from 'react'
 import type { TextFieldProps } from '@/components'
 
 /**
-  * A styled text input built with a native `<input>` and `<label>`.
+  * A styled text input built with a native `<input>` and selectable label text.
   *
   * - `startIcon` - Iconify icon name rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
@@ -74,9 +74,11 @@ const TextField = memo<TextFieldProps>((props) => {
         ref,
         style: inputStyle,
         type: _type,
+        'aria-labelledby': ariaLabelledBy,
         ...inputProps
     } = props
     const size = sizeProp ?? 'md'
+    const labelId = label && inputId ? `${inputId}-label` : undefined
 
     const handleTogglePassword = useCallback(
         () => setShowPassword(!showPassword),
@@ -108,7 +110,7 @@ const TextField = memo<TextFieldProps>((props) => {
         >
             {label && (
                 <FormLabel
-                    htmlFor={inputId}
+                    id={labelId}
                     disabled={disabled}
                     required={required && showRequiredIndicator}
                     fontSize={fontSizeProp}
@@ -136,6 +138,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     type={resolvedType}
                     disabled={disabled}
                     required={required}
+                    aria-labelledby={ariaLabelledBy ?? labelId}
                     aria-invalid={hasError || undefined}
                     aria-describedby={error || helperText ? helperId : undefined}
                     onMouseDown={handleMouseDown}

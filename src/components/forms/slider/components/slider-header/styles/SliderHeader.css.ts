@@ -13,7 +13,6 @@ export const SLIDER_HEADER_STYLES = {
         color: vars.color.foreground,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
-        userSelect: 'none',
     }),
     value: style({
         color: vars.color.mutedForeground,

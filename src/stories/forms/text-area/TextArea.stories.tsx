@@ -51,7 +51,7 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A styled textarea built with a native \`<textarea>\` and \`<label>\` for accessible label binding.
+A styled textarea built with a native \`<textarea>\` and selectable label text connected with \`aria-labelledby\`.
 
 Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\`) modes, optional label, start icon, end action, helper text, inline error, custom width and native \`rows\`.
 

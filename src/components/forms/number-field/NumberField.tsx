@@ -43,10 +43,12 @@ const NumberField = memo<NumberFieldProps>((props) => {
         onValueCommitted,
         ref,
         'aria-describedby': ariaDescribedBy,
+        'aria-labelledby': ariaLabelledBy,
         ...inputProps
     } = props
     const generatedId = useId()
     const inputId = id ?? generatedId
+    const labelId = label ? `${inputId}-label` : undefined
     const helperId = `${generatedId}-helper`
     const hasError = Boolean(error)
     const describedBy =
@@ -64,7 +66,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
         >
             {label && (
                 <FormLabel
-                    htmlFor={inputId}
+                    id={labelId}
                     disabled={disabled}
                     fontSize={fontSize}
                 >
@@ -96,7 +98,10 @@ const NumberField = memo<NumberFieldProps>((props) => {
                 className={NUMBER_FIELD_STYLES.root}
             >
                 <NumberFieldInput
-                    inputProps={inputProps}
+                    inputProps={{
+                        ...inputProps,
+                        'aria-labelledby': ariaLabelledBy ?? labelId,
+                    }}
                     inputRef={ref}
                     className={className}
                     describedBy={describedBy}

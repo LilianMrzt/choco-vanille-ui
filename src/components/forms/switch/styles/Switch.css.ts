@@ -153,8 +153,6 @@ export const SWITCH_STYLES = {
         },
     }),
     label: style({
-        cursor: 'pointer',
-        userSelect: 'none',
     }),
     labelDisabled: style({
         cursor: 'not-allowed',

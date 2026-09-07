@@ -104,8 +104,6 @@ export const RADIO_ITEM_STYLES = {
 
     /** Typography label associated with the radio button. */
     label: style({
-        cursor: 'pointer',
-        userSelect: 'none',
         selectors: {
             '[data-disabled] ~ &': {
                 cursor: 'not-allowed',

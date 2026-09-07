@@ -17,8 +17,8 @@ describe('TextField', () => {
         it('renders a label linked to the input', () => {
             render(<TextField label={'Email'} />)
             const input = screen.getByRole('textbox')
-            const label = screen.getByText('Email') as HTMLLabelElement
-            expect(label.htmlFor).toBe(input.id)
+            const label = screen.getByText('Email') as HTMLSpanElement
+            expect(label.id).toBe(input.getAttribute('aria-labelledby'))
         })
 
         it('renders a required indicator by default for required fields', () => {
@@ -77,8 +77,10 @@ describe('TextField', () => {
 
     describe('interactions', () => {
         it('toggles password visibility', async () => {
-            render(<TextField label={'Password'} type={'password'} />)
-            const input = screen.getByLabelText('Password') as HTMLInputElement
+            const { container } = render(
+                <TextField label={'Password'} type={'password'} />,
+            )
+            const input = container.querySelector('input') as HTMLInputElement
             expect(input.type).toBe('password')
             await userEvent.click(
                 screen.getByRole('button', { name: 'Show password' }),

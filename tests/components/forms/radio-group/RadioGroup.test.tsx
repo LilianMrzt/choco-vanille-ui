@@ -53,14 +53,14 @@ describe('RadioItem', () => {
             expect(screen.getByRole('radio')).toBeTruthy()
         })
 
-        it('renders a label when label prop is provided', () => {
+        it('renders plain text when label prop is provided', () => {
             render(
                 <RadioGroup aria-label={'group'}>
                     <RadioGroup.Item value={'x'} label={'My option'} />
                 </RadioGroup>,
             )
             expect(screen.getByText('My option')).toBeTruthy()
-            expect(screen.getByText('My option').tagName.toLowerCase()).toBe('label')
+            expect(screen.getByText('My option').tagName.toLowerCase()).toBe('span')
         })
 
         it('associates label with the radio via aria-labelledby', () => {
@@ -69,7 +69,7 @@ describe('RadioItem', () => {
                     <RadioGroup.Item value={'x'} label={'My option'} />
                 </RadioGroup>,
             )
-            const label = screen.getByText('My option') as HTMLLabelElement
+            const label = screen.getByText('My option') as HTMLSpanElement
             const radio = screen.getByRole('radio') as HTMLElement
             expect(radio.getAttribute('aria-labelledby')).toBe(label.id)
         })

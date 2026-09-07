@@ -23,8 +23,8 @@ describe('AutocompleteField', () => {
         it('renders a label linked to the input', () => {
             render(<AutocompleteField label={'Fruit'} options={OPTIONS} />)
             const input = screen.getByRole('combobox')
-            const label = screen.getByText('Fruit') as HTMLLabelElement
-            expect(label.htmlFor).toBe(input.id)
+            const label = screen.getByText('Fruit') as HTMLSpanElement
+            expect(label.id).toBe(input.getAttribute('aria-labelledby'))
         })
 
         it('renders helper text linked via aria-describedby', () => {

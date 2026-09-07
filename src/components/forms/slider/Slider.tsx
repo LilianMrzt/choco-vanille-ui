@@ -28,6 +28,7 @@ export const Slider: FC<SliderProps> = memo(({
     ...props
 }) => {
     const descriptionId = useId()
+    const labelId = useId()
     const hasDescription = Boolean(error || helperText)
     const range = Array.isArray(value ?? defaultValue)
 
@@ -37,6 +38,7 @@ export const Slider: FC<SliderProps> = memo(({
                 ref={ref}
                 className={cn(SLIDER_STYLES.root, className)}
                 style={{ width }}
+                aria-labelledby={label ? labelId : undefined}
                 aria-describedby={hasDescription ? descriptionId : undefined}
                 value={value}
                 defaultValue={defaultValue}
@@ -44,6 +46,7 @@ export const Slider: FC<SliderProps> = memo(({
             >
                 <SliderHeader
                     label={label}
+                    labelId={labelId}
                     showValue={showValue}
                 />
                 <SliderTrack

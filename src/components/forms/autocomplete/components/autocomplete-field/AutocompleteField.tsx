@@ -60,6 +60,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
 
     const items = useMemo(() => toRootItems(options), [options])
     const hasGroups = useMemo(() => options.some((option) => option.type === 'group'), [options])
+    const labelId = label ? `${inputId}-label` : undefined
 
     const handleAutocompleteValueChange = useCallback(
         (nextValue: string) => { handleValueChange(nextValue) },
@@ -77,7 +78,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
         >
             {label && (
                 <FormLabel
-                    htmlFor={inputId}
+                    id={labelId}
                     disabled={disabled}
                     fontSize={fontSize}
                 >
@@ -115,6 +116,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
                             startIcon={startIcon}
                             size={size}
                             fontSize={fontSize}
+                            aria-labelledby={labelId}
                             hasError={hasError}
                             aria-describedby={error || helperText ? helperId : undefined}
                             aria-invalid={hasError || undefined}

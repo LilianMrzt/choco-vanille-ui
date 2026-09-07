@@ -28,11 +28,11 @@ describe('Switch', () => {
     })
 
     describe('label', () => {
-        it('renders a <label> element when label prop is provided', () => {
+        it('renders plain text when label prop is provided', () => {
             render(<Switch label={'Airplane mode'} />)
             expect(screen.getByText('Airplane mode')).toBeTruthy()
             expect(screen.getByText('Airplane mode').tagName.toLowerCase()).toBe(
-                'label',
+                'span',
             )
         })
 
@@ -91,6 +91,14 @@ describe('Switch', () => {
             await userEvent.click(getSwitch())
             expect(getSwitch().getAttribute('data-checked')).toBe('')
             await userEvent.click(getSwitch())
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
+        })
+
+        it('does not toggle when its label is clicked', async () => {
+            render(<Switch label={'Airplane mode'} />)
+
+            await userEvent.click(screen.getByText('Airplane mode'))
+
             expect(getSwitch().getAttribute('data-unchecked')).toBe('')
         })
     })

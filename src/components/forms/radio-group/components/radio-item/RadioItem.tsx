@@ -3,7 +3,7 @@ import { memo, useId, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import { Typography } from '@components/foundation/typography'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/styles/RadioItem.css.ts'
@@ -26,6 +26,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
     ...props
 }) => {
     const generatedId = useId()
+    const labelId = useId()
     const radioId = id ?? (label ? generatedId : undefined)
 
     return (
@@ -38,6 +39,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
                 id={radioId}
                 value={value}
                 className={cn(RADIO_ITEM_STYLES.root, className)}
+                aria-labelledby={label ? labelId : undefined}
                 {...props}
             >
                 <Radio.Indicator className={RADIO_ITEM_STYLES.indicator}>
@@ -49,15 +51,12 @@ const RadioItem: FC<RadioItemProps> = memo(({
             </Radio.Root>
 
             {label && (
-                <Typography
-                    as={'label'}
-                    variant={'label'}
-                    color={'foreground'}
-                    htmlFor={radioId}
+                <FormLabel
+                    id={labelId}
                     className={RADIO_ITEM_STYLES.label}
                 >
                     {label}
-                </Typography>
+                </FormLabel>
             )}
         </Flex>
     )

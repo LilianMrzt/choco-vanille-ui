@@ -1,7 +1,7 @@
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import { memo, useId, type FC } from 'react'
 
-import { Typography } from '@components/foundation/typography'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
@@ -21,6 +21,7 @@ import type { SwitchProps } from '@components/forms/switch/types/Switch.props.ts
  */
 const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className, disabled, size = 'md', onCheckedChange, ...props }) => {
     const generatedId = useId()
+    const labelId = useId()
     const switchId = id ?? (label ? generatedId : undefined)
     const hasError = Boolean(error)
     const helperId = (helperText || error) ? `${switchId}-helper` : undefined
@@ -43,6 +44,7 @@ const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className,
                 <BaseSwitch.Root
                     id={switchId}
                     disabled={disabled}
+                    aria-labelledby={label ? labelId : undefined}
                     aria-describedby={helperId}
                     aria-invalid={hasError || undefined}
                     className={cn(SWITCH_STYLES.root({ size, error: hasError }), className)}
@@ -53,15 +55,12 @@ const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className,
                 </BaseSwitch.Root>
 
                 {label && (
-                    <Typography
-                        as={'label'}
-                        variant={'label'}
-                        color={'foreground'}
-                        htmlFor={switchId}
+                    <FormLabel
+                        id={labelId}
                         className={cn(SWITCH_STYLES.label, disabled && SWITCH_STYLES.labelDisabled)}
                     >
                         {label}
-                    </Typography>
+                    </FormLabel>
                 )}
             </Flex>
 
