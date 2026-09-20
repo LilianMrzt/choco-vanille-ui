@@ -9,9 +9,10 @@ import { vars } from '@theme/contract.css.ts'
 
 /*
  * Minimal global base styles for the kit. Provides predictable box-sizing, a
- * sensible default border colour, focus ring colour, and themed body
- * typography/background. Everything is driven by the design tokens so the page
- * restyles automatically when tokens are overridden or the theme flips.
+ * predictable zero-width borders, sensible default border colour, focus ring
+ * colour, and themed body typography/background. Everything is driven by the
+ * design tokens so the page restyles automatically when tokens are overridden
+ * or the theme flips.
  *
  * All rules live in the low-specificity `auk.reset` layer so the consuming
  * project can override them without fighting specificity.
@@ -23,6 +24,8 @@ globalStyle('*, *::before, *::after', {
     '@layer': {
         [resetLayer]: {
             boxSizing: 'border-box',
+            borderWidth: 0,
+            borderStyle: 'solid',
             borderColor: vars.color.border,
             outlineColor: vars.color.ring,
         },

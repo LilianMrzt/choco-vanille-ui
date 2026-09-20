@@ -2,7 +2,9 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
+import '@theme'
 import Box from '@components/layout/box/Box.tsx'
+import { Flex } from '@components/layout/flex'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement
@@ -45,6 +47,40 @@ describe('Box', () => {
                 </Box>,
             )
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+        })
+    })
+
+    describe('borders', () => {
+        it('forwards border props to the DOM element', () => {
+            render(
+                <Box
+                    borderColor="border"
+                    borderStyle="solid"
+                    borderTopWidth="1px"
+                    data-testid="box"
+                />,
+            )
+
+            const box = screen.getByTestId('box')
+
+            expect(box.style.borderTopWidth).toBe('1px')
+            expect(box.style.borderStyle).toBe('solid')
+        })
+
+        it('forwards border props through Flex', () => {
+            render(
+                <Flex
+                    borderColor="border"
+                    borderStyle="solid"
+                    borderTopWidth="1px"
+                    data-testid="flex"
+                />,
+            )
+
+            const flex = screen.getByTestId('flex')
+
+            expect(flex.style.borderTopWidth).toBe('1px')
+            expect(flex.style.borderStyle).toBe('solid')
         })
     })
 
