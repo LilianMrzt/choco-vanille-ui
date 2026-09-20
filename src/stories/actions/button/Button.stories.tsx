@@ -69,10 +69,12 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | Prop / Attribute | Required | Type      | Notes                                                                          |
 | ---------------- | -------- | --------- | ------------------------------------------------------------------------------ |
 | \`label\`          | ✅ Yes   | \`string\`  | Becomes the button's accessible name — always provide a meaningful value.      |
+| \`href\`           | No       | \`string\`  | Renders an accessible native link with the same Button styles.                 |
 | \`disabled\`       | No       | \`boolean\` | Prevents interaction and removes the native button from the tab order.         |
-| \`aria-*\`         | No       | —         | All native \`<button>\` ARIA attributes are forwarded to the underlying element. |
+| \`aria-*\`         | No       | —         | Native ARIA attributes are forwarded to the underlying element.                |
 
-- The underlying element is a native \`<button>\`, ensuring keyboard operability (Space / Enter) and the correct ARIA role out of the box.
+- Without \`href\`, the underlying element is a native \`<button>\`, ensuring keyboard operability (Space / Enter) and the correct ARIA role out of the box.
+- With \`href\`, the underlying element is a native \`<a>\` with the correct link role and native link navigation semantics; provide \`onClick\` for client-side navigation, as with \`Link\`.
 - For icon-only actions, use \`IconButton\` instead — it enforces a mandatory \`aria-label\`.
 `
 
@@ -107,6 +109,7 @@ An optional start or end icon can be placed around the label.
 <Button label="Save" variant="contained" color="primary" />
 <Button label="Delete" variant="outlined" color="destructive" startIcon={TrashIcon} />
 <Button label="Next" variant="ghost" endIcon={ChevronRightIcon} />
+<Button label="View dashboard" href="/dashboard" />
 ~~~
         `,
             },
@@ -114,6 +117,7 @@ An optional start or end icon can be placed around the label.
     },
     argTypes: {
         label: { control: 'text' },
+        href: { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
@@ -160,6 +164,26 @@ export const Playground: Story = {
             canvas.getByRole('button', { name: args.label as string }),
         ).toBeInTheDocument()
     },
+}
+
+/** Renders a native link while retaining the Button visual treatment. */
+export const WithHref: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story:
+          'Use `href` when the action navigates to another location. The component renders a native link with Button styles.',
+            },
+            ...storySource(/* language=tsx */ `
+<Button label="View dashboard" href="/dashboard" />`),
+        },
+    },
+    render: () => (
+        <Button
+            label={'View dashboard'}
+            href={'/dashboard'}
+        />
+    ),
 }
 
 /** The three available visual variants, all using the `primary` color. */

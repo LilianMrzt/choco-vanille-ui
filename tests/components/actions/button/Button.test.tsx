@@ -27,6 +27,33 @@ describe('Button', () => {
             expect(getFirstChild(container).tagName.toLowerCase()).toBe('button')
         })
 
+        it('renders an <a> element when href is provided', () => {
+            const { container } = render(
+                <Button href="/dashboard" label={'Dashboard'} />,
+            )
+
+            expect(screen.getByRole('link', { name: 'Dashboard' })).toBeTruthy()
+            expect(getFirstChild(container).className).toContain(
+                BUTTON_STYLES.recipe({ variant: 'contained', size: 'md' }),
+            )
+        })
+
+        it('forwards href and anchor attributes in link mode', () => {
+            render(
+                <Button
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    label={'External'}
+                />,
+            )
+
+            const link = screen.getByRole('link', { name: 'External' })
+            expect(link.getAttribute('href')).toBe('https://example.com')
+            expect(link.getAttribute('target')).toBe('_blank')
+            expect(link.getAttribute('rel')).toBe('noopener noreferrer')
+        })
+
         it('renders its label via a Typography span', () => {
             render(<Button label={'Save'} />)
             expect(screen.getByRole('button', { name: 'Save' })).toBeTruthy()
@@ -202,6 +229,16 @@ describe('Button', () => {
             expect(onClick).toHaveBeenCalledTimes(1)
         })
 
+        it('prevents default navigation before calling onClick in link mode', async () => {
+            const onClick = vi.fn()
+            render(<Button href="/dashboard" onClick={onClick} label={'btn'} />)
+
+            await userEvent.click(screen.getByRole('link'))
+
+            expect(onClick).toHaveBeenCalledTimes(1)
+            expect(onClick.mock.calls[0][0].defaultPrevented).toBe(true)
+        })
+
         it('does not call onClick when disabled', async () => {
             const onClick = vi.fn()
             render(<Button disabled onClick={onClick} label={'btn'} />)
@@ -216,6 +253,13 @@ describe('Button', () => {
             render(<Button ref={ref} label={'btn'} />)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('button')
+        })
+
+        it('forwards an anchor ref in link mode', () => {
+            const ref = createRef<HTMLAnchorElement>()
+            render(<Button href="/dashboard" ref={ref} label={'btn'} />)
+            expect(ref.current).toBeTruthy()
+            expect(ref.current!.tagName.toLowerCase()).toBe('a')
         })
     })
 

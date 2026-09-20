@@ -23,6 +23,7 @@ export const BUTTON_SHARED_STYLES = {
         lineHeight: vars.lineHeight.none,
         borderRadius: vars.radius.xs,
         border: '1px solid transparent',
+        textDecoration: 'none',
         cursor: 'pointer',
         fontFamily: vars.fontFamily.sans,
         transition: [
