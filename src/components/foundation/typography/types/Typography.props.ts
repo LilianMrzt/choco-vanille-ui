@@ -6,6 +6,7 @@ import type {
     TypographyVariant,
     TypographyWeight,
 } from '@components/foundation/typography/types/Typography.types.ts'
+import type { BoxMargin } from '@components/layout/box/types/Box.types.ts'
 import type { CSSProperties, RefAttributes } from 'react'
 import type { ThemeColor } from '@theme'
 
@@ -28,6 +29,8 @@ export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
     textTransform?: CSSProperties['textTransform'];
     /** CSS `display` value applied to the text. */
     display?: CSSProperties['display'];
+    /** The margin token applied to all sides of the text. Supports `auto`. */
+    margin?: BoxMargin;
     /** CSS `width` value applied to the text. */
     width?: CSSProperties['width'];
     /** CSS `min-width` value applied to the text. */

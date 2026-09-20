@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react'
 import type * as React from 'react'
 
+import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
 import { LINK_STYLES } from '@components/navigation/link/styles/Link.css.ts'
 import type { LinkProps } from '@components/navigation/link/types/Link.props.ts'
 import { Icon } from '@components/foundation/icon'
@@ -24,8 +25,26 @@ const Link: React.FC<LinkProps> = memo(({
     fontSize = 'md',
     fontWeight = 'normal',
     iconSize = 'md',
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    padding,
+    width,
+    alignSelf,
+    style,
     ...props
 }) => {
+    const layoutClassName = (
+        marginTop !== undefined ||
+        marginRight !== undefined ||
+        marginBottom !== undefined ||
+        marginLeft !== undefined ||
+        padding !== undefined
+    )
+        ? BOX_STYLES.recipe({ marginTop, marginRight, marginBottom, marginLeft, padding })
+        : undefined
+
     const handleClick = useCallback(
         (event: React.MouseEvent<HTMLAnchorElement>) => {
             if (onClick) {
@@ -40,7 +59,13 @@ const Link: React.FC<LinkProps> = memo(({
         <a
             ref={ref}
             href={href}
-            className={cn(LINK_STYLES.base, LINK_STYLES.color({ color }), className)}
+            className={cn(
+                LINK_STYLES.base,
+                LINK_STYLES.color({ color }),
+                layoutClassName,
+                className,
+            )}
+            style={{ width, alignSelf, ...style }}
             onClick={handleClick}
             {...props}
         >

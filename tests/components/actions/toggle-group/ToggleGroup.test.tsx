@@ -7,6 +7,7 @@ import {
     ToggleGroup,
     TOGGLE_GROUP_STYLES,
 } from '@components/actions/toggle-group'
+import { BOX_STYLES } from '@components/layout/box'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 
 // Helper
@@ -260,6 +261,25 @@ describe('ToggleGroup', () => {
                 </ToggleGroup>,
             )
             expect(container.querySelector('svg')).toBeTruthy()
+        })
+
+        it('ToggleGroup.Item accepts button layout props', () => {
+            render(
+                <ToggleGroup aria-label={'Group'}>
+                    <ToggleGroup.Item
+                        value={'x'}
+                        label={'Option X'}
+                        marginRight={'xs'}
+                        width={'10rem'}
+                    />
+                </ToggleGroup>,
+            )
+
+            const item = screen.getByRole('button', { name: 'Option X' })
+            expect(item.className).toContain(
+                BOX_STYLES.recipe({ marginRight: 'xs' }),
+            )
+            expect(item.style.width).toBe('10rem')
         })
     })
 

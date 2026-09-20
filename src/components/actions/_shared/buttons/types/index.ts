@@ -1,3 +1,4 @@
+import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
 import type { BUTTON_COLORS, BUTTON_SIZES, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 
 /** Visual style variants shared by Button and IconButton. */
@@ -8,3 +9,9 @@ export type ButtonColorShared = (typeof BUTTON_COLORS)[keyof typeof BUTTON_COLOR
 
 /** Size variants shared by Button and IconButton. */
 export type ButtonSizeShared = (typeof BUTTON_SIZES)[keyof typeof BUTTON_SIZES]
+
+/** Layout props shared by the action components that render a button. */
+export type ButtonLayoutProps = Pick<
+    BoxProps,
+    'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf'
+>

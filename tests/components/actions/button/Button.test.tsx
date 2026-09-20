@@ -9,6 +9,7 @@ import {
     type ButtonColor,
     type ButtonSize,
 } from '@components/actions/button'
+import { BOX_STYLES } from '@components/layout/box'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
@@ -120,6 +121,28 @@ describe('Button', () => {
             for (const cls of BUTTON_STYLES.recipe({}).split(' ')) {
                 expect(getFirstChild(container).className).toContain(cls)
             }
+        })
+    })
+
+    describe('layout props', () => {
+        it('applies spacing tokens and CSS layout values', () => {
+            const { container } = render(
+                <Button
+                    label={'btn'}
+                    marginTop={'md'}
+                    width={'100%'}
+                    alignSelf={'center'}
+                    style={{ opacity: 0.8 }}
+                />,
+            )
+
+            const button = getFirstChild(container)
+            expect(button.className).toContain(
+                BOX_STYLES.recipe({ marginTop: 'md' }),
+            )
+            expect(button.style.width).toBe('100%')
+            expect(button.style.alignSelf).toBe('center')
+            expect(button.style.opacity).toBe('0.8')
         })
     })
 

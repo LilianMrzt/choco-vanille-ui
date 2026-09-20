@@ -9,6 +9,7 @@ import {
     type IconButtonColor,
     type IconButtonSize,
 } from '@components/actions/icon-button'
+import { BOX_STYLES } from '@components/layout/box'
 import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 
 // Helper
@@ -132,6 +133,27 @@ describe('IconButton', () => {
             for (const cls of ICON_BUTTON_STYLES.recipe({}).split(' ')) {
                 expect(getFirstChild(container).className).toContain(cls)
             }
+        })
+    })
+
+    describe('layout props', () => {
+        it('applies spacing tokens and CSS layout values', () => {
+            const { container } = render(
+                <IconButton
+                    icon={BoldIcon}
+                    aria-label={'btn'}
+                    marginBottom={'sm'}
+                    width={'12rem'}
+                    alignSelf={'flex-end'}
+                />,
+            )
+
+            const button = getFirstChild(container)
+            expect(button.className).toContain(
+                BOX_STYLES.recipe({ marginBottom: 'sm' }),
+            )
+            expect(button.style.width).toBe('12rem')
+            expect(button.style.alignSelf).toBe('flex-end')
         })
     })
 

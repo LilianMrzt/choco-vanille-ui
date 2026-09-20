@@ -1,5 +1,6 @@
 import type * as React from 'react'
 import type { IconComponent } from '@components/foundation/icon'
+import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 
 import type {
     IconButtonColor,
@@ -33,4 +34,5 @@ export type IconButtonProps = Omit<
     'aria-label': string;
     /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */
     active?: boolean;
-  };
+  } &
+  ButtonLayoutProps;

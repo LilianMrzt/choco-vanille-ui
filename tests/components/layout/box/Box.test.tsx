@@ -84,6 +84,14 @@ describe('Box', () => {
         })
     })
 
+    describe('layout props', () => {
+        it('applies textAlign to the rendered element', () => {
+            render(<Box textAlign="center" data-testid="box">content</Box>)
+
+            expect(screen.getByTestId('box').style.textAlign).toBe('center')
+        })
+    })
+
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
             const { container } = render(<Box data-testid="box">content</Box>)

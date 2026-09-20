@@ -1,5 +1,6 @@
 import type * as React from 'react'
 import type { Toggle as BaseToggle } from '@base-ui/react/toggle'
+import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 import type {
     ToggleColor,
     ToggleContent,
@@ -21,4 +22,5 @@ export type ToggleGroupItemProps = Omit<
         radius?: ToggleRadius
         ref?: React.Ref<HTMLButtonElement>
     } &
-    Pick<BaseToggle.Props, 'disabled'>
+    Pick<BaseToggle.Props, 'disabled'> &
+    ButtonLayoutProps;

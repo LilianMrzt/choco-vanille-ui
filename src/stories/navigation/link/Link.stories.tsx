@@ -54,6 +54,37 @@ const LINK_COLORS: LinkColor[] = [
     'warning',
     'info',
 ]
+const SPACING = [
+    undefined,
+    'none',
+    'px',
+    'xxs',
+    'xs',
+    'xs2',
+    'sm',
+    'sm2',
+    'md',
+    'md2',
+    'lg',
+    'lg2',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    'auto',
+] as const
+const PADDINGS = SPACING.filter((value) => value !== 'auto')
+const WIDTHS = [undefined, '100%', 'fit-content'] as const
+const ALIGN_SELF = [
+    undefined,
+    'auto',
+    'flex-start',
+    'flex-end',
+    'center',
+    'stretch',
+    'baseline',
+] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -125,6 +156,13 @@ function Example() {
         fontSize: { control: 'select', options: FONT_SIZES },
         fontWeight: { control: 'select', options: FONT_WEIGHTS },
         iconSize: { control: 'select', options: ICON_SIZES },
+        marginTop: { control: 'select', options: SPACING },
+        marginRight: { control: 'select', options: SPACING },
+        marginBottom: { control: 'select', options: SPACING },
+        marginLeft: { control: 'select', options: SPACING },
+        padding: { control: 'select', options: PADDINGS },
+        width: { control: 'select', options: WIDTHS },
+        alignSelf: { control: 'select', options: ALIGN_SELF },
         target: { control: 'text' },
         rel: { control: 'text' },
         onClick: { action: 'clicked' },

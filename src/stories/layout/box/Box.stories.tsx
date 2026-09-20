@@ -49,6 +49,15 @@ const DISPLAY = [
     'contents',
     'flow-root',
 ] as const
+const TEXT_ALIGN = [
+    undefined,
+    'left',
+    'center',
+    'right',
+    'justify',
+    'start',
+    'end',
+] as const
 const SPACING = [
     undefined,
     'none',
@@ -160,7 +169,7 @@ const meta = {
             page: BoxDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A polymorphic layout primitive that renders as any HTML element and exposes design-token-based props for display, padding, margin, gap, background, border-radius, width, height, overflow, and position.
+A polymorphic layout primitive that renders as any HTML element and exposes design-token-based props for display, padding, margin, gap, background, border-radius, width, height, overflow, position, and text alignment.
 
 It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their respective display constraints.
 
@@ -185,6 +194,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
     argTypes: {
         as: { control: 'select', options: BOX_VARIANTS },
         display: { control: 'select', options: DISPLAY },
+        textAlign: { control: 'select', options: TEXT_ALIGN },
         padding: { control: 'select', options: SPACING },
         paddingX: { control: 'select', options: SPACING },
         paddingY: { control: 'select', options: SPACING },

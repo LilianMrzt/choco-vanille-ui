@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Link, LINK_STYLES } from '@components/navigation/link'
+import { BOX_STYLES } from '@components/layout/box'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import LinkIcon from '@resources/asset/LinkIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
@@ -146,6 +147,27 @@ describe('Link', () => {
             expect(getFirstChild(container).className).toContain(
                 LINK_STYLES.color({ color: 'primary' }),
             )
+        })
+    })
+
+    describe('layout props', () => {
+        it('applies spacing tokens and CSS layout values', () => {
+            const { container } = render(
+                <Link
+                    label={'Home'}
+                    marginTop={'sm'}
+                    padding={'md'}
+                    width={'16rem'}
+                    alignSelf={'center'}
+                />,
+            )
+
+            const link = getFirstChild(container)
+            expect(link.className).toContain(
+                BOX_STYLES.recipe({ marginTop: 'sm', padding: 'md' }),
+            )
+            expect(link.style.width).toBe('16rem')
+            expect(link.style.alignSelf).toBe('center')
         })
     })
 

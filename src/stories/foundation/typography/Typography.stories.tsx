@@ -70,6 +70,26 @@ const WEIGHTS: TypographyWeight[] = [
     'extrabold',
     'black',
 ]
+const MARGINS = [
+    undefined,
+    'none',
+    'px',
+    'xxs',
+    'xs',
+    'xs2',
+    'sm',
+    'sm2',
+    'md',
+    'md2',
+    'lg',
+    'lg2',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    'auto',
+] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -109,7 +129,7 @@ const meta = {
 <!--suppress HtmlUnknownAttribute -->
 
 A polymorphic text component that renders the correct semantic HTML element for a given \`variant\` and optionally overrides the element via the \`as\` prop.
-It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fine-grained control.
+It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, \`margin\`, and \`ellipsis\` for fine-grained control.
 
 **Usage**
 
@@ -133,6 +153,7 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, and \`ellipsis\` for fi
         fontSize: { control: 'select', options: [undefined, ...SIZES] },
         fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
         color: { control: 'select', options: THEME_COLORS },
+        margin: { control: 'select', options: MARGINS },
         ellipsis: { control: 'boolean' },
         maxLines: { control: 'number' },
     },

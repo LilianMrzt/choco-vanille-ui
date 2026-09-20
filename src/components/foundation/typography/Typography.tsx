@@ -32,6 +32,7 @@ const Typography: FC<TypographyProps> = memo(({
     color,
     textTransform,
     display,
+    margin,
     width,
     minWidth,
     maxWidth,
@@ -68,7 +69,7 @@ const Typography: FC<TypographyProps> = memo(({
     return (
         <Element
             ref={ref}
-            className={cn(TYPOGRAPHY_STYLES.recipe({ variant: resolvedVariant, fontSize, fontWeight, ellipsis, maxLines, color }), className)}
+            className={cn(TYPOGRAPHY_STYLES.recipe({ variant: resolvedVariant, fontSize, fontWeight, margin, ellipsis, maxLines, color }), className)}
             style={computedStyle}
             {...props}
         />

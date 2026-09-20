@@ -6,7 +6,7 @@ import { memo, useMemo, type FC } from 'react'
 /**
  * Polymorphic layout primitive. Maps design-token props (padding, margin,
  * gap, border, background, box-shadow) to Vanilla Extract atomic classes
- * and passes layout props (display, flex, position, overflow) as inline
+ * and passes layout props (display, flex, position, overflow, text-align) as inline
  * styles. Use the `as` prop to change the rendered element.
  */
 const Box: FC<BoxProps> = memo(({
@@ -50,6 +50,7 @@ const Box: FC<BoxProps> = memo(({
     alignItems,
     alignContent,
     justifyContent,
+    textAlign,
     borderWidth,
     borderTopWidth,
     borderRightWidth,
@@ -134,6 +135,7 @@ const Box: FC<BoxProps> = memo(({
                 alignItems,
                 alignContent,
                 justifyContent,
+                textAlign,
                 borderWidth,
                 borderTopWidth,
                 borderRightWidth,

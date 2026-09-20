@@ -2,9 +2,30 @@ import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
+import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
 const colorVariants = createColorVariants('color')
+
+const marginVariants = {
+    auto: { margin: 'auto' },
+    none: { margin: SPACE_VARIANTS.none },
+    px: { margin: SPACE_VARIANTS.px },
+    xxs: { margin: SPACE_VARIANTS.xxs },
+    xs: { margin: SPACE_VARIANTS.xs },
+    xs2: { margin: SPACE_VARIANTS.xs2 },
+    sm: { margin: SPACE_VARIANTS.sm },
+    sm2: { margin: SPACE_VARIANTS.sm2 },
+    md: { margin: SPACE_VARIANTS.md },
+    md2: { margin: SPACE_VARIANTS.md2 },
+    lg: { margin: SPACE_VARIANTS.lg },
+    lg2: { margin: SPACE_VARIANTS.lg2 },
+    xl: { margin: SPACE_VARIANTS.xl },
+    '2xl': { margin: SPACE_VARIANTS['2xl'] },
+    '3xl': { margin: SPACE_VARIANTS['3xl'] },
+    '4xl': { margin: SPACE_VARIANTS['4xl'] },
+    '5xl': { margin: SPACE_VARIANTS['5xl'] },
+} as const
 
 const headingStyles = {
     scrollMarginTop: vars.space['3xl'],
@@ -180,6 +201,8 @@ export const TYPOGRAPHY_STYLES = {
                 extrabold: { fontWeight: vars.fontWeight.extrabold },
                 black: { fontWeight: vars.fontWeight.black },
             },
+
+            margin: marginVariants,
 
             ellipsis: {
                 true: {

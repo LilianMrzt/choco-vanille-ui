@@ -30,6 +30,36 @@ const COLORS: IconButtonColor[] = [
     'info',
 ]
 const SIZES: IconButtonSize[] = ['xs', 'sm', 'md', 'lg']
+const SPACING = [
+    undefined,
+    'none',
+    'px',
+    'xxs',
+    'xs',
+    'xs2',
+    'sm',
+    'sm2',
+    'md',
+    'md2',
+    'lg',
+    'lg2',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    'auto',
+] as const
+const WIDTHS = [undefined, '100%', 'fit-content'] as const
+const ALIGN_SELF = [
+    undefined,
+    'auto',
+    'flex-start',
+    'flex-end',
+    'center',
+    'stretch',
+    'baseline',
+] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -84,6 +114,12 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
+        marginTop: { control: 'select', options: SPACING },
+        marginRight: { control: 'select', options: SPACING },
+        marginBottom: { control: 'select', options: SPACING },
+        marginLeft: { control: 'select', options: SPACING },
+        width: { control: 'select', options: WIDTHS },
+        alignSelf: { control: 'select', options: ALIGN_SELF },
         disabled: { control: 'boolean' },
         active: { control: 'boolean' },
     },

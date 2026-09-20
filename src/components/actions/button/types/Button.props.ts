@@ -1,6 +1,7 @@
 import type * as React from 'react'
 
 import type { IconComponent } from '@components/foundation/icon'
+import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 import type { ButtonColor, ButtonSize, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
 
 export type ButtonProps = Omit<
@@ -24,4 +25,5 @@ export type ButtonProps = Omit<
     endIcon?: IconComponent;
     /** Whether the button is in an active/pressed state, e.g. when it triggers an open menu. */
     active?: boolean;
-  };
+  } &
+  ButtonLayoutProps;

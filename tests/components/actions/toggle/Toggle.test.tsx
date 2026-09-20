@@ -10,6 +10,7 @@ import {
     type ToggleColor,
     type ToggleSize,
 } from '@components/actions/toggle'
+import { BOX_STYLES } from '@components/layout/box'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
@@ -136,6 +137,26 @@ describe('Toggle', () => {
             for (const cls of TOGGLE_STYLES.recipe({}).split(' ')) {
                 expect(getFirstChild(container).className).toContain(cls)
             }
+        })
+    })
+
+    describe('layout props', () => {
+        it('applies spacing tokens and CSS layout values', () => {
+            const { container } = render(
+                <Toggle
+                    label={'btn'}
+                    marginLeft={'lg'}
+                    width={'14rem'}
+                    alignSelf={'stretch'}
+                />,
+            )
+
+            const button = getFirstChild(container)
+            expect(button.className).toContain(
+                BOX_STYLES.recipe({ marginLeft: 'lg' }),
+            )
+            expect(button.style.width).toBe('14rem')
+            expect(button.style.alignSelf).toBe('stretch')
         })
     })
 

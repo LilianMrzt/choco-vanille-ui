@@ -84,6 +84,13 @@ describe('Typography', () => {
             expect(getFirstChild(container).className).toContain(fontWeightClass('bold'))
         })
 
+        it('applies the margin token class', () => {
+            const { container } = render(<Typography margin="md">text</Typography>)
+            expect(getFirstChild(container).className).toContain(
+                TYPOGRAPHY_STYLES.recipe({ margin: 'md' }).split(' ').at(-1),
+            )
+        })
+
         it('uses the shared form label style for variant="label"', () => {
             const { container } = render(
                 <Typography variant="label">Label</Typography>,

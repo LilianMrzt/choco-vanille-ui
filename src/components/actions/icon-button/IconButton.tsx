@@ -1,5 +1,6 @@
 import { ICON_BUTTON_STYLES } from '@components/actions/icon-button/styles/IconButton.css.ts'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
+import { getButtonLayoutClassName } from '@components/actions/_shared/buttons/utils/buttonLayout.utils.ts'
 import { Icon } from '@components/foundation/icon'
 import type { IconButtonProps } from '@components/actions/icon-button/types/IconButton.props.ts'
 import { cn } from '@utils/cn.ts'
@@ -19,6 +20,13 @@ const IconButton: FC<IconButtonProps> = ({
     icon,
     children,
     active,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width,
+    alignSelf,
+    style,
     ref,
     ...props
 }) => {
@@ -27,7 +35,12 @@ const IconButton: FC<IconButtonProps> = ({
     return (
         <button
             ref={ref}
-            className={cn(ICON_BUTTON_STYLES.recipe({ variant, color, size }), className)}
+            className={cn(
+                ICON_BUTTON_STYLES.recipe({ variant, color, size }),
+                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                className,
+            )}
+            style={{ width, alignSelf, ...style }}
             {...props}
             data-active={active ? 'true' : undefined}
         >

@@ -1,5 +1,6 @@
 import type * as React from 'react'
 import type { Toggle as BaseToggle } from '@base-ui/react/toggle'
+import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 
 import type {
     ToggleColor,
@@ -26,4 +27,5 @@ export type ToggleProps = Omit<
     Pick<
         BaseToggle.Props,
         'pressed' | 'defaultPressed' | 'onPressedChange' | 'value' | 'disabled'
-    >
+    > &
+    ButtonLayoutProps

@@ -50,6 +50,8 @@ export type BoxProps = HTMLAttributes<HTMLElement> &
     alignContent?: CSSProperties['alignContent'];
     /** The CSS `justify-content` value of the element. */
     justifyContent?: CSSProperties['justifyContent'];
+    /** The CSS `text-align` value of the element. */
+    textAlign?: CSSProperties['textAlign'];
     /** The CSS `border-width` value of the element. */
     borderWidth?: CSSProperties['borderWidth'];
     /** The CSS `border-top-width` value of the element. */

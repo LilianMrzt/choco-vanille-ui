@@ -2,6 +2,7 @@ import { Toggle as BaseToggle } from '@base-ui/react/toggle'
 
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 import { buttonSizeToIconSize } from '@components/actions/_shared/buttons/constants'
+import { getButtonLayoutClassName } from '@components/actions/_shared/buttons/utils/buttonLayout.utils.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { TOGGLE_SIZE_TO_FONT_SIZE } from '@components/actions/toggle/constants/toggleSizes.const.ts'
@@ -21,6 +22,13 @@ const ToggleGroupItem: FC<ToggleGroupItemProps> = ({
     icon,
     startIcon,
     endIcon,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width,
+    alignSelf,
+    style,
     ref,
     ...props
 }) => {
@@ -31,7 +39,12 @@ const ToggleGroupItem: FC<ToggleGroupItemProps> = ({
         <BaseToggle
             ref={ref}
             data-icon-only={icon ? '' : undefined}
-            className={cn(TOGGLE_STYLES.recipe({ variant, color, size, radius, subtle }), className)}
+            className={cn(
+                TOGGLE_STYLES.recipe({ variant, color, size, radius, subtle }),
+                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                className,
+            )}
+            style={{ width, alignSelf, ...style }}
             {...props}
         >
             {icon ? (
