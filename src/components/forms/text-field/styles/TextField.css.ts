@@ -90,9 +90,9 @@ export const TEXT_FIELD_STYLES = {
         },
         compoundVariants: [
             // Start icon: push text right
-            { variants: { size: TEXT_FIELD_SIZES.sm, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: TEXT_FIELD_SIZES.md, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: TEXT_FIELD_SIZES.lg, hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: TEXT_FIELD_SIZES.sm, hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
+            { variants: { size: TEXT_FIELD_SIZES.md, hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
+            { variants: { size: TEXT_FIELD_SIZES.lg, hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
             // End action: push text left (slot width 1.75rem + right offset 0.625rem)
             { variants: { size: TEXT_FIELD_SIZES.sm, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
             { variants: { size: TEXT_FIELD_SIZES.md, hasEndAction: true }, style: { paddingRight: '2.625rem' } },
