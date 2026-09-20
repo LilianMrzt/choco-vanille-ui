@@ -129,6 +129,7 @@ describe('Button', () => {
             const { container } = render(
                 <Button
                     label={'btn'}
+                    margin={'auto'}
                     marginTop={'md'}
                     width={'100%'}
                     alignSelf={'center'}
@@ -138,7 +139,7 @@ describe('Button', () => {
 
             const button = getFirstChild(container)
             expect(button.className).toContain(
-                BOX_STYLES.recipe({ marginTop: 'md' }),
+                BOX_STYLES.recipe({ margin: 'auto', marginTop: 'md' }),
             )
             expect(button.style.width).toBe('100%')
             expect(button.style.alignSelf).toBe('center')

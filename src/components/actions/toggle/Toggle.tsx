@@ -28,6 +28,7 @@ const Toggle: FC<ToggleProps> = ({
     icon,
     startIcon,
     endIcon,
+    margin,
     marginTop,
     marginRight,
     marginBottom,
@@ -47,7 +48,7 @@ const Toggle: FC<ToggleProps> = ({
             data-icon-only={icon ? '' : undefined}
             className={cn(
                 TOGGLE_STYLES.recipe({ variant, color, size, radius, subtle }),
-                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                getButtonLayoutClassName({ margin, marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
                 className,
             )}
             style={{ width, alignSelf, ...style }}

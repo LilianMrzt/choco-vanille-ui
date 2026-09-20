@@ -155,6 +155,7 @@ describe('Link', () => {
             const { container } = render(
                 <Link
                     label={'Home'}
+                    margin={'auto'}
                     marginTop={'sm'}
                     padding={'md'}
                     width={'16rem'}
@@ -164,7 +165,7 @@ describe('Link', () => {
 
             const link = getFirstChild(container)
             expect(link.className).toContain(
-                BOX_STYLES.recipe({ marginTop: 'sm', padding: 'md' }),
+                BOX_STYLES.recipe({ margin: 'auto', marginTop: 'sm', padding: 'md' }),
             )
             expect(link.style.width).toBe('16rem')
             expect(link.style.alignSelf).toBe('center')

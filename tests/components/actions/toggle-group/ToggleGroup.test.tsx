@@ -269,7 +269,7 @@ describe('ToggleGroup', () => {
                     <ToggleGroup.Item
                         value={'x'}
                         label={'Option X'}
-                        marginRight={'xs'}
+                        marginBottom={'auto'}
                         width={'10rem'}
                     />
                 </ToggleGroup>,
@@ -277,7 +277,7 @@ describe('ToggleGroup', () => {
 
             const item = screen.getByRole('button', { name: 'Option X' })
             expect(item.className).toContain(
-                BOX_STYLES.recipe({ marginRight: 'xs' }),
+                BOX_STYLES.recipe({ marginBottom: 'auto' }),
             )
             expect(item.style.width).toBe('10rem')
         })

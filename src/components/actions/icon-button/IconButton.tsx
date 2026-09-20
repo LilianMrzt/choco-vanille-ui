@@ -20,6 +20,7 @@ const IconButton: FC<IconButtonProps> = ({
     icon,
     children,
     active,
+    margin,
     marginTop,
     marginRight,
     marginBottom,
@@ -37,7 +38,7 @@ const IconButton: FC<IconButtonProps> = ({
             ref={ref}
             className={cn(
                 ICON_BUTTON_STYLES.recipe({ variant, color, size }),
-                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                getButtonLayoutClassName({ margin, marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
                 className,
             )}
             style={{ width, alignSelf, ...style }}

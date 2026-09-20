@@ -23,6 +23,7 @@ const Button: FC<ButtonProps> = ({
     startIcon,
     endIcon,
     active,
+    margin,
     marginTop,
     marginRight,
     marginBottom,
@@ -42,7 +43,7 @@ const Button: FC<ButtonProps> = ({
             data-active={active ? 'true' : undefined}
             className={cn(
                 BUTTON_STYLES.recipe({ variant, color, size }),
-                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                getButtonLayoutClassName({ margin, marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
                 className,
             )}
             style={{ width, alignSelf, ...style }}

@@ -119,6 +119,7 @@ An optional start or end icon can be placed around the label.
         size: { control: 'select', options: SIZES },
         startIcon: { control: 'text' },
         endIcon: { control: 'text' },
+        margin: { control: 'select', options: SPACING },
         marginTop: { control: 'select', options: SPACING },
         marginRight: { control: 'select', options: SPACING },
         marginBottom: { control: 'select', options: SPACING },

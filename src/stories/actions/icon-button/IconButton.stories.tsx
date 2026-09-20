@@ -114,6 +114,7 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
+        margin: { control: 'select', options: SPACING },
         marginTop: { control: 'select', options: SPACING },
         marginRight: { control: 'select', options: SPACING },
         marginBottom: { control: 'select', options: SPACING },

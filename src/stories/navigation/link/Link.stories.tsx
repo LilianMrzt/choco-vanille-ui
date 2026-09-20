@@ -156,6 +156,7 @@ function Example() {
         fontSize: { control: 'select', options: FONT_SIZES },
         fontWeight: { control: 'select', options: FONT_WEIGHTS },
         iconSize: { control: 'select', options: ICON_SIZES },
+        margin: { control: 'select', options: SPACING },
         marginTop: { control: 'select', options: SPACING },
         marginRight: { control: 'select', options: SPACING },
         marginBottom: { control: 'select', options: SPACING },

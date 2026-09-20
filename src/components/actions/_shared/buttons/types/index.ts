@@ -13,5 +13,5 @@ export type ButtonSizeShared = (typeof BUTTON_SIZES)[keyof typeof BUTTON_SIZES]
 /** Layout props shared by the action components that render a button. */
 export type ButtonLayoutProps = Pick<
     BoxProps,
-    'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf'
+    'margin' | 'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf'
 >

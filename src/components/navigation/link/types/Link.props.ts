@@ -29,5 +29,5 @@ export type LinkProps = Omit<
   } &
   Pick<
     BoxProps,
-    'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf' | 'padding'
+    'margin' | 'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf' | 'padding'
   >

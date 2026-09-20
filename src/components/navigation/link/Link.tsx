@@ -25,6 +25,7 @@ const Link: React.FC<LinkProps> = memo(({
     fontSize = 'md',
     fontWeight = 'normal',
     iconSize = 'md',
+    margin,
     marginTop,
     marginRight,
     marginBottom,
@@ -36,13 +37,14 @@ const Link: React.FC<LinkProps> = memo(({
     ...props
 }) => {
     const layoutClassName = (
+        margin !== undefined ||
         marginTop !== undefined ||
         marginRight !== undefined ||
         marginBottom !== undefined ||
         marginLeft !== undefined ||
         padding !== undefined
     )
-        ? BOX_STYLES.recipe({ marginTop, marginRight, marginBottom, marginLeft, padding })
+        ? BOX_STYLES.recipe({ margin, marginTop, marginRight, marginBottom, marginLeft, padding })
         : undefined
 
     const handleClick = useCallback(

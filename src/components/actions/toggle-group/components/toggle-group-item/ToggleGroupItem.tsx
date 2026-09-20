@@ -22,6 +22,7 @@ const ToggleGroupItem: FC<ToggleGroupItemProps> = ({
     icon,
     startIcon,
     endIcon,
+    margin,
     marginTop,
     marginRight,
     marginBottom,
@@ -41,7 +42,7 @@ const ToggleGroupItem: FC<ToggleGroupItemProps> = ({
             data-icon-only={icon ? '' : undefined}
             className={cn(
                 TOGGLE_STYLES.recipe({ variant, color, size, radius, subtle }),
-                getButtonLayoutClassName({ marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
+                getButtonLayoutClassName({ margin, marginTop, marginRight, marginBottom, marginLeft, width, alignSelf }),
                 className,
             )}
             style={{ width, alignSelf, ...style }}
