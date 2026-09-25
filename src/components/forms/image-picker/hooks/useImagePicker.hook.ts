@@ -32,8 +32,9 @@ import {
  *
  * Supports controlled and uncontrolled values, local preview URLs, native
  * input synchronization, file validation, chooser opening, drag and drop, and
- * removal. The returned handlers are ready to pass to the ImagePicker
- * subcomponents.
+ * removal. When cropping is enabled, accepted files wait in a pending state
+ * until the crop dialog confirms them. The returned handlers are ready to pass
+ * to the ImagePicker subcomponents.
  */
 export const useImagePicker = ({
     value,
@@ -47,6 +48,7 @@ export const useImagePicker = ({
     disableRemove = false,
     isMobile = false,
     labels,
+    crop = false,
 }: UseImagePickerOptions): UseImagePickerReturn => {
     const inputRef = useRef<HTMLInputElement>(null)
     const [uncontrolledValue, setUncontrolledValue] =
@@ -55,6 +57,7 @@ export const useImagePicker = ({
     const [validationReason, setValidationReason] =
         useState<ImagePickerValidationReason>()
     const [isDragging, setIsDragging] = useState(false)
+    const [pendingCropFile, setPendingCropFile] = useState<File>()
 
     const isControlled = value !== undefined
     const currentValue = isControlled ? value : uncontrolledValue
@@ -112,6 +115,15 @@ export const useImagePicker = ({
         }
     }, [isChangeDisabled])
 
+    const commitFile = useCallback(
+        (file: File) => {
+            setValidationReason(undefined)
+            syncImagePickerInput(inputRef.current, file)
+            updateValue(file)
+        },
+        [updateValue],
+    )
+
     const handleFile = useCallback(
         (file: File) => {
             if (isChangeDisabled) {
@@ -138,16 +150,22 @@ export const useImagePicker = ({
             }
 
             setValidationReason(undefined)
-            syncImagePickerInput(inputRef.current, file)
-            updateValue(file)
+            if (crop) {
+                syncImagePickerInput(inputRef.current, currentValue)
+                setPendingCropFile(file)
+                return
+            }
+
+            commitFile(file)
         },
         [
             accept,
+            commitFile,
+            crop,
             currentValue,
             isChangeDisabled,
             maxSize,
             onValidationError,
-            updateValue,
         ],
     )
 
@@ -221,6 +239,7 @@ export const useImagePicker = ({
             return
         }
 
+        setPendingCropFile(undefined)
         setValidationReason(undefined)
         setIsDragging(false)
         updateValue(null)
@@ -228,6 +247,19 @@ export const useImagePicker = ({
             inputRef.current.value = ''
         }
     }, [isRemoveDisabled, updateValue])
+
+    const handleCropCancel = useCallback(() => {
+        setPendingCropFile(undefined)
+        syncImagePickerInput(inputRef.current, currentValue)
+    }, [currentValue])
+
+    const handleCropConfirm = useCallback(
+        (file: File) => {
+            setPendingCropFile(undefined)
+            commitFile(file)
+        },
+        [commitFile],
+    )
 
     return {
         inputRef,
@@ -238,11 +270,14 @@ export const useImagePicker = ({
         isChangeDisabled,
         isRemoveDisabled,
         isDragging,
+        pendingCropFile,
         handleOpen,
         handleInputChange,
         handleDragOver,
         handleDragLeave,
         handleDrop,
         handleClear,
+        handleCropCancel,
+        handleCropConfirm,
     }
 }

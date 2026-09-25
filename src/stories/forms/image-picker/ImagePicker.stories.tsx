@@ -8,7 +8,7 @@ import {
     Stories,
     Title,
 } from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { expect, userEvent, within } from 'storybook/test'
 
 import {
     ImagePicker,
@@ -42,13 +42,17 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`error\`                          | No          | \`string\`                      | Connects the error message to the picker button through \`aria-describedby\` and sets \`aria-invalid\` on the picker button. |
 | \`shape\`                          | No          | \`square \| rounded \| circle\` | Controls the shape of the clickable dropzone.                                                                            |
 | \`disabled\`                       | No          | \`boolean\`                     | Prevents opening the file chooser and image actions.                                                                     |
-| \`disableChange\`                  | No          | \`boolean\`                     | Disables the choose/change action while keeping remove available.                                                         |
+| \`disableChange\`                  | No          | \`boolean\`                     | Disables the choose/change action while keeping remove available.                                                        |
 | \`disableRemove\`                  | No          | \`boolean\`                     | Disables the remove action while keeping choose/change available.                                                        |
+| \`crop\`                           | No          | \`boolean\`                     | Opens an editor for valid local files and commits the image only after the crop is applied.                              |
+| \`cropAspectRatio\`                | No          | \`number\`                      | Sets the crop editor ratio; defaults to the picker shape or \`4 / 3\`.                                                     |
+| \`labels\`                         | No          | \`Partial<ImagePickerLabels>\`  | Overrides picker actions, validation feedback, crop actions, zoom, and the crop-area accessible name for i18n.             |
 | \`isMobile\`                       | No          | \`boolean\`                     | Replaces the hover hint and corner remove button with visible, touch-sized action buttons.                               |
 
 - The preview is a keyboard-operable native button that opens the native file chooser.
 - The remove action is always a visible, named button (\`labels.remove\`): a corner icon button on desktop, a text button with \`isMobile\`.
 - The hidden native input mirrors the displayed file, so native form submission and \`required\` validation stay consistent. Its validation state is exposed by the picker button rather than the \`aria-hidden\` input.
+- Cropping is opt-in. Cancelling the crop preserves the previous image and form value; applying it commits the generated file.
 `
 
 const ImagePickerDocsPage = () => (
@@ -79,6 +83,7 @@ A single-image picker designed first for profile pictures. The shaped preview is
 
 - **Desktop** (default): drag and drop, a "change" hint on hover and focus, and a corner remove button.
 - **Mobile** (\`isMobile\`): no drag and drop and no hover; explicit, touch-sized **Choose / Change** and **Remove** buttons are rendered below the preview.
+- **Cropping** (\`crop\`): valid local files open in an editor and are committed only after **Apply crop**.
 
 Use a URL for an existing image or a \`File\` returned by \`onValueChange\`.
 
@@ -116,6 +121,8 @@ const [avatar, setAvatar] = useState<File | string | null>(user.avatarUrl)
         disabled: { control: 'boolean' },
         disableChange: { control: 'boolean' },
         disableRemove: { control: 'boolean' },
+        crop: { control: 'boolean' },
+        cropAspectRatio: { control: 'number' },
         required: { control: 'boolean' },
         clearable: { control: 'boolean' },
         isMobile: { control: 'boolean' },
@@ -140,6 +147,7 @@ const [avatar, setAvatar] = useState<File | string | null>(user.avatarUrl)
         height: '16rem',
         shape: 'rounded',
         objectFit: 'cover',
+        crop: false,
         value: null,
     },
 } satisfies Meta<ImagePickerStoryArgs>
@@ -153,7 +161,7 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-                    'Interactive controlled playground — click or drop an image onto the shaped area. Toggle `isMobile` to see the touch layout.',
+          'Interactive controlled playground — click or drop an image onto the shaped area. Toggle `isMobile` to see the touch layout.',
             },
             ...storySource(
                 `<ImagePicker label="Cover image" alt="Cover image preview" accept="image/*" clearable width="28rem" height="16rem" shape="rounded" objectFit="cover" />`,
@@ -275,6 +283,74 @@ export const WithExistingImage: Story = {
             height={'16rem'}
         />
     ),
+}
+
+export const Cropping: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story:
+          'Opt-in cropping keeps the current value unchanged until the user applies the crop. The crop mask follows the picker shape, while the crop ratio remains independently configurable for rectangular images.',
+            },
+            ...storySource(
+                `<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1rem', width: 'min(100%, 42rem)' }}>
+    <ImagePicker label="Square crop" crop cropAspectRatio={1} shape="square" width="100%" />
+    <ImagePicker label="Rounded 16:9 crop" crop cropAspectRatio={16 / 9} shape="rounded" width="100%" />
+    <ImagePicker label="Circle crop" crop cropAspectRatio={1} shape="circle" width="100%" />
+</div>`,
+            ),
+        },
+    },
+    render: () => (
+        <div
+            style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                gap: '1rem',
+                width: 'min(100%, 42rem)',
+            }}
+        >
+            <ImagePicker
+                label={'Square crop'}
+                crop
+                cropAspectRatio={1}
+                shape={'square'}
+                width={'100%'}
+            />
+            <ImagePicker
+                label={'Rounded 16:9 crop'}
+                crop
+                cropAspectRatio={16 / 9}
+                shape={'rounded'}
+                width={'100%'}
+            />
+            <ImagePicker
+                label={'Circle crop'}
+                crop
+                cropAspectRatio={1}
+                shape={'circle'}
+                width={'100%'}
+            />
+        </div>
+    ),
+    play: async ({ canvasElement }) => {
+        const input = canvasElement.querySelector('input[type="file"]')
+
+        if (!(input instanceof HTMLInputElement)) {
+            throw new Error('The ImagePicker file input was not rendered.')
+        }
+
+        await userEvent.upload(
+            input,
+            new File(['image-data'], 'profile-picture.png', {
+                type: 'image/png',
+            }),
+        )
+
+        await expect(
+            within(document.body).getByRole('dialog', { name: 'Crop image' }),
+        ).toBeInTheDocument()
+    },
 }
 
 export const Dimensions: Story = {

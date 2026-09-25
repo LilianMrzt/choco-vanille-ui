@@ -7,6 +7,8 @@ import {
     ImagePicker,
     IMAGE_PICKER_STYLES,
 } from '@components/forms/image-picker'
+import { IMAGE_PICKER_CROP_DIALOG_STYLES } from '@components/forms/image-picker/components/image-picker-crop-dialog/styles/ImagePickerCropDialog.css.ts'
+import { resolveImagePickerAspectRatio } from '@components/forms/image-picker/utils/imagePicker.utils.ts'
 
 const getFileInput = (): HTMLInputElement =>
   document.querySelector('input[type="file"]') as HTMLInputElement
@@ -19,6 +21,30 @@ const stubObjectUrl = (url = 'blob:photo') => {
     const revokeObjectURL = vi.fn()
     vi.stubGlobal('URL', { createObjectURL, revokeObjectURL })
     return { createObjectURL, revokeObjectURL }
+}
+
+const initializeCropperMedia = (): HTMLElement => {
+    const image = document.querySelector('.reactEasyCrop_Image')
+    if (!(image instanceof HTMLImageElement) || !image.parentElement) {
+        throw new Error('The cropper media was not rendered.')
+    }
+
+    Object.defineProperties(image, {
+        naturalWidth: { configurable: true, value: 640 },
+        naturalHeight: { configurable: true, value: 480 },
+        offsetWidth: { configurable: true, value: 640 },
+        offsetHeight: { configurable: true, value: 480 },
+    })
+    vi.spyOn(image.parentElement, 'getBoundingClientRect').mockReturnValue(
+        new DOMRect(0, 0, 400, 300),
+    )
+    fireEvent.load(image)
+
+    const cropper = document.querySelector('[data-testid="cropper"]')
+    if (!(cropper instanceof HTMLElement)) {
+        throw new Error('The cropper area was not rendered.')
+    }
+    return cropper
 }
 
 describe('ImagePicker', () => {
@@ -92,6 +118,12 @@ describe('ImagePicker', () => {
         ) as HTMLElement
         expect(preview.style.height).toBe('12rem')
         expect(preview.style.aspectRatio).toBe('16 / 9')
+    })
+
+    it('resolves CSS aspect ratios for the crop editor', () => {
+        expect(resolveImagePickerAspectRatio(1)).toBe(1)
+        expect(resolveImagePickerAspectRatio('16 / 9')).toBeCloseTo(16 / 9)
+        expect(resolveImagePickerAspectRatio('auto')).toBeUndefined()
     })
 
     it('ignores height and aspectRatio for the circle shape', () => {
@@ -265,6 +297,110 @@ describe('ImagePicker', () => {
         expect(screen.getByRole('img').getAttribute('src')).toBe('blob:photo')
     })
 
+    it('opens the crop dialog without committing an accepted file', async () => {
+        stubObjectUrl()
+        const handleValueChange = vi.fn()
+        const file = createImageFile()
+
+        render(
+            <ImagePicker
+                label={'Cover image'}
+                crop
+                value={null}
+                onValueChange={handleValueChange}
+            />,
+        )
+        await userEvent.upload(getFileInput(), file)
+
+        expect(screen.getByRole('dialog', { name: 'Crop image' })).toBeTruthy()
+        const zoomSlider = screen.getByRole('slider', { name: 'Zoom' })
+        expect(zoomSlider).toBeTruthy()
+        await userEvent.click(zoomSlider)
+        await userEvent.keyboard('{ArrowRight}')
+        expect(zoomSlider.getAttribute('aria-valuenow')).toBe('1.1')
+        expect(handleValueChange).not.toHaveBeenCalled()
+        expect(getFileInput().files).toHaveLength(0)
+    })
+
+    it.each([
+        ['square', false],
+        ['rounded', false],
+        ['circle', true],
+    ] as const)('uses the %s crop shape', async (shape, isRound) => {
+        stubObjectUrl()
+
+        render(
+            <ImagePicker
+                label={'Cover image'}
+                crop
+                shape={shape}
+                cropAspectRatio={1}
+            />,
+        )
+        await userEvent.upload(getFileInput(), createImageFile())
+
+        const cropArea = initializeCropperMedia()
+        expect(cropArea?.classList.contains('reactEasyCrop_CropAreaRound')).toBe(
+            isRound,
+        )
+        expect(
+            cropArea?.classList.contains(
+                IMAGE_PICKER_CROP_DIALOG_STYLES.roundedCropArea,
+            ),
+        ).toBe(shape === 'rounded')
+    })
+
+    it('uses localized labels for every crop control', async () => {
+        stubObjectUrl()
+
+        render(
+            <ImagePicker
+                label={'Cover image'}
+                crop
+                labels={{
+                    crop: 'Recadrer',
+                    cropArea: 'Zone de recadrage',
+                    cancel: 'Annuler',
+                    apply: 'Valider',
+                    zoom: 'Agrandissement',
+                }}
+            />,
+        )
+        await userEvent.upload(getFileInput(), createImageFile())
+        initializeCropperMedia()
+
+        expect(screen.getByRole('dialog', { name: 'Recadrer' })).toBeTruthy()
+        expect(
+            screen.getByRole('group', { name: 'Zone de recadrage' }),
+        ).toBeTruthy()
+        expect(screen.getByRole('slider', { name: 'Agrandissement' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Annuler' })).toBeTruthy()
+        expect(screen.getByRole('button', { name: 'Valider' })).toBeTruthy()
+    })
+
+    it('cancels a crop without replacing the current image or form value', async () => {
+        stubObjectUrl()
+        const handleValueChange = vi.fn()
+        const currentValue = 'https://example.com/current.png'
+        const file = createImageFile()
+
+        render(
+            <ImagePicker
+                label={'Cover image'}
+                crop
+                value={currentValue}
+                onValueChange={handleValueChange}
+            />,
+        )
+        await userEvent.upload(getFileInput(), file)
+        await userEvent.click(screen.getByRole('button', { name: 'Cancel' }))
+
+        expect(screen.queryByRole('dialog', { name: 'Crop image' })).toBeNull()
+        expect(screen.getByRole('img').getAttribute('src')).toBe(currentValue)
+        expect(handleValueChange).not.toHaveBeenCalled()
+        expect(getFileInput().files).toHaveLength(0)
+    })
+
     it('calls onValueChange with the selected file in controlled mode', async () => {
         const handleValueChange = vi.fn()
         const file = createImageFile()
@@ -386,9 +522,9 @@ describe('ImagePicker', () => {
         expect(getFileInput().disabled).toBe(true)
         expect(
             (
-                screen.getByRole('button', {
-                    name: 'Remove image',
-                }) as HTMLButtonElement
+        screen.getByRole('button', {
+            name: 'Remove image',
+        }) as HTMLButtonElement
             ).disabled,
         ).toBe(true)
     })
@@ -436,9 +572,11 @@ describe('ImagePicker', () => {
                 : screen.getByRole('button', { name: /Change image/ })
             expect((changeButton as HTMLButtonElement).disabled).toBe(false)
             expect(
-                (screen.getByRole('button', {
-                    name: 'Remove image',
-                }) as HTMLButtonElement).disabled,
+                (
+          screen.getByRole('button', {
+              name: 'Remove image',
+          }) as HTMLButtonElement
+                ).disabled,
             ).toBe(true)
 
             await userEvent.click(changeButton)
@@ -458,14 +596,18 @@ describe('ImagePicker', () => {
         )
 
         expect(
-            (screen.getByRole('button', {
-                name: /Change image/,
-            }) as HTMLButtonElement).disabled,
+            (
+        screen.getByRole('button', {
+            name: /Change image/,
+        }) as HTMLButtonElement
+            ).disabled,
         ).toBe(true)
         expect(
-            (screen.getByRole('button', {
-                name: 'Remove image',
-            }) as HTMLButtonElement).disabled,
+            (
+        screen.getByRole('button', {
+            name: 'Remove image',
+        }) as HTMLButtonElement
+            ).disabled,
         ).toBe(true)
         expect(getFileInput().disabled).toBe(true)
     })

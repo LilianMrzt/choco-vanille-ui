@@ -2,6 +2,7 @@ import FormLabel from '@components/forms/_shared/components/form-label/FormLabel
 import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import {
     ImagePickerActions,
+    ImagePickerCropDialog,
     ImagePickerInput,
     ImagePickerPreview,
     ImagePickerRemoveButton,
@@ -11,6 +12,7 @@ import { IMAGE_PICKER_SHAPES } from '@components/forms/image-picker/constants'
 import { IMAGE_PICKER_STYLES } from '@components/forms/image-picker/styles/ImagePicker.css.ts'
 import type { ImagePickerProps } from '@components/forms/image-picker/types/ImagePicker.props.ts'
 import { useImagePicker } from '@components/forms/image-picker/hooks/useImagePicker.hook.ts'
+import { resolveImagePickerAspectRatio } from '@components/forms/image-picker/utils/imagePicker.utils.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, useId } from 'react'
 
@@ -20,7 +22,8 @@ import { memo, useId } from 'react'
  * On desktop it accepts drag and drop, reveals a "change" hint on hover and
  * shows a corner remove button; with `isMobile` it renders explicit
  * touch-sized action buttons instead. Change and remove actions can be
- * disabled independently.
+ * disabled independently. Set `crop` to open a crop editor before a newly
+ * selected image is committed.
  *
  * @example
  * ```tsx
@@ -65,6 +68,8 @@ const ImagePicker = memo<ImagePickerProps>(
         name,
         capture,
         labels,
+        crop = false,
+        cropAspectRatio,
         width,
         height,
         aspectRatio,
@@ -100,6 +105,9 @@ const ImagePicker = memo<ImagePickerProps>(
             handleDragLeave,
             handleDrop,
             handleClear,
+            pendingCropFile,
+            handleCropCancel,
+            handleCropConfirm,
         } = useImagePicker({
             value,
             defaultValue,
@@ -112,6 +120,7 @@ const ImagePicker = memo<ImagePickerProps>(
             disableRemove,
             isMobile,
             labels,
+            crop,
         })
         const displayedError = error ?? validationMessage
         const hasError = Boolean(displayedError)
@@ -129,6 +138,11 @@ const ImagePicker = memo<ImagePickerProps>(
           .filter(Boolean)
           .join(' ') || undefined
         const showDesktopRemove = !isMobile && hasValue && clearable
+        const resolvedCropAspectRatio = cropAspectRatio ?? (
+            shape === IMAGE_PICKER_SHAPES.circle
+                ? 1
+                : resolveImagePickerAspectRatio(aspectRatio)
+        )
 
         return (
             <div
@@ -216,6 +230,17 @@ const ImagePicker = memo<ImagePickerProps>(
                     >
                         {displayedError ?? helperText}
                     </HelperText>
+                )}
+
+                {pendingCropFile && (
+                    <ImagePickerCropDialog
+                        file={pendingCropFile}
+                        aspectRatio={resolvedCropAspectRatio}
+                        shape={shape}
+                        labels={resolvedLabels}
+                        onCancel={handleCropCancel}
+                        onConfirm={handleCropConfirm}
+                    />
                 )}
             </div>
         )

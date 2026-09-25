@@ -68,6 +68,18 @@ export type ImagePickerProps = Omit<
     capture?: React.InputHTMLAttributes<HTMLInputElement>['capture']
     /** Localizable labels merged over the desktop or mobile defaults. */
     labels?: Partial<ImagePickerLabels>
+    /**
+     * Opens a crop editor for newly selected or dropped local files before
+     * committing them as the picker value. Existing URL values are not cropped.
+     * @default false
+     */
+    crop?: boolean
+    /**
+     * Fixed aspect ratio used by the crop editor. Defaults to `1` for a
+     * circular picker, the numeric value represented by `aspectRatio` when
+     * provided, or `4 / 3`.
+     */
+    cropAspectRatio?: number
     /** CSS width of the picker wrapper. @default '100%' */
     width?: CSSProperties['width']
     /** CSS height of the preview surface. Ignored when `shape` is `circle`. */
