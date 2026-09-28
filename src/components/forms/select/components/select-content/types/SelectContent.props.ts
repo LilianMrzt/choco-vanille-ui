@@ -4,7 +4,7 @@ import type { Select as BaseSelect } from '@base-ui/react/select'
 /** Props for the styled content (listbox popup). */
 export type SelectContentProps = Pick<
     BaseSelect.Positioner.Props,
-    'side' | 'align' | 'sideOffset'
+    'side' | 'align' | 'sideOffset' | 'collisionAvoidance'
 > & {
     className?: string
     children?: React.ReactNode
