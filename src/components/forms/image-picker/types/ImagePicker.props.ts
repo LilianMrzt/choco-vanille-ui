@@ -80,7 +80,10 @@ export type ImagePickerProps = Omit<
      * provided, or `4 / 3`.
      */
     cropAspectRatio?: number
-    /** CSS width of the picker wrapper. @default '100%' */
+    /**
+     * CSS width of the picker preview. On mobile, action buttons use the
+     * available width of the parent container. @default '100%'
+     */
     width?: CSSProperties['width']
     /** CSS height of the preview surface. Ignored when `shape` is `circle`. */
     height?: CSSProperties['height']
