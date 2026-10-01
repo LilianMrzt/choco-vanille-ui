@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import type { Select as BaseSelect } from '@base-ui/react/select'
 import type { IconComponent } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
@@ -50,6 +51,11 @@ export type SelectFieldProps = {
     required?: boolean
     /** Accessible name for the select listbox popup. */
     listboxAriaLabel?: string
+    /**
+     * How the listbox popup avoids viewport collisions.
+     * @default { side: 'flip', align: 'none' }
+     */
+    collisionAvoidance?: BaseSelect.Positioner.Props['collisionAvoidance']
     /** Flat or grouped options. */
     options: SelectOption[]
 }

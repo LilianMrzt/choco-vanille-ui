@@ -250,6 +250,26 @@ describe('ImagePicker', () => {
     })
 
     describe('isMobile', () => {
+        it('keeps a constrained preview from narrowing touch actions', () => {
+            const ref = createRef<HTMLDivElement>()
+
+            render(
+                <ImagePicker
+                    ref={ref}
+                    label={'Profile picture'}
+                    isMobile
+                    width={'8rem'}
+                />,
+            )
+
+            const previewWrapper = ref.current!.querySelector(
+                `.${IMAGE_PICKER_STYLES.wrapper}`,
+            ) as HTMLElement
+
+            expect(ref.current!.style.width).toBe('')
+            expect(previewWrapper.style.width).toBe('8rem')
+        })
+
         it('renders touch action buttons instead of the corner remove button', async () => {
             const user = userEvent.setup()
             const click = vi.spyOn(HTMLInputElement.prototype, 'click')

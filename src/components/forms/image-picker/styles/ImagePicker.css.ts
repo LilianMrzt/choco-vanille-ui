@@ -25,6 +25,11 @@ export const IMAGE_PICKER_STYLES = {
         gap: vars.space.xs,
         width: '100%',
         fontFamily: vars.fontFamily.sans,
+        selectors: {
+            '&[data-mobile="true"]': {
+                alignItems: 'center',
+            },
+        },
     }),
     wrapper: style({
         position: 'relative',
@@ -156,8 +161,6 @@ export const IMAGE_PICKER_STYLES = {
     removeButton: recipe({
         base: {
             position: 'absolute',
-            zIndex: 1,
-            boxShadow: vars.shadow.sm,
         },
         variants: {
             shape: {
@@ -174,7 +177,6 @@ export const IMAGE_PICKER_STYLES = {
                     top: '7%',
                     right: '7%',
                     transform: 'translate(35%, -35%)',
-                    borderRadius: vars.radius.full,
                 },
             },
         },

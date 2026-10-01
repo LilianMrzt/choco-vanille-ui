@@ -143,12 +143,16 @@ const ImagePicker = memo<ImagePickerProps>(
                 ? 1
                 : resolveImagePickerAspectRatio(aspectRatio)
         )
+        const rootStyle = isMobile
+            ? style
+            : { width, ...style }
+        const previewWrapperStyle = isMobile ? { width } : undefined
 
         return (
             <div
                 ref={ref}
                 className={cn(IMAGE_PICKER_STYLES.root, className)}
-                style={{ width, ...style }}
+                style={rootStyle}
                 data-mobile={isMobile ? 'true' : 'false'}
                 {...rootProps}
             >
@@ -162,7 +166,10 @@ const ImagePicker = memo<ImagePickerProps>(
                     </FormLabel>
                 )}
 
-                <div className={IMAGE_PICKER_STYLES.wrapper}>
+                <div
+                    className={IMAGE_PICKER_STYLES.wrapper}
+                    style={previewWrapperStyle}
+                >
                     <ImagePickerPreview
                         actionId={actionId}
                         actionLabel={actionLabel}

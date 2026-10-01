@@ -39,6 +39,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
     disabled,
     required,
     listboxAriaLabel,
+    collisionAvoidance,
     options,
     className,
     value,
@@ -107,7 +108,10 @@ const SelectField: FC<SelectFieldProps> = memo(({
                     aria-describedby={error || helperText ? helperId : undefined}
                     aria-invalid={hasError || undefined}
                 />
-                <Select.Content listboxAriaLabel={listboxAriaLabel}>
+                <Select.Content
+                    listboxAriaLabel={listboxAriaLabel}
+                    collisionAvoidance={collisionAvoidance}
+                >
                     <Select.List>
                         {options.map((option, index) => {
                             if (option.type === 'separator') {

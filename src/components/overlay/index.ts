@@ -6,6 +6,7 @@ export * from '@components/overlay/hover-card'
 export * from '@components/overlay/dialog'
 export * from '@components/overlay/alert-dialog'
 export * from '@components/overlay/drawer'
+export * from '@components/overlay/bottom-sheet'
 export * from '@components/overlay/panel'
 export * from '@components/overlay/command'
 export {

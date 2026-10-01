@@ -118,6 +118,23 @@ describe('SelectContent', () => {
         })
     })
 
+    describe('collisionAvoidance prop', () => {
+        it('renders the popup with a custom collision strategy', async () => {
+            render(
+                <Select>
+                    <Select.Trigger />
+                    <Select.Content collisionAvoidance={{ side: 'none', align: 'none' }}>
+                        <Select.List>
+                            <Select.Item value={'a'} label={'A'} />
+                        </Select.List>
+                    </Select.Content>
+                </Select>,
+            )
+            await openSelect()
+            expect(screen.getByText('A')).toBeTruthy()
+        })
+    })
+
     describe('displayName', () => {
         it('is set to "Select.Content"', () => {
             expect(Select.Content.displayName).toBe('Select.Content')
