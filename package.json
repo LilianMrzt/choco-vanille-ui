@@ -1,6 +1,6 @@
 {
   "name": "@choco-vanille/ui",
-  "version": "1.19.0",
+  "version": "1.20.0",
   "description": "A React 19 UI kit built with Vanilla Extract and Base UI primitives.",
   "type": "module",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "build": "storybook build",
     "start": "serve storybook-static -p $PORT",
