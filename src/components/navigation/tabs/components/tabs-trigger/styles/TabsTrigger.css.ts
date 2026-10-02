@@ -46,6 +46,8 @@ export const TABS_TRIGGER_STYLES = {
                     marginBottom: '-1px',
                     borderBottom: `2px solid transparent`,
                     borderRadius: `${vars.radius.xs} ${vars.radius.xs} 0 0`,
+                    // Keep hover/active tint above the underline and list divider
+                    backgroundClip: 'padding-box',
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.primarySubtle,
