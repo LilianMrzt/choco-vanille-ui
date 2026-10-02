@@ -24,6 +24,10 @@ export const DATE_PICKER_STYLES = {
 
     /** Removes the calendar border when rendered inside the date picker popover. */
     calendar: style({
-        border: 'none',
+        selectors: {
+            '&&': {
+                border: 'none',
+            },
+        },
     }),
 }

@@ -83,6 +83,14 @@ const TimePicker = memo(
             [handleInputKeyDown, onKeyDown],
         )
 
+        const handleInputClick = useCallback(
+            (event: React.MouseEvent<HTMLInputElement>) => {
+                // Stops mobile browsers from opening their native time picker.
+                event.preventDefault()
+            },
+            [],
+        )
+
         const handleTriggerMouseDown = useCallback(
             (event: React.MouseEvent<HTMLButtonElement>) => {
                 event.preventDefault()
@@ -106,6 +114,7 @@ const TimePicker = memo(
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
+                    onClick={handleInputClick}
                     className={cn(TIME_PICKER_STYLES.input, textFieldProps.className)}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
@@ -129,7 +138,7 @@ const TimePicker = memo(
                 <Popover.Content
                     side={'bottom'}
                     align={'end'}
-                    className={TIME_PICKER_STYLES.content}
+                    padding={'none'}
                     aria-label={panelAriaLabel}
                     initialFocus={false}
                     finalFocus={inputRef}

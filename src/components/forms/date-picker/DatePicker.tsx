@@ -65,6 +65,14 @@ const DatePicker = memo(
             [handleInputKeyDown, onKeyDown],
         )
 
+        const handleInputClick = useCallback(
+            (event: React.MouseEvent<HTMLInputElement>) => {
+                // Stops mobile browsers from opening their native date picker.
+                event.preventDefault()
+            },
+            [],
+        )
+
         const handleCalendarButtonMouseDown = useCallback(
             (event: React.MouseEvent<HTMLButtonElement>) => {
                 event.preventDefault()
@@ -89,6 +97,7 @@ const DatePicker = memo(
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
+                    onClick={handleInputClick}
                     className={cn(DATE_PICKER_STYLES.input, textFieldProps.className)}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledBy}
@@ -112,7 +121,7 @@ const DatePicker = memo(
                 <Popover.Content
                     side={'bottom'}
                     align={'end'}
-                    className={DATE_PICKER_STYLES.content}
+                    padding={'none'}
                     aria-label={calendarAriaLabel}
                     initialFocus={false}
                     finalFocus={inputRef}
