@@ -31,7 +31,8 @@ export const TABS_TRIGGER_STYLES = {
             selectors: {
                 '&:focus-visible': {
                     outline: 'none',
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    // Inset so the ring is never clipped by scrolling/overflow ancestors
+                    boxShadow: `inset 0 0 0 2px ${vars.color.ring}`,
                 },
                 '&[data-disabled]': {
                     cursor: 'not-allowed',
