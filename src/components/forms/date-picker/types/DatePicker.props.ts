@@ -17,6 +17,8 @@ export type DatePickerProps = Pick<
     | 'aria-labelledby'
     | 'aria-describedby'
 > & {
+    /** Form field name, forwarded to the underlying date field. */
+    name?: string
     /** The currently selected date (controlled). */
     value?: Date
     /** The default selected date (uncontrolled). */

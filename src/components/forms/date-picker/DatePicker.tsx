@@ -53,6 +53,7 @@ const DatePicker = memo(
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
         'aria-describedby': ariaDescribedBy,
+        name,
     }: DatePickerProps) => {
         const generatedId = useId()
         const inputId = id ?? generatedId
@@ -112,6 +113,7 @@ const DatePicker = memo(
                             isDisabled={disabled}
                             isRequired={required}
                             isInvalid={hasError}
+                            name={name}
                             aria-label={ariaLabel}
                             aria-labelledby={ariaLabelledBy ?? labelId}
                             aria-describedby={
