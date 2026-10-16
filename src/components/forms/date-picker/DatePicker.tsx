@@ -1,143 +1,190 @@
+import { memo, useId, useMemo, type MouseEvent } from 'react'
+import { DateField, DateInput, DateSegment } from 'react-aria-components'
+
 import { Calendar } from '@components/forms/calendar'
-import { TextField } from '@components/forms/text-field'
 import { Popover } from '@components/overlay/popover'
 import { IconButton } from '@components/actions/icon-button'
+import { Flex } from '@components/layout/flex'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import { TextFieldEndAction } from '@components/forms/text-field/components/index.ts'
+import { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField.css.ts'
+import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useDatePicker } from '@components/forms/date-picker/hooks/useDatePicker.hook.ts'
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePicker.css.ts'
-import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
-import { cn } from '@utils/cn.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
-import { memo, useCallback, useMemo, useRef } from 'react'
+import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
+import { vars } from '@theme/contract.css.ts'
+import { cn } from '@utils/cn.ts'
 
 /**
- * A date picker that combines a native `type="date"` text field with a
- * calendar popover.
+ * A date field with segmented day, month and year inputs and a calendar popover.
  *
- * - Typing a valid `YYYY-MM-DD` date updates the calendar and calls `onChange`.
- * - Selecting a day in the calendar updates the input and closes the popover.
- * - Invalid or incomplete typed values are kept in the input but do not update
- *   the selected date until they become valid.
- * - Opening the popover focuses the selected day (or today), and closing it
- *   returns focus to the input.
+ * Built on React Aria's `DateField`, which provides segment-by-segment typing,
+ * arrow-key stepping, locale-aware ordering and screen-reader semantics. The
+ * look comes from the design system's TextField styles.
+ *
+ * - Typing a complete, valid date updates the calendar and calls `onChange`.
+ * - Picking a day in the calendar updates the segments and closes the popover.
  *
  * @example
  * ```tsx
  * const [date, setDate] = useState<Date | undefined>()
- * <DatePicker label="Pick a date" value={date} onChange={setDate} />
+ * <DatePicker label="Start date" value={date} onChange={setDate} />
  * ```
  */
 const DatePicker = memo(
     ({
+        id,
         value,
         defaultValue,
         onChange,
         calendarProps,
-        id,
+        calendarAriaLabel = 'Calendar',
+        label,
+        error,
+        helperText,
+        required,
+        showRequiredIndicator = true,
         disabled,
+        size = 'md',
+        fontSize = 'md',
+        width,
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
-        calendarAriaLabel = 'Calendar',
-        onKeyDown,
-        ...textFieldProps
+        'aria-describedby': ariaDescribedBy,
     }: DatePickerProps) => {
+        const generatedId = useId()
+        const inputId = id ?? generatedId
+        const labelId = label ? `${inputId}-label` : undefined
+        const helperId = `${inputId}-helper`
+        const hasError = Boolean(error)
+        const showHelper = Boolean(error || helperText)
+
         const {
             selectedDate,
-            inputValue,
+            calendarValue,
             open,
-            inputId,
-            handleInputChange,
-            handleInputKeyDown,
-            handleCalendarSelect,
             setOpen,
-        } = useDatePicker({ value, defaultValue, onChange, id })
+            handleFieldChange,
+            handleCalendarSelect,
+        } = useDatePicker({ value, defaultValue, onChange })
 
-        const inputRef = useRef<HTMLInputElement>(null)
-        const calendarDefaultMonth = useMemo(
-            () => selectedDate ?? new Date(),
-            [selectedDate],
-        )
+        const calendarDefaultMonth = useMemo(() => selectedDate ?? new Date(), [selectedDate])
 
-        const handleKeyDown = useCallback(
-            (event: React.KeyboardEvent<HTMLInputElement>) => {
-                handleInputKeyDown(event)
-                onKeyDown?.(event)
-            },
-            [handleInputKeyDown, onKeyDown],
-        )
+        const { className: calendarClassName, ...restCalendarProps } = calendarProps ?? {}
 
-        const handleInputClick = useCallback(
-            (event: React.MouseEvent<HTMLInputElement>) => {
-                // Stops mobile browsers from opening their native date picker.
-                event.preventDefault()
-            },
-            [],
-        )
-
-        const handleCalendarButtonMouseDown = useCallback(
-            (event: React.MouseEvent<HTMLButtonElement>) => {
-                event.preventDefault()
-            },
-            [],
-        )
-
-        const { className: calendarClassName, ...restCalendarProps } =
-            calendarProps ?? {}
+        // Keep focus in the date segments when the calendar button is pressed.
+        const preventFocusSteal = (event: MouseEvent<HTMLButtonElement>) => event.preventDefault()
 
         return (
-            <Popover
-                open={open}
-                onOpenChange={setOpen}
+            <Flex
+                flexDirection={'column'}
+                gap={'xs'}
+                width={'100%'}
+                alignItems={'start'}
+                style={width !== undefined ? { width } : undefined}
             >
-                <TextField
-                    {...textFieldProps}
-                    ref={inputRef}
-                    id={inputId}
-                    type={'date'}
-                    disabled={disabled}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    onClick={handleInputClick}
-                    className={cn(DATE_PICKER_STYLES.input, textFieldProps.className)}
-                    aria-label={ariaLabel}
-                    aria-labelledby={ariaLabelledBy}
-                    aria-haspopup={'dialog'}
-                    endAction={
-                        <Popover.Trigger>
-                            <IconButton
-                                icon={CalendarIcon}
-                                aria-label={'Open calendar'}
-                                variant={'ghost'}
-                                color={'primary'}
-                                size={'sm'}
-                                type={'button'}
-                                disabled={disabled}
-                                onMouseDown={handleCalendarButtonMouseDown}
-                            />
-                        </Popover.Trigger>
-                    }
-                />
-
-                <Popover.Content
-                    side={'bottom'}
-                    align={'end'}
-                    padding={'none'}
-                    aria-label={calendarAriaLabel}
-                    initialFocus={false}
-                    finalFocus={inputRef}
-                >
-                    <Calendar
-                        mode={'single'}
-                        selected={selectedDate}
-                        onSelect={handleCalendarSelect}
+                {label && (
+                    <FormLabel
+                        id={labelId}
                         disabled={disabled}
-                        className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
-                        {...restCalendarProps}
-                        defaultMonth={calendarDefaultMonth}
-                        autoFocus={open}
-                    />
-                </Popover.Content>
-            </Popover>
+                        required={required && showRequiredIndicator}
+                        fontSize={fontSize}
+                    >
+                        {label}
+                    </FormLabel>
+                )}
+
+                <Popover
+                    open={open}
+                    onOpenChange={setOpen}
+                >
+                    <Flex
+                        position={'relative'}
+                        width={'100%'}
+                        gap={'none'}
+                    >
+                        <DateField
+                            className={DATE_PICKER_STYLES.root}
+                            value={calendarValue}
+                            onChange={handleFieldChange}
+                            isDisabled={disabled}
+                            isRequired={required}
+                            isInvalid={hasError}
+                            aria-label={ariaLabel}
+                            aria-labelledby={ariaLabelledBy ?? labelId}
+                            aria-describedby={
+                                [ariaDescribedBy, showHelper ? helperId : undefined]
+                                    .filter(Boolean)
+                                    .join(' ') || undefined
+                            }
+                        >
+                            <DateInput
+                                className={({ isInvalid }) =>
+                                    cn(
+                                        TEXT_FIELD_STYLES.recipe({
+                                            size,
+                                            hasError: isInvalid,
+                                            hasStartIcon: false,
+                                            hasEndAction: true,
+                                        }),
+                                        DATE_PICKER_STYLES.input,
+                                    )
+                                }
+                                style={{ fontSize: vars.fontSize[fontSize] }}
+                            >
+                                {(segment) => (
+                                    <DateSegment
+                                        segment={segment}
+                                        className={DATE_PICKER_STYLES.segment}
+                                    />
+                                )}
+                            </DateInput>
+                        </DateField>
+
+                        <TextFieldEndAction>
+                            <Popover.Trigger>
+                                <IconButton
+                                    icon={CalendarIcon}
+                                    aria-label={'Open calendar'}
+                                    variant={'ghost'}
+                                    color={'primary'}
+                                    size={fieldSizeToActionSize[size]}
+                                    type={'button'}
+                                    disabled={disabled}
+                                    onMouseDown={preventFocusSteal}
+                                />
+                            </Popover.Trigger>
+                        </TextFieldEndAction>
+                    </Flex>
+
+                    <Popover.Content
+                        side={'bottom'}
+                        align={'end'}
+                        padding={'none'}
+                        aria-label={calendarAriaLabel}
+                    >
+                        <Calendar
+                            mode={'single'}
+                            selected={selectedDate}
+                            onSelect={handleCalendarSelect}
+                            defaultMonth={calendarDefaultMonth}
+                            className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
+                            {...restCalendarProps}
+                        />
+                    </Popover.Content>
+                </Popover>
+
+                {showHelper && (
+                    <HelperText
+                        id={helperId}
+                        hasError={hasError}
+                    >
+                        {error ?? helperText}
+                    </HelperText>
+                )}
+            </Flex>
         )
     },
 )

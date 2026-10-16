@@ -1,9 +1,21 @@
 import type { CalendarProps } from '@components/forms/calendar'
 import type { TextFieldProps } from '@components/forms/text-field'
 
-export type DatePickerProps = Omit<
+export type DatePickerProps = Pick<
     TextFieldProps,
-    'type' | 'value' | 'defaultValue' | 'onChange'
+    | 'id'
+    | 'label'
+    | 'error'
+    | 'helperText'
+    | 'required'
+    | 'showRequiredIndicator'
+    | 'disabled'
+    | 'size'
+    | 'fontSize'
+    | 'width'
+    | 'aria-label'
+    | 'aria-labelledby'
+    | 'aria-describedby'
 > & {
     /** The currently selected date (controlled). */
     value?: Date

@@ -21,14 +21,15 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label linked to the input. |
+| \`label\` | Recommended | \`string\` | Visible label, linked to the date field group. |
 | \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables the input and the calendar trigger. |
-| \`error\` | No | \`string\` | Sets \`aria-invalid\` on the input. |
+| \`disabled\` | No | \`boolean\` | Disables every segment and the calendar trigger. |
+| \`error\` | No | \`string\` | Marks the field \`aria-invalid\` and is linked via \`aria-describedby\`. |
 | \`calendarAriaLabel\` | No | \`string\` | Accessible name for the calendar dialog. |
 
-- The calendar trigger is an \`IconButton\` with an \`aria-label\`; the popover content is a \`role="dialog"\`.
-- Native date inputs provide built-in keyboard and screen-reader support.
+- Each day, month and year is a \`role="spinbutton"\` (React Aria), announced with the locale date format.
+- Keyboard: type digits to fill a segment, \`Tab\` / \`Shift+Tab\` to move between segments, \`ArrowUp\` / \`ArrowDown\` to step a value.
+- The calendar button is an \`IconButton\` with an \`aria-label\`, reachable with \`Tab\` after the segments.
 `
 
 const DatePickerDocsPage = () => (
@@ -51,11 +52,11 @@ const meta = {
 
             page: DatePickerDocsPage,            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A date picker that combines a native \`type="date"\` text field with a calendar popover.
+A date picker built on React Aria's \`DateField\`. The input is a segmented day / month / year field on every device, so it keeps segment-by-segment keyboard entry and screen-reader semantics, and the browser or OS date picker never takes over on mobile.
 
-- **Direct input** â€” type a date in \`YYYY-MM-DD\` format.
-- **Calendar selection** â€” click the calendar button to open the popover and pick a day.
-- **Accessible** â€” the input keeps its native date semantics and is annotated with \`aria-haspopup="dialog"\` to signal the calendar popover.
+- **Direct input** — type each segment, or step it with the arrow keys.
+- **Calendar selection** — click the calendar button to open the popover and pick a day.
+- **Value** — \`value\` / \`onChange\` (controlled) or \`defaultValue\` (uncontrolled), as \`Date\` objects.
 
 **Usage**
 
@@ -74,7 +75,6 @@ const [date, setDate] = useState<Date | undefined>()
     },
     argTypes: {
         label: { control: 'text', table: { category: 'DatePicker' } },
-        placeholder: { control: 'text', table: { category: 'DatePicker' } },
         helperText: { control: 'text', table: { category: 'DatePicker' } },
         error: { control: 'text', table: { category: 'DatePicker' } },
         width: { control: 'text', table: { category: 'DatePicker' } },
@@ -106,7 +106,7 @@ export const Playground: Story = {
         docs: { ...storySource(`<DatePicker />`),
             description: {
                 story:
-          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
+          'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
         },
     },
@@ -124,10 +124,9 @@ export const Playground: Story = {
         const canvas = within(canvasElement)
         const label = args.label as string | undefined
         if (label) {
-            await expect(canvas.getByLabelText(label)).toBeInTheDocument()
-        } else {
-            await expect(canvas.getByRole('textbox')).toBeInTheDocument()
+            await expect(canvas.getByRole('group', { name: label })).toBeInTheDocument()
         }
+        await expect(canvas.getAllByRole('spinbutton').length).toBeGreaterThan(0)
     },
 }
 
