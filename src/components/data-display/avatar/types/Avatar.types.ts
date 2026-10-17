@@ -3,7 +3,11 @@ import type {
     AVATAR_SHAPES,
     AVATAR_SIZES,
     AVATAR_STATUS,
+    AVATAR_VARIANTS,
 } from '@components/data-display/avatar/constants'
+
+/** Visual variants for the Avatar component. */
+export type AvatarVariant = (typeof AVATAR_VARIANTS)[keyof typeof AVATAR_VARIANTS];
 
 /** Size variants for the Avatar component. */
 export type AvatarSize = (typeof AVATAR_SIZES)[keyof typeof AVATAR_SIZES];

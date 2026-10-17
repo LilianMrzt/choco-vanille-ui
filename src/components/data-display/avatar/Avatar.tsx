@@ -22,6 +22,7 @@ const Avatar = memo<AvatarProps>(({
     size = AVATAR_SIZES.md,
     shape = 'circle',
     color = 'primary',
+    variant = 'contained',
     status,
     statusLabel,
     statusSize,
@@ -39,6 +40,7 @@ const Avatar = memo<AvatarProps>(({
             size={size}
             shape={shape}
             color={color}
+            variant={variant}
             className={className}
             {...props}
         >

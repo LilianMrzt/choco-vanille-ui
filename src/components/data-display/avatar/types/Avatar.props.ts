@@ -7,6 +7,7 @@ import type {
     AvatarShape,
     AvatarSize,
     AvatarStatus,
+    AvatarVariant,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
 import type { IconComponent } from '@components/foundation/icon'
 
@@ -27,6 +28,8 @@ export type AvatarProps =
     shape?: AvatarShape;
     /** Semantic color intent for the fallback background. Defaults to `primary`. */
     color?: AvatarColor;
+    /** Visual variant. `outlined` adds a visible color border. Defaults to `contained`. */
+    variant?: AvatarVariant;
     /** Optional status indicator rendered at the bottom-right edge. */
     status?: AvatarStatus;
     /** Accessible label describing the status. Defaults to the status value. Use this for i18n. */

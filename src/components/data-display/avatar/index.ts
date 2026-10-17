@@ -9,6 +9,7 @@ export type {
     AvatarShape,
     AvatarSize,
     AvatarStatus,
+    AvatarVariant,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
 export type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types/AvatarRoot.props.ts'
 export type { AvatarImageProps } from '@components/data-display/avatar/components/avatar-image/types/AvatarImage.props.ts'

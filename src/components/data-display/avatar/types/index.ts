@@ -4,6 +4,7 @@ export type {
     AvatarShape,
     AvatarSize,
     AvatarStatus,
+    AvatarVariant,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
 
 import type { FC } from 'react'

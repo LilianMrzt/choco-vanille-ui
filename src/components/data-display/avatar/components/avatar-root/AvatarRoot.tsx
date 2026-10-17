@@ -13,6 +13,7 @@ const AvatarRoot: FC<AvatarRootProps> = memo(({
     size,
     shape,
     color,
+    variant,
     className,
     ref,
     ...props
@@ -20,7 +21,7 @@ const AvatarRoot: FC<AvatarRootProps> = memo(({
     <BaseAvatar.Root
         ref={ref}
         className={cn(
-            AVATAR_STYLES.recipe({ size, shape, color }),
+            AVATAR_STYLES.recipe({ size, shape, color, variant }),
             className,
         )}
         {...props}

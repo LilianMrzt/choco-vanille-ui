@@ -16,6 +16,7 @@ import {
     type AvatarShape,
     type AvatarSize,
     type AvatarStatus,
+    type AvatarVariant,
 } from '@components/data-display/avatar'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 import { md } from '@stories/utils/markdown'
@@ -39,6 +40,7 @@ const COLORS: AvatarColor[] = [
     'indigo',
 ]
 const STATUS: AvatarStatus[] = ['online', 'offline', 'busy', 'away']
+const VARIANTS: AvatarVariant[] = ['contained', 'outlined']
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -103,6 +105,7 @@ It displays an image when available and falls back to initials or an icon.
         size: { control: 'select', options: SIZES },
         shape: { control: 'select', options: SHAPES },
         color: { control: 'select', options: COLORS },
+        variant: { control: 'select', options: VARIANTS },
         status: { control: 'select', options: STATUS },
         statusSize: { control: 'select', options: SIZES },
         fallbackDelay: { control: 'number' },
@@ -115,6 +118,7 @@ It displays an image when available and falls back to initials or an icon.
         size: 'md',
         shape: 'circle',
         color: 'primary',
+        variant: 'contained',
         compoundFallback: 'JD',
         compoundImage: 'https://github.com/shadcn.png',
         compoundRoot: 'Avatar',
@@ -237,6 +241,44 @@ export const Colors: Story = {
                     initials={color.slice(0, 2).toUpperCase()}
                     color={color}
                 />
+            ))}
+        </div>
+    ),
+}
+
+export const Variants: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: '`contained` (default) fills the avatar with the subtle color. `outlined` adds a visible color border for better boundary contrast on light surfaces.',
+            },
+            ...storySource(`<Avatar initials="JD" variant="contained" /><Avatar initials="JD" variant="outlined" />`),
+        },
+    },
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {VARIANTS.map((variant) => (
+                <div
+                    key={variant}
+                    style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}
+                >
+                    {SIZES.map((size) => (
+                        <Avatar
+                            key={size}
+                            initials={variant[0].toUpperCase()}
+                            size={size}
+                            variant={variant}
+                        />
+                    ))}
+                    {COLORS.slice(0, 4).map((color) => (
+                        <Avatar
+                            key={color}
+                            initials={color.slice(0, 2).toUpperCase()}
+                            color={color}
+                            variant={variant}
+                        />
+                    ))}
+                </div>
             ))}
         </div>
     ),

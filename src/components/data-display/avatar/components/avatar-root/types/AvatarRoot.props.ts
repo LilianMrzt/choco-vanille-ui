@@ -4,6 +4,7 @@ import type {
     AvatarColor,
     AvatarShape,
     AvatarSize,
+    AvatarVariant,
 } from '@components/data-display/avatar/types/Avatar.types.ts'
 
 export type AvatarRootProps = React.HTMLAttributes<HTMLSpanElement> &
@@ -14,6 +15,8 @@ export type AvatarRootProps = React.HTMLAttributes<HTMLSpanElement> &
     shape?: AvatarShape;
     /** Semantic color intent for the fallback background. Defaults to `primary`. */
     color?: AvatarColor;
+    /** Visual variant. `outlined` adds a visible color border. Defaults to `contained`. */
+    variant?: AvatarVariant;
     /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
     'aria-label'?: string;
     /** Id of the element that labels the avatar. */

@@ -5,6 +5,7 @@ import {
     AVATAR_COLORS_ARRAY,
     AVATAR_SHAPES,
     AVATAR_SIZES,
+    AVATAR_VARIANTS,
 } from '@components/data-display/avatar/constants'
 import { vars } from '@theme/contract.css.ts'
 
@@ -87,14 +88,30 @@ export const AVATAR_STYLES = {
                 ]),
             ),
 
+            variant: {
+                [AVATAR_VARIANTS.contained]: {},
+                [AVATAR_VARIANTS.outlined]: {},
+            },
+
         },
 
-        compoundVariants: [],
+        // Mirrors the Badge `outlinedSubtle` look: 1px border in the color's subtle border tone.
+        compoundVariants: AVATAR_COLORS_ARRAY.map((color) => ({
+            variants: {
+                variant: AVATAR_VARIANTS.outlined,
+                color,
+            },
+            style: {
+                borderWidth: '1px',
+                borderColor: vars.color[`${color}SubtleBorder` as keyof typeof vars.color],
+            },
+        })),
 
         defaultVariants: {
             size: AVATAR_SIZES.md,
             shape: AVATAR_SHAPES.circle,
             color: AVATAR_COLORS.primary,
+            variant: AVATAR_VARIANTS.contained,
         },
     }),
 }
