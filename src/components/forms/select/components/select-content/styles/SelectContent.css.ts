@@ -22,6 +22,8 @@ export const SELECT_CONTENT_STYLES = {
     root: style({
         zIndex: vars.zIndex.dropdown,
         minWidth: 'var(--anchor-width)',
+        display: 'flex',
+        flexDirection: 'column',
         maxHeight: 'var(--available-height)',
         overflow: 'hidden',
         borderRadius: vars.radius.md,
