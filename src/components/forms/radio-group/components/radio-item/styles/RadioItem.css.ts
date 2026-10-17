@@ -1,4 +1,4 @@
-import { style, globalStyle } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 import { vars } from '@theme/contract.css.ts'
 
 /**
@@ -102,6 +102,14 @@ export const RADIO_ITEM_STYLES = {
         color: 'inherit',
     }),
 
+    /** Filled dot shown inside the checked dropdown radio. Inherits the root color. */
+    dot: style({
+        width: '0.375rem',
+        height: '0.375rem',
+        borderRadius: vars.radius.full,
+        backgroundColor: 'currentColor',
+    }),
+
     /** Typography label associated with the radio button. */
     label: style({
         selectors: {
@@ -112,9 +120,3 @@ export const RADIO_ITEM_STYLES = {
         },
     }),
 }
-
-globalStyle(`${RADIO_ITEM_STYLES.root} svg`, {
-    width: '0.5rem',
-    height: '0.5rem',
-    pointerEvents: 'none',
-})

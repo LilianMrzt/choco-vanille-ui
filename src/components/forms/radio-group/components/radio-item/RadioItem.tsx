@@ -1,8 +1,6 @@
 import { Radio } from '@base-ui/react/radio'
 import { memo, useId, type FC } from 'react'
 
-import { Icon } from '@components/foundation/icon'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
@@ -34,6 +32,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
             as={'span'}
             inline
             gap={'sm'}
+            alignItems={'center'}
         >
             <Radio.Root
                 id={radioId}
@@ -43,10 +42,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
                 {...props}
             >
                 <Radio.Indicator className={RADIO_ITEM_STYLES.indicator}>
-                    <Icon
-                        icon={CircleIcon}
-                        size={'xs'}
-                    />
+                    <span className={RADIO_ITEM_STYLES.dot} />
                 </Radio.Indicator>
             </Radio.Root>
 
