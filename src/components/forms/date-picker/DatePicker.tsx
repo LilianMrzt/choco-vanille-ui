@@ -1,5 +1,6 @@
 import { memo, useId, useMemo, type MouseEvent } from 'react'
 import { DateField, DateInput, DateSegment } from 'react-aria-components'
+import type { Matcher } from 'react-day-picker'
 
 import { Calendar } from '@components/forms/calendar'
 import { Popover } from '@components/overlay/popover'
@@ -13,6 +14,7 @@ import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useDatePicker } from '@components/forms/date-picker/hooks/useDatePicker.hook.ts'
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePicker.css.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
+import { toCalendarDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
 import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
 import { vars } from '@theme/contract.css.ts'
 import { cn } from '@utils/cn.ts'
@@ -39,6 +41,8 @@ const DatePicker = memo(
         value,
         defaultValue,
         onChange,
+        minDate,
+        maxDate,
         calendarProps,
         calendarAriaLabel = 'Calendar',
         label,
@@ -71,9 +75,38 @@ const DatePicker = memo(
             handleCalendarSelect,
         } = useDatePicker({ value, defaultValue, onChange })
 
+        const minTime = minDate?.getTime()
+        const maxTime = maxDate?.getTime()
+
+        const minCalendarValue = useMemo(
+            () => toCalendarDate(minTime === undefined ? undefined : new Date(minTime)) ?? undefined,
+            [minTime],
+        )
+        const maxCalendarValue = useMemo(
+            () => toCalendarDate(maxTime === undefined ? undefined : new Date(maxTime)) ?? undefined,
+            [maxTime],
+        )
+
         const calendarDefaultMonth = useMemo(() => selectedDate ?? new Date(), [selectedDate])
 
-        const { className: calendarClassName, ...restCalendarProps } = calendarProps ?? {}
+        const { className: calendarClassName, disabled: calendarDisabled, ...restCalendarProps } = calendarProps ?? {}
+
+        const calendarDisabledMatchers = useMemo((): Matcher | Matcher[] | undefined => {
+            const rangeMatchers: Matcher[] = [
+                ...(minTime === undefined ? [] : [{ before: new Date(minTime) }]),
+                ...(maxTime === undefined ? [] : [{ after: new Date(maxTime) }]),
+            ]
+
+            if (rangeMatchers.length === 0) {
+                return calendarDisabled
+            }
+
+            const extraMatchers = calendarDisabled === undefined
+                ? []
+                : Array.isArray(calendarDisabled) ? calendarDisabled : [calendarDisabled]
+
+            return [...rangeMatchers, ...extraMatchers]
+        }, [minTime, maxTime, calendarDisabled])
 
         // Keep focus in the date segments when the calendar button is pressed.
         const preventFocusSteal = (event: MouseEvent<HTMLButtonElement>) => event.preventDefault()
@@ -113,6 +146,8 @@ const DatePicker = memo(
                             isDisabled={disabled}
                             isRequired={required}
                             isInvalid={hasError}
+                            minValue={minCalendarValue}
+                            maxValue={maxCalendarValue}
                             name={name}
                             aria-label={ariaLabel}
                             aria-labelledby={ariaLabelledBy ?? labelId}
@@ -173,6 +208,7 @@ const DatePicker = memo(
                             onSelect={handleCalendarSelect}
                             defaultMonth={calendarDefaultMonth}
                             className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
+                            disabled={calendarDisabledMatchers}
                             {...restCalendarProps}
                         />
                     </Popover.Content>

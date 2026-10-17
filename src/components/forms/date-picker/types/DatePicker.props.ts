@@ -25,6 +25,10 @@ export type DatePickerProps = Pick<
     defaultValue?: Date
     /** Called when the selected date changes. */
     onChange?: (date: Date | undefined) => void
+    /** Earliest selectable date. Earlier days are disabled in the calendar. */
+    minDate?: Date
+    /** Latest selectable date. Later days are disabled in the calendar. */
+    maxDate?: Date
     /** Props forwarded to the calendar popover panel. */
     calendarProps?: Omit<CalendarProps, 'mode' | 'selected' | 'onSelect'>
     /**
