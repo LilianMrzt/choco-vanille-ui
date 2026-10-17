@@ -1,7 +1,8 @@
-import { memo } from 'react'
+import { Children, isValidElement, memo, type ReactNode } from 'react'
 
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'
 import { CALLOUT_STYLES } from '@components/feedback/callout/styles/Callout.css.ts'
+import CalloutAction from '@components/feedback/callout/components/callout-action/CalloutAction.tsx'
 import CalloutDescription from '@components/feedback/callout/components/callout-description/CalloutDescription.tsx'
 import CalloutIcon from '@components/feedback/callout/components/callout-icon/CalloutIcon.tsx'
 import CalloutTitle from '@components/feedback/callout/components/callout-title/CalloutTitle.tsx'
@@ -13,13 +14,17 @@ import { cn } from '@utils/cn.ts'
 
 const { hasIconChild, extractIconChild } = createIconChildUtils(CalloutIcon)
 
+const isActionChild = (child: ReactNode) =>
+    isValidElement(child) && child.type === CalloutAction
+
 /**
  * Informational callout with `variant` (info|success|warning|error), an
  * optional `icon`, `title`, and `description`. Renders with `role="status"`
  * by default; pass `role="alert"` for urgent feedback. Supports compound
- * children via `Callout.Icon`, `.Title`, and `.Description` slots.
+ * children via `Callout.Icon`, `.Title`, `.Description`, and `.Action` slots.
+ * `Callout.Action` is pinned to the top-right corner.
  *
- * Compound slots: `Callout.Icon`, `Callout.Title`, `Callout.Description`.
+ * Compound slots: `Callout.Icon`, `Callout.Title`, `Callout.Description`, `Callout.Action`.
  */
 const Callout = memo<CalloutProps>((calloutProps) => {
     const {
@@ -34,8 +39,12 @@ const Callout = memo<CalloutProps>((calloutProps) => {
     } = calloutProps
     const role = 'role' in calloutProps ? calloutProps.role : 'status'
 
-    const showDefaultIcon = !hasIconChild(children)
-    const iconChild = extractIconChild(children)
+    const childArray = Children.toArray(children)
+    const actionChild = childArray.find(isActionChild)
+    const contentChildren = childArray.filter((child) => !isActionChild(child))
+
+    const showDefaultIcon = !hasIconChild(contentChildren)
+    const iconChild = extractIconChild(contentChildren)
     const remainingChildren = iconChild.remaining
 
     return (
@@ -44,7 +53,13 @@ const Callout = memo<CalloutProps>((calloutProps) => {
                 ref={ref}
                 alignItems={'start'}
                 gap={'md'}
-                className={cn(CALLOUT_STYLES.recipe({ variant }), className)}
+                className={cn(
+                    CALLOUT_STYLES.recipe({
+                        variant,
+                        hasAction: actionChild !== undefined,
+                    }),
+                    className,
+                )}
                 {...props}
                 role={role}
             >
@@ -65,6 +80,7 @@ const Callout = memo<CalloutProps>((calloutProps) => {
                     )}
                     {remainingChildren}
                 </Flex>
+                {actionChild}
             </Flex>
         </CalloutContext.Provider>
     )
@@ -74,5 +90,6 @@ Callout.displayName = 'Callout'
 Callout.Icon = CalloutIcon
 Callout.Title = CalloutTitle
 Callout.Description = CalloutDescription
+Callout.Action = CalloutAction
 
 export default Callout

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useState } from 'react'
 import {
     Canvas,
     Controls,
@@ -7,11 +8,12 @@ import {
     Stories,
     Title,
 } from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 
 import { Callout } from '@/components/feedback/callout'
 import type { CalloutRole, CalloutVariant } from '@components/feedback/callout'
 import type { IconComponent } from '@components/foundation/icon'
+import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
@@ -38,6 +40,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`Callout.Icon\` | Leading icon. |
 | \`Callout.Title\` | Bold title text. |
 | \`Callout.Description\` | Secondary description text. |
+| \`Callout.Action\` | Icon-only \`IconButton\` pinned to the top-right corner. Requires \`aria-label\`. |
 `
 
 const CalloutDocsPage = () => (
@@ -60,6 +63,9 @@ type CalloutPlaygroundArgs = {
     showIcon?: boolean
     showTitle?: boolean
     showDescription?: boolean
+    showAction?: boolean
+    actionLabel?: string
+    onActionClick?: () => void
     className?: string
 }
 
@@ -119,6 +125,9 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
             control: 'boolean',
             table: { category: 'Compound: Description' },
         },
+        showAction: { control: 'boolean', table: { category: 'Compound: Action' } },
+        actionLabel: { control: 'text', table: { category: 'Compound: Action' } },
+        onActionClick: { table: { category: 'Compound: Action' } },
         className: { control: 'text', table: { category: 'Callout' } },
     },
     args: {
@@ -130,6 +139,9 @@ Compose with \`Callout.Icon\`, \`Callout.Title\`, and \`Callout.Description\` wh
         showIcon: true,
         showTitle: true,
         showDescription: true,
+        showAction: true,
+        actionLabel: 'Dismiss',
+        onActionClick: fn(),
     },
 }
 
@@ -156,6 +168,9 @@ export const Playground: Story = {
         showIcon,
         showTitle,
         showDescription,
+        showAction,
+        actionLabel,
+        onActionClick,
         className,
     }) => (
         <Callout
@@ -166,12 +181,62 @@ export const Playground: Story = {
             {showIcon && <Callout.Icon icon={icon} />}
             {showTitle && <Callout.Title>{title}</Callout.Title>}
             {showDescription && <Callout.Description>{description}</Callout.Description>}
+            {showAction && (
+                <Callout.Action
+                    aria-label={actionLabel ?? 'Dismiss'}
+                    icon={CloseIcon}
+                    onClick={onActionClick}
+                />
+            )}
         </Callout>
     ),
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByRole('status')).toBeInTheDocument()
     },
+}
+
+const DismissibleCallout = () => {
+    const [isVisible, setIsVisible] = useState(true)
+
+    if (!isVisible) {
+        return (
+            <button
+                type={'button'}
+                onClick={() => setIsVisible(true)}
+            >
+                Show callout
+            </button>
+        )
+    }
+
+    return (
+        <Callout
+            variant={'success'}
+            title={'Changes saved'}
+            description={'Your trip details were updated.'}
+            style={{ width: '32rem' }}
+        >
+            <Callout.Action
+                aria-label={'Dismiss'}
+                icon={CloseIcon}
+                onClick={() => setIsVisible(false)}
+            />
+        </Callout>
+    )
+}
+
+export const WithAction: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story:
+                    'Use `Callout.Action` to add an icon-only button pinned to the top-right corner, e.g. to dismiss the callout. It requires an `aria-label`.',
+            },
+            ...storySource(`<Callout variant="success" title="Changes saved" description="Your trip details were updated."><Callout.Action aria-label="Dismiss" icon={CloseIcon} onClick={onDismiss} /></Callout>`),
+        },
+    },
+    render: () => <DismissibleCallout />,
 }
 
 export const Variants: Story = {

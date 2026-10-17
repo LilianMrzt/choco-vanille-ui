@@ -5,12 +5,20 @@ import { vars } from '@theme/contract.css.ts'
 export const CALLOUT_STYLES = {
     recipe: recipe({
         base: {
+            position: 'relative',
             padding: vars.space.md,
             borderRadius: vars.radius.sm,
             borderWidth: '1px',
             borderStyle: 'solid',
         },
         variants: {
+            hasAction: {
+                true: {
+                    // Reserves room so the title/description never run under Callout.Action.
+                    paddingRight: vars.space['3xl'],
+                },
+                false: {},
+            },
             variant: {
                 info: {
                     backgroundColor: vars.color.infoSubtle,
