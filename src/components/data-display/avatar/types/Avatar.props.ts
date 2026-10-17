@@ -28,7 +28,7 @@ export type AvatarProps =
     shape?: AvatarShape;
     /** Semantic color intent for the fallback background. Defaults to `primary`. */
     color?: AvatarColor;
-    /** Visual variant. `outlined` adds a visible color border. Defaults to `contained`. */
+    /** Visual variant. `outlined` adds a visible color border around the initials/icon fallback (ignored when an image is shown). Defaults to `contained`. */
     variant?: AvatarVariant;
     /** Optional status indicator rendered at the bottom-right edge. */
     status?: AvatarStatus;

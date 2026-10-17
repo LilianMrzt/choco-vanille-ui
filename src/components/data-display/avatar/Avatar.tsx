@@ -2,7 +2,7 @@ import AvatarFallback from '@components/data-display/avatar/components/avatar-fa
 import AvatarImage from '@components/data-display/avatar/components/avatar-image/AvatarImage.tsx'
 import AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
 import AvatarStatus from '@components/data-display/avatar/components/avatar-status/AvatarStatus.tsx'
-import { AVATAR_SIZES } from '@components/data-display/avatar/constants'
+import { AVATAR_SIZES, AVATAR_VARIANTS } from '@components/data-display/avatar/constants'
 import type { AvatarCompound } from '@components/data-display/avatar/types/index.ts'
 import type { AvatarProps } from '@components/data-display/avatar/types/Avatar.props.ts'
 import { memo } from 'react'
@@ -33,6 +33,8 @@ const Avatar = memo<AvatarProps>(({
     ...props
 }) => {
     const hasImage = Boolean(src)
+    // The outlined border only frames the initials/icon fallback, not a profile picture.
+    const resolvedVariant = hasImage ? AVATAR_VARIANTS.contained : variant
 
     return (
         <AvatarRoot
@@ -40,7 +42,7 @@ const Avatar = memo<AvatarProps>(({
             size={size}
             shape={shape}
             color={color}
-            variant={variant}
+            variant={resolvedVariant}
             className={className}
             {...props}
         >
