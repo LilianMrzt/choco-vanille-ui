@@ -101,9 +101,9 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
         },
         compoundVariants: [
             // Start icon: push text right
-            { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
-            { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: '1.75rem' } },
+            { variants: { size: 'sm', hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
+            { variants: { size: 'md', hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
+            { variants: { size: 'lg', hasStartIcon: true }, style: { paddingLeft: vars.space['2xl'] } },
             // End action: push text left (slot width 1.75rem + right offset 0.625rem)
             { variants: { size: 'sm', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
             { variants: { size: 'md', hasEndAction: true }, style: { paddingRight: '2.625rem' } },
