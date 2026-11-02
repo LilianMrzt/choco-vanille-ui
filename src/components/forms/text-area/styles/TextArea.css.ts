@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { TEXT_AREA_SIZES } from '@components/forms/text-area/constants/index.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const TEXT_AREA_STYLES = {
     recipe: recipe({

@@ -5,7 +5,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { RichTextEditorField, type RichTextValue } from '@components/forms/rich-text-editor'
 import { RICH_TEXT_FONT_SIZES } from '@components/forms/rich-text-editor/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const INITIAL_VALUE: RichTextValue = {
     type: 'doc',

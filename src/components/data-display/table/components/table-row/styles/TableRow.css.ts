@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const TABLE_ROW_STYLES = {
     recipe: recipe({

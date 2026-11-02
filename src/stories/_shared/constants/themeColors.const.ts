@@ -1,5 +1,5 @@
-import { lightColors } from '@theme/colors/index.ts'
-import type { ThemeColor } from '@theme/types'
+import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 /**
  * Every semantic color token in the theme, suitable for Storybook `select`

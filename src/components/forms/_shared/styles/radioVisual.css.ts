@@ -1,6 +1,6 @@
 import { style, globalStyle } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * Shared visual style for the radio control.

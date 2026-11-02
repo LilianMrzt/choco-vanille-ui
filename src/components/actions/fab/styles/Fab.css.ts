@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { slideUpIn } from '@constants/animations'
 import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 import { FAB_POSITIONS } from '@components/actions/fab/constants'

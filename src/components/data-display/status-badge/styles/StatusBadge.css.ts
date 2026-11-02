@@ -10,7 +10,7 @@ import type {
     StatusBadgePosition,
     StatusBadgeSize,
 } from '@components/data-display/status-badge/types/StatusBadge.types.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 type ColorVarKey = keyof typeof vars.color
 

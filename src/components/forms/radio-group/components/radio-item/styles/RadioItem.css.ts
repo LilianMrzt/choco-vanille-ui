@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * RadioGroup.Item root — the circular button (applied on `RadioGroup.Item`, a `<button>`).

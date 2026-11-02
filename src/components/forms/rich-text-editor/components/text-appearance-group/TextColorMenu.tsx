@@ -6,7 +6,7 @@ import { RICH_TEXT_COLOR_PALETTES } from '@components/forms/rich-text-editor/con
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { TEXT_COLOR_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextColorMenu.css.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
 
 /**

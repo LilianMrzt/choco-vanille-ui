@@ -1,6 +1,6 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const RICH_TEXT_RENDERER_STYLES = style({
     color: vars.editorColors.neutral.dark,

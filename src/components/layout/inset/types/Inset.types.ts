@@ -1,4 +1,4 @@
-import type { Space } from '@theme/tokens/spacing.ts'
+import type { Space } from '@theme/tokens/spacing/types/index.ts'
 
 import type {
     INSET_CLIPS,

@@ -1,4 +1,4 @@
-import { zIndex } from '@theme/tokens/zIndex.ts'
+import { Z_INDEX } from '@theme/tokens/layering/zIndex.const.ts'
 
 import { CopyBadge } from '@stories/overview/theme/tokens/components/copy-badge/CopyBadge.tsx'
 import { TokenSection } from '@stories/overview/theme/tokens/components/token-section/TokenSection.tsx'
@@ -11,7 +11,7 @@ import {
     rowStyle,
 } from '@stories/overview/theme/tokens/components/zindex-section/ZIndexSection.styles.ts'
 
-const SORTED_ENTRIES = (Object.entries(zIndex) as [string, string][]).sort(
+const SORTED_ENTRIES = (Object.entries(Z_INDEX) as [string, string][]).sort(
     (a, b) => Number(a[1]) - Number(b[1])
 )
 

@@ -2,8 +2,8 @@ import type { CSSProperties } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { darkColors } from '@theme/colors/dark.ts'
-import { lightColors } from '@theme/colors/light.ts'
+import { darkColors } from '@theme/tokens/colors/darkColors.const.ts'
+import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
 
 import type { ColorGroup } from '@stories/overview/theme/colors/components'
 import { ColorPaletteSection } from '@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection'

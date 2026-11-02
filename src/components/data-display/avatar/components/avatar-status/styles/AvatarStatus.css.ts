@@ -5,7 +5,7 @@ import {
     AVATAR_STATUS,
     AVATAR_STATUS_ARRAY,
 } from '@components/data-display/avatar/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const statusSizes = {
     sm: '0.5rem',

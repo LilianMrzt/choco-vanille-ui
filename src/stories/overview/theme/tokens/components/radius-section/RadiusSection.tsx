@@ -1,4 +1,4 @@
-import { radius } from '@theme/tokens/radii.ts'
+import { RADIUS } from '@theme/tokens/radius/radius.const.ts'
 
 import { TokenCard } from '@stories/overview/theme/tokens/components/token-card/TokenCard.tsx'
 import { gridStyle } from '@stories/overview/theme/tokens/components/token-card/TokenCard.styles.ts'
@@ -11,7 +11,7 @@ export const RadiusSection = () => (
         subtitle={'Border radius scale for rounded components.'}
     >
         <div style={gridStyle}>
-            {(Object.entries(radius) as [string, string][]).map(([name, value]) => (
+            {(Object.entries(RADIUS) as [string, string][]).map(([name, value]) => (
                 <TokenCard
                     key={name}
                     name={`radius.${name}`}

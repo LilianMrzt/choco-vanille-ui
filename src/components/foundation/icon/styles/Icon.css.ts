@@ -1,6 +1,6 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { spinAnimation } from '@constants/animations'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 

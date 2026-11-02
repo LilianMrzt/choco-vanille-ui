@@ -3,7 +3,7 @@ import CircleCheckIcon from '@resources/asset/CircleCheckIcon.svg?react'
 import CircleErrorIcon from '@resources/asset/CircleErrorIcon.svg?react'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 import type { IconComponent } from '@components/foundation/icon'
 
 export { TOAST_VARIANTS } from '@components/feedback/toast/constants/toastVariants.const.ts'

@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes'
 
 import { spinAnimation } from '@constants/animations'
 import { SPINNER_COLORS_ARRAY } from '@components/feedback/spinner/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const colorVariants = Object.fromEntries(
     SPINNER_COLORS_ARRAY.map((color) => [color, { color: vars.color[color] }]),

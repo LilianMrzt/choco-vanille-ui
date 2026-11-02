@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
 
 import { SEPARATOR_ORIENTATIONS } from '@components/layout/separator/constants/index.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 
 const colorVariants = createColorVariants('color')

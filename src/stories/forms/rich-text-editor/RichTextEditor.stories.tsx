@@ -19,7 +19,7 @@ import {
 } from '@components/forms/rich-text-editor'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const INITIAL_VALUE: RichTextValue = {
     type: 'doc',

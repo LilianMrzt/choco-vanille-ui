@@ -2,7 +2,7 @@ import { createContainer, style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { IMAGE_PICKER_SHAPES } from '@components/forms/image-picker/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const previewContainer = createContainer()
 

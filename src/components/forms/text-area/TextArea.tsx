@@ -10,7 +10,7 @@ import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.
 import type { TextAreaCompound } from '@components/forms/text-area/types'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, useCallback, useRef } from 'react'
 import type { TextAreaProps } from '@/components'
 

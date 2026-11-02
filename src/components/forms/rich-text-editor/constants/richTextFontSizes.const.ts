@@ -1,4 +1,4 @@
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const RICH_TEXT_FONT_SIZES = {
     '2xs': vars.fontSize['2xs'],

@@ -16,7 +16,7 @@ import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePic
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
 import { toCalendarDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
 import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 
 /**

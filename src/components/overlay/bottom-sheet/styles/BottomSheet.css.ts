@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const SHEET_TRANSITION_DURATION = '400ms'
 const SHEET_TRANSITION_EASING = 'cubic-bezier(0.32, 0.72, 0, 1)'

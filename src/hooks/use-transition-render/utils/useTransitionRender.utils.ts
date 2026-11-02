@@ -1,4 +1,4 @@
-import { duration } from '@theme/tokens/motion.ts'
+import { DURATION } from '@theme/tokens/motion/motion.const.ts'
 
 /**
  * Parses a duration token value (e.g. `'150ms'`) into milliseconds.
@@ -14,9 +14,9 @@ const parseDurationMs = (value: string): number => {
  */
 const resolveDurationMs = (varRef: string): number => {
     const tokenName = varRef.replace(/^var\(--duration-/, '').replace(/\)$/, '')
-    const tokenValue = duration[tokenName as keyof typeof duration]
+    const tokenValue = DURATION[tokenName as keyof typeof DURATION]
 
-    return tokenValue ? parseDurationMs(tokenValue) : parseDurationMs(duration.normal)
+    return tokenValue ? parseDurationMs(tokenValue) : parseDurationMs(DURATION.normal)
 }
 
 /**

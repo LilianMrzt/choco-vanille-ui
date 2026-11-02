@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { BOTTOM_SHEET_STYLES } from '@components/overlay/bottom-sheet/styles/BottomSheet.css.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const BOTTOM_SHEET_CLOSE_STYLES = {
     root: style({

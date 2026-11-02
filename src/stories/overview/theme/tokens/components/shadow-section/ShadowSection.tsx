@@ -1,4 +1,4 @@
-import { lightShadows, darkShadows, lightDropShadows, darkDropShadows } from '@theme/tokens/shadows.ts'
+import { LIGHT_SHADOWS, DARK_SHADOWS, LIGHT_DROP_SHADOWS, DARK_DROP_SHADOWS } from '@theme/tokens/elevation/elevation.const.ts'
 
 import { TokenCard } from '@stories/overview/theme/tokens/components/token-card/TokenCard.tsx'
 import { gridStyle } from '@stories/overview/theme/tokens/components/token-card/TokenCard.styles.ts'
@@ -13,13 +13,13 @@ import {
 } from '@stories/overview/theme/tokens/components/shadow-section/ShadowSection.styles.ts'
 
 const SHADOW_VARIANTS = [
-    { label: 'Box Shadow — Light', tokens: lightShadows, prefix: 'shadow' },
-    { label: 'Box Shadow — Dark', tokens: darkShadows, prefix: 'shadow' },
+    { label: 'Box Shadow — Light', tokens: LIGHT_SHADOWS, prefix: 'shadow' },
+    { label: 'Box Shadow — Dark', tokens: DARK_SHADOWS, prefix: 'shadow' },
 ] as const
 
 const DROP_SHADOW_VARIANTS = [
-    { label: 'Drop Shadow — Light', tokens: lightDropShadows, prefix: 'dropShadow' },
-    { label: 'Drop Shadow — Dark', tokens: darkDropShadows, prefix: 'dropShadow' },
+    { label: 'Drop Shadow — Light', tokens: LIGHT_DROP_SHADOWS, prefix: 'dropShadow' },
+    { label: 'Drop Shadow — Dark', tokens: DARK_DROP_SHADOWS, prefix: 'dropShadow' },
 ] as const
 
 export const ShadowSection = () => (

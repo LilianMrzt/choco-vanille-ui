@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
 import type { RichTextValue } from '@components/forms/rich-text-editor'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const VALUE: RichTextValue = {
     type: 'doc',

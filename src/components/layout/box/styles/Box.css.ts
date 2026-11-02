@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 

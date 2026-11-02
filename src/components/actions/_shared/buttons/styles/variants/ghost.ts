@@ -1,4 +1,4 @@
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import {
     BUTTON_VARIANTS,
 } from '@components/actions/_shared/buttons/constants'

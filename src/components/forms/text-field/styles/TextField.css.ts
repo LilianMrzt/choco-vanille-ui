@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 import { TEXT_FIELD_SIZES } from '@components/forms/text-field/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const TEXT_FIELD_STYLES = {
     recipe: recipe({

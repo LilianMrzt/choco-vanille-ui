@@ -11,7 +11,7 @@ import {
     DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT,
 } from '@components/overlay/drawer/components/items/drawer-section-item/constants'
 import { useTransitionRender } from '@hooks/use-transition-render/useTransitionRender.hook.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * An expandable section row rendered inside a `Drawer`.

@@ -1,4 +1,4 @@
-import { space } from '@theme/tokens/spacing.ts'
+import { SPACE } from '@theme/tokens/spacing/spacing.const.ts'
 
 import { CopyBadge } from '@stories/overview/theme/tokens/components/copy-badge/CopyBadge.tsx'
 import { TokenSection } from '@stories/overview/theme/tokens/components/token-section/TokenSection.tsx'
@@ -20,7 +20,7 @@ export const SpacingSection = () => (
         subtitle={'Spacing scale based on a 4 px grid, used for padding, margin and gap.'}
     >
         <div style={listStyle}>
-            {(Object.entries(space) as [string, string][]).map(([name, value]) => {
+            {(Object.entries(SPACE) as [string, string][]).map(([name, value]) => {
                 const px = toPx(value)
                 return (
                     <div

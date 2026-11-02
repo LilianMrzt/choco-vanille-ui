@@ -1,5 +1,5 @@
 import type { ButtonColorShared, ButtonSizeShared } from '@components/actions/_shared/buttons/types'
-import type { Radius } from '@theme/tokens/radii.ts'
+import type { Radius } from '@theme/tokens/radius/types/index.ts'
 import type { IconComponent } from '@components/foundation/icon'
 
 export type ToggleVariant = 'ghost' | 'outlined'

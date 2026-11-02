@@ -1,4 +1,4 @@
-import { THEME_DARK_CLASS, THEME_LIGHT_CLASS, THEME_LAYER, RESET_LAYER } from '@constants/theme'
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS, THEME_LAYER, RESET_LAYER } from '@theme/constants/index.ts'
 
 # Theme System
 
@@ -9,15 +9,11 @@ The design system is built on a **three-layer token architecture** — the same 
 > - **Storybook:** `Overview / Theme / Customization` (how to override) and `Overview / Theme / CSS Variables` (full token list).
 
 ```
-┌────────────────────────────────────────┐
-│  Layer 3 — Component styles            │  vars.color.primary, vars.space.md …
-├────────────────────────────────────────┤
-│  Layer 2 — Semantic tokens             │  "primary", "muted", "destructive" …
-│  src/theme/colors/light.ts · dark.ts   │  one file per theme
-├────────────────────────────────────────┤
-│  Layer 1 — Primitive palette           │  palette.brand[600], palette.red[500] …
-│  src/theme/tokens/palette.ts           │  raw OKLCH values, no meaning attached
-└────────────────────────────────────────┘
+Layer 3 — Component styles: vars.color.primary, vars.space.md …
+Layer 2 — Semantic tokens:  primary, muted, destructive …
+                            src/theme/tokens/colors/
+Layer 1 — Primitive palette: palette.brand[600], palette.red[500] …
+                            src/theme/tokens/colors/palette.const.ts
 ```
 
 ---
@@ -26,30 +22,28 @@ The design system is built on a **three-layer token architecture** — the same 
 
 ```
 src/theme/
-├── contract.css.ts          CSS variable contract + light/dark registration
-├── globalStyles.css.ts      Reset + themed body defaults (in @layer ${RESET_LAYER})
 ├── index.ts                 Public API
-├── override.ts              Typed override helpers
-├── colors/
-│   ├── light.ts             Light theme semantic colors
-│   ├── dark.ts              Dark theme semantic colors
-│   └── index.ts
+├── constants/               Shared theme constants
+├── hooks/                   Public preference hook
+├── providers/              Theme provider and its internal hooks
+├── styles/                  CSS variable contract and global reset
+├── themes/
+│   └── themes.const.ts      Assembles lightTheme / darkTheme objects
 └── tokens/
-    ├── palette.ts           Raw OKLCH scales (neutral, brand, blue, green, amber, red)
-    ├── spacing.ts           4 px base scale
-    ├── radii.ts             Border-radius scale
-    ├── typography.ts        Font families, sizes, weights, line-heights, letter-spacing
-    ├── shadows.ts           Elevation shadows — light and dark variants
-    ├── zIndex.ts            Z-index ladder
-    ├── motion.ts            Durations + easing curves
-    └── index.ts             Assembles lightTheme / darkTheme objects
+    ├── colors/              Palette and light/dark semantic colors
+    ├── elevation/           Light and dark shadows
+    ├── layering/            Z-index ladder
+    ├── motion/              Durations and easing curves
+    ├── radius/              Border-radius scale
+    ├── spacing/             4 px base scale
+    └── typography/          Font families, sizes, weights, line-heights, letter-spacing
 ```
 
 ---
 
-## Layer 1 — Primitive palette (`tokens/palette.ts`)
+## Layer 1 — Primitive palette (`tokens/colors/palette.const.ts`)
 
-Raw, theme-agnostic OKLCH color scales. Components **never** reference the palette directly — only `colors/light.ts` and `colors/dark.ts` consume it.
+Raw, theme-agnostic OKLCH color scales. Components **never** reference the palette directly — only the light and dark semantic color tokens consume it.
 
 Available ramps: `neutral`, `brand` (violet-indigo), `secondary` (warm golden-orange, complementary to brand), `blue`, `green`, `amber`, `red`.  
 Each ramp: steps `50` → `950` (lighter → darker).
@@ -65,7 +59,7 @@ palette.red[500]    // 'oklch(0.637 0.237 25.3)'
 
 ---
 
-## Layer 2 — Semantic tokens (`colors/`)
+## Layer 2 — Semantic tokens (`tokens/colors/`)
 
 Maps palette values to *roles* — named slots that describe what a color is *used for*, not what it looks like. This is what allows the whole UI to switch themes by swapping one set of variables.
 
@@ -125,7 +119,7 @@ Each of the seven intents exposes the nine tokens described above. Solid steps d
 
 ---
 
-## Layer 3 — CSS variable contract (`contract.css.ts`)
+## Layer 3 — CSS variable contract (`styles/contract/contract.css.ts`)
 
 `createGlobalThemeContract` turns the token shape into typed `var(--…)` references.  
 Every leaf maps: `vars.color.primaryHover` → `--color-primaryHover`.
@@ -134,7 +128,7 @@ Every leaf maps: `vars.color.primaryHover` → `--color-primaryHover`.
 
 All token variables live in the low-specificity `@layer ${THEME_LAYER}` so host apps can override them predictably.
 
-Four rules, in priority order:
+The following selectors apply the appropriate tokens:
 
 ```
 [data-theme="dark"]              explicit dark on any ancestor (legacy)
@@ -148,21 +142,24 @@ Four rules, in priority order:
 
 The `.${THEME_DARK_CLASS}` class is the recommended way to opt a page or a widget into dark mode without forcing a global `data-theme` attribute onto the host document. Because CSS variables inherit, wrapping any subtree in `.${THEME_DARK_CLASS}` is enough to theme the kit components inside it. Use `.${THEME_LIGHT_CLASS}` to force light mode inside a dark-scoped subtree.
 
-Only `color.*` and `shadow.*` are reassigned for dark; spacing, radii, typography, z-index and motion tokens are emitted once on `:root`.
+Both explicit themes and automatic dark mode assign `color.*`, `editorColors.*`,
+`shadow.*` and `dropShadow.*`. A nested light or dark scope therefore restores
+all theme-dependent tokens, while spacing, radii, typography, z-index and motion
+continue to inherit from `:root`.
 
 ---
 
 ## Non-color tokens
 
-### Spacing (`tokens/spacing.ts`)
+### Spacing (`tokens/spacing/spacing.const.ts`)
 
 4 px base scale: `none` · `px` · `xxs`(2px) · `xs`(4px) · `sm`(8px) · `md`(12px) · `lg`(16px) · `xl`(24px) · `2xl`(32px) · `3xl`(48px) · `4xl`(64px) · `5xl`(96px)
 
-### Radii (`tokens/radii.ts`)
+### Radii (`tokens/radius/radius.const.ts`)
 
 `none` · `xs`(4px) · `sm`(6px) · `md`(8px) · `lg`(10px) · `xl`(14px) · `2xl`(20px) · `full`(9999px)
 
-### Typography (`tokens/typography.ts`)
+### Typography (`tokens/typography/typography.const.ts`)
 
 - **Families** — `sans`, `serif`, `mono`
 - **Sizes** — `xs` → `7xl`
@@ -170,15 +167,15 @@ Only `color.*` and `shadow.*` are reassigned for dark; spacing, radii, typograph
 - **Line-heights** — `none`(1) · `tight`(1.25) · `snug`(1.375) · `normal`(1.5) · `relaxed`(1.625) · `loose`(1.75)
 - **Letter-spacing** — `tighter` · `tight` · `normal` · `wide` · `wider` · `widest`
 
-### Shadows (`tokens/shadows.ts`)
+### Shadows (`tokens/elevation/elevation.const.ts`)
 
 Theme-dependent (dark shadows are deeper): `none` · `xs` · `sm` · `md` · `lg` · `xl` · `2xl` · `inner`
 
-### Z-index (`tokens/zIndex.ts`)
+### Z-index (`tokens/layering/zIndex.const.ts`)
 
 `hide`(-1) · `base`(0) · `docked`(10) · `sticky`(100) · `banner`(200) · `dropdown`(1000) · `overlay`(1100) · `modal`(1200) · `popover`(1300) · `toast`(1350) · `tooltip`(1400)
 
-### Motion (`tokens/motion.ts`)
+### Motion (`tokens/motion/motion.const.ts`)
 
 **Durations** — `instant`(0ms) · `fast`(100ms) · `normal`(150ms) · `moderate`(200ms) · `slow`(300ms) · `slower`(500ms)
 

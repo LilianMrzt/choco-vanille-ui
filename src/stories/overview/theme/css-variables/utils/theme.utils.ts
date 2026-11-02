@@ -1,5 +1,5 @@
-import { vars } from '@theme/contract.css.ts'
-import { lightTheme, darkTheme } from '@theme/tokens/index.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
+import { lightTheme, darkTheme } from '@theme/themes/themes.const.ts'
 import type { VarRow } from '@stories/overview/theme/css-variables/types'
 
 // Core helpers

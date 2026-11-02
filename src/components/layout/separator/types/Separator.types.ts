@@ -1,4 +1,4 @@
-import type { ThemeColor, ThemeColorValue } from '@theme/types/index.ts'
+import type { ThemeColor, ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
 import type { SEPARATOR_ORIENTATIONS } from '@components/layout/separator/constants'
 
 /** Orientation values for the Separator component. */

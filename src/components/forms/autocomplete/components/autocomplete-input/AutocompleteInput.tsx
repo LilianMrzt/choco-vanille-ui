@@ -5,7 +5,7 @@ import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { AutocompleteInputProps } from '@components/forms/autocomplete/components/autocomplete-input/types/AutocompleteInput.props.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * The text input that filters the autocomplete list.

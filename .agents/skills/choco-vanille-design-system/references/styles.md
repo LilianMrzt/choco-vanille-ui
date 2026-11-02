@@ -59,13 +59,13 @@ one without a concrete requirement and an explicit dependency decision.
 ## Tokens and color contracts
 
 - Use `vars` for theme variables. Internal code imports it directly from
-  `@theme/contract.css.ts` to avoid public-entry cycles; consumer examples
+  `@theme/styles/contract/contract.css.ts` to avoid public-entry cycles; consumer examples
   import the public `vars` export.
   Reuse the categories and keys defined in `src/theme/`, including colors,
   spacing, typography, radii, shadows, layering and motion. Do not duplicate
   the palette or import Base UI demo themes.
-- Spacing comes from `vars.space` and the `space` object in
-  `src/theme/tokens/spacing.ts`: keys include `none`, `px`, `xxs`, `xs`, `sm`,
+- Spacing comes from `vars.space` and the internal `SPACE` object in
+  `src/theme/tokens/spacing/spacing.const.ts`: keys include `none`, `px`, `xxs`, `xs`, `sm`,
   `md`, `lg` and larger steps. Values are rem-based except zero and 1px.
   There is no numeric `SPACING` contract, `spacing(n)` helper or implicit multiplier.
 - Typography tokens include `fontSize`, `fontWeight`, `lineHeight` and

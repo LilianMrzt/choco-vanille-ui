@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
-import { radius } from '@theme/tokens/radii.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
+import { RADIUS } from '@theme/tokens/radius/radius.const.ts'
 
 export const TOGGLE_GROUP_STYLES = {
     recipe: recipe({
@@ -10,7 +10,7 @@ export const TOGGLE_GROUP_STYLES = {
             alignItems: 'center',
             padding: vars.space.xxs,
             backgroundColor: vars.color.card,
-            borderRadius: radius.md,
+            borderRadius: RADIUS.md,
         },
         variants: {
             orientation: {

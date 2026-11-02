@@ -8,7 +8,7 @@ import type {
 } from '@components/foundation/typography/types/Typography.types.ts'
 import type { BoxMargin } from '@components/layout/box/types/Box.types.ts'
 import type { CSSProperties, RefAttributes } from 'react'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
   RefAttributes<HTMLElement> &

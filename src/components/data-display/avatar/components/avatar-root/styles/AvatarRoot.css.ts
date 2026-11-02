@@ -7,7 +7,7 @@ import {
     AVATAR_SIZES,
     AVATAR_VARIANTS,
 } from '@components/data-display/avatar/constants'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const sizeDimensions = {
     sm: '1.5rem',

@@ -1,12 +1,12 @@
 import type { CSSProperties } from 'react'
 
 import {
-    fontFamily,
-    fontSize,
-    fontWeight,
-    letterSpacing,
-    lineHeight,
-} from '@theme/tokens/typography.ts'
+    FONT_FAMILY,
+    FONT_SIZE,
+    FONT_WEIGHT,
+    LETTER_SPACING,
+    LINE_HEIGHT,
+} from '@theme/tokens/typography/typography.const.ts'
 
 import { TokenCard } from '@stories/overview/theme/tokens/components/token-card/TokenCard.tsx'
 import { gridStyle } from '@stories/overview/theme/tokens/components/token-card/TokenCard.styles.ts'
@@ -32,35 +32,35 @@ const GROUPS: TypographyGroup[] = [
         label: 'Font Family',
         subtitle: 'Available type families.',
         prefix: 'fontFamily',
-        entries: Object.entries(fontFamily) as [string, string][],
+        entries: Object.entries(FONT_FAMILY) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontFamily: value }),
     },
     {
         label: 'Font Size',
         subtitle: 'Font size scale.',
         prefix: 'fontSize',
-        entries: Object.entries(fontSize) as [string, string][],
+        entries: Object.entries(FONT_SIZE) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontSize: value }),
     },
     {
         label: 'Font Weight',
         subtitle: 'Available font weights.',
         prefix: 'fontWeight',
-        entries: Object.entries(fontWeight) as [string, string][],
+        entries: Object.entries(FONT_WEIGHT) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ fontWeight: value }),
     },
     {
         label: 'Line Height',
         subtitle: 'Line heights for readability.',
         prefix: 'lineHeight',
-        entries: Object.entries(lineHeight) as [string, string][],
+        entries: Object.entries(LINE_HEIGHT) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ lineHeight: value, fontSize: 13 }),
     },
     {
         label: 'Letter Spacing',
         subtitle: 'Letter spacing values.',
         prefix: 'letterSpacing',
-        entries: Object.entries(letterSpacing) as [string, string][],
+        entries: Object.entries(LETTER_SPACING) as [string, string][],
         getPreviewStyle: (value) => previewTextStyle({ letterSpacing: value }),
     },
 ]

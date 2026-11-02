@@ -11,12 +11,13 @@ ui-kit/
 │   │   ├── foundation/       Base elements (Typography…)
 │   │   ├── layout/           Layout helpers
 │   │   └── overlay/          Popovers, tooltips, modals…
-│   ├── theme/                Design system tokens & contract
-│   │   ├── colors/           light.ts · dark.ts · index.ts
-│   │   ├── tokens/           palette, spacing, radii, typography…
-│   │   ├── contract.css.ts   VE contract + theme registration
-│   │   ├── globalStyles.css.ts Reset + body defaults
-│   │   ├── override.ts       Typed override helpers
+│   ├── theme/                Theme provider, tokens and styles
+│   │   ├── constants/        Theme selectors and layers
+│   │   ├── hooks/            Theme preference hook
+│   │   ├── providers/        Theme provider and internal hooks
+│   │   ├── styles/           VE contract, theme registration and reset
+│   │   ├── themes/           Complete light and dark themes
+│   │   ├── tokens/           colors, spacing, radii, typography…
 │   │   └── index.ts          Public API
 │   ├── docs/                 This documentation
 │   ├── stories/              Storybook stories
@@ -75,7 +76,7 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> & {
 ```ts
 // Alert.styles.css.ts
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const alertRecipe = recipe({
     base: { borderRadius: vars.radius.md, padding: vars.space.lg },
@@ -184,4 +185,3 @@ export const Default: StoryObj<typeof Alert> = {
 | `yarn lint` | ESLint |
 | `yarn test` | All tests (unit + Storybook visual) |
 | `yarn storybook` | Start Storybook at `localhost:6006` |
-

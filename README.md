@@ -65,11 +65,11 @@ available at `@choco-vanille/ui/styles.css`.
 
 ## Theming
 
-The design system is the single source of truth for tokens, organised by
-category under `src/theme/tokens/` (`colors.ts`, `spacing.ts`, `radii.ts`,
-`typography.ts`, `shadows.ts`, `zIndex.ts`, `motion.ts`) and built on top of a
-primitive OKLCH `palette.ts`. The typed contract and the light/dark theme
-registration live in `src/theme/contract.css.ts`.
+The design system is the single source of truth for tokens. The palette,
+semantic colors and other token categories live under `src/theme/tokens/`.
+Complete light and dark themes are assembled under
+`src/theme/themes/`, and their CSS variables are registered by
+`src/theme/styles/contract/contract.css.ts`.
 
 The kit ships with complete **light and dark** themes. Dark mode follows the
 OS by default (`prefers-color-scheme`) and can be forced per-subtree:

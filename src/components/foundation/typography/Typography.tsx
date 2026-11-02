@@ -3,7 +3,7 @@ import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/consta
 import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
 import { cn } from '@utils/cn.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
 const isTypographyVariant = (value: string): value is TypographyVariant =>

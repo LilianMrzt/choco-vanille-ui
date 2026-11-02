@@ -1,6 +1,6 @@
 import { style, type StyleRule } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { BUTTON_COLORS, BUTTON_SIZES, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 import { containedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/contained.ts'
 import { outlinedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/outlined.ts'

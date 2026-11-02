@@ -1,4 +1,3 @@
-export * from '@components/theme-provider'
 export * from '@components/data-display'
 export * from '@components/actions'
 export * from '@components/foundation'

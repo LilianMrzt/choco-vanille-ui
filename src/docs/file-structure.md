@@ -317,7 +317,7 @@ src/components/forms/date-picker/utils/
 Example:
 
 ```ts
-// src/components/theme-provider/utils/getSystemTheme.utils.ts
+// src/theme/utils/preferences/getSystemTheme.utils.ts
 export const getSystemTheme = (): ThemeMode =>
     window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 ```
@@ -365,28 +365,19 @@ Rules for `_shared`:
 
 ```
 src/theme/
-├── contract.css.ts       # createGlobalThemeContract + light/dark registration
-├── globalStyles.css.ts   # CSS reset + body defaults
-├── index.ts              # Public theme API
-├── override.ts           # Typed override helpers
-├── colors/
-│   ├── light.ts
-│   ├── dark.ts
-│   └── index.ts
-└── tokens/
-    ├── index.ts          # Assembles full theme objects
-    ├── motion.ts
-    ├── palette.ts
-    ├── radii.ts
-    ├── shadows.ts
-    ├── spacing.ts
-    ├── typography.ts
-    └── zIndex.ts
+├── constants/            # Theme selectors and layers
+├── hooks/                # Theme preference hook
+├── providers/            # Theme provider and internal hooks
+├── styles/               # CSS contract and global reset
+├── themes/               # Complete light and dark themes
+├── tokens/               # Color, elevation, spacing, typography and other tokens
+├── utils/                # Theme-specific utilities
+└── index.ts              # Public theme API
 ```
 
 - `tokens/` holds primitive, theme-agnostic values (palette, spacing, radii…).
-- `colors/` maps those primitives to semantic roles for each theme.
-- `contract.css.ts` exposes typed `vars.*` references used by every component style file.
+- `tokens/colors/` maps the palette to semantic roles for each theme.
+- `styles/contract/contract.css.ts` exposes typed `vars.*` references used by component styles.
 
 See `theme.md` for the full token architecture.
 

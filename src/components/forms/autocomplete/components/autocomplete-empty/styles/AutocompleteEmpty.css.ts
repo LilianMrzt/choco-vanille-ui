@@ -1,6 +1,6 @@
 ﻿import { style } from '@vanilla-extract/css'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * Message shown when the autocomplete has no matching items.

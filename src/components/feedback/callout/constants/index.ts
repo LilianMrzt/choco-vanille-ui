@@ -3,7 +3,7 @@ import CircleErrorIcon from '@resources/asset/CircleErrorIcon.svg?react'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 import type { CalloutVariant } from '@components/feedback/callout/types/Callout.types.ts'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 import type { IconButtonColor } from '@components/actions/icon-button/types/IconButton.types.ts'
 import type { IconComponent } from '@components/foundation/icon'
 

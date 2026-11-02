@@ -3,7 +3,7 @@ import { memo, type FC } from 'react'
 import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
 import type { FormLabelProps } from '@components/forms/_shared/components/form-label/types/FormLabel.props.ts'
 import { cn } from '@utils/cn.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * Non-interactive form label text. Use `aria-labelledby` on the control when

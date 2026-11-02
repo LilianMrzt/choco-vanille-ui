@@ -1,5 +1,5 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
-import { THEME_DARK_CLASS, THEME_LIGHT_CLASS } from '@constants/theme'
+import { THEME_DARK_CLASS, THEME_LIGHT_CLASS } from '@theme/constants/index.ts'
 
 <Meta title="Overview/Theme/Customization/ThemeProvider" />
 
@@ -38,6 +38,10 @@ export default function App() {
 }`} />
 
 That's it. Every kit component inside the tree now automatically switches between light and dark following the OS setting, and you can change it programmatically at any time via the `useTheme` hook.
+
+For server-rendered applications, `system` resolves to light on the server and
+during hydration, then synchronizes with the browser preference. This avoids
+hydration mismatches, but can briefly show the light theme on a dark system.
 
 ---
 

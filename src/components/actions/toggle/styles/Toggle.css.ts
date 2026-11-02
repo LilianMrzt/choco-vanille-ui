@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
-import { vars } from '@theme/contract.css.ts'
-import { radius } from '@theme/tokens/radii.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
+import { RADIUS } from '@theme/tokens/radius/radius.const.ts'
 import {
     BUTTON_COLORS_ARRAY,
     BUTTON_COLORS,
@@ -265,14 +265,14 @@ export const TOGGLE_STYLES = {
                 },
             },
             radius: {
-                none: { borderRadius: radius.none },
-                xs: { borderRadius: radius.xs },
-                sm: { borderRadius: radius.sm },
-                md: { borderRadius: radius.md },
-                lg: { borderRadius: radius.lg },
-                xl: { borderRadius: radius.xl },
-                '2xl': { borderRadius: radius['2xl'] },
-                full: { borderRadius: radius.full },
+                none: { borderRadius: RADIUS.none },
+                xs: { borderRadius: RADIUS.xs },
+                sm: { borderRadius: RADIUS.sm },
+                md: { borderRadius: RADIUS.md },
+                lg: { borderRadius: RADIUS.lg },
+                xl: { borderRadius: RADIUS.xl },
+                '2xl': { borderRadius: RADIUS['2xl'] },
+                full: { borderRadius: RADIUS.full },
             },
         },
         compoundVariants: subtleCompoundVariants,

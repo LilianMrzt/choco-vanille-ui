@@ -60,7 +60,7 @@
 - Component stories mirror the existing category layout:
   `src/components/<category>/<component>/` corresponds to
   `src/stories/<category>/<component>/<ComponentName>.stories.tsx`.
-  The existing theme provider stories follow their owner separately.
+  The existing theme provider documentation lives under the theme overview.
   Do not add `components/design-system` or `components/custom` branches.
 - Keep component API, Playground, variants, states and usage examples beside
   that component's stories. Public compound parts follow their owner; private

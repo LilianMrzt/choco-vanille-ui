@@ -23,10 +23,8 @@ Les composants publics vivent dans
 
 - Conserver ce classement pour les primitives et les compositions publiques.
   Ne pas introduire de branches `design-system` et `custom` sans besoin explicite.
-- Le contrat, les tokens et les utilitaires de thème vivent dans `src/theme/`.
-  Le provider et ses hooks associés vivent actuellement dans
-  `src/components/theme-provider/`. Conserver cette frontière tant que leur
-  migration n'est pas demandée et préserver leurs exports publics.
+- Le contrat, les tokens, le provider, ses hooks et les utilitaires de thème
+  vivent dans `src/theme/`. Préserver leurs exports publics depuis cette entrée.
 - Créer une catégorie avec son premier composant. Un squelette explicitement
   demandé peut réserver des catégories avec des `index.ts` vides, pas des `.gitkeep`.
 - Garder les stories séparées des implémentations, selon les
@@ -49,7 +47,7 @@ Les composants publics vivent dans
   doit rester explicite dans le contrat du provider concerné.
 - Ne pas installer de listener ni modifier le document à l'import.
   `src/theme/index.ts` importe actuellement le contrat global et
-  `globalStyles.css.ts`. Ne pas étendre ces effets à d'autres composants.
+  `styles/global/globalStyles.css.ts`. Ne pas étendre ces effets à d'autres composants.
   Leur suppression ou isolation exige une migration explicite de l'intégration
   consommateur ; ne pas présenter l'existant comme dépourvu de reset global.
 

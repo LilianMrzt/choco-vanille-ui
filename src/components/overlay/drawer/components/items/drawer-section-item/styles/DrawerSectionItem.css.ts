@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const sectionContent = style({
     overflow: 'hidden',

@@ -1,5 +1,5 @@
 import { DRAWER_MODES, DRAWER_POSITIONS, DRAWER_SIZES } from '@components/overlay/drawer/constants'
-import type { ThemeColorValue } from '@theme/types/index.ts'
+import type { ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
 
 /** Render mode for the drawer. */
 export type DrawerMode = (typeof DRAWER_MODES)[keyof typeof DRAWER_MODES]

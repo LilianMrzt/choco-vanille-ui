@@ -1,4 +1,4 @@
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { BADGE_VARIANTS } from '@components/data-display/badge/constants'
 import { createBadgeCompoundVariantUtils } from '@components/data-display/badge/styles/variants/utils/createBadgeCompoundVariant.utils.ts'
 

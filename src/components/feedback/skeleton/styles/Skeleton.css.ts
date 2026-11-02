@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { pulseAnimation } from '@constants/animations'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const SKELETON_STYLES = {
     recipe: recipe({

@@ -12,7 +12,7 @@ import {
 import { cn } from '@utils/cn.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
 import useSelectTrigger from '@components/forms/select/components/select-trigger/hooks/useSelectTrigger.hook.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
   * The trigger button that opens the listbox.

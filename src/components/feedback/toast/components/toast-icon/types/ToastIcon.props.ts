@@ -1,5 +1,5 @@
 import type { IconProps } from '@components/foundation/icon'
-import type { ThemeColor } from '@theme'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 /** Props for the Toast.Icon sub-component. */
 export type ToastIconProps = Omit<IconProps, 'icon' | 'color'> & {

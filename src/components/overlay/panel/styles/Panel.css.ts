@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import { OVERLAY_BACKDROP_STYLES } from '@components/overlay/_shared/styles/OverlayBackdrop.css.ts'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const content = style({
     position: 'fixed',

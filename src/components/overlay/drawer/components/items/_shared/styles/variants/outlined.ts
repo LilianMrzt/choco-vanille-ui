@@ -1,4 +1,4 @@
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import {
     DRAWER_ITEM_COLORS,
     DRAWER_ITEM_VARIANTS,

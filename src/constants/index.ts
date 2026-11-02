@@ -1,2 +1,2 @@
 export * from '@constants/animations'
-export * from '@constants/theme'
+export * from '@theme/constants/index.ts'

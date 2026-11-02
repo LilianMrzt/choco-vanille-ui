@@ -1,6 +1,6 @@
 import { memo, type FC } from 'react'
 
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/styles/CardHeader.css.ts'

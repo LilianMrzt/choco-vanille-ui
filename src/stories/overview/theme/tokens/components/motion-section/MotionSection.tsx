@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { duration, easing } from '@theme/tokens/motion.ts'
+import { DURATION, EASING } from '@theme/tokens/motion/motion.const.ts'
 
 import { CopyBadge } from '@stories/overview/theme/tokens/components/copy-badge/CopyBadge.tsx'
 import { TokenCard } from '@stories/overview/theme/tokens/components/token-card/TokenCard.tsx'
@@ -38,7 +38,7 @@ export const MotionSection = () => {
                 <div style={subGroupStyle}>
                     <h3 style={subGroupTitleStyle}>{'Duration'}</h3>
                     <div style={durationListStyle}>
-                        {(Object.entries(duration) as [string, string][]).map(([name, value]) => (
+                        {(Object.entries(DURATION) as [string, string][]).map(([name, value]) => (
                             <div
                                 key={name}
                                 style={durationRowStyle}
@@ -55,7 +55,7 @@ export const MotionSection = () => {
                 <div style={subGroupStyle}>
                     <h3 style={subGroupTitleStyle}>{'Easing — click a card to preview the animation'}</h3>
                     <div style={gridStyle}>
-                        {(Object.entries(easing) as [string, string][]).map(([name, value]) => (
+                        {(Object.entries(EASING) as [string, string][]).map(([name, value]) => (
                             <div key={name}>
                                 <TokenCard
                                     name={`easing.${name}`}

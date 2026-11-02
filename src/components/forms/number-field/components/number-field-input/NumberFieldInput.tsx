@@ -5,7 +5,7 @@ import { NUMBER_FIELD_INPUT_STYLES } from '@components/forms/number-field/compon
 import type { NumberFieldInputProps } from '@components/forms/number-field/components/number-field-input/types'
 import { cn } from '@utils/cn.ts'
 import NumberFieldSteppers from '@components/forms/number-field/components/number-field-steppers/NumberFieldSteppers.tsx'
-import { vars } from '@theme/contract.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const NumberFieldInput = ({
     inputProps,
