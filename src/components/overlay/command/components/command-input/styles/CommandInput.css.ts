@@ -18,7 +18,7 @@ export const COMMAND_INPUT_STYLES = {
     /** Search icon slot — muted, non-interactive. */
     icon: style({
         flexShrink: 0,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
     }),
 
     /** The `<input>` element itself. */
@@ -35,7 +35,7 @@ export const COMMAND_INPUT_STYLES = {
 
         selectors: {
             '&::placeholder': {
-                color: vars.color.mutedForeground,
+                color: vars.color.surfaceMutedForeground,
             },
         },
     }),

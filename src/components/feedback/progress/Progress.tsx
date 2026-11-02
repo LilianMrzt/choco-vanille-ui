@@ -54,7 +54,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             as={'span'}
                             variant={'span'}
                             fontSize={'sm'}
-                            color={'textSecondary'}
+                            color={'foregroundMuted'}
                         >
                             {label}
                         </Typography>
@@ -65,7 +65,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             variant={'span'}
                             fontSize={'sm'}
                             fontWeight={'medium'}
-                            color={'textSecondary'}
+                            color={'foregroundMuted'}
                         >
                             {resolvedQuantityLabel}
                         </Typography>

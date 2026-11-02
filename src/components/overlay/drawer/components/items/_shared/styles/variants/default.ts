@@ -18,11 +18,11 @@ export const defaultCompoundVariants = [
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color.primarySubtle,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
                     backgroundColor: vars.color.primarySubtleHover,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
                     backgroundColor: vars.color.primary,
@@ -47,11 +47,11 @@ export const defaultCompoundVariants = [
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color.secondarySubtle,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
                     backgroundColor: vars.color.secondarySubtleHover,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
                     backgroundColor: vars.color.secondary,
@@ -75,23 +75,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.tertiarySubtle,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.neutralSubtle,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.tertiarySubtleHover,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.neutralSubtleHover,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.tertiary,
-                    color: vars.color.tertiaryForeground,
+                    backgroundColor: vars.color.neutral,
+                    color: vars.color.neutralForeground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.tertiaryHover,
+                    backgroundColor: vars.color.neutralHover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.tertiaryActive,
+                    backgroundColor: vars.color.neutralActive,
                 },
             },
         },
@@ -104,23 +104,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.destructiveSubtle,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.dangerSubtle,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.destructiveSubtleHover,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.dangerSubtleHover,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.destructive,
-                    color: vars.color.destructiveForeground,
+                    backgroundColor: vars.color.danger,
+                    color: vars.color.dangerForeground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.destructiveHover,
+                    backgroundColor: vars.color.dangerHover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.destructiveActive,
+                    backgroundColor: vars.color.dangerActive,
                 },
             },
         },
@@ -134,11 +134,11 @@ export const defaultCompoundVariants = [
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color.successSubtle,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
                     backgroundColor: vars.color.successSubtleHover,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
                     backgroundColor: vars.color.success,
@@ -163,11 +163,11 @@ export const defaultCompoundVariants = [
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color.warningSubtle,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
                     backgroundColor: vars.color.warningSubtleHover,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
                     backgroundColor: vars.color.warning,
@@ -192,11 +192,11 @@ export const defaultCompoundVariants = [
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color.infoSubtle,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&:active': {
                     backgroundColor: vars.color.infoSubtleHover,
-                    color: vars.color.text,
+                    color: vars.color.foreground,
                 },
                 '&[data-active="true"]': {
                     backgroundColor: vars.color.info,

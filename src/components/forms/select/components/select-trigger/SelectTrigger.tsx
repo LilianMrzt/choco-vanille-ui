@@ -73,7 +73,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
                 <Icon
                     icon={ChevronDownIcon}
                     size={'md'}
-                    color={'mutedForeground'}
+                    color={'surfaceMutedForeground'}
                 />
             </Box>
         </BaseSelect.Trigger>

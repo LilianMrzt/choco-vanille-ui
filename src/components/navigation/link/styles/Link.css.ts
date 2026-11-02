@@ -25,7 +25,7 @@ export const LINK_STYLES = {
             },
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 borderRadius: vars.radius.xs,
             },
             '&[aria-disabled="true"]': {
@@ -37,7 +37,7 @@ export const LINK_STYLES = {
     color: recipe({
         variants: {
             color: createColorVariants('color', {
-                tertiary: vars.color.tertiaryForeground,
+                tertiary: vars.color.neutralForeground,
             }),
         },
     }),

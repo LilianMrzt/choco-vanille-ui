@@ -1,3 +1,4 @@
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
@@ -11,8 +12,6 @@ import type {
     StatusBadgeSize,
 } from '@components/data-display/status-badge/types/StatusBadge.types.ts'
 import { vars } from '@theme/styles/contract/contract.css.ts'
-
-type ColorVarKey = keyof typeof vars.color
 
 const positionVariants: Record<
   StatusBadgePosition,
@@ -71,8 +70,8 @@ const colorVariants = Object.fromEntries(
     BADGE_COLORS_ARRAY.map((color) => [
         color,
         {
-            backgroundColor: vars.color[color],
-            color: vars.color[`${color}Foreground` as ColorVarKey],
+            backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]],
+            color: vars.color[`${COLOR_INTENT_TOKENS[color]}Foreground`],
         },
     ]),
 )

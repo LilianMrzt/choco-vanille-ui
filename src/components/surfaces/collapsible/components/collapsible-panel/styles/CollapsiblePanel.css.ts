@@ -6,7 +6,7 @@ export const COLLAPSIBLE_PANEL_STYLES = {
     root: style({
         display: 'grid',
         gridTemplateRows: '0fr',
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         outline: 'none',
@@ -23,7 +23,7 @@ export const COLLAPSIBLE_PANEL_STYLES = {
             },
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
         },
     }),

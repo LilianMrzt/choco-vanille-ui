@@ -42,7 +42,7 @@ describe('Box', () => {
 
         it('applies variant classes', () => {
             const { container } = render(
-                <Box display="flex" padding="md" backgroundColor="card">
+                <Box display="flex" padding="md" backgroundColor='surface'>
                     content
                 </Box>,
             )

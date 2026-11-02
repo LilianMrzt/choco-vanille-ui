@@ -18,7 +18,7 @@ const tableBase = style({
 })
 
 globalStyle(`${tableBase}[data-striped="true"] tbody tr:nth-child(even):not([data-intent])`, {
-    backgroundColor: vars.color.muted,
+    backgroundColor: vars.color.surfaceMuted,
 })
 
 globalStyle(`${tableBase}[data-bordered="true"] th, ${tableBase}[data-bordered="true"] td`, {

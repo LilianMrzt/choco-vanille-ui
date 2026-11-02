@@ -17,7 +17,7 @@ export const COMMAND_EMPTY_STYLES = {
         textAlign: 'center',
         fontSize: vars.fontSize.sm,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
 
         selectors: {
             // Show when the list has no visible (non-hidden, non-disabled) options.

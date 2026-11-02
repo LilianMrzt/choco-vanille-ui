@@ -24,16 +24,16 @@ export const NUMBER_FIELD_STEPPERS_STYLES = {
         border: 0,
         borderLeft: `1px solid ${vars.color.border}`,
         backgroundColor: 'transparent',
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         cursor: 'pointer',
         transition: `color ${vars.duration.fast} ${vars.easing.standard}, background-color ${vars.duration.fast} ${vars.easing.standard}`,
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
                 color: vars.color.foreground,
             },
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.ring}`,
+                outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '-2px',
             },
             '&:disabled': {

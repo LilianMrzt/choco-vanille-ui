@@ -4,8 +4,8 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const CARD_STYLES = {
     root: style({
-        backgroundColor: vars.color.card,
-        color: vars.color.cardForeground,
+        backgroundColor: vars.color.surface,
+        color: vars.color.surfaceForeground,
         borderRadius: vars.radius.md,
         border: `1px solid ${vars.color.border}`,
         boxShadow: vars.shadow.none,

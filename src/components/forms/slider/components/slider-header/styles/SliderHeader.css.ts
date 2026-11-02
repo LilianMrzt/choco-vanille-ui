@@ -15,7 +15,7 @@ export const SLIDER_HEADER_STYLES = {
         fontWeight: vars.fontWeight.medium,
     }),
     value: style({
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         fontSize: vars.fontSize.sm,
         fontVariantNumeric: 'tabular-nums',
     }),

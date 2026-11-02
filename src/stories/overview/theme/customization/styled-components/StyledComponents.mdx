@@ -24,8 +24,8 @@ styled-components or Emotion runtime then resolves the same token variables.
 import styled from 'styled-components';
 
 export const Card = styled.div\`
-  background:    var(--color-card);
-  color:         var(--color-cardForeground);
+  background:    var(--color-surface);
+  color:         var(--color-surfaceForeground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow:    var(--shadow-sm);
@@ -44,7 +44,7 @@ export const PrimaryButton = styled.button\`
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-ring);
+    outline: 2px solid var(--color-focusRing);
     outline-offset: 2px;
   }
 \`;`} />
@@ -53,8 +53,8 @@ export const PrimaryButton = styled.button\`
 import styled from '@emotion/styled';
 
 export const Card = styled.div\`
-  background:    var(--color-card);
-  color:         var(--color-cardForeground);
+  background:    var(--color-surface);
+  color:         var(--color-surfaceForeground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
 \`;`} />
@@ -90,7 +90,7 @@ export const BrandOverride = createGlobalStyle\`
     --color-primary:           oklch(0.58 0.18 185);
     --color-primaryHover:      oklch(0.52 0.18 185);
     --color-primaryForeground: oklch(1 0 0);
-    --color-ring:              oklch(0.58 0.18 185);
+    --color-focusRing:              oklch(0.58 0.18 185);
     --radius-md:               0.75rem;
   }
 \`;
@@ -150,7 +150,7 @@ You can drive token values from props — handy for dynamic palettes without a f
 type SurfaceProps = { $elevated?: boolean };
 
 export const Surface = styled.div<SurfaceProps>\`
-  background:  var(--color-card);
+  background:  var(--color-surface);
   box-shadow:  \${({ $elevated }) =>
     $elevated ? 'var(--shadow-lg)' : 'var(--shadow-sm)'};
   padding:     var(--space-md);
@@ -169,7 +169,7 @@ Since styled components / emotion output resolves to regular CSS, dark mode work
 > **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your styled components and Emotion styles resolve through the same CSS variables so they respond automatically, with no changes to your existing styled code. See the **ThemeProvider** page.
 
 <Source language="tsx" code={`<div data-theme="dark">
-  {/* Card reads var(--color-card) which the kit flips for dark mode */}
+  {/* Card reads var(--color-surface) which the kit flips for dark mode */}
   <Card>Dark-aware card</Card>
 </div>
 

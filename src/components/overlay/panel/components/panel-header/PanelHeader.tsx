@@ -82,7 +82,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                     <Typography
                                         as={'p'}
                                         fontSize={'sm'}
-                                        color={'mutedForeground'}
+                                        color={'surfaceMutedForeground'}
                                         width={'100%'}
                                         ellipsis={true}
                                         {...descriptionProps}

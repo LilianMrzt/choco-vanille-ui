@@ -2,8 +2,7 @@ import type { CSSProperties } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { darkColors } from '@theme/tokens/colors/darkColors.const.ts'
-import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
+import { darkColors, lightColors, lightTheme, ThemeProvider } from '@theme'
 
 import type { ColorGroup } from '@stories/overview/theme/colors/components'
 import { ColorPaletteSection } from '@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection'
@@ -11,19 +10,21 @@ import { md } from '@stories/utils/markdown'
 
 // Groupes de couleurs
 
-const colorGroups: ColorGroup[] = [
+const colorGroups: ReadonlyArray<ColorGroup> = [
     {
         label: 'Surfaces & Text',
         description: 'Main backgrounds, elevated surfaces, base text and scrim.',
         tokens: [
             'background',
             'foreground',
-            'card',
-            'cardForeground',
-            'popover',
-            'popoverForeground',
-            'muted',
-            'mutedForeground',
+            'foregroundMuted',
+            'foregroundSubtle',
+            'surface',
+            'surfaceForeground',
+            'surfaceElevated',
+            'surfaceElevatedForeground',
+            'surfaceMuted',
+            'surfaceMutedForeground',
             'overlay',
         ],
     },
@@ -59,18 +60,18 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Tertiary',
+        label: 'Neutral',
         description: 'Low-emphasis neutral intent. Same states as other families.',
         tokens: [
-            'tertiary',
-            'tertiaryHover',
-            'tertiaryActive',
-            'tertiaryForeground',
-            'tertiarySubtle',
-            'tertiarySubtleHover',
-            'tertiarySubtleActive',
-            'tertiarySubtleForeground',
-            'tertiarySubtleBorder',
+            'neutral',
+            'neutralHover',
+            'neutralActive',
+            'neutralForeground',
+            'neutralSubtle',
+            'neutralSubtleHover',
+            'neutralSubtleActive',
+            'neutralSubtleForeground',
+            'neutralSubtleBorder',
         ],
     },
     {
@@ -119,24 +120,54 @@ const colorGroups: ColorGroup[] = [
         ],
     },
     {
-        label: 'Destructive',
+        label: 'Danger',
         description: 'Irreversible actions, errors and deletions.',
         tokens: [
-            'destructive',
-            'destructiveHover',
-            'destructiveActive',
-            'destructiveForeground',
-            'destructiveSubtle',
-            'destructiveSubtleHover',
-            'destructiveSubtleActive',
-            'destructiveSubtleForeground',
-            'destructiveSubtleBorder',
+            'danger',
+            'dangerHover',
+            'dangerActive',
+            'dangerForeground',
+            'dangerSubtle',
+            'dangerSubtleHover',
+            'dangerSubtleActive',
+            'dangerSubtleForeground',
+            'dangerSubtleBorder',
         ],
+    },
+    {
+        label: 'Skeleton',
+        description: 'Loading placeholder surfaces.',
+        tokens: ['skeletonBase', 'skeletonHighlight'],
+    },
+    ...(['accentPurple', 'accentPink', 'accentOrange', 'accentTeal', 'accentCyan', 'accentIndigo'] as const).map((color) => ({
+        label: `${color.slice('accent'.length)} accent`,
+        description: 'Accent palette with solid and subtle interaction states.',
+        tokens: [
+            color,
+            `${color}Hover`,
+            `${color}Active`,
+            `${color}Foreground`,
+            `${color}Subtle`,
+            `${color}SubtleHover`,
+            `${color}SubtleActive`,
+            `${color}SubtleForeground`,
+            `${color}SubtleBorder`,
+        ] as const,
+    })),
+    {
+        label: 'CSS keywords',
+        description: 'Inherited color and transparent surfaces.',
+        tokens: ['currentColor', 'transparent'],
+    },
+    {
+        label: 'Links',
+        description: 'Link text and interaction states.',
+        tokens: ['link', 'linkHover', 'linkActive'],
     },
     {
         label: 'Borders & Focus',
         description: 'Divider lines, field outlines and focus ring.',
-        tokens: ['border', 'borderStrong', 'input', 'ring'],
+        tokens: ['border', 'borderStrong', 'focusRing'],
     },
     {
         label: 'Highlight',
@@ -158,21 +189,27 @@ const meta = {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 Semantic color tokens form the color system of this UI kit. Each token carries intent rather than a raw hex value, making the palette fully adaptable to light and dark themes without changing component code.
 
+Built-in palettes use in-gamut sRGB values: blue primary, violet secondary, sky information, emerald success, amber warning, and red danger. Dark themes use deeper neutral surfaces and lighter intent fills with dark foregrounds.
+
 **Token families**
 | Family | Purpose |
 |---|---|
 | Surfaces & Text | Backgrounds, elevated surfaces, base foreground text |
 | Primary | Main brand color — CTAs, active states |
 | Secondary | Complementary accent to primary |
-| Tertiary | Neutral low-emphasis actions |
+| Neutral | Low-emphasis actions |
 | Success | Positive feedback, confirmed states |
 | Warning | Cautionary messages, moderate risk |
 | Info | Neutral informational messages |
-| Destructive | Errors, deletions, irreversible actions |
+| Danger | Errors, deletions, irreversible actions |
 | Borders & Focus | Dividers, field outlines, keyboard focus ring |
 | Highlight | Text highlight via the \`<mark>\` element |
+| Accents | Purple, pink, orange, teal, cyan, and indigo treatments |
+| Skeleton | Loading placeholder surfaces |
 
-Each family exposes a **solid** family (e.g. \`primary\`) and a **subtle** family (e.g. \`primarySubtle\`) with their own hover, active, foreground, and border tokens.
+Each intent exposes **solid** fill, hover, active, and foreground tokens, plus **subtle** surface, hover, active, foreground, and border tokens.
+Built-in foregrounds meet 4.5:1 contrast on all three matching states. Field borders and focus rings meet 3:1 on the supported neutral surfaces. These guarantees do not cover custom overrides, disabled opacity, or arbitrary consumer backgrounds.
+Use \`*SubtleForeground\` for ghost and outlined text, not the solid foreground. Use \`danger\`, \`neutral\`, \`accentPurple\` (and other \`accent*\` families), and \`focusRing\` for theme tokens.
 Click any swatch to copy its current value.
                 `,
             },
@@ -182,24 +219,22 @@ Click any swatch to copy its current value.
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 // Styles de page
 
 const pageLight: CSSProperties = {
-    padding: '40px 32px',
-    backgroundColor: '#f8fafc',
+    padding: lightTheme.space.lg,
+    backgroundColor: lightColors.background,
+    color: lightColors.foreground,
     minHeight: '100vh',
-    fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    fontFamily: lightTheme.fontFamily.sans,
 }
 
 const pageDark: CSSProperties = {
-    padding: '40px 32px',
-    backgroundColor: '#0f1117',
-    minHeight: '100vh',
-    fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    ...pageLight,
+    backgroundColor: darkColors.background,
+    color: darkColors.foreground,
 }
 
 // Stories
@@ -215,17 +250,21 @@ export const LightTheme: Story = {
         },
     },
     render: () => (
-        <div style={pageLight}>
+        <ThemeProvider
+            scope={'subtree'}
+            style={pageLight}
+            theme={'light'}
+        >
             <ColorPaletteSection
                 title={'Light Theme'}
                 subtitle={
                     'Semantic tokens of the light theme. Click a swatch to copy its value.'
                 }
-                colors={lightColors as unknown as Record<string, string>}
+                colors={lightColors}
                 colorGroups={colorGroups}
                 dark={false}
             />
-        </div>
+        </ThemeProvider>
     ),
 }
 
@@ -240,16 +279,20 @@ export const DarkTheme: Story = {
         },
     },
     render: () => (
-        <div style={pageDark}>
+        <ThemeProvider
+            scope={'subtree'}
+            style={pageDark}
+            theme={'dark'}
+        >
             <ColorPaletteSection
                 title={'Dark Theme'}
                 subtitle={
                     'Semantic tokens of the dark theme. Click a swatch to copy its value.'
                 }
-                colors={darkColors as unknown as Record<string, string>}
+                colors={darkColors}
                 colorGroups={colorGroups}
                 dark={true}
             />
-        </div>
+        </ThemeProvider>
     ),
 }

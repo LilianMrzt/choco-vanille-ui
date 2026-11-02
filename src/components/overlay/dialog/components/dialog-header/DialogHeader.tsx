@@ -62,7 +62,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
                     <Typography
                         as={'p'}
                         fontSize={'sm'}
-                        color={'mutedForeground'}
+                        color={'surfaceMutedForeground'}
                         {...descriptionProps}
                     >
                         {description}

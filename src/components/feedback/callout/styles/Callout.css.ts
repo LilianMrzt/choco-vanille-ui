@@ -36,9 +36,9 @@ export const CALLOUT_STYLES = {
                     color: vars.color.warningSubtleForeground,
                 },
                 error: {
-                    backgroundColor: vars.color.destructiveSubtle,
-                    borderColor: vars.color.destructiveSubtleBorder,
-                    color: vars.color.destructiveSubtleForeground,
+                    backgroundColor: vars.color.dangerSubtle,
+                    borderColor: vars.color.dangerSubtleBorder,
+                    color: vars.color.dangerSubtleForeground,
                 },
             },
         },

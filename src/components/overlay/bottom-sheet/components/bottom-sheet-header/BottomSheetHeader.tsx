@@ -42,7 +42,7 @@ const BottomSheetHeader: FC<BottomSheetHeaderProps> = memo(({
                     <Typography
                         as={'p'}
                         fontSize={'sm'}
-                        color={'mutedForeground'}
+                        color={'surfaceMutedForeground'}
                         margin={'none'}
                     />
                 )}

@@ -18,7 +18,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.popoverForeground,
+        color: vars.color.surfaceElevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -58,7 +58,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
             '&:focus-visible': {
                 outline: 'none',
                 zIndex: 1,
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',
@@ -71,38 +71,38 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
      * Modifier applied to destructive actions (e.g. "Delete", "Remove").
      */
     destructive: style({
-        color: vars.color.destructive,
+        color: vars.color.danger,
         selectors: {
             '&:not([data-disabled])[data-highlighted]': {
-                backgroundColor: vars.color.destructiveSubtle,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtle,
+                color: vars.color.dangerSubtleForeground,
             },
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.destructiveSubtle,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtle,
+                color: vars.color.dangerSubtleForeground,
             },
             '&:not([data-disabled])[data-highlighted]:active': {
-                backgroundColor: vars.color.destructiveSubtleHover,
+                backgroundColor: vars.color.dangerSubtleHover,
             },
             '&:not([data-disabled]):active': {
-                backgroundColor: vars.color.destructiveSubtleHover,
+                backgroundColor: vars.color.dangerSubtleHover,
             },
             '&:not([data-disabled])[data-active="true"]': {
-                backgroundColor: vars.color.destructiveSubtle,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtle,
+                color: vars.color.dangerSubtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:hover': {
-                backgroundColor: vars.color.destructiveSubtleHover,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtleHover,
+                color: vars.color.dangerSubtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:active': {
-                backgroundColor: vars.color.destructiveSubtleActive,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtleActive,
+                color: vars.color.dangerSubtleForeground,
             },
             '&:focus-visible': {
                 outline: 'none',
                 zIndex: 1,
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
         },
     }),

@@ -13,6 +13,6 @@ export const TOOLBAR_STYLES = {
         borderBottom: 'none',
         borderTopLeftRadius: vars.radius.xs,
         borderTopRightRadius: vars.radius.xs,
-        backgroundColor: vars.color.card,
+        backgroundColor: vars.color.surface,
     }),
 }

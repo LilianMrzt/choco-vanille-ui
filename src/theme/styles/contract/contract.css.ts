@@ -13,7 +13,7 @@ import { darkTheme, lightTheme } from '@theme/themes/themes.const.ts'
 /** Low-specificity layer for design-token variables so host apps can override predictably. */
 const themeLayer = globalLayer(THEME_LAYER)
 
-/** Typed token contract. `vars.color.primary` → CSS var `--color-primary`. */
+/** Semantic token contract, including `--color-danger`, `--color-focusRing`, and CSS keyword tokens. */
 export const vars = createGlobalThemeContract(lightTheme, (_value, path) => path.join('-'))
 
 // 1. Light theme on :root.

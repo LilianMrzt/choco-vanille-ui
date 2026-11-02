@@ -10,6 +10,6 @@ export const TEXT_AREA_START_ICON_STYLES = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
     }),
 }

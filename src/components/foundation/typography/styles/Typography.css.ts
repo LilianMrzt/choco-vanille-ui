@@ -111,11 +111,11 @@ export const TYPOGRAPHY_STYLES = {
                     borderLeft: `2px solid ${vars.color.border}`,
                     paddingLeft: vars.space.xl,
                     fontStyle: 'italic',
-                    color: vars.color.mutedForeground,
+                    color: vars.color.surfaceMutedForeground,
                 },
                 pre: {
                     borderRadius: vars.radius.md,
-                    backgroundColor: vars.color.muted,
+                    backgroundColor: vars.color.surfaceMuted,
                     padding: vars.space.lg,
                     fontFamily: vars.fontFamily.mono,
                     fontSize: vars.fontSize.sm,
@@ -123,7 +123,7 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 code: {
                     borderRadius: vars.radius.sm,
-                    backgroundColor: vars.color.muted,
+                    backgroundColor: vars.color.surfaceMuted,
                     paddingInline: '0.3rem',
                     paddingBlock: '0.2rem',
                     fontFamily: vars.fontFamily.mono,
@@ -133,7 +133,7 @@ export const TYPOGRAPHY_STYLES = {
                 kbd: {
                     borderRadius: vars.radius.sm,
                     border: `1px solid ${vars.color.border}`,
-                    backgroundColor: vars.color.muted,
+                    backgroundColor: vars.color.surfaceMuted,
                     paddingInline: vars.space.sm,
                     paddingBlock: vars.space.xs,
                     fontFamily: vars.fontFamily.mono,
@@ -151,7 +151,7 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 cite: {
                     fontStyle: 'italic',
-                    color: vars.color.mutedForeground,
+                    color: vars.color.surfaceMutedForeground,
                 },
                 mark: {
                     borderRadius: vars.radius.sm,

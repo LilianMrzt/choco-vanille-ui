@@ -25,6 +25,14 @@ export { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
 export { darkColors } from '@theme/tokens/colors/darkColors.const.ts'
 export { lightEditorColors } from '@theme/tokens/colors/lightColors.const.ts'
 export { darkEditorColors } from '@theme/tokens/colors/darkColors.const.ts'
-export type { EditorColors, LightColors, ThemeColor, ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
+export type {
+    EditorColors,
+    LightColors,
+    ThemeColor,
+    ThemeColorOverrides,
+    ThemeColors,
+    ThemeColorValue,
+    ThemeEditorColors,
+} from '@theme/tokens/colors/types/index.ts'
 export type { Theme } from '@theme/themes/types/index.ts'
 export type { ThemeVars } from '@theme/styles/contract/types/index.ts'

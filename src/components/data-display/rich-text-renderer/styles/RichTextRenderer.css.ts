@@ -45,12 +45,12 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} blockquote`, {
     marginInline: 0,
     paddingInlineStart: vars.space.md,
     borderInlineStart: `3px solid ${vars.color.border}`,
-    color: vars.color.mutedForeground,
+    color: vars.color.surfaceMutedForeground,
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} pre`, {
     overflowX: 'auto',
     padding: vars.space.md,
     borderRadius: vars.radius.sm,
-    backgroundColor: vars.color.muted,
+    backgroundColor: vars.color.surfaceMuted,
 })

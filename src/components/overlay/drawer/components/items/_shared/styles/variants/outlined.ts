@@ -23,8 +23,8 @@ export const outlinedCompoundVariants = [
                     backgroundColor: vars.color.primarySubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
@@ -50,8 +50,8 @@ export const outlinedCompoundVariants = [
                     backgroundColor: vars.color.secondarySubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
@@ -71,21 +71,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.tertiarySubtle,
+                    backgroundColor: vars.color.neutralSubtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.tertiarySubtleHover,
+                    backgroundColor: vars.color.neutralSubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.tertiarySubtle,
+                    backgroundColor: vars.color.neutralSubtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.tertiarySubtleHover,
+                    backgroundColor: vars.color.neutralSubtleHover,
                 },
             },
         },
@@ -98,21 +98,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.destructiveSubtle,
+                    backgroundColor: vars.color.dangerSubtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.destructiveSubtleHover,
+                    backgroundColor: vars.color.dangerSubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.destructiveSubtle,
+                    backgroundColor: vars.color.dangerSubtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.destructiveSubtleHover,
+                    backgroundColor: vars.color.dangerSubtleHover,
                 },
             },
         },
@@ -131,8 +131,8 @@ export const outlinedCompoundVariants = [
                     backgroundColor: vars.color.successSubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
@@ -158,8 +158,8 @@ export const outlinedCompoundVariants = [
                     backgroundColor: vars.color.warningSubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {
@@ -185,8 +185,8 @@ export const outlinedCompoundVariants = [
                     backgroundColor: vars.color.infoSubtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.card,
-                    color: vars.color.text,
+                    backgroundColor: vars.color.surface,
+                    color: vars.color.foreground,
                     borderColor: vars.color.border,
                 },
                 '&[data-active="true"]:hover': {

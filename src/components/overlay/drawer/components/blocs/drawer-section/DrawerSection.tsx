@@ -36,7 +36,7 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
                 <Typography
                     variant={'small'}
                     fontSize={'xs'}
-                    color={'mutedForeground'}
+                    color={'surfaceMutedForeground'}
                     textTransform={'uppercase'}
                     fontWeight={'medium'}
                     letterSpacing={'wide'}

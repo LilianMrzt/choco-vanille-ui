@@ -23,8 +23,8 @@ const statusInset = {
 
 const statusColorMap = {
     [AVATAR_STATUS.online]: vars.color.success,
-    [AVATAR_STATUS.offline]: vars.color.textTertiary,
-    [AVATAR_STATUS.busy]: vars.color.destructive,
+    [AVATAR_STATUS.offline]: vars.color.foregroundSubtle,
+    [AVATAR_STATUS.busy]: vars.color.danger,
     [AVATAR_STATUS.away]: vars.color.warning,
 } as const
 

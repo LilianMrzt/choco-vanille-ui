@@ -85,7 +85,7 @@ export const alertRecipe = recipe({
             info:        { backgroundColor: vars.color.infoSubtle,        color: vars.color.infoSubtleForeground },
             success:     { backgroundColor: vars.color.successSubtle,     color: vars.color.successSubtleForeground },
             warning:     { backgroundColor: vars.color.warningSubtle,     color: vars.color.warningSubtleForeground },
-            destructive: { backgroundColor: vars.color.destructiveSubtle, color: vars.color.destructiveSubtleForeground },
+            destructive: { backgroundColor: vars.color.dangerSubtle, color: vars.color.dangerSubtleForeground },
         },
     },
     defaultVariants: { variant: 'info' },

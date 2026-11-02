@@ -5,7 +5,7 @@ export const CALENDAR_ROOT_STYLES = {
     root: style({
         display: 'inline-block',
         padding: vars.space.lg,
-        backgroundColor: vars.color.card,
+        backgroundColor: vars.color.surface,
         borderRadius: vars.radius.lg,
         border: `1px solid ${vars.color.border}`,
         fontFamily: vars.fontFamily.sans,

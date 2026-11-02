@@ -16,7 +16,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
         border: `1px solid ${vars.color.border}`,
         borderBottomLeftRadius: vars.radius.xs,
         borderBottomRightRadius: vars.radius.xs,
-        backgroundColor: vars.color.card,
+        backgroundColor: vars.color.surface,
         color: vars.editorColors.neutral.dark,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.md,
@@ -27,7 +27,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
                 boxShadow: 'none',
             },
             '&[data-invalid="true"]': {
-                borderColor: vars.color.destructive,
+                borderColor: vars.color.danger,
             },
             '&[data-invalid="true"]:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 boxShadow: 'none',
@@ -35,7 +35,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
             '&[data-disabled="true"]': {
                 cursor: 'not-allowed',
                 opacity: 0.45,
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
             },
         },
     }),
@@ -67,6 +67,6 @@ globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror img`, {
 globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror > p:first-child:last-child:has(br)::before`, {
     content: 'attr(data-placeholder)',
     position: 'absolute',
-    color: vars.color.mutedForeground,
+    color: vars.color.surfaceMutedForeground,
     pointerEvents: 'none',
 })

@@ -24,7 +24,7 @@ export const SLIDER_TRACK_STYLES = {
             position: 'relative',
             width: '100%',
             borderRadius: vars.radius.full,
-            backgroundColor: vars.color.muted,
+            backgroundColor: vars.color.surfaceMuted,
             selectors: {
                 '&[data-orientation="vertical"]': {
                     width: '0.375rem',
@@ -56,7 +56,7 @@ export const SLIDER_TRACK_STYLES = {
             color: {
                 primary: { backgroundColor: vars.color.primary },
                 secondary: { backgroundColor: vars.color.secondary },
-                destructive: { backgroundColor: vars.color.destructive },
+                destructive: { backgroundColor: vars.color.danger },
             },
         },
         defaultVariants: { color: 'primary' },
@@ -65,13 +65,13 @@ export const SLIDER_TRACK_STYLES = {
         base: {
             position: 'absolute',
             borderRadius: vars.radius.full,
-            backgroundColor: vars.color.card,
+            backgroundColor: vars.color.surface,
             outline: 'none',
             cursor: 'grab',
             transition: `box-shadow ${vars.duration.fast} ${vars.easing.standard}`,
             selectors: {
                 '&:focus-visible': {
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 '&[data-dragging]': {
                     cursor: 'grabbing',
@@ -87,7 +87,7 @@ export const SLIDER_TRACK_STYLES = {
             color: {
                 primary: { border: `2px solid ${vars.color.primary}` },
                 secondary: { border: `2px solid ${vars.color.secondary}` },
-                destructive: { border: `2px solid ${vars.color.destructive}` },
+                destructive: { border: `2px solid ${vars.color.danger}` },
             },
         },
         defaultVariants: { size: 'md', color: 'primary' },

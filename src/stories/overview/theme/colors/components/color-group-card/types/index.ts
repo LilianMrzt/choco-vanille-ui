@@ -1,13 +1,15 @@
-export type ColorMap = Record<string, string>
+import type { ThemeColor, ThemeColors } from '@theme'
 
-export interface ColorGroup {
+export type ColorMap = ThemeColors
+
+export type ColorGroup = Readonly<{
     label: string
-    tokens: string[]
+    tokens: ReadonlyArray<ThemeColor>
     description?: string
-}
+}>
 
-export interface ColorGroupCardProps {
+export type ColorGroupCardProps = Readonly<{
     group: ColorGroup
     colors: ColorMap
     dark?: boolean
-}
+}>

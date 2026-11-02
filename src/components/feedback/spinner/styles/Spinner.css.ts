@@ -1,3 +1,4 @@
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { spinAnimation } from '@constants/animations'
@@ -5,7 +6,7 @@ import { SPINNER_COLORS_ARRAY } from '@components/feedback/spinner/constants'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const colorVariants = Object.fromEntries(
-    SPINNER_COLORS_ARRAY.map((color) => [color, { color: vars.color[color] }]),
+    SPINNER_COLORS_ARRAY.map((color) => [color, { color: vars.color[COLOR_INTENT_TOKENS[color]] }]),
 )
 
 export const SPINNER_STYLES = {

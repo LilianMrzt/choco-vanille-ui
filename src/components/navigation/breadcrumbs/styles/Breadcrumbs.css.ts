@@ -18,14 +18,14 @@ export const BREADCRUMBS_STYLES = {
         gap: vars.space.xs,
     }),
     current: style({
-        color: vars.color.text,
+        color: vars.color.foreground,
     }),
     separator: style({
-        color: vars.color.textSecondary,
+        color: vars.color.foregroundMuted,
         flexShrink: 0,
     }),
     separatorText: style({
-        color: vars.color.textSecondary,
+        color: vars.color.foregroundMuted,
         flexShrink: 0,
     }),
 }

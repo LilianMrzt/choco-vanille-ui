@@ -22,14 +22,14 @@ export const CALENDAR_MONTH_VIEW_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.tertiary,
+                backgroundColor: vars.color.neutral,
             },
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&:disabled': {
                 opacity: 0.4,

@@ -10,9 +10,9 @@ export const BOTTOM_NAVIGATION_STYLES = {
         paddingInline: vars.space.xs,
         paddingBlockStart: vars.space.xs,
         paddingBlockEnd: `calc(${vars.space.xs} + env(safe-area-inset-bottom))`,
-        backgroundColor: `color-mix(in srgb, ${vars.color.card} 92%, transparent)`,
+        backgroundColor: `color-mix(in srgb, ${vars.color.surface} 92%, transparent)`,
         backdropFilter: 'blur(20px)',
-        color: vars.color.cardForeground,
+        color: vars.color.surfaceForeground,
     }),
 
     bordered: style({
@@ -50,7 +50,7 @@ export const BOTTOM_NAVIGATION_STYLES = {
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.medium,
@@ -68,10 +68,10 @@ export const BOTTOM_NAVIGATION_STYLES = {
         ].join(', '),
         selectors: {
             '&:focus-visible': {
-                boxShadow: `0 0 0 2px ${vars.color.card}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.surface}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
                 color: vars.color.foreground,
             },
             '&:not([data-disabled]):active': {

@@ -5,7 +5,7 @@ import { hydrateRoot } from 'react-dom/client'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it, vi } from 'vitest'
 
-import { ThemeProvider, useTheme } from '@theme'
+import { darkColors, lightColors, ThemeProvider, useTheme, type ThemeColorOverrides } from '@theme'
 import { THEME_TRANSITION_ATTRIBUTE, THEME_TRANSITION_DURATION_VAR, } from '@theme/constants/index.ts'
 
 const createMatchMediaMock = (matches: boolean) => {
@@ -345,11 +345,68 @@ describe('ThemeProvider', () => {
     })
 
     describe('tokens', () => {
+        it('keeps nested subtree overrides independent of the document and their parent', () => {
+            const previousTheme = document.documentElement.getAttribute('data-theme')
+            const previousPrimary = document.documentElement.style.getPropertyValue('--color-primary')
+            const overrides = {
+                primary: '#0f766e',
+                primaryForeground: '#ffffff',
+                focusRing: '#0f766e',
+            } as const satisfies ThemeColorOverrides
+
+            const { getByTestId, rerender, unmount } = render(
+                <ThemeProvider
+                    data-testid={'outer'}
+                    scope={'subtree'}
+                    theme={'light'}
+                    tokens={{ primary: lightColors.primary }}
+                >
+                    <ThemeProvider
+                        data-testid={'inner'}
+                        scope={'subtree'}
+                        theme={'dark'}
+                        tokens={overrides}
+                    />
+                </ThemeProvider>,
+            )
+
+            expect(getByTestId('outer').style.getPropertyValue('--color-primary')).toBe(lightColors.primary)
+            expect(getByTestId('inner').style.getPropertyValue('--color-primary')).toBe(overrides.primary)
+            expect(getByTestId('inner').getAttribute('data-theme')).toBe('dark')
+            expect(document.documentElement.getAttribute('data-theme')).toBe(previousTheme)
+            expect(document.documentElement.style.getPropertyValue('--color-primary')).toBe(previousPrimary)
+
+            rerender(
+                <ThemeProvider
+                    data-testid={'outer'}
+                    scope={'subtree'}
+                    theme={'light'}
+                    tokens={{ primary: lightColors.primary }}
+                >
+                    <ThemeProvider
+                        data-testid={'inner'}
+                        scope={'subtree'}
+                        theme={'dark'}
+                        tokens={{ primary: darkColors.primary }}
+                    />
+                </ThemeProvider>,
+            )
+
+            expect(getByTestId('inner').style.getPropertyValue('--color-primary')).toBe(darkColors.primary)
+            expect(getByTestId('inner').style.getPropertyValue('--color-focusRing')).toBe('')
+            expect(getByTestId('inner').style.getPropertyValue('--color-primaryForeground')).toBe('')
+            expect(getByTestId('outer').style.getPropertyValue('--color-primary')).toBe(lightColors.primary)
+
+            unmount()
+            expect(document.documentElement.getAttribute('data-theme')).toBe(previousTheme)
+            expect(document.documentElement.style.getPropertyValue('--color-primary')).toBe(previousPrimary)
+        })
+
         it('injects token values as CSS custom properties', () => {
             render(
                 <ThemeProvider
                     theme={'light'}
-                    tokens={{ primary: 'red', ring: 'blue' }}
+                    tokens={{ primary: 'red', focusRing: 'blue' }}
                 >
                     <span>child</span>
                 </ThemeProvider>,
@@ -357,7 +414,7 @@ describe('ThemeProvider', () => {
             expect(
                 document.documentElement.style.getPropertyValue('--color-primary'),
             ).toBe('red')
-            expect(document.documentElement.style.getPropertyValue('--color-ring')).toBe(
+            expect(document.documentElement.style.getPropertyValue('--color-focusRing')).toBe(
                 'blue',
             )
         })

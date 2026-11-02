@@ -40,6 +40,7 @@ Design tokens are the single source of truth for all visual decisions in this UI
 
 Each token maps to a CSS custom property and is consumed by component styles through the Vanilla Extract theme contract.
 Prefer token values over hard-coded CSS — this ensures visual consistency and makes global theme changes trivial.
+Spacing, radii, typography, stacking order, durations, and easing share the same values in light and dark themes. Box shadows and drop shadows are theme-dependent; their token names remain identical.
                 `,
             },
         },

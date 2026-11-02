@@ -1,3 +1,4 @@
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
@@ -17,30 +18,30 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
             borderColor: variant === 'outlined'
                 ? vars.color.border
                 : 'transparent',
-            color: vars.color[`${color}SubtleForeground`],
+            color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color[`${color}Subtle`],
-                    color: vars.color[`${color}SubtleForeground`],
+                    backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                    color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                 },
                 '&:active': {
-                    backgroundColor: vars.color[`${color}SubtleActive`],
-                    color: vars.color[`${color}SubtleForeground`],
+                    backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                    color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                 },
                 [pressedSelector]: {
-                    backgroundColor: vars.color[`${color}SubtleActive`],
-                    color: vars.color[`${color}SubtleForeground`],
+                    backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                    color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                     borderColor: variant === 'outlined'
-                        ? vars.color[color]
+                        ? vars.color[COLOR_INTENT_TOKENS[color]]
                         : 'transparent',
                 },
                 [`${pressedSelector}:hover`]: {
-                    backgroundColor: vars.color[`${color}Subtle`],
-                    color: vars.color[`${color}SubtleForeground`],
+                    backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                    color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                 },
                 [`${pressedSelector}:active`]: {
-                    backgroundColor: vars.color[`${color}SubtleActive`],
-                    color: vars.color[`${color}SubtleForeground`],
+                    backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                    color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                 },
             },
         },
@@ -55,12 +56,12 @@ export const TOGGLE_STYLES = {
             whiteSpace: 'nowrap',
             backgroundColor: 'transparent',
             borderColor: 'transparent',
-            color: vars.color.mutedForeground,
+            color: vars.color.surfaceMutedForeground,
             fontWeight: vars.fontWeight.medium,
             selectors: {
                 '&:focus-visible': {
                     outline: 'none',
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 '&:disabled': {
                     pointerEvents: 'none',
@@ -135,48 +136,48 @@ export const TOGGLE_STYLES = {
                     },
                 },
                 [BUTTON_COLORS.tertiary]: {
-                    color: vars.color.tertiaryForeground,
+                    color: vars.color.neutralForeground,
                     selectors: {
                         '&:hover': {
-                            color: vars.color.tertiaryForeground,
-                            backgroundColor: vars.color.tertiarySubtle,
+                            color: vars.color.neutralForeground,
+                            backgroundColor: vars.color.neutralSubtle,
                         },
                         '&:active': {
-                            color: vars.color.tertiaryForeground,
-                            backgroundColor: vars.color.tertiarySubtleActive,
+                            color: vars.color.neutralForeground,
+                            backgroundColor: vars.color.neutralSubtleActive,
                         },
                         [pressedSelector]: {
-                            backgroundColor: vars.color.tertiary,
-                            color: vars.color.tertiaryForeground,
+                            backgroundColor: vars.color.neutral,
+                            color: vars.color.neutralForeground,
                         },
                         [`${pressedSelector}:hover`]: {
-                            backgroundColor: vars.color.tertiaryHover,
+                            backgroundColor: vars.color.neutralHover,
                         },
                         [`${pressedSelector}:active`]: {
-                            backgroundColor: vars.color.tertiaryActive,
+                            backgroundColor: vars.color.neutralActive,
                         },
                     },
                 },
                 [BUTTON_COLORS.destructive]: {
-                    color: vars.color.destructiveSubtleForeground,
+                    color: vars.color.dangerSubtleForeground,
                     selectors: {
                         '&:hover': {
-                            color: vars.color.destructiveSubtleForeground,
-                            backgroundColor: vars.color.destructiveSubtle,
+                            color: vars.color.dangerSubtleForeground,
+                            backgroundColor: vars.color.dangerSubtle,
                         },
                         '&:active': {
-                            color: vars.color.destructiveSubtleForeground,
-                            backgroundColor: vars.color.destructiveSubtleActive,
+                            color: vars.color.dangerSubtleForeground,
+                            backgroundColor: vars.color.dangerSubtleActive,
                         },
                         [pressedSelector]: {
-                            backgroundColor: vars.color.destructive,
-                            color: vars.color.destructiveForeground,
+                            backgroundColor: vars.color.danger,
+                            color: vars.color.dangerForeground,
                         },
                         [`${pressedSelector}:hover`]: {
-                            backgroundColor: vars.color.destructiveHover,
+                            backgroundColor: vars.color.dangerHover,
                         },
                         [`${pressedSelector}:active`]: {
-                            backgroundColor: vars.color.destructiveActive,
+                            backgroundColor: vars.color.dangerActive,
                         },
                     },
                 },

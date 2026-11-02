@@ -46,7 +46,7 @@ export const CHECKBOX_VISUAL_STYLES = {
             },
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-state="checked"]': {
                 backgroundColor: vars.color.primary,

@@ -44,8 +44,8 @@ export const IMAGE_PICKER_STYLES = {
             padding: 0,
             overflow: 'hidden',
             border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.muted,
-            color: vars.color.text,
+            backgroundColor: vars.color.surfaceMuted,
+            color: vars.color.foreground,
             font: 'inherit',
             textAlign: 'center',
             cursor: 'pointer',
@@ -77,7 +77,7 @@ export const IMAGE_PICKER_STYLES = {
                     boxShadow: `0 0 0 3px ${vars.color.primarySubtle}`,
                 },
                 '&[data-has-error="true"]': {
-                    borderColor: vars.color.destructive,
+                    borderColor: vars.color.danger,
                 },
                 '&[data-disabled="true"]': {
                     cursor: 'not-allowed',

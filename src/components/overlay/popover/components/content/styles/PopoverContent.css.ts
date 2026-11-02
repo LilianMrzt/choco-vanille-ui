@@ -43,8 +43,8 @@ export const POPOVER_CONTENT_STYLES = {
         overflow: 'hidden',
         borderRadius: vars.radius.sm,
         border: `1px solid ${vars.color.border}`,
-        backgroundColor: vars.color.popover,
-        color: vars.color.popoverForeground,
+        backgroundColor: vars.color.surfaceElevated,
+        color: vars.color.surfaceElevatedForeground,
         boxShadow: vars.shadow.lg,
         transformOrigin: 'var(--transform-origin)',
 

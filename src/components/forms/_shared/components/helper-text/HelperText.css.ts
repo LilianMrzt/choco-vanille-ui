@@ -11,10 +11,10 @@ const base = {
 export const HELPER_TEXT_STYLES = {
     root: style({
         ...base,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
     }),
     error: style({
         ...base,
-        color: vars.color.destructive,
+        color: vars.color.danger,
     }),
 }

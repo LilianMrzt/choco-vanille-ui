@@ -1,3 +1,5 @@
+import type { ThemeDropShadows, ThemeShadows } from '@theme/tokens/elevation/types/index.ts'
+
 /*
  * Elevation / shadow tokens.
  *
@@ -17,7 +19,7 @@ export const LIGHT_SHADOWS = {
     inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
 } as const
 
-export const DARK_SHADOWS: Record<keyof typeof LIGHT_SHADOWS, string> = {
+export const DARK_SHADOWS = {
     none: 'none',
     xs: '0 1px 2px 0 rgb(0 0 0 / 0.3)',
     sm: '0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4)',
@@ -26,7 +28,7 @@ export const DARK_SHADOWS: Record<keyof typeof LIGHT_SHADOWS, string> = {
     xl: '0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6)',
     '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.75)',
     inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.3)',
-}
+} as const satisfies ThemeShadows
 
 /*
  * Drop-shadow tokens — used with `filter: drop-shadow(…)`.
@@ -47,10 +49,10 @@ export const LIGHT_DROP_SHADOWS = {
     xl: 'drop-shadow(0 20px 25px rgb(0 0 0 / 0.1)) drop-shadow(0 8px 10px rgb(0 0 0 / 0.1))',
 } as const
 
-export const DARK_DROP_SHADOWS: Record<keyof typeof LIGHT_DROP_SHADOWS, string> = {
+export const DARK_DROP_SHADOWS = {
     none: 'none',
     sm: 'drop-shadow(0 1px 3px rgb(0 0 0 / 0.4)) drop-shadow(0 1px 2px rgb(0 0 0 / 0.4))',
     md: 'drop-shadow(0 4px 6px rgb(0 0 0 / 0.5)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.5))',
     lg: 'drop-shadow(0 10px 15px rgb(0 0 0 / 0.55)) drop-shadow(0 4px 6px rgb(0 0 0 / 0.55))',
     xl: 'drop-shadow(0 20px 25px rgb(0 0 0 / 0.6)) drop-shadow(0 8px 10px rgb(0 0 0 / 0.6))',
-}
+} as const satisfies ThemeDropShadows

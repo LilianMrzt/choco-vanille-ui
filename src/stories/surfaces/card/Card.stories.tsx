@@ -119,8 +119,8 @@ const BG_COLORS = [
     undefined,
     'transparent',
     'background',
-    'card',
-    'muted',
+    'surface',
+    'surfaceMuted',
     'primary',
     'primarySubtle',
     'secondary',
@@ -128,7 +128,7 @@ const BG_COLORS = [
     'successSubtle',
     'warningSubtle',
     'infoSubtle',
-    'destructiveSubtle',
+    'dangerSubtle',
 ] as const
 
 const meta: Meta<CardPlaygroundArgs> = {

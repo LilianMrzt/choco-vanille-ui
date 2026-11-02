@@ -20,7 +20,7 @@ export const BOTTOM_SHEET_ITEM_STYLES = {
         border: 'none',
         borderRadius: vars.radius.lg,
         backgroundColor: 'transparent',
-        color: vars.color.popoverForeground,
+        color: vars.color.surfaceElevatedForeground,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.md,
         lineHeight: vars.lineHeight.normal,
@@ -32,14 +32,14 @@ export const BOTTOM_SHEET_ITEM_STYLES = {
         transition: `background-color ${vars.duration.fast} ${vars.easing.standard}`,
         selectors: {
             '&:not(:disabled):not([data-disabled]):hover': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
             },
             '&:not(:disabled):not([data-disabled]):active': {
                 backgroundColor: vars.color.primarySubtle,
                 color: vars.color.primarySubtleForeground,
             },
             '&:focus-visible': {
-                boxShadow: `inset 0 0 0 2px ${vars.color.ring}`,
+                boxShadow: `inset 0 0 0 2px ${vars.color.focusRing}`,
             },
             '&:disabled, &[data-disabled]': {
                 cursor: 'not-allowed',
@@ -50,11 +50,11 @@ export const BOTTOM_SHEET_ITEM_STYLES = {
 
     /** Modifier applied to destructive actions (e.g. "Log out", "Delete"). */
     destructive: style({
-        color: vars.color.destructive,
+        color: vars.color.danger,
         selectors: {
             '&:not(:disabled):not([data-disabled]):active': {
-                backgroundColor: vars.color.destructiveSubtle,
-                color: vars.color.destructiveSubtleForeground,
+                backgroundColor: vars.color.dangerSubtle,
+                color: vars.color.dangerSubtleForeground,
             },
         },
     }),

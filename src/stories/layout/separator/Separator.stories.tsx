@@ -21,8 +21,8 @@ const COLORS = [
     'transparent',
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',
@@ -108,7 +108,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to switch between horizontal and vertical orientations.',
             },
             ...storySource(/* language=tsx */ `
-<Box padding="lg" backgroundColor="card" borderRadius="md">
+<Box padding="lg" backgroundColor="surface" borderRadius="md">
     <Flex flexDirection="column" gap="md">
         <span>Above</span>
         <Separator orientation="horizontal" label="Or continue" />
@@ -120,7 +120,7 @@ export const Playground: Story = {
     render: (args) => (
         <Box
             padding={'lg'}
-            backgroundColor={'card'}
+            backgroundColor={'surface'}
             borderRadius={'md'}
             style={{
                 height: args.orientation === 'vertical' ? '120px' : undefined,
@@ -198,8 +198,8 @@ export const Colors: Story = {
 <Separator color="transparent" />
 <Separator color="primary" />
 <Separator color="secondary" />
-<Separator color="tertiary" />
-<Separator color="destructive" />
+<Separator color="neutral" />
+<Separator color="danger" />
 <Separator color="success" />
 <Separator color="warning" />
 <Separator color="info" />`),

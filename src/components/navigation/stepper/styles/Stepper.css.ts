@@ -42,8 +42,8 @@ export const STEPPER_STYLES = {
         height: '1.75rem',
         borderRadius: vars.radius.full,
         border: `1px solid ${vars.color.borderStrong}`,
-        backgroundColor: vars.color.card,
-        color: vars.color.textSecondary,
+        backgroundColor: vars.color.surface,
+        color: vars.color.foregroundMuted,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.semibold,
         lineHeight: 1,
@@ -90,7 +90,7 @@ export const STEPPER_STYLES = {
         alignSelf: 'center',
     }),
     label: style({
-        color: vars.color.text,
+        color: vars.color.foreground,
         fontWeight: vars.fontWeight.medium,
         textAlign: 'start',
     }),
@@ -98,7 +98,7 @@ export const STEPPER_STYLES = {
         fontSize: vars.fontSize.xs,
     }),
     description: style({
-        color: vars.color.textSecondary,
+        color: vars.color.foregroundMuted,
         textAlign: 'start',
     }),
     descriptionSmall: style({

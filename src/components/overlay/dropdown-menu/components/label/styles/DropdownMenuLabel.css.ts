@@ -13,7 +13,7 @@ export const DROPDOWN_MENU_LABEL_STYLES = {
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.semibold,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         letterSpacing: vars.letterSpacing.wider,
         textTransform: 'uppercase',
     }),

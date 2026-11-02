@@ -81,7 +81,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
                     <Typography
                         as={'span'}
                         fontSize={'sm'}
-                        color={'textSecondary'}
+                        color={'foregroundMuted'}
                         className={IMAGE_PICKER_STYLES.emptyText}
                         aria-hidden={'true'}
                     >

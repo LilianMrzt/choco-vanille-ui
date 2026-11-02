@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react'
 
 import type { ThemeProviderScope } from '@theme/providers/theme-provider/types/index.ts'
-import type { ThemeTokens } from '@theme/providers/theme-provider/hooks/use-theme-provider/types'
+import type { ThemeColorOverrides } from '@theme/tokens/colors/types/index.ts'
 import {
     THEME_TRANSITION_ATTRIBUTE,
     THEME_TRANSITION_DURATION_VAR,
@@ -25,7 +25,7 @@ const useIsomorphicLayoutEffect =
 export const useThemeDocumentScope = (
     scope: ThemeProviderScope,
     resolvedTheme: string,
-    tokens?: ThemeTokens,
+    tokens?: ThemeColorOverrides,
     isTransitioning = false,
     transitionDuration = 0,
 ): void => {

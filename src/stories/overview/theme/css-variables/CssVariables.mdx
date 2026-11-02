@@ -6,7 +6,7 @@ import { CopyVanillaExtractButton } from './components/copy-vanilla-extract-butt
 import { CopyMuiButton } from './components/copy-mui-button'
 import { VarTable } from './components/var-table'
 import {
-  colorRows, shadowRows, dropShadowRows,
+  colorRows, editorColorRows, shadowRows, dropShadowRows,
   spacingRows, radiusRows,
   fontFamilyRows, fontSizeRows, fontWeightRows, lineHeightRows, letterSpacingRows,
   zIndexRows, durationRows, easingRows,
@@ -21,7 +21,35 @@ All values are read directly from the theme source — this page updates automat
 
 **Naming rule:** `--{category}-{token}`, the token kept as-is (camelCase) — e.g. `vars.color.primaryHover` → `--color-primaryHover`.
 
-Color and shadow tokens are **theme-dependent** (Light / Dark columns). All other tokens are identical across themes.
+Semantic colors, editor palettes, and shadow tokens are **theme-dependent**. All other tokens are identical across themes. Built-in color ramps use sRGB hex values; overrides still accept any valid CSS color, including OKLCH.
+
+The semantic vocabulary uses `danger`, `neutral`, `accent*`, and `focusRing`.
+`currentColor` and `transparent` are also token keys and map to
+`--color-currentColor` and `--color-transparent`.
+
+## Migrating color names
+
+This replaces the previous names rather than adding aliases. Update theme
+objects, provider overrides, foundation/layout color props, and CSS variable
+overrides together.
+
+| Previous token | Semantic token |
+| --- | --- |
+| `text` | `foreground` |
+| `textSecondary`, `textTertiary` | `foregroundMuted`, `foregroundSubtle` |
+| `card`, `cardForeground` | `surface`, `surfaceForeground` |
+| `popover`, `popoverForeground` | `surfaceElevated`, `surfaceElevatedForeground` |
+| `muted`, `mutedForeground` | `surfaceMuted`, `surfaceMutedForeground` |
+| `tertiary*` | `neutral*` |
+| `destructive*` | `danger*` |
+| `purple*`, `pink*`, `orange*`, `teal*`, `cyan*`, `indigo*` | Corresponding `accentPurple*`, `accentPink*`, `accentOrange*`, `accentTeal*`, `accentCyan*`, `accentIndigo*` |
+| `ring` | `focusRing` |
+| `skeleton`, `skeletonForeground` | `skeletonBase`, `skeletonHighlight` |
+
+The same mapping applies to `--color-*` variable names. Independent component
+intent props are unchanged: for example, Button's `color="destructive"` maps to
+`danger` tokens, whereas Box's theme-token `color` prop now accepts `danger`.
+The raw palette and editor palette names are unchanged.
 
 <CopyThemeButton />
 <CopyPlainCssButton />
@@ -34,6 +62,15 @@ Color and shadow tokens are **theme-dependent** (Light / Dark columns). All othe
 ## Colors
 
 <VarTable rows={colorRows} showSwatch />
+
+## Editor colors
+
+Editor and rich-text renderer palettes keep their named tones, for example
+`vars.editorColors.ocean.base` → `--editorColors-ocean-base`. These are editorial
+color choices, not semantic action foregrounds; assess their contrast on the
+actual text or highlight surface.
+
+<VarTable rows={editorColorRows} showSwatch />
 
 ---
 

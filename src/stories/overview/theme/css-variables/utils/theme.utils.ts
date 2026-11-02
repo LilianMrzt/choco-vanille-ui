@@ -1,19 +1,20 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { lightTheme, darkTheme } from '@theme/themes/themes.const.ts'
-import type { VarRow } from '@stories/overview/theme/css-variables/types'
-
-// Core helpers
-type FlatMap = Record<string, string>
+import type { EditorPaletteMap, FlatMap, VarRow } from '@stories/overview/theme/css-variables/types'
 
 /** "var(--color-primary)" → "--color-primary" */
-export const cssVarName = (ref: string) => ref.slice(4, -1)
+export const cssVarName = (ref: string): string => ref.slice(4, -1)
 
 /** Build rows for a static (theme-agnostic) section. */
 export const buildStaticRows = (values: FlatMap, varRefs: FlatMap): VarRow[] =>
-    Object.entries(values).map(([k, lightValue]) => ({
-        variable: cssVarName(varRefs[k]),
-        lightValue,
-    }))
+    Object.entries(values).map(([key, lightValue]) => {
+        const reference = varRefs[key]
+        if (reference === undefined) {
+            throw new Error(`Missing CSS variable reference: ${key}`)
+        }
+
+        return { variable: cssVarName(reference), lightValue }
+    })
 
 /** Build rows for a theme-dependent section (light + dark columns). */
 export const buildThemedRows = (
@@ -21,31 +22,45 @@ export const buildThemedRows = (
     darkValues: FlatMap,
     varRefs: FlatMap,
 ): VarRow[] =>
-    Object.entries(lightValues).map(([k, lightValue]) => ({
-        variable: cssVarName(varRefs[k]),
-        lightValue,
-        darkValue: darkValues[k],
-    }))
+    Object.entries(lightValues).map(([key, lightValue]) => {
+        const reference = varRefs[key]
+        const darkValue = darkValues[key]
+        if (reference === undefined || darkValue === undefined) {
+            throw new Error(`Incomplete themed CSS variable: ${key}`)
+        }
+
+        return { variable: cssVarName(reference), lightValue, darkValue }
+    })
 
 // Pre-built row sets (consumed by CssVariables.mdx)
 
-const vc  = vars.color      as FlatMap
-const vs  = vars.shadow     as FlatMap
-const vds = vars.dropShadow as FlatMap
+const lightEditorPalettes: EditorPaletteMap = lightTheme.editorColors
+const darkEditorPalettes: EditorPaletteMap = darkTheme.editorColors
+const editorReferences: EditorPaletteMap = vars.editorColors
 
-export const colorRows        = buildThemedRows(lightTheme.color as FlatMap, darkTheme.color as FlatMap, vc)
-export const shadowRows       = buildThemedRows(lightTheme.shadow as FlatMap, darkTheme.shadow as FlatMap, vs)
-export const dropShadowRows   = buildThemedRows(lightTheme.dropShadow as FlatMap, darkTheme.dropShadow as FlatMap, vds)
-export const spacingRows      = buildStaticRows(lightTheme.space as FlatMap, vars.space as FlatMap)
-export const radiusRows       = buildStaticRows(lightTheme.radius as FlatMap, vars.radius as FlatMap)
-export const fontFamilyRows   = buildStaticRows(lightTheme.fontFamily as FlatMap, vars.fontFamily as FlatMap)
-export const fontSizeRows     = buildStaticRows(lightTheme.fontSize as FlatMap, vars.fontSize as FlatMap)
-export const fontWeightRows   = buildStaticRows(lightTheme.fontWeight as FlatMap, vars.fontWeight as FlatMap)
-export const lineHeightRows   = buildStaticRows(lightTheme.lineHeight as FlatMap, vars.lineHeight as FlatMap)
-export const letterSpacingRows = buildStaticRows(lightTheme.letterSpacing as FlatMap, vars.letterSpacing as FlatMap)
-export const zIndexRows       = buildStaticRows(lightTheme.zIndex as FlatMap, vars.zIndex as FlatMap)
-export const durationRows     = buildStaticRows(lightTheme.duration as FlatMap, vars.duration as FlatMap)
-export const easingRows       = buildStaticRows(lightTheme.easing as FlatMap, vars.easing as FlatMap)
+export const editorColorRows = Object.entries(lightEditorPalettes).flatMap(([name, values]) => {
+    const darkValues = darkEditorPalettes[name]
+    const references = editorReferences[name]
+    if (darkValues === undefined || references === undefined) {
+        throw new Error(`Incomplete editor palette: ${name}`)
+    }
+
+    return buildThemedRows(values, darkValues, references)
+})
+
+export const colorRows = buildThemedRows(lightTheme.color, darkTheme.color, vars.color)
+export const shadowRows = buildThemedRows(lightTheme.shadow, darkTheme.shadow, vars.shadow)
+export const dropShadowRows = buildThemedRows(lightTheme.dropShadow, darkTheme.dropShadow, vars.dropShadow)
+export const spacingRows = buildStaticRows(lightTheme.space, vars.space)
+export const radiusRows = buildStaticRows(lightTheme.radius, vars.radius)
+export const fontFamilyRows = buildStaticRows(lightTheme.fontFamily, vars.fontFamily)
+export const fontSizeRows = buildStaticRows(lightTheme.fontSize, vars.fontSize)
+export const fontWeightRows = buildStaticRows(lightTheme.fontWeight, vars.fontWeight)
+export const lineHeightRows = buildStaticRows(lightTheme.lineHeight, vars.lineHeight)
+export const letterSpacingRows = buildStaticRows(lightTheme.letterSpacing, vars.letterSpacing)
+export const zIndexRows = buildStaticRows(lightTheme.zIndex, vars.zIndex)
+export const durationRows = buildStaticRows(lightTheme.duration, vars.duration)
+export const easingRows = buildStaticRows(lightTheme.easing, vars.easing)
 
 // CSS text generators
 
@@ -68,6 +83,7 @@ const plainSection = (comment: string, rows: VarRow[], themed = false): string =
 export const buildPlainCssScaffold = (): string => {
     const rootBlock = [
         plainSection('Colors',         colorRows),
+        plainSection('Editor colors', editorColorRows),
         plainSection('Shadows',        shadowRows),
         plainSection('Drop shadows',   dropShadowRows),
         plainSection('Spacing',        spacingRows),
@@ -84,6 +100,7 @@ export const buildPlainCssScaffold = (): string => {
 
     const darkBlock = [
         plainSection('Colors',       colorRows,      true),
+        plainSection('Editor colors', editorColorRows, true),
         plainSection('Shadows',      shadowRows,     true),
         plainSection('Drop shadows', dropShadowRows, true),
     ].join('\n')
@@ -113,6 +130,10 @@ const veSection = (comment: string, namespace: string, prefix: string, rows: Var
 export const buildVanillaExtractSnippet = (): string => {
     const tokenRef = [
         veSection('Colors',         'color',       'color',       colorRows),
+        ...Object.entries(editorReferences).map(([name, references]) => {
+            const rows = buildStaticRows(lightEditorPalettes[name], references)
+            return veSection(`Editor ${name}`, `editorColors.${name}`, `editorColors-${name}`, rows)
+        }),
         veSection('Shadows',        'shadow',      'shadow',      shadowRows),
         veSection('Drop shadows',   'dropShadow',  'dropShadow',  dropShadowRows),
         veSection('Spacing',        'space',       'space',       spacingRows),
@@ -140,7 +161,7 @@ export const buildVanillaExtractSnippet = (): string => {
         '// Example usage ',
         'export const myCard = style({',
         '  color:         vars.color.primary,',
-        '  background:    vars.color.card,',
+        '  background:    vars.color.surface,',
         '  padding:       vars.space.md,',
         '  borderRadius:  vars.radius.md,',
         '  boxShadow:     vars.shadow.sm,',
@@ -168,16 +189,16 @@ export const buildMuiThemeSnippet = (): string => {
         '  palette: {',
         "    primary:    { main: 'var(--color-primary)',     dark: 'var(--color-primaryHover)',     contrastText: 'var(--color-primaryForeground)' },",
         "    secondary:  { main: 'var(--color-secondary)',   dark: 'var(--color-secondaryHover)',   contrastText: 'var(--color-secondaryForeground)' },",
-        "    error:      { main: 'var(--color-destructive)', contrastText: 'var(--color-destructiveForeground)' },",
+        "    error:      { main: 'var(--color-danger)', contrastText: 'var(--color-dangerForeground)' },",
         "    warning:    { main: 'var(--color-warning)',     contrastText: 'var(--color-warningForeground)' },",
         "    success:    { main: 'var(--color-success)',     contrastText: 'var(--color-successForeground)' },",
         '    background: {',
-        "      paper:   'var(--color-card)',",
+        "      paper:   'var(--color-surface)',",
         "      default: 'var(--color-background)',",
         '    },',
         '    text: {',
         "      primary:   'var(--color-foreground)',",
-        "      secondary: 'var(--color-mutedForeground)',",
+        "      secondary: 'var(--color-surfaceMutedForeground)',",
         '    },',
         '  },',
         '});',
@@ -194,6 +215,7 @@ const tailwindSection = (comment: string, rows: VarRow[]): string => {
 export const buildTailwindTheme = (): string => {
     const sections = [
         tailwindSection('Colors',         colorRows),
+        tailwindSection('Editor colors', editorColorRows),
         tailwindSection('Shadows',        shadowRows),
         tailwindSection('Drop shadows',   dropShadowRows),
         tailwindSection('Spacing',        spacingRows),
@@ -233,6 +255,7 @@ const cssSection = (comment: string, rows: VarRow[], useDark = false): string =>
 export const buildThemeCSS = (): string => {
     const lightRoot = [
         cssSection('Colors',         colorRows),
+        cssSection('Editor colors', editorColorRows),
         cssSection('Shadows',        shadowRows),
         cssSection('Drop shadows',   dropShadowRows),
         cssSection('Spacing',        spacingRows),
@@ -249,6 +272,7 @@ export const buildThemeCSS = (): string => {
 
     const darkOverrides = [
         cssSection('Colors',       colorRows,      true),
+        cssSection('Editor colors', editorColorRows, true),
         cssSection('Shadows',      shadowRows,     true),
         cssSection('Drop shadows', dropShadowRows, true),
     ].join('\n')

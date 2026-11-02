@@ -1,8 +1,7 @@
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 import { createButtonCompoundVariantUtils } from '@components/actions/_shared/buttons/styles/variants/utils/createButtonCompoundVariant.utils.ts'
-
-type ColorVarKey = keyof typeof vars.color
 
 /**
  * Compound variants for the "contained" (solid) visual variant.
@@ -11,23 +10,23 @@ type ColorVarKey = keyof typeof vars.color
 export const containedCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.contained,
     (color) => ({
-        backgroundColor: vars.color[color],
-        color: vars.color[`${color}Foreground` as ColorVarKey],
+        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]],
+        color: vars.color[`${COLOR_INTENT_TOKENS[color]}Foreground`],
         selectors: {
             '&:hover': {
-                backgroundColor: vars.color[`${color}Hover` as ColorVarKey],
+                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Hover`],
             },
             '&:active': {
-                backgroundColor: vars.color[`${color}Active` as ColorVarKey],
+                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
             },
             '&[data-active="true"]': {
-                backgroundColor: vars.color[`${color}Active` as ColorVarKey],
+                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
             },
             '&[data-active="true"]:hover': {
-                backgroundColor: vars.color[`${color}Hover` as ColorVarKey],
+                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Hover`],
             },
             '&[data-active="true"]:active': {
-                backgroundColor: vars.color[`${color}Active` as ColorVarKey],
+                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
             },
         },
     }),

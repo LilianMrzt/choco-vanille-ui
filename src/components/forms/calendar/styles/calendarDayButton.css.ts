@@ -23,14 +23,14 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.tertiary,
+                backgroundColor: vars.color.neutral,
             },
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&:disabled': {
                 opacity: 0.4,
@@ -80,13 +80,13 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.today}:not(${CALENDAR_DAY_BUTTON_STYLE
 
 // Outside month
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.outside} button`, {
-    color: vars.color.mutedForeground,
+    color: vars.color.surfaceMutedForeground,
     opacity: 0.5,
 })
 
 // Disabled
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
-    color: vars.color.mutedForeground,
+    color: vars.color.surfaceMutedForeground,
     opacity: 0.4,
     cursor: 'not-allowed',
     pointerEvents: 'none',

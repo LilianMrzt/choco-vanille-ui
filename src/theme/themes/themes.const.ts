@@ -21,7 +21,15 @@ const sharedTokens = {
     easing: EASING,
 }
 
-/** Complete light theme and source of token names for the theme contract. */
+/**
+ * Complete built-in light theme, combining semantic UI colors, rich-text
+ * palettes, shadows, and shared spacing, typography, radius, layering, and
+ * motion tokens.
+ *
+ * Provides the initial `:root` values and the token structure used to generate
+ * `vars`. This object contains raw values; use `vars` for theme-aware styles
+ * and ThemeProvider to select the active theme and its scope.
+ */
 export const lightTheme = {
     color: lightColors,
     editorColors: lightEditorColors,
@@ -30,7 +38,15 @@ export const lightTheme = {
     ...sharedTokens,
 }
 
-/** Complete dark theme, with the same token structure as the light theme. */
+/**
+ * Complete built-in dark theme with the same token structure as `lightTheme`.
+ * Colors, rich-text palettes, and shadows differ by mode; spacing, typography,
+ * radius, layering, and motion tokens are shared.
+ *
+ * Supplies values for explicit dark scopes and automatic system dark mode.
+ * Use ThemeProvider to select a scope's theme and `vars` for component styles;
+ * reading this object alone does not switch the active theme.
+ */
 export const darkTheme = {
     color: darkColors,
     editorColors: darkEditorColors,

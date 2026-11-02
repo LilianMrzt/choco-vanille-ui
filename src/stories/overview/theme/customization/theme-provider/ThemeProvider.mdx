@@ -75,7 +75,7 @@ defining its CSS variables.
 | `onThemeChange` | `(theme: string) => void` | — | Fired whenever a child calls `setTheme`. |
 | `scope` | `'subtree' \| 'document'` | `'document'` | Apply the theme to the wrapper or to `<html>`. Use `subtree` for an independent themed zone. |
 | `themeTransitionDuration` | `number` | `0` | Optional duration in milliseconds for color-related theme transitions. `0` disables transitions. |
-| `tokens` | `Partial<Record<ThemeColor, string>>` | — | Runtime color-token overrides. Applied to the wrapper or `<html>` according to `scope`. |
+| `tokens` | `ThemeColorOverrides` | — | Readonly partial semantic color overrides. Applied to the wrapper or `<html>` according to `scope`. |
 | `...divProps` | `React.HTMLAttributes<HTMLDivElement>` | — | All standard `<div>` props (`className`, `style`, `id`, …). |
 
 ---
@@ -132,19 +132,40 @@ The parent owns the state. Pass `theme` and handle `onThemeChange` to stay in sy
 
 ## Runtime token overrides
 
-The `tokens` prop accepts a partial map of `ThemeColor` keys → CSS values and injects them as `--color-*` inline styles. With `scope="document"`, the overrides are applied to `<html>`; with `scope="subtree"`, they are applied to the wrapper. It intentionally covers semantic color tokens only. Override spacing, typography, radii, motion, and other token categories in CSS.
+The `tokens` prop accepts `ThemeColorOverrides`, a readonly partial map of
+semantic color keys to CSS values, and injects them as `--color-*` inline styles.
+With `scope="document"`, the overrides are applied to `<html>`; with
+`scope="subtree"`, they are applied to the wrapper. It intentionally covers
+semantic colors only, not editor palettes or other categories.
 
-<Source language="tsx" code={`<ThemeProvider
-  tokens={{
-    primary:           'oklch(0.55 0.2 180)',
-    primaryHover:      'oklch(0.49 0.2 180)',
-    primaryForeground: 'oklch(1 0 0)',
-    ring:              'oklch(0.55 0.2 180)',
-  }}
->
-  {/* Every kit component here uses the teal primary */}
-  <Button variant="contained" color="primary" label="Acme action" />
-</ThemeProvider>`} />
+Overrides accept hex, RGB, OKLCH, and other valid CSS colors. They do not derive
+hover, active, or foreground values from the primary fill. Override the matching
+states together and check contrast in every state of both themes.
+
+<Source language="tsx" code={`import { Button, ThemeProvider, type ThemeColorOverrides } from '@choco-vanille/ui'
+
+const tealColors = {
+  primary: '#0f766e',
+  primaryHover: '#115e59',
+  primaryActive: '#134e4a',
+  primaryForeground: '#ffffff',
+  primarySubtle: '#f0fdfa',
+  primarySubtleHover: '#ccfbf1',
+  primarySubtleActive: '#99f6e4',
+  primarySubtleForeground: '#134e4a',
+  primarySubtleBorder: '#0f766e',
+  focusRing: '#0f766e',
+} satisfies ThemeColorOverrides
+
+export const Example = () => (
+  <ThemeProvider
+    theme="light"
+    tokens={tealColors}
+  >
+    {/* Every kit component here uses the teal primary */}
+    <Button variant="contained" color="primary" label="Acme action" />
+  </ThemeProvider>
+)`} />
 
 > **Tip.** `tokens` overrides apply on top of whichever theme is active. You can combine them with `theme="dark"` to create a fully custom dark-mode variant.
 >

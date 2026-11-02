@@ -43,7 +43,7 @@ const EmptyState: FC<EmptyStateProps> = memo(({
                 as={'p'}
                 variant={'p'}
                 fontSize={'sm'}
-                color={'textSecondary'}
+                color={'foregroundMuted'}
             >
                 {description}
             </Typography>

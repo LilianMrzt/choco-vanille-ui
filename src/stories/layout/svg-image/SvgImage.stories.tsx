@@ -66,8 +66,8 @@ const BG = [
     undefined,
     'transparent',
     'background',
-    'card',
-    'muted',
+    'surface',
+    'surfaceMuted',
     'primary',
     'primarySubtle',
     'secondary',
@@ -78,17 +78,17 @@ const COLORS = [
     'transparent',
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',
-    'purple',
-    'pink',
-    'orange',
-    'teal',
-    'cyan',
-    'indigo',
+    'accentPurple',
+    'accentPink',
+    'accentOrange',
+    'accentTeal',
+    'accentCyan',
+    'accentIndigo',
 ] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -196,17 +196,17 @@ export const Colors: Story = {
 <SvgImage image={ImageIcon} alt="transparent" color="transparent" width="96px" height="96px" />
 <SvgImage image={ImageIcon} alt="primary" color="primary" width="96px" height="96px" />
 <SvgImage image={ImageIcon} alt="secondary" color="secondary" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="tertiary" color="tertiary" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="destructive" color="destructive" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="neutral" color="neutral" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="danger" color="danger" width="96px" height="96px" />
 <SvgImage image={ImageIcon} alt="success" color="success" width="96px" height="96px" />
 <SvgImage image={ImageIcon} alt="warning" color="warning" width="96px" height="96px" />
 <SvgImage image={ImageIcon} alt="info" color="info" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="purple" color="purple" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="pink" color="pink" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="orange" color="orange" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="teal" color="teal" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="cyan" color="cyan" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="indigo" color="indigo" width="96px" height="96px" />`),
+<SvgImage image={ImageIcon} alt="accentPurple" color="accentPurple" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentPink" color="accentPink" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentOrange" color="accentOrange" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentTeal" color="accentTeal" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentCyan" color="accentCyan" width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentIndigo" color="accentIndigo" width="96px" height="96px" />`),
         },
     },
     render: () => (

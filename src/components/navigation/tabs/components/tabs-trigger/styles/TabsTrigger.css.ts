@@ -15,7 +15,7 @@ export const TABS_TRIGGER_STYLES = {
             padding: `${vars.space.xs2} ${vars.space.md}`,
             border: 'none',
             backgroundColor: 'transparent',
-            color: vars.color.mutedForeground,
+            color: vars.color.surfaceMutedForeground,
             fontFamily: 'inherit',
             fontSize: vars.fontSize.sm,
             fontWeight: vars.fontWeight.medium,
@@ -32,7 +32,7 @@ export const TABS_TRIGGER_STYLES = {
                 '&:focus-visible': {
                     outline: 'none',
                     // Inset so the ring is never clipped by scrolling/overflow ancestors
-                    boxShadow: `inset 0 0 0 2px ${vars.color.ring}`,
+                    boxShadow: `inset 0 0 0 2px ${vars.color.focusRing}`,
                 },
                 '&[data-disabled]': {
                     cursor: 'not-allowed',

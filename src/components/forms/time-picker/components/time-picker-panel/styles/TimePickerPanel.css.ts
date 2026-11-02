@@ -7,7 +7,7 @@ export const TIME_PICKER_PANEL_STYLES = {
         flexDirection: 'column',
         gap: vars.space.sm,
         padding: vars.space.md,
-        backgroundColor: vars.color.card,
+        backgroundColor: vars.color.surface,
         borderRadius: vars.radius.lg,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
@@ -30,7 +30,7 @@ export const TIME_PICKER_PANEL_STYLES = {
         textAlign: 'center',
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.medium,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         textTransform: 'uppercase',
         letterSpacing: '0.04em',
     }),
@@ -79,13 +79,13 @@ export const TIME_PICKER_PANEL_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.muted,
+                backgroundColor: vars.color.surfaceMuted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.tertiary,
+                backgroundColor: vars.color.neutral,
             },
             '&:focus-visible': {
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-reference="true"]': {
                 backgroundColor: vars.color.primarySubtle,

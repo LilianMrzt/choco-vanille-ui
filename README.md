@@ -71,6 +71,17 @@ Complete light and dark themes are assembled under
 `src/theme/themes/`, and their CSS variables are registered by
 `src/theme/styles/contract/contract.css.ts`.
 
+Built-in color ramps use sRGB hex values, with blue primary and violet secondary
+colors. Semantic names include `surface`, `surfaceElevated`, `surfaceMuted`,
+`foregroundMuted`, `foregroundSubtle`, `neutral`, `danger`, `accent*`, and
+`focusRing`. These replace the previous color token and CSS variable names;
+update consumer theme objects and overrides accordingly. Component intent props
+remain independent (for example, Button's `color="destructive"` uses `danger`
+tokens).
+`ThemeColors`, `ThemeEditorColors`, and `Theme` accept customizable string
+values; `ThemeColorOverrides` types the provider's partial semantic color
+overrides. All are exported from `@choco-vanille/ui`.
+
 The kit ships with complete **light and dark** themes. Dark mode follows the
 OS by default (`prefers-color-scheme`) and can be forced per-subtree:
 
@@ -89,8 +100,8 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@choco-vanille/ui';
 
 export const card = style({
-  backgroundColor: vars.color.card,
-  color: vars.color.cardForeground,
+  backgroundColor: vars.color.surface,
+  color: vars.color.surfaceForeground,
   padding: vars.space.lg,
   borderRadius: vars.radius.md,
   boxShadow: vars.shadow.sm,
@@ -103,13 +114,17 @@ human-readable name derived from its path (`--color-primary`, `--space-md`,
 
 ```css
 :root {
-  --color-primary: oklch(0.55 0.2 250); /* rebrand the whole kit */
+  --color-primary: oklch(0.55 0.2 250); /* override this token */
   --radius-md: 0.25rem;
 }
 ```
 
 Both stay in sync automatically — overriding a CSS variable also updates every
 component that references it through `vars`.
+
+Overrides accept any valid CSS color. Rebranding an intent also requires its
+hover, active, foreground, and subtle tokens; these are not generated from the
+fill. Check contrast in every affected state of both themes.
 
 ## License
 

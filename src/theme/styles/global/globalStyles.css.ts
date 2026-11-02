@@ -27,7 +27,7 @@ globalStyle('*, *::before, *::after', {
             borderWidth: 0,
             borderStyle: 'solid',
             borderColor: vars.color.border,
-            outlineColor: vars.color.ring,
+            outlineColor: vars.color.focusRing,
         },
     },
 })

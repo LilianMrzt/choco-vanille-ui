@@ -16,7 +16,7 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
             lineHeight: vars.lineHeight.normal,
             borderRadius: vars.radius.xs,
             border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.card,
+            backgroundColor: vars.color.surface,
             color: vars.color.foreground,
             outline: 'none',
             transition: [
@@ -26,7 +26,7 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
             ].join(', '),
             selectors: {
                 '&::placeholder': {
-                    color: vars.color.mutedForeground,
+                    color: vars.color.surfaceMutedForeground,
                 },
                 // Open state: primary border, mirrors TextField's mouse-focus appearance.
                 '&[data-popup-open]': {
@@ -36,7 +36,7 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
                 '&:focus-visible': {
                     outline: 'none',
                     borderColor: vars.color.primary,
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 // Click focus (data-mouse-focus set by JS): primary border, NO ring.
                 '&[data-mouse-focus]:focus-visible': {
@@ -46,7 +46,7 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
                 '&:disabled': {
                     cursor: 'not-allowed',
                     opacity: 0.45,
-                    backgroundColor: vars.color.muted,
+                    backgroundColor: vars.color.surfaceMuted,
                 },
             },
         },
@@ -70,21 +70,21 @@ export const AUTOCOMPLETE_INPUT_STYLES = {
             },
             hasError: {
                 true: {
-                    borderColor: vars.color.destructive,
+                    borderColor: vars.color.danger,
                     selectors: {
                         '&:hover:not(:disabled)': {
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                         },
                         '&[data-popup-open]': {
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                         },
                         '&:focus-visible': {
-                            borderColor: vars.color.destructive,
-                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
+                            borderColor: vars.color.danger,
+                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger}`,
                         },
                         '&[data-mouse-focus]:focus-visible': {
                             boxShadow: 'none',
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                         },
                     },
                 },

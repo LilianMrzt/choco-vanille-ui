@@ -38,7 +38,7 @@ const drawerItemRecipe = recipe({
         border: '1px solid transparent',
         borderRadius: vars.radius.xs,
         backgroundColor: 'transparent',
-        color: vars.color.textSecondary,
+        color: vars.color.foregroundMuted,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
@@ -57,7 +57,7 @@ const drawerItemRecipe = recipe({
         selectors: {
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[aria-disabled="true"], &:disabled': {
                 pointerEvents: 'none',

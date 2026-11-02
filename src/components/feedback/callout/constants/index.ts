@@ -18,7 +18,7 @@ export const VARIANT_TO_COLOR: Record<CalloutVariant, ThemeColor> = {
     info: 'info',
     success: 'success',
     warning: 'warning',
-    error: 'destructive',
+    error: 'danger',
 }
 
 export const VARIANT_TO_ACTION_COLOR: Record<CalloutVariant, IconButtonColor> = {

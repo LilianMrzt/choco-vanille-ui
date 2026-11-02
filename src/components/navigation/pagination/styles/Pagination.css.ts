@@ -11,6 +11,6 @@ export const PAGINATION_STYLES = {
     ellipsis: style({
         minWidth: '2.25rem',
         height: '2.25rem',
-        color: vars.color.textSecondary,
+        color: vars.color.foregroundMuted,
     }),
 }

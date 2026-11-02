@@ -85,7 +85,7 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = ['transparent', ...THEME_COLORS] as const
+const BG = THEME_COLORS
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
 const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
@@ -239,7 +239,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         children: 'Box content',
         as: 'div',
         padding: 'lg',
-        backgroundColor: 'muted',
+        backgroundColor: 'surfaceMuted',
         borderRadius: 'md',
     },
 } satisfies Meta<typeof Box>

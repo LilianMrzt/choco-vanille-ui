@@ -28,14 +28,14 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@choco-vanille/ui';
 
 export const card = style({
-  background:   vars.color.card,
-  color:        vars.color.cardForeground,
+  background:   vars.color.surface,
+  color:        vars.color.surfaceForeground,
   padding:      vars.space.lg,
   borderRadius: vars.radius.md,
   boxShadow:    vars.shadow.sm,
 });`} />
 
-`vars` is the typed contract — `vars.color.card` compiles to `var(--color-card)`, so your styles stay in sync with the kit and react to dark mode / scoped overrides automatically.
+`vars` is the typed contract — `vars.color.surface` compiles to `var(--color-surface)`, so your styles stay in sync with the kit and react to dark mode / scoped overrides automatically.
 
 ---
 
@@ -54,7 +54,7 @@ globalStyle('[data-brand="acme"]', {
     [vars.color.primary]:           'oklch(0.58 0.18 185)',
     [vars.color.primaryHover]:      'oklch(0.52 0.18 185)',
     [vars.color.primaryForeground]: 'oklch(1 0 0)',
-    [vars.color.ring]:              'oklch(0.58 0.18 185)',
+    [vars.color.focusRing]:              'oklch(0.58 0.18 185)',
   },
 });
 `} />

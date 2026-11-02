@@ -101,7 +101,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             variant={'span'}
                             fontSize={size === 'sm' ? 'xs' : size === 'lg' ? 'lg' : 'sm'}
                             fontWeight={'semibold'}
-                            color={'text'}
+                            color={'foreground'}
                         >
                             {resolvedQuantityLabel}
                         </Typography>
@@ -113,7 +113,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                     as={'span'}
                     variant={'span'}
                     fontSize={'sm'}
-                    color={'textSecondary'}
+                    color={'foregroundMuted'}
                 >
                     {label}
                 </Typography>

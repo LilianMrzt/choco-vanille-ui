@@ -1,5 +1,5 @@
 import type React from 'react'
-import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
+import type { ThemeColorOverrides } from '@theme/tokens/colors/types/index.ts'
 
 /** Built-in themes supported by the library. */
 export type ThemeMode = 'light' | 'dark' | 'system'
@@ -54,12 +54,12 @@ export type ThemeProviderProps = Readonly<React.HTMLAttributes<HTMLDivElement> &
     /**
      * Runtime color-token overrides injected as CSS custom properties on the
      * wrapper or document root according to `scope`. Every key is a semantic color token name (e.g.
-     * `primary`, `ring`) and every value is any valid CSS color.
+     * `primary`, `focusRing`) and every value is any valid CSS color.
      *
      * @example
-     * tokens={{ primary: 'oklch(0.55 0.2 180)', ring: 'oklch(0.55 0.2 180)' }}
+     * tokens={{ primary: 'oklch(0.55 0.2 180)', focusRing: 'oklch(0.55 0.2 180)' }}
      */
-    tokens?: Partial<Record<ThemeColor, string>>
+    tokens?: ThemeColorOverrides
 }>
 
 /** Theme preference and resolved scheme exposed by `useTheme`. */

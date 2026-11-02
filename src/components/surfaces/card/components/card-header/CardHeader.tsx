@@ -57,7 +57,7 @@ const CardHeader: FC<CardHeaderProps> = memo(({
                         as={titleAs ?? 'h3'}
                         fontSize={'lg'}
                         fontWeight={'semibold'}
-                        color={'cardForeground'}
+                        color={'surfaceForeground'}
                         style={{ lineHeight: vars.lineHeight.tight }}
                         {...titleProps}
                     >
@@ -68,7 +68,7 @@ const CardHeader: FC<CardHeaderProps> = memo(({
                     <Typography
                         as={'p'}
                         fontSize={'sm'}
-                        color={'mutedForeground'}
+                        color={'surfaceMutedForeground'}
                         style={{ lineHeight: vars.lineHeight.normal }}
                         {...descriptionProps}
                     >

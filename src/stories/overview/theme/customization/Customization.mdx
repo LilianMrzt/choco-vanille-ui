@@ -9,6 +9,20 @@ Every token is a plain **CSS custom property** on `:root`, so you can re-skin th
 
 > Variable names are listed in **Theme / CSS Variables**.
 
+## Color contracts
+
+`ThemeColors` describes all semantic color keys with independently customizable
+string values. `ThemeEditorColors` describes the editor's named three-tone
+palettes, and `Theme` describes the complete token object. Import these types
+from `@choco-vanille/ui`; `LightColors` and `EditorColors` describe the exact
+built-in light values instead.
+
+Built-in palettes use sRGB hex values, but custom themes can use any valid CSS
+color. When rebranding an intent, update its fill, hover, active, foreground,
+subtle states, and border together. Verify text contrast at 4.5:1 in every
+state and relevant non-text boundaries at 3:1 in both themes. Built-in contrast
+checks cannot guarantee custom values or arbitrary background combinations.
+
 ---
 
 ## How it works in one minute

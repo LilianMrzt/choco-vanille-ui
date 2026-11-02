@@ -21,7 +21,7 @@ export const FAB_STYLES = {
                     boxShadow: vars.shadow.md,
                 },
                 '&&:focus-visible': {
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}, ${vars.shadow.md}`,
+                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}, ${vars.shadow.md}`,
                 },
                 '&&:active': {
                     boxShadow: vars.shadow.sm,

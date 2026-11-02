@@ -17,7 +17,7 @@ export const ColorGroupCard = ({ group, colors, dark = false }: ColorGroupCardPr
                 <ColorSwatch
                     key={token}
                     name={token}
-                    value={colors[token] ?? '#000'}
+                    value={colors[token]}
                     dark={dark}
                 />
             ))}

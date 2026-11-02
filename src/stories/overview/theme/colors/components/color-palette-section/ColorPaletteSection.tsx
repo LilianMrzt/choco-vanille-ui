@@ -1,11 +1,8 @@
 import { ColorGroupCard } from '@stories/overview/theme/colors/components/color-group-card/ColorGroupCard.tsx'
-import {
-    type ColorPaletteSectionProps,
-    sectionStyle
-} from '@stories/overview/theme/colors/components/color-palette-section/types'
+import type { ColorPaletteSectionProps } from '@stories/overview/theme/colors/components/color-palette-section/types'
 import {
     gridStyle,
-    headerStyle, subtitleStyle,
+    headerStyle, sectionStyle, subtitleStyle,
     titleStyle
 } from '@stories/overview/theme/colors/components/color-palette-section/ColorPaletteSection.styles.ts'
 

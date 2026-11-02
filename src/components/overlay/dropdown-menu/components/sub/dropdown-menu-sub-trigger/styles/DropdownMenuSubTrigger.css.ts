@@ -28,7 +28,7 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
         width: '1rem',
         height: '1rem',
         flexShrink: 0,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         transition: [
             `transform ${vars.duration.normal} ${vars.easing.emphasized}`,
             `color ${vars.duration.fast} ${vars.easing.standard}`,

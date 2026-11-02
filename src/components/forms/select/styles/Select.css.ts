@@ -12,6 +12,6 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const SELECT_STYLES = {
     /** Placeholder text — muted like an input placeholder. */
     placeholder: style({
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
     }),
 }

@@ -60,7 +60,7 @@ in your application stylesheet.
   --color-primarySubtleActive:     oklch(88.5% .08 25);
   --color-primarySubtleForeground: oklch(48.8% .24 25);
   --color-primarySubtleBorder:     oklch(88.5% .08 25);
-  --color-ring:                    oklch(54.5% .26 25);
+  --color-focusRing:                    oklch(54.5% .26 25);
 }
 
 /* Dark — matches the kit's dark selectors */
@@ -75,7 +75,7 @@ in your application stylesheet.
   --color-primarySubtleActive:     oklch(42.4% .2 25);
   --color-primarySubtleForeground: oklch(88.5% .062 25);
   --color-primarySubtleBorder:     oklch(42.4% .2 25);
-  --color-ring:                    oklch(62.3% .23 25);
+  --color-focusRing:                    oklch(62.3% .23 25);
 }`} />
 
 > The kit's tokens live in `@layer ${THEME_LAYER}`, so these unlayered overrides win without needing `!important`.
@@ -101,9 +101,9 @@ want Tailwind classes that share the kit's token names — they also follow your
   --color-secondary:         var(--color-secondary);
   --color-background:        var(--color-background);
   --color-foreground:        var(--color-foreground);
-  --color-muted:             var(--color-muted);
+  --color-surfaceMuted:             var(--color-surfaceMuted);
   --color-border:            var(--color-border);
-  --color-ring:              var(--color-ring);
+  --color-focusRing:              var(--color-focusRing);
 
   --radius-sm:   var(--radius-sm);
   --radius-md:   var(--radius-md);
@@ -123,7 +123,7 @@ Use this when your app has a different naming convention. Tailwind creates a new
 @theme {
   --color-brand:    var(--color-primary);
   --color-brand-fg: var(--color-primaryForeground);
-  --color-surface:  var(--color-card);
+  --color-surface:  var(--color-surface);
   --radius-card:    var(--radius-md);
 }`} />
 
@@ -150,7 +150,7 @@ export default {
       colors: {
         brand:      'var(--color-primary)',
         'brand-fg': 'var(--color-primaryForeground)',
-        surface:    'var(--color-card)',
+        surface:    'var(--color-surface)',
       },
       borderRadius: { card: 'var(--radius-md)' },
     },

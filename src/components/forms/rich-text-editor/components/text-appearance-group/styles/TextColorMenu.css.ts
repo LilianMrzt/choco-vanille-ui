@@ -25,12 +25,12 @@ export const TEXT_COLOR_MENU_STYLES = {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        border: `2px solid ${vars.color.card}`,
+        border: `2px solid ${vars.color.surface}`,
         borderRadius: vars.radius.xs,
         cursor: 'pointer',
         selectors: {
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.ring}`,
+                outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '2px',
             },
             '&[data-selected="true"]': {

@@ -21,5 +21,5 @@ export const VARIANT_TO_COLOR: Record<ToastVariant, ThemeColor> = {
     info: 'info',
     success: 'success',
     warning: 'warning',
-    error: 'destructive',
+    error: 'danger',
 }

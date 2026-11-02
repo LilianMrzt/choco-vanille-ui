@@ -1,4 +1,4 @@
-﻿import { style, globalStyle } from '@vanilla-extract/css'
+import { style, globalStyle } from '@vanilla-extract/css'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 /**
  * Root element — the visible box (applied on `Checkbox.Root`, a `<button>`).
@@ -49,7 +49,7 @@ export const CHECKBOX_STYLES = {
             /* Standalone: focus ring */
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             /* Standalone: checked */
             '&[data-checked]': {

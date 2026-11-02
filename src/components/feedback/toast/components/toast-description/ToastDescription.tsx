@@ -20,7 +20,7 @@ const ToastDescription: FC<ToastDescriptionProps> = memo(({
             as={'span'}
             variant={'span'}
             fontSize={'sm'}
-            color={'textSecondary'}
+            color={'foregroundMuted'}
             className={cn(TOAST_DESCRIPTION_STYLES.description, className)}
             {...props}
         >

@@ -1,9 +1,9 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import type { LightColors } from '@theme/tokens/colors/types/index.ts'
+import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 /**
- * Generates a recipe variant map for every semantic color token in the theme,
- * plus a `transparent` option.
+ * Generates a recipe variant map for every color token in the theme,
+ * including `currentColor` and `transparent`.
  * Useful when a component should accept any theme color as a prop.
  *
  * @param property - The CSS property to set (e.g. 'background', 'color', 'borderColor').
@@ -20,12 +20,10 @@ export const createColorVariants = <
 >(
         property: 'background' | 'backgroundColor' | 'color' | 'borderColor',
         extra?: TExtra,
-    ): Record<keyof LightColors | 'transparent' | Extract<keyof TExtra, string>, Record<string, string>> => {
+    ): Record<ThemeColor | Extract<keyof TExtra, string>, Record<string, string>> => {
     const variants: Record<string, Record<string, string>> = Object.fromEntries(
         Object.entries(vars.color).map(([key, value]) => [key, { [property]: value }]),
     )
-
-    variants.transparent = { [property]: 'transparent' }
 
     if (extra) {
         for (const [key, value] of Object.entries(extra)) {
@@ -35,7 +33,7 @@ export const createColorVariants = <
 
     // Object.fromEntries cannot retain the known keys of the theme contract.
     return variants as Record<
-        keyof LightColors | 'transparent' | Extract<keyof TExtra, string>,
+        ThemeColor | Extract<keyof TExtra, string>,
         Record<string, string>
     >
 }

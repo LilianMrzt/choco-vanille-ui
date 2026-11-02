@@ -13,7 +13,7 @@ export const TABLE_ROW_STYLES = {
                 true: {
                     selectors: {
                         '&:hover': {
-                            backgroundColor: vars.color.muted,
+                            backgroundColor: vars.color.surfaceMuted,
                         },
                     },
                 },
@@ -29,11 +29,11 @@ export const TABLE_ROW_STYLES = {
                     cursor: 'pointer',
                     selectors: {
                         '&:hover': {
-                            backgroundColor: vars.color.muted,
+                            backgroundColor: vars.color.surfaceMuted,
                         },
                         '&:focus-visible': {
                             outline: 'none',
-                            boxShadow: `inset 0 0 0 2px ${vars.color.ring}`,
+                            boxShadow: `inset 0 0 0 2px ${vars.color.focusRing}`,
                         },
                     },
                 },
@@ -53,8 +53,8 @@ export const TABLE_ROW_STYLES = {
                     color: vars.color.warningSubtleForeground,
                 },
                 destructive: {
-                    backgroundColor: vars.color.destructiveSubtle,
-                    color: vars.color.destructiveSubtleForeground,
+                    backgroundColor: vars.color.dangerSubtle,
+                    color: vars.color.dangerSubtleForeground,
                 },
                 info: {
                     backgroundColor: vars.color.infoSubtle,
@@ -73,7 +73,7 @@ export const TABLE_ROW_STYLES = {
             },
             {
                 variants: { hoverable: true, intent: 'destructive' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.destructiveSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.dangerSubtleHover } } },
             },
             {
                 variants: { hoverable: true, intent: 'info' },
@@ -89,7 +89,7 @@ export const TABLE_ROW_STYLES = {
             },
             {
                 variants: { selectable: true, intent: 'destructive' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.destructiveSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.dangerSubtleHover } } },
             },
             {
                 variants: { selectable: true, intent: 'info' },

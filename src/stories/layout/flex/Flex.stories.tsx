@@ -66,7 +66,7 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = ['transparent', ...THEME_COLORS] as const
+const BG = THEME_COLORS
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
 const BORDER_STYLE = [
     undefined,

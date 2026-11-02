@@ -15,7 +15,7 @@ export const COMMAND_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.popoverForeground,
+        color: vars.color.surfaceElevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -49,7 +49,7 @@ export const COMMAND_ITEM_STYLES = {
             // outside the normal keyboard-navigation path.
             '&:focus-visible': {
                 outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',
@@ -73,8 +73,8 @@ export const COMMAND_ITEM_STYLES = {
         fontSize: vars.fontSize.xs,
         fontFamily: vars.fontFamily.mono,
         letterSpacing: vars.letterSpacing.wide,
-        color: vars.color.mutedForeground,
-        backgroundColor: vars.color.muted,
+        color: vars.color.surfaceMutedForeground,
+        backgroundColor: vars.color.surfaceMuted,
         border: `1px solid ${vars.color.border}`,
         borderRadius: vars.radius.xs,
         paddingBlock: '0.0625rem',

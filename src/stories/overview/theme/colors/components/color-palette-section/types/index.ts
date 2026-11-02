@@ -1,18 +1,12 @@
-import type { CSSProperties } from 'react'
+import type { ThemeColors } from '@theme'
 import type { ColorGroup } from '@stories/overview/theme/colors/components/color-group-card/types'
 
-export type ColorMap = Record<string, string>
+export type ColorMap = ThemeColors
 
-export interface ColorPaletteSectionProps {
+export type ColorPaletteSectionProps = Readonly<{
     title: string
     subtitle?: string
     colors: ColorMap
-    colorGroups: ColorGroup[]
+    colorGroups: ReadonlyArray<ColorGroup>
     dark?: boolean
-}
-
-export const sectionStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-}
+}>

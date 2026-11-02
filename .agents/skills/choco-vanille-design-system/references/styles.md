@@ -75,8 +75,10 @@ one without a concrete requirement and an explicit dependency decision.
   numbers are not token keys or spacing multipliers unless explicitly documented.
 - For semantic controls, public color props express supported intent, not
   private token paths. Map each intent and interaction state to existing tokens.
-  This theme uses `destructive`, not the source project's `danger`; an `error`
-  feedback status can map to destructive tokens without renaming either axis.
+  The theme uses `neutral`, `danger`, and `accent*` families. Independent
+  component intents such as `tertiary`, `destructive`, or `purple` map through
+  the internal `COLOR_INTENT_TOKENS` constant; an `error` feedback status maps
+  to `danger` without renaming its status axis.
 - Foundation/layout primitives use their documented theme color token contracts.
   Check whether `currentColor`, `transparent`, CSS shorthands or free values are
   accepted rather than assuming they are token keys. Use `style` or component
@@ -94,6 +96,16 @@ one without a concrete requirement and an explicit dependency decision.
   hover colors.
 - Keep light and dark token shapes coherent. A new token must be available
   wherever its consuming public contract supports a theme.
+- Built-in color ramps use in-gamut sRGB hex values. Custom overrides still accept
+  valid CSS colors in other formats. `currentColor` and `transparent` are
+  explicit token keys in both themes, and are also available through `vars.color`
+  and the provider's typed overrides.
+- `ThemeColors` and `ThemeEditorColors` describe customizable color values;
+  `LightColors` and `EditorColors` describe the literal built-in light values.
+  Declare these contracts in `tokens/colors/types/index.ts`, not value modules.
+- Verify built-in solid/subtle foregrounds at 4.5:1 in resting, hover, and pressed
+  states, and relevant borders and focus rings at 3:1 on supported surfaces.
+  A custom override or disabled opacity requires a separate contrast assessment.
 
 ## Interaction and cascade
 
@@ -117,5 +129,5 @@ one without a concrete requirement and an explicit dependency decision.
   when stylesheet interaction states must control that property.
 - Link styling uses the existing `link`, `linkHover` and `linkActive` tokens.
   Do not invent a `link.disabled` token or silently redefine disabled semantics.
-- Use the existing `vars.color.ring` token for shared focus styling and verify
-  its contrast on the supported surfaces; there is no `focusRing` token.
+- Use `vars.color.focusRing` for shared focus styling and verify its contrast
+  on the supported surfaces.

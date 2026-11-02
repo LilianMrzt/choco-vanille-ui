@@ -6,6 +6,6 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const FORM_LABEL_STYLES = {
     root: TYPOGRAPHY_STYLES.recipe({ variant: 'label' }),
     requiredIndicator: style({
-        color: vars.color.destructive,
+        color: vars.color.danger,
     }),
 }

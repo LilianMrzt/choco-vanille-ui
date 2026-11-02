@@ -1,9 +1,9 @@
 import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
 
 export type CardProps = Omit<BoxProps, 'backgroundColor' | 'color' | 'borderRadius' | 'borderWidth' | 'borderColor' | 'boxShadow' | 'overflow' | 'borderStyle'> & {
-  /** Background color token. @default 'card' */
+  /** Background color token. @default 'surface' */
   backgroundColor?: BoxProps['backgroundColor']
-  /** Text color token. @default 'cardForeground' */
+  /** Text color token. @default 'surfaceForeground' */
   color?: BoxProps['color']
   /** Border radius token. @default 'md' */
   borderRadius?: BoxProps['borderRadius']

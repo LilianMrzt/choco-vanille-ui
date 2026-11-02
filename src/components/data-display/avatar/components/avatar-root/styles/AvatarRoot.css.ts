@@ -1,3 +1,4 @@
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import {
@@ -81,9 +82,9 @@ export const AVATAR_STYLES = {
                     color,
                     {
                         backgroundColor:
-              vars.color[`${color}Subtle` as keyof typeof vars.color],
+              vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
                         color:
-              vars.color[`${color}SubtleForeground` as keyof typeof vars.color],
+              vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
                     },
                 ]),
             ),
@@ -103,7 +104,7 @@ export const AVATAR_STYLES = {
             },
             style: {
                 borderWidth: '1px',
-                borderColor: vars.color[`${color}SubtleBorder` as keyof typeof vars.color],
+                borderColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleBorder`],
             },
         })),
 

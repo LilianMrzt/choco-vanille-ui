@@ -6,7 +6,7 @@ export const TABLE_CAPTION_STYLES = {
     root: style({
         marginTop: vars.space.sm,
         fontSize: vars.fontSize.sm,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         textAlign: 'center',
     }),
 }

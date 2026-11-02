@@ -5,9 +5,9 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const TABLE_FOOTER_STYLES = {
     root: style({
         borderTop: `1px solid ${vars.color.border}`,
-        backgroundColor: vars.color.muted,
+        backgroundColor: vars.color.surfaceMuted,
         fontWeight: vars.fontWeight.medium,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
     }),
 }
 

@@ -34,7 +34,7 @@ export const SWITCH_STYLES = {
                 },
                 '&:focus-visible': {
                     outline: 'none',
-                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.ring}`,
+                    boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 '&[data-checked]': {
                     backgroundColor: vars.color.primary,
@@ -67,17 +67,17 @@ export const SWITCH_STYLES = {
             },
             error: {
                 true: {
-                    backgroundColor: vars.color.destructive,
+                    backgroundColor: vars.color.danger,
                     selectors: {
                         '&:not([data-disabled]):hover': {
-                            backgroundColor: vars.color.destructiveHover,
+                            backgroundColor: vars.color.dangerHover,
                         },
                         '&:not([data-disabled]):active': {
-                            backgroundColor: vars.color.destructiveActive,
+                            backgroundColor: vars.color.dangerActive,
                         },
                         '&:focus-visible': {
                             outline: 'none',
-                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.destructive}`,
+                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger}`,
                         },
                         '&[data-checked]': {
                             backgroundColor: vars.color.primary,

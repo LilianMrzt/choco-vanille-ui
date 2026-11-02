@@ -48,8 +48,8 @@ const ICON_SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 const LINK_COLORS: LinkColor[] = [
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',
@@ -225,8 +225,8 @@ export const Colors: Story = {
             ...storySource(/* language=tsx */ `
 <Link label="Primary" color="primary" />
 <Link label="Secondary" color="secondary" />
-<Link label="Tertiary" color="tertiary" />
-<Link label="Destructive" color="destructive" />
+<Link label="Tertiary" color="neutral" />
+<Link label="Destructive" color="danger" />
 <Link label="Success" color="success" />
 <Link label="Warning" color="warning" />
 <Link label="Info" color="info" />`),
@@ -244,11 +244,11 @@ export const Colors: Story = {
             />
             <Link
                 label={'Tertiary'}
-                color={'tertiary'}
+                color={'neutral'}
             />
             <Link
                 label={'Destructive'}
-                color={'destructive'}
+                color={'danger'}
             />
             <Link
                 label={'Success'}

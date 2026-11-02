@@ -10,9 +10,7 @@ export const TEXT_FIELD_STYLES = {
             lineHeight: vars.lineHeight.normal,
             borderRadius: vars.radius.xs,
             border: `1px solid ${vars.color.border}`,
-            // White background by default (card token = white surface in light/dark themes).
-            // Override via the `style` prop: `<TextField style={{ backgroundColor: '…' }} />`
-            backgroundColor: vars.color.card,
+            backgroundColor: vars.color.surface,
             color: vars.color.foreground,
             outline: 'none',
             transition: [
@@ -22,7 +20,7 @@ export const TEXT_FIELD_STYLES = {
             ].join(', '),
             selectors: {
                 '&::placeholder': {
-                    color: vars.color.textTertiary,
+                    color: vars.color.foregroundSubtle,
                 },
                 // Keyboard focus: full ring + primary border.
                 '&:focus-visible': {
@@ -38,7 +36,7 @@ export const TEXT_FIELD_STYLES = {
                 '&:disabled': {
                     cursor: 'not-allowed',
                     opacity: 0.45,
-                    backgroundColor: vars.color.muted,
+                    backgroundColor: vars.color.surfaceMuted,
                 },
             },
         },
@@ -62,18 +60,18 @@ export const TEXT_FIELD_STYLES = {
             },
             hasError: {
                 true: {
-                    borderColor: vars.color.destructive,
+                    borderColor: vars.color.danger,
                     selectors: {
                         '&:hover:not(:disabled)': {
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                         },
                         '&:focus-visible': {
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                             boxShadow: 'none',
                         },
                         '&[data-mouse-focus]:focus-visible': {
                             boxShadow: 'none',
-                            borderColor: vars.color.destructive,
+                            borderColor: vars.color.danger,
                         },
                     },
                 },

@@ -25,8 +25,8 @@ Reference any kit variable with `var()` in your `.module.css` file — no import
 
 <Source language="css" code={`/* MyCard.module.css */
 .card {
-  background:    var(--color-card);
-  color:         var(--color-cardForeground);
+  background:    var(--color-surface);
+  color:         var(--color-surfaceForeground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow:    var(--shadow-sm);
@@ -105,8 +105,8 @@ The kit does **not** ship named utility classes — all of its styling is token-
 
 <Source language="css" code={`/* surfaces.module.css */
 .surface {
-  background:    var(--color-card);
-  color:         var(--color-cardForeground);
+  background:    var(--color-surface);
+  color:         var(--color-surfaceForeground);
   border-radius: var(--radius-md);
 }`} />
 

@@ -18,8 +18,8 @@ export const TOAST_STYLES = {
             padding: vars.space.md,
             borderRadius: vars.radius.sm,
             border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.card,
-            color: vars.color.cardForeground,
+            backgroundColor: vars.color.surface,
+            color: vars.color.surfaceForeground,
         },
         variants: {
             variant: {

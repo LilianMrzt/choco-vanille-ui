@@ -23,14 +23,14 @@ export const AUTOCOMPLETE_TRIGGER_STYLES = {
         background: 'transparent',
         border: 'none',
         borderRadius: vars.radius.xs,
-        color: vars.color.mutedForeground,
+        color: vars.color.surfaceMutedForeground,
         cursor: 'pointer',
         outline: 'none',
         transition: `color ${vars.duration.fast} ${vars.easing.standard}`,
 
         selectors: {
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.ring}`,
+                outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '-2px',
             },
             '&:disabled, &[data-disabled]': {

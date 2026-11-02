@@ -13,7 +13,7 @@ export const TABLE_HEAD_STYLES = {
             verticalAlign: 'middle',
             fontSize: vars.fontSize.xs,
             fontWeight: vars.fontWeight.medium,
-            color: vars.color.mutedForeground,
+            color: vars.color.surfaceMutedForeground,
             letterSpacing: vars.letterSpacing.wide,
             whiteSpace: 'nowrap',
         },
@@ -36,7 +36,7 @@ export const TABLE_HEAD_STYLES = {
                 color: vars.color.foreground,
             },
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.ring}`,
+                outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '2px',
                 borderRadius: vars.radius.xs,
             },

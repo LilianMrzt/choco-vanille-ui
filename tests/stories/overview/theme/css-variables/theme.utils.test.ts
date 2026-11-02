@@ -1,0 +1,61 @@
+import { describe, expect, it } from 'vitest'
+
+import { darkTheme, lightTheme, vars } from '@theme'
+import {
+    buildPlainCssScaffold,
+    buildStaticRows,
+    buildThemedRows,
+    buildThemeCSS,
+    buildVanillaExtractSnippet,
+    editorColorRows,
+} from '@stories/overview/theme/css-variables/utils/theme.utils.ts'
+
+describe('theme variable documentation', () => {
+    it('documents every editor tone with its real light and dark values', () => {
+        expect(editorColorRows).toHaveLength(21)
+        expect(editorColorRows).toContainEqual({
+            variable: '--editorColors-ocean-base',
+            lightValue: lightTheme.editorColors.ocean.base,
+            darkValue: darkTheme.editorColors.ocean.base,
+        })
+        expect(editorColorRows).toContainEqual({
+            variable: '--editorColors-neutral-light',
+            lightValue: lightTheme.editorColors.neutral.light,
+            darkValue: darkTheme.editorColors.neutral.light,
+        })
+    })
+
+    it('includes all editor variables in copied theme CSS, scaffolds, and typed references', () => {
+        const css = buildThemeCSS()
+        const scaffold = buildPlainCssScaffold()
+        const reference = buildVanillaExtractSnippet()
+
+        for (const row of editorColorRows) {
+            expect(css).toContain(`${row.variable}: ${row.lightValue};`)
+            expect(css).toContain(`${row.variable}: ${row.darkValue};`)
+            expect(scaffold).toContain(`${row.variable}: ;`)
+            const path = row.variable.slice('--editorColors-'.length).replace('-', '.')
+            expect(reference).toContain(`vars.editorColors.${path}`)
+        }
+    })
+
+    it('reports missing variable references and missing dark values explicitly', () => {
+        expect(() => buildStaticRows({ primary: '#ffffff' }, {})).toThrow('Missing CSS variable reference: primary')
+        expect(() => buildThemedRows({ primary: '#ffffff' }, {}, { primary: vars.color.primary }))
+            .toThrow('Incomplete themed CSS variable: primary')
+    })
+
+    it('copies the current semantic vocabulary without legacy aliases', () => {
+        const css = buildThemeCSS()
+        const reference = buildVanillaExtractSnippet()
+
+        for (const key of Object.keys(vars.color)) {
+            expect(css).toContain(`--color-${key}:`)
+            expect(reference).toContain(`vars.color.${key}`)
+        }
+
+        expect(reference).toContain('background:    vars.color.surface,')
+        expect(css).not.toMatch(/--color-(?:card|destructive|tertiary|ring|text|purple):/)
+        expect(reference).not.toMatch(/vars\.color\.(?:card|destructive|tertiary|ring|text|purple)\b/)
+    })
+})

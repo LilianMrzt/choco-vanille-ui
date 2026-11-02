@@ -17,7 +17,7 @@ export const AUTOCOMPLETE_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.popoverForeground,
+        color: vars.color.surfaceElevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -33,7 +33,7 @@ export const AUTOCOMPLETE_ITEM_STYLES = {
             },
             // Only show the ring during keyboard navigation.
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.ring}`,
+                outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '-2px',
             },
             '&[data-highlighted]:active': {

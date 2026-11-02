@@ -11,11 +11,12 @@ describe('createColorVariants', () => {
             custom: 'rebeccapurple',
         })
 
-        expect(Object.keys(variants)).toHaveLength(Object.keys(vars.color).length + 2)
+        expect(Object.keys(variants)).toHaveLength(Object.keys(vars.color).length + 1)
         expect(variants.primary).toEqual({ color: 'red' })
         expect(variants.background).toEqual({ color: vars.color.background })
-        expect(variants.transparent).toEqual({ color: 'transparent' })
+        expect(variants.transparent).toEqual({ color: vars.color.transparent })
+        expect(variants.currentColor).toEqual({ color: vars.color.currentColor })
         expect(variants.custom).toEqual({ color: 'rebeccapurple' })
-        expectTypeOf<keyof typeof variants>().toEqualTypeOf<ThemeColor | 'transparent' | 'custom'>()
+        expectTypeOf<keyof typeof variants>().toEqualTypeOf<ThemeColor | 'custom'>()
     })
 })
