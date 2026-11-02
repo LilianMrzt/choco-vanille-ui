@@ -11,3 +11,4 @@ docs/audit/
 !.agents/skills/
 !.agents/skills/**
 *.iml
+.temp
