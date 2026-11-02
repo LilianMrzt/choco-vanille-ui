@@ -208,10 +208,12 @@ export const States: Story = {
     parameters: {
         docs: { ...storySource(`<TextField label="Disabled" disabled />`) },
     },
-    render: () => <TextField
-        label={'Disabled'}
-        disabled
-                  />,
+    render: () => (
+        <TextField
+            label={'Disabled'}
+            disabled
+        />
+    ),
 }
 
 export const WithIcons: Story = {
@@ -220,8 +222,10 @@ export const WithIcons: Story = {
             ...storySource(`<TextField label="Search" startIcon={SearchIcon} />`),
         },
     },
-    render: () => <TextField
-        label={'Search'}
-        startIcon={SearchIcon}
-                  />,
+    render: () => (
+        <TextField
+            label={'Search'}
+            startIcon={SearchIcon}
+        />
+    ),
 }

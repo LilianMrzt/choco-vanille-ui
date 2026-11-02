@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import Select from '@components/forms/select/Select.tsx'
 
@@ -13,7 +13,7 @@ const openSelect = async () => {
 
 describe('SelectSeparator', () => {
     describe('rendering', () => {
-        it('renders a separator element between groups of items', async () => {
+        it('renders a presentational separator between items', async () => {
             render(
                 <Select>
                     <Select.Trigger />
@@ -27,7 +27,7 @@ describe('SelectSeparator', () => {
                 </Select>,
             )
             await openSelect()
-            expect(document.querySelector('[role="separator"]')).toBeTruthy()
+            expect(within(screen.getByRole('listbox')).getByRole('presentation')).toBeTruthy()
         })
 
         it('renders with a non-empty className by default', async () => {
@@ -44,15 +44,27 @@ describe('SelectSeparator', () => {
                 </Select>,
             )
             await openSelect()
-            const separator = document.querySelector(
-                '[role="separator"]',
-            ) as HTMLElement
+            const separator = within(screen.getByRole('listbox')).getByRole('presentation')
             expect(separator.className.length).toBeGreaterThan(0)
         })
 
         it('does not interfere with item selection', async () => {
-            const items = screen.queryAllByRole('option')
-            expect(items).toHaveLength(0) // not open yet
+            const handleChange = vi.fn()
+            render(
+                <Select onValueChange={handleChange}>
+                    <Select.Trigger />
+                    <Select.Content>
+                        <Select.List>
+                            <Select.Item value={'apple'} label={'Apple'} />
+                            <Select.Separator />
+                            <Select.Item value={'carrot'} label={'Carrot'} />
+                        </Select.List>
+                    </Select.Content>
+                </Select>,
+            )
+            await openSelect()
+            await userEvent.click(screen.getByRole('option', { name: 'Carrot' }))
+            expect(handleChange).toHaveBeenCalledWith('carrot', expect.any(Object))
         })
     })
 

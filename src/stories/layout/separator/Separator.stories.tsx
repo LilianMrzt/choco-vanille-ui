@@ -170,11 +170,21 @@ export const WithLabel: Story = {
         },
     },
     render: () => (
-        <Flex flexDirection={'column'} gap={'lg'}>
+        <Flex
+            flexDirection={'column'}
+            gap={'lg'}
+        >
             <Separator label={'Or continue'} />
-            <Flex alignItems={'center'} gap={'md'} height={'120px'}>
+            <Flex
+                alignItems={'center'}
+                gap={'md'}
+                height={'120px'}
+            >
                 <span>Left</span>
-                <Separator orientation={'vertical'} label={'Or'} />
+                <Separator
+                    orientation={'vertical'}
+                    label={'Or'}
+                />
                 <span>Right</span>
             </Flex>
         </Flex>

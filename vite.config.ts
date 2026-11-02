@@ -20,7 +20,7 @@ const externalDeps = [
 const isExternal = (id: string) =>
   externalDeps.some((dep) => id === dep || id.startsWith(`${dep}/`));
 
-const assetFileNames = 'ui-kit[extname]';
+const assetFileNames = 'assets/[name]-[hash][extname]';
 
 const aggregateStylesheet = (): Plugin => ({
   name: 'aggregate-stylesheet',
