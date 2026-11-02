@@ -1,948 +1,289 @@
 ---
 name: choco-vanille
-description: Creates, modifies, refactors, and extends public components in choco-vanille-ui while preserving its established API, TypeScript, accessibility, composition, Vanilla Extract, Base UI, variants, sizing, state, callback, and export conventions. Use for any component-library change under src/components or src/theme.
+description: Creates, migrates, refactors, and reviews the v2 of @choco-vanille/ui. Use for component, theme, public API, styling, test, Storybook, and related library architecture changes.
 ---
 
-# Choco Vanille Design System
+# Choco Vanille v2
 
-Maintain `@choco-vanille/ui` as a coherent public component library. Optimize
-for consistency with the repository, not for novelty or theoretical
-modernization.
+Accompagner l'évolution de `@choco-vanille/ui` vers la v2, une librairie React
+et non une application. Le skill embarque les conventions complètes et les
+procédures pour les appliquer. L'implémentation existante sert à vérifier les
+faits et les impacts, pas à imposer les conventions v1.
 
-The current library is the default reference. Change a convention only when
-code evidence shows a consumer-visible inconsistency.
+## Mode d'emploi
+
+Lire les références embarquées ci-dessous avant d'intervenir, puis choisir
+le parcours correspondant à la demande, exécuter ses étapes et vérifier son
+résultat. Les références font partie du skill et ne dépendent d'aucun fichier
+d'instructions extérieur à son dossier.
+
+## Conventions embarquées
+
+Lire systématiquement [Contribution](references/contribution.md), puis les
+références nécessaires selon le périmètre. Ne pas traiter les procédures
+ci-dessous comme un substitut à leurs règles détaillées.
+
+| Référence | Quand la lire | Couverture |
+| --- | --- | --- |
+| [Contribution](references/contribution.md) | Toute intervention | Périmètre v2, méthode, documentation, TypeScript, nommage et livraison |
+| [Architecture](references/architecture.md) | Organisation, imports, API, dépendances ou distribution | Catégories, frontières, SSR, effets globaux, alias, barrels, ESM/CJS et CSS |
+| [Composants](references/components.md) | Création ou modification TypeScript/React | Anatomie, partage, types publics, Base UI, composition, état, performance, accessibilité et JSDoc |
+| [Styles](references/styles.md) | Styles, primitives visuelles, thème ou personnalisation | Props visuelles, fichiers CSS, styles partagés, animations, tokens et cascade |
+| [Qualité](references/quality.md) | Code TypeScript, TSX, MDX ou extraits consommateur | Imbrication, conditions, sémantique HTML, erreurs et lisibilité |
+| [Tests et Storybook](references/tests-storybook.md) | Choix des vérifications, tests, stories ou documentation interactive | Outils, couverture, contrôles, args, snippets, accessibilité et builds |
+
+Suivre également les renvois entre ces références lorsqu'ils concernent le
+changement. Les charger à la demande plutôt que toutes pour une correction
+locale. Respecter les consignes applicables de l'environnement et vérifier
+les faits d'outillage dans les configurations exécutables.
+
+Ces références sont l'unique emplacement des conventions détaillées de la
+librairie. Modifier la référence responsable lorsqu'une convention évolue,
+sans en recopier les règles dans les instructions d'entrée ou dans l'agent.
+Signaler toute contradiction avec l'outillage ou une ancienne documentation
+au lieu de choisir silencieusement la règle la moins contraignante.
+
+## Choisir un parcours
+
+| Demande | Parcours |
+| --- | --- |
+| Ajouter une primitive ou une composition publique | Créer un composant |
+| Refactorer une unité ou faire évoluer son API | Migrer un composant |
+| Ajouter une interaction complexe ou un compound | Intégrer Base UI |
+| Modifier des tokens, une recette ou la personnalisation | Faire évoluer les styles et le thème |
+| Créer ou corriger des exemples interactifs | Livrer les tests et les stories |
+| Modifier les exports, les formats ou les imports CSS | Vérifier la distribution |
+
+Combiner uniquement les parcours nécessaires. Une correction de story ne
+déclenche pas une migration du composant. Une migration de composant inclut
+en revanche ses contrats, ses tests et ses exemples affectés.
 
 ## Utilisation dans Copilot CLI
 
-Copilot charge ce Skill automatiquement lorsque la demande concerne la
-création, la modification, le refactoring ou l'extension d'un composant sous
-`src/components` ou du thème sous `src/theme`.
-
-Pour le demander explicitement, invoquer la commande `/choco-vanille` :
+Le skill peut être invoqué avec `/choco-vanille`, par exemple :
 
 ```text
-/choco-vanille Crée un composant Slider.
+/choco-vanille Migre Button vers les conventions v2.
 ```
 
 ```text
-/choco-vanille Ajoute une taille xl à Avatar sans rompre les conventions
-publiques.
+/choco-vanille Crée un composant Slider avec ses tests et ses stories.
 ```
 
 ```text
-/choco-vanille Refactore les props de Box afin qu'elles ne dépendent plus de
-Vanilla Extract.
+/choco-vanille Revois les exports et la distribution des styles de la librairie.
 ```
 
-Dans GitHub Copilot CLI, `/skills` permet de voir et gérer les Skills
-disponibles. Après l'ajout ou la modification locale d'un Skill, démarrer une
-nouvelle session ou utiliser `/skills` si la session courante ne l'a pas encore
-chargé.
+Utiliser `/skills` pour consulter les skills disponibles. Après une modification
+locale, démarrer une nouvelle session si la version chargée n'est pas actualisée.
 
-## Working method
+## Préparer l'intervention
 
-For every public API decision, use this order:
+1. Examiner les changements locaux et isoler le périmètre demandé.
+2. Identifier l'entrée publique de l'unité, ses types, ses valeurs par défaut,
+   son élément DOM principal et ses consommateurs internes.
+3. Lire les styles et le comportement concernés, puis les hooks, utilitaires,
+   tests et stories qui permettent de comprendre ce comportement.
+4. Rechercher une primitive réutilisable et un composant voisin pertinent.
+   Vérifier leurs signatures : une implémentation v1 est un exemple observable,
+   pas automatiquement un modèle conforme à la cible.
+5. Pour chaque changement de contrat, établir mentalement ou dans la réponse
+   une correspondance « existant → cible → impact → preuve attendue ».
+   Ne pas créer un fichier de suivi dans le dépôt.
 
-1. **Observations**: cite public types, exports and observable code.
-2. **Conclusions**: state the consumer impact.
-3. **Decision**: prefer Conserver, then Standardiser, Simplifier, Corriger,
-   Fusionner, Supprimer, Réécrire.
-4. **Implementation**: make the smallest complete change.
+Exemple : si un callback perd son second argument, relever sa signature
+publique et son invocation, rétablir la transmission complète et prévoir une
+assertion sur les arguments réellement reçus. Une compilation seule ne prouve
+pas ce comportement.
 
-Before creating a new visual or interactive primitive, search the public
-component barrels and the closest sibling components for an existing
-component that provides the same element semantics or interaction. Reuse that
-component whenever possible, including when it is rendered internally by a
-larger component. Do not duplicate buttons, icon buttons, links, fields or
-other public primitives with local markup and styles when their existing
-contracts cover the use case. If reuse is not possible, record the observable
-constraint and keep the new implementation limited to the missing behavior.
+## Créer un composant
 
-Source confidence order:
-
-1. source code;
-2. public types;
-3. public exports;
-4. tests;
-5. stories;
-6. documentation;
-7. comments.
-
-Mark unsupported claims `NON VÉRIFIÉ DANS LE CODE`.
-
-## Preflight
-
-Read only what the change needs, in this order:
-
-1. the component's public `index.ts`;
-2. `types/*Props.ts` and public `*.types.ts`;
-3. constants for variants, colors and sizes;
-4. the component's `*.css.ts` recipe;
-5. the TSX only for observable behavior;
-6. related exemplary components;
-7. tests and stories only to validate or update an established contract.
-
-For cross-component decisions, consult:
-
-- `docs/project/design-system-consistency-matrix.md`;
-- `src/index.ts`;
-- `src/components/index.ts`;
-- `src/theme/index.ts`.
-
-Do not systematically inspect hooks, helpers, fixtures, stories or tests.
-
-## Architecture
-
-The public stack is:
-
-```text
-src/index.ts
-├── theme contract and public theme API
-├── constants and hooks
-└── src/components/index.ts
-    ├── actions
-    ├── data-display
-    ├── feedback
-    ├── forms
-    ├── foundation
-    ├── layout
-    ├── navigation
-    ├── overlay
-    ├── surfaces
-    └── theme-provider
-```
-
-Implementation layers:
-
-- React 19 public components;
-- Base UI for headless interactive primitives;
-- native HTML for native controls;
-- Vanilla Extract recipes and theme contract;
-- semantic theme tokens from `vars`;
-- Iconify behind the public `Icon` primitive.
-
-Preserve these boundaries:
-
-- Base UI owns headless interaction and state contracts.
-- Native elements retain native DOM contracts.
-- Components own public naming, composition, styles and accessibility guards.
-- Vanilla Extract details do not dictate unrelated public API.
-- Public types are self-sufficient and never depend on Vanilla Extract recipes
-  or generated recipe types.
-- `src/index.ts` is the package entry point.
-
-## Organisation
-
-A public component uses the smallest subset of this structure that it needs:
+1. Vérifier qu'aucun composant ou assemblage existant ne couvre le besoin.
+   Choisir la catégorie par responsabilité, pas par dépendance technique.
+2. Choisir le support du contrat :
+   élément natif pour une interaction native, Base UI pour une interaction
+   complexe couverte, composition de nos primitives pour une présentation.
+3. Définir les props à partir de l'élément ou de la primitive réellement rendu.
+   Identifier les clés redéfinies, la cible de ref, le nom accessible, les
+   variantes utiles et les éventuels modes contrôlé/non contrôlé.
+4. Créer uniquement les fichiers nécessaires selon cette anatomie :
 
 ```text
 component-name/
-├── ComponentName.tsx
-├── index.ts
-├── components/
-│   └── component-slot/
-│       ├── ComponentSlot.tsx
-│       ├── index.ts
-│       ├── constants/
-│       ├── styles/
-│       │   └── ComponentSlot.css.ts
-│       └── types/
-│           ├── ComponentSlot.props.ts
-│           └── ComponentSlot.types.ts
-├── constants/
-│   ├── componentVariants.const.ts
-│   ├── componentSizes.const.ts
-│   └── index.ts
-├── context/
-│   └── Component.context.ts
-├── hooks/
-│   └── useComponent.hook.ts
-├── styles/
-│   ├── ComponentName.css.ts
-│   └── variants/
-│       ├── contained.ts
-│       └── outlined.ts
-└── types/
-    ├── ComponentName.props.ts
-    ├── ComponentName.types.ts
-    ├── ComponentNameCompound.ts
-    └── index.ts
-└── utils/
-    └── component.utils.ts
+  ComponentName.tsx
+  ComponentName.css.ts
+  index.ts
+  types/index.ts
+  constants/index.ts
 ```
 
-Do not create empty directories. Add a directory only when the corresponding
-object exists.
-
-### Object placement
-
-| Object | Location | Rule |
-| --- | --- | --- |
-| Public React component | `ComponentName.tsx` | Rendering and observable behavior only |
-| Public props | `types/ComponentName.props.ts` | HTML/Base UI bases plus library-owned props |
-| Public unions | `types/ComponentName.types.ts` | Variant, size, color, mode, position and public aliases |
-| Compound type | `types/ComponentNameCompound.ts` or `types/index.ts` | Root callable type plus public slots |
-| Public vocabulary constants | `constants/*.const.ts` | Canonical runtime values for variants, sizes, colors and modes |
-| Derived mappings | `constants/*.const.ts` | Size-to-icon, status-to-icon and other immutable lookup tables |
-| Vanilla Extract recipe | `styles/ComponentName.css.ts` | Styles, recipes, default variants and internal recipe types |
-| Variant style fragments | `styles/variants/*.ts` | Shared compound variants when the main recipe would become dense |
-| Public slot | `components/component-slot/` | Give the slot its own TSX, props and styles when it has a contract |
-| Context | `context/Component.context.ts` | Internal state shared by compound slots |
-| Hook | `hooks/useComponent.hook.ts` | Stateful or interaction logic extracted from rendering |
-| Utility | `utils/*.utils.ts` | Pure component-local transformations |
-| Barrel | `index.ts` | Public exports only |
-
-### Types and constants
-
-- `ComponentName.props.ts` contains only the public props declaration and its
-  type imports.
-- `ComponentName.types.ts` contains public unions and aliases, never runtime
-  values.
-- Canonical runtime vocabularies live in `constants/` and use `as const`.
-- Public union types may derive from those constants.
-- Recipes import public constants or public unions; public props never import
-  a recipe type.
-- Keep a mapping in `constants/` when both TSX and styles use it. Keep it next
-  to the sole consumer when it is purely local.
-- Export a constant only when consumers need the vocabulary or it is already
-  an established public contract. Local recipe helpers remain internal.
-
-Canonical vocabulary template:
-
-```ts
-// constants/componentVariants.const.ts
-export const COMPONENT_VARIANTS = {
-  contained: 'contained',
-  outlined: 'outlined',
-} as const
-
-// types/ComponentName.types.ts
-import type { COMPONENT_VARIANTS } from '../constants/componentVariants.const'
-
-export type ComponentVariant =
-  (typeof COMPONENT_VARIANTS)[keyof typeof COMPONENT_VARIANTS]
-
-// types/ComponentName.props.ts
-import type { ComponentVariant } from './ComponentName.types'
-
-export type ComponentNameProps = {
-  variant?: ComponentVariant
-}
-
-// styles/ComponentName.css.ts
-import { COMPONENT_VARIANTS } from '../constants'
-
-export const COMPONENT_STYLES = recipe({
-  variants: {
-    variant: {
-      [COMPONENT_VARIANTS.contained]: {},
-      [COMPONENT_VARIANTS.outlined]: {},
-    },
-  },
-})
-```
-
-### Vanilla Extract isolation
-
-The public API must remain usable and understandable without importing
-Vanilla Extract types.
-
-- A public `*.props.ts` or `*.types.ts` file MUST NOT import from
-  `styles/*.css.ts`.
-- A public prop base MUST NOT be `RecipeVariants`, a property selected from
-  `RecipeVariants`, or another Vanilla Extract-generated type.
-- `Box`, `Flex`, `Grid` and layout token props follow the same rule; define
-  their public token unions independently.
-- Recipe types may exist inside `*.css.ts` for internal implementation only.
-- Public `*_STYLES` values may remain established extension handles, but they
-  never define the component's props or public unions.
-- Name public aliases after the component and the precise concept they model
-  (`ComponentVariant`, `ComponentColor`, `ComponentSpace`, or
-  `ComponentBorderRadius`). Do not expose aggregate aliases named
-  `ComponentRecipeVariants`; after decoupling a recipe type, migrate consumers
-  to the precise public aliases and remove the old name.
-- When decoupling an existing component, move the vocabulary to
-  `constants/`/`types/`, make the recipe consume it, then remove the
-  type-level dependency from props to styles.
-
-Dependency direction:
-
-```text
-constants ───────► types ───────► props
-    │                │
-    └──────────────► styles
-
-props + styles + constants + hooks/context/utils ───────► TSX
-```
-
-The forbidden direction is `props/types -> *.css.ts`.
-
-### Shared and compound code
-
-- Prefer composition with existing public components for repeated UI
-  elements. For example, use `IconButton` for icon-only actions and `Button`
-  for text actions instead of recreating native `<button>` elements inside a
-  component.
-- Use a component-local `components/` directory for slots.
-- Use a family `_shared/` directory only when several public siblings reuse
-  the code, as in the Button family.
-- Use category-level `_shared/` for a primitive shared by several components,
-  such as form helper text.
-- Use `_common/` for internal cross-category primitives.
-- Do not export `_shared`, `_common`, hooks, context or utilities unless a
-  demonstrated consumer contract already exists.
-- A compound root assigns slots in `ComponentName.tsx`; each slot remains
-  independently typed.
-- `index.ts` exports the root, public styles, props, unions and slot prop types.
-  Slot values are discovered through `Component.Slot`.
-
-Do not move code solely to satisfy this complete tree when the existing
-smaller structure is already coherent.
-
-## API
-
-### Native wrappers
-
-Start from the actual HTML element:
-
-```ts
-export type InputLikeProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  'size'
-> &
-  React.RefAttributes<HTMLInputElement> & {
-    size?: InputLikeSize
-    label?: string
-    helperText?: string
-    error?: string
-  }
-```
-
-Keep native event names and payloads. Reserve only keys whose semantics the
-component replaces.
-
-### Base UI wrappers
-
-For a transparent root, inherit the primitive:
-
-```ts
-export type PopoverProps = BasePopover.Root.Props
-```
-
-For a deliberate subset, pick it:
-
-```ts
-type ToggleStateProps = Pick<
-  Toggle.Props,
-  'pressed' | 'defaultPressed' | 'onPressedChange' | 'value' | 'disabled'
->
-```
-
-Do not copy a partial approximation of an upstream state contract.
-
-### Convenience wrappers
-
-When a compound primitive also needs a common field API, create a flat,
-standalone wrapper:
-
-```text
-Select + SelectField
-Autocomplete + AutocompleteField
-```
-
-The Field wrapper may simplify callback payloads if its public type explicitly
-does so. Keep the advanced compound API available.
-
-### Common prop names
-
-Use:
-
-- `className` for a consumer class on the public principal node;
-- `label` for visible text;
-- `icon` for one icon;
-- `startIcon` and `endIcon` for adjacent icons;
-- `helperText` and `error` for field messaging;
-- `width` when the component's outer wrapper owns width;
-- `disabled` from HTML or the primitive;
-- `ref` typed to the actual public element.
-
-Never use `[key: string]: unknown`. Extend the correct HTML attributes instead.
-
-## TypeScript
-
-Public names:
-
-```text
-ComponentProps
-ComponentVariant
-ComponentSize
-ComponentColor
-ComponentCompound
-ComponentContextValue
-```
-
-Rules:
-
-- No public `any`.
-- An upstream `any` required by a Base UI generic root overload may remain in
-  an internal adapter when it is not part of the emitted public compound type.
-  Do not replace it with `Parameters`, `unknown` unions or copied overloads
-  only to satisfy a source scan.
-- Preserve generic primitive overloads with `typeof Primitive.Root`.
-- Use `Pick` for deliberate upstream subsets.
-- Use `Omit` only for redefined keys.
-- Prefer type constraints over runtime-only documentation.
-- Do not cast away a mismatch between public types and runtime behavior.
-- No public props or unions derived from `RecipeVariants`.
-- No public type import from a `*.css.ts` module.
-- Define public token unions in `types/` or from `constants/`; make recipes
-  consume the public vocabulary.
-
-Generic compound root template:
-
-```ts
-import type { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
-
-type AutocompleteRoot = typeof BaseAutocomplete.Root
-
-export type AutocompleteCompound = AutocompleteRoot & {
-  Input: typeof AutocompleteInput
-  Content: typeof AutocompleteContent
-  Item: typeof AutocompleteItem
-}
-```
-
-Base UI roots are generic callable values, not necessarily
-`React.FunctionComponent`s. Their type therefore may not declare React's
-optional static `displayName` property, even though the property can be
-assigned at runtime. When a compound wrapper exposes `displayName`, extend the
-root type with that static member rather than creating a second implementation
-variable or casting at the assignment:
-
-```ts
-type AutocompleteRoot = typeof BaseAutocomplete.Root & {
-  displayName?: string
-}
-
-export type AutocompleteCompound = AutocompleteRoot & {
-  Input: typeof AutocompleteInput
-}
-
-const Autocomplete = memo<BaseAutocomplete.Root.Props<Value>>(
-  (props) => <BaseAutocomplete.Root {...props} />,
-) as unknown as AutocompleteCompound
-
-Autocomplete.displayName = 'Autocomplete'
-```
-
-This error occurs because TypeScript checks the static members of the cast
-type, not the runtime object. Keep the Base UI callable and generic contract;
-only add the static React metadata that the wrapper actually assigns.
-
-When a wrapper adds behavior around a generic Base UI root, keep the public
-compound root typed as `typeof BaseAutocomplete.Root`. The implementation may
-use the primitive's generic props directly when needed. If Base UI's own
-declaration uses `any` in an overload, preserve that upstream contract instead
-of reproducing the overloads locally or adding narrowing logic unrelated to
-the component's runtime behavior. Audit rules should ignore that specific
-upstream adapter case while continuing to reject project-defined public
-`any`.
-
-Accessible content union template:
-
-```ts
-type AccessibleIconContent =
-  | {
-      label: string
-      'aria-label'?: string
-      startIcon?: string
-      endIcon?: string
-    }
-  | (
-      {
-        label?: never
-        'aria-label': string
-      } & (
-        | { startIcon: string; endIcon?: string }
-        | { startIcon?: string; endIcon: string }
-      )
-    )
-```
-
-Use this only when the component intentionally supports both text and
-icon-only modes. If a dedicated icon-only component exists, require `label` on
-the text component instead.
-
-## Accessibilité
-
-### Accessible names
-
-- Text Button: visible `label` required.
-- IconButton: `'aria-label': string` required.
-- Text ToggleButton: visible `label` required.
-- ToggleIconButton: `'aria-label': string` required.
-- A role requiring a name must require one of `label`, `aria-label` or
-  `aria-labelledby`.
-- Do not add hard-coded English fallback labels unless the component already
-  exposes a localizable fallback contract.
-
-### Icons
-
-Always render library icons through `Icon`.
-
-- No `aria-label`: Icon is decorative and hidden from assistive technology.
-- With `aria-label`: Icon emits `role="img"`.
-- An icon inside a named control stays decorative; the control owns the name.
-- Do not manually pass `role` or `aria-hidden` to Icon.
-
-### Forms
-
-For field-style components:
-
-- connect the visible label to the control;
-- set `aria-invalid` only for an error;
-- connect helper or error text with `aria-describedby`;
-- use the shared `HelperText` behavior;
-- preserve native required/disabled semantics.
-
-### Roles and states
-
-- Feedback defaults to `status`.
-- Use `alert` only for urgent, interruptive feedback.
-- Public `role="none"` means no live-region role is emitted.
-- A separator synchronizes `orientation` and `aria-orientation`.
-- A progressbar requires an accessible name and value attributes.
-- Base UI remains responsible for its documented keyboard and ARIA behavior
-  unless wrapper code demonstrably overrides it.
-
-Progress name template:
-
-```ts
-type ProgressAccessibleName =
-  | { label: string }
-  | { 'aria-label': string }
-  | { 'aria-labelledby': string }
-```
-
-Destructure ARIA naming props and apply them to the actual `progressbar`, not a
-layout wrapper.
-
-## Design System
-
-Use semantic theme tokens from `vars`. Do not introduce raw palette values in
-component recipes when a semantic token exists.
-
-Color tiers:
-
-- actions and interactive controls: semantic intents
-  `primary`, `secondary`, `tertiary`, `destructive`, `success`, `warning`,
-  `info`;
-- decorative display components may also use
-  `purple`, `pink`, `orange`, `teal`, `cyan`, `indigo`.
-
-Do not widen action colors merely to match decorative components.
-
-Keep shared family behavior in shared constants and recipes. A Button family
-size or variant should not be reimplemented locally in IconButton.
-
-Public `*_STYLES` exports are an established extension contract. Preserve or
-add them consistently with sibling components.
-
-## Variants
-
-Use `variant` only for a discrete presentation axis.
-
-Approved vocabularies:
-
-```text
-Action fill:   contained | outlined | ghost
-Toggle fill:   outlined | ghost
-Badge fill:    contained | subtle | outlined | outlinedSubtle
-Feedback:      info | success | warning | error
-Skeleton:      circular | rectangular | rounded
-Tabs.List:     default | pills
-```
-
-Rules:
-
-- `contained` means full semantic fill.
-- `outlined` means border without full fill; token intensity may vary by
-  family.
-- `subtle` and `outlinedSubtle` belong to low-emphasis display surfaces.
-- Different axes keep different words.
-- Use `shape`, `orientation`, `mode` or `position` when those names are more
-  precise.
-- Do not add a one-value variant.
-
-## Tailles
-
-Approved family scales:
-
-```text
-Button / text field:       sm | md | lg          default md
-IconButton:                xs | sm | md | lg     default md
-Avatar:                    sm | md | lg | xl     default md
-Progress:                  xs | sm | md | lg | xl default sm
-Drawer:                    sm | md | lg | xl | 2xl | full default md
-Icon:                      xs | sm | md | lg | xl | 2xl default md
-Typography fontSize:       2xs through 6xl
-```
-
-Keep family-specific scales. Do not add keys for superficial union symmetry.
-Document each public default.
-
-## Callbacks
-
-Callback policy:
-
-```text
-Native element     -> native callback and DOM event
-Base UI primitive  -> upstream callback with every argument
-Field convenience  -> simplified value callback only when typed that way
-Business action    -> semantic callback such as onClose()
-```
-
-Pass-through template:
-
-```ts
-const handleValueChange = useCallback(
-  (...args: Parameters<NonNullable<Props['onValueChange']>>) => {
-    onValueChange?.(...args)
-  },
-  [onValueChange],
-)
-```
-
-Never synthesize event details. Never declare a second callback argument and
-then drop or replace it at runtime.
-
-## Controlled / Uncontrolled
-
-Approved state triplets:
-
-```text
-value / defaultValue / onValueChange
-checked / defaultChecked / onCheckedChange
-pressed / defaultPressed / onPressedChange
-open / defaultOpen / onOpenChange
-month / defaultMonth / onMonthChange
-```
-
-Custom-state template:
-
-```ts
-const [internalValue, setInternalValue] = useState(defaultValue)
-const isControlled = value !== undefined
-const currentValue = isControlled ? value : internalValue
-
-const setValue = (nextValue: Value) => {
-  if (!isControlled) {
-    setInternalValue(nextValue)
-  }
-  onValueChange?.(nextValue)
-}
-```
-
-Rules:
-
-- Initialize from `default*`, never from the controlled prop.
-- Controlled props win when not `undefined`.
-- Fire the callback in both modes.
-- Do not switch between controlled and uncontrolled behavior implicitly.
-- If internal state exists and the component is publicly controllable, expose
-  the complete triplet.
-
-## Exports
-
-Component barrel template:
-
-```ts
-export { default as Component } from './Component'
-export { COMPONENT_STYLES } from './styles/Component.css'
-export type { ComponentProps } from './types/Component.props'
-export type {
-  ComponentVariant,
-  ComponentSize,
-} from './types/Component.types'
-export type { ComponentSlotProps } from './components/component-slot/types/ComponentSlot.props'
-```
-
-Compound template:
-
-```ts
-const Component = Root as ComponentCompound
-
-Component.Trigger = ComponentTrigger
-Component.Content = ComponentContent
-```
-
-Export rules:
-
-- Root value at package level.
-- Slot values under `Component.*`.
-- Slot prop types at package level.
-- Public style constants at package level.
-- No duplicate flat slot values.
-- `DropdownMenuPortal` is the existing documented advanced escape exception.
-- Re-export the complete public theme barrel from `src/index.ts`.
-- Keep helpers and local constants internal unless a consumer contract is
-  demonstrated.
-
-## Patterns approuvés
-
-Copy these patterns:
-
-- `Button` and `IconButton` for text/icon-only separation.
-- `TextField` and `TextArea` for native wrappers.
-- `Select` and `SelectField` for compound plus convenience APIs.
-- `Dialog` for a Base UI compound overlay.
-- `Icon` for decorative/informative icon semantics.
-- `RadioGroup` for callback argument forwarding.
-- `Drawer` for a custom controlled/uncontrolled root.
-- shared Button and Progress constants/recipes for family reuse.
-
-## Patterns interdits
-
-Do not introduce:
-
-- `[key: string]: unknown` in public props;
-- public `any`;
-- a public props/type dependency on `*.css.ts`, `RecipeVariants` or another
-  Vanilla Extract implementation type;
-- fake callback event details;
-- `label?: string` on a control with no other accessible-name guarantee;
-- controlled state used as an uncontrolled initializer;
-- an incomplete controlled/uncontrolled triplet;
-- duplicate names for the same variant axis;
-- flat exports of compound slot values without a documented escape-hatch
-  reason;
-- ARIA roles, names or states disconnected from the corresponding visual prop;
-- raw token values where semantic `vars` tokens exist;
-- a new dependency abstraction when the existing Base UI or native contract
-  already provides the behavior;
-- a rewrite when a local standardization fixes the public inconsistency.
-
-## Stories de composants
-
-Cette convention s'applique aux fichiers CSF
-`src/stories/**/*.stories.tsx` des composants. Les fichiers MDX et
-`src/stories/overview/**` sont des stories de documentation et restent hors
-périmètre jusqu'à leur standardisation dédiée.
-
-### Structure orientée consommateur
-
-Chaque story de composant contient, dans cet ordre :
-
-1. une description du composant avec ses usages essentiels ;
-2. un unique playground interactif couvrant toutes les props publiques
-   contrôlables ;
-3. les Controls du playground ;
-4. un unique tableau d'accessibilité, dans le bloc Markdown situé après les Controls ;
-5. des exemples ciblés et comparatifs (variants, tailles, couleurs, états,
-   slots ou composition) lorsque le contrat les justifie.
-
-La description du composant ne doit pas contenir un second tableau ou une
-seconde section d'accessibilité : cette information est centralisée dans le
-bloc Markdown dédié afin d'éviter toute duplication dans la page Docs.
-
-Utiliser une page Docs explicite afin de rendre cet ordre déterministe :
-
-```tsx
-const ComponentDocsPage = () => (
-  <>
-    <Title />
-    <Description />
-    <Canvas />
-    <Controls />
-    <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-    <Stories includePrimary={false} />
-  </>
-)
-```
-
-`<Stories includePrimary={false} />` est obligatoire : le canvas primaire est
-déjà le playground et ne doit jamais être affiché une seconde fois.
-
-### Extraits « Show code »
-
-- Utiliser `storySource` pour chaque story exportée afin d'afficher le code
-  consommateur prévu, jamais la fonction interne `render()`.
-- Les extraits sont directement copiables et emploient un seul espace entre
-  les props ; ne jamais aligner verticalement les props avec des espaces.
-- Les exemples d'une story doivent refléter exactement son rendu visible :
-  reprendre chaque élément consommateur rendu, avec les mêmes props, valeurs et
-  libellés.
-- Ne jamais fournir un extrait représentatif ou abrégé d'une story comparative.
-  Si le rendu parcourt toutes les variantes, couleurs, tailles, états ou
-  combinaisons d'icônes, l'extrait doit lister toutes ces instances
-  explicitement.
-- Pour une story avec `render` et un tableau de valeurs, développer le tableau
-  dans `storySource` en JSX consommateur statique. Ne pas afficher le tableau,
-  `.map()` ou la fonction `render` dans l'extrait.
-
-### Sections canoniques
-
-Le contenu n'est pas librement variable : les axes publics partagés utilisent
-les mêmes stories et la même intention dans toutes les stories concernées.
-
-| Prop publique | Story obligatoire | Contenu |
-| --- | --- | --- |
-| `variant` | `Variants` | Comparer toutes les variantes publiques. |
-| `color` | `Colors` | Comparer toutes les couleurs ou intentions publiques, sauf pour les composants `foundation` où cette story est optionnelle. |
-| `size` | `Sizes` | Comparer toutes les tailles publiques. |
-| `fontSize` | `FontSizes` | Comparer toutes les tailles typographiques publiques. |
-| `fontWeight` | `FontWeights` | Comparer toutes les graisses typographiques publiques. |
-| `orientation` | `Orientations` | Comparer toutes les orientations publiques. |
-| `status` | `Statuses` | Comparer tous les statuts publics. |
-| `startIcon` ou `endIcon` | `WithIcons` | Comparer l’icône de début, de fin et leur combinaison. |
-| `disabled`, `active`, `loading`, `checked`, `pressed` ou `selected` | `States` | Montrer tous les états interactifs publics pertinents. |
-
-Les composants d'une même famille, par exemple `Button` et `IconButton`,
-doivent donc fournir les mêmes sections canoniques pour les axes qu'ils
-partagent. La story `Colors` reste obligatoire pour les autres catégories ;
-elle est optionnelle pour `foundation`. Ajouter ensuite seulement les sections
-propres au contrat du composant, comme `WithIcons` pour `Button`.
-
-### Controls des composants compound
-
-Un composant compound n'ajoute pas une story `Composition` séparée. Son
-`Playground` expose au contraire au moins un Control pour chaque slot public
-pertinent. Déclarer ces controls dans `argTypes`, les faire consommer par
-`render`, puis les catégoriser avec le nom du slot :
-
-```tsx
-argTypes: {
-  triggerLabel: {
-    control: 'text',
-    table: { category: 'Compound: Trigger' },
-  },
-  contentVisible: {
-    control: 'boolean',
-    table: { category: 'Compound: Content' },
-  },
-}
-```
-
-La catégorie est exactement `Compound: <NomDuSlot>` ; elle rend chaque slot
-repérable dans le panneau Controls. Modifier une valeur doit changer le rendu
-du slot correspondant. L'audit vérifie qu'un contrôle catégorisé existe pour
-chaque slot public.
-
-### Lisibilité du fichier
-
-- Ne pas utiliser de séparateurs décoratifs, notamment des commentaires avec
-  des caractères `─`.
-- Garder uniquement les commentaires qui expliquent une décision ou un
-  comportement non évident.
-- Les composants compound possèdent un playground qui permet aussi
-  d'interagir avec chaque slot public pertinent.
-
-## Checklists
-
-### Creating a component
-
-- [ ] Find the closest exemplary component in the same family.
-- [ ] Add the component story in `src/stories/**` in the same change; every
-      created public component has a consumer-oriented story.
-- [ ] Search public barrels and sibling implementations for reusable
-      components for every repeated visual or interactive element.
-- [ ] Choose native HTML, Base UI passthrough or custom state deliberately.
-- [ ] Define `ComponentProps` from the actual root element or primitive.
-- [ ] Define variants/sizes/colors in `types/` and canonical values in
-      `constants/`, never from the recipe.
-- [ ] Choose only the variant/color/size axes the component needs.
-- [ ] Reuse family constants and recipes.
-- [ ] Guarantee accessible naming and semantic state.
-- [ ] Implement the complete state triplet if state is exposed.
-- [ ] Preserve callback payloads.
-- [ ] Export component, styles, props and public unions explicitly.
-- [ ] Add compound slots through the namespace.
-- [ ] Add unit tests in `tests/components/**` covering the public contract and
-      observable behavior.
-- [ ] Run the component unit tests, type-check, lint and
-      `npm run audit:design-system:check`; the component must pass the audit.
-
-### Modifying a component
-
-- [ ] Identify the current public contract before reading internals.
-- [ ] Compare sibling components in the same family.
-- [ ] Preserve unrelated props and behavior.
-- [ ] Update types and runtime together.
-- [ ] Check controlled and uncontrolled modes.
-- [ ] Check callback arguments at runtime.
-- [ ] Check accessible name, role, state and relationships.
-- [ ] Check the package barrel and generated declaration.
-- [ ] Keep the associated story coherent with the public API; when a consumer
-      API (for example, props) changes, update the story.
-- [ ] Update only relevant tests and stories.
-- [ ] Run the component unit tests and `npm run audit:design-system:check`;
-      the changed component must pass the audit.
-
-### Adding a feature
-
-- [ ] Decide whether it belongs on the root, a slot or a Field wrapper.
-- [ ] Reuse an existing public name for an equivalent concept.
-- [ ] Avoid widening every family to support one local feature.
-- [ ] Add a new variant only for a distinct observable presentation.
-- [ ] Add a callback only for a distinct consumer event.
-- [ ] Keep Base UI/native names when passing through their API.
-- [ ] Document defaults in public types.
-
-### Reviewing accessibility
-
-- [ ] Can every interactive element obtain a name?
-- [ ] Are internal icons decorative?
-- [ ] Does every role requiring a name have one?
-- [ ] Do visual state props update ARIA state?
-- [ ] Are errors and help connected to controls?
-- [ ] Does keyboard behavior remain owned by native HTML or Base UI?
-- [ ] Are sentinel role values rendered consistently?
-
-### Reviewing TypeScript
-
-- [ ] No public `any` or broad string index.
-- [ ] No public import from `*.css.ts` and no `RecipeVariants` public base.
-- [ ] Root element and ref types match runtime.
-- [ ] Generic primitive inference is preserved.
-- [ ] Required runtime guarantees are required by types.
-- [ ] `Omit` keys are deliberately redefined.
-- [ ] Compound slots and prop types are discoverable.
-- [ ] No cast hides a callback or state mismatch.
-
-### Reviewing component stories
-
-- [ ] La story est une story de composant, pas une story MDX ou `overview`.
-- [ ] La description précède un playground unique et complet.
-- [ ] La page Docs rend le playground une seule fois, avec Controls.
-- [ ] Un seul tableau d'accessibilité suit les Controls ; la description n'en
-      contient pas de copie.
-- [ ] Chaque story exportée fournit son extrait `storySource`.
-- [ ] Les extraits ne contiennent ni alignement artificiel des props ni
-      scaffolding `render()`.
-- [ ] Chaque axe public partagé utilise sa story canonique (`Variants`,
-      `Colors`, `Sizes`, `FontSizes`, `FontWeights`, `Orientations`,
-      `Statuses`, `WithIcons` ou `States`) ; `Colors` est optionnelle pour les
-      composants `foundation`.
-- [ ] Pour un composant compound, le playground expose au moins un Control
-      catégorisé `Compound: <NomDuSlot>` par slot public, et chaque Control
-      modifie le rendu de son slot.
-- [ ] Aucun séparateur décoratif n'alourdit le fichier.
-
-## Guide de refactoring
-
-1. Freeze the public facts: props, values, defaults, callbacks, exports and DOM
-   semantics.
-2. Identify the nearest established pattern.
-3. Separate genuine inconsistency from family-specific behavior.
-4. State the consumer impact. If none is demonstrated, conserve.
-5. Choose the smallest target API.
-6. If props depend on a recipe, extract the public vocabulary into
-   `constants/` and `types/` before changing behavior.
-7. Change types and behavior in the same patch.
-8. Update barrels and generated declarations.
-9. Validate controlled/uncontrolled, callbacks and accessibility.
-10. Remove old names completely when no compatibility constraint exists.
-11. Do not expand the refactor into unrelated internal cleanup.
-
-For a cross-component standardization, migrate the outlier to the dominant
-pattern rather than rewriting the exemplary family.
+Le stylesheet et les constantes sont optionnels si aucun code ne les justifie.
+Ajouter `components/<slot-name>/`, `hooks/` ou `utils/` lorsqu'une responsabilité
+concrète apparaît, pas pour remplir un squelette.
+
+5. Définir le vocabulaire dans les types ou les constantes, puis le consommer
+   dans les styles. Ne pas déduire le contrat public d'une recette.
+6. Implémenter le rendu et documenter son usage en JSDoc anglais : valeurs
+   par défaut, nom accessible, événements, ref et contraintes observables.
+7. Relier le barrel individuel au barrel de catégorie, puis aux composants
+   et à l'entrée publique. N'exposer que les valeurs et types consommables.
+8. Livrer les tests et les stories dans le même changement.
+
+**Résultat attendu :** un consommateur peut importer, typer, rendre et utiliser
+le composant sans connaître ses fichiers privés.
+
+## Migrer un composant
+
+1. Inventorier props, unions, constantes publiques, style maps, slots, callbacks,
+   refs, valeurs par défaut et sorties DOM. Rechercher leurs usages avant
+   tout renommage ou déplacement.
+2. Séparer les changements d'organisation des changements observables.
+   Ajouter un test de caractérisation lorsqu'un comportement à préserver
+   n'est pas couvert ; pour un bug, ajouter une régression sur la cible attendue.
+3. Définir la cible avec les conventions v2. Signaler les ruptures nécessaires
+   sans ajouter automatiquement des alias dépréciés ou une compatibilité v1.
+4. Réorganiser l'unité et mettre à jour tous ses imports ensemble. Lorsqu'un
+   type dépend des styles, extraire d'abord son vocabulaire indépendant,
+   puis faire consommer ce vocabulaire aux props et à la recette.
+5. Adapter simultanément les usages internes, barrels, tests et stories.
+   Rechercher les anciens noms pour distinguer références oubliées et usages
+   volontairement conservés hors périmètre.
+6. Supprimer les anciens fichiers, imports et ressources devenus inutiles.
+   Ne pas retoucher les composants voisins sans dépendance réelle.
+7. Vérifier l'API publiée et pas seulement les imports directs de l'unité.
+
+**Résultat attendu :** la cible fonctionne de bout en bout, sans ancien chemin
+oublié ni divergence entre déclarations et rendu.
+
+## Intégrer Base UI
+
+1. Lire les exports et déclarations de la version installée pour la primitive
+   visée : props, génériques, callbacks, composition, refs, états et portails.
+2. Répartir explicitement les responsabilités : Base UI coordonne son
+   interaction ; notre wrapper ajoute présentation et comportement propre.
+   Ne pas reproduire sa gestion d'état dans un second contexte.
+3. Choisir une racine transparente, un sous-ensemble public volontaire ou un
+   wrapper de convenance. Préserver l'inférence et les arguments des callbacks
+   plutôt que recopier approximativement les signatures.
+4. Implémenter chaque slot ayant un contrat propre comme une unité typée.
+   Composer la racine avec `Object.assign` ; vérifier l'inférence des slots et,
+   pour une racine générique, de plusieurs types de valeurs.
+5. Vérifier le contrat réel de composition des événements. Appeler le handler
+   consommateur et respecter la sémantique d'annulation avant de déclencher
+   une action interne ; ne pas supposer que tous les handlers se composent pareil.
+6. Déterminer le conteneur du portail et la portée du thème. Vérifier le rendu
+   dans un sous-arbre thémé et les conséquences d'un montage dans le document.
+7. Exercer clavier, focus, fermeture, annulation et callbacks dans nos tests,
+   y compris les comportements ajoutés autour de la primitive.
+
+Si une combinaison de génériques ou de composition ne compile pas, examiner
+la signature upstream et simplifier l'adaptation. Ne pas dissimuler le problème
+derrière une assertion ou une signature copiée.
+
+## Faire évoluer les styles et le thème
+
+1. Examiner la primitive effectivement rendue et ses props visuelles. Affecter
+   chaque règle soit à une prop existante, soit au stylesheet lorsque sélecteurs,
+   états ou valeurs non couvertes l'exigent.
+2. Relever les tokens utilisés et vérifier leur existence dans les thèmes
+   fournis. Distinguer intention sémantique, clé de token et valeur CSS libre.
+3. Pour chaque traitement, vérifier le couple surface/texte ou icône et les
+   états repos, survol, pression, désactivation et focus applicables.
+4. Garder les règles spécifiques dans l'entrée de styles du composant.
+   Extraire une responsabilité partagée seulement lorsque plusieurs unités
+   l'utilisent réellement.
+5. Lorsqu'une prop remplace du CSS, vérifier qu'elle ne devient pas un style
+   inline qui neutralise les états. Examiner la cascade extraite, pas l'ordre
+   des chaînes de classes.
+6. Contrôler thèmes clair/sombre, portée locale, portails, contenu long,
+   conteneur étroit, zoom et réduction des animations selon le changement.
+7. Supprimer les classes et variantes inutilisées, puis vérifier l'extraction
+   CSS et les possibilités de surcharge du consommateur.
+
+**Résultat attendu :** le rendu et ses états restent cohérents sans styles
+globaux supplémentaires ni hypothèse sur une API de primitive inexistante.
+
+## Livrer les tests et les stories
+
+Commencer par les preuves nécessaires au contrat modifié :
+
+| Contrat | Preuve ciblée |
+| --- | --- |
+| Props, génériques, slots et refs | Vérifications de types, dont `expectTypeOf` si pertinent |
+| Attributs natifs et filtrage des props | Rendu DOM, attributs reçus et cible de ref |
+| Callback et annulation | Interaction utilisateur, arguments reçus et effet annulé |
+| État contrôlé/non contrôlé | Valeur initiale, interaction et mise à jour par le parent |
+| Compound et overlay | Relations ARIA, clavier, focus, fermeture et restauration |
+| Effet ou accès au DOM | Nettoyage, StrictMode, SSR et hydratation selon le risque |
+| Styles et personnalisation | Extraction CSS et revue visuelle des états concernés |
+
+1. Placer les tests sous `tests/` en miroir des sources. Réutiliser le setup
+   existant et vérifier ses limites avant de choisir environnement ou timers.
+2. Construire un Playground simple qui transmet les vrais args. Pour un
+   compound, isoler les args de démonstration et les affecter aux bons slots.
+3. Définir les contrôles à partir des types et défauts vérifiés. Utiliser une
+   sélection finie pour les unions ; documenter les props non éditables.
+4. Pour une story contrôlée, lire les args avec `useArgs`, appeler le callback
+   fourni et mettre à jour les args. Vérifier les changements depuis le
+   composant et depuis Controls, ainsi que la réinitialisation.
+5. Ajouter des exemples ciblés sur les axes utiles, sans produit cartésien.
+   Adapter les extraits consommateur à toutes les instances affichées.
+6. Vérifier noms accessibles, focus et cohérence visuelle dans Storybook.
+   Si cette revue ne peut pas être exécutée, l'indiquer ; le build ne la remplace pas.
+
+## Vérifier la distribution
+
+Activer ce parcours lorsqu'un changement touche l'API publiée, le packaging
+ou le chargement des styles.
+
+1. Suivre les exports depuis `src/index.ts` jusqu'à l'unité et comparer valeurs
+   JavaScript, types publiés et contrats de personnalisation.
+2. Construire le package et examiner les déclarations, imports CSS, ressources
+   et dépendances externes. Vérifier l'absence d'alias privés non résolus,
+   de tests et de stories dans les fichiers distribués.
+3. Pour un changement de bundling, réaliser un build consommateur sélectif à
+   partir du package construit, avec un composant utilisé et un autre inutilisé.
+   Examiner le JavaScript et le CSS produits pour prouver leur exclusion.
+4. Vérifier les entrées ESM, CommonJS et CSS déclarées par le package.
+   Ne pas utiliser un chemin de source privé comme substitut au test consommateur.
+5. Si l'intégration publique change, adapter la documentation consommateur et
+   expliciter la rupture ou l'étape d'intégration requise.
+
+## Exécuter les vérifications
+
+Lire les scripts de `package.json` et les configurations avant de lancer les
+commandes. Depuis la racine du dépôt, les commandes actuelles sont :
+
+| Vérification | Commande |
+| --- | --- |
+| Tests ciblés | `pnpm test --run <fichiers-de-test-concernés>` |
+| Types | `pnpm run typecheck` |
+| Lint | `pnpm run lint` |
+| Audit des composants | `pnpm run audit:design-system:check` |
+| Package | `pnpm run build:lib` |
+| Storybook | `pnpm run build-storybook` |
+
+Remplacer le sélecteur entre chevrons par les vrais fichiers ; ne pas l'exécuter
+littéralement. Regrouper les tests affectés dans une seule invocation sans watcher.
+
+- **Composant** : tests ciblés, types, lint, audit et build de librairie ;
+  ajouter le build Storybook si ses stories changent.
+- **Stories seules** : types, lint, build Storybook et revue interactive ciblée.
+- **Thème ou styles** : tests affectés, types, lint et build de librairie ;
+  compléter par une revue visuelle des thèmes et états concernés.
+- **Distribution** : types, lint, build de librairie et contrôles consommateur
+  correspondant aux formats ou au bundling modifiés.
+- **Documentation ou skill seuls** : relire contenu, métadonnées et éventuels
+  liens ; ni tests de composants ni build sans modification exécutable.
+
+Classer un échec comme régression introduite, problème préexistant ou
+contradiction entre outil et cible. Corriger les régressions ; rapporter les
+autres avec leur preuve, sans désactiver une règle ni élargir le périmètre.
+
+## Clore l'intervention
+
+Relire le diff et vérifier que chaque changement de contrat possède sa preuve,
+que les usages affectés ont été adaptés et qu'aucun fichier temporaire ne reste.
+Résumer le résultat et les ruptures éventuelles. Mentionner explicitement les
+échecs, limites et vérifications nécessaires non exécutées ; ne pas présenter
+une revue visuelle ou un build consommateur comme effectué sans l'avoir réalisé.
