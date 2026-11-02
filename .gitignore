@@ -10,3 +10,4 @@ docs/audit/
 .agents/*
 !.agents/skills/
 !.agents/skills/**
+*.iml
