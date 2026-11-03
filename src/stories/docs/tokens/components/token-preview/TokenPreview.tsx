@@ -1,8 +1,5 @@
 import type { CSSProperties, ReactElement } from 'react'
 
-import { Box } from '@components/layout/box'
-import { Button } from '@components/actions/button'
-import { vars } from '@theme'
 import { TOKEN_PREVIEW_STYLES } from '@stories/docs/tokens/components/token-preview/TokenPreview.css'
 import type { TokenPreviewProps } from '@stories/docs/tokens/components/token-preview/types'
 
@@ -14,37 +11,79 @@ import type { TokenPreviewProps } from '@stories/docs/tokens/components/token-pr
  * @example <TokenPreview category="radius" value="0.5rem" />
  */
 const TokenPreview = ({ category, value }: TokenPreviewProps): ReactElement => {
+    if (category === 'duration' || category === 'easing') {
+        const transition: CSSProperties = category === 'duration'
+            ? { transitionDuration: value }
+            : { transitionTimingFunction: value }
+
+        return (
+            <button
+                aria-label={`Preview ${category}: ${value}`}
+                className={TOKEN_PREVIEW_STYLES.motion}
+                type={'button'}
+            >
+                <span>Hover / focus</span>
+                <span
+                    aria-hidden={'true'}
+                    className={TOKEN_PREVIEW_STYLES.track}
+                >
+                    <span
+                        className={TOKEN_PREVIEW_STYLES.indicator}
+                        style={transition}
+                    />
+                </span>
+            </button>
+        )
+    }
+
+    if (category === 'space') {
+        return (
+            <div
+                aria-hidden={'true'}
+                className={TOKEN_PREVIEW_STYLES.ruler}
+            >
+                <div
+                    className={TOKEN_PREVIEW_STYLES.bar}
+                    style={{ width: value }}
+                />
+            </div>
+        )
+    }
+
+    if (category === 'zIndex') {
+        return (
+            <div
+                aria-hidden={'true'}
+                className={TOKEN_PREVIEW_STYLES.stack}
+            >
+                <span className={TOKEN_PREVIEW_STYLES.backLayer} />
+                <span
+                    className={TOKEN_PREVIEW_STYLES.frontLayer}
+                    style={{ zIndex: Number(value) }}
+                />
+            </div>
+        )
+    }
+
     const preview: CSSProperties = {}
-    let text = 'Aa'
+    let text = 'Aa 0123'
+    let className = TOKEN_PREVIEW_STYLES.text
 
     switch (category) {
-        case 'space':
-            preview.width = value
-            preview.height = vars.space.md
-            preview.backgroundColor = vars.color.primary.main
-            text = ''
-            break
         case 'radius':
             preview.borderRadius = value
-            preview.backgroundColor = vars.color.primary.subtle
-            preview.border = `1px solid ${vars.color.primary.border}`
+            className = TOKEN_PREVIEW_STYLES.radius
+            text = ''
             break
         case 'shadow':
             preview.boxShadow = value
+            className = TOKEN_PREVIEW_STYLES.surface
+            text = ''
             break
         case 'dropShadow':
             preview.filter = value
-            break
-        case 'duration':
-            preview.transitionDuration = value
-            text = 'Focus or hover'
-            break
-        case 'easing':
-            preview.transitionTimingFunction = value
-            text = 'Focus or hover'
-            break
-        case 'zIndex':
-            text = `Layer ${value}`
+            className = TOKEN_PREVIEW_STYLES.surface
+            text = ''
             break
         case 'fontFamily':
             preview.fontFamily = value
@@ -52,43 +91,21 @@ const TokenPreview = ({ category, value }: TokenPreviewProps): ReactElement => {
             break
         case 'fontSize':
             preview.fontSize = value
+            text = 'Aa'
             break
         case 'fontWeight':
             preview.fontWeight = Number(value)
             break
-        case 'lineHeight':
-            preview.lineHeight = value
-            text = 'A little room to read. A little room to breathe.'
-            break
-        case 'letterSpacing':
-            preview.letterSpacing = value
-            text = 'Choco Vanille'
-            break
     }
 
-    const isMotion = category === 'duration' || category === 'easing'
-
     return (
-        <Box
-            backgroundColor={vars.color.surface.main}
-            borderRadius={'md'}
-            className={TOKEN_PREVIEW_STYLES.root}
-            minHeight={'5rem'}
-            overflow={'auto'}
-            padding={'md'}
+        <div
+            aria-hidden={'true'}
+            className={className}
+            style={preview}
         >
-            {isMotion ? (
-                <Button
-                    aria-label={`Preview ${category}: ${value}`}
-                    className={TOKEN_PREVIEW_STYLES.motion}
-                    label={text}
-                    style={preview}
-                    variant={'outlined'}
-                />
-            ) : (
-                <div style={preview}>{text}</div>
-            )}
-        </Box>
+            {text}
+        </div>
     )
 }
 

@@ -59,7 +59,7 @@ export const DATE_PICKER_STYLES = {
             },
             '&[data-focused]': {
                 backgroundColor: vars.color.surface.muted,
-                borderRadius: vars.radius.xs,
+                borderRadius: vars.radius[4],
             },
         },
     }),

@@ -11,6 +11,8 @@ import { useState } from 'react'
 import type { TextSizeMenuProps } from '@components/forms/rich-text-editor/components/text-appearance-group/types/TextSizeMenu.props.ts'
 import { TEXT_SIZE_MENU_STYLES } from '@components/forms/rich-text-editor/components/text-appearance-group/styles/TextSizeMenu.css.ts'
 
+const FONT_SIZE_KEYS = Object.keys(RICH_TEXT_FONT_SIZES).map(Number) as RichTextFontSize[]
+
 /**
  * Font-size picker toolbar control for `TextAppearanceGroup`. Renders a
  * `DropdownMenu` showing available rich-text font sizes. Use
@@ -26,14 +28,14 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
     }
 
     const selectedFontSize =
-    editor.getAttributes('textStyle').fontSize ?? RICH_TEXT_FONT_SIZES.md
-    const selectedFontSizeKey = (
-    Object.keys(RICH_TEXT_FONT_SIZES) as RichTextFontSize[]
-    ).find((fontSize) => RICH_TEXT_FONT_SIZES[fontSize] === selectedFontSize)
+    editor.getAttributes('textStyle').fontSize ?? RICH_TEXT_FONT_SIZES[16]
+    const selectedFontSizeKey = FONT_SIZE_KEYS.find(
+        (fontSize) => RICH_TEXT_FONT_SIZES[fontSize] === selectedFontSize,
+    )
 
     const selectedFontSizeLabel = selectedFontSizeKey
         ? RICH_TEXT_FONT_SIZE_LABELS[selectedFontSizeKey]
-        : RICH_TEXT_FONT_SIZE_LABELS.md
+        : RICH_TEXT_FONT_SIZE_LABELS[16]
 
     return (
         <DropdownMenu
@@ -74,7 +76,7 @@ const TextSizeMenu = ({ presentation = 'select' }: TextSizeMenuProps) => {
                 align={'start'}
                 width={'6rem'}
             >
-                {(Object.keys(RICH_TEXT_FONT_SIZES) as RichTextFontSize[]).map(
+                {FONT_SIZE_KEYS.map(
                     (fontSize) => (
                         <DropdownMenu.Item
                             key={fontSize}

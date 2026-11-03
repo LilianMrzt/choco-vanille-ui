@@ -4,29 +4,83 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
+const MARGIN_VALUES = {
+    auto: 'auto',
+    ...SPACE_VARIANTS,
+} as const
+
 const marginVariants = {
-    auto: { margin: 'auto' },
-    none: { margin: SPACE_VARIANTS.none },
-    px: { margin: SPACE_VARIANTS.px },
-    xxs: { margin: SPACE_VARIANTS.xxs },
-    xs: { margin: SPACE_VARIANTS.xs },
-    xs2: { margin: SPACE_VARIANTS.xs2 },
-    sm: { margin: SPACE_VARIANTS.sm },
-    sm2: { margin: SPACE_VARIANTS.sm2 },
-    md: { margin: SPACE_VARIANTS.md },
-    md2: { margin: SPACE_VARIANTS.md2 },
-    lg: { margin: SPACE_VARIANTS.lg },
-    lg2: { margin: SPACE_VARIANTS.lg2 },
-    xl: { margin: SPACE_VARIANTS.xl },
-    '2xl': { margin: SPACE_VARIANTS['2xl'] },
-    '3xl': { margin: SPACE_VARIANTS['3xl'] },
-    '4xl': { margin: SPACE_VARIANTS['4xl'] },
-    '5xl': { margin: SPACE_VARIANTS['5xl'] },
+    'auto': {
+        margin: MARGIN_VALUES['auto'],
+    },
+    0: {
+        margin: MARGIN_VALUES[0],
+    },
+    1: {
+        margin: MARGIN_VALUES[1],
+    },
+    2: {
+        margin: MARGIN_VALUES[2],
+    },
+    4: {
+        margin: MARGIN_VALUES[4],
+    },
+    6: {
+        margin: MARGIN_VALUES[6],
+    },
+    8: {
+        margin: MARGIN_VALUES[8],
+    },
+    10: {
+        margin: MARGIN_VALUES[10],
+    },
+    12: {
+        margin: MARGIN_VALUES[12],
+    },
+    14: {
+        margin: MARGIN_VALUES[14],
+    },
+    16: {
+        margin: MARGIN_VALUES[16],
+    },
+    18: {
+        margin: MARGIN_VALUES[18],
+    },
+    20: {
+        margin: MARGIN_VALUES[20],
+    },
+    24: {
+        margin: MARGIN_VALUES[24],
+    },
+    28: {
+        margin: MARGIN_VALUES[28],
+    },
+    32: {
+        margin: MARGIN_VALUES[32],
+    },
+    48: {
+        margin: MARGIN_VALUES[48],
+    },
+    64: {
+        margin: MARGIN_VALUES[64],
+    },
+    80: {
+        margin: MARGIN_VALUES[80],
+    },
+    96: {
+        margin: MARGIN_VALUES[96],
+    },
+    112: {
+        margin: MARGIN_VALUES[112],
+    },
+    128: {
+        margin: MARGIN_VALUES[128],
+    },
 } as const
 
 const headingStyles = {
-    scrollMarginTop: vars.space['3xl'],
-    lineHeight: vars.lineHeight.tight,
+    scrollMarginTop: vars.space[48],
+    lineHeight: '1.25',
     textWrap: 'balance' as const,
 }
 
@@ -36,56 +90,56 @@ export const TYPOGRAPHY_STYLES = {
             margin: 0,
             transition: `opacity ${vars.duration.normal} ${vars.easing.standard}`,
             fontFamily: vars.fontFamily.sans,
-            lineHeight: vars.lineHeight.normal,
+            lineHeight: '1.5',
         },
 
         variants: {
             variant: {
                 h1: {
                     ...headingStyles,
-                    fontSize: vars.fontSize['3xl'],
+                    fontSize: vars.fontSize[30],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 h2: {
                     ...headingStyles,
-                    fontSize: vars.fontSize['2xl'],
+                    fontSize: vars.fontSize[24],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 h3: {
                     ...headingStyles,
-                    fontSize: vars.fontSize.xl,
+                    fontSize: vars.fontSize[20],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 h4: {
                     ...headingStyles,
-                    fontSize: vars.fontSize.lg,
+                    fontSize: vars.fontSize[18],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 h5: {
                     ...headingStyles,
-                    fontSize: vars.fontSize.md,
+                    fontSize: vars.fontSize[16],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 h6: {
                     ...headingStyles,
-                    fontSize: vars.fontSize.md,
+                    fontSize: vars.fontSize[16],
                     fontWeight: vars.fontWeight.semibold,
-                    letterSpacing: vars.letterSpacing.tight,
+                    letterSpacing: '-0.025em',
                 },
                 p: {
-                    fontSize: vars.fontSize.md,
-                    lineHeight: vars.lineHeight.loose,
+                    fontSize: vars.fontSize[16],
+                    lineHeight: '1.75',
                 },
                 span: {},
                 label: {
-                    fontSize: vars.fontSize.md,
+                    fontSize: vars.fontSize[16],
                     fontWeight: vars.fontWeight.medium,
-                    lineHeight: vars.lineHeight.normal,
+                    lineHeight: '1.5',
                     color: vars.color.text.primary,
                     selectors: {
                         '&[data-disabled]': {
@@ -95,8 +149,8 @@ export const TYPOGRAPHY_STYLES = {
                     },
                 },
                 small: {
-                    fontSize: vars.fontSize.sm,
-                    lineHeight: vars.lineHeight.none,
+                    fontSize: vars.fontSize[14],
+                    lineHeight: '1',
                 },
                 strong: {
                     fontWeight: vars.fontWeight.bold,
@@ -106,41 +160,41 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 blockquote: {
                     borderLeft: `2px solid ${vars.color.border.main}`,
-                    paddingLeft: vars.space.xl,
+                    paddingLeft: vars.space[24],
                     fontStyle: 'italic',
                     color: vars.color.surface.mutedForeground,
                 },
                 pre: {
-                    borderRadius: vars.radius.md,
+                    borderRadius: vars.radius[8],
                     backgroundColor: vars.color.surface.muted,
-                    padding: vars.space.lg,
+                    padding: vars.space[16],
                     fontFamily: vars.fontFamily.mono,
-                    fontSize: vars.fontSize.sm,
+                    fontSize: vars.fontSize[14],
                     overflowX: 'auto',
                 },
                 code: {
-                    borderRadius: vars.radius.sm,
+                    borderRadius: vars.radius[6],
                     backgroundColor: vars.color.surface.muted,
                     paddingInline: '0.3rem',
                     paddingBlock: '0.2rem',
                     fontFamily: vars.fontFamily.mono,
-                    fontSize: vars.fontSize.sm,
+                    fontSize: vars.fontSize[14],
                     fontWeight: vars.fontWeight.semibold,
                 },
                 kbd: {
-                    borderRadius: vars.radius.sm,
+                    borderRadius: vars.radius[6],
                     border: `1px solid ${vars.color.border.main}`,
                     backgroundColor: vars.color.surface.muted,
-                    paddingInline: vars.space.sm,
-                    paddingBlock: vars.space.xs,
+                    paddingInline: vars.space[8],
+                    paddingBlock: vars.space[4],
                     fontFamily: vars.fontFamily.mono,
-                    fontSize: vars.fontSize.xs,
+                    fontSize: vars.fontSize[12],
                     fontWeight: vars.fontWeight.semibold,
                     boxShadow: vars.shadow.sm,
                 },
                 samp: {
                     fontFamily: vars.fontFamily.mono,
-                    fontSize: vars.fontSize.sm,
+                    fontSize: vars.fontSize[14],
                 },
                 abbr: {
                     textDecoration: 'underline dotted',
@@ -151,10 +205,10 @@ export const TYPOGRAPHY_STYLES = {
                     color: vars.color.surface.mutedForeground,
                 },
                 mark: {
-                    borderRadius: vars.radius.sm,
+                    borderRadius: vars.radius[6],
                     backgroundColor: vars.color.highlight.main,
                     color: vars.color.highlight.foreground,
-                    paddingInline: vars.space.xs,
+                    paddingInline: vars.space[4],
                 },
                 del: {
                     textDecoration: 'line-through',
@@ -164,27 +218,52 @@ export const TYPOGRAPHY_STYLES = {
                     textDecoration: 'underline',
                 },
                 sub: {
-                    fontSize: vars.fontSize.xs,
+                    fontSize: vars.fontSize[12],
                     verticalAlign: 'sub',
                 },
                 sup: {
-                    fontSize: vars.fontSize.xs,
+                    fontSize: vars.fontSize[12],
                     verticalAlign: 'super',
                 },
             },
 
             fontSize: {
-                '2xs': { fontSize: vars.fontSize['2xs'] },
-                xs: { fontSize: vars.fontSize.xs },
-                sm: { fontSize: vars.fontSize.sm },
-                md: { fontSize: vars.fontSize.md },
-                lg: { fontSize: vars.fontSize.lg },
-                xl: { fontSize: vars.fontSize.xl },
-                '2xl': { fontSize: vars.fontSize['2xl'] },
-                '3xl': { fontSize: vars.fontSize['3xl'] },
-                '4xl': { fontSize: vars.fontSize['4xl'] },
-                '5xl': { fontSize: vars.fontSize['5xl'] },
-                '6xl': { fontSize: vars.fontSize['6xl'] },
+                10: {
+                    fontSize: vars.fontSize[10],
+                },
+                12: {
+                    fontSize: vars.fontSize[12],
+                },
+                14: {
+                    fontSize: vars.fontSize[14],
+                },
+                16: {
+                    fontSize: vars.fontSize[16],
+                },
+                18: {
+                    fontSize: vars.fontSize[18],
+                },
+                20: {
+                    fontSize: vars.fontSize[20],
+                },
+                24: {
+                    fontSize: vars.fontSize[24],
+                },
+                30: {
+                    fontSize: vars.fontSize[30],
+                },
+                36: {
+                    fontSize: vars.fontSize[36],
+                },
+                48: {
+                    fontSize: vars.fontSize[48],
+                },
+                60: {
+                    fontSize: vars.fontSize[60],
+                },
+                72: {
+                    fontSize: vars.fontSize[72],
+                },
             },
 
             fontWeight: {

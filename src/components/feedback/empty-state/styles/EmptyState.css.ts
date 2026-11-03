@@ -6,13 +6,13 @@ export const EMPTY_STATE_STYLES = {
     root: style({
         alignItems: 'center',
         justifyContent: 'center',
-        padding: vars.space['3xl'],
+        padding: vars.space[48],
         textAlign: 'center',
     }),
     content: style({
         maxWidth: '32rem',
     }),
     action: style({
-        marginTop: vars.space.md,
+        marginTop: vars.space[12],
     }),
 }

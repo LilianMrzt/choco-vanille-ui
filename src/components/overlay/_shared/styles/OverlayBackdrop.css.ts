@@ -8,7 +8,7 @@ export const OVERLAY_BACKDROP_STYLES = {
         position: 'fixed',
         inset: 0,
         zIndex: vars.zIndex.overlay,
-        padding: vars.space.md,
+        padding: vars.space[12],
         backgroundColor: vars.color.overlay,
         selectors: {
             '&[data-open]': {

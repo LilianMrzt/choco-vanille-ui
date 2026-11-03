@@ -24,8 +24,6 @@ import {
     fontFamilyRows,
     fontSizeRows,
     fontWeightRows,
-    lineHeightRows,
-    letterSpacingRows,
     zIndexRows,
     durationRows,
     easingRows,
@@ -41,8 +39,6 @@ const sections: readonly VariableSection[] = [
     { key: 'fontFamily', title: 'Font families', rows: fontFamilyRows },
     { key: 'fontSize', title: 'Font sizes', rows: fontSizeRows },
     { key: 'fontWeight', title: 'Font weights', rows: fontWeightRows },
-    { key: 'lineHeight', title: 'Line heights', rows: lineHeightRows },
-    { key: 'letterSpacing', title: 'Letter spacing', rows: letterSpacingRows },
     { key: 'zIndex', title: 'Stacking order', rows: zIndexRows },
     { key: 'duration', title: 'Durations', rows: durationRows },
     { key: 'easing', title: 'Easing', rows: easingRows },
@@ -84,8 +80,8 @@ const CssVariableReference = ({ theme, category, search }: CssVariableReferenceA
             >
                 <Box
                     backgroundColor={vars.color.surface.muted}
-                    borderRadius={'lg'}
-                    padding={'lg'}
+                    borderRadius={10}
+                    padding={16}
                 >
                     <Typography>
                         {'Token paths become CSS names by joining segments with a hyphen, preserving case: '}
@@ -98,7 +94,7 @@ const CssVariableReference = ({ theme, category, search }: CssVariableReferenceA
                 <Flex
                     as={'section'}
                     flexDirection={'column'}
-                    gap={'md'}
+                    gap={12}
                 >
                     <Typography variant={'h2'}>{'Use in your project'}</Typography>
                     <Typography color={vars.color.text.secondary}>
@@ -106,7 +102,7 @@ const CssVariableReference = ({ theme, category, search }: CssVariableReferenceA
                     </Typography>
                     <Flex
                         flexWrap={'wrap'}
-                        gap={'sm'}
+                        gap={8}
                     >
                         {exports.map(({ label, build }) => (
                             <CopyButton
@@ -124,7 +120,7 @@ const CssVariableReference = ({ theme, category, search }: CssVariableReferenceA
                     <Flex
                         as={'section'}
                         flexDirection={'column'}
-                        gap={'md'}
+                        gap={12}
                         key={key}
                     >
                         <Typography variant={'h2'}>{title}</Typography>
@@ -159,7 +155,7 @@ const meta = {
         },
         search: {
             control: 'text',
-            description: 'Case-insensitive filter on CSS variable names, such as primary or --space-md.',
+            description: 'Case-insensitive filter on CSS variable names, such as primary or --space-12.',
             table: { category: 'Demonstration' },
         },
     },

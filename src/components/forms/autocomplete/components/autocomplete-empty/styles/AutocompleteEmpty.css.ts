@@ -7,10 +7,10 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  */
 export const AUTOCOMPLETE_EMPTY_STYLES = {
     root: style({
-        paddingBlock: vars.space.sm,
-        paddingInline: vars.space.md,
-        fontSize: vars.fontSize.sm,
-        lineHeight: vars.lineHeight.normal,
+        paddingBlock: vars.space[8],
+        paddingInline: vars.space[12],
+        fontSize: vars.fontSize[14],
+        lineHeight: '1.5',
         fontFamily: vars.fontFamily.sans,
         color: vars.color.text.secondary,
     }),

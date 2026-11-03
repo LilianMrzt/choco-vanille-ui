@@ -22,7 +22,7 @@ export const CHECKBOX_VISUAL_STYLES = {
         flexShrink: 0,
         width: '1rem',
         height: '1rem',
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         border: `1.5px solid ${vars.color.border.main}`,
         padding: 0,
         display: 'flex',

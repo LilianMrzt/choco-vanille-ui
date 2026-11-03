@@ -6,17 +6,17 @@ export const TEXT_COLOR_MENU_STYLES = {
     colorPicker: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
     paletteGrid: style({
         display: 'grid',
         gridTemplateColumns: 'repeat(7, 1.75rem)',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
     paletteColumn: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
     colorSwatch: style({
         width: '1.75rem',
@@ -26,7 +26,7 @@ export const TEXT_COLOR_MENU_STYLES = {
         justifyContent: 'center',
         position: 'relative',
         border: `2px solid ${vars.color.surface.main}`,
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         cursor: 'pointer',
         selectors: {
             '&:focus-visible': {

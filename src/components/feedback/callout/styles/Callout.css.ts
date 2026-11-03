@@ -6,8 +6,8 @@ export const CALLOUT_STYLES = {
     recipe: recipe({
         base: {
             position: 'relative',
-            padding: vars.space.md,
-            borderRadius: vars.radius.sm,
+            padding: vars.space[12],
+            borderRadius: vars.radius[6],
             borderWidth: '1px',
             borderStyle: 'solid',
         },
@@ -15,7 +15,7 @@ export const CALLOUT_STYLES = {
             hasAction: {
                 true: {
                     // Reserves room so the title/description never run under Callout.Action.
-                    paddingRight: vars.space['3xl'],
+                    paddingRight: vars.space[48],
                 },
                 false: {},
             },

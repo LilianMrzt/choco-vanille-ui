@@ -6,7 +6,7 @@ export const TOOLBAR_GROUP_STYLES = {
     root: style({
         display: 'flex',
         alignItems: 'center',
-        gap: vars.space.xs,
-        paddingInline: vars.space.xs,
+        gap: vars.space[4],
+        paddingInline: vars.space[4],
     }),
 }

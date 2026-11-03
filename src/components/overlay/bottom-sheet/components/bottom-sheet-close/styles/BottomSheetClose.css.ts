@@ -10,7 +10,7 @@ export const BOTTOM_SHEET_CLOSE_STYLES = {
             // Separates a footer close action from the rows above it, without
             // affecting a close button placed elsewhere (e.g. in the header).
             [`${BOTTOM_SHEET_STYLES.content} > &:not(:first-child)`]: {
-                marginTop: vars.space.md,
+                marginTop: vars.space[12],
             },
         },
     }),

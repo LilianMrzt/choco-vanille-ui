@@ -22,7 +22,7 @@ const BreadcrumbsItem: FC<BreadcrumbsItemProps> = memo(({
             <Typography
                 as={'span'}
                 variant={'span'}
-                fontSize={'md'}
+                fontSize={16}
                 className={current ? BREADCRUMBS_STYLES.current : undefined}
                 aria-current={current ? 'page' : undefined}
             >

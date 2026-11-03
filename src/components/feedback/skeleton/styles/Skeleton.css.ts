@@ -16,11 +16,11 @@ export const SKELETON_STYLES = {
                     flexShrink: 0,
                 },
                 rectangular: {
-                    borderRadius: vars.radius.none,
+                    borderRadius: vars.radius[0],
                     flexShrink: 0,
                 },
                 rounded: {
-                    borderRadius: vars.radius.sm,
+                    borderRadius: vars.radius[6],
                     flexShrink: 0,
                 },
             },

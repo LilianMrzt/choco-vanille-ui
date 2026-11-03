@@ -13,9 +13,9 @@ import { COMMAND_LIST_STYLES } from '@components/overlay/command/components/comm
 export const COMMAND_EMPTY_STYLES = {
     root: style({
         display: 'none',
-        padding: vars.space.lg,
+        padding: vars.space[16],
         textAlign: 'center',
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         fontFamily: vars.fontFamily.sans,
         color: vars.color.surface.mutedForeground,
 

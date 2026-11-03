@@ -9,7 +9,7 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: TextAreaSize[] = ['sm', 'md', 'lg']
-const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
+const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -95,7 +95,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         label: 'Description',
         placeholder: 'Tell us moreâ€¦',
         size: 'md',
-        fontSize: 'md',
+        fontSize: 16,
         rows: 4,
         minRows: 2,
         maxRows: 6,
@@ -168,17 +168,18 @@ export const FontSizes: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<TextArea label="2xs" fontSize="2xs" />
-<TextArea label="xs" fontSize="xs" />
-<TextArea label="sm" fontSize="sm" />
-<TextArea label="md" fontSize="md" />
-<TextArea label="lg" fontSize="lg" />
-<TextArea label="xl" fontSize="xl" />
-<TextArea label="2xl" fontSize="2xl" />
-<TextArea label="3xl" fontSize="3xl" />
-<TextArea label="4xl" fontSize="4xl" />
-<TextArea label="5xl" fontSize="5xl" />
-<TextArea label="6xl" fontSize="6xl" />`),
+<TextArea label="10" fontSize={10} />
+<TextArea label="12" fontSize={12} />
+<TextArea label="14" fontSize={14} />
+<TextArea label="16" fontSize={16} />
+<TextArea label="18" fontSize={18} />
+<TextArea label="20" fontSize={20} />
+<TextArea label="24" fontSize={24} />
+<TextArea label="30" fontSize={30} />
+<TextArea label="36" fontSize={36} />
+<TextArea label="48" fontSize={48} />
+<TextArea label="60" fontSize={60} />
+<TextArea label="72" fontSize={72} />`),
         },
     },
     render: () => (
@@ -186,7 +187,7 @@ export const FontSizes: Story = {
             {FONT_SIZES.map((fontSize) => (
                 <TextArea
                     key={fontSize}
-                    label={fontSize}
+                    label={String(fontSize)}
                     fontSize={fontSize}
                 />
             ))}

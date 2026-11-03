@@ -8,13 +8,13 @@ export const TABLE_HEAD_STYLES = {
     recipe: recipe({
         base: {
             height: '2.75rem',
-            paddingInline: vars.space.lg,
+            paddingInline: vars.space[16],
             paddingBlock: TABLE_STYLES.cellPaddingBlockVar,
             verticalAlign: 'middle',
-            fontSize: vars.fontSize.xs,
+            fontSize: vars.fontSize[12],
             fontWeight: vars.fontWeight.medium,
             color: vars.color.surface.mutedForeground,
-            letterSpacing: vars.letterSpacing.wide,
+            letterSpacing: '0.025em',
             whiteSpace: 'nowrap',
         },
         variants: {
@@ -38,7 +38,7 @@ export const TABLE_HEAD_STYLES = {
             '&:focus-visible': {
                 outline: `2px solid ${vars.color.focusRing}`,
                 outlineOffset: '2px',
-                borderRadius: vars.radius.xs,
+                borderRadius: vars.radius[4],
             },
         },
     }),
@@ -47,7 +47,7 @@ export const TABLE_HEAD_STYLES = {
     sortWrapper: style({
         display: 'inline-flex',
         alignItems: 'center',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
 
     /** Sort icon at rest — muted (used for `sortDirection="none"`). */

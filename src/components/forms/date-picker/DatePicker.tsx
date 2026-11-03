@@ -52,7 +52,7 @@ const DatePicker = memo(
         showRequiredIndicator = true,
         disabled,
         size = 'md',
-        fontSize = 'md',
+        fontSize = 16,
         width,
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
@@ -114,7 +114,7 @@ const DatePicker = memo(
         return (
             <Flex
                 flexDirection={'column'}
-                gap={'xs'}
+                gap={4}
                 width={'100%'}
                 alignItems={'start'}
                 style={width !== undefined ? { width } : undefined}
@@ -137,7 +137,7 @@ const DatePicker = memo(
                     <Flex
                         position={'relative'}
                         width={'100%'}
-                        gap={'none'}
+                        gap={0}
                     >
                         <DateField
                             className={DATE_PICKER_STYLES.root}
@@ -199,7 +199,7 @@ const DatePicker = memo(
                     <Popover.Content
                         side={'bottom'}
                         align={'end'}
-                        padding={'none'}
+                        padding={0}
                         aria-label={calendarAriaLabel}
                     >
                         <Calendar

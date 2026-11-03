@@ -31,14 +31,14 @@ const Switch: FC<SwitchProps> = memo(({ label, helperText, error, id, className,
             as={'span'}
             inline
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             alignItems={'start'}
             className={cn(SWITCH_STYLES.wrapper, disabled && SWITCH_STYLES.wrapperDisabled)}
         >
             <Flex
                 as={'span'}
                 inline
-                gap={'sm'}
+                gap={8}
                 alignItems={'center'}
             >
                 <BaseSwitch.Root

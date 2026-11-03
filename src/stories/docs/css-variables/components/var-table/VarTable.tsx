@@ -11,7 +11,7 @@ const ValueCell = ({ value, showSwatch }: Readonly<{ value: string; showSwatch?:
     <td className={td}>
         <Flex
             alignItems={'center'}
-            gap={'xs'}
+            gap={4}
         >
             {showSwatch && (
                 <span
@@ -22,7 +22,7 @@ const ValueCell = ({ value, showSwatch }: Readonly<{ value: string; showSwatch?:
             <Typography
                 as={'span'}
                 variant={'span'}
-                fontSize={'xs'}
+                fontSize={12}
                 className={valueText}
                 title={value}
             >
@@ -62,7 +62,7 @@ const VarTable = ({ caption, rows, showSwatch }: VarTableProps): ReactElement =>
                             <Typography
                                 as={'span'}
                                 variant={'span'}
-                                fontSize={'sm'}
+                                fontSize={14}
                                 fontWeight={'semibold'}
                             >
                                 {'Variable'}
@@ -75,7 +75,7 @@ const VarTable = ({ caption, rows, showSwatch }: VarTableProps): ReactElement =>
                             <Typography
                                 as={'span'}
                                 variant={'span'}
-                                fontSize={'sm'}
+                                fontSize={14}
                                 fontWeight={'semibold'}
                             >
                                 {hasThemed ? 'Light' : 'Value'}
@@ -89,7 +89,7 @@ const VarTable = ({ caption, rows, showSwatch }: VarTableProps): ReactElement =>
                                 <Typography
                                     as={'span'}
                                     variant={'span'}
-                                    fontSize={'sm'}
+                                    fontSize={14}
                                     fontWeight={'semibold'}
                                 >
                                     {'Dark'}

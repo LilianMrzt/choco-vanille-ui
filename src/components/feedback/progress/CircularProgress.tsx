@@ -47,7 +47,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
             flexDirection={'column'}
             alignItems={'center'}
             justifyContent={'center'}
-            gap={'xs'}
+            gap={4}
             className={className}
             {...props}
         >
@@ -100,7 +100,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                         <Typography
                             as={'span'}
                             variant={'span'}
-                            fontSize={size === 'sm' ? 'xs' : size === 'lg' ? 'lg' : 'sm'}
+                            fontSize={size === 'sm' ? 12 : size === 'lg' ? 18 : 14}
                             fontWeight={'semibold'}
                             color={vars.color.text.primary}
                         >
@@ -113,7 +113,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                 <Typography
                     as={'span'}
                     variant={'span'}
-                    fontSize={'sm'}
+                    fontSize={14}
                     color={vars.color.text.secondary}
                 >
                     {label}

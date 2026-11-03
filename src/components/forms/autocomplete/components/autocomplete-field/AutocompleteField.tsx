@@ -35,7 +35,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
     startIcon,
     placeholder,
     size = 'md',
-    fontSize = 'md',
+    fontSize = 16,
     width,
     disabled,
     required,
@@ -70,7 +70,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
     return (
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
@@ -89,7 +89,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = memo(({
             <Flex
                 position={'relative'}
                 width={'100%'}
-                gap={'none'}
+                gap={0}
             >
                 {startIcon && (
                     <TextFieldStartIcon

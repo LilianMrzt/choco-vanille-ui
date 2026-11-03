@@ -4,25 +4,25 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const CALENDAR_ROOT_STYLES = {
     root: style({
         display: 'inline-block',
-        padding: vars.space.lg,
+        padding: vars.space[16],
         backgroundColor: vars.color.surface.main,
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius[10],
         border: `1px solid ${vars.color.border.main}`,
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         color: vars.color.text.primary,
     }),
 
     months: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.lg,
+        gap: vars.space[16],
     }),
 
     month: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.md,
+        gap: vars.space[12],
     }),
 
     calendarContent: style({

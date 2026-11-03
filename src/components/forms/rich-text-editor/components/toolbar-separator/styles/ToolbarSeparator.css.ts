@@ -6,7 +6,7 @@ export const TOOLBAR_SEPARATOR_STYLES = {
     root: style({
         width: '1px',
         alignSelf: 'stretch',
-        marginBlock: vars.space.xs,
+        marginBlock: vars.space[4],
         backgroundColor: vars.color.border.main,
     }),
 }

@@ -52,6 +52,64 @@ describe('reference stories', () => {
         }
     })
 
+    it('groups comparable tokens in named lists with working family anchors', () => {
+        const { rerender } = render(<TokenReference theme="light" category="all" />)
+        const navigation = screen.getByRole('navigation', { name: 'Token families' })
+        const spacing = screen.getByRole('region', { name: 'Spacing' })
+        const list = within(spacing).getByRole('list', { name: 'Spacing tokens' })
+        const target = within(navigation).getByRole('link', { name: 'Spacing' }).getAttribute('href')
+
+        expect(within(list).getAllByRole('listitem')).toHaveLength(Object.keys(vars.space).length)
+        expect(target).toBe(`#${within(spacing).getByRole('heading', { name: 'Spacing' }).id}`)
+        expect(within(list).getByText('vars.space[16]')).toBeTruthy()
+        expect(within(list).getByText('1rem')).toBeTruthy()
+
+        rerender(<TokenReference theme="dark" category="space" />)
+        expect(screen.queryByRole('navigation', { name: 'Token families' })).toBeNull()
+        expect(screen.getAllByRole('region')).toHaveLength(1)
+    })
+
+    it('copies a numeric reference from a compact action using the keyboard', async () => {
+        const user = userEvent.setup()
+        const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue()
+        render(<TokenReference theme="light" category="space" />)
+        screen.getByRole('button', { name: 'Copy space.16' }).focus()
+
+        await user.keyboard('{Enter}')
+
+        expect(writeText).toHaveBeenLastCalledWith('vars.space[16]')
+        expect(screen.getByRole('button', { name: 'Copied: space.16' })).toBeTruthy()
+        expect(screen.getByText('Copied vars.space[16]')).toBeTruthy()
+    })
+
+    it('reports failed token copies visibly and allows retrying', async () => {
+        const user = userEvent.setup()
+        const writeText = vi.spyOn(navigator.clipboard, 'writeText')
+            .mockRejectedValueOnce(new Error('Permission denied'))
+            .mockResolvedValue()
+        render(<TokenReference theme="light" category="radius" />)
+
+        await user.click(screen.getByRole('button', { name: 'Copy radius.8' }))
+        expect(screen.getByText(/Copy failed/)).toBeTruthy()
+
+        await user.click(screen.getByRole('button', { name: 'Copy radius.8' }))
+        expect(writeText).toHaveBeenLastCalledWith('vars.radius[8]')
+        expect(screen.queryByText(/Copy failed/)).toBeNull()
+        expect(screen.getByRole('button', { name: 'Copied: radius.8' })).toBeTruthy()
+    })
+
+    it('keeps motion previews keyboard-accessible and names their actual values', () => {
+        const { rerender } = render(<TokenReference theme="light" category="duration" />)
+        for (const value of Object.values(lightTheme.duration)) {
+            expect(screen.getByRole('button', { name: `Preview duration: ${value}` })).toBeTruthy()
+        }
+
+        rerender(<TokenReference theme="dark" category="easing" />)
+        for (const value of Object.values(darkTheme.easing)) {
+            expect(screen.getByRole('button', { name: `Preview easing: ${value}` })).toBeTruthy()
+        }
+    })
+
     it('documents every semantic color exactly once in both palettes', () => {
         const expectedCount = Object.values(vars.color).flatMap(value =>
             typeof value === 'string' ? [value] : Object.values(value),
@@ -66,13 +124,13 @@ describe('reference stories', () => {
     })
 
     it('filters CSS variables by category and name, and reports empty results', () => {
-        const { rerender } = render(<CssVariableReference theme="light" category="space" search="--space-md" />)
+        const { rerender } = render(<CssVariableReference theme="light" category="space" search="--space-12" />)
         const table = screen.getByRole('table', { name: 'Spacing / 2 variables' })
 
-        expect(within(table).getByText('--space-md')).toBeTruthy()
-        expect(within(table).getByText('--space-md2')).toBeTruthy()
-        expect(within(table).getByText(lightTheme.space.md)).toBeTruthy()
-        expect(screen.queryByText('--space-lg')).toBeNull()
+        expect(within(table).getByText('--space-12')).toBeTruthy()
+        expect(within(table).getByText('--space-128')).toBeTruthy()
+        expect(within(table).getByText(lightTheme.space[12])).toBeTruthy()
+        expect(screen.queryByText('--space-16')).toBeNull()
 
         rerender(<CssVariableReference theme="dark" category="space" search="not-a-variable" />)
         expect(screen.queryByRole('table')).toBeNull()
@@ -93,13 +151,13 @@ describe('reference stories', () => {
     it('clears stale copy feedback when the value changes', async () => {
         const user = userEvent.setup()
         const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue()
-        const { rerender } = render(<CopyButton label="Copy token" value="vars.space.md" />)
+        const { rerender } = render(<CopyButton label="Copy token" value="vars.space[12]" />)
 
         await user.click(screen.getByRole('button', { name: 'Copy token' }))
         expect(screen.getByRole('button', { name: 'Copied: Copy token' })).toBeTruthy()
 
-        rerender(<CopyButton label="Copy token" value="vars.space.lg" />)
+        rerender(<CopyButton label="Copy token" value="vars.space[16]" />)
         await user.click(screen.getByRole('button', { name: 'Copy token' }))
-        expect(writeText).toHaveBeenLastCalledWith('vars.space.lg')
+        expect(writeText).toHaveBeenLastCalledWith('vars.space[16]')
     })
 })

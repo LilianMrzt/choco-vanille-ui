@@ -20,7 +20,7 @@ const Collapsible = memo<CollapsibleProps>(({ className, width, ...props }) => (
         flexDirection={'column'}
         alignItems={'stretch'}
         width={width ?? '100%'}
-        gap={'none'}
+        gap={0}
         className={typeof className === 'function' ? undefined : className}
     >
         <BaseCollapsible.Root

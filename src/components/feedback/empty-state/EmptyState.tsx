@@ -22,20 +22,20 @@ const EmptyState: FC<EmptyStateProps> = memo(({
     <Flex
         ref={ref}
         flexDirection={'column'}
-        gap={'sm'}
+        gap={8}
         className={cn(EMPTY_STATE_STYLES.root, className)}
         {...props}
     >
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             alignItems={'center'}
             className={EMPTY_STATE_STYLES.content}
         >
             <Typography
                 as={'h2'}
                 variant={'h2'}
-                fontSize={'xl'}
+                fontSize={20}
                 fontWeight={'semibold'}
             >
                 {title}
@@ -43,7 +43,7 @@ const EmptyState: FC<EmptyStateProps> = memo(({
             <Typography
                 as={'p'}
                 variant={'p'}
-                fontSize={'sm'}
+                fontSize={14}
                 color={vars.color.text.secondary}
             >
                 {description}

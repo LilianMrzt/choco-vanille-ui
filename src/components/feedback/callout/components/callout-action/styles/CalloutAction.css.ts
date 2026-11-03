@@ -6,7 +6,7 @@ export const CALLOUT_ACTION_STYLES = {
     action: style({
         position: 'absolute',
         top: '50%',
-        right: vars.space.xs,
+        right: vars.space[4],
         transform: 'translateY(-50%)',
     }),
 }

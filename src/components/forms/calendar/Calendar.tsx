@@ -85,7 +85,7 @@ const Calendar: FC<CalendarProps> = memo(({
             <Box className={cn(CALENDAR_ROOT_STYLES.root, className)}>
                 <Flex
                     flexDirection={'column'}
-                    gap={'md'}
+                    gap={12}
                 >
                     <CalendarCaption labels={captionLabels} />
 

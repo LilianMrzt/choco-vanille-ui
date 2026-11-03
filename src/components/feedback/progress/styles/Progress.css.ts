@@ -52,14 +52,30 @@ const BORDER_RADIUS_VARIANTS: Record<
   ProgressBorderRadius,
   { borderRadius: string }
 > = {
-    none: { borderRadius: vars.radius.none },
-    xs: { borderRadius: vars.radius.xs },
-    sm: { borderRadius: vars.radius.sm },
-    md: { borderRadius: vars.radius.md },
-    lg: { borderRadius: vars.radius.lg },
-    xl: { borderRadius: vars.radius.xl },
-    '2xl': { borderRadius: vars.radius['2xl'] },
-    full: { borderRadius: vars.radius.full },
+    0: {
+        borderRadius: vars.radius[0],
+    },
+    4: {
+        borderRadius: vars.radius[4],
+    },
+    6: {
+        borderRadius: vars.radius[6],
+    },
+    8: {
+        borderRadius: vars.radius[8],
+    },
+    10: {
+        borderRadius: vars.radius[10],
+    },
+    14: {
+        borderRadius: vars.radius[14],
+    },
+    20: {
+        borderRadius: vars.radius[20],
+    },
+    'full': {
+        borderRadius: vars.radius['full'],
+    },
 }
 
 export const PROGRESS_STYLES = {
@@ -87,7 +103,7 @@ export const PROGRESS_STYLES = {
 
         defaultVariants: {
             size: 'sm',
-            borderRadius: 'sm',
+            borderRadius: 6,
             color: 'primary',
         },
     }),
@@ -112,7 +128,7 @@ export const PROGRESS_STYLES = {
             ),
         },
         defaultVariants: {
-            borderRadius: 'sm',
+            borderRadius: 6,
             color: 'primary',
         },
     }),

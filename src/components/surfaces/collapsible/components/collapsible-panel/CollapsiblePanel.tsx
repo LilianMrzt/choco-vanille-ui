@@ -14,7 +14,7 @@ import { cn } from '@utils/cn.ts'
  */
 const CollapsiblePanel: FC<CollapsiblePanelProps> = memo(({
     className,
-    padding = 'md',
+    padding = 12,
     keepMounted = true,
     children,
     ...props

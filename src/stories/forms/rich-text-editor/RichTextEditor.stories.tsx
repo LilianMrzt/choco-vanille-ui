@@ -53,7 +53,7 @@ const INITIAL_VALUE: RichTextValue = {
                             type: 'textStyle',
                             attrs: {
                                 color: RICH_TEXT_COLOR_PALETTES[0].colors[1],
-                                fontSize: vars.fontSize['2xl'],
+                                fontSize: vars.fontSize[24],
                             },
                         },
                     ],
@@ -464,7 +464,7 @@ const initialValue = {
                {
                    type: 'text',
                    text: 'colored large text',
-                   marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[1], fontSize: vars.fontSize['2xl'] } }],
+                   marks: [{ type: 'textStyle', attrs: { color: RICH_TEXT_COLOR_PALETTES[0].colors[1], fontSize: vars.fontSize[24] } }],
                },
                { type: 'text', text: ' and ' },
                { type: 'text', text: 'safe links', marks: [{ type: 'link', attrs: { href: 'https://example.com' } }] },

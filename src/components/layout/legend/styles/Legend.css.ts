@@ -12,6 +12,6 @@ export const LEGEND_STYLES = {
         display: 'block',
         width: '100%',
         padding: 0,
-        marginBottom: vars.space.sm,
+        marginBottom: vars.space[8],
     }),
 }

@@ -5,17 +5,17 @@ import { vars } from '@theme/styles/contract/contract.css'
 const root = style({
     display: 'flex',
     flexDirection: 'column',
-    gap: vars.space.xxs,
+    gap: vars.space[2],
     minWidth: 0,
-    padding: vars.space.xxs,
+    padding: vars.space[2],
     border: 'none',
-    borderRadius: vars.radius.sm,
+    borderRadius: vars.radius[6],
     background: 'transparent',
     color: vars.color.text.primary,
     textAlign: 'left',
     cursor: 'pointer',
     fontFamily: vars.fontFamily.mono,
-    fontSize: vars.fontSize.xs,
+    fontSize: vars.fontSize[12],
     overflowWrap: 'anywhere',
     selectors: {
         '&:hover': {
@@ -23,7 +23,7 @@ const root = style({
         },
         '&:focus-visible': {
             outline: `2px solid ${vars.color.focusRing}`,
-            outlineOffset: vars.space.xxs,
+            outlineOffset: vars.space[2],
         },
     },
 })
@@ -34,8 +34,8 @@ const main = style({
 
 const swatch = style({
     width: '100%',
-    height: vars.space['3xl'],
-    borderRadius: vars.radius.sm,
+    height: vars.space[48],
+    borderRadius: vars.radius[6],
     border: `1px solid ${vars.color.border.main}`,
 })
 

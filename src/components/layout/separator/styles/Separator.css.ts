@@ -47,7 +47,7 @@ export const SEPARATOR_STYLES = {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: vars.space.md,
+                    gap: vars.space[12],
                     backgroundColor: 'transparent',
                 },
                 false: {},

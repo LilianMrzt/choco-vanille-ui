@@ -34,7 +34,7 @@ const TabsTrigger: FC<TabsTriggerProps> = memo(({ className, style, width, label
                 <Typography
                     as={'span'}
                     variant={'span'}
-                    fontSize={'sm'}
+                    fontSize={14}
                     className={tabsTriggerLabel}
                 >
                     {label}

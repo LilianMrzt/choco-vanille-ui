@@ -68,14 +68,14 @@ A thin visual divider built on top of \`Box\`. Use it to separate content horizo
 
 \`\`\`tsx
 // Horizontal rule between two blocks
-<Stack gap="md">
+<Stack gap={12}>
   <Typography>Above</Typography>
   <Separator />
   <Typography>Below</Typography>
 </Stack>
 
 // Vertical rule inside a row
-<Flex alignItems="center" gap="md">
+<Flex alignItems="center" gap={12}>
   <Typography>Left</Typography>
   <Separator orientation="vertical" />
   <Typography>Right</Typography>
@@ -109,8 +109,8 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to switch between horizontal and vertical orientations.',
             },
             ...storySource(/* language=tsx */ `
-<Box padding="lg" backgroundColor={vars.color.surface.main} borderRadius="md">
-    <Flex flexDirection="column" gap="md">
+<Box padding={16} backgroundColor={vars.color.surface.main} borderRadius={8}>
+    <Flex flexDirection="column" gap={12}>
         <span>Above</span>
         <Separator orientation="horizontal" label="Or continue" />
         <span>Below</span>
@@ -120,9 +120,9 @@ export const Playground: Story = {
     },
     render: (args) => (
         <Box
-            padding={'lg'}
+            padding={16}
             backgroundColor={vars.color.surface.main}
-            borderRadius={'md'}
+            borderRadius={8}
             style={{
                 height: args.orientation === 'vertical' ? '120px' : undefined,
                 width: args.orientation === 'vertical' ? 'fit-content' : undefined,
@@ -131,7 +131,7 @@ export const Playground: Story = {
             {args.orientation === 'vertical' ? (
                 <Flex
                     alignItems={'center'}
-                    gap={'md'}
+                    gap={12}
                     style={{ height: '100%' }}
                 >
                     <span>Left</span>
@@ -141,7 +141,7 @@ export const Playground: Story = {
             ) : (
                 <Flex
                     flexDirection={'column'}
-                    gap={'md'}
+                    gap={12}
                 >
                     <span>Above</span>
                     <Separator {...args} />
@@ -160,9 +160,9 @@ export const WithLabel: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Flex flexDirection="column" gap="lg">
+<Flex flexDirection="column" gap={16}>
     <Separator label="Or continue" />
-    <Flex alignItems="center" gap="md" height="120px">
+    <Flex alignItems="center" gap={12} height="120px">
         <span>Left</span>
         <Separator orientation="vertical" label="Or" />
         <span>Right</span>
@@ -173,12 +173,12 @@ export const WithLabel: Story = {
     render: () => (
         <Flex
             flexDirection={'column'}
-            gap={'lg'}
+            gap={16}
         >
             <Separator label={'Or continue'} />
             <Flex
                 alignItems={'center'}
-                gap={'md'}
+                gap={12}
                 height={'120px'}
             >
                 <span>Left</span>
@@ -209,7 +209,7 @@ export const Colors: Story = {
     render: () => (
         <Flex
             flexDirection={'column'}
-            gap={'md'}
+            gap={12}
             width={'20rem'}
         >
             {COLORS.map((color) => (
@@ -226,12 +226,12 @@ export const Orientations: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Flex alignItems="center" gap="md" height="120px">
+<Flex alignItems="center" gap={12} height="120px">
     <span>Left</span>
     <Separator orientation="vertical" />
     <span>Right</span>
 </Flex>
-<Flex flexDirection="column" gap="md">
+<Flex flexDirection="column" gap={12}>
     <span>Above</span>
     <Separator orientation="horizontal" />
     <span>Below</span>
@@ -241,11 +241,11 @@ export const Orientations: Story = {
     render: () => (
         <Flex
             flexDirection={'column'}
-            gap={'lg'}
+            gap={16}
         >
             <Flex
                 alignItems={'center'}
-                gap={'md'}
+                gap={12}
                 height={'120px'}
             >
                 <span>Left</span>
@@ -254,7 +254,7 @@ export const Orientations: Story = {
             </Flex>
             <Flex
                 flexDirection={'column'}
-                gap={'md'}
+                gap={12}
             >
                 <span>Above</span>
                 <Separator orientation={'horizontal'} />

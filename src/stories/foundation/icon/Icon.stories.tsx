@@ -19,36 +19,8 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
-const PADDINGS: (BoxSpace | undefined)[] = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-]
-const BORDER_RADIUSES: (BoxBorderRadius | undefined)[] = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-]
+const PADDINGS: (BoxSpace | undefined)[] = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128]
+const BORDER_RADIUSES: (BoxBorderRadius | undefined)[] = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full']
 const BORDER_STYLES: (CSSProperties['borderStyle'] | undefined)[] = [
     undefined,
     'none',
@@ -168,7 +140,7 @@ export const Colors: Story = {
         borderColor: vars.color.border.strong,
         borderWidth: '1px',
         borderStyle: 'solid',
-        padding: 'sm',
+        padding: 8,
     },
     parameters: {
         docs: {
@@ -178,7 +150,7 @@ import { Icon, vars } from '@choco-vanille/ui'
 <Icon
   icon={SearchIcon}
   size="md"
-  padding="sm"
+  padding={8}
   color="var(--custom-color, rebeccapurple)"
   backgroundColor={vars.color.surface.muted}
   borderColor={vars.color.border.strong}

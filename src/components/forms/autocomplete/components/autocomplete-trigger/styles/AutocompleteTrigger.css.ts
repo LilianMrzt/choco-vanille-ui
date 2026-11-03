@@ -22,7 +22,7 @@ export const AUTOCOMPLETE_TRIGGER_STYLES = {
         padding: 0,
         background: 'transparent',
         border: 'none',
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         color: vars.color.surface.mutedForeground,
         cursor: 'pointer',
         outline: 'none',

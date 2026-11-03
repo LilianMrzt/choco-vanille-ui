@@ -31,7 +31,7 @@ const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
             <Flex
                 as={'span'}
                 alignItems={'center'}
-                gap={'sm'}
+                gap={8}
             >
                 {startIcon && (
                     <Icon
@@ -42,7 +42,7 @@ const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
                 <Typography
                     as={'span'}
                     variant={'span'}
-                    fontSize={'sm'}
+                    fontSize={14}
                 >
                     {label}
                 </Typography>

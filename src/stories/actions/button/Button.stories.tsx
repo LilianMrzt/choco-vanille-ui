@@ -32,26 +32,7 @@ const COLORS: ButtonColor[] = [
     'info',
 ]
 const SIZES: ButtonSize[] = ['sm', 'md', 'lg']
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    'auto',
-] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
 const WIDTHS = [undefined, '100%', 'fit-content'] as const
 const ALIGN_SELF = [
     undefined,

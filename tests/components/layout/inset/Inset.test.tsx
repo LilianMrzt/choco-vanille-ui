@@ -11,26 +11,26 @@ const getFirstChild = (container: HTMLElement) =>
 
 describe('Inset', () => {
     it('renders a div containing its children', () => {
-        const { container } = render(<Inset space="md">content</Inset>)
+        const { container } = render(<Inset space={12}>content</Inset>)
 
         expect(getFirstChild(container).tagName.toLowerCase()).toBe('div')
         expect(screen.getByText('content')).toBeTruthy()
     })
 
     it('uses the supplied spacing token as a negative margin variable', () => {
-        const { container } = render(<Inset space="lg">content</Inset>)
+        const { container } = render(<Inset space={16}>content</Inset>)
 
         expect(
             getFirstChild(container).style.getPropertyValue(
                 INSET_STYLES.insetSpaceProperty,
             ),
-        ).toBe(SPACE_VARIANTS.lg)
+        ).toBe(SPACE_VARIANTS[16])
     })
 
     it('applies the requested logical side', () => {
         const { container } = render(
             <Inset
-                space="md"
+                space={12}
                 side="top"
                 clip="padding-box"
                 paddingBottom="current"
@@ -46,7 +46,7 @@ describe('Inset', () => {
 
     it('merges custom classes and forwards HTML attributes', () => {
         const { container } = render(
-            <Inset space="md" className="custom-inset" data-testid="inset">
+            <Inset space={12} className="custom-inset" data-testid="inset">
                 content
             </Inset>,
         )
@@ -58,7 +58,7 @@ describe('Inset', () => {
     it('forwards refs to the underlying div', () => {
         const ref = createRef<HTMLDivElement>()
 
-        render(<Inset ref={ref} space="md">content</Inset>)
+        render(<Inset ref={ref} space={12}>content</Inset>)
 
         expect(ref.current?.tagName.toLowerCase()).toBe('div')
     })

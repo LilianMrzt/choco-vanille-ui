@@ -41,10 +41,74 @@ const getTokenPaths = (value: object, prefix = ''): string[] =>
     })
 
 describe('theme', () => {
+    it('exposes the exact numeric spacing scale without named aliases', () => {
+        expect(lightTheme.space).toEqual({
+            0: '0', 1: '1px', 2: '0.125rem', 4: '0.25rem',
+            6: '0.375rem', 8: '0.5rem', 10: '0.625rem', 12: '0.75rem',
+            14: '0.875rem', 16: '1rem', 18: '1.125rem', 20: '1.25rem',
+            24: '1.5rem', 28: '1.75rem', 32: '2rem', 48: '3rem',
+            64: '4rem', 80: '5rem', 96: '6rem', 112: '7rem', 128: '8rem',
+        })
+    })
+
+    it('keeps font-size and radius values under numeric keys', () => {
+        expect(lightTheme.fontSize).toEqual({
+            10: '0.625rem', 12: '0.75rem', 14: '0.875rem', 16: '1rem',
+            18: '1.125rem', 20: '1.25rem', 24: '1.5rem', 30: '1.875rem',
+            36: '2.25rem', 48: '3rem', 60: '3.75rem', 72: '4.5rem',
+        })
+        expect(lightTheme.radius).toEqual({
+            0: '0', 4: '0.25rem', 6: '0.375rem', 8: '0.5rem',
+            10: '0.625rem', 14: '0.875rem', 20: '1.25rem', full: '9999px',
+        })
+    })
+
+    it('types token indices as finite numeric scales', () => {
+        expectTypeOf<keyof Theme['space']>().toEqualTypeOf<
+            0 | 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 48 | 64 | 80 | 96 | 112 | 128
+        >()
+        expectTypeOf<keyof Theme['fontSize']>().toEqualTypeOf<
+            10 | 12 | 14 | 16 | 18 | 20 | 24 | 30 | 36 | 48 | 60 | 72
+        >()
+        expectTypeOf<keyof Theme['radius']>().toEqualTypeOf<0 | 4 | 6 | 8 | 10 | 14 | 20 | 'full'>()
+        expect(vars.space[16]).toBe('var(--space-16)')
+        expect(vars.space[80]).toBe('var(--space-80)')
+        expect(vars.space[112]).toBe('var(--space-112)')
+        expect(vars.fontSize[14]).toBe('var(--fontSize-14)')
+        expect(vars.radius[8]).toBe('var(--radius-8)')
+        expect(vars.radius.full).toBe('var(--radius-full)')
+    })
+
+    it('provides the same six shadow levels in both modes', () => {
+        for (const theme of [lightTheme, darkTheme]) {
+            for (const family of ['shadow', 'dropShadow'] as const) {
+                expect(Object.keys(theme[family])).toEqual(['none', 'xs', 'sm', 'md', 'lg', 'xl'])
+                expect(theme[family].none).toBe('none')
+            }
+            expect(lightTheme.shadow.xs).toBe('0 1px 2px 0 rgb(0 0 0 / 0.05)')
+            expect(darkTheme.shadow.xs).toBe('0 1px 2px 0 rgb(0 0 0 / 0.3)')
+            expect(lightTheme.dropShadow.xs).toBe('drop-shadow(0 1px 2px rgb(0 0 0 / 0.05))')
+            expect(darkTheme.dropShadow.xs).toBe('drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))')
+            expect(vars.shadow.xs).toBe('var(--shadow-xs)')
+            expect(vars.dropShadow.xs).toBe('var(--dropShadow-xs)')
+        }
+        expect(lightTheme.shadow.md).toBe('0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)')
+        expect(darkTheme.shadow.md).toBe('0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5)')
+    })
+
+    it('removes line-height and tracking from theme values, variables and types', () => {
+        for (const theme of [lightTheme, darkTheme, vars]) {
+            expect(theme).not.toHaveProperty('lineHeight')
+            expect(theme).not.toHaveProperty('letterSpacing')
+        }
+        expectTypeOf<Extract<keyof Theme, 'lineHeight' | 'letterSpacing'>>().toEqualTypeOf<never>()
+        expectTypeOf<Extract<keyof Theme['space'], 'md' | 'lg' | 'px'>>().toEqualTypeOf<never>()
+    })
+
     it('keeps shared non-color token values identical across themes', () => {
         for (const category of [
             'space', 'radius', 'fontFamily', 'fontSize', 'fontWeight',
-            'lineHeight', 'letterSpacing', 'zIndex', 'duration', 'easing',
+            'zIndex', 'duration', 'easing',
         ] as const) {
             expect(darkTheme[category]).toEqual(lightTheme[category])
         }
@@ -60,7 +124,7 @@ describe('theme', () => {
     it('preserves public CSS variable names and built-in token values', () => {
         expect(vars.color.primary.main).toBe('var(--color-primary-main)')
         expect(vars.editorColors.ocean.base).toBe('var(--editorColors-ocean-base)')
-        expect(vars.space.md).toBe('var(--space-md)')
+        expect(vars.space[12]).toBe('var(--space-12)')
         expect(lightTheme.color.background).not.toBe(darkTheme.color.background)
     })
 

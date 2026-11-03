@@ -106,7 +106,7 @@ describe('Progress', () => {
                 '[role="progressbar"]',
             ) as HTMLElement
             expect(track.className).toContain(
-                PROGRESS_STYLES.recipe({ borderRadius: 'sm', size: 'sm' }),
+                PROGRESS_STYLES.recipe({ borderRadius: 6, size: 'sm' }),
             )
         })
 

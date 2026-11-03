@@ -1,4 +1,5 @@
 import type { PROGRESS_COLORS } from '@components/feedback/progress/constants'
+import type { Radius } from '@theme/tokens/radius/types/index.ts'
 
 /** Semantic color intents for Progress, matching Badge. */
 export type ProgressColor =
@@ -8,12 +9,4 @@ export type ProgressColor =
 export type ProgressSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /** Border radius variants for the linear Progress track. */
-export type ProgressBorderRadius =
-  | 'none'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | 'full';
+export type ProgressBorderRadius = keyof Radius

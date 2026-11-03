@@ -19,7 +19,7 @@ const Grid: FC<GridProps> = memo(({
     justifyItems,
     alignContent,
     justifyContent,
-    gap = 'md',
+    gap = 12,
     className,
     ...props
 }) => {

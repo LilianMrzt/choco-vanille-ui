@@ -11,6 +11,6 @@ export const IMAGE_PICKER_CROP_DIALOG_STYLES = {
         backgroundColor: vars.color.surface.muted,
     }),
     roundedCropArea: style({
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius[10],
     }),
 }

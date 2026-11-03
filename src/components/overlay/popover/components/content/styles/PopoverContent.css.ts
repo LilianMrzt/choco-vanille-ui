@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import {
     slideDownIn,
     slideDownOut,
@@ -15,22 +14,69 @@ import {
 } from '@constants/animations'
 
 const paddingVariants = {
-    none: { padding: SPACE_VARIANTS.none },
-    px: { padding: SPACE_VARIANTS.px },
-    xxs: { padding: SPACE_VARIANTS.xxs },
-    xs: { padding: SPACE_VARIANTS.xs },
-    xs2: { padding: SPACE_VARIANTS.xs2 },
-    sm: { padding: SPACE_VARIANTS.sm },
-    sm2: { padding: SPACE_VARIANTS.sm2 },
-    md: { padding: SPACE_VARIANTS.md },
-    md2: { padding: SPACE_VARIANTS.md2 },
-    lg: { padding: SPACE_VARIANTS.lg },
-    lg2: { padding: SPACE_VARIANTS.lg2 },
-    xl: { padding: SPACE_VARIANTS.xl },
-    '2xl': { padding: SPACE_VARIANTS['2xl'] },
-    '3xl': { padding: SPACE_VARIANTS['3xl'] },
-    '4xl': { padding: SPACE_VARIANTS['4xl'] },
-    '5xl': { padding: SPACE_VARIANTS['5xl'] },
+    0: {
+        padding: vars.space[0],
+    },
+    1: {
+        padding: vars.space[1],
+    },
+    2: {
+        padding: vars.space[2],
+    },
+    4: {
+        padding: vars.space[4],
+    },
+    6: {
+        padding: vars.space[6],
+    },
+    8: {
+        padding: vars.space[8],
+    },
+    10: {
+        padding: vars.space[10],
+    },
+    12: {
+        padding: vars.space[12],
+    },
+    14: {
+        padding: vars.space[14],
+    },
+    16: {
+        padding: vars.space[16],
+    },
+    18: {
+        padding: vars.space[18],
+    },
+    20: {
+        padding: vars.space[20],
+    },
+    24: {
+        padding: vars.space[24],
+    },
+    28: {
+        padding: vars.space[28],
+    },
+    32: {
+        padding: vars.space[32],
+    },
+    48: {
+        padding: vars.space[48],
+    },
+    64: {
+        padding: vars.space[64],
+    },
+    80: {
+        padding: vars.space[80],
+    },
+    96: {
+        padding: vars.space[96],
+    },
+    112: {
+        padding: vars.space[112],
+    },
+    128: {
+        padding: vars.space[128],
+    },
 } as const
 
 export const POPOVER_CONTENT_STYLES = {
@@ -41,7 +87,7 @@ export const POPOVER_CONTENT_STYLES = {
         zIndex: vars.zIndex.popover,
         minWidth: '11rem',
         overflow: 'hidden',
-        borderRadius: vars.radius.sm,
+        borderRadius: vars.radius[6],
         border: `1px solid ${vars.color.border.main}`,
         backgroundColor: vars.color.surface.elevated,
         color: vars.color.surface.elevatedForeground,
@@ -81,7 +127,7 @@ export const POPOVER_CONTENT_STYLES = {
             padding: paddingVariants,
         },
         defaultVariants: {
-            padding: 'md',
+            padding: 12,
         },
     }),
 }

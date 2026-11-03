@@ -8,8 +8,8 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  */
 export const SELECT_SEPARATOR_STYLES = {
     root: style({
-        marginBlock: vars.space.xs,
-        marginInline: `calc(${vars.space.xs} * -1)`,
+        marginBlock: vars.space[4],
+        marginInline: `calc(${vars.space[4]} * -1)`,
         height: '1px',
         backgroundColor: vars.color.border.main,
         opacity: 0.7,

@@ -37,7 +37,7 @@ const Checkbox: FC<CheckboxProps> = memo(({
         <Flex
             as={'span'}
             inline
-            gap={'sm'}
+            gap={8}
         >
             <BaseCheckbox.Root
                 id={checkboxId}

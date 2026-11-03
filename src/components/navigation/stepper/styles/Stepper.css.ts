@@ -8,7 +8,7 @@ export const STEPPER_STYLES = {
     }),
     list: style({
         display: 'flex',
-        gap: vars.space.md,
+        gap: vars.space[12],
         padding: 0,
         margin: 0,
         listStyle: 'none',
@@ -27,7 +27,7 @@ export const STEPPER_STYLES = {
         flex: '0 1 auto',
         minWidth: 0,
         alignItems: 'flex-start',
-        gap: vars.space.sm,
+        gap: vars.space[8],
         position: 'relative',
     }),
     itemVertical: style({
@@ -44,7 +44,7 @@ export const STEPPER_STYLES = {
         border: `1px solid ${vars.color.border.strong}`,
         backgroundColor: vars.color.surface.main,
         color: vars.color.text.secondary,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         fontWeight: vars.fontWeight.semibold,
         lineHeight: 1,
         textAlign: 'center',
@@ -52,7 +52,7 @@ export const STEPPER_STYLES = {
     markerSmall: style({
         width: '1.5rem',
         height: '1.5rem',
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
     }),
     markerValue: style({
         display: 'flex',
@@ -76,8 +76,8 @@ export const STEPPER_STYLES = {
         display: 'flex',
         minWidth: 0,
         flexDirection: 'column',
-        gap: vars.space.xxs,
-        paddingTop: vars.space.xxs,
+        gap: vars.space[2],
+        paddingTop: vars.space[2],
     }),
     contentCentered: style({
         paddingTop: 0,
@@ -95,14 +95,14 @@ export const STEPPER_STYLES = {
         textAlign: 'start',
     }),
     labelSmall: style({
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
     }),
     description: style({
         color: vars.color.text.secondary,
         textAlign: 'start',
     }),
     descriptionSmall: style({
-        fontSize: vars.fontSize['2xs'],
+        fontSize: vars.fontSize[10],
     }),
     connector: style({
         display: 'block',
@@ -114,17 +114,17 @@ export const STEPPER_STYLES = {
         flex: 1,
         minWidth: 0,
         height: '1px',
-        marginTop: vars.space.md,
+        marginTop: vars.space[12],
         alignItems: 'flex-start',
     }),
     connectorItemVertical: style({
         flex: 'none',
         width: '100%',
-        height: vars.space.lg2,
+        height: vars.space[20],
         marginLeft: 0,
-        marginTop: vars.space.sm,
-        marginBottom: vars.space.md,
-        paddingLeft: vars.space.md2,
+        marginTop: vars.space[8],
+        marginBottom: vars.space[12],
+        paddingLeft: vars.space[14],
     }),
     connectorVertical: style({
         display: 'block',

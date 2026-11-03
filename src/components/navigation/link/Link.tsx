@@ -22,7 +22,7 @@ const Link: React.FC<LinkProps> = memo(({
     color,
     startIcon,
     endIcon,
-    fontSize = 'md',
+    fontSize = 16,
     fontWeight = 'normal',
     iconSize = 'md',
     margin,

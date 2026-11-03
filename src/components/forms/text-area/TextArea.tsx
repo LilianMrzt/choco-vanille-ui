@@ -59,7 +59,7 @@ const TextArea = memo<TextAreaProps>((props) => {
         label,
         endAction,
         size: sizeProp,
-        fontSize: fontSizeProp = 'md',
+        fontSize: fontSizeProp = 16,
         placeholder,
         value,
         onChange,
@@ -109,7 +109,7 @@ const TextArea = memo<TextAreaProps>((props) => {
     return (
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
@@ -127,7 +127,7 @@ const TextArea = memo<TextAreaProps>((props) => {
             <Flex
                 position={'relative'}
                 width={'100%'}
-                gap={'none'}
+                gap={0}
             >
                 {startIcon && (
                     <TextAreaStartIcon

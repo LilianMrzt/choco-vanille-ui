@@ -36,7 +36,7 @@ describe('CollapsiblePanel', () => {
 
     describe('padding prop', () => {
         it('applies an inline paddingBottom style based on the spacing token', () => {
-            const { container } = buildPanel({ children: 'Content', padding: 'md' })
+            const { container } = buildPanel({ children: 'Content', padding: 12 })
             // The panel or its wrapper should have a paddingBottom style set
             const el = container.querySelector(
                 '[style*="padding"]',

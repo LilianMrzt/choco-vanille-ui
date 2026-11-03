@@ -5,8 +5,8 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const content = style({
     position: 'fixed',
-    top: vars.space.md,
-    bottom: vars.space.md,
+    top: vars.space[12],
+    bottom: vars.space[12],
     zIndex: vars.zIndex.modal,
     display: 'flex',
     flexDirection: 'column',
@@ -14,7 +14,7 @@ const content = style({
     maxWidth: '100%',
     overflow: 'hidden',
     border: 'none',
-    borderRadius: vars.radius.md,
+    borderRadius: vars.radius[8],
     backgroundColor: vars.color.background,
     color: vars.color.text.primary,
     transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,
@@ -33,14 +33,14 @@ const content = style({
 })
 
 const left = style({
-    left: vars.space.md,
+    left: vars.space[12],
     vars: {
         '--panel-closed-offset': '-100%',
     },
 })
 
 const right = style({
-    right: vars.space.md,
+    right: vars.space[12],
     vars: {
         '--panel-closed-offset': '100%',
     },

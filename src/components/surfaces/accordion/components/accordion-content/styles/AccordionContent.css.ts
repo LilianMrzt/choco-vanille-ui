@@ -8,8 +8,8 @@ export const ACCORDION_CONTENT_STYLES = {
         gridTemplateRows: '0fr',
         paddingBottom: 0,
         color: vars.color.surface.mutedForeground,
-        fontSize: vars.fontSize.sm,
-        lineHeight: vars.lineHeight.normal,
+        fontSize: vars.fontSize[14],
+        lineHeight: '1.5',
         outline: 'none',
         transition: [
             `grid-template-rows ${vars.duration.normal} ${vars.easing.standard}`,
@@ -30,6 +30,6 @@ export const ACCORDION_CONTENT_STYLES = {
     }),
     inner: style({
         overflow: 'hidden',
-        paddingBlock: vars.space.xs,
+        paddingBlock: vars.space[4],
     }),
 }

@@ -34,7 +34,7 @@ const AccordionTrigger: FC<AccordionTriggerProps> = memo(({
                 <Flex
                     as={'span'}
                     alignItems={'center'}
-                    gap={'sm'}
+                    gap={8}
                 >
                     {startIcon && (
                         <Icon
@@ -45,7 +45,7 @@ const AccordionTrigger: FC<AccordionTriggerProps> = memo(({
                     <Typography
                         as={'span'}
                         variant={'span'}
-                        fontSize={'sm'}
+                        fontSize={14}
                     >
                         {label}
                     </Typography>

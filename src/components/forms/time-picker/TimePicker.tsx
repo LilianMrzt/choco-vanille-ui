@@ -138,7 +138,7 @@ const TimePicker = memo(
                 <Popover.Content
                     side={'bottom'}
                     align={'end'}
-                    padding={'none'}
+                    padding={0}
                     aria-label={panelAriaLabel}
                     initialFocus={false}
                     finalFocus={inputRef}

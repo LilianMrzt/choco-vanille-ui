@@ -108,7 +108,7 @@ export const Playground: Story = {
             },
             ...storySource(/* language=tsx */ `
 <Form aria-label="Sign in form">
-    <Flex flexDirection="column" gap="md" alignItems="start">
+    <Flex flexDirection="column" gap={12} alignItems="start">
         <TextField label="Email" name="email" type="email" placeholder="you@example.com" autoComplete="email" />
         <TextField label="Password" name="password" type="password" autoComplete="current-password" />
         <Button type="submit" label="Sign in" />
@@ -129,7 +129,7 @@ export const Playground: Story = {
             >
                 <Flex
                     flexDirection={'column'}
-                    gap={'md'}
+                    gap={12}
                     alignItems={'start'}
                 >
                     <TextField

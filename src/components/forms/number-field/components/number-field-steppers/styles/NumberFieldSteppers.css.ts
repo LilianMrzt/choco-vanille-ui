@@ -11,7 +11,7 @@ export const NUMBER_FIELD_STEPPERS_STYLES = {
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
     }),
     button: style({
         display: 'flex',

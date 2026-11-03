@@ -7,20 +7,20 @@ export const RICH_TEXT_EDITOR_STYLES = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         width: '100%',
     }),
     editor: style({
         minHeight: '10rem',
-        padding: vars.space.md,
+        padding: vars.space[12],
         border: `1px solid ${vars.color.border.main}`,
-        borderBottomLeftRadius: vars.radius.xs,
-        borderBottomRightRadius: vars.radius.xs,
+        borderBottomLeftRadius: vars.radius[4],
+        borderBottomRightRadius: vars.radius[4],
         backgroundColor: vars.color.surface.main,
         color: vars.editorColors.neutral.dark,
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.md,
-        lineHeight: vars.lineHeight.relaxed,
+        fontSize: vars.fontSize[16],
+        lineHeight: '1.625',
         selectors: {
             '&:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 borderColor: vars.color.primary.main,
@@ -55,7 +55,7 @@ globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror > *:last-child`, {
 })
 
 globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror ul, ${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror ol`, {
-    paddingLeft: vars.space['2xl'],
+    paddingLeft: vars.space[32],
 })
 
 globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror img`, {

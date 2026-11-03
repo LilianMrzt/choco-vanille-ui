@@ -7,7 +7,7 @@ import type { ClipboardResult, ClipboardStatus } from '@stories/_shared/hooks/us
  * @internal Not part of the public package API.
  * @param value - Text to write to the clipboard.
  * @returns A copy action and feedback for the current value.
- * @example const { copy, status } = useClipboard('vars.space.md')
+ * @example const { copy, status } = useClipboard('vars.space[12]')
  */
 export const useClipboard = (value: string): ClipboardResult => {
     const isMounted = useRef(false)

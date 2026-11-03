@@ -13,11 +13,11 @@ export const TABS_LIST_STYLES = {
         variants: {
             variant: {
                 default: {
-                    gap: vars.space.none,
+                    gap: vars.space[0],
                 },
                 pills: {
-                    gap: vars.space.xxs,
-                    padding: vars.space.xxs,
+                    gap: vars.space[2],
+                    padding: vars.space[2],
                     borderRadius: vars.radius.full,
                 },
             },

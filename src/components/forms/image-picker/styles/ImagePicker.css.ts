@@ -22,7 +22,7 @@ export const IMAGE_PICKER_STYLES = {
     root: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         width: '100%',
         fontFamily: vars.fontFamily.sans,
         selectors: {
@@ -88,10 +88,10 @@ export const IMAGE_PICKER_STYLES = {
         variants: {
             shape: {
                 [IMAGE_PICKER_SHAPES.square]: {
-                    borderRadius: vars.radius.none,
+                    borderRadius: vars.radius[0],
                 },
                 [IMAGE_PICKER_SHAPES.rounded]: {
-                    borderRadius: vars.radius.lg,
+                    borderRadius: vars.radius[10],
                 },
                 [IMAGE_PICKER_SHAPES.circle]: {
                     borderRadius: vars.radius.full,
@@ -109,9 +109,9 @@ export const IMAGE_PICKER_STYLES = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: vars.space.sm,
+        gap: vars.space[8],
         height: '100%',
-        padding: vars.space.lg,
+        padding: vars.space[16],
         textAlign: 'center',
     }),
     emptyIcon: style({
@@ -138,8 +138,8 @@ export const IMAGE_PICKER_STYLES = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: vars.space.xs,
-        padding: vars.space.sm,
+        gap: vars.space[4],
+        padding: vars.space[8],
         backgroundColor: vars.color.overlay,
         color: vars.color.primary.foreground,
         opacity: 0,
@@ -165,12 +165,12 @@ export const IMAGE_PICKER_STYLES = {
         variants: {
             shape: {
                 [IMAGE_PICKER_SHAPES.square]: {
-                    top: vars.space.sm,
-                    right: vars.space.sm,
+                    top: vars.space[8],
+                    right: vars.space[8],
                 },
                 [IMAGE_PICKER_SHAPES.rounded]: {
-                    top: vars.space.sm,
-                    right: vars.space.sm,
+                    top: vars.space[8],
+                    right: vars.space[8],
                 },
                 // Sits on the circle's edge, like an avatar badge.
                 [IMAGE_PICKER_SHAPES.circle]: {
@@ -187,9 +187,9 @@ export const IMAGE_PICKER_STYLES = {
     actions: style({
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 12rem), 1fr))',
-        gap: vars.space.sm,
+        gap: vars.space[8],
         width: '100%',
-        marginTop: vars.space.sm,
+        marginTop: vars.space[8],
     }),
     visuallyHidden: style(visuallyHidden),
     input: style(visuallyHidden),

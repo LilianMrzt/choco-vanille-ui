@@ -8,9 +8,9 @@ const CardFooter: FC<CardFooterProps> = memo(({ as = 'div', ...props }) => (
     <Flex
         as={as}
         alignItems={'center'}
-        gap={'sm'}
-        padding={'md'}
-        paddingTop={'none'}
+        gap={8}
+        padding={12}
+        paddingTop={0}
         {...props}
     />
 ))

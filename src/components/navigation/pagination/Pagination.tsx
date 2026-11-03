@@ -53,7 +53,7 @@ const Pagination: FC<PaginationProps> = ({
             <Flex
                 as={'ul'}
                 alignItems={'center'}
-                gap={'xs'}
+                gap={4}
                 className={PAGINATION_STYLES.list}
             >
                 <li>

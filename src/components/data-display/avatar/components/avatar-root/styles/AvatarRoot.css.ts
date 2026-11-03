@@ -18,15 +18,15 @@ const sizeDimensions = {
 } as const
 
 const fallbackFontSizes = {
-    sm: vars.fontSize.xs,
-    md: vars.fontSize.sm,
-    lg: vars.fontSize.md,
-    xl: vars.fontSize.lg,
+    sm: vars.fontSize[12],
+    md: vars.fontSize[14],
+    lg: vars.fontSize[16],
+    xl: vars.fontSize[18],
 } as const
 
 const shapeRadiusMap = {
     [AVATAR_SHAPES.circle]: vars.radius.full,
-    [AVATAR_SHAPES.square]: vars.radius.xs,
+    [AVATAR_SHAPES.square]: vars.radius[4],
 } as const
 
 export const AVATAR_STYLES = {
@@ -43,7 +43,7 @@ export const AVATAR_STYLES = {
             border: `2px solid ${vars.color.background}`,
             fontFamily: vars.fontFamily.sans,
             fontWeight: vars.fontWeight.medium,
-            lineHeight: vars.lineHeight.none,
+            lineHeight: '1',
             userSelect: 'none',
             boxSizing: 'border-box',
         },

@@ -2,7 +2,6 @@ import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { RADIUS } from '@theme/tokens/radius/radius.const.ts'
 import {
     BUTTON_COLORS_ARRAY,
     BUTTON_COLORS,
@@ -52,7 +51,7 @@ export const TOGGLE_STYLES = {
     recipe: recipe({
         base: {
             ...BUTTON_SHARED_STYLES.base,
-            gap: vars.space.sm,
+            gap: vars.space[8],
             whiteSpace: 'nowrap',
             backgroundColor: 'transparent',
             borderColor: 'transparent',
@@ -254,26 +253,42 @@ export const TOGGLE_STYLES = {
             size: {
                 [BUTTON_SIZES.sm]: {
                     height: '2.25rem',
-                    paddingInline: vars.space.md,
+                    paddingInline: vars.space[12],
                 },
                 [BUTTON_SIZES.md]: {
                     height: '2.5rem',
-                    paddingInline: vars.space.lg,
+                    paddingInline: vars.space[16],
                 },
                 [BUTTON_SIZES.lg]: {
                     height: '2.75rem',
-                    paddingInline: vars.space['2xl'],
+                    paddingInline: vars.space[32],
                 },
             },
             radius: {
-                none: { borderRadius: RADIUS.none },
-                xs: { borderRadius: RADIUS.xs },
-                sm: { borderRadius: RADIUS.sm },
-                md: { borderRadius: RADIUS.md },
-                lg: { borderRadius: RADIUS.lg },
-                xl: { borderRadius: RADIUS.xl },
-                '2xl': { borderRadius: RADIUS['2xl'] },
-                full: { borderRadius: RADIUS.full },
+                0: {
+                    borderRadius: vars.radius[0],
+                },
+                4: {
+                    borderRadius: vars.radius[4],
+                },
+                6: {
+                    borderRadius: vars.radius[6],
+                },
+                8: {
+                    borderRadius: vars.radius[8],
+                },
+                10: {
+                    borderRadius: vars.radius[10],
+                },
+                14: {
+                    borderRadius: vars.radius[14],
+                },
+                20: {
+                    borderRadius: vars.radius[20],
+                },
+                'full': {
+                    borderRadius: vars.radius['full'],
+                },
             },
         },
         compoundVariants: subtleCompoundVariants,
@@ -281,7 +296,7 @@ export const TOGGLE_STYLES = {
             variant: 'outlined',
             color: BUTTON_COLORS.primary,
             size: BUTTON_SIZES.md,
-            radius: 'sm',
+            radius: 6,
         },
     }),
 }

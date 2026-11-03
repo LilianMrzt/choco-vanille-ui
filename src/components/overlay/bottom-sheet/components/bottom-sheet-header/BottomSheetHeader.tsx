@@ -18,20 +18,20 @@ const BottomSheetHeader: FC<BottomSheetHeaderProps> = memo(({
 }) => (
     <Flex
         flexDirection={'column'}
-        gap={'xxs'}
-        paddingX={'md'}
-        paddingTop={'xs'}
-        paddingBottom={'sm'}
+        gap={2}
+        paddingX={12}
+        paddingTop={4}
+        paddingBottom={8}
         {...props}
     >
         <BaseDrawer.Title
             render={(
                 <Typography
                     as={titleAs}
-                    fontSize={'lg'}
+                    fontSize={18}
                     fontWeight={'semibold'}
                     color={vars.color.text.primary}
-                    margin={'none'}
+                    margin={0}
                 />
             )}
         >
@@ -42,9 +42,9 @@ const BottomSheetHeader: FC<BottomSheetHeaderProps> = memo(({
                 render={(
                     <Typography
                         as={'p'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.surface.mutedForeground}
-                        margin={'none'}
+                        margin={0}
                     />
                 )}
             >

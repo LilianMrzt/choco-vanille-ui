@@ -51,7 +51,7 @@ clés.
 | Drawer | `sm`, `md`, `lg`, `xl`, `2xl`, `full` | `md` |
 | Icon | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md` |
 | Spinner | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
-| Typography `fontSize` | `2xs` à `6xl` | selon le variant typographique |
+| Typography `fontSize` | `10`, `12`, `14`, `16`, `18`, `20`, `24`, `30`, `36`, `48`, `60`, `72` (nombres) | selon le variant typographique |
 
 ### Règles
 

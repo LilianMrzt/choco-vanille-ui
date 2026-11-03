@@ -1,22 +1,27 @@
 /*
- * Spacing scale — a consistent 4px-based rhythm used for padding, margin and
- * gap throughout the kit. Theme-agnostic (identical in light & dark).
+ * Spacing keys are pixel references at a 16px root. Values scale with rem,
+ * except zero and the fixed 1px adjustment. Shared by light and dark themes.
  */
 export const SPACE = {
-    none: '0',
-    px: '1px',
-    xxs: '0.125rem', // 2px
-    xs: '0.25rem', // 4px
-    xs2: '0.375rem', // 6px
-    sm: '0.5rem', // 8px
-    sm2: '0.625rem', // 10px
-    md: '0.75rem', // 12px
-    md2: '0.875rem', // 14px
-    lg: '1rem', // 16px
-    lg2: '1.25rem', // 20px
-    xl: '1.5rem', // 24px
-    '2xl': '2rem', // 32px
-    '3xl': '3rem', // 48px
-    '4xl': '4rem', // 64px
-    '5xl': '6rem', // 96px
+    0: '0',
+    1: '1px',
+    2: '0.125rem',
+    4: '0.25rem',
+    6: '0.375rem',
+    8: '0.5rem',
+    10: '0.625rem',
+    12: '0.75rem',
+    14: '0.875rem',
+    16: '1rem',
+    18: '1.125rem',
+    20: '1.25rem',
+    24: '1.5rem',
+    28: '1.75rem',
+    32: '2rem',
+    48: '3rem',
+    64: '4rem',
+    80: '5rem',
+    96: '6rem',
+    112: '7rem',
+    128: '8rem',
 } as const

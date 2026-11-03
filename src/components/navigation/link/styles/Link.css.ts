@@ -8,7 +8,7 @@ export const LINK_STYLES = {
     base: style({
         display: 'inline-flex',
         alignItems: 'center',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         color: vars.color.link.main,
         textDecoration: 'none',
         textUnderlineOffset: '0.15em',
@@ -26,7 +26,7 @@ export const LINK_STYLES = {
             '&:focus-visible': {
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
-                borderRadius: vars.radius.xs,
+                borderRadius: vars.radius[4],
             },
             '&[aria-disabled="true"]': {
                 pointerEvents: 'none',

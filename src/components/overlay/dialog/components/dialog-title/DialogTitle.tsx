@@ -17,7 +17,7 @@ const DialogTitle: FC<DialogTitleProps> = memo(({ className, children, ...props 
     >
         <Typography
             as={'h2'}
-            fontSize={'lg'}
+            fontSize={18}
             fontWeight={'semibold'}
             color={vars.color.text.primary}
         >

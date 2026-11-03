@@ -21,7 +21,7 @@ const Badge: FC<BadgeProps> = memo(({
     className,
     ref,
     display = 'inline-flex',
-    borderRadius = 'xs',
+    borderRadius = 4,
     ...props
 }) => (
     <Box

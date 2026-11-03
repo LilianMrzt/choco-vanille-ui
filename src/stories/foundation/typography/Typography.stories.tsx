@@ -46,19 +46,7 @@ const VARIANTS: TypographyVariant[] = [
     'sup',
 ]
 
-const SIZES: TypographySize[] = [
-    '2xs',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    '6xl',
-]
+const SIZES: TypographySize[] = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]
 const WEIGHTS: TypographyWeight[] = [
     'thin',
     'extralight',
@@ -70,26 +58,7 @@ const WEIGHTS: TypographyWeight[] = [
     'extrabold',
     'black',
 ]
-const MARGINS = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    'auto',
-] as const
+const MARGINS = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -253,17 +222,18 @@ export const FontSizes: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Typography variant="p" fontSize="2xs">2xs</Typography>
-<Typography variant="p" fontSize="xs">xs</Typography>
-<Typography variant="p" fontSize="sm">sm</Typography>
-<Typography variant="p" fontSize="md">md</Typography>
-<Typography variant="p" fontSize="lg">lg</Typography>
-<Typography variant="p" fontSize="xl">xl</Typography>
-<Typography variant="p" fontSize="2xl">2xl</Typography>
-<Typography variant="p" fontSize="3xl">3xl</Typography>
-<Typography variant="p" fontSize="4xl">4xl</Typography>
-<Typography variant="p" fontSize="5xl">5xl</Typography>
-<Typography variant="p" fontSize="6xl">6xl</Typography>`),
+<Typography variant="p" fontSize={10}>10</Typography>
+<Typography variant="p" fontSize={12}>12</Typography>
+<Typography variant="p" fontSize={14}>14</Typography>
+<Typography variant="p" fontSize={16}>16</Typography>
+<Typography variant="p" fontSize={18}>18</Typography>
+<Typography variant="p" fontSize={20}>20</Typography>
+<Typography variant="p" fontSize={24}>24</Typography>
+<Typography variant="p" fontSize={30}>30</Typography>
+<Typography variant="p" fontSize={36}>36</Typography>
+<Typography variant="p" fontSize={48}>48</Typography>
+<Typography variant="p" fontSize={60}>60</Typography>
+<Typography variant="p" fontSize={72}>72</Typography>`),
         },
     },
     render: () => (

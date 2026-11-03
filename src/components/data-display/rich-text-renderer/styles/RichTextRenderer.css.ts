@@ -5,7 +5,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const RICH_TEXT_RENDERER_STYLES = style({
     color: vars.editorColors.neutral.dark,
     fontFamily: vars.fontFamily.sans,
-    fontSize: vars.fontSize.sm,
+    fontSize: vars.fontSize[14],
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} > *:first-child`, {
@@ -17,12 +17,12 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} > *:last-child`, {
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} ul, ${RICH_TEXT_RENDERER_STYLES} ol`, {
-    marginBlock: vars.space.md,
-    paddingInlineStart: vars.space.xl,
+    marginBlock: vars.space[12],
+    paddingInlineStart: vars.space[24],
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} li + li`, {
-    marginTop: vars.space.xs,
+    marginTop: vars.space[4],
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} img`, {
@@ -43,14 +43,14 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} a:hover`, {
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} blockquote`, {
     marginInline: 0,
-    paddingInlineStart: vars.space.md,
+    paddingInlineStart: vars.space[12],
     borderInlineStart: `3px solid ${vars.color.border.main}`,
     color: vars.color.surface.mutedForeground,
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} pre`, {
     overflowX: 'auto',
-    padding: vars.space.md,
-    borderRadius: vars.radius.sm,
+    padding: vars.space[12],
+    borderRadius: vars.radius[6],
     backgroundColor: vars.color.surface.muted,
 })

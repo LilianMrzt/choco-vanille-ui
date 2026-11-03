@@ -43,7 +43,7 @@ const AvatarGroup: FC<AvatarGroupProps> = memo(({
             ref={ref}
             inline
             alignItems={'center'}
-            gap={'none'}
+            gap={0}
             className={cn(className)}
             {...props}
         >

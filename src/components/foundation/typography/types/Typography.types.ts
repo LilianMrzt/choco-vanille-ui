@@ -1,3 +1,5 @@
+import type { FontSize } from '@theme/tokens/typography/types/index.ts'
+
 /** All HTML text-level semantic elements supported by the Typography component. */
 export type TypographyVariant =
   | 'h1'
@@ -26,18 +28,7 @@ export type TypographyVariant =
   | 'sup';
 
 /** Font-size scale exposed as a prop. */
-export type TypographySize =
-  | '2xs'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl'
-  | '6xl';
+export type TypographySize = FontSize
 
 /** Font-weight scale exposed as a prop. */
 export type TypographyWeight =
@@ -50,12 +41,3 @@ export type TypographyWeight =
   | 'bold'
   | 'extrabold'
   | 'black';
-
-/** Letter-spacing scale exposed as a prop. */
-export type TypographyLetterSpacing =
-  | 'tighter'
-  | 'tight'
-  | 'normal'
-  | 'wide'
-  | 'wider'
-  | 'widest';

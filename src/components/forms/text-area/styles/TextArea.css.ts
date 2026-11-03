@@ -8,8 +8,8 @@ export const TEXT_AREA_STYLES = {
         base: {
             width: '100%',
             fontFamily: vars.fontFamily.sans,
-            lineHeight: vars.lineHeight.normal,
-            borderRadius: vars.radius.xs,
+            lineHeight: '1.5',
+            borderRadius: vars.radius[4],
             border: `1px solid ${vars.color.border.main}`,
             backgroundColor: vars.color.surface.main,
             color: vars.color.text.primary,
@@ -46,21 +46,21 @@ export const TEXT_AREA_STYLES = {
             size: {
                 [TEXT_AREA_SIZES.sm]: {
                     minHeight: '4.5rem',
-                    paddingInline: vars.space.sm,
-                    paddingBlock: vars.space.sm,
-                    fontSize: vars.fontSize.sm,
+                    paddingInline: vars.space[8],
+                    paddingBlock: vars.space[8],
+                    fontSize: vars.fontSize[14],
                 },
                 [TEXT_AREA_SIZES.md]: {
                     minHeight: '5rem',
-                    paddingInline: vars.space.md,
-                    paddingBlock: vars.space.md,
-                    fontSize: vars.fontSize.sm,
+                    paddingInline: vars.space[12],
+                    paddingBlock: vars.space[12],
+                    fontSize: vars.fontSize[14],
                 },
                 [TEXT_AREA_SIZES.lg]: {
                     minHeight: '5.5rem',
-                    paddingInline: vars.space.lg,
-                    paddingBlock: vars.space.lg,
-                    fontSize: vars.fontSize.md,
+                    paddingInline: vars.space[16],
+                    paddingBlock: vars.space[16],
+                    fontSize: vars.fontSize[16],
                 },
             },
             hasError: {

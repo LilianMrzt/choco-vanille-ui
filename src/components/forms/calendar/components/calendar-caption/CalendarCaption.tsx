@@ -64,7 +64,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
         <Flex
             alignItems={'center'}
             justifyContent={'between'}
-            gap={'xs'}
+            gap={4}
             className={CALENDAR_CAPTION_STYLES.monthCaption}
         >
             <IconButton
@@ -80,7 +80,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
             <Flex
                 alignItems={'center'}
                 justifyContent={'center'}
-                gap={'xxs'}
+                gap={2}
                 className={CALENDAR_CAPTION_STYLES.captionCenter}
             >
                 {view === 'day' && (
@@ -96,7 +96,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
                 {view === 'month' && (
                     <Typography
                         variant={'span'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         fontWeight={'semibold'}
                         className={CALENDAR_CAPTION_STYLES.captionLabel}
                     >
@@ -107,7 +107,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
                 {view === 'year' && (
                     <Typography
                         variant={'span'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         fontWeight={'semibold'}
                         className={CALENDAR_CAPTION_STYLES.captionLabel}
                     >

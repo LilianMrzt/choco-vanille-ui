@@ -6,6 +6,6 @@ export const LISTS_GROUP_STYLES = {
     root: style({
         display: 'flex',
         alignItems: 'center',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
 }

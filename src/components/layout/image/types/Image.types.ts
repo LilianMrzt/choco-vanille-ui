@@ -1,3 +1,5 @@
+import type { Space } from '@theme/tokens/spacing/types/index.ts'
+
 /** Object-fit values supported by the Image component. */
 export type ImageObjectFit =
   | 'contain'
@@ -19,20 +21,7 @@ export type ImageObjectPosition =
   | 'bottom-right';
 
 /** Spacing tokens supported by the Image component's recipe. */
-export type ImageSpace =
-  | 'none'
-  | 'px'
-  | 'xxs'
-  | 'xs'
-  | 'xs2'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl';
+export type ImageSpace = keyof Space
 
 /** Margin tokens supported by the Image component's recipe. */
 export type ImageMargin = 'auto' | ImageSpace;

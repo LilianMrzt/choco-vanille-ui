@@ -5,7 +5,7 @@ import { slideUpIn } from '@constants/animations'
 import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 import { FAB_POSITIONS } from '@components/actions/fab/constants'
 
-const EDGE_OFFSET = vars.space.lg
+const EDGE_OFFSET = vars.space[16]
 
 // `&&` doubles the class specificity so the Fab wins over the composed
 // Button / IconButton recipes regardless of stylesheet order.
@@ -17,7 +17,7 @@ export const FAB_STYLES = {
             bottom: `calc(${EDGE_OFFSET} + env(safe-area-inset-bottom, 0px))`,
             selectors: {
                 '&&': {
-                    borderRadius: vars.radius.lg,
+                    borderRadius: vars.radius[10],
                     boxShadow: vars.shadow.md,
                 },
                 '&&:focus-visible': {
@@ -59,9 +59,9 @@ export const FAB_STYLES = {
             },
         },
         compoundVariants: [
-            { variants: { extended: true, size: BUTTON_SIZES.sm }, style: { selectors: { '&&': { paddingInline: vars.space.md } } } },
-            { variants: { extended: true, size: BUTTON_SIZES.md }, style: { selectors: { '&&': { paddingInline: vars.space.lg } } } },
-            { variants: { extended: true, size: BUTTON_SIZES.lg }, style: { selectors: { '&&': { paddingInline: vars.space.xl } } } },
+            { variants: { extended: true, size: BUTTON_SIZES.sm }, style: { selectors: { '&&': { paddingInline: vars.space[12] } } } },
+            { variants: { extended: true, size: BUTTON_SIZES.md }, style: { selectors: { '&&': { paddingInline: vars.space[16] } } } },
+            { variants: { extended: true, size: BUTTON_SIZES.lg }, style: { selectors: { '&&': { paddingInline: vars.space[24] } } } },
             { variants: { extended: false, size: BUTTON_SIZES.sm }, style: { selectors: { '&&': { width: '2.5rem' } } } },
             { variants: { extended: false, size: BUTTON_SIZES.md }, style: { selectors: { '&&': { width: '3rem' } } } },
             { variants: { extended: false, size: BUTTON_SIZES.lg }, style: { selectors: { '&&': { width: '3.5rem' } } } },

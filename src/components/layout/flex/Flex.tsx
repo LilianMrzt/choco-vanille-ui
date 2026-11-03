@@ -12,7 +12,7 @@ import Box from '@components/layout/box/Box.tsx'
  */
 const Flex: FC<FlexProps> = memo(({
     inline,
-    gap = 'none',
+    gap = 0,
     className,
     ...props
 }) => {

@@ -80,14 +80,14 @@ export function Example() {
 See [Customization](?path=/docs/overview-customization--docs) for global,
 scoped and dark-mode CSS overrides, including Vanilla Extract recommendations.
 
-All tokens are exposed as **CSS custom properties** on `:root` (e.g. `--color-primary-main`, `--space-md`, `--radius-sm`).
+All tokens are exposed as **CSS custom properties** on `:root` (e.g. `--color-primary-main`, `--space-12`, `--radius-6`).
 Override them globally in your CSS to rebrand the kit without touching any component code:
 
 <Source
   language="css"
   code={`:root {
   --color-primary-main: oklch(0.55 0.2 250); /* full rebrand */
-  --radius-md: 0.25rem;                 /* sharper corners */
+  --radius-8: 0.25rem;                 /* sharper corners */
 }`}
 />
 
@@ -101,8 +101,8 @@ import { vars } from '@choco-vanille/ui';
 export const card = style({
   backgroundColor: vars.color.surface.main,
   color:           vars.color.surface.foreground,
-  padding:         vars.space.lg,
-  borderRadius:    vars.radius.md,
+  padding:         vars.space[16],
+  borderRadius:    vars.radius[8],
   boxShadow:       vars.shadow.sm,
 });`}
 />

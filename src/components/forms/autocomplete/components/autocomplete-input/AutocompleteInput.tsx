@@ -19,7 +19,7 @@ const AutocompleteInput: FC<AutocompleteInputProps> = memo(({
     placeholder,
     startIcon,
     size = 'md',
-    fontSize = 'md',
+    fontSize = 16,
     hasError = false,
     width,
     onMouseDown,

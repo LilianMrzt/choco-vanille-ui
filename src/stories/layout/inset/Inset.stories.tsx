@@ -18,24 +18,7 @@ import { Typography } from '@components/foundation/typography'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
-const SPACES: InsetSpace[] = [
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-]
+const SPACES: InsetSpace[] = [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128]
 
 const SIDES = [
     'all',
@@ -80,8 +63,8 @@ Applies a negative semantic margin so its content can bleed into the padding of 
 **Usage**
 
 \`\`\`tsx
-<Card padding="lg">
-    <Inset clip="padding-box" side="top" space="lg" paddingBottom="current">
+<Card padding={16}>
+    <Inset clip="padding-box" side="top" space={16} paddingBottom="current">
       <img
         src="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80"
         alt="Bold typography"
@@ -108,7 +91,7 @@ Applies a negative semantic margin so its content can bleed into the padding of 
         paddingLeft: { control: 'select', options: ['current', ...SPACES] },
     },
     args: {
-        space: 'lg',
+        space: 16,
         side: 'top',
         clip: 'padding-box',
         paddingBottom: 'current',
@@ -126,8 +109,8 @@ export const Playground: Story = {
                 story: 'Use the Controls panel to change the bleed size and direction.',
             },
             ...storySource(/* language=tsx */ `
-<Card padding="lg">
-    <Inset clip="padding-box" space="lg" side="top" paddingBottom="current">
+<Card padding={16}>
+    <Inset clip="padding-box" space={16} side="top" paddingBottom="current">
         <img src="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80" alt="Bold typography" />
     </Inset>
     <Typography variant="p">Supporting text below the bleeding content.</Typography>
@@ -136,7 +119,7 @@ export const Playground: Story = {
     },
     render: (args) => (
         <Card
-            padding={'lg'}
+            padding={16}
         >
             <Inset {...args}>
                 <img

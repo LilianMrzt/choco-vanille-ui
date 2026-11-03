@@ -20,7 +20,7 @@ import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hoo
 const PopoverContent: FC<PopoverContentProps> = memo(({
     className,
     position,
-    padding = 'md',
+    padding = 12,
     width,
     side: sideProp = 'bottom',
     align: alignProp = 'center',

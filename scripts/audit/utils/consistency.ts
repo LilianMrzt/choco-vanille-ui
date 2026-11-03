@@ -397,16 +397,16 @@ function detectControlledStateInitializers(
   }
 }
 
-function stringLiteralValues(sourceFile: SourceFile, symbol: string): string[] {
+function literalValues(sourceFile: SourceFile, symbol: string): string[] {
   const typeAlias = sourceFile.getTypeAlias(symbol);
   if (typeAlias) {
     return typeAlias
       .getType()
       .getUnionTypes()
       .flatMap((type) => {
-        if (!type.isStringLiteral()) return [];
+        if (!type.isStringLiteral() && !type.isNumberLiteral()) return [];
         const value = type.getLiteralValue();
-        return typeof value === 'string' ? [value] : [];
+        return typeof value === 'string' || typeof value === 'number' ? [String(value)] : [];
       });
   }
 
@@ -464,7 +464,7 @@ function contractValues(
   source: VocabularySource,
 ): string[] {
   if (source.kind === 'recipe') return recipeValues(sourceFile, source.axis);
-  return stringLiteralValues(sourceFile, source.symbol);
+  return literalValues(sourceFile, source.symbol);
 }
 
 function resolveDefaultExpression(expression: Expression): string | undefined {

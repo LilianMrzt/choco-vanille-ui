@@ -8,10 +8,10 @@ export const COMMAND_INPUT_STYLES = {
     wrapper: style({
         display: 'flex',
         alignItems: 'center',
-        gap: vars.space.sm,
+        gap: vars.space[8],
         borderBottom: `1px solid ${vars.color.border.main}`,
-        paddingInline: vars.space.lg,
-        paddingBlock: vars.space.sm2,
+        paddingInline: vars.space[16],
+        paddingBlock: vars.space[10],
         flexShrink: 0,
     }),
 
@@ -25,9 +25,9 @@ export const COMMAND_INPUT_STYLES = {
     input: style({
         flex: '1 1 0%',
         width: '100%',
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         fontFamily: vars.fontFamily.sans,
-        lineHeight: vars.lineHeight.normal,
+        lineHeight: '1.5',
         backgroundColor: 'transparent',
         color: vars.color.text.primary,
         border: 'none',

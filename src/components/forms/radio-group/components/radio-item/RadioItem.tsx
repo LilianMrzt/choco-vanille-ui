@@ -31,7 +31,7 @@ const RadioItem: FC<RadioItemProps> = memo(({
         <Flex
             as={'span'}
             inline
-            gap={'sm'}
+            gap={8}
             alignItems={'center'}
         >
             <Radio.Root

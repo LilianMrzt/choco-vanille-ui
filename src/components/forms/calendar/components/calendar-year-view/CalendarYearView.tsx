@@ -26,7 +26,7 @@ const CalendarYearView = memo((): ReactElement => {
     return (
         <Grid
             columns={3}
-            gap={'xs'}
+            gap={4}
         >
             {Array.from({ length: YEARS_PER_PAGE }, (_, i) => {
                 const y = decadeStart + i

@@ -62,7 +62,7 @@ const StepperItem = memo(
                 <Typography
                     as={'span'}
                     variant={'span'}
-                    fontSize={'sm'}
+                    fontSize={14}
                     className={cn(STEPPER_STYLES.label, size === 'sm' && STEPPER_STYLES.labelSmall)}
                 >
                     {label}
@@ -71,7 +71,7 @@ const StepperItem = memo(
                     <Typography
                         as={'span'}
                         variant={'span'}
-                        fontSize={size === 'sm' ? '2xs' : 'xs'}
+                        fontSize={size === 'sm' ? 10 : 12}
                         className={cn(
                             STEPPER_STYLES.description,
                             size === 'sm' && STEPPER_STYLES.descriptionSmall,

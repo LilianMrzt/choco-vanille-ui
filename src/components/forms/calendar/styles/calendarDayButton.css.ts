@@ -8,11 +8,11 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         border: 'none',
         backgroundColor: 'transparent',
         color: vars.color.text.primary,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         cursor: 'pointer',
         padding: 0,
         outline: 'none',
@@ -96,7 +96,7 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button`, {
     backgroundColor: vars.color.primary.main,
     color: vars.color.primary.foreground,
-    borderRadius: `${vars.radius.xs} 0 0 ${vars.radius.xs}`,
+    borderRadius: `${vars.radius[4]} 0 0 ${vars.radius[4]}`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:hover:not(:disabled)`, {
     backgroundColor: vars.color.primary.hover,
@@ -109,7 +109,7 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:active:not(:disabl
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button`, {
     backgroundColor: vars.color.primary.main,
     color: vars.color.primary.foreground,
-    borderRadius: `0 ${vars.radius.xs} ${vars.radius.xs} 0`,
+    borderRadius: `0 ${vars.radius[4]} ${vars.radius[4]} 0`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button:hover:not(:disabled)`, {
     backgroundColor: vars.color.primary.hover,

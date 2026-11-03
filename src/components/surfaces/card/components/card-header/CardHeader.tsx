@@ -39,9 +39,9 @@ const CardHeader: FC<CardHeaderProps> = memo(({
         flexDirection={'row'}
         alignItems={'start'}
         justifyContent={'between'}
-        gap={'md'}
-        padding={'md'}
-        paddingBottom={'none'}
+        gap={12}
+        padding={12}
+        paddingBottom={0}
         className={className}
         {...props}
     >
@@ -49,16 +49,16 @@ const CardHeader: FC<CardHeaderProps> = memo(({
             <Flex
                 flexDirection={'column'}
                 alignItems={'start'}
-                gap={'xs'}
+                gap={4}
                 className={CARD_HEADER_STYLES.content}
             >
                 {title && (
                     <Typography
                         as={titleAs ?? 'h3'}
-                        fontSize={'lg'}
+                        fontSize={18}
                         fontWeight={'semibold'}
                         color={vars.color.surface.foreground}
-                        style={{ lineHeight: vars.lineHeight.tight }}
+                        style={{ lineHeight: '1.25' }}
                         {...titleProps}
                     >
                         {title}
@@ -67,9 +67,9 @@ const CardHeader: FC<CardHeaderProps> = memo(({
                 {description && (
                     <Typography
                         as={'p'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.surface.mutedForeground}
-                        style={{ lineHeight: vars.lineHeight.normal }}
+                        style={{ lineHeight: '1.5' }}
                         {...descriptionProps}
                     >
                         {description}
@@ -83,7 +83,7 @@ const CardHeader: FC<CardHeaderProps> = memo(({
         {actions && (
             <Flex
                 alignItems={'center'}
-                gap={'xs'}
+                gap={4}
                 className={CARD_HEADER_STYLES.actions}
             >
                 {actions}

@@ -110,25 +110,39 @@ import { vars } from '@choco-vanille/ui';
 export const card = style({
   backgroundColor: vars.color.surface.main,
   color: vars.color.surface.foreground,
-  padding: vars.space.lg,
-  borderRadius: vars.radius.md,
+  padding: vars.space[16],
+  borderRadius: vars.radius[8],
   boxShadow: vars.shadow.sm,
 });
 ```
 
 **2. Plain CSS variables** — every token is emitted on `:root` with a stable,
-human-readable name derived from its path (`--color-primary-main`, `--space-md`,
-`--radius-sm`, …). Use them in any stylesheet, or override them to retheme:
+human-readable name derived from its path (`--color-primary-main`, `--space-12`,
+`--radius-6`, …). Use them in any stylesheet, or override them to retheme:
 
 ```css
 :root {
   --color-primary-main: oklch(0.55 0.2 250); /* override this token */
-  --radius-md: 0.25rem;
+  --radius-8: 0.25rem;
 }
 ```
 
 Both stay in sync automatically — overriding a CSS variable also updates every
 component that references it through `vars`.
+
+Spacing, font-size and radius use numeric keys referencing pixels at a
+16px root. Values remain in rem except spacing `0` and fixed `1px`.
+Use `padding={16}`, `fontSize={14}` and `borderRadius={8}`; there are no named
+aliases or implicit multipliers. Props accept only numbers in the supported
+scale, not arbitrary values. `radius.full` remains available, and Typography
+supports the complete font-size scale through `72`.
+
+The theme no longer exposes `lineHeight` or `letterSpacing`: components retain
+their CSS typography, and Typography's `letterSpacing` accepts a CSS value.
+Both `shadow` and `dropShadow` expose `none`, `xs`, `sm`, `md`, `lg`, `xl`.
+Font families, weights, durations, easing and stacking remain unchanged.
+Independent component size axes such as Button's `size="md"` are unaffected.
+These token names and CSS variables are breaking changes without legacy aliases.
 
 Overrides accept any valid CSS color. Rebranding an intent also requires its
 hover, pressed, foreground, and subtle tokens; these are not generated from the

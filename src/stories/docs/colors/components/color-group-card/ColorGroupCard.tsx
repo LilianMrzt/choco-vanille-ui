@@ -19,23 +19,23 @@ const ColorGroupCard = ({ group, colors }: ColorGroupCardProps): ReactElement =>
         as={'section'}
         backgroundColor={vars.color.surface.main}
         borderColor={vars.color.border.subtle}
-        borderRadius={'lg'}
+        borderRadius={10}
         borderStyle={'solid'}
         borderWidth={'1px'}
         flexDirection={'column'}
-        gap={'md'}
+        gap={12}
         minWidth={0}
-        padding={'md'}
+        padding={12}
     >
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
         >
             <Typography variant={'h2'}>{group.label}</Typography>
             {group.description && (
                 <Typography
                     color={vars.color.text.secondary}
-                    fontSize={'sm'}
+                    fontSize={14}
                 >
                     {group.description}
                 </Typography>

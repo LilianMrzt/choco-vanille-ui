@@ -15,14 +15,14 @@ const fadeZoomOut = keyframes({
 export const TOOLTIP_STYLES = {
     content: style({
         zIndex: vars.zIndex.tooltip,
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         backgroundColor: vars.color.surface.elevated,
         color: vars.color.surface.elevatedForeground,
-        paddingInline: vars.space.md,
-        paddingBlock: vars.space.xs,
+        paddingInline: vars.space[12],
+        paddingBlock: vars.space[4],
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.xs,
-        lineHeight: vars.lineHeight.normal,
+        fontSize: vars.fontSize[12],
+        lineHeight: '1.5',
         filter: vars.dropShadow.sm,
         transformOrigin: 'var(--transform-origin)',
         selectors: {

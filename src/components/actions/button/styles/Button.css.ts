@@ -8,7 +8,7 @@ export const BUTTON_STYLES = {
     recipe: recipe({
         base: {
             ...BUTTON_SHARED_STYLES.base,
-            gap: vars.space.sm,
+            gap: vars.space[8],
             whiteSpace: 'nowrap',
         },
         variants: {
@@ -17,15 +17,15 @@ export const BUTTON_STYLES = {
             size: {
                 [BUTTON_SIZES.sm]: {
                     height: '2.25rem',
-                    paddingInline: vars.space.md,
+                    paddingInline: vars.space[12],
                 },
                 [BUTTON_SIZES.md]: {
                     height: '2.5rem',
-                    paddingInline: vars.space.lg,
+                    paddingInline: vars.space[16],
                 },
                 [BUTTON_SIZES.lg]: {
                     height: '2.75rem',
-                    paddingInline: vars.space['2xl'],
+                    paddingInline: vars.space[32],
                 },
             },
         },

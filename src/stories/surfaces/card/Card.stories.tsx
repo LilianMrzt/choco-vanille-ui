@@ -92,30 +92,8 @@ const CardDocsPage = () => (
 )
 
 const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-] as const
-const ROUNDED = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
+const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
 
 const meta: Meta<CardPlaygroundArgs> = {
     title: 'Surfaces/Card',
@@ -141,7 +119,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     title="Account settings"
     description="Manage your profile."
     titleAs="h3"
-    titleProps={{ fontSize: 'lg', fontWeight: 'semibold' }}
+    titleProps={{ fontSize: 18, fontWeight: 'semibold' }}
     actions={
       <IconButton
         icon={SearchIcon}
@@ -210,16 +188,18 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
             control: 'select',
             options: [
                 undefined,
-                'xs',
-                'sm',
-                'md',
-                'lg',
-                'xl',
-                '2xl',
-                '3xl',
-                '4xl',
-                '5xl',
-                '6xl',
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                24,
+                30,
+                36,
+                48,
+                60,
+                72,
             ],
             table: { category: 'Card.Header' },
         },
@@ -245,7 +225,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
         },
         descriptionFontSize: {
             control: 'select',
-            options: [undefined, 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+            options: [undefined, 10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72],
             table: { category: 'Card.Header' },
         },
         bodyAs: {
@@ -274,7 +254,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
     },
     args: {
         as: 'div',
-        borderRadius: 'lg',
+        borderRadius: 10,
         headerAs: 'div',
         title: 'Account settings',
         titleAs: 'h3',
@@ -366,7 +346,7 @@ export const Playground: Story = {
             >
                 <Typography
                     variant={'p'}
-                    fontSize={'sm'}
+                    fontSize={14}
                     color={vars.color.text.primary}
                 >
                     Your content goes here.

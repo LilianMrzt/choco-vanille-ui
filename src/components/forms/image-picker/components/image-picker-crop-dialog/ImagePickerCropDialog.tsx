@@ -79,10 +79,10 @@ export const ImagePickerCropDialog = memo<ImagePickerCropDialogProps>(
                         titleProps={{ id: titleId }}
                         showCloseButton={false}
                     />
-                    <Dialog.Body padding={'lg'}>
+                    <Dialog.Body padding={16}>
                         <Flex
                             flexDirection={'column'}
-                            gap={'md'}
+                            gap={12}
                         >
                             <Box className={IMAGE_PICKER_CROP_DIALOG_STYLES.viewport}>
                                 {imageUrl && (

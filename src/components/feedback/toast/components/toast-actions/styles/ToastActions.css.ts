@@ -5,6 +5,6 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const TOAST_ACTIONS_STYLES = {
     actions: style({
         gridArea: 'actions',
-        marginTop: vars.space.xs,
+        marginTop: vars.space[4],
     }),
 }

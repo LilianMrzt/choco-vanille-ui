@@ -27,24 +27,24 @@ export const SPINNER_STYLES = {
         variants: {
             size: {
                 xs: {
-                    width: vars.fontSize.xs,
-                    height: vars.fontSize.xs,
+                    width: vars.fontSize[12],
+                    height: vars.fontSize[12],
                 },
                 sm: {
-                    width: vars.fontSize.sm,
-                    height: vars.fontSize.sm,
+                    width: vars.fontSize[14],
+                    height: vars.fontSize[14],
                 },
                 md: {
-                    width: vars.fontSize.md,
-                    height: vars.fontSize.md,
+                    width: vars.fontSize[16],
+                    height: vars.fontSize[16],
                 },
                 lg: {
-                    width: vars.fontSize.xl,
-                    height: vars.fontSize.xl,
+                    width: vars.fontSize[20],
+                    height: vars.fontSize[20],
                 },
                 xl: {
-                    width: vars.fontSize['2xl'],
-                    height: vars.fontSize['2xl'],
+                    width: vars.fontSize[24],
+                    height: vars.fontSize[24],
                 },
             },
             color: colorVariants,

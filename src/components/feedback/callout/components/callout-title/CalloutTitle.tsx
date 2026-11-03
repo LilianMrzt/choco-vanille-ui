@@ -18,7 +18,7 @@ const CalloutTitle: FC<CalloutTitleProps> = memo(({
             ref={ref}
             as={'span'}
             variant={'span'}
-            fontSize={'sm'}
+            fontSize={14}
             fontWeight={'semibold'}
             className={cn(className)}
             {...props}

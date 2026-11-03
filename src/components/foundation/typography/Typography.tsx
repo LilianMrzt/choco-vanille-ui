@@ -3,7 +3,6 @@ import { TYPOGRAPHY_ELEMENT_MAP } from '@components/foundation/typography/consta
 import type { TypographyProps } from '@components/foundation/typography/types/Typography.props.ts'
 import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
 import { cn } from '@utils/cn.ts'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, type CSSProperties, type FC } from 'react'
 
 const isTypographyVariant = (value: string): value is TypographyVariant =>
@@ -22,7 +21,7 @@ const isTypographyVariant = (value: string): value is TypographyVariant =>
  *
  * @example
  * ```tsx
- * <Typography variant="h1" fontSize="4xl" fontWeight="bold">
+ * <Typography variant="h1" fontSize={36} fontWeight="bold">
  *   Welcome
  * </Typography>
  * ```
@@ -66,7 +65,7 @@ const Typography: FC<TypographyProps> = memo(({
         flex,
         flexGrow,
         flexShrink,
-        letterSpacing: letterSpacing ? vars.letterSpacing[letterSpacing] : undefined,
+        letterSpacing,
         ...style,
     }
 

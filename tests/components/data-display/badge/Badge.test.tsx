@@ -147,7 +147,7 @@ describe('Badge', () => {
     describe('Box prop passthrough', () => {
         it('forwards radius prop to Box', () => {
             const { container } = render(
-                <Badge borderRadius={'md'} label={'badge'} />,
+                <Badge borderRadius={8} label={'badge'} />,
             )
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })

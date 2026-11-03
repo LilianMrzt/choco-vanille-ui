@@ -46,9 +46,9 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                 flexDirection={'row'}
                 alignItems={'start'}
                 justifyContent={'between'}
-                gap={'md'}
-                padding={'lg'}
-                paddingBottom={'none'}
+                gap={12}
+                padding={16}
+                paddingBottom={0}
                 className={className}
                 {...props}
             >
@@ -56,7 +56,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                     <Flex
                         flexDirection={'column'}
                         alignItems={'start'}
-                        gap={'xs'}
+                        gap={4}
                         className={PANEL_HEADER_STYLES.content}
                     >
                         {title && (
@@ -65,7 +65,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                     <Typography
                                         as={titleAs ?? 'h2'}
                                         id={titleId}
-                                        fontSize={'lg'}
+                                        fontSize={18}
                                         fontWeight={'semibold'}
                                         color={vars.color.text.primary}
                                         width={'100%'}
@@ -82,7 +82,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                 render={
                                     <Typography
                                         as={'p'}
-                                        fontSize={'sm'}
+                                        fontSize={14}
                                         color={vars.color.surface.mutedForeground}
                                         width={'100%'}
                                         ellipsis={true}
@@ -99,7 +99,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                 {(actions || showCloseButton) && (
                     <Flex
                         alignItems={'center'}
-                        gap={'xs'}
+                        gap={4}
                         className={PANEL_HEADER_STYLES.actions}
                     >
                         {actions}

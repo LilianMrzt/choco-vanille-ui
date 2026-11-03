@@ -190,7 +190,7 @@ export const Playground: Story = {
       description="Manage your profile and preferences."
     />
     <Dialog.Body>
-      <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+      <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
         Your content goes here.
       </Typography>
     </Dialog.Body>
@@ -234,7 +234,7 @@ export const Playground: Story = {
                 <Dialog.Body>
                     <Typography
                         variant={'p'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.text.primary}
                     >
                         Your content goes here. This dialog demonstrates the compound
@@ -292,7 +292,7 @@ export const Sizes: Story = {
     <Dialog.Content size="sm">
       <Dialog.Header title="Small dialog" description="Size: sm" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the sm size.
         </Typography>
       </Dialog.Body>
@@ -306,7 +306,7 @@ export const Sizes: Story = {
     <Dialog.Content size="md">
       <Dialog.Header title="Medium dialog" description="Size: md" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the md size.
         </Typography>
       </Dialog.Body>
@@ -320,7 +320,7 @@ export const Sizes: Story = {
     <Dialog.Content size="lg">
       <Dialog.Header title="Large dialog" description="Size: lg" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the lg size.
         </Typography>
       </Dialog.Body>
@@ -334,7 +334,7 @@ export const Sizes: Story = {
     <Dialog.Content size="xl">
       <Dialog.Header title="Extra large dialog" description="Size: xl" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the xl size.
         </Typography>
       </Dialog.Body>
@@ -348,7 +348,7 @@ export const Sizes: Story = {
     <Dialog.Content size="2xl">
       <Dialog.Header title="2XL dialog" description="Size: 2xl" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the 2xl size.
         </Typography>
       </Dialog.Body>
@@ -362,7 +362,7 @@ export const Sizes: Story = {
     <Dialog.Content size="full">
       <Dialog.Header title="Full dialog" description="Size: full" />
       <Dialog.Body>
-        <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+        <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
           This dialog uses the full size.
         </Typography>
       </Dialog.Body>
@@ -390,7 +390,7 @@ export const Sizes: Story = {
                         <Dialog.Body>
                             <Typography
                                 variant={'p'}
-                                fontSize={'sm'}
+                                fontSize={14}
                                 color={vars.color.text.primary}
                             >
                                 This dialog uses the {dialogSize} size.

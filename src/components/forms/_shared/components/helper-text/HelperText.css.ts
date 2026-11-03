@@ -4,8 +4,8 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const base = {
     fontFamily: vars.fontFamily.sans,
-    fontSize: vars.fontSize.sm,
-    lineHeight: vars.lineHeight.normal,
+    fontSize: vars.fontSize[14],
+    lineHeight: '1.5',
 }
 
 export const HELPER_TEXT_STYLES = {

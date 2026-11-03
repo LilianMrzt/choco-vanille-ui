@@ -87,6 +87,10 @@ describe('theme CSS contract', () => {
 
         const dark = declarationsFor('[data-theme="dark"]')
         const light = declarationsFor('[data-theme="light"]')
+        expectTokens(declarationsFor(':root'), vars, lightTheme)
+        expect(stylesheet).not.toMatch(/--(?:lineHeight|letterSpacing)-/)
+        expect(stylesheet).not.toMatch(/--(?:space|fontSize|radius)-(?:none|px|xxs|xs|sm|md|lg|xl)\b/)
+        expect(stylesheet).not.toMatch(/--shadow-(?:2xl|inner)\b/)
         expect(declarationsFor('.choco-vanille-theme-dark')).toEqual(dark)
         expect(declarationsFor('.choco-vanille-theme-light')).toEqual(light)
 
@@ -101,8 +105,8 @@ describe('theme CSS contract', () => {
             expectTokens(light, vars[key], lightTheme[key])
             expectTokens(automaticDark, vars[key], darkTheme[key])
         }
-        expect(light.has('--space-md')).toBe(false)
-        expect(dark.has('--space-md')).toBe(false)
+        expect(light.has('--space-12')).toBe(false)
+        expect(dark.has('--space-12')).toBe(false)
     })
 })
 // @vitest-environment node

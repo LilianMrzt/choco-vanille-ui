@@ -20,7 +20,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
         error,
         width,
         size: sizeProp = 'md',
-        fontSize = 'md',
+        fontSize = 16,
         className,
         disabled,
         required,
@@ -59,7 +59,7 @@ const NumberField = memo<NumberFieldProps>((props) => {
     return (
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}

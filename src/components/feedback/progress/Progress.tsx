@@ -18,7 +18,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,
     color,
     size = 'sm',
-    borderRadius = 'sm',
+    borderRadius = 6,
     label,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -38,7 +38,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
             ref={ref}
             display={'flex'}
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={width}
             className={className}
             {...props}
@@ -48,13 +48,13 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                     display={'flex'}
                     justifyContent={'space-between'}
                     alignItems={'center'}
-                    gap={'sm'}
+                    gap={8}
                 >
                     {label && (
                         <Typography
                             as={'span'}
                             variant={'span'}
-                            fontSize={'sm'}
+                            fontSize={14}
                             color={vars.color.text.secondary}
                         >
                             {label}
@@ -64,7 +64,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                         <Typography
                             as={'span'}
                             variant={'span'}
-                            fontSize={'sm'}
+                            fontSize={14}
                             fontWeight={'medium'}
                             color={vars.color.text.secondary}
                         >

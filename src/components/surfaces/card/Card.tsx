@@ -33,7 +33,7 @@ const Card = memo<CardProps>(({
     as = 'div',
     backgroundColor,
     color,
-    borderRadius = 'sm',
+    borderRadius = 6,
     borderWidth = '1px',
     borderColor,
     borderStyle = 'solid',

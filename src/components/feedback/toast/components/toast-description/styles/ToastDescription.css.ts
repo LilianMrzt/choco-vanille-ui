@@ -5,6 +5,6 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const TOAST_DESCRIPTION_STYLES = {
     description: style({
         gridArea: 'description',
-        marginTop: vars.space.xs,
+        marginTop: vars.space[4],
     }),
 }

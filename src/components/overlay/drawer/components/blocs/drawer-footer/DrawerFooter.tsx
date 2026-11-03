@@ -7,9 +7,9 @@ import type { DrawerFooterProps } from '@components/overlay/drawer/components/bl
 const DrawerFooter: FC<DrawerFooterProps> = memo(({
     as = 'div',
     justifyContent = 'end',
-    gap = 'sm',
-    padding = 'md',
-    paddingTop = 'none',
+    gap = 8,
+    padding = 12,
+    paddingTop = 0,
     ...props
 }) => (
     <Flex

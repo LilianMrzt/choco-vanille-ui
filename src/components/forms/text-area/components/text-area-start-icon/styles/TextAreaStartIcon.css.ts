@@ -4,8 +4,8 @@ import { style } from '@vanilla-extract/css'
 export const TEXT_AREA_START_ICON_STYLES = {
     root: style({
         position: 'absolute',
-        left: vars.space.sm,
-        top: vars.space.md,
+        left: vars.space[8],
+        top: vars.space[12],
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',

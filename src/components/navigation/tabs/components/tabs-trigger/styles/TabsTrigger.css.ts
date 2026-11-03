@@ -11,15 +11,15 @@ export const TABS_TRIGGER_STYLES = {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: vars.space.xs,
-            padding: `${vars.space.xs2} ${vars.space.md}`,
+            gap: vars.space[4],
+            padding: `${vars.space[6]} ${vars.space[12]}`,
             border: 'none',
             backgroundColor: 'transparent',
             color: vars.color.surface.mutedForeground,
             fontFamily: 'inherit',
-            fontSize: vars.fontSize.sm,
+            fontSize: vars.fontSize[14],
             fontWeight: vars.fontWeight.medium,
-            lineHeight: vars.lineHeight.normal,
+            lineHeight: '1.5',
             cursor: 'pointer',
             outline: 'none',
             transition: [
@@ -46,7 +46,7 @@ export const TABS_TRIGGER_STYLES = {
                 default: {
                     marginBottom: '-1px',
                     borderBottom: `2px solid transparent`,
-                    borderRadius: `${vars.radius.xs} ${vars.radius.xs} 0 0`,
+                    borderRadius: `${vars.radius[4]} ${vars.radius[4]} 0 0`,
                     // Keep hover/active tint above the underline and list divider
                     backgroundClip: 'padding-box',
                     selectors: {
@@ -69,7 +69,7 @@ export const TABS_TRIGGER_STYLES = {
                     },
                 },
                 pills: {
-                    borderRadius: vars.radius.xs,
+                    borderRadius: vars.radius[4],
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
                             backgroundColor: vars.color.primary.subtle,

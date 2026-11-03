@@ -27,7 +27,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
     placeholder,
     startIcon,
     size = 'md',
-    fontSize = 'md',
+    fontSize = 16,
     hasError = false,
     width,
     children,

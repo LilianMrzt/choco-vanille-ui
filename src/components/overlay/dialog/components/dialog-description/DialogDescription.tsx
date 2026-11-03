@@ -17,7 +17,7 @@ const DialogDescription: FC<DialogDescriptionProps> = memo(({ className, childre
     >
         <Typography
             as={'p'}
-            fontSize={'sm'}
+            fontSize={14}
             color={vars.color.surface.mutedForeground}
         >
             {children}

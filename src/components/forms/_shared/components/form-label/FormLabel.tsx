@@ -12,7 +12,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 const FormLabel: FC<FormLabelProps> = memo(({
     className,
     style,
-    fontSize = 'md',
+    fontSize = 16,
     disabled,
     required,
     children,

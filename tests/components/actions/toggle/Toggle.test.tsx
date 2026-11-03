@@ -145,7 +145,7 @@ describe('Toggle', () => {
             const { container } = render(
                 <Toggle
                     label={'btn'}
-                    marginLeft={'lg'}
+                    marginLeft={16}
                     width={'14rem'}
                     alignSelf={'stretch'}
                 />,
@@ -153,7 +153,7 @@ describe('Toggle', () => {
 
             const button = getFirstChild(container)
             expect(button.className).toContain(
-                BOX_STYLES.recipe({ marginLeft: 'lg' }),
+                BOX_STYLES.recipe({ marginLeft: 16 }),
             )
             expect(button.style.width).toBe('14rem')
             expect(button.style.alignSelf).toBe('stretch')

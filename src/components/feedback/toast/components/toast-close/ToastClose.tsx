@@ -24,7 +24,7 @@ const ToastClose: FC<ToastCloseProps> = memo(({
             icon={CloseIcon}
             aria-label={ariaLabel}
             className={cn(TOAST_CLOSE_STYLES.close, className)}
-            style={{ marginInlineStart: vars.space.xs, color: vars.color.surface.mutedForeground }}
+            style={{ marginInlineStart: vars.space[4], color: vars.color.surface.mutedForeground }}
             {...props}
         />
     )

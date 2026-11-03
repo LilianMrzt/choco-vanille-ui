@@ -1,6 +1,6 @@
 /*
- * Typography tokens — font families, type scale, weights, line-heights and
- * letter-spacing. Theme-agnostic.
+ * Theme-agnostic font families, sizes and weights. Font-size keys are pixel
+ * references at a 16px root; values remain rem-based.
  */
 
 export const FONT_FAMILY = {
@@ -10,18 +10,18 @@ export const FONT_FAMILY = {
 } as const
 
 export const FONT_SIZE = {
-    '2xs': '0.625rem',
-    xs: '0.75rem',
-    sm: '0.875rem',
-    md: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '3.75rem',
-    '7xl': '4.5rem',
+    10: '0.625rem',
+    12: '0.75rem',
+    14: '0.875rem',
+    16: '1rem',
+    18: '1.125rem',
+    20: '1.25rem',
+    24: '1.5rem',
+    30: '1.875rem',
+    36: '2.25rem',
+    48: '3rem',
+    60: '3.75rem',
+    72: '4.5rem',
 } as const
 
 export const FONT_WEIGHT = {
@@ -34,22 +34,4 @@ export const FONT_WEIGHT = {
     bold: '700',
     extrabold: '800',
     black: '900',
-} as const
-
-export const LINE_HEIGHT = {
-    none: '1',
-    tight: '1.25',
-    snug: '1.375',
-    normal: '1.5',
-    relaxed: '1.625',
-    loose: '1.75',
-} as const
-
-export const LETTER_SPACING = {
-    tighter: '-0.05em',
-    tight: '-0.025em',
-    normal: '0',
-    wide: '0.025em',
-    wider: '0.05em',
-    widest: '0.1em',
 } as const

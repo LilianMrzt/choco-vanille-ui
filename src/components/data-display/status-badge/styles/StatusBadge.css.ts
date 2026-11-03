@@ -50,19 +50,19 @@ const sizeVariants: Record<
   { width: string; height: string; fontSize: string }
 > = {
     [STATUS_BADGE_SIZES.sm]: {
-        width: vars.space.sm,
-        height: vars.space.sm,
-        fontSize: vars.space.sm,
+        width: vars.space[8],
+        height: vars.space[8],
+        fontSize: vars.space[8],
     },
     [STATUS_BADGE_SIZES.md]: {
-        width: vars.space.sm2,
-        height: vars.space.sm2,
-        fontSize: vars.fontSize['2xs'],
+        width: vars.space[10],
+        height: vars.space[10],
+        fontSize: vars.fontSize[10],
     },
     [STATUS_BADGE_SIZES.lg]: {
-        width: vars.space.md,
-        height: vars.space.md,
-        fontSize: vars.fontSize.xs,
+        width: vars.space[12],
+        height: vars.space[12],
+        fontSize: vars.fontSize[12],
     },
 }
 
@@ -97,7 +97,7 @@ export const STATUS_BADGE_STYLES = {
             boxSizing: 'border-box',
             fontFamily: vars.fontFamily.sans,
             fontWeight: vars.fontWeight.semibold,
-            lineHeight: vars.lineHeight.none,
+            lineHeight: '1',
             pointerEvents: 'none',
         },
         variants: {
@@ -116,8 +116,8 @@ export const STATUS_BADGE_STYLES = {
                     hasNumber: true,
                 },
                 style: {
-                    width: vars.space.lg,
-                    height: vars.space.lg,
+                    width: vars.space[16],
+                    height: vars.space[16],
                 },
             },
             {
@@ -126,8 +126,8 @@ export const STATUS_BADGE_STYLES = {
                     hasNumber: true,
                 },
                 style: {
-                    width: vars.space.lg2,
-                    height: vars.space.lg2,
+                    width: vars.space[20],
+                    height: vars.space[20],
                 },
             },
             {
@@ -136,8 +136,8 @@ export const STATUS_BADGE_STYLES = {
                     hasNumber: true,
                 },
                 style: {
-                    width: vars.space.xl,
-                    height: vars.space.xl,
+                    width: vars.space[24],
+                    height: vars.space[24],
                 },
             },
         ],

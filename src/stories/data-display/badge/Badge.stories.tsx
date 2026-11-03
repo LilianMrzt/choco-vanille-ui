@@ -79,7 +79,7 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
 <Badge label="Verified" variant="contained" color="success" />
 <Badge label="Draft" variant="outlined" color="secondary" size="sm" />
 <Badge label="Soft" variant="outlinedSubtle" color="secondary" size="sm" />
-<Badge label="Custom" borderRadius="md" width="fit-content" />
+<Badge label="Custom" borderRadius={8} width="fit-content" />
 \`\`\`
 
                 `,
@@ -91,7 +91,7 @@ while inheriting Box layout props so radius, width, padding, and more remain cus
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
         size: { control: 'select', options: SIZES },
-        borderRadius: { control: 'select', options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full'] },
+        borderRadius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'] },
         width: { control: 'text' },
         startIcon: { control: 'text' },
         endIcon: { control: 'text' },

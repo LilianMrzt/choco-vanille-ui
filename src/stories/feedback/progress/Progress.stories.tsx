@@ -35,16 +35,7 @@ const COLORS: ProgressColor[] = [
     'indigo',
 ]
 const SIZES: ProgressSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
-const BORDER_RADIUS: ProgressBorderRadius[] = [
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-]
+const BORDER_RADIUS: ProgressBorderRadius[] = [0, 4, 6, 8, 10, 14, 20, 'full']
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -108,7 +99,7 @@ A progress indicator with linear and circular variants.
         value: 50,
         color: 'primary',
         size: 'sm',
-        borderRadius: 'sm',
+        borderRadius: 6,
         width: '100%',
         label: 'Loading progress',
     },
@@ -240,7 +231,15 @@ export const BorderRadius: Story = {
                 story:
           'The linear progress track can be customized with different border radii.',
             },
-            ...storySource(`<Progress value={60} borderRadius="none" label="none" quantityLabel /><Progress value={60} borderRadius="sm" label="sm" quantityLabel /><Progress value={60} borderRadius="full" label="full" quantityLabel />`),
+            ...storySource(`
+<Progress value={60} borderRadius={0} label="0" quantityLabel />
+<Progress value={60} borderRadius={4} label="4" quantityLabel />
+<Progress value={60} borderRadius={6} label="6" quantityLabel />
+<Progress value={60} borderRadius={8} label="8" quantityLabel />
+<Progress value={60} borderRadius={10} label="10" quantityLabel />
+<Progress value={60} borderRadius={14} label="14" quantityLabel />
+<Progress value={60} borderRadius={20} label="20" quantityLabel />
+<Progress value={60} borderRadius="full" label="full" quantityLabel />`),
         },
     },
     render: () => (
@@ -257,7 +256,7 @@ export const BorderRadius: Story = {
                     key={borderRadius}
                     value={60}
                     borderRadius={borderRadius}
-                    label={borderRadius}
+                    label={String(borderRadius)}
                     quantityLabel
                 />
             ))}

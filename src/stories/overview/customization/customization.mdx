@@ -12,6 +12,21 @@ Vanilla Extract is recommended if you want typed token access.
 See [Docs / CSS Variables](?path=/story/docs-css-variables--reference) for variable
 names and [Docs / Tokens](?path=/story/docs-tokens--all-tokens) for token values.
 
+## Numeric scales
+
+Spacing, font-size and radius tokens use **numeric** keys. They reference
+pixels at a 16px root; values remain in rem except spacing `0` and fixed `1px`.
+Use `vars.space[16]`, `vars.fontSize[14]`, `vars.radius[8]` and component
+props such as `padding={16}` or `fontSize={14}`. Props accept only numbers
+from their finite token scale. There are no legacy named aliases, quoted numeric
+props or implicit multipliers. `radius.full` remains available.
+
+Typography owns line-height and letter-spacing styling; these are no longer
+theme groups. Its `letterSpacing` prop accepts a CSS value, such as `0.025em`.
+Font families and weights, motion and stacking scales are unchanged.
+Both shadow families expose `none`, `xs`, `sm`, `md`, `lg`, `xl`.
+Independent component size axes, such as Button's `size="md"`, are unchanged.
+
 ## Override tokens with CSS
 
 Import components from `@choco-vanille/ui` as usual: compatible bundlers load
@@ -26,7 +41,7 @@ Add your overrides to an application stylesheet:
   --color-primary-hover: #004b83;
   --color-primary-pressed: #003c6a;
   --color-primary-foreground: #ffffff;
-  --radius-md: 0.75rem;
+  --radius-8: 0.75rem;
 }`} />
 
 The theme's default tokens live in a CSS cascade layer:
@@ -44,7 +59,7 @@ layer before either layer is first declared.
 | `--color-primary-foreground` | Text and icons on filled primary actions |
 | `--color-surface-main`, `--color-surface-foreground` | Surface background and foreground |
 | `--color-focusRing` | Focus indicator |
-| `--space-md`, `--radius-md` | Spacing and corner radius |
+| `--space-12`, `--radius-8` | Spacing and corner radius |
 
 When rebranding an entire intent, also update its `subtle`, `subtleHover`,
 `subtlePressed`, `subtleForeground`, `border` and `subtleBorder` tokens.
@@ -60,7 +75,7 @@ Declare variables on an ancestor to customize only that part of the interface:
   --color-primary-hover: #004b83;
   --color-primary-pressed: #003c6a;
   --color-primary-foreground: #ffffff;
-  --radius-md: 0.75rem;
+  --radius-8: 0.75rem;
 }`} />
 
 <Source language="tsx" code={`import { Button } from '@choco-vanille/ui';
@@ -130,7 +145,7 @@ import { vars } from '@choco-vanille/ui';
 
 globalStyle(':root', {
   vars: {
-    [vars.radius.md]: '0.75rem',
+    [vars.radius[8]]: '0.75rem',
   },
 });
 
@@ -153,7 +168,7 @@ export const BrandedAction = () => (
 );`} />
 
 Read tokens directly in other styles, for example
-`color: vars.color.surface.foreground` and `padding: vars.space.md`.
+`color: vars.color.surface.foreground` and `padding: vars.space[12]`.
 These references follow the active scope automatically. The same cascade,
 inheritance, dark-mode and contrast recommendations apply to Vanilla Extract
 and plain CSS overrides.

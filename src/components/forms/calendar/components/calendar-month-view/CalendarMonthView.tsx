@@ -25,7 +25,7 @@ const CalendarMonthView = memo((): ReactElement => {
     return (
         <Grid
             columns={3}
-            gap={'xs'}
+            gap={4}
         >
             {MONTH_LABELS.map((label, i) => (
                 <CalendarMonthButton

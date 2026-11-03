@@ -6,7 +6,7 @@ import type { DrawerBodyProps } from '@components/overlay/drawer/components/bloc
 /** Main content area of a `Drawer` with uniform padding and overflow handling. */
 const DrawerBody: FC<DrawerBodyProps> = memo(({
     as = 'div',
-    padding = 'md',
+    padding = 12,
     role,
     ...props
 }) => {

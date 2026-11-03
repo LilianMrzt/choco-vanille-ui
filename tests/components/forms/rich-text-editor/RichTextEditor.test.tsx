@@ -201,7 +201,7 @@ describe('RichTextEditor', () => {
                             text: 'Large text',
                             marks: [{
                                 type: 'textStyle',
-                                attrs: { fontSize: RICH_TEXT_FONT_SIZES['2xl'] },
+                                attrs: { fontSize: RICH_TEXT_FONT_SIZES[24] },
                             }],
                         }],
                     }],

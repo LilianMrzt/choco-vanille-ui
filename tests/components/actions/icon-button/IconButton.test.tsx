@@ -142,7 +142,7 @@ describe('IconButton', () => {
                 <IconButton
                     icon={BoldIcon}
                     aria-label={'btn'}
-                    marginBottom={'sm'}
+                    marginBottom={8}
                     width={'12rem'}
                     alignSelf={'flex-end'}
                 />,
@@ -150,7 +150,7 @@ describe('IconButton', () => {
 
             const button = getFirstChild(container)
             expect(button.className).toContain(
-                BOX_STYLES.recipe({ marginBottom: 'sm' }),
+                BOX_STYLES.recipe({ marginBottom: 8 }),
             )
             expect(button.style.width).toBe('12rem')
             expect(button.style.alignSelf).toBe('flex-end')

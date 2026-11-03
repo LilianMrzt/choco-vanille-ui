@@ -12,6 +12,6 @@ export const CALENDAR_CAPTION_STYLES = {
 
     captionLabel: style({
         userSelect: 'none',
-        paddingInline: vars.space.xs2,
+        paddingInline: vars.space[6],
     }),
 }

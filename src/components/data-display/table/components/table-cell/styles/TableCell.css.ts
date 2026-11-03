@@ -7,7 +7,7 @@ import { TABLE_STYLES } from '@components/data-display/table/styles/Table.css.ts
 export const TABLE_CELL_STYLES = {
     recipe: recipe({
         base: {
-            paddingInline: vars.space.lg,
+            paddingInline: vars.space[16],
             paddingBlock: TABLE_STYLES.cellPaddingBlockVar,
             verticalAlign: 'middle',
             color: vars.color.text.primary,

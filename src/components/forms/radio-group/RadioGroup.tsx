@@ -33,7 +33,7 @@ const RadioGroup = memo<RadioGroupProps>(({ className, children, onValueChange, 
         >
             <Flex
                 flexDirection={'column'}
-                gap={'sm'}
+                gap={8}
                 alignItems={'start'}
             >
                 {children}

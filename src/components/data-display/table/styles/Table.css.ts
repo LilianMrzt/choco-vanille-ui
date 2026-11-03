@@ -12,9 +12,9 @@ const cellPaddingBlockVar = createVar()
 const tableBase = style({
     width: '100%',
     captionSide: 'bottom',
-    fontSize: vars.fontSize.sm,
+    fontSize: vars.fontSize[14],
     borderCollapse: 'collapse',
-    vars: { [cellPaddingBlockVar]: vars.space.sm },
+    vars: { [cellPaddingBlockVar]: vars.space[8] },
 })
 
 globalStyle(`${tableBase}[data-striped="true"] tbody tr:nth-child(even):not([data-intent])`, {
@@ -36,9 +36,9 @@ export const TABLE_STYLES = {
         base: tableBase,
         variants: {
             size: {
-                sm: { vars: { [cellPaddingBlockVar]: vars.space.xs } },
-                md: { vars: { [cellPaddingBlockVar]: vars.space.sm } },
-                lg: { vars: { [cellPaddingBlockVar]: vars.space.md } },
+                sm: { vars: { [cellPaddingBlockVar]: vars.space[4] } },
+                md: { vars: { [cellPaddingBlockVar]: vars.space[8] } },
+                lg: { vars: { [cellPaddingBlockVar]: vars.space[12] } },
             },
             striped: {
                 true: {},

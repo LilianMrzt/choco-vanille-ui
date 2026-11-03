@@ -62,8 +62,6 @@ export const radiusRows = buildStaticRows(lightTheme.radius, vars.radius)
 export const fontFamilyRows = buildStaticRows(lightTheme.fontFamily, vars.fontFamily)
 export const fontSizeRows = buildStaticRows(lightTheme.fontSize, vars.fontSize)
 export const fontWeightRows = buildStaticRows(lightTheme.fontWeight, vars.fontWeight)
-export const lineHeightRows = buildStaticRows(lightTheme.lineHeight, vars.lineHeight)
-export const letterSpacingRows = buildStaticRows(lightTheme.letterSpacing, vars.letterSpacing)
 export const zIndexRows = buildStaticRows(lightTheme.zIndex, vars.zIndex)
 export const durationRows = buildStaticRows(lightTheme.duration, vars.duration)
 export const easingRows = buildStaticRows(lightTheme.easing, vars.easing)
@@ -97,8 +95,6 @@ export const buildPlainCssScaffold = (): string => {
         plainSection('Font families',  fontFamilyRows),
         plainSection('Font sizes',     fontSizeRows),
         plainSection('Font weights',   fontWeightRows),
-        plainSection('Line heights',   lineHeightRows),
-        plainSection('Letter spacing', letterSpacingRows),
         plainSection('Z-index',        zIndexRows),
         plainSection('Durations',      durationRows),
         plainSection('Easings',        easingRows),
@@ -152,8 +148,6 @@ export const buildVanillaExtractSnippet = (): string => {
         veSection('Font families',  'fontFamily',  'fontFamily',  fontFamilyRows),
         veSection('Font sizes',     'fontSize',    'fontSize',    fontSizeRows),
         veSection('Font weights',   'fontWeight',  'fontWeight',  fontWeightRows),
-        veSection('Line heights',   'lineHeight',  'lineHeight',  lineHeightRows),
-        veSection('Letter spacing', 'letterSpacing','letterSpacing',letterSpacingRows),
         veSection('Z-index',        'zIndex',      'zIndex',      zIndexRows),
         veSection('Durations',      'duration',    'duration',    durationRows),
         veSection('Easings',        'easing',      'easing',      easingRows),
@@ -173,8 +167,8 @@ export const buildVanillaExtractSnippet = (): string => {
         'export const myCard = style({',
         '  color: vars.color.primary.main,',
         '  background: vars.color.surface.main,',
-        '  padding: vars.space.md,',
-        '  borderRadius: vars.radius.md,',
+        '  padding: vars.space[12],',
+        '  borderRadius: vars.radius[8],',
         '  boxShadow: vars.shadow.sm,',
         '  fontFamily: vars.fontFamily.sans,',
         '});',
@@ -234,8 +228,6 @@ export const buildTailwindTheme = (): string => {
         tailwindSection('Font families',  fontFamilyRows),
         tailwindSection('Font sizes',     fontSizeRows),
         tailwindSection('Font weights',   fontWeightRows),
-        tailwindSection('Line heights',   lineHeightRows),
-        tailwindSection('Letter spacing', letterSpacingRows),
         tailwindSection('Z-index',        zIndexRows),
         tailwindSection('Durations',      durationRows),
         tailwindSection('Easings',        easingRows),
@@ -274,8 +266,6 @@ export const buildThemeCSS = (): string => {
         cssSection('Font families',  fontFamilyRows),
         cssSection('Font sizes',     fontSizeRows),
         cssSection('Font weights',   fontWeightRows),
-        cssSection('Line heights',   lineHeightRows),
-        cssSection('Letter spacing', letterSpacingRows),
         cssSection('Z-index',        zIndexRows),
         cssSection('Durations',      durationRows),
         cssSection('Easings',        easingRows),

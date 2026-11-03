@@ -8,13 +8,13 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  */
 export const SELECT_LABEL_STYLES = {
     root: style({
-        paddingBlock: vars.space.xs2,
-        paddingInline: vars.space.sm,
-        fontSize: vars.fontSize.xs,
+        paddingBlock: vars.space[6],
+        paddingInline: vars.space[8],
+        fontSize: vars.fontSize[12],
         fontWeight: vars.fontWeight.semibold,
         fontFamily: vars.fontFamily.sans,
         color: vars.color.surface.mutedForeground,
-        letterSpacing: vars.letterSpacing.wider,
+        letterSpacing: '0.05em',
         textTransform: 'uppercase',
     }),
 }

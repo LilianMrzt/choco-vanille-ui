@@ -180,7 +180,7 @@ export const CheckboxGroup: Story = {
             ...storySource(/* language=tsx */ `
 <Fieldset>
     <Legend>Notification preferences</Legend>
-    <Flex flexDirection="column" gap="sm" alignItems="start">
+    <Flex flexDirection="column" gap={8} alignItems="start">
         <Checkbox label="Email" checked />
         <Checkbox label="Push" />
         <Checkbox label="SMS" />
@@ -204,7 +204,7 @@ export const CheckboxGroup: Story = {
                 <Legend>Notification preferences</Legend>
                 <Flex
                     flexDirection={'column'}
-                    gap={'sm'}
+                    gap={8}
                     alignItems={'start'}
                 >
                     <Checkbox
@@ -253,7 +253,7 @@ export const States: Story = {
     render: () => (
         <Flex
             flexDirection={'column'}
-            gap={'md'}
+            gap={12}
         >
             <Fieldset>
                 <Legend>Enabled group</Legend>

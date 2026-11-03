@@ -6,11 +6,59 @@ import '@theme'
 import { Box, type BoxColor, type BoxProps } from '@components/layout/box'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
+import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement
 
 describe('Box', () => {
+    it('accepts finite numeric props without quoted numeric aliases or arbitrary values', () => {
+        expectTypeOf<BoxProps['padding']>().toEqualTypeOf<keyof typeof vars.space | undefined>()
+        expectTypeOf<BoxProps['margin']>().toEqualTypeOf<keyof typeof vars.space | 'auto' | undefined>()
+        expectTypeOf<BoxProps['borderRadius']>().toEqualTypeOf<keyof typeof vars.radius | undefined>()
+        expectTypeOf<'16' | 17>().not.toMatchTypeOf<NonNullable<BoxProps['padding']>>()
+        expectTypeOf<'8' | 9>().not.toMatchTypeOf<NonNullable<BoxProps['borderRadius']>>()
+    })
+
+    it('applies zero tokens rather than treating them as omitted props', () => {
+        render(<Box padding={0} margin={0} gap={0} borderRadius={0} data-testid="zero" />)
+        const box = screen.getByTestId('zero')
+        const classes = BOX_STYLES.recipe({ padding: 0, margin: 0, gap: 0, borderRadius: 0 })
+        expect(classes).not.toBe(BOX_STYLES.recipe({}))
+        for (const className of classes.split(' ')) {
+            expect(box.classList.contains(className)).toBe(true)
+        }
+        expect(box.hasAttribute('padding')).toBe(false)
+        expect(box.hasAttribute('gap')).toBe(false)
+    })
+
+    it('provides every numeric token for every spacing axis', () => {
+        for (const property of [
+            'padding', 'paddingX', 'paddingY', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+            'margin', 'marginX', 'marginY', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft',
+            'gap', 'columnGap', 'rowGap',
+        ] as const) {
+            const keys = Object.keys(BOX_STYLES.recipe.classNames.variants[property])
+            expect(keys.filter(key => key !== 'auto')).toEqual(Object.keys(vars.space))
+            expect(keys.includes('auto')).toBe(property.startsWith('margin'))
+        }
+        expect(Object.keys(BOX_STYLES.recipe.classNames.variants.borderRadius)).toEqual(Object.keys(vars.radius))
+        expect(Object.keys(BOX_STYLES.recipe.classNames.variants.boxShadow)).toEqual(Object.keys(vars.shadow))
+    })
+
+    it('applies the 5rem and 7rem spacing tokens with the extra-small shadow', () => {
+        expectTypeOf<80 | 112>().toMatchTypeOf<NonNullable<BoxProps['padding']>>()
+        expectTypeOf<'xs'>().toMatchTypeOf<NonNullable<BoxProps['boxShadow']>>()
+        render(<Box padding={80} gap={112} boxShadow="xs" data-testid="extended-tokens" />)
+        const box = screen.getByTestId('extended-tokens')
+        const classes = BOX_STYLES.recipe({ padding: 80, gap: 112, boxShadow: 'xs' })
+        for (const className of classes.split(' ')) {
+            expect(box.classList.contains(className)).toBe(true)
+        }
+        expect(box.hasAttribute('padding')).toBe(false)
+        expect(box.hasAttribute('boxShadow')).toBe(false)
+    })
+
     describe('CSS color contract', () => {
         it('uses native CSS property types instead of theme token unions', () => {
             expectTypeOf<BoxColor>().toEqualTypeOf<CSSProperties['color']>()
@@ -100,7 +148,7 @@ describe('Box', () => {
 
         it('applies variant classes', () => {
             const { container } = render(
-                <Box display="flex" padding="md" backgroundColor={vars.color.surface.main}>
+                <Box display="flex" padding={12} backgroundColor={vars.color.surface.main}>
                     content
                 </Box>,
             )

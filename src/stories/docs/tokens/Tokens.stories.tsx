@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ReactElement } from 'react'
+import { useId, type ReactElement } from 'react'
 
+import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import { lightTheme, darkTheme, ThemeProvider, vars } from '@theme'
-import CopyButton from '@stories/_shared/components/copy-button/CopyButton'
 import ReferencePage from '@stories/_shared/components/reference-page/ReferencePage'
-import TokenPreview from '@stories/docs/tokens/components/token-preview/TokenPreview'
+import TokenItem from '@stories/docs/tokens/components/token-item/TokenItem'
 import { TOKEN_REFERENCE_STYLES } from '@stories/docs/tokens/Tokens.css'
 import type { TokenReferenceArgs } from '@stories/docs/tokens/types'
-import { formatTokenReference } from '@stories/_shared/utils/token-reference/tokenReference.utils'
 
 const categories = [
     { key: 'space', title: 'Spacing', description: 'Padding, margins, and gaps. Rem values follow the root font size.' },
@@ -17,8 +16,6 @@ const categories = [
     { key: 'fontFamily', title: 'Font families', description: 'Shared typefaces for interface text and code.' },
     { key: 'fontSize', title: 'Font sizes', description: 'A consistent hierarchy for labels, body text, and headings.' },
     { key: 'fontWeight', title: 'Font weights', description: 'Emphasis without changing the type scale.' },
-    { key: 'lineHeight', title: 'Line heights', description: 'Unitless ratios that scale with the current font size.' },
-    { key: 'letterSpacing', title: 'Letter spacing', description: 'Tracking for compact labels and expressive headings.' },
     { key: 'shadow', title: 'Box shadows', description: 'Elevation treatments that adapt to the selected theme.' },
     { key: 'dropShadow', title: 'Drop shadows', description: 'Theme-aware filters that follow the shape of the content.' },
     { key: 'zIndex', title: 'Stacking order', description: 'Shared layers for floating elements and overlays.' },
@@ -34,6 +31,7 @@ const categories = [
  * @example <TokenReference theme="light" category="space" />
  */
 const TokenReference = ({ theme, category }: TokenReferenceArgs): ReactElement => {
+    const sectionId = useId()
     const tokens = theme === 'dark' ? darkTheme : lightTheme
 
     return (
@@ -42,60 +40,105 @@ const TokenReference = ({ theme, category }: TokenReferenceArgs): ReactElement =
             theme={theme}
         >
             <ReferencePage
-                description={'Explore the shared visual scales. Use Controls to choose a theme or category, and copy a typed reference for your styles.'}
+                description={'Browse the scales and copy a reference. Numeric keys match pixels at a 16px root; rem values scale with the root font size.'}
                 title={'Design tokens'}
             >
+                {category === 'all' && (
+                    <Flex
+                        as={'nav'}
+                        aria-label={'Token families'}
+                        className={TOKEN_REFERENCE_STYLES.navigation}
+                        gap={8}
+                    >
+                        {categories.map(({ key, title }) => (
+                            <a
+                                className={TOKEN_REFERENCE_STYLES.navigationLink}
+                                href={`#${sectionId}-${key}`}
+                                key={key}
+                            >
+                                {title}
+                            </a>
+                        ))}
+                    </Flex>
+                )}
                 {categories.filter(({ key }) => category === 'all' || category === key).map(({ key, title, description }) => (
                     <Flex
                         as={'section'}
+                        aria-labelledby={`${sectionId}-${key}`}
                         flexDirection={'column'}
-                        gap={'md'}
+                        gap={16}
                         key={key}
                     >
                         <Flex
-                            flexDirection={'column'}
-                            gap={'xs'}
+                            alignItems={'start'}
+                            gap={16}
+                            justifyContent={'space-between'}
                         >
-                            <Typography variant={'h2'}>{title}</Typography>
-                            <Typography color={vars.color.text.secondary}>{description}</Typography>
-                        </Flex>
-                        <div className={TOKEN_REFERENCE_STYLES.grid}>
-                            {Object.entries(tokens[key]).map(([name, value]) => (
-                                <Flex
-                                    borderColor={vars.color.border.subtle}
-                                    borderRadius={'lg'}
-                                    borderStyle={'solid'}
-                                    borderWidth={'1px'}
-                                    flexDirection={'column'}
-                                    gap={'md'}
-                                    key={name}
-                                    minWidth={0}
-                                    padding={'md'}
+                            <Flex
+                                flexDirection={'column'}
+                                gap={4}
+                                minWidth={0}
+                            >
+                                <Typography
+                                    className={TOKEN_REFERENCE_STYLES.heading}
+                                    fontSize={20}
+                                    fontWeight={'semibold'}
+                                    id={`${sectionId}-${key}`}
+                                    variant={'h2'}
                                 >
-                                    <Typography
-                                        fontWeight={'semibold'}
-                                        variant={'code'}
-                                    >
-                                        {`${key}.${name}`}
-                                    </Typography>
-                                    <TokenPreview
+                                    {title}
+                                </Typography>
+                                <Typography
+                                    color={vars.color.text.secondary}
+                                    fontSize={14}
+                                >
+                                    {description}
+                                </Typography>
+                            </Flex>
+                            <Typography
+                                className={TOKEN_REFERENCE_STYLES.count}
+                                color={vars.color.text.secondary}
+                                fontSize={12}
+                            >
+                                {`${Object.keys(tokens[key]).length} tokens`}
+                            </Typography>
+                        </Flex>
+                        <Box
+                            backgroundColor={vars.color.surface.main}
+                            borderColor={vars.color.border.subtle}
+                            borderRadius={14}
+                            borderStyle={'solid'}
+                            borderTopWidth={'1px'}
+                            borderRightWidth={'1px'}
+                            borderBottomWidth={'1px'}
+                            borderLeftWidth={'1px'}
+                        >
+                            <div
+                                aria-hidden={'true'}
+                                className={TOKEN_REFERENCE_STYLES.columns}
+                            >
+                                <span>Token</span>
+                                <span>Preview</span>
+                                <span>CSS value</span>
+                                <span />
+                            </div>
+                            <Box
+                                as={'ul'}
+                                aria-label={`${title} tokens`}
+                                className={TOKEN_REFERENCE_STYLES.list}
+                                margin={0}
+                                padding={0}
+                            >
+                                {Object.entries(tokens[key]).map(([name, value]) => (
+                                    <TokenItem
                                         category={key}
+                                        key={name}
+                                        name={name}
                                         value={value}
                                     />
-                                    <Typography
-                                        color={vars.color.text.secondary}
-                                        fontSize={'sm'}
-                                        variant={'code'}
-                                    >
-                                        {value}
-                                    </Typography>
-                                    <CopyButton
-                                        label={`Copy ${key}.${name}`}
-                                        value={formatTokenReference(`${key}.${name}`)}
-                                    />
-                                </Flex>
-                            ))}
-                        </div>
+                                ))}
+                            </Box>
+                        </Box>
                     </Flex>
                 ))}
             </ReferencePage>

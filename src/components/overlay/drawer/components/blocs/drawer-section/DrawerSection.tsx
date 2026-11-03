@@ -27,7 +27,7 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
             as={as as 'div'}
             display={'flex'}
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             className={className}
             aria-labelledby={title ? resolvedTitleId : undefined}
@@ -36,11 +36,11 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
             {title && (
                 <Typography
                     variant={'small'}
-                    fontSize={'xs'}
+                    fontSize={12}
                     color={vars.color.surface.mutedForeground}
                     textTransform={'uppercase'}
                     fontWeight={'medium'}
-                    letterSpacing={'wide'}
+                    letterSpacing={'0.025em'}
                     maxLines={1}
                     id={resolvedTitleId}
                     {...titleProps}
@@ -49,7 +49,7 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
                 </Typography>
             )}
             <Box
-                paddingTop={'xs'}
+                paddingTop={4}
             >
                 {children}
             </Box>

@@ -15,10 +15,10 @@ export const CALENDAR_GRID_STYLES = {
         width: '2.25rem',
         height: '2rem',
         textAlign: 'center',
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
         fontWeight: vars.fontWeight.medium,
         color: vars.color.surface.mutedForeground,
-        paddingBottom: vars.space.xs,
+        paddingBottom: vars.space[4],
     }),
 
     week: style({

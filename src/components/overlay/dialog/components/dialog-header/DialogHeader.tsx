@@ -34,9 +34,9 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
         flexDirection={'row'}
         alignItems={'start'}
         justifyContent={'between'}
-        gap={'md'}
-        padding={'lg'}
-        paddingBottom={'none'}
+        gap={12}
+        padding={16}
+        paddingBottom={0}
         className={className}
         {...props}
     >
@@ -44,14 +44,14 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
             <Flex
                 flexDirection={'column'}
                 alignItems={'start'}
-                gap={'xs'}
+                gap={4}
                 className={DIALOG_HEADER_STYLES.content}
             >
                 {title && (
                     <Typography
                         as={titleAs ?? 'h2'}
                         id={titleProps?.id}
-                        fontSize={'lg'}
+                        fontSize={18}
                         fontWeight={'semibold'}
                         color={vars.color.text.primary}
                         {...titleProps}
@@ -62,7 +62,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
                 {description && (
                     <Typography
                         as={'p'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.surface.mutedForeground}
                         {...descriptionProps}
                     >
@@ -77,7 +77,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
         {actions ? (
             <Flex
                 alignItems={'center'}
-                gap={'xs'}
+                gap={4}
                 className={DIALOG_HEADER_STYLES.actions}
             >
                 {actions}

@@ -65,14 +65,24 @@ one without a concrete requirement and an explicit dependency decision.
   spacing, typography, radii, shadows, layering and motion. Do not duplicate
   the palette or import Base UI demo themes.
 - Spacing comes from `vars.space` and the internal `SPACE` object in
-  `src/theme/tokens/spacing/spacing.const.ts`: keys include `none`, `px`, `xxs`, `xs`, `sm`,
-  `md`, `lg` and larger steps. Values are rem-based except zero and 1px.
-  There is no numeric `SPACING` contract, `spacing(n)` helper or implicit multiplier.
-- Typography tokens include `fontSize`, `fontWeight`, `lineHeight` and
-  `letterSpacing`; `fontSize` currently ranges from `2xs` through `7xl`.
-  A token's existence does not imply every component accepts its key.
-  Free CSS values remain valid where the public contract allows them;
-  numbers are not token keys or spacing multipliers unless explicitly documented.
+  `src/theme/tokens/spacing/spacing.const.ts`. Numeric keys reference
+  pixels at a 16px root: `0`, `1`, even steps from `2` through `20`, then
+  `24`, `28`, `32`, `48`, `64`, `80`, `96`, `112`, `128`. Values are rem-based except
+  zero and fixed `1px`. Use `vars.space[16]` and `padding={16}`, not
+  named aliases, quoted numeric props, a `spacing(n)` helper or multipliers.
+  Public token props accept only the finite numeric scale, not arbitrary numbers.
+- Font sizes use numeric keys `10`, `12`, `14`, `16`, `18`, `20`,
+  `24`, `30`, `36`, `48`, `60`, `72`, with rem values. Typography owns
+  typographic compositions; `fontFamily` and `fontWeight` remain theme tokens.
+  Line-height and letter-spacing are component-owned CSS values, not theme
+  groups. Typography's `letterSpacing` accepts a CSS value.
+- Radius keys are `0`, `4`, `6`, `8`, `10`, `14`, `20`, `full`.
+  Both `shadow` and `dropShadow` use `none`, `xs`, `sm`, `md`, `lg`, `xl`.
+  Keep the existing `duration`, `easing` and `zIndex` scales. Non-color
+  scales do not introduce component-named semantic aliases, except zIndex.
+- A token's existence does not imply every component accepts its key.
+  Preserve independent component size axes such as Button's `size="md"`.
+  Free CSS values remain valid where the public contract allows them.
 - For semantic controls, public color props express supported intent, not
   private token paths. Map each intent and interaction state to existing tokens.
   The theme uses `neutral`, `danger`, and `accent*` families. Independent

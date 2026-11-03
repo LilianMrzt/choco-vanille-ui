@@ -6,7 +6,7 @@ export const SLIDER_STYLES = {
     root: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         color: vars.color.text.primary,
         selectors: {
             '&[data-disabled]': {
@@ -16,10 +16,10 @@ export const SLIDER_STYLES = {
     }),
     helper: style({
         color: vars.color.surface.mutedForeground,
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
     }),
     error: style({
         color: vars.color.danger.main,
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
     }),
 }

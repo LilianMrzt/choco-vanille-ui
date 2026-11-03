@@ -5,30 +5,30 @@ export const TIME_PICKER_PANEL_STYLES = {
     root: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.sm,
-        padding: vars.space.md,
+        gap: vars.space[8],
+        padding: vars.space[12],
         backgroundColor: vars.color.surface.main,
-        borderRadius: vars.radius.lg,
+        borderRadius: vars.radius[10],
         fontFamily: vars.fontFamily.sans,
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         color: vars.color.text.primary,
     }),
 
     body: style({
         display: 'flex',
-        gap: vars.space.md,
+        gap: vars.space[12],
     }),
 
     group: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
 
     title: style({
         margin: 0,
         textAlign: 'center',
-        fontSize: vars.fontSize.xs,
+        fontSize: vars.fontSize[12],
         fontWeight: vars.fontWeight.medium,
         color: vars.color.surface.mutedForeground,
         textTransform: 'uppercase',
@@ -64,11 +64,11 @@ export const TIME_PICKER_PANEL_STYLES = {
         height: '2.25rem',
         padding: 0,
         border: 'none',
-        borderRadius: vars.radius.xs,
+        borderRadius: vars.radius[4],
         backgroundColor: 'transparent',
         color: vars.color.text.primary,
         fontFamily: 'inherit',
-        fontSize: vars.fontSize.sm,
+        fontSize: vars.fontSize[14],
         fontVariantNumeric: 'tabular-nums',
         cursor: 'pointer',
         outline: 'none',
@@ -112,8 +112,8 @@ export const TIME_PICKER_PANEL_STYLES = {
     footer: style({
         display: 'flex',
         justifyContent: 'space-between',
-        gap: vars.space.sm,
-        paddingTop: vars.space.sm,
+        gap: vars.space[8],
+        paddingTop: vars.space[8],
         borderTop: `1px solid ${vars.color.border.main}`,
     }),
 }

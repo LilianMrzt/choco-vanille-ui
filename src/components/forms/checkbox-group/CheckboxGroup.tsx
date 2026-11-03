@@ -58,7 +58,7 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
             <CheckboxGroupProvider value={{ value: currentValue, allValues: resolvedAllValues, onValueChange: handleValueChange }}>
                 <Flex
                     flexDirection={'column'}
-                    gap={'sm'}
+                    gap={8}
                     alignItems={'start'}
                 >
                     {children}

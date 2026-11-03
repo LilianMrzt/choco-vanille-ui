@@ -5,7 +5,7 @@ import { vars } from '@theme/styles/contract/contract.css'
 const grid = style({
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 22rem), 1fr))',
-    gap: vars.space.lg,
+    gap: vars.space[16],
     alignItems: 'start',
 })
 

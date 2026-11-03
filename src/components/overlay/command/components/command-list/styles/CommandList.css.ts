@@ -6,7 +6,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const COMMAND_LIST_STYLES = {
     root: style({
         overflowY: 'auto',
-        padding: vars.space.xs,
+        padding: vars.space[4],
         flex: '1 1 0%',
         minHeight: 0,
     }),

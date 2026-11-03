@@ -15,359 +15,1198 @@ export const BOX_STYLES = {
         variants: {
             // Border Radius
             borderRadius: {
-                none: { borderRadius: vars.radius.none },
-                xs: { borderRadius: vars.radius.xs },
-                sm: { borderRadius: vars.radius.sm },
-                md: { borderRadius: vars.radius.md },
-                lg: { borderRadius: vars.radius.lg },
-                xl: { borderRadius: vars.radius.xl },
-                '2xl': { borderRadius: vars.radius['2xl'] },
-                full: { borderRadius: vars.radius.full },
+                0: {
+                    borderRadius: vars.radius[0],
+                },
+                4: {
+                    borderRadius: vars.radius[4],
+                },
+                6: {
+                    borderRadius: vars.radius[6],
+                },
+                8: {
+                    borderRadius: vars.radius[8],
+                },
+                10: {
+                    borderRadius: vars.radius[10],
+                },
+                14: {
+                    borderRadius: vars.radius[14],
+                },
+                20: {
+                    borderRadius: vars.radius[20],
+                },
+                'full': {
+                    borderRadius: vars.radius['full'],
+                },
             },
 
             // Padding
             padding: {
-                none: { padding: SPACE_VARIANTS.none },
-                px: { padding: SPACE_VARIANTS.px },
-                xxs: { padding: SPACE_VARIANTS.xxs },
-                xs: { padding: SPACE_VARIANTS.xs },
-                xs2: { padding: SPACE_VARIANTS.xs2 },
-                sm: { padding: SPACE_VARIANTS.sm },
-                sm2: { padding: SPACE_VARIANTS.sm2 },
-                md: { padding: SPACE_VARIANTS.md },
-                md2: { padding: SPACE_VARIANTS.md2 },
-                lg: { padding: SPACE_VARIANTS.lg },
-                lg2: { padding: SPACE_VARIANTS.lg2 },
-                xl: { padding: SPACE_VARIANTS.xl },
-                '2xl': { padding: SPACE_VARIANTS['2xl'] },
-                '3xl': { padding: SPACE_VARIANTS['3xl'] },
-                '4xl': { padding: SPACE_VARIANTS['4xl'] },
-                '5xl': { padding: SPACE_VARIANTS['5xl'] },
+                0: {
+                    padding: SPACE_VARIANTS[0],
+                },
+                1: {
+                    padding: SPACE_VARIANTS[1],
+                },
+                2: {
+                    padding: SPACE_VARIANTS[2],
+                },
+                4: {
+                    padding: SPACE_VARIANTS[4],
+                },
+                6: {
+                    padding: SPACE_VARIANTS[6],
+                },
+                8: {
+                    padding: SPACE_VARIANTS[8],
+                },
+                10: {
+                    padding: SPACE_VARIANTS[10],
+                },
+                12: {
+                    padding: SPACE_VARIANTS[12],
+                },
+                14: {
+                    padding: SPACE_VARIANTS[14],
+                },
+                16: {
+                    padding: SPACE_VARIANTS[16],
+                },
+                18: {
+                    padding: SPACE_VARIANTS[18],
+                },
+                20: {
+                    padding: SPACE_VARIANTS[20],
+                },
+                24: {
+                    padding: SPACE_VARIANTS[24],
+                },
+                28: {
+                    padding: SPACE_VARIANTS[28],
+                },
+                32: {
+                    padding: SPACE_VARIANTS[32],
+                },
+                48: {
+                    padding: SPACE_VARIANTS[48],
+                },
+                64: {
+                    padding: SPACE_VARIANTS[64],
+                },
+                80: {
+                    padding: SPACE_VARIANTS[80],
+                },
+                96: {
+                    padding: SPACE_VARIANTS[96],
+                },
+                112: {
+                    padding: SPACE_VARIANTS[112],
+                },
+                128: {
+                    padding: SPACE_VARIANTS[128],
+                },
             },
 
             paddingX: {
-                none: { paddingInline: SPACE_VARIANTS.none },
-                px: { paddingInline: SPACE_VARIANTS.px },
-                xxs: { paddingInline: SPACE_VARIANTS.xxs },
-                xs: { paddingInline: SPACE_VARIANTS.xs },
-                xs2: { paddingInline: SPACE_VARIANTS.xs2 },
-                sm: { paddingInline: SPACE_VARIANTS.sm },
-                sm2: { paddingInline: SPACE_VARIANTS.sm2 },
-                md: { paddingInline: SPACE_VARIANTS.md },
-                md2: { paddingInline: SPACE_VARIANTS.md2 },
-                lg: { paddingInline: SPACE_VARIANTS.lg },
-                lg2: { paddingInline: SPACE_VARIANTS.lg2 },
-                xl: { paddingInline: SPACE_VARIANTS.xl },
-                '2xl': { paddingInline: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingInline: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingInline: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingInline: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingInline: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingInline: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingInline: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingInline: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingInline: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingInline: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingInline: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingInline: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingInline: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingInline: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingInline: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingInline: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingInline: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingInline: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingInline: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingInline: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingInline: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingInline: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingInline: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingInline: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingInline: SPACE_VARIANTS[128],
+                },
             },
 
             paddingY: {
-                none: { paddingBlock: SPACE_VARIANTS.none },
-                px: { paddingBlock: SPACE_VARIANTS.px },
-                xxs: { paddingBlock: SPACE_VARIANTS.xxs },
-                xs: { paddingBlock: SPACE_VARIANTS.xs },
-                xs2: { paddingBlock: SPACE_VARIANTS.xs2 },
-                sm: { paddingBlock: SPACE_VARIANTS.sm },
-                sm2: { paddingBlock: SPACE_VARIANTS.sm2 },
-                md: { paddingBlock: SPACE_VARIANTS.md },
-                md2: { paddingBlock: SPACE_VARIANTS.md2 },
-                lg: { paddingBlock: SPACE_VARIANTS.lg },
-                lg2: { paddingBlock: SPACE_VARIANTS.lg2 },
-                xl: { paddingBlock: SPACE_VARIANTS.xl },
-                '2xl': { paddingBlock: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingBlock: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingBlock: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingBlock: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingBlock: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingBlock: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingBlock: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingBlock: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingBlock: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingBlock: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingBlock: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingBlock: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingBlock: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingBlock: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingBlock: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingBlock: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingBlock: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingBlock: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingBlock: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingBlock: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingBlock: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingBlock: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingBlock: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingBlock: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingBlock: SPACE_VARIANTS[128],
+                },
             },
 
             paddingTop: {
-                none: { paddingTop: SPACE_VARIANTS.none },
-                px: { paddingTop: SPACE_VARIANTS.px },
-                xxs: { paddingTop: SPACE_VARIANTS.xxs },
-                xs: { paddingTop: SPACE_VARIANTS.xs },
-                xs2: { paddingTop: SPACE_VARIANTS.xs2 },
-                sm: { paddingTop: SPACE_VARIANTS.sm },
-                sm2: { paddingTop: SPACE_VARIANTS.sm2 },
-                md: { paddingTop: SPACE_VARIANTS.md },
-                md2: { paddingTop: SPACE_VARIANTS.md2 },
-                lg: { paddingTop: SPACE_VARIANTS.lg },
-                lg2: { paddingTop: SPACE_VARIANTS.lg2 },
-                xl: { paddingTop: SPACE_VARIANTS.xl },
-                '2xl': { paddingTop: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingTop: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingTop: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingTop: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingTop: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingTop: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingTop: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingTop: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingTop: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingTop: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingTop: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingTop: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingTop: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingTop: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingTop: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingTop: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingTop: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingTop: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingTop: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingTop: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingTop: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingTop: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingTop: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingTop: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingTop: SPACE_VARIANTS[128],
+                },
             },
 
             paddingRight: {
-                none: { paddingRight: SPACE_VARIANTS.none },
-                px: { paddingRight: SPACE_VARIANTS.px },
-                xxs: { paddingRight: SPACE_VARIANTS.xxs },
-                xs: { paddingRight: SPACE_VARIANTS.xs },
-                xs2: { paddingRight: SPACE_VARIANTS.xs2 },
-                sm: { paddingRight: SPACE_VARIANTS.sm },
-                sm2: { paddingRight: SPACE_VARIANTS.sm2 },
-                md: { paddingRight: SPACE_VARIANTS.md },
-                md2: { paddingRight: SPACE_VARIANTS.md2 },
-                lg: { paddingRight: SPACE_VARIANTS.lg },
-                lg2: { paddingRight: SPACE_VARIANTS.lg2 },
-                xl: { paddingRight: SPACE_VARIANTS.xl },
-                '2xl': { paddingRight: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingRight: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingRight: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingRight: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingRight: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingRight: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingRight: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingRight: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingRight: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingRight: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingRight: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingRight: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingRight: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingRight: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingRight: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingRight: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingRight: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingRight: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingRight: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingRight: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingRight: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingRight: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingRight: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingRight: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingRight: SPACE_VARIANTS[128],
+                },
             },
 
             paddingBottom: {
-                none: { paddingBottom: SPACE_VARIANTS.none },
-                px: { paddingBottom: SPACE_VARIANTS.px },
-                xxs: { paddingBottom: SPACE_VARIANTS.xxs },
-                xs: { paddingBottom: SPACE_VARIANTS.xs },
-                xs2: { paddingBottom: SPACE_VARIANTS.xs2 },
-                sm: { paddingBottom: SPACE_VARIANTS.sm },
-                sm2: { paddingBottom: SPACE_VARIANTS.sm2 },
-                md: { paddingBottom: SPACE_VARIANTS.md },
-                md2: { paddingBottom: SPACE_VARIANTS.md2 },
-                lg: { paddingBottom: SPACE_VARIANTS.lg },
-                lg2: { paddingBottom: SPACE_VARIANTS.lg2 },
-                xl: { paddingBottom: SPACE_VARIANTS.xl },
-                '2xl': { paddingBottom: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingBottom: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingBottom: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingBottom: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingBottom: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingBottom: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingBottom: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingBottom: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingBottom: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingBottom: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingBottom: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingBottom: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingBottom: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingBottom: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingBottom: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingBottom: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingBottom: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingBottom: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingBottom: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingBottom: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingBottom: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingBottom: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingBottom: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingBottom: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingBottom: SPACE_VARIANTS[128],
+                },
             },
 
             paddingLeft: {
-                none: { paddingLeft: SPACE_VARIANTS.none },
-                px: { paddingLeft: SPACE_VARIANTS.px },
-                xxs: { paddingLeft: SPACE_VARIANTS.xxs },
-                xs: { paddingLeft: SPACE_VARIANTS.xs },
-                xs2: { paddingLeft: SPACE_VARIANTS.xs2 },
-                sm: { paddingLeft: SPACE_VARIANTS.sm },
-                sm2: { paddingLeft: SPACE_VARIANTS.sm2 },
-                md: { paddingLeft: SPACE_VARIANTS.md },
-                md2: { paddingLeft: SPACE_VARIANTS.md2 },
-                lg: { paddingLeft: SPACE_VARIANTS.lg },
-                lg2: { paddingLeft: SPACE_VARIANTS.lg2 },
-                xl: { paddingLeft: SPACE_VARIANTS.xl },
-                '2xl': { paddingLeft: SPACE_VARIANTS['2xl'] },
-                '3xl': { paddingLeft: SPACE_VARIANTS['3xl'] },
-                '4xl': { paddingLeft: SPACE_VARIANTS['4xl'] },
-                '5xl': { paddingLeft: SPACE_VARIANTS['5xl'] },
+                0: {
+                    paddingLeft: SPACE_VARIANTS[0],
+                },
+                1: {
+                    paddingLeft: SPACE_VARIANTS[1],
+                },
+                2: {
+                    paddingLeft: SPACE_VARIANTS[2],
+                },
+                4: {
+                    paddingLeft: SPACE_VARIANTS[4],
+                },
+                6: {
+                    paddingLeft: SPACE_VARIANTS[6],
+                },
+                8: {
+                    paddingLeft: SPACE_VARIANTS[8],
+                },
+                10: {
+                    paddingLeft: SPACE_VARIANTS[10],
+                },
+                12: {
+                    paddingLeft: SPACE_VARIANTS[12],
+                },
+                14: {
+                    paddingLeft: SPACE_VARIANTS[14],
+                },
+                16: {
+                    paddingLeft: SPACE_VARIANTS[16],
+                },
+                18: {
+                    paddingLeft: SPACE_VARIANTS[18],
+                },
+                20: {
+                    paddingLeft: SPACE_VARIANTS[20],
+                },
+                24: {
+                    paddingLeft: SPACE_VARIANTS[24],
+                },
+                28: {
+                    paddingLeft: SPACE_VARIANTS[28],
+                },
+                32: {
+                    paddingLeft: SPACE_VARIANTS[32],
+                },
+                48: {
+                    paddingLeft: SPACE_VARIANTS[48],
+                },
+                64: {
+                    paddingLeft: SPACE_VARIANTS[64],
+                },
+                80: {
+                    paddingLeft: SPACE_VARIANTS[80],
+                },
+                96: {
+                    paddingLeft: SPACE_VARIANTS[96],
+                },
+                112: {
+                    paddingLeft: SPACE_VARIANTS[112],
+                },
+                128: {
+                    paddingLeft: SPACE_VARIANTS[128],
+                },
             },
 
             // Margin
             margin: {
-                auto: { margin: MARGIN_VARIANTS.auto },
-                none: { margin: MARGIN_VARIANTS.none },
-                px: { margin: MARGIN_VARIANTS.px },
-                xxs: { margin: MARGIN_VARIANTS.xxs },
-                xs: { margin: MARGIN_VARIANTS.xs },
-                xs2: { margin: MARGIN_VARIANTS.xs2 },
-                sm: { margin: MARGIN_VARIANTS.sm },
-                sm2: { margin: MARGIN_VARIANTS.sm2 },
-                md: { margin: MARGIN_VARIANTS.md },
-                md2: { margin: MARGIN_VARIANTS.md2 },
-                lg: { margin: MARGIN_VARIANTS.lg },
-                lg2: { margin: MARGIN_VARIANTS.lg2 },
-                xl: { margin: MARGIN_VARIANTS.xl },
-                '2xl': { margin: MARGIN_VARIANTS['2xl'] },
-                '3xl': { margin: MARGIN_VARIANTS['3xl'] },
-                '4xl': { margin: MARGIN_VARIANTS['4xl'] },
-                '5xl': { margin: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    margin: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    margin: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    margin: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    margin: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    margin: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    margin: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    margin: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    margin: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    margin: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    margin: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    margin: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    margin: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    margin: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    margin: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    margin: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    margin: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    margin: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    margin: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    margin: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    margin: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    margin: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    margin: MARGIN_VARIANTS[128],
+                },
             },
 
             marginX: {
-                auto: { marginInline: MARGIN_VARIANTS.auto },
-                none: { marginInline: MARGIN_VARIANTS.none },
-                px: { marginInline: MARGIN_VARIANTS.px },
-                xxs: { marginInline: MARGIN_VARIANTS.xxs },
-                xs: { marginInline: MARGIN_VARIANTS.xs },
-                xs2: { marginInline: MARGIN_VARIANTS.xs2 },
-                sm: { marginInline: MARGIN_VARIANTS.sm },
-                sm2: { marginInline: MARGIN_VARIANTS.sm2 },
-                md: { marginInline: MARGIN_VARIANTS.md },
-                md2: { marginInline: MARGIN_VARIANTS.md2 },
-                lg: { marginInline: MARGIN_VARIANTS.lg },
-                lg2: { marginInline: MARGIN_VARIANTS.lg2 },
-                xl: { marginInline: MARGIN_VARIANTS.xl },
-                '2xl': { marginInline: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginInline: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginInline: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginInline: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginInline: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginInline: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginInline: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginInline: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginInline: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginInline: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginInline: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginInline: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginInline: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginInline: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginInline: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginInline: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginInline: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginInline: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginInline: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginInline: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginInline: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginInline: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginInline: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginInline: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginInline: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginInline: MARGIN_VARIANTS[128],
+                },
             },
 
             marginY: {
-                auto: { marginBlock: MARGIN_VARIANTS.auto },
-                none: { marginBlock: MARGIN_VARIANTS.none },
-                px: { marginBlock: MARGIN_VARIANTS.px },
-                xxs: { marginBlock: MARGIN_VARIANTS.xxs },
-                xs: { marginBlock: MARGIN_VARIANTS.xs },
-                xs2: { marginBlock: MARGIN_VARIANTS.xs2 },
-                sm: { marginBlock: MARGIN_VARIANTS.sm },
-                sm2: { marginBlock: MARGIN_VARIANTS.sm2 },
-                md: { marginBlock: MARGIN_VARIANTS.md },
-                md2: { marginBlock: MARGIN_VARIANTS.md2 },
-                lg: { marginBlock: MARGIN_VARIANTS.lg },
-                lg2: { marginBlock: MARGIN_VARIANTS.lg2 },
-                xl: { marginBlock: MARGIN_VARIANTS.xl },
-                '2xl': { marginBlock: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginBlock: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginBlock: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginBlock: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginBlock: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginBlock: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginBlock: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginBlock: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginBlock: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginBlock: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginBlock: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginBlock: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginBlock: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginBlock: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginBlock: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginBlock: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginBlock: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginBlock: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginBlock: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginBlock: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginBlock: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginBlock: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginBlock: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginBlock: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginBlock: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginBlock: MARGIN_VARIANTS[128],
+                },
             },
 
             marginTop: {
-                auto: { marginTop: MARGIN_VARIANTS.auto },
-                none: { marginTop: MARGIN_VARIANTS.none },
-                px: { marginTop: MARGIN_VARIANTS.px },
-                xxs: { marginTop: MARGIN_VARIANTS.xxs },
-                xs: { marginTop: MARGIN_VARIANTS.xs },
-                xs2: { marginTop: MARGIN_VARIANTS.xs2 },
-                sm: { marginTop: MARGIN_VARIANTS.sm },
-                sm2: { marginTop: MARGIN_VARIANTS.sm2 },
-                md: { marginTop: MARGIN_VARIANTS.md },
-                md2: { marginTop: MARGIN_VARIANTS.md2 },
-                lg: { marginTop: MARGIN_VARIANTS.lg },
-                lg2: { marginTop: MARGIN_VARIANTS.lg2 },
-                xl: { marginTop: MARGIN_VARIANTS.xl },
-                '2xl': { marginTop: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginTop: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginTop: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginTop: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginTop: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginTop: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginTop: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginTop: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginTop: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginTop: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginTop: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginTop: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginTop: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginTop: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginTop: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginTop: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginTop: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginTop: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginTop: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginTop: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginTop: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginTop: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginTop: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginTop: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginTop: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginTop: MARGIN_VARIANTS[128],
+                },
             },
 
             marginRight: {
-                auto: { marginRight: MARGIN_VARIANTS.auto },
-                none: { marginRight: MARGIN_VARIANTS.none },
-                px: { marginRight: MARGIN_VARIANTS.px },
-                xxs: { marginRight: MARGIN_VARIANTS.xxs },
-                xs: { marginRight: MARGIN_VARIANTS.xs },
-                xs2: { marginRight: MARGIN_VARIANTS.xs2 },
-                sm: { marginRight: MARGIN_VARIANTS.sm },
-                sm2: { marginRight: MARGIN_VARIANTS.sm2 },
-                md: { marginRight: MARGIN_VARIANTS.md },
-                md2: { marginRight: MARGIN_VARIANTS.md2 },
-                lg: { marginRight: MARGIN_VARIANTS.lg },
-                lg2: { marginRight: MARGIN_VARIANTS.lg2 },
-                xl: { marginRight: MARGIN_VARIANTS.xl },
-                '2xl': { marginRight: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginRight: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginRight: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginRight: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginRight: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginRight: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginRight: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginRight: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginRight: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginRight: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginRight: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginRight: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginRight: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginRight: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginRight: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginRight: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginRight: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginRight: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginRight: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginRight: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginRight: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginRight: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginRight: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginRight: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginRight: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginRight: MARGIN_VARIANTS[128],
+                },
             },
 
             marginBottom: {
-                auto: { marginBottom: MARGIN_VARIANTS.auto },
-                none: { marginBottom: MARGIN_VARIANTS.none },
-                px: { marginBottom: MARGIN_VARIANTS.px },
-                xxs: { marginBottom: MARGIN_VARIANTS.xxs },
-                xs: { marginBottom: MARGIN_VARIANTS.xs },
-                xs2: { marginBottom: MARGIN_VARIANTS.xs2 },
-                sm: { marginBottom: MARGIN_VARIANTS.sm },
-                sm2: { marginBottom: MARGIN_VARIANTS.sm2 },
-                md: { marginBottom: MARGIN_VARIANTS.md },
-                md2: { marginBottom: MARGIN_VARIANTS.md2 },
-                lg: { marginBottom: MARGIN_VARIANTS.lg },
-                lg2: { marginBottom: MARGIN_VARIANTS.lg2 },
-                xl: { marginBottom: MARGIN_VARIANTS.xl },
-                '2xl': { marginBottom: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginBottom: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginBottom: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginBottom: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginBottom: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginBottom: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginBottom: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginBottom: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginBottom: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginBottom: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginBottom: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginBottom: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginBottom: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginBottom: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginBottom: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginBottom: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginBottom: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginBottom: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginBottom: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginBottom: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginBottom: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginBottom: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginBottom: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginBottom: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginBottom: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginBottom: MARGIN_VARIANTS[128],
+                },
             },
 
             marginLeft: {
-                auto: { marginLeft: MARGIN_VARIANTS.auto },
-                none: { marginLeft: MARGIN_VARIANTS.none },
-                px: { marginLeft: MARGIN_VARIANTS.px },
-                xxs: { marginLeft: MARGIN_VARIANTS.xxs },
-                xs: { marginLeft: MARGIN_VARIANTS.xs },
-                xs2: { marginLeft: MARGIN_VARIANTS.xs2 },
-                sm: { marginLeft: MARGIN_VARIANTS.sm },
-                sm2: { marginLeft: MARGIN_VARIANTS.sm2 },
-                md: { marginLeft: MARGIN_VARIANTS.md },
-                md2: { marginLeft: MARGIN_VARIANTS.md2 },
-                lg: { marginLeft: MARGIN_VARIANTS.lg },
-                lg2: { marginLeft: MARGIN_VARIANTS.lg2 },
-                xl: { marginLeft: MARGIN_VARIANTS.xl },
-                '2xl': { marginLeft: MARGIN_VARIANTS['2xl'] },
-                '3xl': { marginLeft: MARGIN_VARIANTS['3xl'] },
-                '4xl': { marginLeft: MARGIN_VARIANTS['4xl'] },
-                '5xl': { marginLeft: MARGIN_VARIANTS['5xl'] },
+                'auto': {
+                    marginLeft: MARGIN_VARIANTS['auto'],
+                },
+                0: {
+                    marginLeft: MARGIN_VARIANTS[0],
+                },
+                1: {
+                    marginLeft: MARGIN_VARIANTS[1],
+                },
+                2: {
+                    marginLeft: MARGIN_VARIANTS[2],
+                },
+                4: {
+                    marginLeft: MARGIN_VARIANTS[4],
+                },
+                6: {
+                    marginLeft: MARGIN_VARIANTS[6],
+                },
+                8: {
+                    marginLeft: MARGIN_VARIANTS[8],
+                },
+                10: {
+                    marginLeft: MARGIN_VARIANTS[10],
+                },
+                12: {
+                    marginLeft: MARGIN_VARIANTS[12],
+                },
+                14: {
+                    marginLeft: MARGIN_VARIANTS[14],
+                },
+                16: {
+                    marginLeft: MARGIN_VARIANTS[16],
+                },
+                18: {
+                    marginLeft: MARGIN_VARIANTS[18],
+                },
+                20: {
+                    marginLeft: MARGIN_VARIANTS[20],
+                },
+                24: {
+                    marginLeft: MARGIN_VARIANTS[24],
+                },
+                28: {
+                    marginLeft: MARGIN_VARIANTS[28],
+                },
+                32: {
+                    marginLeft: MARGIN_VARIANTS[32],
+                },
+                48: {
+                    marginLeft: MARGIN_VARIANTS[48],
+                },
+                64: {
+                    marginLeft: MARGIN_VARIANTS[64],
+                },
+                80: {
+                    marginLeft: MARGIN_VARIANTS[80],
+                },
+                96: {
+                    marginLeft: MARGIN_VARIANTS[96],
+                },
+                112: {
+                    marginLeft: MARGIN_VARIANTS[112],
+                },
+                128: {
+                    marginLeft: MARGIN_VARIANTS[128],
+                },
             },
 
             // Gap (for flex / grid children)
             gap: {
-                none: { gap: SPACE_VARIANTS.none },
-                px: { gap: SPACE_VARIANTS.px },
-                xxs: { gap: SPACE_VARIANTS.xxs },
-                xs: { gap: SPACE_VARIANTS.xs },
-                xs2: { gap: SPACE_VARIANTS.xs2 },
-                sm: { gap: SPACE_VARIANTS.sm },
-                sm2: { gap: SPACE_VARIANTS.sm2 },
-                md: { gap: SPACE_VARIANTS.md },
-                md2: { gap: SPACE_VARIANTS.md2 },
-                lg: { gap: SPACE_VARIANTS.lg },
-                lg2: { gap: SPACE_VARIANTS.lg2 },
-                xl: { gap: SPACE_VARIANTS.xl },
-                '2xl': { gap: SPACE_VARIANTS['2xl'] },
-                '3xl': { gap: SPACE_VARIANTS['3xl'] },
-                '4xl': { gap: SPACE_VARIANTS['4xl'] },
-                '5xl': { gap: SPACE_VARIANTS['5xl'] },
+                0: {
+                    gap: SPACE_VARIANTS[0],
+                },
+                1: {
+                    gap: SPACE_VARIANTS[1],
+                },
+                2: {
+                    gap: SPACE_VARIANTS[2],
+                },
+                4: {
+                    gap: SPACE_VARIANTS[4],
+                },
+                6: {
+                    gap: SPACE_VARIANTS[6],
+                },
+                8: {
+                    gap: SPACE_VARIANTS[8],
+                },
+                10: {
+                    gap: SPACE_VARIANTS[10],
+                },
+                12: {
+                    gap: SPACE_VARIANTS[12],
+                },
+                14: {
+                    gap: SPACE_VARIANTS[14],
+                },
+                16: {
+                    gap: SPACE_VARIANTS[16],
+                },
+                18: {
+                    gap: SPACE_VARIANTS[18],
+                },
+                20: {
+                    gap: SPACE_VARIANTS[20],
+                },
+                24: {
+                    gap: SPACE_VARIANTS[24],
+                },
+                28: {
+                    gap: SPACE_VARIANTS[28],
+                },
+                32: {
+                    gap: SPACE_VARIANTS[32],
+                },
+                48: {
+                    gap: SPACE_VARIANTS[48],
+                },
+                64: {
+                    gap: SPACE_VARIANTS[64],
+                },
+                80: {
+                    gap: SPACE_VARIANTS[80],
+                },
+                96: {
+                    gap: SPACE_VARIANTS[96],
+                },
+                112: {
+                    gap: SPACE_VARIANTS[112],
+                },
+                128: {
+                    gap: SPACE_VARIANTS[128],
+                },
             },
 
             columnGap: {
-                none: { columnGap: SPACE_VARIANTS.none },
-                px: { columnGap: SPACE_VARIANTS.px },
-                xxs: { columnGap: SPACE_VARIANTS.xxs },
-                xs: { columnGap: SPACE_VARIANTS.xs },
-                xs2: { columnGap: SPACE_VARIANTS.xs2 },
-                sm: { columnGap: SPACE_VARIANTS.sm },
-                sm2: { columnGap: SPACE_VARIANTS.sm2 },
-                md: { columnGap: SPACE_VARIANTS.md },
-                md2: { columnGap: SPACE_VARIANTS.md2 },
-                lg: { columnGap: SPACE_VARIANTS.lg },
-                lg2: { columnGap: SPACE_VARIANTS.lg2 },
-                xl: { columnGap: SPACE_VARIANTS.xl },
-                '2xl': { columnGap: SPACE_VARIANTS['2xl'] },
-                '3xl': { columnGap: SPACE_VARIANTS['3xl'] },
-                '4xl': { columnGap: SPACE_VARIANTS['4xl'] },
-                '5xl': { columnGap: SPACE_VARIANTS['5xl'] },
+                0: {
+                    columnGap: SPACE_VARIANTS[0],
+                },
+                1: {
+                    columnGap: SPACE_VARIANTS[1],
+                },
+                2: {
+                    columnGap: SPACE_VARIANTS[2],
+                },
+                4: {
+                    columnGap: SPACE_VARIANTS[4],
+                },
+                6: {
+                    columnGap: SPACE_VARIANTS[6],
+                },
+                8: {
+                    columnGap: SPACE_VARIANTS[8],
+                },
+                10: {
+                    columnGap: SPACE_VARIANTS[10],
+                },
+                12: {
+                    columnGap: SPACE_VARIANTS[12],
+                },
+                14: {
+                    columnGap: SPACE_VARIANTS[14],
+                },
+                16: {
+                    columnGap: SPACE_VARIANTS[16],
+                },
+                18: {
+                    columnGap: SPACE_VARIANTS[18],
+                },
+                20: {
+                    columnGap: SPACE_VARIANTS[20],
+                },
+                24: {
+                    columnGap: SPACE_VARIANTS[24],
+                },
+                28: {
+                    columnGap: SPACE_VARIANTS[28],
+                },
+                32: {
+                    columnGap: SPACE_VARIANTS[32],
+                },
+                48: {
+                    columnGap: SPACE_VARIANTS[48],
+                },
+                64: {
+                    columnGap: SPACE_VARIANTS[64],
+                },
+                80: {
+                    columnGap: SPACE_VARIANTS[80],
+                },
+                96: {
+                    columnGap: SPACE_VARIANTS[96],
+                },
+                112: {
+                    columnGap: SPACE_VARIANTS[112],
+                },
+                128: {
+                    columnGap: SPACE_VARIANTS[128],
+                },
             },
 
             rowGap: {
-                none: { rowGap: SPACE_VARIANTS.none },
-                px: { rowGap: SPACE_VARIANTS.px },
-                xxs: { rowGap: SPACE_VARIANTS.xxs },
-                xs: { rowGap: SPACE_VARIANTS.xs },
-                xs2: { rowGap: SPACE_VARIANTS.xs2 },
-                sm: { rowGap: SPACE_VARIANTS.sm },
-                sm2: { rowGap: SPACE_VARIANTS.sm2 },
-                md: { rowGap: SPACE_VARIANTS.md },
-                md2: { rowGap: SPACE_VARIANTS.md2 },
-                lg: { rowGap: SPACE_VARIANTS.lg },
-                lg2: { rowGap: SPACE_VARIANTS.lg2 },
-                xl: { rowGap: SPACE_VARIANTS.xl },
-                '2xl': { rowGap: SPACE_VARIANTS['2xl'] },
-                '3xl': { rowGap: SPACE_VARIANTS['3xl'] },
-                '4xl': { rowGap: SPACE_VARIANTS['4xl'] },
-                '5xl': { rowGap: SPACE_VARIANTS['5xl'] },
+                0: {
+                    rowGap: SPACE_VARIANTS[0],
+                },
+                1: {
+                    rowGap: SPACE_VARIANTS[1],
+                },
+                2: {
+                    rowGap: SPACE_VARIANTS[2],
+                },
+                4: {
+                    rowGap: SPACE_VARIANTS[4],
+                },
+                6: {
+                    rowGap: SPACE_VARIANTS[6],
+                },
+                8: {
+                    rowGap: SPACE_VARIANTS[8],
+                },
+                10: {
+                    rowGap: SPACE_VARIANTS[10],
+                },
+                12: {
+                    rowGap: SPACE_VARIANTS[12],
+                },
+                14: {
+                    rowGap: SPACE_VARIANTS[14],
+                },
+                16: {
+                    rowGap: SPACE_VARIANTS[16],
+                },
+                18: {
+                    rowGap: SPACE_VARIANTS[18],
+                },
+                20: {
+                    rowGap: SPACE_VARIANTS[20],
+                },
+                24: {
+                    rowGap: SPACE_VARIANTS[24],
+                },
+                28: {
+                    rowGap: SPACE_VARIANTS[28],
+                },
+                32: {
+                    rowGap: SPACE_VARIANTS[32],
+                },
+                48: {
+                    rowGap: SPACE_VARIANTS[48],
+                },
+                64: {
+                    rowGap: SPACE_VARIANTS[64],
+                },
+                80: {
+                    rowGap: SPACE_VARIANTS[80],
+                },
+                96: {
+                    rowGap: SPACE_VARIANTS[96],
+                },
+                112: {
+                    rowGap: SPACE_VARIANTS[112],
+                },
+                128: {
+                    rowGap: SPACE_VARIANTS[128],
+                },
             },
 
             // Shadow
             boxShadow: {
-                none: { boxShadow: vars.shadow.none },
-                xs: { boxShadow: vars.shadow.xs },
-                sm: { boxShadow: vars.shadow.sm },
-                md: { boxShadow: vars.shadow.md },
-                lg: { boxShadow: vars.shadow.lg },
-                xl: { boxShadow: vars.shadow.xl },
-                '2xl': { boxShadow: vars.shadow['2xl'] },
-                inner: { boxShadow: vars.shadow.inner },
+                'none': {
+                    boxShadow: vars.shadow['none'],
+                },
+                'xs': {
+                    boxShadow: vars.shadow.xs,
+                },
+                'sm': {
+                    boxShadow: vars.shadow['sm'],
+                },
+                'md': {
+                    boxShadow: vars.shadow['md'],
+                },
+                'lg': {
+                    boxShadow: vars.shadow['lg'],
+                },
+                'xl': {
+                    boxShadow: vars.shadow['xl'],
+                },
             },
         },
     }),

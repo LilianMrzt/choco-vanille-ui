@@ -3,8 +3,14 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { POPOVER_CONTENT_STYLES, Popover } from '@components/overlay/popover'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 describe('PopoverContent', () => {
+    it('supports the complete numeric spacing scale for padding', () => {
+        expect(Object.keys(POPOVER_CONTENT_STYLES.padding.classNames.variants.padding))
+            .toEqual(Object.keys(vars.space))
+    })
+
     it('applies the stacking style to the positioner', () => {
         render(
             <Popover defaultOpen>
@@ -34,7 +40,7 @@ describe('PopoverContent', () => {
 
         expect(content).toBeTruthy()
         expect(content.className).toContain(
-            POPOVER_CONTENT_STYLES.padding({ padding: 'md' }),
+            POPOVER_CONTENT_STYLES.padding({ padding: 12 }),
         )
         expect(screen.getByText('Content')).toBeTruthy()
     })
@@ -45,7 +51,7 @@ describe('PopoverContent', () => {
                 <Popover.Trigger>
                     <button type={'button'}>Open</button>
                 </Popover.Trigger>
-                <Popover.Content padding={'xs'} width={'18rem'}>
+                <Popover.Content padding={4} width={'18rem'}>
                     Content
                 </Popover.Content>
             </Popover>,
@@ -54,7 +60,7 @@ describe('PopoverContent', () => {
         const content = screen.getByRole('dialog', { name: 'Popover' })
 
         expect(content.className).toContain(
-            POPOVER_CONTENT_STYLES.padding({ padding: 'xs' }),
+            POPOVER_CONTENT_STYLES.padding({ padding: 4 }),
         )
         expect(content.style.width).toBe('18rem')
     })

@@ -5,9 +5,9 @@ type PaddingVariant = BoxSpace
 /**
  * Left padding of the drawer section item collapsible content area.
  */
-export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT: PaddingVariant = 'lg2'
+export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT: PaddingVariant = 20
 
 /**
  * Right padding of the drawer section item collapsible content area.
  */
-export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT: PaddingVariant = 'sm'
+export const DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT: PaddingVariant = 8

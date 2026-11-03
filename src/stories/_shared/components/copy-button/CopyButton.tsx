@@ -12,7 +12,7 @@ import type { CopyButtonProps } from '@stories/_shared/components/copy-button/ty
  * @internal Not part of the public package API.
  * @param props - Copy label and literal clipboard text.
  * @returns A copy button and an announced failure when copying is unavailable.
- * @example <CopyButton label="Copy token" value="vars.space.md" />
+ * @example <CopyButton label="Copy token" value="vars.space[12]" />
  */
 const CopyButton = ({ label, value }: CopyButtonProps): ReactElement => {
     const { copy, status } = useClipboard(value)
@@ -21,7 +21,7 @@ const CopyButton = ({ label, value }: CopyButtonProps): ReactElement => {
         <Flex
             alignItems={'flex-start'}
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
         >
             <Button
                 color={'secondary'}
@@ -31,7 +31,7 @@ const CopyButton = ({ label, value }: CopyButtonProps): ReactElement => {
             />
             <Typography
                 color={vars.color.danger.subtleForeground}
-                fontSize={'xs'}
+                fontSize={12}
                 role={'status'}
             >
                 {status === 'error' && 'Copy failed. Check clipboard permissions and try again.'}

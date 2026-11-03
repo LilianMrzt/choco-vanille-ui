@@ -9,21 +9,21 @@ const table = style({
 })
 
 const caption = style({
-    paddingBlock: vars.space.sm,
+    paddingBlock: vars.space[8],
     textAlign: 'left',
     color: vars.color.text.secondary,
-    fontSize: vars.fontSize.sm,
+    fontSize: vars.fontSize[14],
 })
 
 const th = style({
     textAlign: 'left',
-    padding: `${vars.space.sm} ${vars.space.md}`,
+    padding: `${vars.space[8]} ${vars.space[12]}`,
     borderBottom: `2px solid ${vars.color.border.strong}`,
     whiteSpace: 'nowrap',
 })
 
 const td = style({
-    padding: `${vars.space.xs} ${vars.space.md}`,
+    padding: `${vars.space[4]} ${vars.space[12]}`,
     borderBottom: `1px solid ${vars.color.border.main}`,
     verticalAlign: 'middle',
 })
@@ -31,7 +31,7 @@ const td = style({
 const swatch = style({
     width: 16,
     height: 16,
-    borderRadius: vars.radius.xs,
+    borderRadius: vars.radius[4],
     border: `1px solid ${vars.color.border.main}`,
     flexShrink: 0,
 })

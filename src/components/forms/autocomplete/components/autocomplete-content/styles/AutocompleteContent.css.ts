@@ -24,11 +24,11 @@ export const AUTOCOMPLETE_CONTENT_STYLES = {
         minWidth: 'var(--anchor-width)',
         maxHeight: 'var(--available-height)',
         overflow: 'hidden',
-        borderRadius: vars.radius.md,
+        borderRadius: vars.radius[8],
         border: `1px solid ${vars.color.border.main}`,
         backgroundColor: vars.color.surface.elevated,
         color: vars.color.surface.elevatedForeground,
-        padding: vars.space.xs,
+        padding: vars.space[4],
         boxShadow: vars.shadow.lg,
         transformOrigin: 'var(--transform-origin)',
 

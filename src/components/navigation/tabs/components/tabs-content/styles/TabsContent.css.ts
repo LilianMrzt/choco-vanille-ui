@@ -3,7 +3,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const TABS_CONTENT_STYLES = {
     root: style({
-        paddingTop: vars.space.md,
+        paddingTop: vars.space[12],
         color: vars.color.text.primary,
         outline: 'none',
         selectors: {

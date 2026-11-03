@@ -20,19 +20,7 @@ import type {
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
-const FONT_SIZES: TypographySize[] = [
-    '2xs',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    '6xl',
-]
+const FONT_SIZES: TypographySize[] = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]
 const FONT_WEIGHTS: TypographyWeight[] = [
     'thin',
     'extralight',
@@ -54,26 +42,7 @@ const LINK_COLORS: LinkColor[] = [
     'warning.main',
     'info.main',
 ]
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    'auto',
-] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
 const PADDINGS = SPACING.filter((value) => value !== 'auto')
 const WIDTHS = [undefined, '100%', 'fit-content'] as const
 const ALIGN_SELF = [
@@ -201,9 +170,18 @@ export const FontSizes: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Link label="2xs" fontSize="2xs" />
-<Link label="md" fontSize="md" />
-<Link label="6xl" fontSize="6xl" />`),
+<Link label="10" fontSize={10} />
+<Link label="12" fontSize={12} />
+<Link label="14" fontSize={14} />
+<Link label="16" fontSize={16} />
+<Link label="18" fontSize={18} />
+<Link label="20" fontSize={20} />
+<Link label="24" fontSize={24} />
+<Link label="30" fontSize={30} />
+<Link label="36" fontSize={36} />
+<Link label="48" fontSize={48} />
+<Link label="60" fontSize={60} />
+<Link label="72" fontSize={72} />`),
         },
     },
     render: () => (
@@ -211,7 +189,7 @@ export const FontSizes: Story = {
             {FONT_SIZES.map((fontSize) => (
                 <Link
                     key={fontSize}
-                    label={fontSize}
+                    label={String(fontSize)}
                     fontSize={fontSize}
                 />
             ))}

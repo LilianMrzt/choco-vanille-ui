@@ -12,15 +12,15 @@ export const ACCORDION_ITEM_STYLES = {
             bordered: {
                 true: {
                     borderBottom: `1px solid ${vars.color.border.main}`,
-                    marginBlock: vars.space.xs,
-                    paddingBlock: vars.space.xs,
+                    marginBlock: vars.space[4],
+                    paddingBlock: vars.space[4],
                     ':last-child': {
                         borderBottom: 'none',
                     },
                 },
                 false: {
-                    marginBlock: vars.space.xs,
-                    paddingBlock: vars.space.xs,
+                    marginBlock: vars.space[4],
+                    paddingBlock: vars.space[4],
                 },
             },
         },

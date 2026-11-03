@@ -16,7 +16,7 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: TextFieldSize[] = ['sm', 'md', 'lg']
-const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
+const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 const TYPES = ['text', 'email', 'password', 'number', 'search', 'url'] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -102,7 +102,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         label: 'Email address',
         placeholder: 'you@example.com',
         size: 'md',
-        fontSize: 'md',
+        fontSize: 16,
         type: 'text',
         width: '300px',
         required: true,
@@ -118,7 +118,7 @@ export const Playground: Story = {
     parameters: {
         docs: {
             ...storySource(
-                `<TextField label="Email address" placeholder="you@example.com" size="md" fontSize="md" type="text" width="300px" required showRequiredIndicator />`,
+                `<TextField label="Email address" placeholder="you@example.com" size="md" fontSize={16} type="text" width="300px" required showRequiredIndicator />`,
             ),
             description: {
                 story:
@@ -178,17 +178,18 @@ export const FontSizes: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<TextField label="2xs" fontSize="2xs" />
-<TextField label="xs" fontSize="xs" />
-<TextField label="sm" fontSize="sm" />
-<TextField label="md" fontSize="md" />
-<TextField label="lg" fontSize="lg" />
-<TextField label="xl" fontSize="xl" />
-<TextField label="2xl" fontSize="2xl" />
-<TextField label="3xl" fontSize="3xl" />
-<TextField label="4xl" fontSize="4xl" />
-<TextField label="5xl" fontSize="5xl" />
-<TextField label="6xl" fontSize="6xl" />`),
+<TextField label="10" fontSize={10} />
+<TextField label="12" fontSize={12} />
+<TextField label="14" fontSize={14} />
+<TextField label="16" fontSize={16} />
+<TextField label="18" fontSize={18} />
+<TextField label="20" fontSize={20} />
+<TextField label="24" fontSize={24} />
+<TextField label="30" fontSize={30} />
+<TextField label="36" fontSize={36} />
+<TextField label="48" fontSize={48} />
+<TextField label="60" fontSize={60} />
+<TextField label="72" fontSize={72} />`),
         },
     },
     render: () => (
@@ -196,7 +197,7 @@ export const FontSizes: Story = {
             {FONT_SIZES.map((fontSize) => (
                 <TextField
                     key={fontSize}
-                    label={fontSize}
+                    label={String(fontSize)}
                     fontSize={fontSize}
                 />
             ))}

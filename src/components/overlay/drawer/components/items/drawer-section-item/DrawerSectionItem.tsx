@@ -103,9 +103,9 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                         flexDirection={'row'}
                         minHeight={0}
                         minWidth={0}
-                        paddingBottom={showChildren ? 'xs' : 'none'}
+                        paddingBottom={showChildren ? 4 : 0}
                         overflow={showChildren ? 'visible' : 'hidden'}
-                        gap={'none'}
+                        gap={0}
                         className={DRAWER_SECTION_ITEM_STYLES.sectionInner}
                     >
                         {shouldRenderSeparator && (
@@ -115,12 +115,12 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                                 marginRight={
                                     isSeparatorFadingIn
                                         ? DRAWER_SECTION_ITEM_SEPARATOR_PADDING_RIGHT
-                                        : 'none'
+                                        : 0
                                 }
                                 marginLeft={
                                     isSeparatorFadingIn
                                         ? DRAWER_SECTION_ITEM_SEPARATOR_PADDING_LEFT
-                                        : 'none'
+                                        : 0
                                 }
                                 className={DRAWER_SECTION_ITEM_STYLES.sectionSeparator}
                             />
@@ -128,7 +128,7 @@ const DrawerSectionItem: FC<DrawerSectionItemProps> = memo(
                         <Flex
                             flexDirection={'column'}
                             minHeight={0}
-                            gap={'none'}
+                            gap={0}
                             width={'100%'}
                         >
                             {children}

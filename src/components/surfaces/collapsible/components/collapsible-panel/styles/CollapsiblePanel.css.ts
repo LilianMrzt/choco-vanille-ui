@@ -7,8 +7,8 @@ export const COLLAPSIBLE_PANEL_STYLES = {
         display: 'grid',
         gridTemplateRows: '0fr',
         color: vars.color.surface.mutedForeground,
-        fontSize: vars.fontSize.sm,
-        lineHeight: vars.lineHeight.normal,
+        fontSize: vars.fontSize[14],
+        lineHeight: '1.5',
         outline: 'none',
         transition: [
             `grid-template-rows ${vars.duration.normal} ${vars.easing.standard}`,

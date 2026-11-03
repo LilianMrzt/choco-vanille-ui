@@ -25,16 +25,16 @@ const ReferencePage = ({ title, description, children }: ReferencePageProps): Re
         <Flex
             className={REFERENCE_PAGE_STYLES.content}
             flexDirection={'column'}
-            gap={'2xl'}
+            gap={32}
         >
             <Flex
                 as={'header'}
                 flexDirection={'column'}
-                gap={'sm'}
+                gap={8}
             >
                 <Typography
                     color={vars.color.primary.subtleForeground}
-                    fontSize={'sm'}
+                    fontSize={14}
                     fontWeight={'semibold'}
                 >
                     {'Choco Vanille / Reference'}

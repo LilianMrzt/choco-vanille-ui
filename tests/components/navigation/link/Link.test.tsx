@@ -110,7 +110,7 @@ describe('Link', () => {
         })
 
         it('forwards a custom font size', () => {
-            render(<Link label={'Home'} fontSize="lg" />)
+            render(<Link label={'Home'} fontSize={18} />)
             expect(screen.getByText('Home')).toBeTruthy()
         })
 
@@ -156,8 +156,8 @@ describe('Link', () => {
                 <Link
                     label={'Home'}
                     margin={'auto'}
-                    marginTop={'sm'}
-                    padding={'md'}
+                    marginTop={8}
+                    padding={12}
                     width={'16rem'}
                     alignSelf={'center'}
                 />,
@@ -165,7 +165,7 @@ describe('Link', () => {
 
             const link = getFirstChild(container)
             expect(link.className).toContain(
-                BOX_STYLES.recipe({ margin: 'auto', marginTop: 'sm', padding: 'md' }),
+                BOX_STYLES.recipe({ margin: 'auto', marginTop: 8, padding: 12 }),
             )
             expect(link.style.width).toBe('16rem')
             expect(link.style.alignSelf).toBe('center')

@@ -6,6 +6,6 @@ export const BOTTOM_SHEET_RADIO_GROUP_STYLES = {
     root: style({
         display: 'flex',
         flexDirection: 'column',
-        gap: vars.space.xxs,
+        gap: vars.space[2],
     }),
 }

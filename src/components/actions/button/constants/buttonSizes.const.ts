@@ -3,7 +3,7 @@ import type { TypographySize } from '@components/foundation/typography'
 import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
 
 export const BUTTON_SIZE_TO_FONT_SIZE: Record<NonNullable<ButtonSize>, TypographySize> = {
-    [BUTTON_SIZES.sm]: 'sm',
-    [BUTTON_SIZES.md]: 'md',
-    [BUTTON_SIZES.lg]: 'lg',
+    [BUTTON_SIZES.sm]: 14,
+    [BUTTON_SIZES.md]: 16,
+    [BUTTON_SIZES.lg]: 18,
 }

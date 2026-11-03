@@ -129,7 +129,7 @@ export const Playground: Story = {
     <Panel.Content position="right" width="33.333vw">
         <Panel.Header title="Panel settings" description="Manage your profile and preferences." />
         <Panel.Body>
-            <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
+            <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
                 Your content goes here.
             </Typography>
         </Panel.Body>
@@ -175,7 +175,7 @@ export const Playground: Story = {
                 <Panel.Body>
                     <Typography
                         variant={'p'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.text.primary}
                     >
                         Your content goes here. This panel demonstrates the dialog-like

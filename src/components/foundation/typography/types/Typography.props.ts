@@ -1,7 +1,6 @@
 import type * as React from 'react'
 
 import type {
-    TypographyLetterSpacing,
     TypographySize,
     TypographyVariant,
     TypographyWeight,
@@ -44,8 +43,8 @@ export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
     flexGrow?: CSSProperties['flexGrow'];
     /** CSS `flex-shrink` value applied to the text. */
     flexShrink?: CSSProperties['flexShrink'];
-    /** Letter-spacing token applied to the text. */
-    letterSpacing?: TypographyLetterSpacing;
+    /** CSS letter-spacing value applied to the text. */
+    letterSpacing?: CSSProperties['letterSpacing'];
     /** Maximum number of lines before truncating with an ellipsis. Supports 1–6. */
     maxLines?: 1 | 2 | 3 | 4 | 5 | 6;
     /** Associates the element with a form control — forwarded as the native `for` attribute (use with `as="label"`). */

@@ -20,7 +20,7 @@ const onlyIn = (a: string, b: string): string[] => {
 const variantClass = (variant: TypographyVariant): string =>
     onlyIn(TYPOGRAPHY_STYLES.recipe({ variant }), TYPOGRAPHY_STYLES.recipe({ variant: 'span' }))[0]
 
-const fontSizeClass = (fontSize: 'xl' | 'sm'): string =>
+const fontSizeClass = (fontSize: 20 | 14): string =>
     onlyIn(TYPOGRAPHY_STYLES.recipe({ fontSize }), TYPOGRAPHY_STYLES.recipe({}))[0]
 
 const fontWeightClass = (fontWeight: 'bold'): string =>
@@ -32,6 +32,36 @@ const ellipsisClass = (): string =>
 // Suites
 
 describe('Typography', () => {
+    it('supports the complete numeric spacing scale for margins', () => {
+        expect(Object.keys(TYPOGRAPHY_STYLES.recipe.classNames.variants.margin).filter(key => key !== 'auto'))
+            .toEqual(Object.keys(vars.space))
+    })
+
+    it('supports every numeric font size, including 72, without changing its element', () => {
+        expectTypeOf<TypographyProps['fontSize']>().toEqualTypeOf<keyof typeof vars.fontSize | undefined>()
+        expectTypeOf<'14' | 15>().not.toMatchTypeOf<NonNullable<TypographyProps['fontSize']>>()
+        expect(Object.keys(TYPOGRAPHY_STYLES.recipe.classNames.variants.fontSize))
+            .toEqual(Object.keys(vars.fontSize))
+        render(<Typography fontSize={72} variant="h1" margin={128}>Large heading</Typography>)
+        const heading = screen.getByRole('heading', { level: 1, name: 'Large heading' })
+        const classes = TYPOGRAPHY_STYLES.recipe({ variant: 'h1', fontSize: 72, margin: 128 })
+        for (const className of classes.split(' ')) {
+            expect(heading.classList.contains(className)).toBe(true)
+        }
+        expect(heading.hasAttribute('fontSize')).toBe(false)
+        expect(heading.hasAttribute('margin')).toBe(false)
+    })
+
+    it('accepts CSS tracking values and preserves consumer style precedence', () => {
+        expectTypeOf<TypographyProps['letterSpacing']>().toEqualTypeOf<CSSProperties['letterSpacing']>()
+        const { rerender } = render(<Typography letterSpacing="0.025em">Tracked text</Typography>)
+        expect(screen.getByText('Tracked text').style.letterSpacing).toBe('0.025em')
+        expect(screen.getByText('Tracked text').hasAttribute('letterSpacing')).toBe(false)
+
+        rerender(<Typography letterSpacing="0.025em" style={{ letterSpacing: '0.1em' }}>Tracked text</Typography>)
+        expect(screen.getByText('Tracked text').style.letterSpacing).toBe('0.1em')
+    })
+
     describe('CSS color contract', () => {
         it('accepts native CSS colors rather than theme token unions', () => {
             expectTypeOf<TypographyProps['color']>().toEqualTypeOf<CSSProperties['color']>()
@@ -120,8 +150,8 @@ describe('Typography', () => {
 
     describe('CSS class application', () => {
         it('applies the fontSize class', () => {
-            const { container } = render(<Typography fontSize="xl">text</Typography>)
-            expect(getFirstChild(container).className).toContain(fontSizeClass('xl'))
+            const { container } = render(<Typography fontSize={20}>text</Typography>)
+            expect(getFirstChild(container).className).toContain(fontSizeClass(20))
         })
 
         it('applies the fontWeight class', () => {
@@ -130,9 +160,9 @@ describe('Typography', () => {
         })
 
         it('applies the margin token class', () => {
-            const { container } = render(<Typography margin="md">text</Typography>)
+            const { container } = render(<Typography margin={12}>text</Typography>)
             expect(getFirstChild(container).className).toContain(
-                TYPOGRAPHY_STYLES.recipe({ margin: 'md' }).split(' ').at(-1),
+                TYPOGRAPHY_STYLES.recipe({ margin: 12 }).split(' ').at(-1),
             )
         })
 
@@ -174,12 +204,12 @@ describe('Typography', () => {
         })
 
         it('applies the fontSize override class on top of the variant', () => {
-            // h1 has its own font-size; fontSize="sm" adds the sm class so it can override via cascade.
+            // h1 has its own font-size; fontSize={14} adds the sm class so it can override via cascade.
             const { container } = render(
-                <Typography variant="h1" fontSize="sm">heading</Typography>,
+                <Typography variant="h1" fontSize={14}>heading</Typography>,
             )
             const className = getFirstChild(container).className
-            expect(className).toContain(fontSizeClass('sm'))
+            expect(className).toContain(fontSizeClass(14))
             expect(className).toContain(variantClass('h1'))
         })
 

@@ -39,33 +39,8 @@ const JUSTIFY = [
     'space-evenly',
     'stretch',
 ] as const
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-] as const
-const ROUNDED = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
+const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
 const BORDER_STYLE = [
     undefined,
@@ -80,17 +55,7 @@ const BORDER_STYLE = [
     'none',
     'hidden',
 ] as const
-const BOX_SHADOW = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'inner',
-] as const
+const BOX_SHADOW = [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'] as const
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
 const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
 const OVERFLOW = [
@@ -147,13 +112,13 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
 
 \`\`\`tsx
 // Horizontal row with centered items and a gap
-<Flex alignItems="center" gap="md">
+<Flex alignItems="center" gap={12}>
   <Avatar />
   <Typography variant="span">Jane Doe</Typography>
 </Flex>
 
 // Vertical column with stretch alignment
-<Flex flexDirection="column" alignItems="stretch" gap="lg">
+<Flex flexDirection="column" alignItems="stretch" gap={16}>
   <Card />
   <Card />
 </Flex>
@@ -211,7 +176,7 @@ A layout primitive that renders a \`<div>\` (or any element via the inherited \`
     args: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 'sm',
+        gap: 8,
     },
 } satisfies Meta<typeof Flex>
 
@@ -221,8 +186,8 @@ type Story = StoryObj<typeof meta>;
 
 const Item = ({ label }: { label: string }) => (
     <Box
-        padding={'md'}
-        borderRadius={'sm'}
+        padding={12}
+        borderRadius={6}
         backgroundColor={vars.color.primary.subtle}
         style={{ fontSize: '0.875rem' }}
     >
@@ -238,10 +203,10 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
             ...storySource(/* language=tsx */ `
-<Flex flexDirection="row" alignItems="center" gap="sm">
-    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Item 1</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Item 2</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Item 3</Box>
+<Flex flexDirection="row" alignItems="center" gap={8}>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle}>Item 1</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle}>Item 2</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle}>Item 3</Box>
 </Flex>`),
         },
     },

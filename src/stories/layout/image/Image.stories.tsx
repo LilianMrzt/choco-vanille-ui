@@ -33,33 +33,8 @@ const OBJECT_POSITION = [
     'bottom-left',
     'bottom-right',
 ] as const
-const ROUNDED = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-] as const
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-] as const
+const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
 const WH = [undefined, '100%', '50%', '200px', 'auto'] as const
 const MIN_MAX = [undefined, 'none', '100%', '200px'] as const
 
@@ -101,7 +76,7 @@ A design-token-aware image primitive that renders a native \`<img>\` element and
 <Image
   src="/photo.jpg"
   alt="A scenic landscape"
-  borderRadius="lg"
+  borderRadius={10}
   objectFit="cover"
   aspectRatio="16 / 9"
   width="100%"
@@ -141,7 +116,7 @@ A design-token-aware image primitive that renders a native \`<img>\` element and
         src: 'https://picsum.photos/seed/shadcn/400/300',
         alt: 'A sample image',
         objectFit: 'cover',
-        borderRadius: 'md',
+        borderRadius: 8,
         width: '100%',
         aspectRatio: '4 / 3',
     },
@@ -159,7 +134,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
             ...storySource(/* language=tsx */ `
-<Image src="https://picsum.photos/seed/shadcn/400/300" alt="A sample image" objectFit="cover" borderRadius="md" width="100%" aspectRatio="4 / 3" />`),
+<Image src="https://picsum.photos/seed/shadcn/400/300" alt="A sample image" objectFit="cover" borderRadius={8} width="100%" aspectRatio="4 / 3" />`),
         },
     },
     play: async ({ canvasElement }) => {

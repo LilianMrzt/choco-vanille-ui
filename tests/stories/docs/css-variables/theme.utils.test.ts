@@ -66,9 +66,11 @@ describe('theme variable documentation', () => {
     it('uses bracket notation for numeric-leading token keys', () => {
         const reference = buildVanillaExtractSnippet()
 
-        expect(reference).toContain('vars.space["2xl"]')
-        expect(reference).toContain('vars.fontSize["2xs"]')
-        expect(reference).not.toContain('vars.space.2xl')
-        expect(reference).not.toContain('vars.fontSize.2xs')
+        expect(reference).toContain('vars.space[32]')
+        expect(reference).toContain('vars.fontSize[10]')
+        expect(reference).not.toContain('vars.space.32')
+        expect(reference).not.toContain('vars.fontSize.10')
+        expect(reference).toContain('vars.radius[8]')
+        expect(reference).not.toMatch(/vars\.(?:lineHeight|letterSpacing)\b/)
     })
 })

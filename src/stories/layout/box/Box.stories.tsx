@@ -58,33 +58,8 @@ const TEXT_ALIGN = [
     'start',
     'end',
 ] as const
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-] as const
-const ROUNDED = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
+const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
 const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
@@ -101,17 +76,7 @@ const BORDER_STYLE = [
     'none',
     'hidden',
 ] as const
-const BOX_SHADOW = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'inner',
-] as const
+const BOX_SHADOW = [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'] as const
 const FLEX = [undefined, '1', 'auto', 'initial', 'none'] as const
 const ALIGN_SELF = [
     undefined,
@@ -178,12 +143,12 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 
 \`\`\`tsx
 // Default div with padding, background and rounded corners
-<Box padding="lg" backgroundColor={vars.color.surface.main} borderRadius="md">
+<Box padding={16} backgroundColor={vars.color.surface.main} borderRadius={8}>
   Content
 </Box>
 
 // Polymorphic: rendered as a <section> with a muted background
-<Box as="section" padding="xl" backgroundColor={vars.color.surface.muted}>
+<Box as="section" padding={24} backgroundColor={vars.color.surface.muted}>
   <Typography variant="h2">Section title</Typography>
 </Box>
 \`\`\`
@@ -240,9 +205,9 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
     args: {
         children: 'Box content',
         as: 'div',
-        padding: 'lg',
+        padding: 16,
         backgroundColor: vars.color.surface.muted,
-        borderRadius: 'md',
+        borderRadius: 8,
     },
 } satisfies Meta<typeof Box>
 
@@ -260,7 +225,7 @@ export const Playground: Story = {
             ...storySource(/* language=tsx */ `
 import { Box, vars } from '@choco-vanille/ui'
 
-<Box as="div" padding="lg" backgroundColor={vars.color.surface.muted} borderRadius="md">Box content</Box>`),
+<Box as="div" padding={16} backgroundColor={vars.color.surface.muted} borderRadius={8}>Box content</Box>`),
         },
     },
     play: async ({ canvasElement, args }) => {
@@ -284,8 +249,8 @@ import { Box, vars } from '@choco-vanille/ui'
 
 <Box
   as="div"
-  padding="lg"
-  borderRadius="md"
+  padding={16}
+  borderRadius={8}
   color="var(--custom-color, rebeccapurple)"
   backgroundColor={vars.color.surface.muted}
   borderColor={vars.color.border.strong}

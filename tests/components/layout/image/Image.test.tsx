@@ -3,11 +3,20 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import Image from '@components/layout/image/Image.tsx'
+import { IMAGE_STYLES } from '@components/layout/image/styles/Image.css.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const IMAGE_SRC = 'https://example.com/image.png'
 const IMAGE_ALT = 'A test image'
 
 describe('Image', () => {
+    it('supports the complete numeric spacing scale for padding and margins', () => {
+        for (const property of ['padding', 'margin'] as const) {
+            expect(Object.keys(IMAGE_STYLES.recipe.classNames.variants[property]).filter(key => key !== 'auto'))
+                .toEqual(Object.keys(vars.space))
+        }
+    })
+
     describe('default rendering', () => {
         it('renders an <img> element', () => {
             render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} />)
@@ -52,7 +61,7 @@ describe('Image', () => {
         })
 
         it('applies variant classes', () => {
-            render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} objectFit="cover" borderRadius="md" />)
+            render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} objectFit="cover" borderRadius={8} />)
             expect(screen.getByRole('img').className.length).toBeGreaterThan(0)
         })
     })

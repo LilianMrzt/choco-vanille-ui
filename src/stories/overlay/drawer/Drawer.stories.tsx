@@ -161,7 +161,7 @@ const renderDrawer = ({
                 >
                     <Flex
                         flexDirection={'column'}
-                        gap={'lg'}
+                        gap={16}
                     >
                         {showNavigation && (
                             <Drawer.Section title={navigationTitle}>
@@ -194,7 +194,7 @@ const renderDrawer = ({
                                             label={'3'}
                                             size={'sm'}
                                             color={'orange'}
-                                            borderRadius={'sm'}
+                                            borderRadius={6}
                                         />
                                     }
                                     disabled={navItemDisabled}
@@ -230,7 +230,7 @@ const renderDrawer = ({
                                             <Badge
                                                 label={'New'}
                                                 size={'sm'}
-                                                borderRadius={'sm'}
+                                                borderRadius={6}
                                                 color={'destructive'}
                                             />
                                         }
@@ -372,7 +372,7 @@ const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
   <Drawer.Header>
-    <Typography as="h2" fontSize="lg" fontWeight="semibold" color={vars.color.text.primary} ellipsis style={{ flex: '1 1 0%' }}>
+    <Typography as="h2" fontSize={18} fontWeight="semibold" color={vars.color.text.primary} ellipsis style={{ flex: '1 1 0%' }}>
       Settings
     </Typography>
     <IconButton icon={CloseIcon} aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />

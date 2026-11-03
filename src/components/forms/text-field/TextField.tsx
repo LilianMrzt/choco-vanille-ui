@@ -65,7 +65,7 @@ const TextField = memo<TextFieldProps>((props) => {
         showRequiredIndicator = true,
         endAction,
         size: sizeProp,
-        fontSize: fontSizeProp = 'md',
+        fontSize: fontSizeProp = 16,
         placeholder,
         value,
         onChange,
@@ -103,7 +103,7 @@ const TextField = memo<TextFieldProps>((props) => {
     return (
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}
@@ -122,7 +122,7 @@ const TextField = memo<TextFieldProps>((props) => {
             <Flex
                 position={'relative'}
                 width={'100%'}
-                gap={'none'}
+                gap={0}
             >
                 {startIcon && (
                     <TextFieldStartIcon

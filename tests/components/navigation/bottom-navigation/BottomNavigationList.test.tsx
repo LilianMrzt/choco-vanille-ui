@@ -17,12 +17,17 @@ describe('BottomNavigationList', () => {
 
     it('applies the spacing token passed through the gap prop', () => {
         render(
-            <BottomNavigationList gap={'lg'}>
+            <BottomNavigationList gap={16}>
                 <li>Home</li>
             </BottomNavigationList>,
         )
 
-        expect(screen.getByRole('list').style.gap).toBe('var(--space-lg)')
+        expect(screen.getByRole('list').style.gap).toBe('var(--space-16)')
+    })
+
+    it('preserves an explicit zero gap', () => {
+        render(<BottomNavigationList gap={0}><li>Home</li></BottomNavigationList>)
+        expect(screen.getByRole('list').style.gap).toBe('var(--space-0)')
     })
 
     it('applies custom width constraints to the item row', () => {

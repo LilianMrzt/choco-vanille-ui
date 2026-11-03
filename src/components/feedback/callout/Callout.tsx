@@ -52,7 +52,7 @@ const Callout = memo<CalloutProps>((calloutProps) => {
             <Flex
                 ref={ref}
                 alignItems={'start'}
-                gap={'md'}
+                gap={12}
                 className={cn(
                     CALLOUT_STYLES.recipe({
                         variant,
@@ -71,7 +71,7 @@ const Callout = memo<CalloutProps>((calloutProps) => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'start'}
-                    gap={'xs'}
+                    gap={4}
                     minWidth={0}
                 >
                     {title && <CalloutTitle>{title}</CalloutTitle>}

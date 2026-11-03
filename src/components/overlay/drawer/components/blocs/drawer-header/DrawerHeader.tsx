@@ -16,9 +16,9 @@ const DrawerHeader: FC<DrawerHeaderProps> = memo(({
             flexDirection={'row'}
             alignItems={'start'}
             justifyContent={'between'}
-            gap={'md'}
-            padding={'md'}
-            paddingBottom={'none'}
+            gap={12}
+            padding={12}
+            paddingBottom={0}
             className={className}
             {...props}
         >

@@ -81,7 +81,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
                 {!hasValue && (
                     <Typography
                         as={'span'}
-                        fontSize={'sm'}
+                        fontSize={14}
                         color={vars.color.text.secondary}
                         className={IMAGE_PICKER_STYLES.emptyText}
                         aria-hidden={'true'}
@@ -102,7 +102,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
                 />
                 <Typography
                     as={'span'}
-                    fontSize={'sm'}
+                    fontSize={14}
                     fontWeight={'medium'}
                     color={vars.color.primary.foreground}
                     className={IMAGE_PICKER_STYLES.scrimText}

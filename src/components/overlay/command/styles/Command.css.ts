@@ -26,7 +26,7 @@ export const COMMAND_STYLES = {
         maxWidth: '36rem',
         maxHeight: '28rem',
         overflow: 'hidden',
-        borderRadius: vars.radius.md,
+        borderRadius: vars.radius[8],
         border: `1px solid ${vars.color.border.main}`,
         backgroundColor: vars.color.background,
         color: vars.color.text.primary,

@@ -32,9 +32,9 @@ const path: ThemeColor = 'primary.subtleForeground'
 const overrides: ThemeColorOverrides = { primary: { main: 'var(--brand)' }, surface: { elevated: '#fff' } }
 const icon = () => <svg />
 const example = <ThemeProvider tokens={overrides}>
-    <Box backgroundColor={vars.color.surface.main} borderColor="var(--app-border)">
-        <Typography color={vars.color.primary.main}>Brand</Typography>
-        <Icon icon={icon} color="var(--app-icon)" />
+    <Box backgroundColor={vars.color.surface.main} borderColor="var(--app-border)" padding={80} gap={112} margin={0} borderRadius={8} boxShadow="xs">
+        <Typography color={vars.color.primary.main} fontSize={72} margin="auto">Brand</Typography>
+        <Icon icon={icon} color="var(--app-icon)" padding={0} borderRadius="full" />
     </Box>
 </ThemeProvider>
 // @ts-expect-error A branch is not a token leaf.
@@ -49,7 +49,18 @@ const incomplete: ThemeColors = { primary: { main: 'red' } }
 const objectColor = <Typography color={vars.color.primary} />
 // @ts-expect-error Subtle is a direct leaf.
 const deep = vars.color.primary.subtle.main
-void [accent, colors, path, example]
+const numericTokens = [vars.space[16], vars.space[80], vars.space[112], vars.fontSize[14], vars.radius[8], vars.radius.full, vars.shadow.xs, vars.dropShadow.xs]
+// @ts-expect-error Spacing props require numbers, not quoted numeric keys.
+const quotedSpacing = <Box padding="16" />
+// @ts-expect-error Font-size props require numbers.
+const quotedFontSize = <Typography fontSize="14" />
+// @ts-expect-error Radius props require numbers or full.
+const quotedRadius = <Box borderRadius="8" />
+// @ts-expect-error Only the finite spacing scale is supported.
+const arbitrarySpacing = <Box padding={17} />
+// @ts-expect-error Only the finite font-size scale is supported.
+const arbitraryFontSize = <Typography fontSize={15} />
+void [accent, colors, path, example, numericTokens]
 `)
             const program = ts.createProgram([consumerTypesPath], {
                 noEmit: true,
@@ -70,6 +81,16 @@ void [accent, colors, path, example]
             expect(themeCss).toContain('--color-primary-main')
             expect(themeCss).toContain('--color-primary-subtlePressed')
             expect(themeCss).toContain('--color-text-primary')
+            expect(themeCss).toContain('--space-128')
+            expect(themeCss).toContain('--space-80')
+            expect(themeCss).toContain('--space-112')
+            expect(themeCss).toContain('--shadow-xs')
+            expect(themeCss).toContain('--dropShadow-xs')
+            expect(themeCss).toMatch(/padding\s*:\s*var\(--space-80\)/)
+            expect(themeCss).toMatch(/gap\s*:\s*var\(--space-112\)/)
+            expect(themeCss).toContain('--fontSize-72')
+            expect(themeCss).toContain('--radius-8')
+            expect(themeCss).not.toMatch(/--(?:space|fontSize|radius)-(?:none|xs|sm|md|lg|xl)\b/)
             expect(themeCss).not.toMatch(/--color-(?:primary|primaryHover|primaryActive|foreground|surface|borderStrong)\s*[:)]/)
             expect(themeCss).not.toContain('[object Object]')
 

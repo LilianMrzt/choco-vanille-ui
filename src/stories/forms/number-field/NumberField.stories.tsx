@@ -17,7 +17,7 @@ import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
 const SIZES: NumberFieldSize[] = ['sm', 'md', 'lg']
-const FONT_SIZES = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'] as const
+const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 **Accessibility**
@@ -77,7 +77,7 @@ A numeric field with min/max constraints, keyboard and button increments, and Te
         max: 10,
         step: 1,
         size: 'md',
-        fontSize: 'md',
+        fontSize: 16,
     },
 } satisfies Meta<typeof NumberField>
 
@@ -143,17 +143,18 @@ export const FontSizes: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<NumberField label="2xs" fontSize="2xs" defaultValue={1} />
-<NumberField label="xs" fontSize="xs" defaultValue={1} />
-<NumberField label="sm" fontSize="sm" defaultValue={1} />
-<NumberField label="md" fontSize="md" defaultValue={1} />
-<NumberField label="lg" fontSize="lg" defaultValue={1} />
-<NumberField label="xl" fontSize="xl" defaultValue={1} />
-<NumberField label="2xl" fontSize="2xl" defaultValue={1} />
-<NumberField label="3xl" fontSize="3xl" defaultValue={1} />
-<NumberField label="4xl" fontSize="4xl" defaultValue={1} />
-<NumberField label="5xl" fontSize="5xl" defaultValue={1} />
-<NumberField label="6xl" fontSize="6xl" defaultValue={1} />`),
+<NumberField label="10" fontSize={10} defaultValue={1} />
+<NumberField label="12" fontSize={12} defaultValue={1} />
+<NumberField label="14" fontSize={14} defaultValue={1} />
+<NumberField label="16" fontSize={16} defaultValue={1} />
+<NumberField label="18" fontSize={18} defaultValue={1} />
+<NumberField label="20" fontSize={20} defaultValue={1} />
+<NumberField label="24" fontSize={24} defaultValue={1} />
+<NumberField label="30" fontSize={30} defaultValue={1} />
+<NumberField label="36" fontSize={36} defaultValue={1} />
+<NumberField label="48" fontSize={48} defaultValue={1} />
+<NumberField label="60" fontSize={60} defaultValue={1} />
+<NumberField label="72" fontSize={72} defaultValue={1} />`),
         },
     },
     render: () => (
@@ -161,7 +162,7 @@ export const FontSizes: Story = {
             {FONT_SIZES.map((fontSize) => (
                 <NumberField
                     key={fontSize}
-                    label={fontSize}
+                    label={String(fontSize)}
                     fontSize={fontSize}
                     defaultValue={1}
                 />

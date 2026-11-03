@@ -35,33 +35,8 @@ const OBJECT_POSITION = [
     'bottom-left',
     'bottom-right',
 ] as const
-const ROUNDED = [
-    undefined,
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    'full',
-] as const
-const SPACING = [
-    undefined,
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-] as const
+const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
+const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
 const DIMENSIONS = [undefined, 'auto', '100%', '50%', '200px'] as const
 const COLORS = [
     'transparent',

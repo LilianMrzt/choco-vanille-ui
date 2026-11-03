@@ -21,7 +21,7 @@ type CollapsiblePlaygroundArgs = ComponentProps<typeof Collapsible> & {
   triggerWidth?: string;
   triggerStartIcon?: IconComponent;
   triggerEndIcon?: IconComponent;
-  panelPadding?: 'none' | 'xs' | 'sm' | 'md' | 'lg';
+  panelPadding?: ComponentProps<typeof Collapsible.Panel>['padding'];
 };
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -97,7 +97,7 @@ Compose \`Collapsible\`, \`Collapsible.Trigger\`, and \`Collapsible.Panel\`.
         },
         panelPadding: {
             control: 'select',
-            options: ['none', 'xs', 'sm', 'md', 'lg'],
+            options: [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128],
             table: { category: 'Collapsible.Panel' },
         },
     },
@@ -107,7 +107,7 @@ Compose \`Collapsible\`, \`Collapsible.Trigger\`, and \`Collapsible.Panel\`.
         triggerLabel: 'Toggle content',
         triggerStartIcon: InfoIcon,
         triggerEndIcon: undefined,
-        panelPadding: 'md',
+        panelPadding: 12,
     },
     decorators: [
         (Story) => (

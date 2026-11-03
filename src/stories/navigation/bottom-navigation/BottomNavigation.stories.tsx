@@ -38,24 +38,7 @@ type BottomNavigationStoryArgs = ComponentProps<typeof BottomNavigation> & {
     itemOnClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-const GAP_OPTIONS: BoxSpace[] = [
-    'none',
-    'px',
-    'xxs',
-    'xs',
-    'xs2',
-    'sm',
-    'sm2',
-    'md',
-    'md2',
-    'lg',
-    'lg2',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-]
+const GAP_OPTIONS: BoxSpace[] = [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128]
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -227,7 +210,7 @@ function MobileNavigation() {
         defaultValue: 'home',
         value: undefined,
         listClassName: '',
-        listGap: 'xxs',
+        listGap: 2,
         listWidth: '100%',
         listMaxWidth: '32rem',
         itemLabel: 'Home',
@@ -352,7 +335,7 @@ export const Playground: Story = {
             },
             ...storySource(/* language=tsx */ `
 <BottomNavigation aria-label="Primary navigation" defaultValue="home">
-  <BottomNavigation.List gap="xxs" width="100%" maxWidth="32rem">
+  <BottomNavigation.List gap={2} width="100%" maxWidth="32rem">
     <BottomNavigation.Item value="home" label="Home" icon={CircleIcon} href="/" />
     <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search" />
     <BottomNavigation.Item value="calendar" label="Calendar" icon={CalendarIcon} href="/calendar" />
@@ -405,7 +388,7 @@ export const ParentWidths: Story = {
                         defaultValue={'home'}
                     >
                         <BottomNavigation.List
-                            gap={'sm'}
+                            gap={8}
                             width={'100%'}
                             maxWidth={'100%'}
                         >
@@ -452,7 +435,7 @@ export const ParentWidths: Story = {
                         defaultValue={'home'}
                     >
                         <BottomNavigation.List
-                            gap={'lg'}
+                            gap={16}
                             width={'100%'}
                             maxWidth={'40rem'}
                         >
@@ -489,7 +472,7 @@ export const ParentWidths: Story = {
             ...storySource(/* language=tsx */ `
 <div style={{ width: '20rem', maxWidth: '100%', marginInline: 'auto' }}>
   <BottomNavigation aria-label="Narrow parent navigation" defaultValue="home">
-    <BottomNavigation.List gap="sm" width="100%" maxWidth="100%">
+    <BottomNavigation.List gap={8} width="100%" maxWidth="100%">
       <BottomNavigation.Item value="home" label="Home" icon={CircleIcon} href="/" />
       <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search" />
       <BottomNavigation.Item value="profile" label="Profile" icon={UserIcon} href="/profile" />
@@ -498,7 +481,7 @@ export const ParentWidths: Story = {
 </div>
 <div style={{ width: '48rem', maxWidth: '100%', marginInline: 'auto' }}>
   <BottomNavigation aria-label="Wide parent navigation" defaultValue="home">
-    <BottomNavigation.List gap="lg" width="100%" maxWidth="40rem">
+    <BottomNavigation.List gap={16} width="100%" maxWidth="40rem">
       <BottomNavigation.Item value="home" label="Home" icon={CircleIcon} href="/" />
       <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search" />
       <BottomNavigation.Item value="profile" label="Profile" icon={UserIcon} href="/profile" />

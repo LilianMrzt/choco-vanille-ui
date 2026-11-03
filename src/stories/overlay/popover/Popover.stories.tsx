@@ -108,24 +108,7 @@ Use it to display rich content, forms, or action items attached to a trigger ele
         },
         contentPadding: {
             control: 'select',
-            options: [
-                'none',
-                'px',
-                'xxs',
-                'xs',
-                'xs2',
-                'sm',
-                'sm2',
-                'md',
-                'md2',
-                'lg',
-                'lg2',
-                'xl',
-                '2xl',
-                '3xl',
-                '4xl',
-                '5xl',
-            ],
+            options: [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128],
             table: { category: 'Compound: Content' },
         },
         itemLabel: {
@@ -146,7 +129,7 @@ Use it to display rich content, forms, or action items attached to a trigger ele
         defaultOpen: false,
         triggerLabel: 'Open popover',
         contentWidth: '20rem',
-        contentPadding: 'md',
+        contentPadding: 12,
         itemLabel: 'Edit',
         itemDisabled: false,
         itemDestructive: false,
@@ -172,7 +155,7 @@ const [open, setOpen] = useState(false)
     <Button label="Open popover" />
   </Popover.Trigger>
 
-  <Popover.Content width={'20rem'} padding={'md'}>
+  <Popover.Content width={'20rem'} padding={'12'}>
     <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
       Popover title
     </h4>

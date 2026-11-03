@@ -34,7 +34,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
     startIcon,
     placeholder,
     size = 'md',
-    fontSize = 'md',
+    fontSize = 16,
     width,
     disabled,
     required,
@@ -69,7 +69,7 @@ const SelectField: FC<SelectFieldProps> = memo(({
     return (
         <Flex
             flexDirection={'column'}
-            gap={'xs'}
+            gap={4}
             width={'100%'}
             alignItems={'start'}
             style={width !== undefined ? { width } : undefined}

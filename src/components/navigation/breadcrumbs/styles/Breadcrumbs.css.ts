@@ -7,7 +7,7 @@ export const BREADCRUMBS_STYLES = {
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         padding: 0,
         margin: 0,
         listStyle: 'none',
@@ -15,7 +15,7 @@ export const BREADCRUMBS_STYLES = {
     item: style({
         display: 'inline-flex',
         alignItems: 'center',
-        gap: vars.space.xs,
+        gap: vars.space[4],
     }),
     current: style({
         color: vars.color.text.primary,

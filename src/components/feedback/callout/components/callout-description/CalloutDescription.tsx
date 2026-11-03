@@ -19,7 +19,7 @@ const CalloutDescription: FC<CalloutDescriptionProps> = memo(({
             ref={ref}
             as={'span'}
             variant={'span'}
-            fontSize={'sm'}
+            fontSize={14}
             color={vars.color.text.secondary}
             className={cn(className)}
             {...props}

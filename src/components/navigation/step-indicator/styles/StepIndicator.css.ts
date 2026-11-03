@@ -10,7 +10,7 @@ export const STEP_INDICATOR_STYLES = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: vars.space.xs,
+        gap: vars.space[4],
         padding: 0,
         margin: 0,
         listStyle: 'none',
