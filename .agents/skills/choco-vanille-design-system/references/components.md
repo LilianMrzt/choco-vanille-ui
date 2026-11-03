@@ -71,16 +71,47 @@ unrelated components just to match this tree.
 - Keep types in `types/index.ts`.
 - Name component props `<ComponentName>Props` and declare them with `Readonly`.
 - Keep configuration/constants in `constants/index.ts`.
-- A hook or utility with its own props, types or constants has its own
-  kebab-case folder under `hooks/` or `utils/`. Place its owned types and
-  constants in that folder's `types/index.ts` and `constants/index.ts`.
-  Reuse types owned by the component or another unit instead of duplicating
-  them, and create only the files needed by that hook or utility.
+- Apply the same ownership structure to hooks and utilities, whether they are
+  component-local, shared or library-wide. When a hook or utility owns types,
+  constants, utilities or hooks, give it a kebab-case folder under its owner's
+  `hooks/` or `utils/`. Keep its implementation in that folder and its owned
+  resources in `types/index.ts`, `constants/index.ts`, `utils/` or `hooks/`,
+  creating only the resources it needs.
+- Apply this rule recursively: an owned hook or utility gets its own folder
+  only when it also owns resources. Otherwise keep its implementation directly
+  in the parent's `hooks/` or `utils/`, without a per-function wrapper folder.
+  In a component, simple files such as `hooks/useComponent.hook.ts` and
+  `utils/resolveValue.utils.ts` therefore stay flat until their own resources
+  justify a folder.
+- Importing a type, constant or helper owned by another unit does not justify
+  a wrapper folder. Reuse that unit's definitions instead of duplicating them.
 - Put complex behavioral logic in dedicated hooks such as `hooks/useComponentName.hook.ts`.
 - Extract pure calculations into utilities rather than React hooks.
 - Tiny and immediately understandable logic may remain inline.
 - Create only files and folders containing necessary code. The structure above
   is an anatomy, not a scaffolding checklist.
+
+For example, a component can mix flat helpers and helpers with owned resources:
+
+```text
+component-name/
+  hooks/
+    useSimpleState.hook.ts
+    use-complex-state/
+      useComplexState.hook.ts
+      types/index.ts
+      constants/index.ts
+      utils/
+        normalizeValue.utils.ts
+        resolve-value/
+          resolveValue.utils.ts
+          types/index.ts
+  utils/
+    formatLabel.utils.ts
+    parse-value/
+      parseValue.utils.ts
+      constants/index.ts
+```
 
 ## API and composition
 

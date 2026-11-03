@@ -40,7 +40,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Overview', 'Guidelines', 'Docs', ['Theme', 'Tokens', 'CSS Variables'], 'Foundation', 'Layout', 'Actions', 'Forms', 'Overlay'],
+        order: ['Overview', ['Introduction', 'Customization'], 'Guidelines', 'Docs', ['Theme', 'Tokens', 'CSS Variables'], 'Foundation', 'Layout', 'Actions', 'Forms', 'Overlay'],
       },
     },
     controls: {

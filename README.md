@@ -91,6 +91,14 @@ OS by default (`prefers-color-scheme`) and can be forced per-subtree:
 <html> ...                     <!-- auto: follow the OS -->
 ```
 
+Global theme identifiers use the `choco-vanille` namespace:
+`.choco-vanille-theme-light`, `.choco-vanille-theme-dark`, the
+`choco-vanille.theme` and `choco-vanille.reset` cascade layers, and
+`--choco-vanille-theme-transition-duration`. This prefix change is breaking:
+update custom selectors, layer ordering and transition overrides to these
+names. No aliases for the previous prefix are emitted. The `data-theme`
+attributes and token variables such as `--color-primary-main` are unchanged.
+
 Tokens are available two ways:
 
 **1. Typed `vars` (inside `*.css.ts`, fully autocompleted):**

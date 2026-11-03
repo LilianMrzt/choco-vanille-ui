@@ -69,7 +69,8 @@
   under `src/stories/guidelines/`. Theme, token, and CSS variable references
   live under `src/stories/docs/`, with `Docs` ordered immediately after
   `Guidelines` and before component categories. `Docs/Theme` covers color tokens
-  only; keep customization under `Overview/Theme/Customization`.
+  only; keep a single CSS token override guide, including Vanilla Extract
+  recommendations, under `Overview/Customization`.
   Reference stories opt out of autodocs and prefer TSX stories over new MDX pages.
   The Icon API belongs in component stories, not an icon catalog.
 - Storybook discovers MDX and stories under `src/stories/` directly. Keep helpers

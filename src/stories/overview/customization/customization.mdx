@@ -1,0 +1,159 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { THEME_LAYER } from '@theme/constants/index.ts'
+
+<Meta title="Overview/Customization" />
+
+# Customization
+
+Customize the library by overriding its CSS custom properties, globally or for
+a subtree. No component changes or additional styling library are required;
+Vanilla Extract is recommended if you want typed token access.
+
+See [Docs / CSS Variables](?path=/story/docs-css-variables--reference) for variable
+names and [Docs / Tokens](?path=/story/docs-tokens--all-tokens) for token values.
+
+## Override tokens with CSS
+
+Import components from `@choco-vanille/ui` as usual: compatible bundlers load
+their static CSS imports. If your pipeline requires explicit CSS loading,
+import `@choco-vanille/ui/styles.css` once in the application entry.
+
+Add your overrides to an application stylesheet:
+
+<Source language="css" code={`/* app.css */
+:root {
+  --color-primary-main: #005a9c;
+  --color-primary-hover: #004b83;
+  --color-primary-pressed: #003c6a;
+  --color-primary-foreground: #ffffff;
+  --radius-md: 0.75rem;
+}`} />
+
+The theme's default tokens live in a CSS cascade layer:
+
+<Source language="css" code={`@layer ${THEME_LAYER};`} />
+
+Keep application overrides **outside a layer** to take precedence over normal
+layered defaults on the same element, without `!important`. If your application
+uses layers, explicitly order its override layer after the library's theme
+layer before either layer is first declared.
+
+| Token | Purpose |
+| --- | --- |
+| `--color-primary-main`, `--color-primary-hover`, `--color-primary-pressed` | Filled primary action states |
+| `--color-primary-foreground` | Text and icons on filled primary actions |
+| `--color-surface-main`, `--color-surface-foreground` | Surface background and foreground |
+| `--color-focusRing` | Focus indicator |
+| `--space-md`, `--radius-md` | Spacing and corner radius |
+
+When rebranding an entire intent, also update its `subtle`, `subtleHover`,
+`subtlePressed`, `subtleForeground`, `border` and `subtleBorder` tokens.
+Check text contrast at 4.5:1 and relevant borders and focus indicators at 3:1
+against their actual backgrounds, in both light and dark modes.
+
+## Scope overrides
+
+Declare variables on an ancestor to customize only that part of the interface:
+
+<Source language="css" code={`[data-brand="acme"] {
+  --color-primary-main: #005a9c;
+  --color-primary-hover: #004b83;
+  --color-primary-pressed: #003c6a;
+  --color-primary-foreground: #ffffff;
+  --radius-md: 0.75rem;
+}`} />
+
+<Source language="tsx" code={`import { Button } from '@choco-vanille/ui';
+import './app.css';
+
+export const BrandedAction = () => (
+  <div data-brand="acme">
+    <Button color="primary" label="Acme action" variant="contained" />
+  </div>
+);`} />
+
+Variables inherit through the DOM. An explicit theme on a descendant can
+redeclare color tokens and replace inherited overrides; target that theme
+element too when it should keep the brand. Portals rendered outside the scoped
+ancestor do not inherit its variables: use document-level overrides or a portal
+container inside the scope when supported by the component.
+
+## Light and dark overrides
+
+The root follows the OS preference unless an explicit theme is set.
+`data-theme="light"` and `data-theme="dark"` select a theme on the element that
+carries the attribute. Match the same element when overriding its defaults:
+
+<Source language="css" code={`:root,
+[data-theme="light"] {
+  --color-primary-main: #005a9c;
+  --color-primary-hover: #004b83;
+  --color-primary-pressed: #003c6a;
+  --color-primary-foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not(.choco-vanille-theme-light):not(.choco-vanille-theme-dark) {
+    --color-primary-main: #8dceff;
+    --color-primary-hover: #b4dfff;
+    --color-primary-pressed: #d6edff;
+    --color-primary-foreground: #001e33;
+  }
+}
+
+[data-theme="dark"] {
+  --color-primary-main: #8dceff;
+  --color-primary-hover: #b4dfff;
+  --color-primary-pressed: #d6edff;
+  --color-primary-foreground: #001e33;
+}`} />
+
+If you select themes with `.choco-vanille-theme-light` or `.choco-vanille-theme-dark`, include
+those classes alongside the corresponding attribute selectors above.
+`ThemeProvider` manages `data-theme` in React; it does not change this CSS
+override mechanism.
+
+## Vanilla Extract recommendations
+
+Use your application's configured Vanilla Extract bundler plugin and author
+styles in `.css.ts` files. Import the public `vars` contract for autocompletion
+and compile-time checks of token paths; it references the same CSS variables,
+not a separate theme.
+
+Use `globalStyle` for document or attribute-scoped overrides, or `style` for
+a local class. Set existing tokens through the `vars` field rather than
+creating a second theme contract or copying variable names:
+
+<Source language="ts" code={`// brand.css.ts
+import { globalStyle, style } from '@vanilla-extract/css';
+import { vars } from '@choco-vanille/ui';
+
+globalStyle(':root', {
+  vars: {
+    [vars.radius.md]: '0.75rem',
+  },
+});
+
+export const brand = style({
+  vars: {
+    [vars.color.primary.main]: '#005a9c',
+    [vars.color.primary.hover]: '#004b83',
+    [vars.color.primary.pressed]: '#003c6a',
+    [vars.color.primary.foreground]: '#ffffff',
+  },
+});`} />
+
+<Source language="tsx" code={`import { Button } from '@choco-vanille/ui';
+import { brand } from './brand.css';
+
+export const BrandedAction = () => (
+  <div className={brand}>
+    <Button color="primary" label="Acme action" variant="contained" />
+  </div>
+);`} />
+
+Read tokens directly in other styles, for example
+`color: vars.color.surface.foreground` and `padding: vars.space.md`.
+These references follow the active scope automatically. The same cascade,
+inheritance, dark-mode and contrast recommendations apply to Vanilla Extract
+and plain CSS overrides.

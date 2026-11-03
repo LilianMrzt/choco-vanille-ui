@@ -25,6 +25,13 @@ import {
     type ThemeEditorColors as PublicThemeEditorColors,
     type ThemeColorOverrides as PublicThemeColorOverrides,
 } from '@/index.ts'
+import {
+    PREFIX,
+    RESET_LAYER,
+    THEME_LAYER,
+    THEME_LIGHT_CLASS,
+    THEME_TRANSITION_DURATION_VAR,
+} from '@theme/constants/index.ts'
 
 const getTokenPaths = (value: object, prefix = ''): string[] =>
     Object.entries(value).flatMap(([key, token]) => {
@@ -63,7 +70,15 @@ describe('theme', () => {
         expect(publicVars).toBe(vars)
         expect(publicThemeProvider).toBe(ThemeProvider)
         expect(publicUseTheme).toBe(useTheme)
-        expect(THEME_DARK_CLASS).toBe('aurora-theme-dark')
+        expect(THEME_DARK_CLASS).toBe('choco-vanille-theme-dark')
+    })
+
+    it('uses the library namespace for global theme identifiers', () => {
+        expect(PREFIX).toBe('choco-vanille')
+        expect(THEME_LIGHT_CLASS).toBe('choco-vanille-theme-light')
+        expect(THEME_LAYER).toBe('choco-vanille.theme')
+        expect(RESET_LAYER).toBe('choco-vanille.reset')
+        expect(THEME_TRANSITION_DURATION_VAR).toBe('--choco-vanille-theme-transition-duration')
     })
 
     it('accepts both themes and custom values in the public theme type', () => {

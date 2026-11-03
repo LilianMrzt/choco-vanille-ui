@@ -72,7 +72,7 @@ describe('theme CSS contract', () => {
             throw new Error('Theme CSS was not extracted')
         }
         const stylesheet = css.source.toString()
-        expect(stylesheet).toContain('@layer aurora.theme')
+        expect(stylesheet).toContain('@layer choco-vanille.theme')
 
         const rules = Array.from(stylesheet.matchAll(/([^{}]+)\{([^{}]*)\}/g))
         const declarationsFor = (selector: string): Map<string, string> => {
@@ -87,10 +87,10 @@ describe('theme CSS contract', () => {
 
         const dark = declarationsFor('[data-theme="dark"]')
         const light = declarationsFor('[data-theme="light"]')
-        expect(declarationsFor('.aurora-theme-dark')).toEqual(dark)
-        expect(declarationsFor('.aurora-theme-light')).toEqual(light)
+        expect(declarationsFor('.choco-vanille-theme-dark')).toEqual(dark)
+        expect(declarationsFor('.choco-vanille-theme-light')).toEqual(light)
 
-        const media = stylesheet.match(/@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root:not\(\[data-theme\]\):not\(\.aurora-theme-dark\):not\(\.aurora-theme-light\)\s*\{([^}]*)\}/)
+        const media = stylesheet.match(/@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root:not\(\[data-theme\]\):not\(\.choco-vanille-theme-dark\):not\(\.choco-vanille-theme-light\)\s*\{([^}]*)\}/)
         if (!media) {
             throw new Error(`Missing system dark rule: ${stylesheet.slice(stylesheet.indexOf('@media'), stylesheet.indexOf('@media') + 200)}`)
         }

@@ -1,208 +1,143 @@
-import {
-    Meta,
-    Subtitle,
-    Title,
-    Source,
-} from '@storybook/addon-docs/blocks'
+import { Meta } from '@storybook/addon-docs/blocks'
 
 <Meta title="Guidelines/Contributing" />
 
-<Title />
+# Contributing
 
-<Subtitle>
-  The conventions that keep every file, folder, and component feeling like it was always part of the project.
-</Subtitle>
+`@choco-vanille/ui` is a React component library, not an application.
+Contributions target v2 while preserving existing behavior and unrelated local
+changes; updating this guide does not migrate the existing library.
 
----
+## Source of truth
 
-## 1 — Project structure
+Use the repository's
+[choco-vanille skill](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/SKILL.md)
+for every library contribution. Its references own the detailed conventions;
+this page is an orientation guide, not a second specification.
 
-```
-ui-kit/
-├── src/
-│   ├── components/      # All UI components, grouped by category
-│   ├── hooks/           # Shared React hooks
-│   ├── utils/           # Pure utility functions
-│   ├── constants/       # Project-wide constant values
-│   ├── theme/           # Design tokens, contracts, global styles
-│   ├── stories/         # Storybook stories & MDX docs (mirrors components/)
-│   └── index.ts         # Public package entry point
-├── tests/
-│   └── components/      # Vitest unit tests (mirrors src/components/)
-└── .storybook/          # Storybook configuration
-```
-
-The rule of thumb: **if you know what a file does, you should be able to guess its path.** The structure is intentionally mirrored across `src/components/`, `src/stories/`, and `tests/components/`.
-
----
-
-## 2 — Component categories
-
-All components live under `src/components/` and are grouped into semantic categories:
-
-| Category | What belongs here |
+| Reference | Scope |
 | --- | --- |
-| `actions/` | Interactive controls — `Button`, `IconButton`, links |
-| `data-display/` | Read-only presentation — tables, badges, avatars, tags |
-| `feedback/` | System responses — alerts, toasts, spinners, progress bars |
-| `forms/` | Input controls — text fields, checkboxes, radio groups, selects |
-| `foundation/` | Primitives used by other components — `Icon`, `Typography` |
-| `layout/` | Structural helpers — `Stack`, `Grid`, `Divider`, `Container` |
-| `overlay/` | Elements that float above the page — modals, tooltips, drawers |
+| [Contribution](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/contribution.md) | Scope, workflow, documentation and TypeScript |
+| [Architecture](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/architecture.md) | Categories, imports, public API and distribution |
+| [Components](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/components.md) | Anatomy, React contracts, composition and accessibility |
+| [Styles](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/styles.md) | Primitive props, Vanilla Extract, tokens and cascade |
+| [Quality](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/quality.md) | Code quality, semantics and consumer snippets |
+| [Tests and Storybook](https://github.com/LilianMrzt/choco-vanille-ui/blob/HEAD/.agents/skills/choco-vanille-design-system/references/tests-storybook.md) | Verification, controls, examples and documentation |
 
-When in doubt, ask: *"Is this the most specific category that still makes sense?"* Prefer a narrower category over a broader one.
+Read Contribution first, then the references relevant to the change.
+Update the responsible reference when a convention changes instead of
+maintaining another detailed copy here.
 
----
+## Library organization
 
-## 3 — Inside a component folder
+Public components live in `src/components/<category>/<component-name>/`,
+classified by responsibility rather than by their technical dependencies.
 
-Every component lives in its own folder with a fixed internal layout:
+| Category | Responsibility |
+| --- | --- |
+| `actions` | Actions and toggle controls |
+| `data-display` | Data and content presentation |
+| `feedback` | Status, progress and notifications |
+| `forms` | Input, selection and editing |
+| `foundation` | Core primitives, icons and typography |
+| `layout` | Layout and visual structure |
+| `navigation` | Navigation, orientation and step flows |
+| `overlay` | Floating surfaces and contextual content |
+| `surfaces` | Content containers and collapsible sections |
 
-```
+Theme contracts, tokens, providers and theme hooks belong in `src/theme/`.
+Stories stay in `src/stories/`, tests in `tests/`, and Storybook configuration
+in `.storybook/`. Stories and tests mirror the component category and folder.
+
+## Target component anatomy
+
+Use this structure for new components and explicitly requested v2 migrations:
+
+```text
 src/components/<category>/<component-name>/
-├── <ComponentName>.tsx        # Component implementation
-├── <ComponentName>.css.ts     # Vanilla Extract styles
-├── index.ts                   # Public re-exports for this component
-├── constants/
-│   └── index.ts               # Component-scoped constants
-└── types/
-    ├── <ComponentName>.types.ts   # TypeScript types & unions
-    └── <ComponentName>.props.ts   # Component prop interfaces
+  ComponentName.tsx
+  ComponentName.css.ts
+  index.ts
+  types/index.ts
+  constants/index.ts
+  components/<child-name>/
+  hooks/
+  utils/
 ```
 
-If two or more components in the same category share logic, extract it into a `_shared/` folder at the category level. The underscore prefix is a deliberate signal — *internal, not exported publicly*.
+Only create files and folders that contain necessary code: styles, constants,
+children, hooks and utilities are optional. Keep reusable elements under the
+nearest common `_shared/<shared-element>/`, organized by cohesive feature.
 
-```
-src/components/actions/
-├── _shared/
-│   └── buttons/               # Shared between Button and IconButton
-├── button/
-└── icon-button/
-```
+Hooks and utilities follow the same ownership rule, recursively: use a
+dedicated kebab-case folder only when they own types, constants or helpers,
+with those resources in the corresponding subfolders. Simple component-local
+hooks and utilities stay directly in `hooks/` or `utils/`, without an extra
+per-function folder. See the Components reference for the detailed layout.
 
-Stories and tests **mirror** the component structure exactly:
+Existing `styles/`, `*.props.ts`, `*.types.ts` and `*.const.ts` files are legacy
+layouts, not templates for new units. Migrate an existing unit's owned files
+and imports together only when its migration is requested; do not clean up
+unrelated components.
 
-```
-src/stories/<category>/<component-name>/
-├── <ComponentName>.stories.tsx
-└── <ComponentName>.mdx
+| Element | Target convention |
+| --- | --- |
+| Folders | `kebab-case` |
+| Component implementation and styles | `ComponentName.tsx`, `ComponentName.css.ts` |
+| Types and constants | `types/index.ts`, `constants/index.ts` |
+| Hooks | `useComponentName.hook.ts` |
+| Pure utilities | `resolveValue.utils.ts` |
+| Stories and tests | `ComponentName.stories.tsx`, `ComponentName.test.tsx` |
+| Re-exports | `index.ts` barrels only |
 
-tests/components/<category>/<component-name>/
-└── <ComponentName>.test.tsx
-```
+## Implementation priorities
 
----
+Inspect the existing public contract and consumers before editing. Reuse
+available primitives and helpers rather than adding speculative abstractions.
+The current implementation establishes observable behavior, but it does not
+override the v2 conventions.
 
-## 4 — Naming conventions
+Keep public props and unions independent of generated styles, and preserve
+strict typing. Define types in `types/index.ts`, use `type`, `import type` and
+readonly props, and expose consumer-facing symbols through the component,
+category and package barrels.
 
-### Folders
+Use Base UI for covered complex interactions and Vanilla Extract for styling.
+Prefer supported visual primitive props before adding CSS, and use existing
+theme tokens. Preserve native semantics, documented callback arguments,
+consumer overrides, keyboard behavior, focus and theme scope.
 
-Use **`kebab-case`** for all folders, everywhere.
+Write English JSDoc beside components, hooks and utilities, including internal
+ones. Document observable usage, defaults, accessibility, events and refs rather
+than implementation history.
 
-```
-✅  icon-button/   use-viewport-shift/   data-display/   _shared/
-❌  IconButton/    useViewportShift/     DataDisplay/
-```
+## Contribution workflow
 
-### Component files
+1. Inspect local changes, define the requested scope and read the relevant skill references.
+2. Trace the public API, owned styles, consumers, tests and stories; look for reusable code.
+3. Implement the change without unrelated migrations, and adapt affected contracts, exports and consumers together.
+4. Deliver behavior tests, accurate Storybook examples and directly affected documentation in the same change.
+5. Run the applicable checks and inspect the diff. Report breaking changes, pre-existing failures and checks or visual reviews that could not be completed.
 
-| File | Convention | Example |
-| --- | --- | --- |
-| Component implementation | `PascalCase.tsx` | `Button.tsx` |
-| Vanilla Extract styles | `PascalCase.css.ts` | `Button.css.ts` |
-| Prop interface file | `PascalCase.props.ts` | `Button.props.ts` |
-| Type definitions file | `PascalCase.types.ts` | `Button.types.ts` |
-| Story file | `PascalCase.stories.tsx` | `Button.stories.tsx` |
-| MDX documentation | `PascalCase.mdx` | `Button.mdx` |
-| Test file | `PascalCase.test.tsx` | `Button.test.tsx` |
-| Barrel / re-export | `index.ts` | `index.ts` |
+Keep component API examples beside their owner. Put introductory and
+customization guidance under Overview, contributor guidance under Guidelines,
+and theme, token and CSS variable references under Docs.
 
-### Hook files
+## Verification
 
-| File | Convention | Example |
-| --- | --- | --- |
-| Hook implementation | `camelCase.hook.ts` | `useViewportShift.hook.ts` |
-| Helper functions | `camelCase.helper.ts` | `normalizePadding.helper.ts` |
-| Barrel / re-export | `index.ts` | `index.ts` |
+Use **pnpm** and the configured tooling. Choose the smallest checks that prove
+the changed contract; do not weaken types, lint rules or quality checks to
+make a failure disappear.
 
-### Inside files
+| Change | Expected verification |
+| --- | --- |
+| Component | Targeted tests, types, lint, design-system audit and library build; Storybook build when stories change |
+| Stories | Types, lint, Storybook build and targeted interactive review |
+| Theme or styles | Affected tests, types, lint, library build and visual review of relevant themes and states |
+| Distribution | Types, lint, library build and consumer checks for the affected formats or bundling behavior |
+| Documentation only | Review content, metadata and links; no component tests or build unless executable content changes |
 
-| Concept | Style | Example |
-| --- | --- | --- |
-| React component | `PascalCase` | `export const Button = …` |
-| Hook | `camelCase` prefixed with `use` | `export const useViewportShift = …` |
-| Helper function | `camelCase` | `export const normalizePadding = …` |
-| TypeScript type / interface | `PascalCase` | `export type ButtonVariant = …` |
-| Constant (exported) | `SCREAMING_SNAKE_CASE` | `export const DEFAULT_SIZE = …` |
-| CSS recipe / style | `camelCase` | `export const buttonRecipe = recipe(…)` |
-
----
-
-## 5 — Adding a new component
-
-Here is a concrete walkthrough for adding a `Chip` component to the `data-display` category.
-
-**Create the folder structure**
-
-```
-src/components/data-display/chip/
-├── Chip.tsx
-├── Chip.css.ts
-├── index.ts
-├── constants/
-│   └── index.ts
-└── types/
-    ├── Chip.types.ts
-    └── Chip.props.ts
-```
-
-**Mirror it in stories and tests**
-
-```
-src/stories/data-display/chip/
-├── Chip.stories.tsx
-└── Chip.mdx
-
-tests/components/data-display/chip/
-└── Chip.test.tsx
-```
-
-**Export from the category barrel**
-
-<Source
-  language="ts"
-  code={`// src/components/data-display/index.ts
-export * from './chip';`}
-/>
-
-A PR that adds a component **must** include its story, its test, and its types. Incomplete PRs will be asked to finish before merging.
-
----
-
-## 6 — Adding a new hook
-
-Here is a concrete walkthrough for adding a `useMediaQuery` hook.
-
-**Create the folder**
-
-```
-src/hooks/use-media-query/
-├── useMediaQuery.hook.ts
-├── index.ts
-├── constants/
-│   └── index.ts
-└── types/
-    └── index.ts
-```
-
-**Export from the hooks barrel**
-
-<Source
-  language="ts"
-  code={`// src/hooks/index.ts
-export * from './use-media-query';`}
-/>
-
----
-
-When in doubt, look at an existing component (like `Button`) and copy the pattern. **Consistency is more important than cleverness.**
+The skill lists the exact commands and required evidence for each workflow.
+A successful build does not replace interaction checks or visual accessibility
+review. Preserve ESM, CommonJS, declarations and the public CSS entry when
+working on distribution, and never commit secrets or sensitive local settings.

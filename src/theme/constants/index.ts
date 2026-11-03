@@ -1,9 +1,8 @@
 /**
  * Namespace prefix used for all kit-global CSS classes, layers and data attributes.
- * Matches the design-system name (`@aurora-ds`) so every global selector is
- * self-describing and easy to grep/replace.
+ * Uses the `@choco-vanille/ui` namespace for identifiable global selectors.
  */
-export const PREFIX = 'aurora'
+export const PREFIX = 'choco-vanille'
 
 /** Class applied to an ancestor to opt a subtree into the light theme. */
 export const THEME_LIGHT_CLASS = `${PREFIX}-theme-light`
