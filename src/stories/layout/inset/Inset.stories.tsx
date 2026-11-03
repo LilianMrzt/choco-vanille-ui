@@ -85,7 +85,7 @@ Applies a negative semantic margin so its content can bleed into the padding of 
       <img
         src="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?auto=format&fit=crop&w=600&q=80"
         alt="Bold typography"
-        style={{ display: "block", objectFit: "cover", width: "100%", height: "8.75rem", backgroundColor: "var(--color-surfaceMuted)" }}
+        style={{ display: "block", objectFit: "cover", width: "100%", height: "8.75rem", backgroundColor: "var(--color-surface-muted)" }}
       />
     </Inset>
     <Typography variant="p">Supporting text below the bleeding content.</Typography>
@@ -149,7 +149,7 @@ export const Playground: Story = {
                         objectFit: 'cover',
                         width: '100%',
                         height: '8.75rem',
-                        backgroundColor: 'var(--color-surfaceMuted)',
+                        backgroundColor: 'var(--color-surface-muted)',
                     }}
                 />
             </Inset>

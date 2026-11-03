@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC } from 'react'
 
@@ -18,7 +19,7 @@ const DialogTitle: FC<DialogTitleProps> = memo(({ className, children, ...props 
             as={'h2'}
             fontSize={'lg'}
             fontWeight={'semibold'}
-            color={'foreground'}
+            color={vars.color.text.primary}
         >
             {children}
         </Typography>

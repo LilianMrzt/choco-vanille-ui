@@ -18,11 +18,11 @@ const tableBase = style({
 })
 
 globalStyle(`${tableBase}[data-striped="true"] tbody tr:nth-child(even):not([data-intent])`, {
-    backgroundColor: vars.color.surfaceMuted,
+    backgroundColor: vars.color.surface.muted,
 })
 
 globalStyle(`${tableBase}[data-bordered="true"] th, ${tableBase}[data-bordered="true"] td`, {
-    border: `1px solid ${vars.color.border}`,
+    border: `1px solid ${vars.color.border.main}`,
 })
 
 export const TABLE_STYLES = {

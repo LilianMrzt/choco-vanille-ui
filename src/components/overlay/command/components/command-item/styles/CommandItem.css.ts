@@ -15,7 +15,7 @@ export const COMMAND_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.surfaceElevatedForeground,
+        color: vars.color.surface.elevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -37,11 +37,11 @@ export const COMMAND_ITEM_STYLES = {
             // unlikely case they temporarily carry data-highlighted (consistent
             // with the DropdownMenu shared item convention).
             '&:not([data-disabled])[data-highlighted]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&:not([data-disabled])[data-highlighted]:active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             // Focus ring for the fallback case where an item receives direct DOM
             // focus (e.g. programmatic focus or a browser click that skips the
@@ -73,9 +73,9 @@ export const COMMAND_ITEM_STYLES = {
         fontSize: vars.fontSize.xs,
         fontFamily: vars.fontFamily.mono,
         letterSpacing: vars.letterSpacing.wide,
-        color: vars.color.surfaceMutedForeground,
-        backgroundColor: vars.color.surfaceMuted,
-        border: `1px solid ${vars.color.border}`,
+        color: vars.color.surface.mutedForeground,
+        backgroundColor: vars.color.surface.muted,
+        border: `1px solid ${vars.color.border.main}`,
         borderRadius: vars.radius.xs,
         paddingBlock: '0.0625rem',
         paddingInline: vars.space.xs,
@@ -88,9 +88,9 @@ export const COMMAND_ITEM_STYLES = {
 
         selectors: {
             ':not([data-disabled])[data-highlighted] &': {
-                backgroundColor: vars.color.primarySubtleHover,
-                borderColor: vars.color.primary,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtleHover,
+                borderColor: vars.color.primary.main,
+                color: vars.color.primary.subtleForeground,
                 opacity: 0.85,
             },
             '[data-disabled] &': {

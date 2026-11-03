@@ -18,7 +18,7 @@ export const SWITCH_STYLES = {
             border: 'none',
             padding: 0,
             position: 'relative',
-            backgroundColor: vars.color.border,
+            backgroundColor: vars.color.border.main,
             cursor: 'pointer',
             outline: 'none',
             transition: [
@@ -27,23 +27,23 @@ export const SWITCH_STYLES = {
             ].join(', '),
             selectors: {
                 '&:not([data-disabled]):hover': {
-                    backgroundColor: vars.color.borderStrong,
+                    backgroundColor: vars.color.border.strong,
                 },
                 '&:not([data-disabled]):active': {
-                    backgroundColor: vars.color.border,
+                    backgroundColor: vars.color.border.main,
                 },
                 '&:focus-visible': {
                     outline: 'none',
                     boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 '&[data-checked]': {
-                    backgroundColor: vars.color.primary,
+                    backgroundColor: vars.color.primary.main,
                 },
                 '&[data-checked]:not([data-disabled]):hover': {
-                    backgroundColor: vars.color.primaryHover,
+                    backgroundColor: vars.color.primary.hover,
                 },
                 '&[data-checked]:not([data-disabled]):active': {
-                    backgroundColor: vars.color.primaryActive,
+                    backgroundColor: vars.color.primary.pressed,
                 },
                 '&[data-disabled]': {
                     cursor: 'not-allowed',
@@ -67,26 +67,26 @@ export const SWITCH_STYLES = {
             },
             error: {
                 true: {
-                    backgroundColor: vars.color.danger,
+                    backgroundColor: vars.color.danger.main,
                     selectors: {
                         '&:not([data-disabled]):hover': {
-                            backgroundColor: vars.color.dangerHover,
+                            backgroundColor: vars.color.danger.hover,
                         },
                         '&:not([data-disabled]):active': {
-                            backgroundColor: vars.color.dangerActive,
+                            backgroundColor: vars.color.danger.pressed,
                         },
                         '&:focus-visible': {
                             outline: 'none',
-                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger}`,
+                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger.main}`,
                         },
                         '&[data-checked]': {
-                            backgroundColor: vars.color.primary,
+                            backgroundColor: vars.color.primary.main,
                         },
                         '&[data-checked]:not([data-disabled]):hover': {
-                            backgroundColor: vars.color.primaryHover,
+                            backgroundColor: vars.color.primary.hover,
                         },
                         '&[data-checked]:not([data-disabled]):active': {
-                            backgroundColor: vars.color.primaryActive,
+                            backgroundColor: vars.color.primary.pressed,
                         },
                     },
                 },
@@ -113,7 +113,7 @@ export const SWITCH_STYLES = {
             ].join(', '),
             selectors: {
                 '&[data-checked]': {
-                    backgroundColor: vars.color.primaryForeground,
+                    backgroundColor: vars.color.primary.foreground,
                 },
             },
         },

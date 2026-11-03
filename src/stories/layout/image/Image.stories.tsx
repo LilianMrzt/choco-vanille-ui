@@ -60,17 +60,6 @@ const SPACING = [
     '4xl',
     '5xl',
 ] as const
-const BG = [
-    undefined,
-    'transparent',
-    'background',
-    'card',
-    'muted',
-    'primary',
-    'primarySubtle',
-    'secondary',
-    'secondarySubtle',
-] as const
 const WH = [undefined, '100%', '50%', '200px', 'auto'] as const
 const MIN_MAX = [undefined, 'none', '100%', '200px'] as const
 
@@ -139,7 +128,7 @@ A design-token-aware image primitive that renders a native \`<img>\` element and
         borderRadius: { control: 'select', options: ROUNDED },
         padding: { control: 'select', options: SPACING },
         margin: { control: 'select', options: [...SPACING, 'auto'] },
-        backgroundColor: { control: 'select', options: BG },
+        backgroundColor: { control: 'text', description: 'CSS color or custom-property reference; style wins.' },
         width: { control: 'select', options: WH },
         height: { control: 'select', options: WH },
         minWidth: { control: 'select', options: MIN_MAX },

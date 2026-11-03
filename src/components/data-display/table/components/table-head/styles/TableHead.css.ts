@@ -13,7 +13,7 @@ export const TABLE_HEAD_STYLES = {
             verticalAlign: 'middle',
             fontSize: vars.fontSize.xs,
             fontWeight: vars.fontWeight.medium,
-            color: vars.color.surfaceMutedForeground,
+            color: vars.color.surface.mutedForeground,
             letterSpacing: vars.letterSpacing.wide,
             whiteSpace: 'nowrap',
         },
@@ -33,7 +33,7 @@ export const TABLE_HEAD_STYLES = {
         userSelect: 'none',
         selectors: {
             '&:hover': {
-                color: vars.color.foreground,
+                color: vars.color.text.primary,
             },
             '&:focus-visible': {
                 outline: `2px solid ${vars.color.focusRing}`,

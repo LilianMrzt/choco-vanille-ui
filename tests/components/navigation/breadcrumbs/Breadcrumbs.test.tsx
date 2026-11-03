@@ -59,8 +59,8 @@ describe('Breadcrumbs', () => {
 
     it('forwards its color to links and allows item overrides', () => {
         const { container } = render(
-            <Breadcrumbs aria-label="Breadcrumb" color="primary">
-                <Breadcrumbs.Item label={'Home'} href={'/'} color={'secondary'} />
+            <Breadcrumbs aria-label="Breadcrumb" color="primary.main">
+                <Breadcrumbs.Item label={'Home'} href={'/'} color={'secondary.main'} />
                 <Breadcrumbs.Item label={'Details'} />
             </Breadcrumbs>,
         )

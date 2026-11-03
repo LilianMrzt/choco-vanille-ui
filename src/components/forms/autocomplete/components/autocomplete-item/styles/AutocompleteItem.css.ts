@@ -17,7 +17,7 @@ export const AUTOCOMPLETE_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.surfaceElevatedForeground,
+        color: vars.color.surface.elevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -28,8 +28,8 @@ export const AUTOCOMPLETE_ITEM_STYLES = {
 
         selectors: {
             '&[data-highlighted]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             // Only show the ring during keyboard navigation.
             '&:focus-visible': {
@@ -37,7 +37,7 @@ export const AUTOCOMPLETE_ITEM_STYLES = {
                 outlineOffset: '-2px',
             },
             '&[data-highlighted]:active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',

@@ -9,7 +9,7 @@ export const TOGGLE_GROUP_STYLES = {
             display: 'inline-flex',
             alignItems: 'center',
             padding: vars.space.xxs,
-            backgroundColor: vars.color.surface,
+            backgroundColor: vars.color.surface.main,
             borderRadius: RADIUS.md,
         },
         variants: {

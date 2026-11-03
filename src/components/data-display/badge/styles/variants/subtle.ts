@@ -9,7 +9,7 @@ import { createBadgeCompoundVariantUtils } from '@components/data-display/badge/
 export const subtleCompoundVariants = createBadgeCompoundVariantUtils(
     BADGE_VARIANTS.subtle,
     (color) => ({
-        backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
+        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
+        color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
     }),
 )

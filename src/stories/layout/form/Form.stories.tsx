@@ -151,7 +151,7 @@ export const Playground: Story = {
                     />
                     {submitted && (
                         <span
-                            style={{ fontSize: '0.875rem', color: 'var(--color-primary)' }}
+                            style={{ fontSize: '0.875rem', color: 'var(--color-primary-main)' }}
                         >
                             Form submitted!
                         </span>

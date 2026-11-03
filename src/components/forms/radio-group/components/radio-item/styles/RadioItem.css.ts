@@ -15,7 +15,7 @@ export const RADIO_ITEM_STYLES = {
         width: '1rem',
         height: '1rem',
         borderRadius: vars.radius.full,
-        border: `1.5px solid ${vars.color.border}`,
+        border: `1.5px solid ${vars.color.border.main}`,
         padding: 0,
         display: 'flex',
         alignItems: 'center',
@@ -33,13 +33,13 @@ export const RADIO_ITEM_STYLES = {
         selectors: {
             /* ── Standalone: hover (only when NOT disabled) ─────────── */
             '&:not([data-disabled]):hover': {
-                borderColor: vars.color.primaryHover,
-                backgroundColor: vars.color.primarySubtle,
+                borderColor: vars.color.primary.hover,
+                backgroundColor: vars.color.primary.subtle,
             },
             /* ── Standalone: active (only when NOT disabled) ────────── */
             '&:not([data-disabled]):active': {
-                borderColor: vars.color.primaryActive,
-                backgroundColor: vars.color.primarySubtleActive,
+                borderColor: vars.color.primary.pressed,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             /* ── Standalone: focus ring ──────────────────────────────── */
             '&:focus-visible': {
@@ -48,19 +48,19 @@ export const RADIO_ITEM_STYLES = {
             },
             /* ── Standalone: checked ─────────────────────────────────── */
             '&[data-checked]': {
-                backgroundColor: vars.color.primary,
-                borderColor: vars.color.primary,
-                color: vars.color.primaryForeground,
+                backgroundColor: vars.color.primary.main,
+                borderColor: vars.color.primary.main,
+                color: vars.color.primary.foreground,
             },
             /* ── Standalone: checked + hover (only when NOT disabled) ── */
             '&[data-checked]:not([data-disabled]):hover': {
-                backgroundColor: vars.color.primaryHover,
-                borderColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
+                borderColor: vars.color.primary.hover,
             },
             /* ── Standalone: checked + active (only when NOT disabled) ── */
             '&[data-checked]:not([data-disabled]):active': {
-                backgroundColor: vars.color.primaryActive,
-                borderColor: vars.color.primaryActive,
+                backgroundColor: vars.color.primary.pressed,
+                borderColor: vars.color.primary.pressed,
             },
             /* ── Standalone: disabled ────────────────────────────────── */
             '&[data-disabled]': {
@@ -69,19 +69,19 @@ export const RADIO_ITEM_STYLES = {
             },
             /* ── Dropdown: highlighted parent ────────────────────────── */
             '[data-highlighted] &': {
-                borderColor: vars.color.primaryHover,
-                backgroundColor: vars.color.primarySubtle,
+                borderColor: vars.color.primary.hover,
+                backgroundColor: vars.color.primary.subtle,
             },
             /* ── Dropdown: checked parent ────────────────────────────── */
             '[data-checked] &': {
-                backgroundColor: vars.color.primary,
-                borderColor: vars.color.primary,
-                color: vars.color.primaryForeground,
+                backgroundColor: vars.color.primary.main,
+                borderColor: vars.color.primary.main,
+                color: vars.color.primary.foreground,
             },
             /* ── Dropdown: checked + highlighted parent ──────────────── */
             '[data-checked][data-highlighted] &': {
-                backgroundColor: vars.color.primaryHover,
-                borderColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
+                borderColor: vars.color.primary.hover,
             },
             /* ── Dropdown: disabled parent — neutralise hover on span ── */
             '[data-disabled] &': {

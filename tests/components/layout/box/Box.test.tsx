@@ -1,15 +1,73 @@
-import { createRef } from 'react'
+import { createRef, type CSSProperties } from 'react'
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, expectTypeOf, it } from 'vitest'
 
 import '@theme'
-import Box from '@components/layout/box/Box.tsx'
+import { Box, type BoxColor, type BoxProps } from '@components/layout/box'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement
 
 describe('Box', () => {
+    describe('CSS color contract', () => {
+        it('uses native CSS property types instead of theme token unions', () => {
+            expectTypeOf<BoxColor>().toEqualTypeOf<CSSProperties['color']>()
+            expectTypeOf<BoxProps['color']>().toEqualTypeOf<CSSProperties['color']>()
+            expectTypeOf<BoxProps['backgroundColor']>().toEqualTypeOf<CSSProperties['backgroundColor']>()
+            expectTypeOf<BoxProps['borderColor']>().toEqualTypeOf<CSSProperties['borderColor']>()
+        })
+
+        it.each(['var(--custom-color)', 'var(--custom-color, hotpink)', 'currentColor', 'transparent', 'inherit', 'rebeccapurple', '#123456', 'rgb(12, 34, 56)'])(
+            'applies %s as CSS without leaking color props to the DOM',
+            (color) => {
+                render(<Box color={color} backgroundColor={color} borderColor={color} data-testid="box" />)
+                const box = screen.getByTestId('box')
+                const expected = document.createElement('div')
+                expected.style.color = color
+                expected.style.backgroundColor = color
+                expected.style.borderColor = color
+
+                expect(box.style.color).toBe(expected.style.color)
+                expect(box.style.backgroundColor).toBe(expected.style.backgroundColor)
+                expect(box.style.borderColor).toBe(expected.style.borderColor)
+                expect(box.hasAttribute('color')).toBe(false)
+                expect(box.hasAttribute('backgroundColor')).toBe(false)
+                expect(box.hasAttribute('borderColor')).toBe(false)
+            },
+        )
+
+        it('applies theme variable references directly', () => {
+            render(<Box color={vars.color.text.primary} backgroundColor={vars.color.surface.main} borderColor={vars.color.border.main} data-testid="box" />)
+            const box = screen.getByTestId('box')
+
+            expect(box.style.color).toBe(vars.color.text.primary)
+            expect(box.style.backgroundColor).toBe(vars.color.surface.main)
+            expect(box.style.borderColor).toBe(vars.color.border.main)
+        })
+
+        it('preserves consumer style precedence and custom classes', () => {
+            render(<Box color="red" backgroundColor="red" borderColor="red" className="interaction-colors" style={{ color: 'var(--consumer-color)', backgroundColor: 'blue', borderColor: 'green' }} data-testid="box" />)
+            const box = screen.getByTestId('box')
+
+            expect(box.style.color).toBe('var(--consumer-color)')
+            expect(box.style.backgroundColor).toBe('blue')
+            expect(box.style.borderColor).toBe('green')
+            expect(box.className).toContain('interaction-colors')
+        })
+
+        it('sets no inline color defaults that could override interaction classes', () => {
+            render(<Box className="interaction-colors" data-testid="box" />)
+            const box = screen.getByTestId('box')
+
+            expect(box.style.color).toBe('')
+            expect(box.style.backgroundColor).toBe('')
+            expect(box.style.borderColor).toBe('')
+            expect(box.className).toContain('interaction-colors')
+        })
+    })
+
     describe('default rendering', () => {
         it('renders a <div> element by default', () => {
             const { container } = render(<Box>content</Box>)
@@ -42,7 +100,7 @@ describe('Box', () => {
 
         it('applies variant classes', () => {
             const { container } = render(
-                <Box display="flex" padding="md" backgroundColor='surface'>
+                <Box display="flex" padding="md" backgroundColor={vars.color.surface.main}>
                     content
                 </Box>,
             )
@@ -54,7 +112,7 @@ describe('Box', () => {
         it('forwards border props to the DOM element', () => {
             render(
                 <Box
-                    borderColor="border"
+                    borderColor={vars.color.border.main}
                     borderStyle="solid"
                     borderTopWidth="1px"
                     data-testid="box"
@@ -70,7 +128,7 @@ describe('Box', () => {
         it('forwards border props through Flex', () => {
             render(
                 <Flex
-                    borderColor="border"
+                    borderColor={vars.color.border.main}
                     borderStyle="solid"
                     borderTopWidth="1px"
                     data-testid="flex"

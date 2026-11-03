@@ -25,7 +25,7 @@ export const TEXT_COLOR_MENU_STYLES = {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        border: `2px solid ${vars.color.surface}`,
+        border: `2px solid ${vars.color.surface.main}`,
         borderRadius: vars.radius.xs,
         cursor: 'pointer',
         selectors: {
@@ -34,7 +34,7 @@ export const TEXT_COLOR_MENU_STYLES = {
                 outlineOffset: '2px',
             },
             '&[data-selected="true"]': {
-                boxShadow: `0 0 0 2px ${vars.color.foreground}`,
+                boxShadow: `0 0 0 2px ${vars.color.text.primary}`,
             },
         },
     }),
@@ -44,6 +44,6 @@ export const TEXT_COLOR_MENU_STYLES = {
         width: '0.875rem',
         height: '0.875rem',
         borderRadius: '50%',
-        border: `1px solid ${vars.color.border}`,
+        border: `1px solid ${vars.color.border.main}`,
     }),
 }

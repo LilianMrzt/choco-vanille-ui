@@ -9,18 +9,18 @@ export const LINK_STYLES = {
         display: 'inline-flex',
         alignItems: 'center',
         gap: vars.space.xs,
-        color: vars.color.link,
+        color: vars.color.link.main,
         textDecoration: 'none',
         textUnderlineOffset: '0.15em',
         cursor: 'pointer',
         transition: `color ${vars.duration.normal} ${vars.easing.standard}`,
         selectors: {
             '&:hover': {
-                color: vars.color.linkHover,
+                color: vars.color.link.hover,
                 textDecoration: 'underline',
             },
             '&:active': {
-                color: vars.color.linkActive,
+                color: vars.color.link.pressed,
                 textDecoration: 'underline',
             },
             '&:focus-visible': {
@@ -37,7 +37,7 @@ export const LINK_STYLES = {
     color: recipe({
         variants: {
             color: createColorVariants('color', {
-                tertiary: vars.color.neutralForeground,
+                tertiary: vars.color.neutral.foreground,
             }),
         },
     }),

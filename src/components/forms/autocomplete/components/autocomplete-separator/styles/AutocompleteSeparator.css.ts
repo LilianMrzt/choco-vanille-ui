@@ -10,6 +10,6 @@ export const AUTOCOMPLETE_SEPARATOR_STYLES = {
         height: '1px',
         marginBlock: vars.space.xs2,
         marginInline: `calc(${vars.space.sm} * -1)`,
-        backgroundColor: vars.color.border,
+        backgroundColor: vars.color.border.main,
     }),
 }

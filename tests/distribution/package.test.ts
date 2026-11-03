@@ -1,10 +1,11 @@
 // @vitest-environment node
 
-import { copyFile, mkdtemp, readFile, rm } from 'node:fs/promises'
+import { copyFile, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 
 import { build } from 'vite'
 import { describe, expect, it } from 'vitest'
+import ts from 'typescript'
 
 describe('package distribution', () => {
     it('associates each module with its CSS and preserves selective imports', async () => {
@@ -17,6 +18,60 @@ describe('package distribution', () => {
                 build: { outDir: outputDirectory },
             })
             await copyFile(resolve('package.json'), resolve(outputDirectory, 'package.json'))
+            // Declarations use the plugin's configured output, independently of Vite's test outDir.
+            await copyFile(resolve('dist/index.d.ts'), resolve(outputDirectory, 'index.d.ts'))
+
+            const consumerTypesPath = resolve(outputDirectory, 'color-consumer.tsx')
+            await writeFile(consumerTypesPath, `
+import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
+    type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides
+} from './index.js'
+const accent: ThemeColorAccent = lightTheme.color.primary
+const colors: ThemeColors = darkTheme.color
+const path: ThemeColor = 'primary.subtleForeground'
+const overrides: ThemeColorOverrides = { primary: { main: 'var(--brand)' }, surface: { elevated: '#fff' } }
+const icon = () => <svg />
+const example = <ThemeProvider tokens={overrides}>
+    <Box backgroundColor={vars.color.surface.main} borderColor="var(--app-border)">
+        <Typography color={vars.color.primary.main}>Brand</Typography>
+        <Icon icon={icon} color="var(--app-icon)" />
+    </Box>
+</ThemeProvider>
+// @ts-expect-error A branch is not a token leaf.
+const branch: ThemeColor = 'primary'
+// @ts-expect-error Legacy names no longer exist.
+const legacy: ThemeColor = 'primaryHover'
+// @ts-expect-error Groups cannot contain another object.
+const nested: ThemeColorOverrides = { primary: { subtle: { main: 'red' } } }
+// @ts-expect-error A complete theme requires every leaf.
+const incomplete: ThemeColors = { primary: { main: 'red' } }
+// @ts-expect-error A color object is not a CSS color.
+const objectColor = <Typography color={vars.color.primary} />
+// @ts-expect-error Subtle is a direct leaf.
+const deep = vars.color.primary.subtle.main
+void [accent, colors, path, example]
+`)
+            const program = ts.createProgram([consumerTypesPath], {
+                noEmit: true,
+                strict: true,
+                skipLibCheck: true,
+                target: ts.ScriptTarget.ES2022,
+                module: ts.ModuleKind.ESNext,
+                moduleResolution: ts.ModuleResolutionKind.Bundler,
+                jsx: ts.JsxEmit.ReactJSX,
+            })
+            const diagnostics = ts.getPreEmitDiagnostics(program)
+            expect(diagnostics.map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')))
+                .toEqual([])
+
+            const declarations = await readFile(resolve(outputDirectory, 'index.d.ts'), 'utf8')
+            expect(declarations).not.toMatch(/from ['"]@(?:theme|components|utils|hooks)\b/)
+            const themeCss = await readFile(resolve(outputDirectory, 'styles.css'), 'utf8')
+            expect(themeCss).toContain('--color-primary-main')
+            expect(themeCss).toContain('--color-primary-subtlePressed')
+            expect(themeCss).toContain('--color-text-primary')
+            expect(themeCss).not.toMatch(/--color-(?:primary|primaryHover|primaryActive|foreground|surface|borderStrong)\s*[:)]/)
+            expect(themeCss).not.toContain('[object Object]')
 
             const selectStylesPath = resolve(
                 outputDirectory,

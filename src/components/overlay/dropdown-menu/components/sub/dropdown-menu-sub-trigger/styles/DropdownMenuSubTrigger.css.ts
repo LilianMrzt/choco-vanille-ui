@@ -13,8 +13,8 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
         {
             selectors: {
                 '&[data-open]': {
-                    backgroundColor: vars.color.primarySubtle,
-                    color: vars.color.primarySubtleForeground,
+                    backgroundColor: vars.color.primary.subtle,
+                    color: vars.color.primary.subtleForeground,
                 },
             },
         },
@@ -28,7 +28,7 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
         width: '1rem',
         height: '1rem',
         flexShrink: 0,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         transition: [
             `transform ${vars.duration.normal} ${vars.easing.emphasized}`,
             `color ${vars.duration.fast} ${vars.easing.standard}`,
@@ -36,10 +36,10 @@ export const DROPDOWN_MENU_SUB_TRIGGER_STYLES = {
 
         selectors: {
             '[data-open] &': {
-                color: vars.color.primarySubtleForeground,
+                color: vars.color.primary.subtleForeground,
             },
             '[data-highlighted] &': {
-                color: vars.color.primarySubtleForeground,
+                color: vars.color.primary.subtleForeground,
             },
         },
     }),

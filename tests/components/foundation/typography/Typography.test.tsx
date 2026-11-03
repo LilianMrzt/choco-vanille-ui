@@ -1,7 +1,8 @@
-import { createRef } from 'react'
+import { createRef, type CSSProperties } from 'react'
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyVariant } from '@components/foundation/typography'
+import { describe, expect, expectTypeOf, it } from 'vitest'
+import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyProps, type TypographyVariant } from '@components/foundation/typography'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
@@ -31,6 +32,50 @@ const ellipsisClass = (): string =>
 // Suites
 
 describe('Typography', () => {
+    describe('CSS color contract', () => {
+        it('accepts native CSS colors rather than theme token unions', () => {
+            expectTypeOf<TypographyProps['color']>().toEqualTypeOf<CSSProperties['color']>()
+        })
+
+        it.each(['var(--custom-color)', 'var(--custom-color, hotpink)', 'currentColor', 'transparent', 'inherit', 'rebeccapurple', '#123456', 'rgb(12, 34, 56)'])(
+            'applies %s without forwarding a color attribute',
+            (color) => {
+                render(<Typography color={color}>text</Typography>)
+                const text = screen.getByText('text')
+                const expected = document.createElement('span')
+                expected.style.color = color
+
+                expect(text.style.color).toBe(expected.style.color)
+                expect(text.hasAttribute('color')).toBe(false)
+            },
+        )
+
+        it('applies nested theme variable references directly', () => {
+            render(<Typography color={vars.color.primary.main}>text</Typography>)
+            expect(screen.getByText('text').style.color).toBe(vars.color.primary.main)
+        })
+
+        it('lets consumer style override color props and preserves custom classes', () => {
+            render(<Typography color="red" className="interaction-colors" style={{ color: 'var(--consumer-color)' }}>text</Typography>)
+            const text = screen.getByText('text')
+
+            expect(text.style.color).toBe('var(--consumer-color)')
+            expect(text.className).toContain('interaction-colors')
+        })
+
+        it.each(['span', 'label', 'blockquote', 'cite', 'mark'] as const)(
+            'leaves %s defaults in CSS without inline colors',
+            (variant) => {
+                render(<Typography variant={variant} className="interaction-colors">text</Typography>)
+                const text = screen.getByText('text')
+
+                expect(text.style.color).toBe('')
+                expect(text.style.backgroundColor).toBe('')
+                expect(text.className).toContain('interaction-colors')
+            },
+        )
+    })
+
     describe('semantic element rendering', () => {
         const variants = Object.keys(TYPOGRAPHY_ELEMENT_MAP) as TypographyVariant[]
 

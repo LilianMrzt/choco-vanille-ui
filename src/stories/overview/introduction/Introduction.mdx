@@ -77,13 +77,13 @@ export function Example() {
 
 ## Theming — overriding tokens
 
-All tokens are exposed as **CSS custom properties** on `:root` (e.g. `--color-primary`, `--space-md`, `--radius-sm`).
+All tokens are exposed as **CSS custom properties** on `:root` (e.g. `--color-primary-main`, `--space-md`, `--radius-sm`).
 Override them globally in your CSS to rebrand the kit without touching any component code:
 
 <Source
   language="css"
   code={`:root {
-  --color-primary: oklch(0.55 0.2 250); /* full rebrand */
+  --color-primary-main: oklch(0.55 0.2 250); /* full rebrand */
   --radius-md: 0.25rem;                 /* sharper corners */
 }`}
 />
@@ -96,8 +96,8 @@ In your `*.css.ts` files (Vanilla Extract), access tokens via the `vars` object 
 import { vars } from '@choco-vanille/ui';
 
 export const card = style({
-  backgroundColor: vars.color.surface,
-  color:           vars.color.surfaceForeground,
+  backgroundColor: vars.color.surface.main,
+  color:           vars.color.surface.foreground,
   padding:         vars.space.lg,
   borderRadius:    vars.radius.md,
   boxShadow:       vars.shadow.sm,

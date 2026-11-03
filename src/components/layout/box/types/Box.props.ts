@@ -10,7 +10,7 @@ import type {
     BoxVariant,
 } from '@components/layout/box/types/Box.types.ts'
 
-export type BoxProps = HTMLAttributes<HTMLElement> &
+export type BoxProps = Omit<HTMLAttributes<HTMLElement>, 'color'> &
   RefAttributes<HTMLElement> & {
     /** The HTML element to render. Defaults to `div`. */
     as?: BoxVariant | React.ElementType;
@@ -100,10 +100,12 @@ export type BoxProps = HTMLAttributes<HTMLElement> &
     columnGap?: BoxSpace;
     /** The row gap token between flex or grid children. */
     rowGap?: BoxSpace;
-    /** The theme color token applied to the element's border color. */
-    borderColor?: BoxColor;
-    /** The theme color token applied to the element's background color. */
-    backgroundColor?: BoxColor;
+    /** CSS text color, including `vars.color` references. Omitted colors inherit. */
+    color?: BoxColor;
+    /** CSS border color, including custom property references. */
+    borderColor?: CSSProperties['borderColor'];
+    /** CSS background color, including custom property references. */
+    backgroundColor?: CSSProperties['backgroundColor'];
     /** The shadow token applied to the element. */
     boxShadow?: BoxShadow;
   };

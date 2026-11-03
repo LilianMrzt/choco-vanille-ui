@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Image } from '@components/layout/image'
@@ -74,14 +75,14 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
                 <Icon
                     icon={icon}
                     size={'xl'}
-                    color={'primary'}
+                    color={vars.color.primary.main}
                     className={IMAGE_PICKER_STYLES.emptyIcon}
                 />
                 {!hasValue && (
                     <Typography
                         as={'span'}
                         fontSize={'sm'}
-                        color={'foregroundMuted'}
+                        color={vars.color.text.secondary}
                         className={IMAGE_PICKER_STYLES.emptyText}
                         aria-hidden={'true'}
                     >
@@ -103,7 +104,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
                     as={'span'}
                     fontSize={'sm'}
                     fontWeight={'medium'}
-                    color={'primaryForeground'}
+                    color={vars.color.primary.foreground}
                     className={IMAGE_PICKER_STYLES.scrimText}
                 >
                     {actionLabel}

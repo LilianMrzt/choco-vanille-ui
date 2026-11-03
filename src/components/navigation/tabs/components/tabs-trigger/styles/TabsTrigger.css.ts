@@ -15,7 +15,7 @@ export const TABS_TRIGGER_STYLES = {
             padding: `${vars.space.xs2} ${vars.space.md}`,
             border: 'none',
             backgroundColor: 'transparent',
-            color: vars.color.surfaceMutedForeground,
+            color: vars.color.surface.mutedForeground,
             fontFamily: 'inherit',
             fontSize: vars.fontSize.sm,
             fontWeight: vars.fontWeight.medium,
@@ -51,20 +51,20 @@ export const TABS_TRIGGER_STYLES = {
                     backgroundClip: 'padding-box',
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
-                            backgroundColor: vars.color.primarySubtle,
-                            color: vars.color.foreground,
+                            backgroundColor: vars.color.primary.subtle,
+                            color: vars.color.text.primary,
                         },
                         '&:not([data-disabled]):not([data-active]):active': {
-                            backgroundColor: vars.color.primarySubtleActive,
-                            color: vars.color.foreground,
+                            backgroundColor: vars.color.primary.subtlePressed,
+                            color: vars.color.text.primary,
                         },
                         '&[data-active]': {
-                            borderBottomColor: vars.color.primary,
-                            color: vars.color.primary,
+                            borderBottomColor: vars.color.primary.main,
+                            color: vars.color.primary.main,
                         },
                         '&[data-active][data-disabled]': {
-                            borderBottomColor: vars.color.primary,
-                            color: vars.color.primary,
+                            borderBottomColor: vars.color.primary.main,
+                            color: vars.color.primary.main,
                         },
                     },
                 },
@@ -72,28 +72,28 @@ export const TABS_TRIGGER_STYLES = {
                     borderRadius: vars.radius.xs,
                     selectors: {
                         '&:not([data-disabled]):not([data-active]):hover': {
-                            backgroundColor: vars.color.primarySubtle,
-                            color: vars.color.foreground,
+                            backgroundColor: vars.color.primary.subtle,
+                            color: vars.color.text.primary,
                         },
                         '&:not([data-disabled]):not([data-active]):active': {
-                            backgroundColor: vars.color.primarySubtleActive,
-                            color: vars.color.foreground,
+                            backgroundColor: vars.color.primary.subtlePressed,
+                            color: vars.color.text.primary,
                         },
                         '&[data-active]': {
-                            backgroundColor: vars.color.primary,
-                            color: vars.color.primaryForeground,
+                            backgroundColor: vars.color.primary.main,
+                            color: vars.color.primary.foreground,
                         },
                         '&:not([data-disabled])[data-active]:hover': {
-                            backgroundColor: vars.color.primaryHover,
-                            color: vars.color.primaryForeground,
+                            backgroundColor: vars.color.primary.hover,
+                            color: vars.color.primary.foreground,
                         },
                         '&:not([data-disabled])[data-active]:active': {
-                            backgroundColor: vars.color.primaryActive,
-                            color: vars.color.primaryForeground,
+                            backgroundColor: vars.color.primary.pressed,
+                            color: vars.color.primary.foreground,
                         },
                         '&[data-active][data-disabled]': {
-                            backgroundColor: vars.color.primary,
-                            color: vars.color.primaryForeground,
+                            backgroundColor: vars.color.primary.main,
+                            color: vars.color.primary.foreground,
                         },
                     },
                 },

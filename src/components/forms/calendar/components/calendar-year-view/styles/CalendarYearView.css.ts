@@ -10,7 +10,7 @@ export const CALENDAR_YEAR_VIEW_STYLES = {
         borderRadius: vars.radius.xs,
         border: 'none',
         backgroundColor: 'transparent',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
         cursor: 'pointer',
@@ -22,10 +22,10 @@ export const CALENDAR_YEAR_VIEW_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.neutral,
+                backgroundColor: vars.color.neutral.main,
             },
             '&:focus-visible': {
                 outline: 'none',
@@ -40,29 +40,29 @@ export const CALENDAR_YEAR_VIEW_STYLES = {
     }),
 
     itemToday: style({
-        backgroundColor: vars.color.primarySubtle,
-        color: vars.color.primarySubtleForeground,
+        backgroundColor: vars.color.primary.subtle,
+        color: vars.color.primary.subtleForeground,
         fontWeight: vars.fontWeight.semibold,
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.primarySubtleHover,
+                backgroundColor: vars.color.primary.subtleHover,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
         },
     }),
 
     itemSelected: style({
-        backgroundColor: vars.color.primary,
-        color: vars.color.primaryForeground,
+        backgroundColor: vars.color.primary.main,
+        color: vars.color.primary.foreground,
         fontWeight: vars.fontWeight.semibold,
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.primaryActive,
+                backgroundColor: vars.color.primary.pressed,
             },
         },
     }),

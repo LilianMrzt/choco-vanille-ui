@@ -19,7 +19,9 @@ import {
 The complete list of every CSS custom property exposed by `@choco-vanille/ui`.
 All values are read directly from the theme source — this page updates automatically when tokens change.
 
-**Naming rule:** `--{category}-{token}`, the token kept as-is (camelCase) — e.g. `vars.color.primaryHover` → `--color-primaryHover`.
+**Naming rule:** join every token-path segment with `-`, preserving its case:
+`vars.color.primary.hover` → `--color-primary-hover`;
+`vars.color.primary.subtleForeground` → `--color-primary-subtleForeground`.
 
 Semantic colors, editor palettes, and shadow tokens are **theme-dependent**. All other tokens are identical across themes. Built-in color ramps use sRGB hex values; overrides still accept any valid CSS color, including OKLCH.
 
@@ -35,20 +37,24 @@ overrides together.
 
 | Previous token | Semantic token |
 | --- | --- |
-| `text` | `foreground` |
-| `textSecondary`, `textTertiary` | `foregroundMuted`, `foregroundSubtle` |
-| `card`, `cardForeground` | `surface`, `surfaceForeground` |
-| `popover`, `popoverForeground` | `surfaceElevated`, `surfaceElevatedForeground` |
-| `muted`, `mutedForeground` | `surfaceMuted`, `surfaceMutedForeground` |
-| `tertiary*` | `neutral*` |
-| `destructive*` | `danger*` |
-| `purple*`, `pink*`, `orange*`, `teal*`, `cyan*`, `indigo*` | Corresponding `accentPurple*`, `accentPink*`, `accentOrange*`, `accentTeal*`, `accentCyan*`, `accentIndigo*` |
+| `foreground`, `foregroundMuted`, `foregroundSubtle` | `text.primary`, `text.secondary`, `text.tertiary` |
+| `surface`, `surfaceForeground` | `surface.main`, `surface.foreground` |
+| `surfaceElevated`, `surfaceElevatedForeground` | `surface.elevated`, `surface.elevatedForeground` |
+| `surfaceMuted`, `surfaceMutedForeground` | `surface.muted`, `surface.mutedForeground` |
+| `{family}`, `{family}Hover`, `{family}Active` | `{family}.main`, `{family}.hover`, `{family}.pressed` |
+| `{family}Foreground`, `{family}SubtleForeground` | `{family}.foreground`, `{family}.subtleForeground` |
+| `{family}Subtle`, `{family}SubtleHover`, `{family}SubtleActive` | `{family}.subtle`, `{family}.subtleHover`, `{family}.subtlePressed` |
+| `{family}SubtleBorder` | `{family}.subtleBorder` (plus new independent `{family}.border`) |
+| `border`, `borderStrong` | `border.main`, `border.strong` (plus `subtle`, `muted`, `stronger`) |
 | `ring` | `focusRing` |
-| `skeleton`, `skeletonForeground` | `skeletonBase`, `skeletonHighlight` |
+| `link`, `linkHover`, `linkActive` | `link.main`, `link.hover`, `link.pressed` |
+| `highlight`, `highlightForeground` | `highlight.main`, `highlight.foreground` |
+| `skeletonBase`, `skeletonHighlight` | `skeleton.base`, `skeleton.highlight` |
 
 The same mapping applies to `--color-*` variable names. Independent component
 intent props are unchanged: for example, Button's `color="destructive"` maps to
-`danger` tokens, whereas Box's theme-token `color` prop now accepts `danger`.
+`danger` tokens. Box, Typography and Icon accept CSS values directly:
+`color={vars.color.danger.main}` or `color="var(--app-color)"`, not token names.
 The raw palette and editor palette names are unchanged.
 
 <CopyThemeButton />

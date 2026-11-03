@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { PROGRESS_STYLES } from '@components/feedback/progress/styles/Progress.css.ts'
 import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types/Progress.props.ts'
 import { Box } from '@components/layout/box'
@@ -54,7 +55,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             as={'span'}
                             variant={'span'}
                             fontSize={'sm'}
-                            color={'foregroundMuted'}
+                            color={vars.color.text.secondary}
                         >
                             {label}
                         </Typography>
@@ -65,7 +66,7 @@ const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             variant={'span'}
                             fontSize={'sm'}
                             fontWeight={'medium'}
-                            color={'foregroundMuted'}
+                            color={vars.color.text.secondary}
                         >
                             {resolvedQuantityLabel}
                         </Typography>

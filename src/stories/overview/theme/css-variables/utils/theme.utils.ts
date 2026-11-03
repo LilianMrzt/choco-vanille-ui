@@ -1,8 +1,9 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { lightTheme, darkTheme } from '@theme/themes/themes.const.ts'
 import type { EditorPaletteMap, FlatMap, VarRow } from '@stories/overview/theme/css-variables/types'
+import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 
-/** "var(--color-primary)" → "--color-primary" */
+/** "var(--color-primary-main)" → "--color-primary-main" */
 export const cssVarName = (ref: string): string => ref.slice(4, -1)
 
 /** Build rows for a static (theme-agnostic) section. */
@@ -48,7 +49,11 @@ export const editorColorRows = Object.entries(lightEditorPalettes).flatMap(([nam
     return buildThemedRows(values, darkValues, references)
 })
 
-export const colorRows = buildThemedRows(lightTheme.color, darkTheme.color, vars.color)
+export const colorRows = buildThemedRows(
+    Object.fromEntries(getColorEntries(lightTheme.color)),
+    Object.fromEntries(getColorEntries(darkTheme.color)),
+    Object.fromEntries(getColorEntries(vars.color)),
+)
 export const shadowRows = buildThemedRows(lightTheme.shadow, darkTheme.shadow, vars.shadow)
 export const dropShadowRows = buildThemedRows(lightTheme.dropShadow, darkTheme.dropShadow, vars.dropShadow)
 export const spacingRows = buildStaticRows(lightTheme.space, vars.space)
@@ -66,7 +71,7 @@ export const easingRows = buildStaticRows(lightTheme.easing, vars.easing)
 
 // Shared internal helpers
 
-/** "--color-primary" with prefix "color" → "primary" */
+/** "--color-primary-main" with prefix "color" → "primary" */
 const rowKey = (cssVar: string, prefix: string): string =>
     cssVar.slice(`--${prefix}-`.length)
 
@@ -123,7 +128,11 @@ export const buildPlainCssScaffold = (): string => {
 // Vanilla Extract token reference
 
 const veSection = (comment: string, namespace: string, prefix: string, rows: VarRow[]): string => {
-    const lines = rows.map(r => `//  vars.${namespace}.${rowKey(r.variable, prefix)}`).join('\n')
+    const lines = rows.map(r => {
+        const key = rowKey(r.variable, prefix)
+        const tokenPath = namespace === 'color' ? key.replace('-', '.') : key
+        return `//  vars.${namespace}.${tokenPath}`
+    }).join('\n')
     return `\n// ${comment}\n${lines}`
 }
 
@@ -160,8 +169,8 @@ export const buildVanillaExtractSnippet = (): string => {
         '',
         '// Example usage ',
         'export const myCard = style({',
-        '  color:         vars.color.primary,',
-        '  background:    vars.color.surface,',
+        '  color:         vars.color.primary.main,',
+        '  background:    vars.color.surface.main,',
         '  padding:       vars.space.md,',
         '  borderRadius:  vars.radius.md,',
         '  boxShadow:     vars.shadow.sm,',
@@ -187,18 +196,18 @@ export const buildMuiThemeSnippet = (): string => {
         '',
         'export const muiTheme = createTheme({',
         '  palette: {',
-        "    primary:    { main: 'var(--color-primary)',     dark: 'var(--color-primaryHover)',     contrastText: 'var(--color-primaryForeground)' },",
-        "    secondary:  { main: 'var(--color-secondary)',   dark: 'var(--color-secondaryHover)',   contrastText: 'var(--color-secondaryForeground)' },",
-        "    error:      { main: 'var(--color-danger)', contrastText: 'var(--color-dangerForeground)' },",
-        "    warning:    { main: 'var(--color-warning)',     contrastText: 'var(--color-warningForeground)' },",
-        "    success:    { main: 'var(--color-success)',     contrastText: 'var(--color-successForeground)' },",
+        "    primary:    { main: 'var(--color-primary-main)',     dark: 'var(--color-primary-hover)',     contrastText: 'var(--color-primary-foreground)' },",
+        "    secondary:  { main: 'var(--color-secondary-main)',   dark: 'var(--color-secondary-hover)',   contrastText: 'var(--color-secondary-foreground)' },",
+        "    error:      { main: 'var(--color-danger-main)', contrastText: 'var(--color-danger-foreground)' },",
+        "    warning:    { main: 'var(--color-warning-main)',     contrastText: 'var(--color-warning-foreground)' },",
+        "    success:    { main: 'var(--color-success-main)',     contrastText: 'var(--color-success-foreground)' },",
         '    background: {',
-        "      paper:   'var(--color-surface)',",
+        "      paper:   'var(--color-surface-main)',",
         "      default: 'var(--color-background)',",
         '    },',
         '    text: {',
-        "      primary:   'var(--color-foreground)',",
-        "      secondary: 'var(--color-surfaceMutedForeground)',",
+        "      primary:   'var(--color-text-primary)',",
+        "      secondary: 'var(--color-surface-mutedForeground)',",
         '    },',
         '  },',
         '});',

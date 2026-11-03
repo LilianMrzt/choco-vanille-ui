@@ -2,9 +2,6 @@ import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { spinAnimation } from '@constants/animations'
-import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
-
-const colorVariants = createColorVariants('color')
 
 export const ICON_STYLES = {
     recipe: recipe({
@@ -27,8 +24,6 @@ export const ICON_STYLES = {
                     animation: `${spinAnimation} 1s linear infinite`,
                 },
             },
-
-            color: colorVariants,
         },
         defaultVariants: {
             size: 'md',

@@ -1,9 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
-
-const backgroundColorVariants = createColorVariants('background')
 
 export const IMAGE_STYLES = {
     recipe: recipe({
@@ -83,8 +80,6 @@ export const IMAGE_STYLES = {
                 '5xl': { margin: vars.space['5xl'] },
             },
 
-            // Background Color
-            backgroundColor: backgroundColorVariants,
         },
     }),
 }

@@ -22,15 +22,15 @@ export const NUMBER_FIELD_STEPPERS_STYLES = {
         minHeight: 0,
         padding: 0,
         border: 0,
-        borderLeft: `1px solid ${vars.color.border}`,
+        borderLeft: `1px solid ${vars.color.border.main}`,
         backgroundColor: 'transparent',
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         cursor: 'pointer',
         transition: `color ${vars.duration.fast} ${vars.easing.standard}, background-color ${vars.duration.fast} ${vars.easing.standard}`,
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.surfaceMuted,
-                color: vars.color.foreground,
+                backgroundColor: vars.color.surface.muted,
+                color: vars.color.text.primary,
             },
             '&:focus-visible': {
                 outline: `2px solid ${vars.color.focusRing}`,

@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -19,13 +20,13 @@ import { storySource } from '@stories/utils/storySource'
 const ORIENTATION = ['horizontal', 'vertical'] as const
 const COLORS = [
     'transparent',
-    'primary',
-    'secondary',
-    'neutral',
-    'danger',
-    'success',
-    'warning',
-    'info',
+    'primary.main',
+    'secondary.main',
+    'neutral.main',
+    'danger.main',
+    'success.main',
+    'warning.main',
+    'info.main',
 ] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -36,7 +37,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`aria-hidden\` | No | \`boolean\` | Hide decorative separators from assistive technologies. |
 | \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Controls visual and ARIA orientation. |
 | \`label\` | No | \`string\` | Displays text between two separator lines. |
-| \`textColor\` | No | \`ThemeColor\` | Color of the label; defaults to \`textTertiary\`. |
+| \`textColor\` | No | \`ThemeColor\` | Color leaf path for the label; defaults to \`text.tertiary\`. |
 `
 
 const SeparatorDocsPage = () => (
@@ -108,7 +109,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to switch between horizontal and vertical orientations.',
             },
             ...storySource(/* language=tsx */ `
-<Box padding="lg" backgroundColor="surface" borderRadius="md">
+<Box padding="lg" backgroundColor={vars.color.surface.main} borderRadius="md">
     <Flex flexDirection="column" gap="md">
         <span>Above</span>
         <Separator orientation="horizontal" label="Or continue" />
@@ -120,7 +121,7 @@ export const Playground: Story = {
     render: (args) => (
         <Box
             padding={'lg'}
-            backgroundColor={'surface'}
+            backgroundColor={vars.color.surface.main}
             borderRadius={'md'}
             style={{
                 height: args.orientation === 'vertical' ? '120px' : undefined,
@@ -195,14 +196,14 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Separator color="transparent" />
-<Separator color="primary" />
-<Separator color="secondary" />
-<Separator color="neutral" />
-<Separator color="danger" />
-<Separator color="success" />
-<Separator color="warning" />
-<Separator color="info" />`),
+<Separator color={'transparent'} />
+<Separator color={'primary.main'} />
+<Separator color={'secondary.main'} />
+<Separator color={'neutral.main'} />
+<Separator color={'danger.main'} />
+<Separator color={'success.main'} />
+<Separator color={'warning.main'} />
+<Separator color={'info.main'} />`),
         },
     },
     render: () => (

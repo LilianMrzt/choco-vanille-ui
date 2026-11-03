@@ -16,6 +16,9 @@ const isTypographyVariant = (value: string): value is TypographyVariant =>
  * be overridden with `as` when a different HTML semantic is required. When
  * `variant` is omitted, a known typography element passed to `as` also selects
  * its matching visual variant.
+ * Color accepts CSS values, including `vars.color` references, without token
+ * lookup. Consumer `style.color` wins. Omit `color` to preserve inheritance,
+ * variant defaults and stylesheet interaction colors; no inline default is set.
  *
  * @example
  * ```tsx
@@ -53,6 +56,7 @@ const Typography: FC<TypographyProps> = memo(({
     const Element = as ?? TYPOGRAPHY_ELEMENT_MAP[resolvedVariant]
 
     const computedStyle: CSSProperties = {
+        color,
         textTransform,
         display,
         width,
@@ -69,7 +73,7 @@ const Typography: FC<TypographyProps> = memo(({
     return (
         <Element
             ref={ref}
-            className={cn(TYPOGRAPHY_STYLES.recipe({ variant: resolvedVariant, fontSize, fontWeight, margin, ellipsis, maxLines, color }), className)}
+            className={cn(TYPOGRAPHY_STYLES.recipe({ variant: resolvedVariant, fontSize, fontWeight, margin, ellipsis, maxLines }), className)}
             style={computedStyle}
             {...props}
         />

@@ -10,7 +10,7 @@ import {
 import { expect, within } from 'storybook/test'
 
 import { Box, type BoxVariant } from '@components/layout/box'
-import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -85,7 +85,6 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = THEME_COLORS
 const WH = [undefined, 'full', 'screen', 'fit', 'min', 'max', 'auto'] as const
 const MIN_MAX = [undefined, 'none', 'full', 'screen', 'fit', 'min', 'max'] as const
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
@@ -169,7 +168,9 @@ const meta = {
             page: BoxDocsPage,
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A polymorphic layout primitive that renders as any HTML element and exposes design-token-based props for display, padding, margin, gap, background, border-radius, width, height, overflow, position, and text alignment.
+A polymorphic layout primitive with spacing tokens and free CSS color values, including theme variables and external custom properties.
+
+Color props are inline declarations; consumer \`style\` wins. Omit color props when stylesheet interaction states should control colors.
 
 It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their respective display constraints.
 
@@ -177,12 +178,12 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
 
 \`\`\`tsx
 // Default div with padding, background and rounded corners
-<Box padding="lg" backgroundColor="card" borderRadius="md">
+<Box padding="lg" backgroundColor={vars.color.surface.main} borderRadius="md">
   Content
 </Box>
 
 // Polymorphic: rendered as a <section> with a muted background
-<Box as="section" padding="xl" backgroundColor="muted">
+<Box as="section" padding="xl" backgroundColor={vars.color.surface.muted}>
   <Typography variant="h2">Section title</Typography>
 </Box>
 \`\`\`
@@ -213,8 +214,9 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         columnGap: { control: 'select', options: SPACING },
         rowGap: { control: 'select', options: SPACING },
         borderRadius: { control: 'select', options: ROUNDED },
-        backgroundColor: { control: 'select', options: BG },
-        borderColor: { control: 'select', options: BG },
+        color: { control: 'text', description: 'CSS color, including var(--custom-color). Inherits when omitted; style.color wins.' },
+        backgroundColor: { control: 'text', description: 'CSS background color, including vars.color references. No default; style wins.' },
+        borderColor: { control: 'text', description: 'CSS border color or shorthand, including custom properties. No default; style wins.' },
         boxShadow: { control: 'select', options: BOX_SHADOW },
         width: { control: 'select', options: WH },
         height: { control: 'select', options: WH },
@@ -239,7 +241,7 @@ It is the foundation of \`Flex\` and \`Grid\` — both extend \`Box\` with their
         children: 'Box content',
         as: 'div',
         padding: 'lg',
-        backgroundColor: 'surfaceMuted',
+        backgroundColor: vars.color.surface.muted,
         borderRadius: 'md',
     },
 } satisfies Meta<typeof Box>
@@ -256,11 +258,42 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to experiment with every available prop.',
             },
             ...storySource(/* language=tsx */ `
-<Box as="div" padding="lg" backgroundColor="muted" borderRadius="md">Box content</Box>`),
+import { Box, vars } from '@choco-vanille/ui'
+
+<Box as="div" padding="lg" backgroundColor={vars.color.surface.muted} borderRadius="md">Box content</Box>`),
         },
     },
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByText(args.children as string)).toBeInTheDocument()
+    },
+}
+
+export const Colors: Story = {
+    args: {
+        color: 'var(--custom-color, rebeccapurple)',
+        backgroundColor: vars.color.surface.muted,
+        borderColor: vars.color.border.strong,
+        borderStyle: 'solid',
+        borderWidth: '1px',
+    },
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+import { Box, vars } from '@choco-vanille/ui'
+
+<Box
+  as="div"
+  padding="lg"
+  borderRadius="md"
+  color="var(--custom-color, rebeccapurple)"
+  backgroundColor={vars.color.surface.muted}
+  borderColor={vars.color.border.strong}
+  borderStyle="solid"
+  borderWidth="1px"
+>
+  Box content
+</Box>`),
+        },
     },
 }

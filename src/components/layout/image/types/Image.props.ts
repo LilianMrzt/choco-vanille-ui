@@ -37,6 +37,6 @@ export type ImageProps = ImgHTMLAttributes<HTMLImageElement> &
     padding?: ImageSpace;
     /** The margin token applied to the image. Supports `auto`. */
     margin?: ImageMargin;
-    /** The theme color token applied to the image's background color. */
+    /** CSS background color or custom-property reference. Consumer style wins. */
     backgroundColor?: BoxColor;
   };

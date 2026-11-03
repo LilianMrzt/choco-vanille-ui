@@ -39,9 +39,9 @@ export const SELECT_TRIGGER_STYLES = {
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
             borderRadius: vars.radius.xs,
-            border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.surface,
-            color: vars.color.foreground,
+            border: `1px solid ${vars.color.border.main}`,
+            backgroundColor: vars.color.surface.main,
+            color: vars.color.text.primary,
             outline: 'none',
             cursor: 'pointer',
             textAlign: 'left',
@@ -53,21 +53,21 @@ export const SELECT_TRIGGER_STYLES = {
             selectors: {
                 // Open state: primary border, mirrors TextField's mouse-focus appearance.
                 '&[data-popup-open]': {
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                 },
                 '&:focus-visible': {
                     outline: 'none',
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                     boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
                 '&[data-mouse-focus]:focus-visible': {
                     boxShadow: 'none',
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                 },
                 '&:disabled, &[data-disabled]': {
                     cursor: 'not-allowed',
                     opacity: 0.45,
-                    backgroundColor: vars.color.surfaceMuted,
+                    backgroundColor: vars.color.surface.muted,
                 },
             },
         },
@@ -91,21 +91,21 @@ export const SELECT_TRIGGER_STYLES = {
             },
             hasError: {
                 true: {
-                    borderColor: vars.color.danger,
+                    borderColor: vars.color.danger.main,
                     selectors: {
                         '&:hover:not(:disabled):not([data-disabled])': {
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                         },
                         '&[data-popup-open]': {
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                         },
                         '&:focus-visible': {
-                            borderColor: vars.color.danger,
-                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger}`,
+                            borderColor: vars.color.danger.main,
+                            boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.danger.main}`,
                         },
                         '&[data-mouse-focus]:focus-visible': {
                             boxShadow: 'none',
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                         },
                     },
                 },

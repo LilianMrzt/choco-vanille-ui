@@ -9,8 +9,8 @@ import { createBadgeCompoundVariantUtils } from '@components/data-display/badge/
 export const outlinedSubtleCompoundVariants = createBadgeCompoundVariantUtils(
     BADGE_VARIANTS.outlinedSubtle,
     (color) => ({
-        backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
-        borderColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleBorder`],
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
+        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
+        borderColor: vars.color[COLOR_INTENT_TOKENS[color]].subtleBorder,
+        color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
     }),
 )

@@ -8,6 +8,6 @@ export const COLLAPSIBLE_STYLES = {
         flexDirection: 'column',
         alignItems: 'stretch',
         width: '100%',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
     }),
 }

@@ -6,7 +6,7 @@ export const COLLAPSIBLE_PANEL_STYLES = {
     root: style({
         display: 'grid',
         gridTemplateRows: '0fr',
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         outline: 'none',

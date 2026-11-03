@@ -32,25 +32,25 @@ globalStyle(`${RICH_TEXT_RENDERER_STYLES} img`, {
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} a`, {
-    color: vars.color.link,
+    color: vars.color.link.main,
     textDecoration: 'underline',
     textUnderlineOffset: '0.15em',
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} a:hover`, {
-    color: vars.color.linkHover,
+    color: vars.color.link.hover,
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} blockquote`, {
     marginInline: 0,
     paddingInlineStart: vars.space.md,
-    borderInlineStart: `3px solid ${vars.color.border}`,
-    color: vars.color.surfaceMutedForeground,
+    borderInlineStart: `3px solid ${vars.color.border.main}`,
+    color: vars.color.surface.mutedForeground,
 })
 
 globalStyle(`${RICH_TEXT_RENDERER_STYLES} pre`, {
     overflowX: 'auto',
     padding: vars.space.md,
     borderRadius: vars.radius.sm,
-    backgroundColor: vars.color.surfaceMuted,
+    backgroundColor: vars.color.surface.muted,
 })

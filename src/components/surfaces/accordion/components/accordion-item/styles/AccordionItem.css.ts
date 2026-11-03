@@ -11,7 +11,7 @@ export const ACCORDION_ITEM_STYLES = {
         variants: {
             bordered: {
                 true: {
-                    borderBottom: `1px solid ${vars.color.border}`,
+                    borderBottom: `1px solid ${vars.color.border.main}`,
                     marginBlock: vars.space.xs,
                     paddingBlock: vars.space.xs,
                     ':last-child': {

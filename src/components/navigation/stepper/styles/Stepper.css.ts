@@ -41,9 +41,9 @@ export const STEPPER_STYLES = {
         width: '1.75rem',
         height: '1.75rem',
         borderRadius: vars.radius.full,
-        border: `1px solid ${vars.color.borderStrong}`,
-        backgroundColor: vars.color.surface,
-        color: vars.color.foregroundMuted,
+        border: `1px solid ${vars.color.border.strong}`,
+        backgroundColor: vars.color.surface.main,
+        color: vars.color.text.secondary,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.semibold,
         lineHeight: 1,
@@ -62,15 +62,15 @@ export const STEPPER_STYLES = {
         justifyContent: 'center',
     }),
     markerCurrent: style({
-        backgroundColor: vars.color.primary,
-        borderColor: vars.color.primary,
-        color: vars.color.primaryForeground,
-        boxShadow: `0 0 0 3px ${vars.color.primarySubtle}`,
+        backgroundColor: vars.color.primary.main,
+        borderColor: vars.color.primary.main,
+        color: vars.color.primary.foreground,
+        boxShadow: `0 0 0 3px ${vars.color.primary.subtle}`,
     }),
     markerCompleted: style({
-        backgroundColor: vars.color.successSubtle,
-        borderColor: vars.color.success,
-        color: vars.color.successSubtleForeground,
+        backgroundColor: vars.color.success.subtle,
+        borderColor: vars.color.success.main,
+        color: vars.color.success.subtleForeground,
     }),
     content: style({
         display: 'flex',
@@ -90,7 +90,7 @@ export const STEPPER_STYLES = {
         alignSelf: 'center',
     }),
     label: style({
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontWeight: vars.fontWeight.medium,
         textAlign: 'start',
     }),
@@ -98,7 +98,7 @@ export const STEPPER_STYLES = {
         fontSize: vars.fontSize.xs,
     }),
     description: style({
-        color: vars.color.foregroundMuted,
+        color: vars.color.text.secondary,
         textAlign: 'start',
     }),
     descriptionSmall: style({

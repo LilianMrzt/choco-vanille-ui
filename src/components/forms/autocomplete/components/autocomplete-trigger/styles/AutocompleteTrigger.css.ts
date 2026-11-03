@@ -23,7 +23,7 @@ export const AUTOCOMPLETE_TRIGGER_STYLES = {
         background: 'transparent',
         border: 'none',
         borderRadius: vars.radius.xs,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         cursor: 'pointer',
         outline: 'none',
         transition: `color ${vars.duration.fast} ${vars.easing.standard}`,

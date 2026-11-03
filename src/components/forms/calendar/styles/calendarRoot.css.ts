@@ -5,12 +5,12 @@ export const CALENDAR_ROOT_STYLES = {
     root: style({
         display: 'inline-block',
         padding: vars.space.lg,
-        backgroundColor: vars.color.surface,
+        backgroundColor: vars.color.surface.main,
         borderRadius: vars.radius.lg,
-        border: `1px solid ${vars.color.border}`,
+        border: `1px solid ${vars.color.border.main}`,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
     }),
 
     months: style({

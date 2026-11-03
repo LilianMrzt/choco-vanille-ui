@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Typography } from '@components/foundation/typography'
 import type { CalloutDescriptionProps } from '@components/feedback/callout/components/callout-description/types/CalloutDescription.props.ts'
 import { cn } from '@utils/cn.ts'
@@ -19,7 +20,7 @@ const CalloutDescription: FC<CalloutDescriptionProps> = memo(({
             as={'span'}
             variant={'span'}
             fontSize={'sm'}
-            color={'foregroundMuted'}
+            color={vars.color.text.secondary}
             className={cn(className)}
             {...props}
         >

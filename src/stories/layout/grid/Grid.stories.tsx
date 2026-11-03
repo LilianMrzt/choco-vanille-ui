@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -11,7 +12,6 @@ import { expect, within } from 'storybook/test'
 
 import { Grid } from '@components/layout/grid'
 import { Box } from '@components/layout/box'
-import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -96,7 +96,6 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG = THEME_COLORS
 const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
 const BORDER_STYLE = [
     undefined,
@@ -214,8 +213,8 @@ A layout primitive that renders a \`<div>\` with \`display: grid\` and token-bas
         marginBottom: { control: 'select', options: [...SPACING, 'auto'] },
         marginLeft: { control: 'select', options: [...SPACING, 'auto'] },
         borderRadius: { control: 'select', options: ROUNDED },
-        backgroundColor: { control: 'select', options: BG },
-        borderColor: { control: 'select', options: BG },
+        backgroundColor: { control: 'text', description: 'CSS color or custom-property reference; style wins.' },
+        borderColor: { control: 'text', description: 'CSS color or custom-property reference; style wins.' },
         boxShadow: { control: 'select', options: BOX_SHADOW },
         width: { control: 'select', options: WH },
         height: { control: 'select', options: WH },
@@ -248,7 +247,7 @@ const Cell = ({ label }: { label: string }) => (
     <Box
         padding={'md'}
         borderRadius={'sm'}
-        backgroundColor={'primarySubtle'}
+        backgroundColor={vars.color.primary.subtle}
         style={{ fontSize: '0.875rem', textAlign: 'center' }}
     >
         {label}
@@ -264,15 +263,15 @@ export const Playground: Story = {
             },
             ...storySource(/* language=tsx */ `
 <Grid columns={3} gap="md">
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 1</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 2</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 3</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 4</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 5</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 6</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 7</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 8</Box>
-    <Box padding="md" borderRadius="sm" backgroundColor="primarySubtle">Cell 9</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 1</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 2</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 3</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 4</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 5</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 6</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 7</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 8</Box>
+    <Box padding="md" borderRadius="sm" backgroundColor={vars.color.primary.subtle}>Cell 9</Box>
 </Grid>`),
         },
     },

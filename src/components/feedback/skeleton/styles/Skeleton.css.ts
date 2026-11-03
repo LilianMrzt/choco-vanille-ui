@@ -6,7 +6,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const SKELETON_STYLES = {
     recipe: recipe({
         base: {
-            backgroundColor: vars.color.skeletonBase,
+            backgroundColor: vars.color.skeleton.base,
             animation: `${pulseAnimation} 2s ${vars.easing.linear} infinite`,
         },
         variants: {

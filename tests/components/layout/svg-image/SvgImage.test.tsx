@@ -2,7 +2,7 @@ import { createRef, forwardRef, type SVGProps } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { SvgImage } from '@components/layout/svg-image'
+import { SvgImage, SVG_IMAGE_STYLES } from '@components/layout/svg-image'
 
 const TestSvg = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
     (props, ref) => (
@@ -53,15 +53,29 @@ describe('SvgImage', () => {
     })
 
     describe('styles and attributes', () => {
+        it('accepts free background variables while keeping color token paths', () => {
+            render(
+                <SvgImage
+                    image={TestSvg}
+                    color={'primary.main'}
+                    backgroundColor={'var(--app-image)'}
+                    data-testid={'svg-image'}
+                />,
+            )
+            const svg = screen.getByTestId('svg-image')
+            expect(svg.style.backgroundColor).toBe('var(--app-image)')
+            expect(svg.hasAttribute('backgroundColor')).toBe(false)
+        })
+
         it('applies a theme color class', () => {
             const { container, rerender } = render(
-                <SvgImage image={TestSvg} color="primary" />,
+                <SvgImage image={TestSvg} color={'primary.main'} />,
             )
             const primaryClassName = container
                 .querySelector('svg')
                 ?.getAttribute('class')
 
-            rerender(<SvgImage image={TestSvg} color="secondary" />)
+            rerender(<SvgImage image={TestSvg} color={'secondary.main'} />)
 
             const secondaryClassName = container
                 .querySelector('svg')
@@ -69,6 +83,11 @@ describe('SvgImage', () => {
 
             expect(primaryClassName).toBeTruthy()
             expect(secondaryClassName).toBeTruthy()
+            expect(Object.keys(SVG_IMAGE_STYLES.color.classNames.variants.color)).toContain('primary.main')
+            expect(SVG_IMAGE_STYLES.color.classNames.variants.color['primary.main'])
+                .not.toBe(SVG_IMAGE_STYLES.color.classNames.variants.color['secondary.main'])
+            expect(primaryClassName).toContain(SVG_IMAGE_STYLES.color.classNames.variants.color['primary.main'])
+            expect(secondaryClassName).toContain(SVG_IMAGE_STYLES.color.classNames.variants.color['secondary.main'])
             expect(secondaryClassName).not.toBe(primaryClassName)
         })
 

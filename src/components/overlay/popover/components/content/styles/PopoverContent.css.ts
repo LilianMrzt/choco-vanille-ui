@@ -42,9 +42,9 @@ export const POPOVER_CONTENT_STYLES = {
         minWidth: '11rem',
         overflow: 'hidden',
         borderRadius: vars.radius.sm,
-        border: `1px solid ${vars.color.border}`,
-        backgroundColor: vars.color.surfaceElevated,
-        color: vars.color.surfaceElevatedForeground,
+        border: `1px solid ${vars.color.border.main}`,
+        backgroundColor: vars.color.surface.elevated,
+        color: vars.color.surface.elevatedForeground,
         boxShadow: vars.shadow.lg,
         transformOrigin: 'var(--transform-origin)',
 

@@ -10,23 +10,23 @@ import { createButtonCompoundVariantUtils } from '@components/actions/_shared/bu
 export const containedCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.contained,
     (color) => ({
-        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]],
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}Foreground`],
+        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].main,
+        color: vars.color[COLOR_INTENT_TOKENS[color]].foreground,
         selectors: {
             '&:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Hover`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].hover,
             },
             '&:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
             '&[data-active="true"]': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
             '&[data-active="true"]:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Hover`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].hover,
             },
             '&[data-active="true"]:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Active`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
         },
     }),

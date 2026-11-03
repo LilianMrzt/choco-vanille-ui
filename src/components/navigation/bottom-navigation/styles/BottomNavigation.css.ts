@@ -10,13 +10,13 @@ export const BOTTOM_NAVIGATION_STYLES = {
         paddingInline: vars.space.xs,
         paddingBlockStart: vars.space.xs,
         paddingBlockEnd: `calc(${vars.space.xs} + env(safe-area-inset-bottom))`,
-        backgroundColor: `color-mix(in srgb, ${vars.color.surface} 92%, transparent)`,
+        backgroundColor: `color-mix(in srgb, ${vars.color.surface.main} 92%, transparent)`,
         backdropFilter: 'blur(20px)',
-        color: vars.color.surfaceForeground,
+        color: vars.color.surface.foreground,
     }),
 
     bordered: style({
-        borderTop: `1px solid ${vars.color.border}`,
+        borderTop: `1px solid ${vars.color.border.main}`,
     }),
 
     list: style({
@@ -50,7 +50,7 @@ export const BOTTOM_NAVIGATION_STYLES = {
         border: '1px solid transparent',
         borderRadius: vars.radius.md,
         backgroundColor: 'transparent',
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.medium,
@@ -68,21 +68,21 @@ export const BOTTOM_NAVIGATION_STYLES = {
         ].join(', '),
         selectors: {
             '&:focus-visible': {
-                boxShadow: `0 0 0 2px ${vars.color.surface}, 0 0 0 4px ${vars.color.focusRing}`,
+                boxShadow: `0 0 0 2px ${vars.color.surface.main}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.surfaceMuted,
-                color: vars.color.foreground,
+                backgroundColor: vars.color.surface.muted,
+                color: vars.color.text.primary,
             },
             '&:not([data-disabled]):active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             '&[data-active]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&[data-active]:hover': {
-                backgroundColor: vars.color.primarySubtleHover,
+                backgroundColor: vars.color.primary.subtleHover,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',

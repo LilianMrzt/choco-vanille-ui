@@ -372,7 +372,7 @@ const [open, setOpen] = useState(false)
 
 <Drawer open={open} onOpenChange={setOpen} mode="portal">
   <Drawer.Header>
-    <Typography as="h2" fontSize="lg" fontWeight="semibold" color="foreground" ellipsis style={{ flex: '1 1 0%' }}>
+    <Typography as="h2" fontSize="lg" fontWeight="semibold" color={vars.color.text.primary} ellipsis style={{ flex: '1 1 0%' }}>
       Settings
     </Typography>
     <IconButton icon={CloseIcon} aria-label="Close drawer" variant="ghost" size="sm" onClick={() => setOpen(false)} />

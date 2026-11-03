@@ -29,6 +29,8 @@ export type {
     EditorColors,
     LightColors,
     ThemeColor,
+    ThemeColorAccent,
+    ThemeColorIntent,
     ThemeColorOverrides,
     ThemeColors,
     ThemeColorValue,

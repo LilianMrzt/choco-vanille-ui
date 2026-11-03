@@ -2,7 +2,6 @@ import type { CSSProperties, SVGProps } from 'react'
 
 import type {
     BoxBorderRadius,
-    BoxColor,
     BoxSpace,
 } from '@components/layout/box/types/Box.types.ts'
 import type {
@@ -18,14 +17,14 @@ export type IconProps = Omit<SVGProps<SVGSVGElement>, 'aria-hidden' | 'role' | '
     size?: IconSize
     /** Whether the icon should continuously rotate. */
     spin?: boolean
-    /** Optional theme color token applied to the icon's `color` CSS property. */
+    /** CSS color applied to the SVG, including custom property references. */
     color?: IconColor
     /** Padding token applied to the wrapper around the icon. */
     padding?: BoxSpace
-    /** Theme color token applied to the wrapper's border color. */
-    borderColor?: BoxColor
-    /** Theme color token applied to the wrapper's background color. */
-    backgroundColor?: BoxColor
+    /** CSS color applied to the wrapper's border. */
+    borderColor?: CSSProperties['borderColor']
+    /** CSS color applied to the wrapper's background. */
+    backgroundColor?: CSSProperties['backgroundColor']
     /** The CSS `border-width` value of the wrapper. */
     borderWidth?: CSSProperties['borderWidth']
     /** The CSS `border-style` value of the wrapper. */

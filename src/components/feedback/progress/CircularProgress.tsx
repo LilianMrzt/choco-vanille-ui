@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import {
     PROGRESS_SIZE_TO_CIRCULAR_SIZE,
     PROGRESS_SIZE_TO_STROKE_WIDTH,
@@ -101,7 +102,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                             variant={'span'}
                             fontSize={size === 'sm' ? 'xs' : size === 'lg' ? 'lg' : 'sm'}
                             fontWeight={'semibold'}
-                            color={'foreground'}
+                            color={vars.color.text.primary}
                         >
                             {resolvedQuantityLabel}
                         </Typography>
@@ -113,7 +114,7 @@ const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
                     as={'span'}
                     variant={'span'}
                     fontSize={'sm'}
-                    color={'foregroundMuted'}
+                    color={vars.color.text.secondary}
                 >
                     {label}
                 </Typography>

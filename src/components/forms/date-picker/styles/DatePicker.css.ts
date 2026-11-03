@@ -18,15 +18,15 @@ export const DATE_PICKER_STYLES = {
         overflow: 'hidden',
         selectors: {
             '&[data-focus-within]': {
-                borderColor: vars.color.primary,
+                borderColor: vars.color.primary.main,
             },
             '&[data-invalid][data-focus-within]': {
-                borderColor: vars.color.danger,
+                borderColor: vars.color.danger.main,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',
                 opacity: 0.45,
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
             },
         },
     }),
@@ -52,13 +52,13 @@ export const DATE_PICKER_STYLES = {
             },
             '&[data-type="literal"]': {
                 minWidth: 'auto',
-                color: vars.color.foregroundSubtle,
+                color: vars.color.text.tertiary,
             },
             '&[data-placeholder]': {
-                color: vars.color.foregroundSubtle,
+                color: vars.color.text.tertiary,
             },
             '&[data-focused]': {
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
                 borderRadius: vars.radius.xs,
             },
         },

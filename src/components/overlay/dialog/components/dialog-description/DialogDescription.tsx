@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC } from 'react'
 
@@ -17,7 +18,7 @@ const DialogDescription: FC<DialogDescriptionProps> = memo(({ className, childre
         <Typography
             as={'p'}
             fontSize={'sm'}
-            color={'surfaceMutedForeground'}
+            color={vars.color.surface.mutedForeground}
         >
             {children}
         </Typography>

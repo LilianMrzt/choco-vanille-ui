@@ -10,25 +10,25 @@ export const outlinedCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.outlined,
     (color) => ({
         borderColor: color === BUTTON_COLORS.tertiary
-            ? vars.color.border
-            : vars.color[COLOR_INTENT_TOKENS[color]],
-        backgroundColor: vars.color.surface,
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
+            ? vars.color.border.main
+            : vars.color[COLOR_INTENT_TOKENS[color]].main,
+        backgroundColor: vars.color.surface.main,
+        color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
         selectors: {
             '&:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
             '&:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
             '&[data-active="true"]': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
             '&[data-active="true"]:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
             '&[data-active="true"]:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
         },
     }),

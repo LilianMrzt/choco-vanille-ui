@@ -4,6 +4,10 @@ import { SEPARATOR_STYLES } from '@components/layout/separator/styles/Separator.
 import type { SeparatorProps } from '@components/layout/separator/types/Separator.props.ts'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
+import { vars } from '@theme/styles/contract/contract.css.ts'
+import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
+
+const colorReferences = Object.fromEntries(getColorEntries(vars.color))
 
 /**
  * A thin visual divider used to separate content.
@@ -12,7 +16,7 @@ import { memo, type FC } from 'react'
 const Separator: FC<SeparatorProps> = memo(({
     orientation = 'horizontal',
     color,
-    textColor = 'foregroundSubtle',
+    textColor = 'text.tertiary',
     label,
     className,
     ...props
@@ -43,7 +47,7 @@ const Separator: FC<SeparatorProps> = memo(({
                     />
                     <Typography
                         variant={'label'}
-                        color={textColor}
+                        color={colorReferences[textColor]}
                         flexShrink={0}
                     >
                         {label}

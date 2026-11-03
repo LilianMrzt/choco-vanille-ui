@@ -16,8 +16,8 @@ export const TOOLTIP_STYLES = {
     content: style({
         zIndex: vars.zIndex.tooltip,
         borderRadius: vars.radius.xs,
-        backgroundColor: vars.color.surfaceElevated,
-        color: vars.color.surfaceElevatedForeground,
+        backgroundColor: vars.color.surface.elevated,
+        color: vars.color.surface.elevatedForeground,
         paddingInline: vars.space.md,
         paddingBlock: vars.space.xs,
         fontFamily: vars.fontFamily.sans,
@@ -39,7 +39,7 @@ export const TOOLTIP_STYLES = {
         display: 'block',
         width: 12,
         height: 6,
-        backgroundColor: vars.color.surfaceElevated,
+        backgroundColor: vars.color.surface.elevated,
         clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
         selectors: {
             '&[data-side="top"]': {

@@ -5,9 +5,12 @@ import { memo, useMemo, type FC } from 'react'
 
 /**
  * Polymorphic layout primitive. Maps design-token props (padding, margin,
- * gap, border, background, box-shadow) to Vanilla Extract atomic classes
+ * gap, border-radius, box-shadow) to Vanilla Extract atomic classes
  * and passes layout props (display, flex, position, overflow, text-align) as inline
- * styles. Use the `as` prop to change the rendered element.
+ * styles. Color props accept CSS values, including `vars.color` and arbitrary
+ * custom property references, without token-name lookup. Consumer `style` wins
+ * over props. Omit color props when classes or interaction states own colors;
+ * no inline color defaults are applied. Use `as` to change the rendered element.
  */
 const Box: FC<BoxProps> = memo(({
     as: Element = 'div',
@@ -29,6 +32,7 @@ const Box: FC<BoxProps> = memo(({
     gap,
     columnGap,
     rowGap,
+    color,
     borderColor,
     backgroundColor,
     boxShadow,
@@ -83,8 +87,6 @@ const Box: FC<BoxProps> = memo(({
                 gap,
                 columnGap,
                 rowGap,
-                borderColor,
-                backgroundColor,
                 boxShadow,
             }),
         [
@@ -106,8 +108,6 @@ const Box: FC<BoxProps> = memo(({
             gap,
             columnGap,
             rowGap,
-            borderColor,
-            backgroundColor,
             boxShadow,
         ],
     )
@@ -117,6 +117,9 @@ const Box: FC<BoxProps> = memo(({
             ref={ref}
             className={cn(recipeClassName, className)}
             style={{
+                color,
+                borderColor,
+                backgroundColor,
                 display,
                 width,
                 minWidth,

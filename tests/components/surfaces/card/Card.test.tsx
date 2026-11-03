@@ -23,6 +23,29 @@ describe('Card', () => {
             const { container } = render(<Card>content</Card>)
             expect(getFirstChild(container).style.borderStyle).toBe('solid')
         })
+
+        it('leaves default colors in the stylesheet so consumer classes can override them', () => {
+            const { container } = render(<Card>content</Card>)
+            const card = getFirstChild(container)
+            expect(card.style.color).toBe('')
+            expect(card.style.backgroundColor).toBe('')
+            expect(card.style.borderColor).toBe('')
+        })
+
+        it('accepts free CSS color references and preserves consumer style precedence', () => {
+            const { container } = render(
+                <Card
+                    backgroundColor={'var(--app-surface)'}
+                    borderColor={'var(--app-border)'}
+                    color={'var(--app-text)'}
+                    style={{ color: 'red' }}
+                />,
+            )
+            const card = getFirstChild(container)
+            expect(card.style.backgroundColor).toBe('var(--app-surface)')
+            expect(card.style.borderColor).toBe('var(--app-border)')
+            expect(card.style.color).toBe('red')
+        })
     })
 
     describe('`as` prop', () => {

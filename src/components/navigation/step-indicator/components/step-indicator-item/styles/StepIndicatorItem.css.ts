@@ -16,7 +16,7 @@ export const STEP_INDICATOR_ITEM_STYLES = {
         cursor: 'pointer',
         selectors: {
             '&:focus-visible': {
-                outline: `2px solid ${vars.color.primary}`,
+                outline: `2px solid ${vars.color.primary.main}`,
                 outlineOffset: '2px',
             },
             '&:hover:not(:disabled)': {
@@ -36,16 +36,16 @@ export const STEP_INDICATOR_ITEM_STYLES = {
         width: '0.5rem',
         height: '0.5rem',
         borderRadius: vars.radius.full,
-        backgroundColor: vars.color.borderStrong,
+        backgroundColor: vars.color.border.strong,
         transition: 'transform 150ms ease, background-color 150ms ease',
     }),
     dotCurrent: style({
         width: '0.625rem',
         height: '0.625rem',
-        backgroundColor: vars.color.primary,
-        boxShadow: `0 0 0 3px ${vars.color.primarySubtle}`,
+        backgroundColor: vars.color.primary.main,
+        boxShadow: `0 0 0 3px ${vars.color.primary.subtle}`,
     }),
     dotCompleted: style({
-        backgroundColor: vars.color.primary,
+        backgroundColor: vars.color.primary.main,
     }),
 }

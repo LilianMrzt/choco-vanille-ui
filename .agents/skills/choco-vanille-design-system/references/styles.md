@@ -79,21 +79,33 @@ one without a concrete requirement and an explicit dependency decision.
   component intents such as `tertiary`, `destructive`, or `purple` map through
   the internal `COLOR_INTENT_TOKENS` constant; an `error` feedback status maps
   to `danger` without renaming its status axis.
-- Foundation/layout primitives use their documented theme color token contracts.
-  Check whether `currentColor`, `transparent`, CSS shorthands or free values are
-  accepted rather than assuming they are token keys. Use `style` or component
-  CSS for values outside a primitive's supported contract.
+- Box, Typography and Icon accept CSS color values directly, including any
+  custom-property reference. Pass `vars.color.primary.main`, not `"primary"`
+  or `"primary.main"`. Box-derived layout props inherit this contract.
+  Independent token-based APIs (Link, Separator, SvgImage color and Drawer
+  backgroundColor) use isolated token names or direct paths such as
+  `"primary.main"`; groups alone are not colors.
 - Components inheriting a primitive's styling API retain their documented public contract unless a migration is explicitly approved. Do not silently narrow accepted colors for consistency. Distinguish intentional inherited styling from the default API for new semantic controls.
 - A component with a single supported palette must not inherit an unsupported color prop.
 - Interaction colors must remain coherent with the selected color, not switch unconditionally to another palette. Preserve explicit consumer class/style overrides; document intentional fixed-color behavior or existing exceptions.
-- Filled controls pair intent surfaces with their matching `*Foreground` tokens
-  (for example `primary` and `primaryForeground`). Subtle treatments use the
-  corresponding `*Subtle`, state and `*SubtleForeground` tokens. Outlined, ghost
+- Filled controls pair `family.main` with `family.foreground`. Subtle treatments
+  pair `family.subtle`, `subtleHover` and `subtlePressed` with
+  `family.subtleForeground`. Outlined, ghost
   and text treatments must use tokens verified against their actual surfaces,
   not a filled foreground blindly reused on a neutral background.
-- Do not substitute another project's `contrastText` or nested color structure
-  for our flat `vars.color` contract, or translucent ghost states for filled
-  hover colors.
+- Semantic colors have a bounded nested structure: isolated strings or groups
+  with direct string leaves. All 13 accent families share `ThemeColorAccent`:
+  `main`, `hover`, `pressed`, `foreground`, `subtle`, `subtleHover`,
+  `subtlePressed`, `subtleForeground`, `border` and `subtleBorder`.
+  `text.primary/secondary/tertiary`, `surface`, `link`, `border`, `highlight`
+  and `skeleton` have their own direct leaves. Do not introduce nested
+  treatment objects, `contrastText`, or translucent replacements for filled states.
+- Global gray borders are ordered `subtle`, `muted`, `main`, `strong`, `stronger`.
+  Decorative levels do not guarantee 3:1. Keep functional borders and focus
+  indicators sufficient against their actual surfaces.
+- ThemeProvider overrides are partial at both group and leaf levels; omitted
+  and undefined leaves inherit. Both scopes use the same validated leaf
+  conversion and preserve original declarations on document cleanup.
 - Keep light and dark token shapes coherent. A new token must be available
   wherever its consuming public contract supports a theme.
 - Built-in color ramps use in-gamut sRGB hex values. Custom overrides still accept
@@ -127,7 +139,7 @@ one without a concrete requirement and an explicit dependency decision.
 - Define and document color, `className` and `style` precedence when implementing
   each primitive. If a color prop produces an inline declaration, do not pass it
   when stylesheet interaction states must control that property.
-- Link styling uses the existing `link`, `linkHover` and `linkActive` tokens.
+- Link styling uses `link.main`, `link.hover` and `link.pressed`.
   Do not invent a `link.disabled` token or silently redefine disabled semantics.
 - Use `vars.color.focusRing` for shared focus styling and verify its contrast
   on the supported surfaces.

@@ -31,11 +31,11 @@ import { cn } from '@utils/cn.ts'
   */
 const Card = memo<CardProps>(({
     as = 'div',
-    backgroundColor = 'surface',
-    color = 'surfaceForeground',
+    backgroundColor,
+    color,
     borderRadius = 'sm',
     borderWidth = '1px',
-    borderColor = 'border',
+    borderColor,
     borderStyle = 'solid',
     boxShadow = 'none',
     overflow = 'hidden',

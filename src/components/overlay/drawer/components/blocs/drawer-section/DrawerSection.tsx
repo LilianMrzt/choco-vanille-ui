@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, type FC, useId } from 'react'
 
 import { Typography } from '@components/foundation/typography'
@@ -36,7 +37,7 @@ const DrawerSection: FC<DrawerSectionProps> = memo(({
                 <Typography
                     variant={'small'}
                     fontSize={'xs'}
-                    color={'surfaceMutedForeground'}
+                    color={vars.color.surface.mutedForeground}
                     textTransform={'uppercase'}
                     fontWeight={'medium'}
                     letterSpacing={'wide'}

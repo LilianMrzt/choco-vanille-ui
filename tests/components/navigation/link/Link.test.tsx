@@ -141,11 +141,11 @@ describe('Link', () => {
 
         it('applies a theme color variant', () => {
             const { container } = render(
-                <Link label={'Primary'} color={'primary'} />,
+                <Link label={'Primary'} color={'primary.main'} />,
             )
 
             expect(getFirstChild(container).className).toContain(
-                LINK_STYLES.color({ color: 'primary' }),
+                LINK_STYLES.color({ color: 'primary.main' }),
             )
         })
     })

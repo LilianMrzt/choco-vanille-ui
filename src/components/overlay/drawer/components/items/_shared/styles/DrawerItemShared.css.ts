@@ -38,7 +38,7 @@ const drawerItemRecipe = recipe({
         border: '1px solid transparent',
         borderRadius: vars.radius.xs,
         backgroundColor: 'transparent',
-        color: vars.color.foregroundMuted,
+        color: vars.color.text.secondary,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,

@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 
 import type { ThemeProviderScope } from '@theme/providers/theme-provider/types/index.ts'
 import type { ThemeColorOverrides } from '@theme/tokens/colors/types/index.ts'
+import { getThemeTokenStyles } from '@theme/utils/getThemeTokenStyles.utils.ts'
 import {
     THEME_TRANSITION_ATTRIBUTE,
     THEME_TRANSITION_DURATION_VAR,
@@ -53,21 +54,20 @@ export const useThemeDocumentScope = (
         }
 
         const root = document.documentElement
-        const previousTokens = new Map<string, string>()
+        const previousTokens = new Map<string, Readonly<{ value: string, priority: string }>>()
 
-        for (const [key, value] of Object.entries(tokens ?? {})) {
-            if (value === undefined) {
-                continue
-            }
-            const property = `--color-${key}`
-            previousTokens.set(property, root.style.getPropertyValue(property))
+        for (const [property, value] of Object.entries(getThemeTokenStyles(tokens))) {
+            previousTokens.set(property, {
+                value: root.style.getPropertyValue(property),
+                priority: root.style.getPropertyPriority(property),
+            })
             root.style.setProperty(property, value)
         }
 
         return () => {
-            for (const [property, value] of previousTokens) {
+            for (const [property, { value, priority }] of previousTokens) {
                 if (value) {
-                    root.style.setProperty(property, value)
+                    root.style.setProperty(property, value, priority)
                 } else {
                     root.style.removeProperty(property)
                 }

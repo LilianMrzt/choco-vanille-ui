@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 import { memo, type FC } from 'react'
 
@@ -29,7 +30,7 @@ const BottomSheetHeader: FC<BottomSheetHeaderProps> = memo(({
                     as={titleAs}
                     fontSize={'lg'}
                     fontWeight={'semibold'}
-                    color={'foreground'}
+                    color={vars.color.text.primary}
                     margin={'none'}
                 />
             )}
@@ -42,7 +43,7 @@ const BottomSheetHeader: FC<BottomSheetHeaderProps> = memo(({
                     <Typography
                         as={'p'}
                         fontSize={'sm'}
-                        color={'surfaceMutedForeground'}
+                        color={vars.color.surface.mutedForeground}
                         margin={'none'}
                     />
                 )}

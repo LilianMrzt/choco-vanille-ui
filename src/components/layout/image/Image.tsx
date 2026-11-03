@@ -5,7 +5,7 @@ import { memo, useMemo, type FC } from 'react'
 
 /**
  * `<img>` wrapper with design-token props for `objectFit`, `objectPosition`,
- * `borderRadius`, spacing, and `backgroundColor`. Dimensional props
+ * `borderRadius` and spacing, plus a free CSS `backgroundColor`. Dimensional props
  * (`width`, `height`, `aspectRatio`) are applied as inline styles.
  * Always provide a meaningful `alt` text.
  */
@@ -37,7 +37,6 @@ const Image: FC<ImageProps> = memo(({
                 borderRadius,
                 padding,
                 margin,
-                backgroundColor,
             }),
         [
             objectFit,
@@ -45,7 +44,6 @@ const Image: FC<ImageProps> = memo(({
             borderRadius,
             padding,
             margin,
-            backgroundColor,
         ],
     )
 
@@ -55,6 +53,7 @@ const Image: FC<ImageProps> = memo(({
             alt={alt}
             className={cn(recipeClassName, className)}
             style={{
+                backgroundColor,
                 width,
                 minWidth,
                 maxWidth,

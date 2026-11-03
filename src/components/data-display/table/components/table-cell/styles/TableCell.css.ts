@@ -10,7 +10,7 @@ export const TABLE_CELL_STYLES = {
             paddingInline: vars.space.lg,
             paddingBlock: TABLE_STYLES.cellPaddingBlockVar,
             verticalAlign: 'middle',
-            color: vars.color.foreground,
+            color: vars.color.text.primary,
         },
         variants: {
             align: {

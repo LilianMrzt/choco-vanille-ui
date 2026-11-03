@@ -1,10 +1,9 @@
 import type { IconProps } from '@components/foundation/icon'
-import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 /** Props for the Toast.Icon sub-component. */
 export type ToastIconProps = Omit<IconProps, 'icon' | 'color'> & {
   /** Icon identifier. Defaults to the root Toast variant icon. */
   icon?: IconProps['icon'];
-  /** Theme color token. Defaults to the root Toast variant color. */
-  color?: ThemeColor;
+  /** CSS color or variable reference. Defaults to the root Toast variant color. */
+  color?: IconProps['color'];
 };

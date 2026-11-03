@@ -70,8 +70,8 @@ const colorVariants = Object.fromEntries(
     BADGE_COLORS_ARRAY.map((color) => [
         color,
         {
-            backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]],
-            color: vars.color[`${COLOR_INTENT_TOKENS[color]}Foreground`],
+            backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].main,
+            color: vars.color[COLOR_INTENT_TOKENS[color]].foreground,
         },
     ]),
 )

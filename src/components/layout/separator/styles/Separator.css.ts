@@ -26,7 +26,7 @@ export const SEPARATOR_STYLES = {
         base: {
             flexShrink: 0,
             backgroundColor: 'currentColor',
-            color: vars.color.border,
+            color: vars.color.border.main,
         },
 
         variants: {

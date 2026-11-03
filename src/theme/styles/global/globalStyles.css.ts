@@ -26,7 +26,7 @@ globalStyle('*, *::before, *::after', {
             boxSizing: 'border-box',
             borderWidth: 0,
             borderStyle: 'solid',
-            borderColor: vars.color.border,
+            borderColor: vars.color.border.main,
             outlineColor: vars.color.focusRing,
         },
     },
@@ -46,7 +46,7 @@ globalStyle('body', {
         [resetLayer]: {
             margin: 0,
             backgroundColor: vars.color.background,
-            color: vars.color.foreground,
+            color: vars.color.text.primary,
             fontFamily: vars.fontFamily.sans,
             fontSize: vars.fontSize.md,
             lineHeight: vars.lineHeight.normal,

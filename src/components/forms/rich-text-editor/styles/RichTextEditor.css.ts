@@ -13,21 +13,21 @@ export const RICH_TEXT_EDITOR_STYLES = {
     editor: style({
         minHeight: '10rem',
         padding: vars.space.md,
-        border: `1px solid ${vars.color.border}`,
+        border: `1px solid ${vars.color.border.main}`,
         borderBottomLeftRadius: vars.radius.xs,
         borderBottomRightRadius: vars.radius.xs,
-        backgroundColor: vars.color.surface,
+        backgroundColor: vars.color.surface.main,
         color: vars.editorColors.neutral.dark,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.md,
         lineHeight: vars.lineHeight.relaxed,
         selectors: {
             '&:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
-                borderColor: vars.color.primary,
+                borderColor: vars.color.primary.main,
                 boxShadow: 'none',
             },
             '&[data-invalid="true"]': {
-                borderColor: vars.color.danger,
+                borderColor: vars.color.danger.main,
             },
             '&[data-invalid="true"]:has(.ProseMirror:focus-visible):not(:has(.ProseMirror[data-mouse-focus]))': {
                 boxShadow: 'none',
@@ -35,7 +35,7 @@ export const RICH_TEXT_EDITOR_STYLES = {
             '&[data-disabled="true"]': {
                 cursor: 'not-allowed',
                 opacity: 0.45,
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
             },
         },
     }),
@@ -67,6 +67,6 @@ globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror img`, {
 globalStyle(`${RICH_TEXT_EDITOR_STYLES.editor} .ProseMirror > p:first-child:last-child:has(br)::before`, {
     content: 'attr(data-placeholder)',
     position: 'absolute',
-    color: vars.color.surfaceMutedForeground,
+    color: vars.color.surface.mutedForeground,
     pointerEvents: 'none',
 })

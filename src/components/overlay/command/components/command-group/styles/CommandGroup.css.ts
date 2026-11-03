@@ -15,7 +15,7 @@ export const COMMAND_GROUP_STYLES = {
         fontFamily: vars.fontFamily.sans,
         fontWeight: vars.fontWeight.medium,
         lineHeight: vars.lineHeight.normal,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         userSelect: 'none',
     }),
 }

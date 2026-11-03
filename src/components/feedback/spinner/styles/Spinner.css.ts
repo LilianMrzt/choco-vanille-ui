@@ -6,7 +6,7 @@ import { SPINNER_COLORS_ARRAY } from '@components/feedback/spinner/constants'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const colorVariants = Object.fromEntries(
-    SPINNER_COLORS_ARRAY.map((color) => [color, { color: vars.color[COLOR_INTENT_TOKENS[color]] }]),
+    SPINNER_COLORS_ARRAY.map((color) => [color, { color: vars.color[COLOR_INTENT_TOKENS[color]].main }]),
 )
 
 export const SPINNER_STYLES = {

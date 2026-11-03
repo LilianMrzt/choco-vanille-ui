@@ -7,7 +7,7 @@ export const ACCORDION_CONTENT_STYLES = {
         display: 'grid',
         gridTemplateRows: '0fr',
         paddingBottom: 0,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         outline: 'none',

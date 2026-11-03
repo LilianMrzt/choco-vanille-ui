@@ -35,7 +35,7 @@ import {
  * ```
  * Or scope it to a single subtree:
  * ```tsx
- * <ThemeProvider scope="subtree" theme="dark" tokens={{ primary: 'oklch(0.70 0.16 185)' }}>
+ * <ThemeProvider scope="subtree" theme="dark" tokens={{ primary: { main: 'oklch(0.70 0.16 185)' } }}>
  *   <DarkWidget />
  * </ThemeProvider>
  * ```

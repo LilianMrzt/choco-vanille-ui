@@ -41,7 +41,6 @@ const SvgImage: FC<SvgImageProps> = memo(
                     borderRadius,
                     padding,
                     margin,
-                    backgroundColor,
                 }),
             [
                 objectFit,
@@ -49,7 +48,6 @@ const SvgImage: FC<SvgImageProps> = memo(
                 borderRadius,
                 padding,
                 margin,
-                backgroundColor,
             ],
         )
         const colorClassName = SVG_IMAGE_STYLES.color({ color })
@@ -62,6 +60,7 @@ const SvgImage: FC<SvgImageProps> = memo(
                 role={accessibleLabel === undefined ? undefined : 'img'}
                 className={cn(recipeClassName, colorClassName, className)}
                 style={{
+                    backgroundColor,
                     width,
                     minWidth,
                     maxWidth,

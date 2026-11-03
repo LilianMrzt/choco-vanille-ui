@@ -18,9 +18,9 @@ export const DIALOG_STYLES = {
         maxHeight: 'calc(100% - 2rem)',
         overflow: 'hidden',
         borderRadius: vars.radius.md,
-        border: `1px solid ${vars.color.border}`,
+        border: `1px solid ${vars.color.border.main}`,
         backgroundColor: vars.color.background,
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         transform: 'translate(-50%, -50%)',
         selectors: {
             '&[data-open]': {

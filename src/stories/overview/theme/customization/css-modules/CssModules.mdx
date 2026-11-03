@@ -25,8 +25,8 @@ Reference any kit variable with `var()` in your `.module.css` file — no import
 
 <Source language="css" code={`/* MyCard.module.css */
 .card {
-  background:    var(--color-surface);
-  color:         var(--color-surfaceForeground);
+  background:    var(--color-surface-main);
+  color:         var(--color-surface-foreground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow:    var(--shadow-sm);
@@ -34,14 +34,14 @@ Reference any kit variable with `var()` in your `.module.css` file — no import
 }
 
 .title {
-  color:       var(--color-foreground);
+  color:       var(--color-text-primary);
   font-weight: var(--fontWeight-semibold);
   line-height: var(--lineHeight-tight);
 }
 
 .badge {
-  background: var(--color-primary);
-  color:      var(--color-primaryForeground);
+  background: var(--color-primary-main);
+  color:      var(--color-primary-foreground);
   padding:    var(--space-xs) var(--space-sm);
   border-radius: var(--radius-full);
 }`} />
@@ -70,9 +70,9 @@ To re-skin a subtree, write a global rule that sets the variables on a wrapper e
 
 /* Use :global() so CSS Modules does not mangle the var names. */
 :global(.acme-scope) {
-  --color-primary:           oklch(0.55 0.22 130); /* green */
-  --color-primaryHover:      oklch(0.49 0.22 130);
-  --color-primaryForeground: oklch(1 0 0);
+  --color-primary-main:           oklch(0.55 0.22 130); /* green */
+  --color-primary-hover:      oklch(0.49 0.22 130);
+  --color-primary-foreground: oklch(1 0 0);
   --radius-md:               0.25rem; /* square corners */
 }`} />
 
@@ -90,7 +90,7 @@ export const AcmeSection = ({ children }: { children: React.ReactNode }) => (
 
 <Source language="css" code={`/* AcmeSection.module.css */
 .wrapper[data-brand="acme"] {
-  --color-primary: oklch(0.55 0.22 130);
+  --color-primary-main: oklch(0.55 0.22 130);
 }`} />
 
 <Source language="tsx" code={`<div className={styles.wrapper} data-brand="acme">
@@ -105,8 +105,8 @@ The kit does **not** ship named utility classes — all of its styling is token-
 
 <Source language="css" code={`/* surfaces.module.css */
 .surface {
-  background:    var(--color-surface);
-  color:         var(--color-surfaceForeground);
+  background:    var(--color-surface-main);
+  color:         var(--color-surface-foreground);
   border-radius: var(--radius-md);
 }`} />
 

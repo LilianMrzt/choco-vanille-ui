@@ -71,7 +71,7 @@ and the current item is rendered as plain text.
         children: { table: { disable: true } },
         color: {
             control: 'select',
-            options: ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'],
+            options: ['primary.main', 'secondary.main', 'neutral.main', 'danger.main', 'success.main', 'warning.main', 'info.main'],
         },
         separator: {
             control: 'select',
@@ -84,7 +84,7 @@ and the current item is rendered as plain text.
     },
     args: {
         'aria-label': 'Breadcrumb',
-        color: 'primary',
+        color: 'primary.main',
         separator: 'chevron',
         currentLabel: 'Details',
         children: <Breadcrumbs.Item label={'Details'} />,
@@ -99,7 +99,7 @@ export const Playground: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Breadcrumbs aria-label="Breadcrumb" color="primary" separator="chevron">
+<Breadcrumbs aria-label="Breadcrumb" color="primary.main" separator="chevron">
   <Breadcrumbs.Item label="Home" href="/" />
   <Breadcrumbs.Item label="Products" href="/products" />
   <Breadcrumbs.Item label="Details" />
@@ -209,18 +209,18 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Breadcrumbs aria-label="Primary breadcrumb" color="primary"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Secondary breadcrumb" color="secondary"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Tertiary breadcrumb" color="neutral"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Destructive breadcrumb" color="danger"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Success breadcrumb" color="success"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Warning breadcrumb" color="warning"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
-<Breadcrumbs aria-label="Info breadcrumb" color="info"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>`),
+<Breadcrumbs aria-label="Primary breadcrumb" color="primary.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Secondary breadcrumb" color="secondary.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Tertiary breadcrumb" color="neutral.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Destructive breadcrumb" color="danger.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Success breadcrumb" color="success.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Warning breadcrumb" color="warning.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>
+<Breadcrumbs aria-label="Info breadcrumb" color="info.main"><Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" /></Breadcrumbs>`),
         },
     },
     render: () => (
         <div style={{ display: 'grid', gap: '1rem' }}>
-            {(['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'] as const).map((color) => (
+            {(['primary.main', 'secondary.main', 'neutral.main', 'danger.main', 'success.main', 'warning.main', 'info.main'] as const).map((color) => (
                 <Breadcrumbs
                     key={color}
                     aria-label={`${color} breadcrumb`}

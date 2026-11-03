@@ -38,8 +38,8 @@ export const AVATAR_STYLES = {
             justifyContent: 'center',
             flexShrink: 0,
             overflow: 'visible',
-            backgroundColor: vars.color.primarySubtle,
-            color: vars.color.primarySubtleForeground,
+            backgroundColor: vars.color.primary.subtle,
+            color: vars.color.primary.subtleForeground,
             border: `2px solid ${vars.color.background}`,
             fontFamily: vars.fontFamily.sans,
             fontWeight: vars.fontWeight.medium,
@@ -82,9 +82,9 @@ export const AVATAR_STYLES = {
                     color,
                     {
                         backgroundColor:
-              vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+              vars.color[COLOR_INTENT_TOKENS[color]].subtle,
                         color:
-              vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
+              vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                     },
                 ]),
             ),
@@ -104,7 +104,7 @@ export const AVATAR_STYLES = {
             },
             style: {
                 borderWidth: '1px',
-                borderColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleBorder`],
+                borderColor: vars.color[COLOR_INTENT_TOKENS[color]].subtleBorder,
             },
         })),
 

@@ -1,7 +1,6 @@
-import type { ThemeColors } from '@theme'
 import type { ColorGroup } from '@stories/overview/theme/colors/components/color-group-card/types'
 
-export type ColorMap = ThemeColors
+export type ColorMap = Readonly<Record<string, string>>
 
 export type ColorPaletteSectionProps = Readonly<{
     title: string

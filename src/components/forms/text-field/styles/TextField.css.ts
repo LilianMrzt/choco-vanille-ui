@@ -9,9 +9,9 @@ export const TEXT_FIELD_STYLES = {
             fontFamily: vars.fontFamily.sans,
             lineHeight: vars.lineHeight.normal,
             borderRadius: vars.radius.xs,
-            border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.surface,
-            color: vars.color.foreground,
+            border: `1px solid ${vars.color.border.main}`,
+            backgroundColor: vars.color.surface.main,
+            color: vars.color.text.primary,
             outline: 'none',
             transition: [
                 `border-color ${vars.duration.fast} ${vars.easing.standard}`,
@@ -20,23 +20,23 @@ export const TEXT_FIELD_STYLES = {
             ].join(', '),
             selectors: {
                 '&::placeholder': {
-                    color: vars.color.foregroundSubtle,
+                    color: vars.color.text.tertiary,
                 },
                 // Keyboard focus: full ring + primary border.
                 '&:focus-visible': {
                     outline: 'none',
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                     boxShadow: 'none',
                 },
                 // Click focus (data-mouse-focus set by JS): primary border, NO ring.
                 '&[data-mouse-focus]:focus-visible': {
                     boxShadow: 'none',
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                 },
                 '&:disabled': {
                     cursor: 'not-allowed',
                     opacity: 0.45,
-                    backgroundColor: vars.color.surfaceMuted,
+                    backgroundColor: vars.color.surface.muted,
                 },
             },
         },
@@ -60,18 +60,18 @@ export const TEXT_FIELD_STYLES = {
             },
             hasError: {
                 true: {
-                    borderColor: vars.color.danger,
+                    borderColor: vars.color.danger.main,
                     selectors: {
                         '&:hover:not(:disabled)': {
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                         },
                         '&:focus-visible': {
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                             boxShadow: 'none',
                         },
                         '&[data-mouse-focus]:focus-visible': {
                             boxShadow: 'none',
-                            borderColor: vars.color.danger,
+                            borderColor: vars.color.danger.main,
                         },
                     },
                 },

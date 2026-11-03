@@ -43,9 +43,9 @@ export const IMAGE_PICKER_STYLES = {
             height: '14rem',
             padding: 0,
             overflow: 'hidden',
-            border: `1px solid ${vars.color.border}`,
-            backgroundColor: vars.color.surfaceMuted,
-            color: vars.color.foreground,
+            border: `1px solid ${vars.color.border.main}`,
+            backgroundColor: vars.color.surface.muted,
+            color: vars.color.text.primary,
             font: 'inherit',
             textAlign: 'center',
             cursor: 'pointer',
@@ -64,20 +64,20 @@ export const IMAGE_PICKER_STYLES = {
                     backgroundColor: vars.color.background,
                 },
                 '&:hover:not([data-disabled="true"])': {
-                    borderColor: vars.color.primary,
+                    borderColor: vars.color.primary.main,
                 },
                 '&:focus-visible:not([data-disabled="true"])': {
                     outline: 'none',
-                    borderColor: vars.color.primary,
-                    boxShadow: `0 0 0 3px ${vars.color.primarySubtle}`,
+                    borderColor: vars.color.primary.main,
+                    boxShadow: `0 0 0 3px ${vars.color.primary.subtle}`,
                 },
                 '&[data-dragging="true"]:not([data-disabled="true"])': {
-                    borderColor: vars.color.primary,
-                    backgroundColor: vars.color.primarySubtle,
-                    boxShadow: `0 0 0 3px ${vars.color.primarySubtle}`,
+                    borderColor: vars.color.primary.main,
+                    backgroundColor: vars.color.primary.subtle,
+                    boxShadow: `0 0 0 3px ${vars.color.primary.subtle}`,
                 },
                 '&[data-has-error="true"]': {
-                    borderColor: vars.color.danger,
+                    borderColor: vars.color.danger.main,
                 },
                 '&[data-disabled="true"]': {
                     cursor: 'not-allowed',
@@ -115,7 +115,7 @@ export const IMAGE_PICKER_STYLES = {
         textAlign: 'center',
     }),
     emptyIcon: style({
-        color: vars.color.primary,
+        color: vars.color.primary.main,
     }),
     emptyText: style({
         maxWidth: '22rem',
@@ -141,7 +141,7 @@ export const IMAGE_PICKER_STYLES = {
         gap: vars.space.xs,
         padding: vars.space.sm,
         backgroundColor: vars.color.overlay,
-        color: vars.color.primaryForeground,
+        color: vars.color.primary.foreground,
         opacity: 0,
         pointerEvents: 'none',
         transition: `opacity ${vars.duration.fast} ${vars.easing.standard}`,

@@ -18,9 +18,9 @@ Override variables on `:root` to change the look of **every** component in the a
 <Source language="css" code={`/* app.css */
 /* Global rebrand */
 :root {
-  --color-primary:           oklch(0.58 0.18 185); /* teal */
-  --color-primaryHover:      oklch(0.52 0.18 185);
-  --color-primaryForeground: oklch(1 0 0);
+  --color-primary-main:           oklch(0.58 0.18 185); /* teal */
+  --color-primary-hover:      oklch(0.52 0.18 185);
+  --color-primary-foreground: oklch(1 0 0);
   --color-focusRing:              oklch(0.58 0.18 185);
   --radius-md:               0.75rem;
 }`} />
@@ -35,8 +35,8 @@ Re-skin only a subtree by overriding the variables on a scoped selector. Everyth
 
 <Source language="css" code={`/* Only components inside [data-brand="acme"] are affected */
 [data-brand="acme"] {
-  --color-primary:      oklch(0.55 0.22 130); /* green */
-  --color-primaryHover: oklch(0.49 0.22 130);
+  --color-primary-main:      oklch(0.55 0.22 130); /* green */
+  --color-primary-hover: oklch(0.49 0.22 130);
 }`} />
 
 <Source language="tsx" code={`<div data-brand="acme">
@@ -52,10 +52,10 @@ Because CSS variables cascade, you can nest scopes and even override a single to
 
 | Token | Controls |
 |---|---|
-| `--color-primary` / `--color-primaryHover` | Primary action colour and its hover state |
-| `--color-primaryForeground` | Text/icon colour on top of `primary` |
+| `--color-primary-main` / `--color-primary-hover` | Primary action colour and its hover state |
+| `--color-primary-foreground` | Text/icon colour on top of `primary` |
 | `--color-focusRing` | Focus ring colour |
-| `--color-surface` / `--color-surfaceForeground` | Surface background and its text |
+| `--color-surface-main` / `--color-surface-foreground` | Surface background and its text |
 | `--radius-md` | Default corner radius |
 
 ---
@@ -69,7 +69,7 @@ Because CSS variables cascade, you can nest scopes and even override a single to
 <Source language="css" code={`/* A brand override that only applies in dark mode */
 [data-theme="dark"],
 .${THEME_DARK_CLASS} {
-  --color-primary: oklch(0.70 0.16 185);
+  --color-primary-main: oklch(0.70 0.16 185);
 }`} />
 
 <Source language="tsx" code={`<div data-theme="dark">…</div>                 {/* force dark for this subtree     */}

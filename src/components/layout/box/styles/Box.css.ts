@@ -1,11 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
-
-const backgroundColorVariants = createColorVariants('background')
-const borderColorVariants = createColorVariants('borderColor')
 
 const MARGIN_VARIANTS = {
     auto: 'auto',
@@ -361,12 +357,6 @@ export const BOX_STYLES = {
                 '4xl': { rowGap: SPACE_VARIANTS['4xl'] },
                 '5xl': { rowGap: SPACE_VARIANTS['5xl'] },
             },
-
-            // Border Color
-            borderColor: borderColorVariants,
-
-            // Background Color
-            backgroundColor: backgroundColorVariants,
 
             // Shadow
             boxShadow: {

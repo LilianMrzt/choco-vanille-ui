@@ -1,3 +1,4 @@
+import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 import type { CSSProperties } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
@@ -16,15 +17,15 @@ const colorGroups: ReadonlyArray<ColorGroup> = [
         description: 'Main backgrounds, elevated surfaces, base text and scrim.',
         tokens: [
             'background',
-            'foreground',
-            'foregroundMuted',
-            'foregroundSubtle',
-            'surface',
-            'surfaceForeground',
-            'surfaceElevated',
-            'surfaceElevatedForeground',
-            'surfaceMuted',
-            'surfaceMutedForeground',
+            'text.primary',
+            'text.secondary',
+            'text.tertiary',
+            'surface.main',
+            'surface.foreground',
+            'surface.elevated',
+            'surface.elevatedForeground',
+            'surface.muted',
+            'surface.mutedForeground',
             'overlay',
         ],
     },
@@ -33,125 +34,133 @@ const colorGroups: ReadonlyArray<ColorGroup> = [
         description:
       'Brand colour. Solid family + subtle family, all states included.',
         tokens: [
-            'primary',
-            'primaryHover',
-            'primaryActive',
-            'primaryForeground',
-            'primarySubtle',
-            'primarySubtleHover',
-            'primarySubtleActive',
-            'primarySubtleForeground',
-            'primarySubtleBorder',
+            'primary.main',
+            'primary.hover',
+            'primary.pressed',
+            'primary.foreground',
+            'primary.subtle',
+            'primary.subtleHover',
+            'primary.subtlePressed',
+            'primary.subtleForeground',
+            'primary.border',
+            'primary.subtleBorder',
         ],
     },
     {
         label: 'Secondary',
         description: 'Complementary to primary. Same states as other families.',
         tokens: [
-            'secondary',
-            'secondaryHover',
-            'secondaryActive',
-            'secondaryForeground',
-            'secondarySubtle',
-            'secondarySubtleHover',
-            'secondarySubtleActive',
-            'secondarySubtleForeground',
-            'secondarySubtleBorder',
+            'secondary.main',
+            'secondary.hover',
+            'secondary.pressed',
+            'secondary.foreground',
+            'secondary.subtle',
+            'secondary.subtleHover',
+            'secondary.subtlePressed',
+            'secondary.subtleForeground',
+            'secondary.border',
+            'secondary.subtleBorder',
         ],
     },
     {
         label: 'Neutral',
         description: 'Low-emphasis neutral intent. Same states as other families.',
         tokens: [
-            'neutral',
-            'neutralHover',
-            'neutralActive',
-            'neutralForeground',
-            'neutralSubtle',
-            'neutralSubtleHover',
-            'neutralSubtleActive',
-            'neutralSubtleForeground',
-            'neutralSubtleBorder',
+            'neutral.main',
+            'neutral.hover',
+            'neutral.pressed',
+            'neutral.foreground',
+            'neutral.subtle',
+            'neutral.subtleHover',
+            'neutral.subtlePressed',
+            'neutral.subtleForeground',
+            'neutral.border',
+            'neutral.subtleBorder',
         ],
     },
     {
         label: 'Success',
         description: 'Positive feedback, confirmations and validated states.',
         tokens: [
-            'success',
-            'successHover',
-            'successActive',
-            'successForeground',
-            'successSubtle',
-            'successSubtleHover',
-            'successSubtleActive',
-            'successSubtleForeground',
-            'successSubtleBorder',
+            'success.main',
+            'success.hover',
+            'success.pressed',
+            'success.foreground',
+            'success.subtle',
+            'success.subtleHover',
+            'success.subtlePressed',
+            'success.subtleForeground',
+            'success.border',
+            'success.subtleBorder',
         ],
     },
     {
         label: 'Warning',
         description: 'Cautionary feedback, moderate-risk actions.',
         tokens: [
-            'warning',
-            'warningHover',
-            'warningActive',
-            'warningForeground',
-            'warningSubtle',
-            'warningSubtleHover',
-            'warningSubtleActive',
-            'warningSubtleForeground',
-            'warningSubtleBorder',
+            'warning.main',
+            'warning.hover',
+            'warning.pressed',
+            'warning.foreground',
+            'warning.subtle',
+            'warning.subtleHover',
+            'warning.subtlePressed',
+            'warning.subtleForeground',
+            'warning.border',
+            'warning.subtleBorder',
         ],
     },
     {
         label: 'Info',
         description: 'Informational messages and neutral status indicators.',
         tokens: [
-            'info',
-            'infoHover',
-            'infoActive',
-            'infoForeground',
-            'infoSubtle',
-            'infoSubtleHover',
-            'infoSubtleActive',
-            'infoSubtleForeground',
-            'infoSubtleBorder',
+            'info.main',
+            'info.hover',
+            'info.pressed',
+            'info.foreground',
+            'info.subtle',
+            'info.subtleHover',
+            'info.subtlePressed',
+            'info.subtleForeground',
+            'info.border',
+            'info.subtleBorder',
         ],
     },
     {
         label: 'Danger',
         description: 'Irreversible actions, errors and deletions.',
         tokens: [
-            'danger',
-            'dangerHover',
-            'dangerActive',
-            'dangerForeground',
-            'dangerSubtle',
-            'dangerSubtleHover',
-            'dangerSubtleActive',
-            'dangerSubtleForeground',
-            'dangerSubtleBorder',
+            'danger.main',
+            'danger.hover',
+            'danger.pressed',
+            'danger.foreground',
+            'danger.subtle',
+            'danger.subtleHover',
+            'danger.subtlePressed',
+            'danger.subtleForeground',
+            'danger.border',
+            'danger.subtleBorder',
         ],
     },
     {
         label: 'Skeleton',
         description: 'Loading placeholder surfaces.',
-        tokens: ['skeletonBase', 'skeletonHighlight'],
+        tokens: ['skeleton.base', 'skeleton.highlight'],
     },
     ...(['accentPurple', 'accentPink', 'accentOrange', 'accentTeal', 'accentCyan', 'accentIndigo'] as const).map((color) => ({
         label: `${color.slice('accent'.length)} accent`,
         description: 'Accent palette with solid and subtle interaction states.',
         tokens: [
-            color,
-            `${color}Hover`,
-            `${color}Active`,
-            `${color}Foreground`,
-            `${color}Subtle`,
-            `${color}SubtleHover`,
-            `${color}SubtleActive`,
-            `${color}SubtleForeground`,
-            `${color}SubtleBorder`,
+            `${color}.main`,
+            `${color}.hover`,
+            `${color}.pressed`,
+            `${color}.foreground`,
+            `${color}.subtle`,
+            `${color}.subtleHover`,
+            `${color}.subtlePressed`,
+            `${color}.subtleForeground`,
+            `${color}.border`,
+            `${color}.subtleBorder`,
         ] as const,
     })),
     {
@@ -162,17 +171,17 @@ const colorGroups: ReadonlyArray<ColorGroup> = [
     {
         label: 'Links',
         description: 'Link text and interaction states.',
-        tokens: ['link', 'linkHover', 'linkActive'],
+        tokens: ['link.main', 'link.hover', 'link.pressed'],
     },
     {
         label: 'Borders & Focus',
         description: 'Divider lines, field outlines and focus ring.',
-        tokens: ['border', 'borderStrong', 'focusRing'],
+        tokens: ['border.subtle', 'border.muted', 'border.main', 'border.strong', 'border.stronger', 'focusRing'],
     },
     {
         label: 'Highlight',
         description: 'Text highlight (mark element).',
-        tokens: ['highlight', 'highlightForeground'],
+        tokens: ['highlight.main', 'highlight.foreground'],
     },
 ]
 
@@ -207,9 +216,9 @@ Built-in palettes use in-gamut sRGB values: blue primary, violet secondary, sky 
 | Accents | Purple, pink, orange, teal, cyan, and indigo treatments |
 | Skeleton | Loading placeholder surfaces |
 
-Each intent exposes **solid** fill, hover, active, and foreground tokens, plus **subtle** surface, hover, active, foreground, and border tokens.
+Each intent exposes ten direct leaves: \`main\`, \`hover\`, \`pressed\`, \`foreground\`, \`subtle\`, \`subtleHover\`, \`subtlePressed\`, \`subtleForeground\`, \`border\`, and \`subtleBorder\`.
 Built-in foregrounds meet 4.5:1 contrast on all three matching states. Field borders and focus rings meet 3:1 on the supported neutral surfaces. These guarantees do not cover custom overrides, disabled opacity, or arbitrary consumer backgrounds.
-Use \`*SubtleForeground\` for ghost and outlined text, not the solid foreground. Use \`danger\`, \`neutral\`, \`accentPurple\` (and other \`accent*\` families), and \`focusRing\` for theme tokens.
+Use \`family.subtleForeground\` for ghost and outlined text, not the solid foreground. Gray borders are ordered from \`border.subtle\` to \`border.stronger\`; decorative levels do not guarantee 3:1. Isolated tokens such as \`focusRing\` stay strings.
 Click any swatch to copy its current value.
                 `,
             },
@@ -226,7 +235,7 @@ type Story = StoryObj<typeof meta>
 const pageLight: CSSProperties = {
     padding: lightTheme.space.lg,
     backgroundColor: lightColors.background,
-    color: lightColors.foreground,
+    color: lightColors.text.primary,
     minHeight: '100vh',
     fontFamily: lightTheme.fontFamily.sans,
 }
@@ -234,7 +243,7 @@ const pageLight: CSSProperties = {
 const pageDark: CSSProperties = {
     ...pageLight,
     backgroundColor: darkColors.background,
-    color: darkColors.foreground,
+    color: darkColors.text.primary,
 }
 
 // Stories
@@ -260,7 +269,7 @@ export const LightTheme: Story = {
                 subtitle={
                     'Semantic tokens of the light theme. Click a swatch to copy its value.'
                 }
-                colors={lightColors}
+                colors={Object.fromEntries(getColorEntries(lightColors))}
                 colorGroups={colorGroups}
                 dark={false}
             />
@@ -289,7 +298,7 @@ export const DarkTheme: Story = {
                 subtitle={
                     'Semantic tokens of the dark theme. Click a swatch to copy its value.'
                 }
-                colors={darkColors}
+                colors={Object.fromEntries(getColorEntries(darkColors))}
                 colorGroups={colorGroups}
                 dark={true}
             />

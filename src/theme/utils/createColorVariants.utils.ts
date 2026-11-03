@@ -1,5 +1,6 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
+import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 
 /**
  * Generates a recipe variant map for every color token in the theme,
@@ -22,7 +23,7 @@ export const createColorVariants = <
         extra?: TExtra,
     ): Record<ThemeColor | Extract<keyof TExtra, string>, Record<string, string>> => {
     const variants: Record<string, Record<string, string>> = Object.fromEntries(
-        Object.entries(vars.color).map(([key, value]) => [key, { [property]: value }]),
+        getColorEntries(vars.color).map(([key, value]) => [key, { [property]: value }]),
     )
 
     if (extra) {

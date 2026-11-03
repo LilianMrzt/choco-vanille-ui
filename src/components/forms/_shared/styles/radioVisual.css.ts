@@ -19,7 +19,7 @@ export const RADIO_VISUAL_STYLES = {
         width: '1rem',
         height: '1rem',
         borderRadius: vars.radius.full,
-        border: `1.5px solid ${vars.color.border}`,
+        border: `1.5px solid ${vars.color.border.main}`,
         padding: 0,
         display: 'flex',
         alignItems: 'center',
@@ -38,20 +38,20 @@ export const RADIO_VISUAL_STYLES = {
         selectors: {
             /* Standalone root selectors */
             '&:hover': {
-                borderColor: vars.color.primary,
+                borderColor: vars.color.primary.main,
             },
             '&:focus-visible': {
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-state="checked"]': {
-                backgroundColor: vars.color.primary,
-                borderColor: vars.color.primary,
-                color: vars.color.primaryForeground,
+                backgroundColor: vars.color.primary.main,
+                borderColor: vars.color.primary.main,
+                color: vars.color.primary.foreground,
             },
             '&[data-state="checked"]:hover': {
-                backgroundColor: vars.color.primaryHover,
-                borderColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
+                borderColor: vars.color.primary.hover,
             },
             '&[data-disabled]': {
                 cursor: 'not-allowed',
@@ -60,16 +60,16 @@ export const RADIO_VISUAL_STYLES = {
 
             /* Dropdown child-span selectors */
             '[data-highlighted] &': {
-                borderColor: vars.color.primary,
+                borderColor: vars.color.primary.main,
             },
             '[data-state="checked"] &': {
-                backgroundColor: vars.color.primary,
-                borderColor: vars.color.primary,
-                color: vars.color.primaryForeground,
+                backgroundColor: vars.color.primary.main,
+                borderColor: vars.color.primary.main,
+                color: vars.color.primary.foreground,
             },
             '[data-state="checked"][data-highlighted] &': {
-                backgroundColor: vars.color.primaryHover,
-                borderColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
+                borderColor: vars.color.primary.hover,
             },
         },
     }),

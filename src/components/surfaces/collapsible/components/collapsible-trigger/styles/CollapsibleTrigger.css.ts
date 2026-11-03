@@ -14,7 +14,7 @@ export const COLLAPSIBLE_TRIGGER_STYLES = {
         border: 'none',
         borderRadius: vars.radius.sm,
         backgroundColor: 'transparent',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontFamily: 'inherit',
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
@@ -29,11 +29,11 @@ export const COLLAPSIBLE_TRIGGER_STYLES = {
         ].join(', '),
         selectors: {
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&:not([data-disabled]):active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             '&:focus-visible': {
                 outline: 'none',

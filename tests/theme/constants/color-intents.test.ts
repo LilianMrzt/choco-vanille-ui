@@ -34,12 +34,12 @@ describe('component color intentions', () => {
         expect(containedCompoundVariants).toContainEqual({
             variants: { variant: 'contained', color: intent },
             style: expect.objectContaining({
-                backgroundColor: vars.color[token],
-                color: vars.color[`${token}Foreground`],
+                backgroundColor: vars.color[token].main,
+                color: vars.color[token].foreground,
                 selectors: expect.objectContaining({
-                    '&:hover': { backgroundColor: vars.color[`${token}Hover`] },
-                    '&:active': { backgroundColor: vars.color[`${token}Active`] },
-                    '&[data-active="true"]': { backgroundColor: vars.color[`${token}Active`] },
+                    '&:hover': { backgroundColor: vars.color[token].hover },
+                    '&:active': { backgroundColor: vars.color[token].pressed },
+                    '&[data-active="true"]': { backgroundColor: vars.color[token].pressed },
                 }),
             }),
         })
@@ -51,9 +51,9 @@ describe('component color intentions', () => {
         expect(outlinedSubtleCompoundVariants).toContainEqual({
             variants: { variant: 'outlinedSubtle', color: intent },
             style: {
-                backgroundColor: vars.color[`${token}Subtle`],
-                borderColor: vars.color[`${token}SubtleBorder`],
-                color: vars.color[`${token}SubtleForeground`],
+                backgroundColor: vars.color[token].subtle,
+                borderColor: vars.color[token].subtleBorder,
+                color: vars.color[token].subtleForeground,
             },
         })
     })

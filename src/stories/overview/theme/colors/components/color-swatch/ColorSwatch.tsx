@@ -4,9 +4,10 @@ import type { ColorSwatchProps } from '@stories/overview/theme/colors/components
 
 export const ColorSwatch = ({ name, value, dark = false }: ColorSwatchProps) => {
     const [copied, setCopied] = useState(false)
+    const colorReference = `vars.color.${name}`
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(value).then(() => {
+        navigator.clipboard.writeText(colorReference).then(() => {
             setCopied(true)
             setTimeout(() => setCopied(false), 1500)
         })
@@ -15,9 +16,9 @@ export const ColorSwatch = ({ name, value, dark = false }: ColorSwatchProps) => 
     return (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div
-            style={colorSwatchStyles.wrapper()}
+            style={colorSwatchStyles.wrapper(name.endsWith('.main'))}
             onClick={handleCopy}
-            title={`Click to copy: ${value}`}
+            title={`Click to copy: ${colorReference}`}
         >
             <div
                 style={colorSwatchStyles.swatch(value, dark)}

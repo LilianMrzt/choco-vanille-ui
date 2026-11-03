@@ -10,13 +10,13 @@ export const table = style({
 export const th = style({
     textAlign: 'left',
     padding: `${vars.space.sm} ${vars.space.md}`,
-    borderBottom: `2px solid ${vars.color.borderStrong}`,
+    borderBottom: `2px solid ${vars.color.border.strong}`,
     whiteSpace: 'nowrap',
 })
 
 export const td = style({
     padding: `${vars.space.xs} ${vars.space.md}`,
-    borderBottom: `1px solid ${vars.color.border}`,
+    borderBottom: `1px solid ${vars.color.border.main}`,
     verticalAlign: 'middle',
 })
 

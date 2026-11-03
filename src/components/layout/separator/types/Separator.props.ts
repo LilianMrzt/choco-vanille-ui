@@ -10,7 +10,7 @@ export type SeparatorProps = Omit<BoxProps, 'children' | 'aria-orientation'> & {
   orientation?: SeparatorOrientation
   /** The theme color token applied to the separator's background color. */
   color?: SeparatorColor
-  /** The theme color token applied to the separator label. Defaults to `textTertiary`. */
+  /** The theme color leaf path applied to the separator label. Defaults to `text.tertiary`. */
   textColor?: SeparatorTextColor
   /** Optional text displayed between the separator lines. */
   label?: string

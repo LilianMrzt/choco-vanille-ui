@@ -176,7 +176,7 @@ const [open, setOpen] = useState(false)
     <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
       Popover title
     </h4>
-    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surfaceMuted-foreground)' }}>
+    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surface-mutedForeground)' }}>
       You can put any content here: text, images, forms, or action buttons.
     </p>
     <Popover.Item label="Edit" startIcon={SearchIcon} shortcut="⌘E" />
@@ -216,7 +216,7 @@ const [open, setOpen] = useState(false)
                         style={{
                             margin: '0.5rem 0 0',
                             fontSize: '0.875rem',
-                            color: 'var(--color-surfaceMuted-foreground)',
+                            color: 'var(--color-surface-mutedForeground)',
                         }}
                     >
                         You can put any content here: text, images, forms, or action

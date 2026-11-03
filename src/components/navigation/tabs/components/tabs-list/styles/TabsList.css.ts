@@ -31,7 +31,7 @@ export const TABS_LIST_STYLES = {
             {
                 variants: { variant: 'default', bordered: true },
                 style: {
-                    borderBottom: `1px solid ${vars.color.border}`,
+                    borderBottom: `1px solid ${vars.color.border.main}`,
                 },
             },
         ],

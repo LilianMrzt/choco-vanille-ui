@@ -17,21 +17,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.primarySubtle,
+                    backgroundColor: vars.color.primary.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.primarySubtleHover,
+                    backgroundColor: vars.color.primary.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.primarySubtle,
+                    backgroundColor: vars.color.primary.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.primarySubtleHover,
+                    backgroundColor: vars.color.primary.subtleHover,
                 },
             },
         },
@@ -44,21 +44,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.secondarySubtle,
+                    backgroundColor: vars.color.secondary.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.secondarySubtleHover,
+                    backgroundColor: vars.color.secondary.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.secondarySubtle,
+                    backgroundColor: vars.color.secondary.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.secondarySubtleHover,
+                    backgroundColor: vars.color.secondary.subtleHover,
                 },
             },
         },
@@ -71,21 +71,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.neutralSubtle,
+                    backgroundColor: vars.color.neutral.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.neutralSubtleHover,
+                    backgroundColor: vars.color.neutral.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.neutralSubtle,
+                    backgroundColor: vars.color.neutral.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.neutralSubtleHover,
+                    backgroundColor: vars.color.neutral.subtleHover,
                 },
             },
         },
@@ -98,21 +98,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.dangerSubtle,
+                    backgroundColor: vars.color.danger.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.dangerSubtleHover,
+                    backgroundColor: vars.color.danger.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.dangerSubtle,
+                    backgroundColor: vars.color.danger.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.dangerSubtleHover,
+                    backgroundColor: vars.color.danger.subtleHover,
                 },
             },
         },
@@ -125,21 +125,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.successSubtle,
+                    backgroundColor: vars.color.success.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.successSubtleHover,
+                    backgroundColor: vars.color.success.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.successSubtle,
+                    backgroundColor: vars.color.success.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.successSubtleHover,
+                    backgroundColor: vars.color.success.subtleHover,
                 },
             },
         },
@@ -152,21 +152,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.warningSubtle,
+                    backgroundColor: vars.color.warning.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.warningSubtleHover,
+                    backgroundColor: vars.color.warning.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.warningSubtle,
+                    backgroundColor: vars.color.warning.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.warningSubtleHover,
+                    backgroundColor: vars.color.warning.subtleHover,
                 },
             },
         },
@@ -179,21 +179,21 @@ export const outlinedCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.infoSubtle,
+                    backgroundColor: vars.color.info.subtle,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.infoSubtleHover,
+                    backgroundColor: vars.color.info.subtleHover,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.surface,
-                    color: vars.color.foreground,
-                    borderColor: vars.color.border,
+                    backgroundColor: vars.color.surface.main,
+                    color: vars.color.text.primary,
+                    borderColor: vars.color.border.main,
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.infoSubtle,
+                    backgroundColor: vars.color.info.subtle,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.infoSubtleHover,
+                    backgroundColor: vars.color.info.subtleHover,
                 },
             },
         },

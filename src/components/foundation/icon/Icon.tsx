@@ -8,6 +8,9 @@ import { memo, type CSSProperties, type FC } from 'react'
  * SVG icon wrapper. Decorative by default (`aria-hidden`). Pass
  * `aria-label` to emit `role="img"` for informative icons. An icon inside
  * a named control should remain decorative — the control owns the name.
+ * Color accepts CSS values without token lookup and inherits when omitted.
+ * Consumer `style` overrides SVG color props. Omit `color` when stylesheet
+ * interaction states own it; no inline default overrides those states.
  */
 const Icon: FC<IconProps> = memo(({
     icon: IconComponent,
@@ -30,10 +33,10 @@ const Icon: FC<IconProps> = memo(({
     const recipeClassName = ICON_STYLES.recipe({
         size,
         spin,
-        color,
     })
 
     const computedStyle: CSSProperties = {
+        color,
         ...style,
     }
 

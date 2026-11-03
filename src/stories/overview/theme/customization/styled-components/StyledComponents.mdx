@@ -24,8 +24,8 @@ styled-components or Emotion runtime then resolves the same token variables.
 import styled from 'styled-components';
 
 export const Card = styled.div\`
-  background:    var(--color-surface);
-  color:         var(--color-surfaceForeground);
+  background:    var(--color-surface-main);
+  color:         var(--color-surface-foreground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow:    var(--shadow-sm);
@@ -33,14 +33,14 @@ export const Card = styled.div\`
 \`;
 
 export const PrimaryButton = styled.button\`
-  background:  var(--color-primary);
-  color:       var(--color-primaryForeground);
+  background:  var(--color-primary-main);
+  color:       var(--color-primary-foreground);
   padding:     var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   font-weight: var(--fontWeight-semibold);
 
   &:hover {
-    background: var(--color-primaryHover);
+    background: var(--color-primary-hover);
   }
 
   &:focus-visible {
@@ -53,8 +53,8 @@ export const PrimaryButton = styled.button\`
 import styled from '@emotion/styled';
 
 export const Card = styled.div\`
-  background:    var(--color-surface);
-  color:         var(--color-surfaceForeground);
+  background:    var(--color-surface-main);
+  color:         var(--color-surface-foreground);
   padding:       var(--space-lg);
   border-radius: var(--radius-md);
 \`;`} />
@@ -68,8 +68,8 @@ Both libraries also accept style objects. Use `var()` as a plain string value.
 <Source language="tsx" code={`import styled from 'styled-components'; // or '@emotion/styled'
 
 export const Badge = styled.span({
-  background:    'var(--color-primary)',
-  color:         'var(--color-primaryForeground)',
+  background:    'var(--color-primary-main)',
+  color:         'var(--color-primary-foreground)',
   padding:       \`var(--space-xs) var(--space-sm)\`,
   borderRadius:  'var(--radius-full)',
   fontSize:      'var(--fontSize-xs)',
@@ -87,9 +87,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const BrandOverride = createGlobalStyle\`
   :root {
-    --color-primary:           oklch(0.58 0.18 185);
-    --color-primaryHover:      oklch(0.52 0.18 185);
-    --color-primaryForeground: oklch(1 0 0);
+    --color-primary-main:           oklch(0.58 0.18 185);
+    --color-primary-hover:      oklch(0.52 0.18 185);
+    --color-primary-foreground: oklch(1 0 0);
     --color-focusRing:              oklch(0.58 0.18 185);
     --radius-md:               0.75rem;
   }
@@ -109,9 +109,9 @@ import { Global, css } from '@emotion/react';
 export const BrandOverride = () => (
   <Global styles={css\`
     :root {
-      --color-primary:           oklch(0.58 0.18 185);
-      --color-primaryHover:      oklch(0.52 0.18 185);
-      --color-primaryForeground: oklch(1 0 0);
+      --color-primary-main:           oklch(0.58 0.18 185);
+      --color-primary-hover:      oklch(0.52 0.18 185);
+      --color-primary-foreground: oklch(1 0 0);
       --radius-md:               0.75rem;
     }
   \`} />
@@ -127,9 +127,9 @@ Override tokens on a wrapper component to re-skin a subtree without affecting th
 
 // The CSS variables are set on this wrapper; all kit components inside inherit them.
 const AcmeScope = styled.div\`
-  --color-primary:           oklch(0.55 0.22 130);
-  --color-primaryHover:      oklch(0.49 0.22 130);
-  --color-primaryForeground: oklch(1 0 0);
+  --color-primary-main:           oklch(0.55 0.22 130);
+  --color-primary-hover:      oklch(0.49 0.22 130);
+  --color-primary-foreground: oklch(1 0 0);
   --radius-md:               0.25rem;
 \`;
 
@@ -150,7 +150,7 @@ You can drive token values from props — handy for dynamic palettes without a f
 type SurfaceProps = { $elevated?: boolean };
 
 export const Surface = styled.div<SurfaceProps>\`
-  background:  var(--color-surface);
+  background:  var(--color-surface-main);
   box-shadow:  \${({ $elevated }) =>
     $elevated ? 'var(--shadow-lg)' : 'var(--shadow-sm)'};
   padding:     var(--space-md);
@@ -169,7 +169,7 @@ Since styled components / emotion output resolves to regular CSS, dark mode work
 > **React app?** If you need programmatic theme switching, the kit's `<ThemeProvider>` manages `data-theme` via React state — your styled components and Emotion styles resolve through the same CSS variables so they respond automatically, with no changes to your existing styled code. See the **ThemeProvider** page.
 
 <Source language="tsx" code={`<div data-theme="dark">
-  {/* Card reads var(--color-surface) which the kit flips for dark mode */}
+  {/* Card reads var(--color-surface-main) which the kit flips for dark mode */}
   <Card>Dark-aware card</Card>
 </div>
 
@@ -186,7 +186,7 @@ import { THEME_DARK_CLASS } from '@choco-vanille/ui';
 export const DarkBrandOverride = createGlobalStyle\`
   [data-theme="dark"],
   .${THEME_DARK_CLASS} {
-    --color-primary: oklch(0.70 0.16 185);
+    --color-primary-main: oklch(0.70 0.16 185);
   }
 \`;`} />
 

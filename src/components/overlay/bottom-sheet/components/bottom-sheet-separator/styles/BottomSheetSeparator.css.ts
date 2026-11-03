@@ -8,7 +8,7 @@ export const BOTTOM_SHEET_SEPARATOR_STYLES = {
         height: '1px',
         marginBlock: vars.space.xs,
         marginInline: vars.space.md,
-        backgroundColor: vars.color.border,
+        backgroundColor: vars.color.border.main,
         opacity: 0.7,
     }),
 }

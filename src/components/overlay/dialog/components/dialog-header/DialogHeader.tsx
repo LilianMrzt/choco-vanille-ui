@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
@@ -52,7 +53,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
                         id={titleProps?.id}
                         fontSize={'lg'}
                         fontWeight={'semibold'}
-                        color={'foreground'}
+                        color={vars.color.text.primary}
                         {...titleProps}
                     >
                         {title}
@@ -62,7 +63,7 @@ const DialogHeader: FC<DialogHeaderProps> = memo(({
                     <Typography
                         as={'p'}
                         fontSize={'sm'}
-                        color={'surfaceMutedForeground'}
+                        color={vars.color.surface.mutedForeground}
                         {...descriptionProps}
                     >
                         {description}

@@ -53,11 +53,11 @@ export type ThemeProviderProps = Readonly<React.HTMLAttributes<HTMLDivElement> &
 
     /**
      * Runtime color-token overrides injected as CSS custom properties on the
-     * wrapper or document root according to `scope`. Every key is a semantic color token name (e.g.
-     * `primary`, `focusRing`) and every value is any valid CSS color.
+     * wrapper or document root according to `scope`. Isolated tokens and group
+     * leaves accept CSS colors. Only supplied leaves change; siblings inherit.
      *
      * @example
-     * tokens={{ primary: 'oklch(0.55 0.2 180)', focusRing: 'oklch(0.55 0.2 180)' }}
+     * tokens={{ primary: { main: 'oklch(0.55 0.2 180)' }, focusRing: 'oklch(0.55 0.2 180)' }}
      */
     tokens?: ThemeColorOverrides
 }>

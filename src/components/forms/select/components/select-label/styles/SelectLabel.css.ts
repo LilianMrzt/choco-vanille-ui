@@ -13,7 +13,7 @@ export const SELECT_LABEL_STYLES = {
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.semibold,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         letterSpacing: vars.letterSpacing.wider,
         textTransform: 'uppercase',
     }),

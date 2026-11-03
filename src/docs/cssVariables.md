@@ -8,16 +8,19 @@ Importing from `@choco-vanille/ui` loads these variables in compatible bundlers.
 ## Naming rule
 
 ```
---{category}-{token}
+--{category}-{group}-{leaf}
 ```
 
-The token name is kept as-is (camelCase): `vars.color.primaryHover` → `--color-primaryHover`.
+Names join the token path with hyphens, preserving each segment's case:
+`vars.color.primary.hover` → `--color-primary-hover`,
+`vars.color.primary.subtleForeground` → `--color-primary-subtleForeground`.
+Isolated tokens stay flat, for example `--color-focusRing`.
 
 ## Categories
 
 | Prefix | Tokens |
 |---|---|
-| `--color-*` | Surfaces, text, 7 intents (`primary`, `secondary`, `tertiary`, `success`, `warning`, `info`, `destructive`) each with 9 variants, borders, ring, highlight. **Theme-dependent.** |
+| `--color-*` | 156 leaves: 13 accent families with 10 direct leaves each, text hierarchy, surfaces, links, five gray borders, focus, highlight, skeleton and isolated colors. **Theme-dependent.** |
 | `--editorColors-*` | Editor palette colors and tones. **Theme-dependent.** |
 | `--shadow-*` | `none` `xs` `sm` `md` `lg` `xl` `2xl` `inner`. **Theme-dependent.** |
 | `--dropShadow-*` | `none` `sm` `md` `lg` `xl`. **Theme-dependent.** |
@@ -32,7 +35,11 @@ The token name is kept as-is (camelCase): `vars.color.primaryHover` → `--color
 | `--duration-*` | `instant` `fast` `normal` `moderate` `slow` `slower` |
 | `--easing-*` | `standard` `out` `in` `emphasized` `linear` |
 
-Each interactive intent exposes: `--color-{intent}`, `{intent}Hover`, `{intent}Active`, `{intent}Foreground`, `{intent}Subtle`, `{intent}SubtleHover`, `{intent}SubtleActive`, `{intent}SubtleForeground`, `{intent}SubtleBorder`.
+Each interactive family exposes `--color-{family}-` followed by `main`, `hover`,
+`pressed`, `foreground`, `subtle`, `subtleHover`, `subtlePressed`,
+`subtleForeground`, `border` or `subtleBorder`. Families are `primary`,
+`secondary`, `neutral`, `success`, `warning`, `info`, `danger` and the six
+`accent*` families. Component intentions remain independent.
 
 > The exact resolved values are derived from `src/theme/tokens/`. They are intentionally **not duplicated here** to avoid drift — read them live in the Storybook stories above.
 

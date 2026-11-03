@@ -1,11 +1,8 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { createColorVariants } from '@theme/utils/createColorVariants.utils.ts'
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
-
-const colorVariants = createColorVariants('color')
 
 const marginVariants = {
     auto: { margin: 'auto' },
@@ -89,7 +86,7 @@ export const TYPOGRAPHY_STYLES = {
                     fontSize: vars.fontSize.md,
                     fontWeight: vars.fontWeight.medium,
                     lineHeight: vars.lineHeight.normal,
-                    color: vars.color.foreground,
+                    color: vars.color.text.primary,
                     selectors: {
                         '&[data-disabled]': {
                             cursor: 'not-allowed',
@@ -108,14 +105,14 @@ export const TYPOGRAPHY_STYLES = {
                     fontStyle: 'italic',
                 },
                 blockquote: {
-                    borderLeft: `2px solid ${vars.color.border}`,
+                    borderLeft: `2px solid ${vars.color.border.main}`,
                     paddingLeft: vars.space.xl,
                     fontStyle: 'italic',
-                    color: vars.color.surfaceMutedForeground,
+                    color: vars.color.surface.mutedForeground,
                 },
                 pre: {
                     borderRadius: vars.radius.md,
-                    backgroundColor: vars.color.surfaceMuted,
+                    backgroundColor: vars.color.surface.muted,
                     padding: vars.space.lg,
                     fontFamily: vars.fontFamily.mono,
                     fontSize: vars.fontSize.sm,
@@ -123,7 +120,7 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 code: {
                     borderRadius: vars.radius.sm,
-                    backgroundColor: vars.color.surfaceMuted,
+                    backgroundColor: vars.color.surface.muted,
                     paddingInline: '0.3rem',
                     paddingBlock: '0.2rem',
                     fontFamily: vars.fontFamily.mono,
@@ -132,8 +129,8 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 kbd: {
                     borderRadius: vars.radius.sm,
-                    border: `1px solid ${vars.color.border}`,
-                    backgroundColor: vars.color.surfaceMuted,
+                    border: `1px solid ${vars.color.border.main}`,
+                    backgroundColor: vars.color.surface.muted,
                     paddingInline: vars.space.sm,
                     paddingBlock: vars.space.xs,
                     fontFamily: vars.fontFamily.mono,
@@ -151,12 +148,12 @@ export const TYPOGRAPHY_STYLES = {
                 },
                 cite: {
                     fontStyle: 'italic',
-                    color: vars.color.surfaceMutedForeground,
+                    color: vars.color.surface.mutedForeground,
                 },
                 mark: {
                     borderRadius: vars.radius.sm,
-                    backgroundColor: vars.color.highlight,
-                    color: vars.color.highlightForeground,
+                    backgroundColor: vars.color.highlight.main,
+                    color: vars.color.highlight.foreground,
                     paddingInline: vars.space.xs,
                 },
                 del: {
@@ -220,8 +217,6 @@ export const TYPOGRAPHY_STYLES = {
                 5: truncateTextStyles(5),
                 6: truncateTextStyles(6),
             },
-
-            color: colorVariants,
         },
 
         defaultVariants: {

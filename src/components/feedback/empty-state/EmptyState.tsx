@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import { EMPTY_STATE_STYLES } from '@components/feedback/empty-state/styles/EmptyState.css.ts'
@@ -43,7 +44,7 @@ const EmptyState: FC<EmptyStateProps> = memo(({
                 as={'p'}
                 variant={'p'}
                 fontSize={'sm'}
-                color={'foregroundMuted'}
+                color={vars.color.text.secondary}
             >
                 {description}
             </Typography>

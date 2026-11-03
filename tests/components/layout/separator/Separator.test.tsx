@@ -55,7 +55,7 @@ describe('Separator', () => {
 
     describe('color', () => {
         it('applies classes for a theme color', () => {
-            const { container } = render(<Separator color="primary" />)
+            const { container } = render(<Separator color={'primary.main'} />)
             expect(getFirstChild(container).className.length).toBeGreaterThan(0)
         })
     })
@@ -72,7 +72,7 @@ describe('Separator', () => {
 
     describe('text color', () => {
         it('accepts a theme color for the label', () => {
-            const { container } = render(<Separator label="Or continue" textColor="primary" />)
+            const { container } = render(<Separator label="Or continue" textColor="primary.main" />)
             expect(getFirstChild(container).textContent).toBe('Or continue')
         })
     })

@@ -15,7 +15,7 @@ import type {
     TypographyVariant,
     TypographyWeight,
 } from '@components/foundation/typography'
-import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -131,6 +131,8 @@ const meta = {
 A polymorphic text component that renders the correct semantic HTML element for a given \`variant\` and optionally overrides the element via the \`as\` prop.
 It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, \`margin\`, and \`ellipsis\` for fine-grained control.
 
+\`color\` accepts free CSS values, including \`vars.color.primary.main\` and \`var(--custom-color)\`, not token names. Consumer \`style.color\` wins; omit \`color\` to preserve variant defaults and stylesheet interaction colors.
+
 **Usage**
 
 ~~~tsx
@@ -152,7 +154,7 @@ It also exposes \`fontSize\`, \`fontWeight\`, \`color\`, \`margin\`, and \`ellip
         variant: { control: 'select', options: VARIANTS },
         fontSize: { control: 'select', options: [undefined, ...SIZES] },
         fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
-        color: { control: 'select', options: THEME_COLORS },
+        color: { control: 'text', description: 'CSS color or custom property reference. No inline default; style.color wins.' },
         margin: { control: 'select', options: MARGINS },
         ellipsis: { control: 'boolean' },
         maxLines: { control: 'number' },
@@ -181,6 +183,25 @@ export const Playground: Story = {
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         await expect(canvas.getByText(args.children as string)).toBeInTheDocument()
+    },
+}
+
+export const Colors: Story = {
+    args: {
+        color: vars.color.primary.main,
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Use a theme variable or try var(--custom-color, rebeccapurple), currentColor, or a CSS color in Controls.',
+            },
+            ...storySource(/* language=tsx */ `
+import { Typography, vars } from '@choco-vanille/ui'
+
+<Typography color={vars.color.primary.main}>
+  The quick brown fox jumps over the lazy dog.
+</Typography>`),
+        },
     },
 }
 

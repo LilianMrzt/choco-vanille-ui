@@ -1,6 +1,6 @@
-import type { ThemeColor, ThemeColors } from '@theme'
+import type { ThemeColor } from '@theme'
 
-export type ColorMap = ThemeColors
+export type ColorMap = Readonly<Record<string, string>>
 
 export type ColorGroup = Readonly<{
     label: string

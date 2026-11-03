@@ -11,7 +11,7 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
         borderRadius: vars.radius.xs,
         border: 'none',
         backgroundColor: 'transparent',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontSize: vars.fontSize.sm,
         cursor: 'pointer',
         padding: 0,
@@ -23,10 +23,10 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.neutral,
+                backgroundColor: vars.color.neutral.main,
             },
             '&:focus-visible': {
                 outline: 'none',
@@ -52,41 +52,41 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
 
 // Selected
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.selected} button`, {
-    backgroundColor: vars.color.primary,
-    color: vars.color.primaryForeground,
+    backgroundColor: vars.color.primary.main,
+    color: vars.color.primary.foreground,
     fontWeight: vars.fontWeight.semibold,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.selected} button:hover:not(:disabled)`, {
-    backgroundColor: vars.color.primaryHover,
-    color: vars.color.primaryForeground,
+    backgroundColor: vars.color.primary.hover,
+    color: vars.color.primary.foreground,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.selected} button:active:not(:disabled)`, {
-    backgroundColor: vars.color.primaryActive,
-    color: vars.color.primaryForeground,
+    backgroundColor: vars.color.primary.pressed,
+    color: vars.color.primary.foreground,
 })
 
 // Today (unselected)
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.today}:not(${CALENDAR_DAY_BUTTON_STYLES.selected}) button`, {
-    backgroundColor: vars.color.primarySubtle,
-    color: vars.color.primarySubtleForeground,
+    backgroundColor: vars.color.primary.subtle,
+    color: vars.color.primary.subtleForeground,
     fontWeight: vars.fontWeight.semibold,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.today}:not(${CALENDAR_DAY_BUTTON_STYLES.selected}) button:hover:not(:disabled)`, {
-    backgroundColor: vars.color.primarySubtleHover,
+    backgroundColor: vars.color.primary.subtleHover,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.today}:not(${CALENDAR_DAY_BUTTON_STYLES.selected}) button:active:not(:disabled)`, {
-    backgroundColor: vars.color.primarySubtleActive,
+    backgroundColor: vars.color.primary.subtlePressed,
 })
 
 // Outside month
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.outside} button`, {
-    color: vars.color.surfaceMutedForeground,
+    color: vars.color.surface.mutedForeground,
     opacity: 0.5,
 })
 
 // Disabled
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
-    color: vars.color.surfaceMutedForeground,
+    color: vars.color.surface.mutedForeground,
     opacity: 0.4,
     cursor: 'not-allowed',
     pointerEvents: 'none',
@@ -94,39 +94,39 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
 
 // Range start
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button`, {
-    backgroundColor: vars.color.primary,
-    color: vars.color.primaryForeground,
+    backgroundColor: vars.color.primary.main,
+    color: vars.color.primary.foreground,
     borderRadius: `${vars.radius.xs} 0 0 ${vars.radius.xs}`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:hover:not(:disabled)`, {
-    backgroundColor: vars.color.primaryHover,
+    backgroundColor: vars.color.primary.hover,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_start} button:active:not(:disabled)`, {
-    backgroundColor: vars.color.primaryActive,
+    backgroundColor: vars.color.primary.pressed,
 })
 
 // Range end
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button`, {
-    backgroundColor: vars.color.primary,
-    color: vars.color.primaryForeground,
+    backgroundColor: vars.color.primary.main,
+    color: vars.color.primary.foreground,
     borderRadius: `0 ${vars.radius.xs} ${vars.radius.xs} 0`,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button:hover:not(:disabled)`, {
-    backgroundColor: vars.color.primaryHover,
+    backgroundColor: vars.color.primary.hover,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_end} button:active:not(:disabled)`, {
-    backgroundColor: vars.color.primaryActive,
+    backgroundColor: vars.color.primary.pressed,
 })
 
 // Range middle
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_middle} button`, {
-    backgroundColor: vars.color.primarySubtle,
-    color: vars.color.primarySubtleForeground,
+    backgroundColor: vars.color.primary.subtle,
+    color: vars.color.primary.subtleForeground,
     borderRadius: 0,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_middle} button:hover:not(:disabled)`, {
-    backgroundColor: vars.color.primarySubtleHover,
+    backgroundColor: vars.color.primary.subtleHover,
 })
 globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.range_middle} button:active:not(:disabled)`, {
-    backgroundColor: vars.color.primarySubtleActive,
+    backgroundColor: vars.color.primary.subtlePressed,
 })

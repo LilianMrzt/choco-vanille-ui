@@ -57,7 +57,7 @@ stylesheet, then pass the name to the provider:
 
 // Your stylesheet:
 // [data-theme="light-green"] {
-//   --color-primary: oklch(0.55 0.2 145);
+//   --color-primary-main: oklch(0.55 0.2 145);
 // }`} />
 
 The provider treats `light-green` as an opaque theme name and exposes it
@@ -132,28 +132,32 @@ The parent owns the state. Pass `theme` and handle `onThemeChange` to stay in sy
 
 ## Runtime token overrides
 
-The `tokens` prop accepts `ThemeColorOverrides`, a readonly partial map of
-semantic color keys to CSS values, and injects them as `--color-*` inline styles.
+The `tokens` prop accepts `ThemeColorOverrides`, a readonly partial object of
+isolated tokens and direct group leaves, and injects them as `--color-*` inline styles.
+Only supplied leaves are overridden; sibling values remain inherited.
 With `scope="document"`, the overrides are applied to `<html>`; with
 `scope="subtree"`, they are applied to the wrapper. It intentionally covers
 semantic colors only, not editor palettes or other categories.
 
 Overrides accept hex, RGB, OKLCH, and other valid CSS colors. They do not derive
-hover, active, or foreground values from the primary fill. Override the matching
+hover, pressed, or foreground values from the primary fill. Override the matching
 states together and check contrast in every state of both themes.
 
 <Source language="tsx" code={`import { Button, ThemeProvider, type ThemeColorOverrides } from '@choco-vanille/ui'
 
 const tealColors = {
-  primary: '#0f766e',
-  primaryHover: '#115e59',
-  primaryActive: '#134e4a',
-  primaryForeground: '#ffffff',
-  primarySubtle: '#f0fdfa',
-  primarySubtleHover: '#ccfbf1',
-  primarySubtleActive: '#99f6e4',
-  primarySubtleForeground: '#134e4a',
-  primarySubtleBorder: '#0f766e',
+  primary: {
+    main: '#0f766e',
+    hover: '#115e59',
+    pressed: '#134e4a',
+    foreground: '#ffffff',
+    subtle: '#f0fdfa',
+    subtleHover: '#ccfbf1',
+    subtlePressed: '#99f6e4',
+    subtleForeground: '#134e4a',
+    border: '#0f766e',
+    subtleBorder: '#0f766e',
+  },
   focusRing: '#0f766e',
 } satisfies ThemeColorOverrides
 
@@ -184,7 +188,7 @@ they must use its theme.
   {/* default light zone */}
   <Header />
 
-  <ThemeProvider scope="subtree" theme="dark" tokens={{ primary: 'oklch(0.70 0.16 185)' }}>
+  <ThemeProvider scope="subtree" theme="dark" tokens={{ primary: { main: 'oklch(0.70 0.16 185)' } }}>
     {/* dark zone with a custom primary */}
     <Sidebar />
   </ThemeProvider>

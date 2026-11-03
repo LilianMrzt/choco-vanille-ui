@@ -24,7 +24,7 @@ export const SLIDER_TRACK_STYLES = {
             position: 'relative',
             width: '100%',
             borderRadius: vars.radius.full,
-            backgroundColor: vars.color.surfaceMuted,
+            backgroundColor: vars.color.surface.muted,
             selectors: {
                 '&[data-orientation="vertical"]': {
                     width: '0.375rem',
@@ -54,9 +54,9 @@ export const SLIDER_TRACK_STYLES = {
         },
         variants: {
             color: {
-                primary: { backgroundColor: vars.color.primary },
-                secondary: { backgroundColor: vars.color.secondary },
-                destructive: { backgroundColor: vars.color.danger },
+                primary: { backgroundColor: vars.color.primary.main },
+                secondary: { backgroundColor: vars.color.secondary.main },
+                destructive: { backgroundColor: vars.color.danger.main },
             },
         },
         defaultVariants: { color: 'primary' },
@@ -65,7 +65,7 @@ export const SLIDER_TRACK_STYLES = {
         base: {
             position: 'absolute',
             borderRadius: vars.radius.full,
-            backgroundColor: vars.color.surface,
+            backgroundColor: vars.color.surface.main,
             outline: 'none',
             cursor: 'grab',
             transition: `box-shadow ${vars.duration.fast} ${vars.easing.standard}`,
@@ -85,9 +85,9 @@ export const SLIDER_TRACK_STYLES = {
                 lg: { width: '1.5rem', height: '1.5rem' },
             },
             color: {
-                primary: { border: `2px solid ${vars.color.primary}` },
-                secondary: { border: `2px solid ${vars.color.secondary}` },
-                destructive: { border: `2px solid ${vars.color.danger}` },
+                primary: { border: `2px solid ${vars.color.primary.main}` },
+                secondary: { border: `2px solid ${vars.color.secondary.main}` },
+                destructive: { border: `2px solid ${vars.color.danger.main}` },
             },
         },
         defaultVariants: { size: 'md', color: 'primary' },

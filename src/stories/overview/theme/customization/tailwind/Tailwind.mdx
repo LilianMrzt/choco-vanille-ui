@@ -8,7 +8,7 @@ import { THEME_DARK_CLASS, THEME_LAYER } from '@theme/constants/index.ts'
 Already using Tailwind? You can do two things with the kit's tokens:
 
 - **Override** the kit's colors globally (e.g. make `primary` red) — affects every kit component.
-- **Expose** the kit's variables as Tailwind utilities (`bg-primary`, `rounded-md`, …).
+- **Expose** the kit's variables as Tailwind utilities (`bg-primary-main`, `rounded-md`, …).
 
 Both work because every kit component reads its colours through `var(--color-*)` at runtime.
 
@@ -51,30 +51,30 @@ in your application stylesheet.
 
 /* Light */
 :root {
-  --color-primary:                 oklch(54.5% .26 25);
-  --color-primaryHover:            oklch(48.8% .24 25);
-  --color-primaryActive:           oklch(42.4% .21 25);
-  --color-primaryForeground:       oklch(100% 0 0);
-  --color-primarySubtle:           oklch(97.1% .015 25);
-  --color-primarySubtleHover:      oklch(93.6% .04 25);
-  --color-primarySubtleActive:     oklch(88.5% .08 25);
-  --color-primarySubtleForeground: oklch(48.8% .24 25);
-  --color-primarySubtleBorder:     oklch(88.5% .08 25);
+  --color-primary-main:                 oklch(54.5% .26 25);
+  --color-primary-hover:            oklch(48.8% .24 25);
+  --color-primary-pressed:           oklch(42.4% .21 25);
+  --color-primary-foreground:       oklch(100% 0 0);
+  --color-primary-subtle:           oklch(97.1% .015 25);
+  --color-primary-subtleHover:      oklch(93.6% .04 25);
+  --color-primary-subtlePressed:     oklch(88.5% .08 25);
+  --color-primary-subtleForeground: oklch(48.8% .24 25);
+  --color-primary-subtleBorder:     oklch(88.5% .08 25);
   --color-focusRing:                    oklch(54.5% .26 25);
 }
 
 /* Dark — matches the kit's dark selectors */
 [data-theme="dark"],
 .${THEME_DARK_CLASS} {
-  --color-primary:                 oklch(62.3% .23 25);
-  --color-primaryHover:            oklch(70.7% .19 25);
-  --color-primaryActive:           oklch(80.8% .13 25);
-  --color-primaryForeground:       oklch(14.3% .008 264);
-  --color-primarySubtle:           oklch(28.2% .1 25);
-  --color-primarySubtleHover:      oklch(37.9% .15 25);
-  --color-primarySubtleActive:     oklch(42.4% .2 25);
-  --color-primarySubtleForeground: oklch(88.5% .062 25);
-  --color-primarySubtleBorder:     oklch(42.4% .2 25);
+  --color-primary-main:                 oklch(62.3% .23 25);
+  --color-primary-hover:            oklch(70.7% .19 25);
+  --color-primary-pressed:           oklch(80.8% .13 25);
+  --color-primary-foreground:       oklch(14.3% .008 264);
+  --color-primary-subtle:           oklch(28.2% .1 25);
+  --color-primary-subtleHover:      oklch(37.9% .15 25);
+  --color-primary-subtlePressed:     oklch(42.4% .2 25);
+  --color-primary-subtleForeground: oklch(88.5% .062 25);
+  --color-primary-subtleBorder:     oklch(42.4% .2 25);
   --color-focusRing:                    oklch(62.3% .23 25);
 }`} />
 
@@ -89,20 +89,20 @@ changes, no config.
 
 Optional. If you also want Tailwind classes backed by the kit's tokens, add a `@theme` block.
 
-### `@theme inline` — keep the kit's names (`bg-primary`)
+### `@theme inline` — keep the kit's names (`bg-primary-main`)
 
 Generates utilities that inline `var(...)` directly, **without** creating new variables. Best when you
 want Tailwind classes that share the kit's token names — they also follow your overrides above.
 
 <Source language="css" code={`/* index.css */
 @theme inline {
-  --color-primary:           var(--color-primary);
-  --color-primaryForeground: var(--color-primaryForeground);
-  --color-secondary:         var(--color-secondary);
+  --color-primary-main:           var(--color-primary-main);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary-main:         var(--color-secondary-main);
   --color-background:        var(--color-background);
-  --color-foreground:        var(--color-foreground);
-  --color-surfaceMuted:             var(--color-surfaceMuted);
-  --color-border:            var(--color-border);
+  --color-text-primary:        var(--color-text-primary);
+  --color-surface-muted:             var(--color-surface-muted);
+  --color-border-main:            var(--color-border-main);
   --color-focusRing:              var(--color-focusRing);
 
   --radius-sm:   var(--radius-sm);
@@ -111,7 +111,7 @@ want Tailwind classes that share the kit's token names — they also follow your
   --radius-full: var(--radius-full);
 }`} />
 
-<Source language="tsx" code={`<button className="bg-primary text-primaryForeground rounded-md px-4 py-2">
+<Source language="tsx" code={`<button className="bg-primary-main text-primary-foreground rounded-md px-4 py-2">
   Uses kit tokens
 </button>`} />
 
@@ -121,9 +121,9 @@ Use this when your app has a different naming convention. Tailwind creates a new
 
 <Source language="css" code={`/* index.css */
 @theme {
-  --color-brand:    var(--color-primary);
-  --color-brand-fg: var(--color-primaryForeground);
-  --color-surface:  var(--color-surface);
+  --color-brand:    var(--color-primary-main);
+  --color-brand-fg: var(--color-primary-foreground);
+  --color-surface-main:  var(--color-surface-main);
   --radius-card:    var(--radius-md);
 }`} />
 
@@ -134,7 +134,7 @@ Use this when your app has a different naming convention. Tailwind creates a new
 > | | `@theme` | `@theme inline` |
 > |---|---|---|
 > | Creates a new CSS variable | ✅ yes | ❌ no |
-> | Token name in utility | new name (`bg-brand`) | same as kit (`bg-primary`) |
+> | Token name in utility | new name (`bg-brand`) | same as kit (`bg-primary-main`) |
 > | Use when | you need distinct names | you want to reuse kit names |
 
 ---
@@ -148,9 +148,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand:      'var(--color-primary)',
-        'brand-fg': 'var(--color-primaryForeground)',
-        surface:    'var(--color-surface)',
+        brand:      'var(--color-primary-main)',
+        'brand-fg': 'var(--color-primary-foreground)',
+        surface:    'var(--color-surface-main)',
       },
       borderRadius: { card: 'var(--radius-md)' },
     },

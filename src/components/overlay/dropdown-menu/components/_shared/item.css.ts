@@ -18,7 +18,7 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.surfaceElevatedForeground,
+        color: vars.color.surface.elevatedForeground,
         cursor: 'pointer',
         userSelect: 'none',
         outline: 'none',
@@ -29,31 +29,31 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
 
         selectors: {
             '&:not([data-disabled])[data-highlighted]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             // pressed / active — slightly stronger blue tint
             '&:not([data-disabled])[data-highlighted]:active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             '&:not([data-disabled]):active': {
-                backgroundColor: vars.color.primarySubtleActive,
+                backgroundColor: vars.color.primary.subtlePressed,
             },
             '&:not([data-disabled])[data-active="true"]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:hover': {
-                backgroundColor: vars.color.primarySubtleHover,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtleHover,
+                color: vars.color.primary.subtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:active': {
-                backgroundColor: vars.color.primarySubtleActive,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtlePressed,
+                color: vars.color.primary.subtleForeground,
             },
             '&:focus-visible': {
                 outline: 'none',
@@ -71,33 +71,33 @@ export const DROPDOWN_MENU_ITEM_STYLES = {
      * Modifier applied to destructive actions (e.g. "Delete", "Remove").
      */
     destructive: style({
-        color: vars.color.danger,
+        color: vars.color.danger.main,
         selectors: {
             '&:not([data-disabled])[data-highlighted]': {
-                backgroundColor: vars.color.dangerSubtle,
-                color: vars.color.dangerSubtleForeground,
+                backgroundColor: vars.color.danger.subtle,
+                color: vars.color.danger.subtleForeground,
             },
             '&:not([data-disabled]):hover': {
-                backgroundColor: vars.color.dangerSubtle,
-                color: vars.color.dangerSubtleForeground,
+                backgroundColor: vars.color.danger.subtle,
+                color: vars.color.danger.subtleForeground,
             },
             '&:not([data-disabled])[data-highlighted]:active': {
-                backgroundColor: vars.color.dangerSubtleHover,
+                backgroundColor: vars.color.danger.subtleHover,
             },
             '&:not([data-disabled]):active': {
-                backgroundColor: vars.color.dangerSubtleHover,
+                backgroundColor: vars.color.danger.subtleHover,
             },
             '&:not([data-disabled])[data-active="true"]': {
-                backgroundColor: vars.color.dangerSubtle,
-                color: vars.color.dangerSubtleForeground,
+                backgroundColor: vars.color.danger.subtle,
+                color: vars.color.danger.subtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:hover': {
-                backgroundColor: vars.color.dangerSubtleHover,
-                color: vars.color.dangerSubtleForeground,
+                backgroundColor: vars.color.danger.subtleHover,
+                color: vars.color.danger.subtleForeground,
             },
             '&:not([data-disabled])[data-active="true"]:active': {
-                backgroundColor: vars.color.dangerSubtleActive,
-                color: vars.color.dangerSubtleForeground,
+                backgroundColor: vars.color.danger.subtlePressed,
+                color: vars.color.danger.subtleForeground,
             },
             '&:focus-visible': {
                 outline: 'none',

@@ -11,6 +11,6 @@ export const BOTTOM_SHEET_RADIO_ITEM_STYLES = {
         },
     }),
     indicator: style({
-        color: vars.color.primary,
+        color: vars.color.primary.main,
     }),
 }

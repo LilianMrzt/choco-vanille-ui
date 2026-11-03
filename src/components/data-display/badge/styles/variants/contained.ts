@@ -9,7 +9,7 @@ import { createBadgeCompoundVariantUtils } from '@components/data-display/badge/
 export const solidCompoundVariants = createBadgeCompoundVariantUtils(
     BADGE_VARIANTS.contained,
     (color) => ({
-        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]],
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}Foreground`],
+        backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].main,
+        color: vars.color[COLOR_INTENT_TOKENS[color]].foreground,
     }),
 )

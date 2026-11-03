@@ -22,10 +22,10 @@ const statusInset = {
 } as const
 
 const statusColorMap = {
-    [AVATAR_STATUS.online]: vars.color.success,
-    [AVATAR_STATUS.offline]: vars.color.foregroundSubtle,
-    [AVATAR_STATUS.busy]: vars.color.danger,
-    [AVATAR_STATUS.away]: vars.color.warning,
+    [AVATAR_STATUS.online]: vars.color.success.main,
+    [AVATAR_STATUS.offline]: vars.color.text.tertiary,
+    [AVATAR_STATUS.busy]: vars.color.danger.main,
+    [AVATAR_STATUS.away]: vars.color.warning.main,
 } as const
 
 export const AVATAR_STATUS_STYLES = {

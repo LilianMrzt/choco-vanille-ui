@@ -17,23 +17,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.primarySubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.primary.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.primarySubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.primary.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.primary,
-                    color: vars.color.primaryForeground,
+                    backgroundColor: vars.color.primary.main,
+                    color: vars.color.primary.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.primaryHover,
+                    backgroundColor: vars.color.primary.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.primaryActive,
+                    backgroundColor: vars.color.primary.pressed,
                 },
             },
         },
@@ -46,23 +46,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.secondarySubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.secondary.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.secondarySubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.secondary.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.secondary,
-                    color: vars.color.secondaryForeground,
+                    backgroundColor: vars.color.secondary.main,
+                    color: vars.color.secondary.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.secondaryHover,
+                    backgroundColor: vars.color.secondary.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.secondaryActive,
+                    backgroundColor: vars.color.secondary.pressed,
                 },
             },
         },
@@ -75,23 +75,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.neutralSubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.neutral.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.neutralSubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.neutral.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.neutral,
-                    color: vars.color.neutralForeground,
+                    backgroundColor: vars.color.neutral.main,
+                    color: vars.color.neutral.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.neutralHover,
+                    backgroundColor: vars.color.neutral.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.neutralActive,
+                    backgroundColor: vars.color.neutral.pressed,
                 },
             },
         },
@@ -104,23 +104,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.dangerSubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.danger.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.dangerSubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.danger.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.danger,
-                    color: vars.color.dangerForeground,
+                    backgroundColor: vars.color.danger.main,
+                    color: vars.color.danger.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.dangerHover,
+                    backgroundColor: vars.color.danger.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.dangerActive,
+                    backgroundColor: vars.color.danger.pressed,
                 },
             },
         },
@@ -133,23 +133,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.successSubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.success.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.successSubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.success.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.success,
-                    color: vars.color.successForeground,
+                    backgroundColor: vars.color.success.main,
+                    color: vars.color.success.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.successHover,
+                    backgroundColor: vars.color.success.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.successActive,
+                    backgroundColor: vars.color.success.pressed,
                 },
             },
         },
@@ -162,23 +162,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.warningSubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.warning.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.warningSubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.warning.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.warning,
-                    color: vars.color.warningForeground,
+                    backgroundColor: vars.color.warning.main,
+                    color: vars.color.warning.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.warningHover,
+                    backgroundColor: vars.color.warning.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.warningActive,
+                    backgroundColor: vars.color.warning.pressed,
                 },
             },
         },
@@ -191,23 +191,23 @@ export const defaultCompoundVariants = [
         style: {
             selectors: {
                 '&:hover': {
-                    backgroundColor: vars.color.infoSubtle,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.info.subtle,
+                    color: vars.color.text.primary,
                 },
                 '&:active': {
-                    backgroundColor: vars.color.infoSubtleHover,
-                    color: vars.color.foreground,
+                    backgroundColor: vars.color.info.subtleHover,
+                    color: vars.color.text.primary,
                 },
                 '&[data-active="true"]': {
-                    backgroundColor: vars.color.info,
-                    color: vars.color.infoForeground,
+                    backgroundColor: vars.color.info.main,
+                    color: vars.color.info.foreground,
                     borderColor: 'transparent',
                 },
                 '&[data-active="true"]:hover': {
-                    backgroundColor: vars.color.infoHover,
+                    backgroundColor: vars.color.info.hover,
                 },
                 '&[data-active="true"]:active': {
-                    backgroundColor: vars.color.infoActive,
+                    backgroundColor: vars.color.info.pressed,
                 },
             },
         },

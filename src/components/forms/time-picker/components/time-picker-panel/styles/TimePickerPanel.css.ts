@@ -7,11 +7,11 @@ export const TIME_PICKER_PANEL_STYLES = {
         flexDirection: 'column',
         gap: vars.space.sm,
         padding: vars.space.md,
-        backgroundColor: vars.color.surface,
+        backgroundColor: vars.color.surface.main,
         borderRadius: vars.radius.lg,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize.sm,
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
     }),
 
     body: style({
@@ -30,7 +30,7 @@ export const TIME_PICKER_PANEL_STYLES = {
         textAlign: 'center',
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.medium,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         textTransform: 'uppercase',
         letterSpacing: '0.04em',
     }),
@@ -66,7 +66,7 @@ export const TIME_PICKER_PANEL_STYLES = {
         border: 'none',
         borderRadius: vars.radius.xs,
         backgroundColor: 'transparent',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontFamily: 'inherit',
         fontSize: vars.fontSize.sm,
         fontVariantNumeric: 'tabular-nums',
@@ -79,28 +79,28 @@ export const TIME_PICKER_PANEL_STYLES = {
         ].join(', '),
         selectors: {
             '&:hover:not(:disabled)': {
-                backgroundColor: vars.color.surfaceMuted,
+                backgroundColor: vars.color.surface.muted,
             },
             '&:active:not(:disabled)': {
-                backgroundColor: vars.color.neutral,
+                backgroundColor: vars.color.neutral.main,
             },
             '&:focus-visible': {
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
             '&[data-reference="true"]': {
-                backgroundColor: vars.color.primarySubtle,
-                color: vars.color.primarySubtleForeground,
+                backgroundColor: vars.color.primary.subtle,
+                color: vars.color.primary.subtleForeground,
             },
             '&[aria-pressed="true"]': {
-                backgroundColor: vars.color.primary,
-                color: vars.color.primaryForeground,
+                backgroundColor: vars.color.primary.main,
+                color: vars.color.primary.foreground,
                 fontWeight: vars.fontWeight.semibold,
             },
             '&[aria-pressed="true"]:hover:not(:disabled)': {
-                backgroundColor: vars.color.primaryHover,
+                backgroundColor: vars.color.primary.hover,
             },
             '&[aria-pressed="true"]:active:not(:disabled)': {
-                backgroundColor: vars.color.primaryActive,
+                backgroundColor: vars.color.primary.pressed,
             },
             '&:disabled': {
                 opacity: 0.4,
@@ -114,6 +114,6 @@ export const TIME_PICKER_PANEL_STYLES = {
         justifyContent: 'space-between',
         gap: vars.space.sm,
         paddingTop: vars.space.sm,
-        borderTop: `1px solid ${vars.color.border}`,
+        borderTop: `1px solid ${vars.color.border.main}`,
     }),
 }

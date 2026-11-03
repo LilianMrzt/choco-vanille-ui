@@ -9,7 +9,7 @@ export const COMMAND_INPUT_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space.sm,
-        borderBottom: `1px solid ${vars.color.border}`,
+        borderBottom: `1px solid ${vars.color.border.main}`,
         paddingInline: vars.space.lg,
         paddingBlock: vars.space.sm2,
         flexShrink: 0,
@@ -18,7 +18,7 @@ export const COMMAND_INPUT_STYLES = {
     /** Search icon slot — muted, non-interactive. */
     icon: style({
         flexShrink: 0,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
     }),
 
     /** The `<input>` element itself. */
@@ -29,13 +29,13 @@ export const COMMAND_INPUT_STYLES = {
         fontFamily: vars.fontFamily.sans,
         lineHeight: vars.lineHeight.normal,
         backgroundColor: 'transparent',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         border: 'none',
         outline: 'none',
 
         selectors: {
             '&::placeholder': {
-                color: vars.color.surfaceMutedForeground,
+                color: vars.color.surface.mutedForeground,
             },
         },
     }),

@@ -62,33 +62,22 @@ const SPACING = [
     '4xl',
     '5xl',
 ] as const
-const BG = [
-    undefined,
-    'transparent',
-    'background',
-    'surface',
-    'surfaceMuted',
-    'primary',
-    'primarySubtle',
-    'secondary',
-    'secondarySubtle',
-] as const
 const DIMENSIONS = [undefined, 'auto', '100%', '50%', '200px'] as const
 const COLORS = [
     'transparent',
-    'primary',
-    'secondary',
-    'neutral',
-    'danger',
-    'success',
-    'warning',
-    'info',
-    'accentPurple',
-    'accentPink',
-    'accentOrange',
-    'accentTeal',
-    'accentCyan',
-    'accentIndigo',
+    'primary.main',
+    'secondary.main',
+    'neutral.main',
+    'danger.main',
+    'success.main',
+    'warning.main',
+    'info.main',
+    'accentPurple.main',
+    'accentPink.main',
+    'accentOrange.main',
+    'accentTeal.main',
+    'accentCyan.main',
+    'accentIndigo.main',
 ] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -147,7 +136,7 @@ import Logo from './Logo.svg?react'
         borderRadius: { control: 'select', options: ROUNDED },
         padding: { control: 'select', options: SPACING },
         margin: { control: 'select', options: [...SPACING, 'auto'] },
-        backgroundColor: { control: 'select', options: BG },
+        backgroundColor: { control: 'text', description: 'CSS color or custom-property reference; style wins.' },
         width: { control: 'select', options: DIMENSIONS },
         height: { control: 'select', options: DIMENSIONS },
         minWidth: { control: 'select', options: DIMENSIONS },
@@ -159,7 +148,7 @@ import Logo from './Logo.svg?react'
     args: {
         image: ImageIcon,
         alt: 'Image illustration',
-        color: 'primary',
+        color: 'primary.main',
         width: '200px',
         height: '200px',
         objectFit: 'contain',
@@ -178,7 +167,7 @@ export const Playground: Story = {
           'Interactive playground — use the Controls panel to change the SVG image dimensions, object positioning, spacing, background, and accessible name.',
             },
             ...storySource(/* language=tsx */ `
-<SvgImage image={ImageIcon} alt="Image illustration" color="primary" width="200px" height="200px" objectFit="contain" />`),
+<SvgImage image={ImageIcon} alt="Image illustration" color={'primary.main'} width="200px" height="200px" objectFit="contain" />`),
         },
     },
     play: async ({ canvasElement }) => {
@@ -193,20 +182,20 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<SvgImage image={ImageIcon} alt="transparent" color="transparent" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="primary" color="primary" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="secondary" color="secondary" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="neutral" color="neutral" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="danger" color="danger" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="success" color="success" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="warning" color="warning" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="info" color="info" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentPurple" color="accentPurple" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentPink" color="accentPink" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentOrange" color="accentOrange" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentTeal" color="accentTeal" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentCyan" color="accentCyan" width="96px" height="96px" />
-<SvgImage image={ImageIcon} alt="accentIndigo" color="accentIndigo" width="96px" height="96px" />`),
+<SvgImage image={ImageIcon} alt="transparent" color={'transparent'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="primary" color={'primary.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="secondary" color={'secondary.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="neutral" color={'neutral.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="danger" color={'danger.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="success" color={'success.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="warning" color={'warning.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="info" color={'info.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentPurple" color={'accentPurple.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentPink" color={'accentPink.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentOrange" color={'accentOrange.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentTeal" color={'accentTeal.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentCyan" color={'accentCyan.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentIndigo" color={'accentIndigo.main'} width="96px" height="96px" />`),
         },
     },
     render: () => (

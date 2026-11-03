@@ -345,12 +345,91 @@ describe('ThemeProvider', () => {
     })
 
     describe('tokens', () => {
+        it.each(['document', 'subtree'] as const)('updates and removes only supplied leaves in %s scope', (scope) => {
+            const root = document.documentElement
+            const previousStyle = root.getAttribute('style')
+            const { getByTestId, rerender, unmount } = render(
+                <StrictMode>
+                    <ThemeProvider
+                        data-testid={'scope'}
+                        scope={scope}
+                        theme={'light'}
+                        tokens={{
+                            primary: { main: 'red', hover: 'blue' },
+                            surface: { elevated: 'white' },
+                        }}
+                    />
+                </StrictMode>,
+            )
+            const target = scope === 'document' ? root : getByTestId('scope')
+
+            expect(target.style.getPropertyValue('--color-primary-main')).toBe('red')
+            expect(target.style.getPropertyValue('--color-primary-hover')).toBe('blue')
+            expect(target.style.getPropertyValue('--color-primary-foreground')).toBe('')
+            expect(target.style.getPropertyValue('--color-surface-elevated')).toBe('white')
+            expect(target.style.cssText).not.toContain('[object Object]')
+
+            rerender(
+                <StrictMode>
+                    <ThemeProvider
+                        data-testid={'scope'}
+                        scope={scope}
+                        theme={'dark'}
+                        tokens={{ primary: { main: 'purple', hover: undefined } }}
+                    />
+                </StrictMode>,
+            )
+            expect(target.style.getPropertyValue('--color-primary-main')).toBe('purple')
+            expect(target.style.getPropertyValue('--color-primary-hover')).toBe('')
+            expect(target.style.getPropertyValue('--color-surface-elevated')).toBe('')
+
+            rerender(
+                <StrictMode>
+                    <ThemeProvider data-testid={'scope'} scope={scope} theme={'dark'} />
+                </StrictMode>,
+            )
+            expect(target.style.getPropertyValue('--color-primary-main')).toBe('')
+            unmount()
+            expect(root.getAttribute('style') ?? '').toBe(previousStyle ?? '')
+        })
+
+        it('restores existing document leaf declarations and their priority', () => {
+            const root = document.documentElement
+            const previousStyle = root.style.cssText
+            root.style.setProperty('--color-primary-hover', 'green', 'important')
+
+            try {
+                const { unmount } = render(
+                    <ThemeProvider tokens={{ primary: { hover: 'blue' } }} />,
+                )
+                expect(root.style.getPropertyValue('--color-primary-hover')).toBe('blue')
+                unmount()
+                expect(root.style.getPropertyValue('--color-primary-hover')).toBe('green')
+                expect(root.style.getPropertyPriority('--color-primary-hover')).toBe('important')
+            } finally {
+                root.style.cssText = previousStyle
+            }
+        })
+
+        it('serializes nested overrides during SSR without changing the document', () => {
+            const previousStyle = document.documentElement.style.cssText
+            const markup = renderToString(
+                <ThemeProvider
+                    scope={'subtree'}
+                    theme={'light'}
+                    tokens={{ primary: { subtleForeground: 'var(--brand-text)' } }}
+                />,
+            )
+            expect(markup).toContain('--color-primary-subtleForeground:var(--brand-text)')
+            expect(markup).not.toContain('[object Object]')
+            expect(document.documentElement.style.cssText).toBe(previousStyle)
+        })
+
         it('keeps nested subtree overrides independent of the document and their parent', () => {
             const previousTheme = document.documentElement.getAttribute('data-theme')
-            const previousPrimary = document.documentElement.style.getPropertyValue('--color-primary')
+            const previousPrimary = document.documentElement.style.getPropertyValue('--color-primary-main')
             const overrides = {
-                primary: '#0f766e',
-                primaryForeground: '#ffffff',
+                primary: { main: '#0f766e', foreground: '#ffffff' },
                 focusRing: '#0f766e',
             } as const satisfies ThemeColorOverrides
 
@@ -359,7 +438,7 @@ describe('ThemeProvider', () => {
                     data-testid={'outer'}
                     scope={'subtree'}
                     theme={'light'}
-                    tokens={{ primary: lightColors.primary }}
+                    tokens={{ primary: { main: lightColors.primary.main } }}
                 >
                     <ThemeProvider
                         data-testid={'inner'}
@@ -370,49 +449,49 @@ describe('ThemeProvider', () => {
                 </ThemeProvider>,
             )
 
-            expect(getByTestId('outer').style.getPropertyValue('--color-primary')).toBe(lightColors.primary)
-            expect(getByTestId('inner').style.getPropertyValue('--color-primary')).toBe(overrides.primary)
+            expect(getByTestId('outer').style.getPropertyValue('--color-primary-main')).toBe(lightColors.primary.main)
+            expect(getByTestId('inner').style.getPropertyValue('--color-primary-main')).toBe(overrides.primary.main)
             expect(getByTestId('inner').getAttribute('data-theme')).toBe('dark')
             expect(document.documentElement.getAttribute('data-theme')).toBe(previousTheme)
-            expect(document.documentElement.style.getPropertyValue('--color-primary')).toBe(previousPrimary)
+            expect(document.documentElement.style.getPropertyValue('--color-primary-main')).toBe(previousPrimary)
 
             rerender(
                 <ThemeProvider
                     data-testid={'outer'}
                     scope={'subtree'}
                     theme={'light'}
-                    tokens={{ primary: lightColors.primary }}
+                    tokens={{ primary: { main: lightColors.primary.main } }}
                 >
                     <ThemeProvider
                         data-testid={'inner'}
                         scope={'subtree'}
                         theme={'dark'}
-                        tokens={{ primary: darkColors.primary }}
+                        tokens={{ primary: { main: darkColors.primary.main } }}
                     />
                 </ThemeProvider>,
             )
 
-            expect(getByTestId('inner').style.getPropertyValue('--color-primary')).toBe(darkColors.primary)
+            expect(getByTestId('inner').style.getPropertyValue('--color-primary-main')).toBe(darkColors.primary.main)
             expect(getByTestId('inner').style.getPropertyValue('--color-focusRing')).toBe('')
-            expect(getByTestId('inner').style.getPropertyValue('--color-primaryForeground')).toBe('')
-            expect(getByTestId('outer').style.getPropertyValue('--color-primary')).toBe(lightColors.primary)
+            expect(getByTestId('inner').style.getPropertyValue('--color-primary-foreground')).toBe('')
+            expect(getByTestId('outer').style.getPropertyValue('--color-primary-main')).toBe(lightColors.primary.main)
 
             unmount()
             expect(document.documentElement.getAttribute('data-theme')).toBe(previousTheme)
-            expect(document.documentElement.style.getPropertyValue('--color-primary')).toBe(previousPrimary)
+            expect(document.documentElement.style.getPropertyValue('--color-primary-main')).toBe(previousPrimary)
         })
 
         it('injects token values as CSS custom properties', () => {
             render(
                 <ThemeProvider
                     theme={'light'}
-                    tokens={{ primary: 'red', focusRing: 'blue' }}
+                    tokens={{ primary: { main: 'red' }, focusRing: 'blue' }}
                 >
                     <span>child</span>
                 </ThemeProvider>,
             )
             expect(
-                document.documentElement.style.getPropertyValue('--color-primary'),
+                document.documentElement.style.getPropertyValue('--color-primary-main'),
             ).toBe('red')
             expect(document.documentElement.style.getPropertyValue('--color-focusRing')).toBe(
                 'blue',
@@ -423,14 +502,14 @@ describe('ThemeProvider', () => {
             render(
                 <ThemeProvider
                     theme={'light'}
-                    tokens={{ primary: 'red' }}
+                    tokens={{ primary: { main: 'red' } }}
                     style={{ padding: '1rem' }}
                 >
                     <span>child</span>
                 </ThemeProvider>,
             )
             expect(
-                document.documentElement.style.getPropertyValue('--color-primary'),
+                document.documentElement.style.getPropertyValue('--color-primary-main'),
             ).toBe('red')
             const wrapper = screen.getByText('child').parentElement as HTMLElement
             expect(wrapper.style.padding).toBe('1rem')
@@ -442,7 +521,7 @@ describe('ThemeProvider', () => {
             <ThemeProvider
                 scope={'document'}
                 theme={'dark'}
-                tokens={{ primary: 'red' }}
+                tokens={{ primary: { main: 'red' } }}
             >
                 <span>child</span>
             </ThemeProvider>,
@@ -450,14 +529,14 @@ describe('ThemeProvider', () => {
 
         expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
         expect(
-            document.documentElement.style.getPropertyValue('--color-primary'),
+            document.documentElement.style.getPropertyValue('--color-primary-main'),
         ).toBe('red')
 
         unmount()
 
         expect(document.documentElement.hasAttribute('data-theme')).toBe(false)
         expect(
-            document.documentElement.style.getPropertyValue('--color-primary'),
+            document.documentElement.style.getPropertyValue('--color-primary-main'),
         ).toBe('')
     })
 

@@ -10,12 +10,12 @@ export const SLIDER_HEADER_STYLES = {
         gap: vars.space.sm,
     }),
     label: style({
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         fontSize: vars.fontSize.sm,
         fontWeight: vars.fontWeight.medium,
     }),
     value: style({
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         fontSize: vars.fontSize.sm,
         fontVariantNumeric: 'tabular-nums',
     }),

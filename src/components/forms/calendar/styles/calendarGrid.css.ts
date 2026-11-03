@@ -17,7 +17,7 @@ export const CALENDAR_GRID_STYLES = {
         textAlign: 'center',
         fontSize: vars.fontSize.xs,
         fontWeight: vars.fontWeight.medium,
-        color: vars.color.surfaceMutedForeground,
+        color: vars.color.surface.mutedForeground,
         paddingBottom: vars.space.xs,
     }),
 

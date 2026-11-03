@@ -108,7 +108,7 @@ export const Playground: Story = {
     <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
       Hover card title
     </h4>
-    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surfaceMuted-foreground)' }}>
+    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surface-mutedForeground)' }}>
       This panel stays open while your cursor is over the trigger or this content.
     </p>
   </HoverCard.Content>
@@ -129,7 +129,7 @@ export const Playground: Story = {
                     style={{
                         margin: '0.5rem 0 0',
                         fontSize: '0.875rem',
-                        color: 'var(--color-surfaceMuted-foreground)',
+                        color: 'var(--color-surface-mutedForeground)',
                     }}
                 >
                     This panel stays open while your cursor is over the trigger or this

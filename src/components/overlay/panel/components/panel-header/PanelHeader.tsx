@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC, useEffect } from 'react'
 
@@ -66,7 +67,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                         id={titleId}
                                         fontSize={'lg'}
                                         fontWeight={'semibold'}
-                                        color={'foreground'}
+                                        color={vars.color.text.primary}
                                         width={'100%'}
                                         ellipsis={true}
                                         {...titleProps}
@@ -82,7 +83,7 @@ const PanelHeader: FC<PanelHeaderProps> = memo(
                                     <Typography
                                         as={'p'}
                                         fontSize={'sm'}
-                                        color={'surfaceMutedForeground'}
+                                        color={vars.color.surface.mutedForeground}
                                         width={'100%'}
                                         ellipsis={true}
                                         {...descriptionProps}

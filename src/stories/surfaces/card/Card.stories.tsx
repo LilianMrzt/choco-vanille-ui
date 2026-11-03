@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -115,21 +116,6 @@ const ROUNDED = [
     '2xl',
     'full',
 ] as const
-const BG_COLORS = [
-    undefined,
-    'transparent',
-    'background',
-    'surface',
-    'surfaceMuted',
-    'primary',
-    'primarySubtle',
-    'secondary',
-    'secondarySubtle',
-    'successSubtle',
-    'warningSubtle',
-    'infoSubtle',
-    'dangerSubtle',
-] as const
 
 const meta: Meta<CardPlaygroundArgs> = {
     title: 'Surfaces/Card',
@@ -198,8 +184,7 @@ Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\
             table: { category: 'Card' },
         },
         backgroundColor: {
-            control: 'select',
-            options: BG_COLORS,
+            control: 'text',
             table: { category: 'Card' },
         },
         padding: {
@@ -382,7 +367,7 @@ export const Playground: Story = {
                 <Typography
                     variant={'p'}
                     fontSize={'sm'}
-                    color={'foreground'}
+                    color={vars.color.text.primary}
                 >
                     Your content goes here.
                 </Typography>

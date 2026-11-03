@@ -8,6 +8,7 @@ import {
     vars,
     type Theme,
     type ThemeColor,
+    type ThemeColorAccent,
     type ThemeColorOverrides,
     type ThemeColors,
     type ThemeEditorColors,
@@ -50,7 +51,7 @@ describe('theme', () => {
     })
 
     it('preserves public CSS variable names and built-in token values', () => {
-        expect(vars.color.primary).toBe('var(--color-primary)')
+        expect(vars.color.primary.main).toBe('var(--color-primary-main)')
         expect(vars.editorColors.ocean.base).toBe('var(--editorColors-ocean-base)')
         expect(vars.space.md).toBe('var(--space-md)')
         expect(lightTheme.color.background).not.toBe(darkTheme.color.background)
@@ -68,11 +69,13 @@ describe('theme', () => {
     it('accepts both themes and custom values in the public theme type', () => {
         expectTypeOf(lightTheme).toMatchTypeOf<Theme>()
         expectTypeOf(darkTheme).toMatchTypeOf<Theme>()
-        expectTypeOf<Theme['color']['primary']>().toEqualTypeOf<string>()
+        expectTypeOf<Theme['color']['primary']>().toEqualTypeOf<ThemeColorAccent>()
+        expectTypeOf<Theme['color']['primary']['main']>().toEqualTypeOf<string>()
+        expectTypeOf(lightTheme.color.primary.main).toEqualTypeOf<'#2563eb'>()
         expectTypeOf<Theme['editorColors']['ocean']['base']>().toEqualTypeOf<string>()
         expectTypeOf<ThemeVars>().toEqualTypeOf<typeof vars>()
-        expectTypeOf<'primary'>().toMatchTypeOf<ThemeColor>()
-        expectTypeOf<'danger' | 'neutral' | 'accentPurple' | 'focusRing' | 'currentColor' | 'transparent'>()
+        expectTypeOf<'primary.main'>().toMatchTypeOf<ThemeColor>()
+        expectTypeOf<'danger.main' | 'neutral.main' | 'accentPurple.main' | 'focusRing' | 'currentColor' | 'transparent'>()
             .toMatchTypeOf<ThemeColor>()
         expectTypeOf<Extract<ThemeColor, 'destructive' | 'tertiary' | 'purple' | 'ring' | 'card' | 'text'>>()
             .toEqualTypeOf<never>()
@@ -81,22 +84,27 @@ describe('theme', () => {
         expectTypeOf<PublicThemeColors>().toEqualTypeOf<ThemeColors>()
         expectTypeOf<PublicThemeEditorColors>().toEqualTypeOf<ThemeEditorColors>()
         expectTypeOf<PublicThemeColorOverrides>().toEqualTypeOf<ThemeColorOverrides>()
-        expectTypeOf<keyof ThemeColorOverrides>().toEqualTypeOf<ThemeColor>()
+        expectTypeOf<keyof ThemeColorOverrides>().toEqualTypeOf<keyof ThemeColors>()
+        expectTypeOf<Extract<ThemeColor, 'primary' | 'surface' | 'primaryHover' | 'primary.subtle.main'>>()
+            .toEqualTypeOf<never>()
+        expectTypeOf<{ primary: { main: { nested: string } } }>().not.toMatchTypeOf<ThemeColorOverrides>()
     })
 
     it('accepts custom color and editor values without copying built-in literals', () => {
         const colorOverrides = {
-            primary: '#0f766e',
-            primaryForeground: '#ffffff',
+            primary: { main: '#0f766e', foreground: '#ffffff' },
         } as const satisfies ThemeColorOverrides
-        const colors = { ...lightTheme.color, ...colorOverrides } satisfies ThemeColors
+        const colors = {
+            ...lightTheme.color,
+            primary: { ...lightTheme.color.primary, ...colorOverrides.primary },
+        } satisfies ThemeColors
         const editorColors = {
             ...darkTheme.editorColors,
             ocean: { dark: '#075985', base: '#0284c7', light: '#7dd3fc' },
         } satisfies ThemeEditorColors
         const customTheme = { ...lightTheme, color: colors, editorColors } satisfies Theme
 
-        expect(customTheme.color.primary).toBe('#0f766e')
+        expect(customTheme.color.primary.main).toBe('#0f766e')
         expect(customTheme.editorColors.ocean.base).toBe('#0284c7')
     })
 })

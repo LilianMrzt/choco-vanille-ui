@@ -4,7 +4,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const TABS_CONTENT_STYLES = {
     root: style({
         paddingTop: vars.space.md,
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
         outline: 'none',
         selectors: {
             '&:focus-visible': {

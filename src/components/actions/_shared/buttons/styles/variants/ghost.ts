@@ -11,22 +11,22 @@ import { createButtonCompoundVariantUtils } from '@components/actions/_shared/bu
 export const ghostCompoundVariants = createButtonCompoundVariantUtils(
     BUTTON_VARIANTS.ghost,
     (color) => ({
-        color: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleForeground`],
+        color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
         selectors: {
             '&:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
             '&:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
             '&[data-active="true"]': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
             '&[data-active="true"]:hover': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}Subtle`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
             '&[data-active="true"]:active': {
-                backgroundColor: vars.color[`${COLOR_INTENT_TOKENS[color]}SubtleActive`],
+                backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
         },
     }),

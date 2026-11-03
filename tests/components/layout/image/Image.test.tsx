@@ -23,6 +23,24 @@ describe('Image', () => {
     })
 
     describe('CSS class application', () => {
+        it('accepts external CSS background variables and lets consumer styles win', () => {
+            const { rerender } = render(
+                <Image src={IMAGE_SRC} alt={IMAGE_ALT} backgroundColor={'var(--app-image)'} />,
+            )
+            const image = screen.getByRole<HTMLImageElement>('img')
+            expect(image.style.backgroundColor).toBe('var(--app-image)')
+            expect(image.hasAttribute('backgroundColor')).toBe(false)
+            rerender(
+                <Image
+                    src={IMAGE_SRC}
+                    alt={IMAGE_ALT}
+                    backgroundColor={'var(--app-image)'}
+                    style={{ backgroundColor: 'red' }}
+                />,
+            )
+            expect(image.style.backgroundColor).toBe('red')
+        })
+
         it('applies a non-empty className', () => {
             render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} />)
             expect(screen.getByRole('img').className.length).toBeGreaterThan(0)

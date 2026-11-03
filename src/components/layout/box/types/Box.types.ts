@@ -1,7 +1,7 @@
 import type { Radius } from '@theme/tokens/radius/types/index.ts'
 import type { Shadows } from '@theme/tokens/elevation/types/index.ts'
 import type { Space } from '@theme/tokens/spacing/types/index.ts'
-import type { ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
+import type { CSSProperties } from 'react'
 
 /** HTML container elements supported by the Box component. */
 export type BoxVariant =
@@ -35,8 +35,8 @@ export type BoxSpace = keyof Space
 /** Spacing tokens supported by margin props. */
 export type BoxMargin = 'auto' | BoxSpace
 
-/** Theme color tokens supported by color props. */
-export type BoxColor = ThemeColorValue
+/** CSS color values, including theme variable references and custom properties. */
+export type BoxColor = CSSProperties['color']
 
 /** Shadow tokens supported by the Box component. */
 export type BoxShadow = keyof Shadows

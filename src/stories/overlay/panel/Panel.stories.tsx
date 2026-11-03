@@ -1,3 +1,4 @@
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -128,7 +129,7 @@ export const Playground: Story = {
     <Panel.Content position="right" width="33.333vw">
         <Panel.Header title="Panel settings" description="Manage your profile and preferences." />
         <Panel.Body>
-            <Typography variant="p" fontSize="sm" color="foreground">
+            <Typography variant="p" fontSize="sm" color={vars.color.text.primary}>
                 Your content goes here.
             </Typography>
         </Panel.Body>
@@ -175,7 +176,7 @@ export const Playground: Story = {
                     <Typography
                         variant={'p'}
                         fontSize={'sm'}
-                        color={'foreground'}
+                        color={vars.color.text.primary}
                     >
                         Your content goes here. This panel demonstrates the dialog-like
                         compound component with side placement.

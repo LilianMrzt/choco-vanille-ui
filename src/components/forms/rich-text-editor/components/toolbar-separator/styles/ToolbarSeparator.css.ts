@@ -7,6 +7,6 @@ export const TOOLBAR_SEPARATOR_STYLES = {
         width: '1px',
         alignSelf: 'stretch',
         marginBlock: vars.space.xs,
-        backgroundColor: vars.color.border,
+        backgroundColor: vars.color.border.main,
     }),
 }

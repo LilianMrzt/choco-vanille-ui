@@ -12,6 +12,6 @@ export const AUTOCOMPLETE_EMPTY_STYLES = {
         fontSize: vars.fontSize.sm,
         lineHeight: vars.lineHeight.normal,
         fontFamily: vars.fontFamily.sans,
-        color: vars.color.foregroundMuted,
+        color: vars.color.text.secondary,
     }),
 }

@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'react'
 
 export const colorSwatchStyles = {
-    wrapper: (): CSSProperties => ({
+    wrapper: (isMain: boolean): CSSProperties => ({
         display: 'flex',
         flexDirection: 'column',
-        minWidth: 110,
-        flex: '1 1 110px',
+        minWidth: 0,
+        gridColumn: isMain ? '1 / -1' : undefined,
         cursor: 'pointer',
         userSelect: 'none',
     }),

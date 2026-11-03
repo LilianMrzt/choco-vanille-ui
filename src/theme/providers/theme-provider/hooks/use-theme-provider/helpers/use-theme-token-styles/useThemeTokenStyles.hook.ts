@@ -1,5 +1,6 @@
 import { useMemo, type CSSProperties } from 'react'
 import type { ThemeColorOverrides } from '@theme/tokens/colors/types/index.ts'
+import { getThemeTokenStyles } from '@theme/utils/getThemeTokenStyles.utils.ts'
 
 /**
  * Converts semantic color tokens into inline CSS custom properties.
@@ -7,20 +8,7 @@ import type { ThemeColorOverrides } from '@theme/tokens/colors/types/index.ts'
  * @param tokens - Optional semantic color overrides.
  * @returns Inline custom properties for a subtree.
  * @example
- * const styles = useThemeTokenStyles({ primary: 'red' })
+ * const styles = useThemeTokenStyles({ primary: { main: 'red' } })
  */
-export const useThemeTokenStyles = (tokens?: ThemeColorOverrides): CSSProperties => useMemo<CSSProperties>(() => {
-    if (!tokens) {
-        return {}
-    }
-
-    return Object.entries(tokens).reduce<Record<string, string>>(
-        (styles, [key, value]) => {
-            if (value !== undefined) {
-                styles[`--color-${key}`] = value
-            }
-            return styles
-        },
-        {},
-    )
-}, [tokens])
+export const useThemeTokenStyles = (tokens?: ThemeColorOverrides): CSSProperties =>
+    useMemo(() => getThemeTokenStyles(tokens), [tokens])

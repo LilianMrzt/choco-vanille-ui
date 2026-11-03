@@ -9,8 +9,8 @@ The design system is built on a **three-layer token architecture** — the same 
 > - **Storybook:** `Overview / Theme / Customization` (how to override) and `Overview / Theme / CSS Variables` (full token list).
 
 ```
-Layer 3 — Component styles: vars.color.primary, vars.space.md …
-Layer 2 — Semantic tokens:  primary, muted, destructive …
+Layer 3 — Component styles: vars.color.primary.main, vars.space.md …
+Layer 2 — Semantic tokens:  primary.main, surface.muted, danger.main …
                             src/theme/tokens/colors/
 Layer 1 — Primitive palette: palette.brand[600], palette.red[500] …
                             src/theme/tokens/colors/palette.const.ts
@@ -43,19 +43,20 @@ src/theme/
 
 ## Layer 1 — Primitive palette (`tokens/colors/palette.const.ts`)
 
-Raw, theme-agnostic OKLCH color scales. Components **never** reference the palette directly — only the light and dark semantic color tokens consume it.
+Raw, theme-agnostic sRGB hex scales. Components reference semantic variables;
+the light and dark color objects consume the palette.
 
-Available ramps: `neutral`, `brand` (violet-indigo), `secondary` (warm golden-orange, complementary to brand), `blue`, `green`, `amber`, `red`.  
-Each ramp: steps `50` → `950` (lighter → darker).
+Available ramps include `neutral`, `brand` (blue), `secondary` (violet), `blue`,
+`green`, `amber`, `red`, `purple`, `pink`, `orange`, `teal`, `cyan` and `indigo`.
 
 ```ts
 import { palette } from '@choco-vanille/ui'
 
-palette.brand[600]  // 'oklch(0.548 0.237 285)' — light primary
-palette.red[500]    // 'oklch(0.637 0.237 25.3)'
+palette.brand[600]  // light primary
+palette.red[500]
 ```
 
-**Why OKLCH?** It's perceptually uniform — equal numeric deltas look equal visually, which produces better-feeling dark-mode inversions and more accessible contrast ratios than HSL.
+Custom overrides can still use any valid CSS color, including OKLCH.
 
 ---
 
@@ -65,19 +66,23 @@ Maps palette values to *roles* — named slots that describe what a color is *us
 
 ### Naming convention — one symmetric set per intent
 
-Every **interactive intent** (`primary`, `secondary`, `tertiary`, `success`, `warning`, `info`, `destructive`) ships the **exact same set of tokens**, so the API is predictable for both design and dev:
+All 13 families (`primary`, `secondary`, `neutral`, `success`, `warning`, `info`,
+`danger` and the six `accent*` families) share the readonly `ThemeColorAccent`
+contract. Each group contains ten direct color leaves, with no nested treatment
+objects:
 
 | Family | Token | Used for |
 |---|---|---|
-| Solid | `{intent}` | Resting fill (contained buttons, solid badges) |
-| Solid | `{intent}Hover` | Fill on `:hover` |
-| Solid | `{intent}Active` | Fill on `:active` / pressed |
-| Solid | `{intent}Foreground` | Text/icon on the solid fill |
-| Subtle | `{intent}Subtle` | Resting tinted surface (ghost/outline/soft, alerts) |
-| Subtle | `{intent}SubtleHover` | Tinted surface on `:hover` |
-| Subtle | `{intent}SubtleActive` | Tinted surface on `:active` / pressed |
-| Subtle | `{intent}SubtleForeground` | Text/icon on the subtle surface |
-| Subtle | `{intent}SubtleBorder` | Border that pairs with the subtle surface |
+| Solid | `{family}.main` | Resting fill (contained buttons, solid badges) |
+| Solid | `{family}.hover` | Fill on `:hover` |
+| Solid | `{family}.pressed` | Fill on `:active` / pressed |
+| Solid | `{family}.foreground` | Text/icon on the solid fill |
+| Solid | `{family}.border` | Standard treatment border |
+| Subtle | `{family}.subtle` | Resting tinted surface |
+| Subtle | `{family}.subtleHover` | Tinted surface on `:hover` |
+| Subtle | `{family}.subtlePressed` | Tinted surface on `:active` / pressed |
+| Subtle | `{family}.subtleForeground` | Text/icon on the subtle surface |
+| Subtle | `{family}.subtleBorder` | Border that pairs with the subtle surface |
 
 > **Rule of thumb** — reach for the **solid** family for primary actions, and the **subtle** family for low-emphasis controls (ghost/outline buttons), inline alerts, badges and highlighted menu items.
 
@@ -88,41 +93,53 @@ Every **interactive intent** (`primary`, `secondary`, `tertiary`, `success`, `wa
 | Role | Light | Dark |
 |---|---|---|
 | `background` | neutral-50 | neutral-950 |
-| `foreground` | neutral-950 | neutral-100 |
-| `card` / `cardForeground` | white / neutral-950 | neutral-900 / neutral-100 |
-| `popover` / `popoverForeground` | white / neutral-950 | neutral-900 / neutral-100 |
-| `muted` / `mutedForeground` | neutral-100 / neutral-600 | neutral-800 / neutral-400 |
-| `overlay` | black 50% | black 60% |
+| `text.primary` | neutral-950 | neutral-100 |
+| `text.secondary` | neutral-600 | neutral-300 |
+| `text.tertiary` | neutral-550 | neutral-400 |
+| `surface.main` / `surface.foreground` | neutral-0 / neutral-950 | neutral-900 / neutral-100 |
+| `surface.elevated` / `surface.elevatedForeground` | neutral-0 / neutral-950 | neutral-850 / neutral-100 |
+| `surface.muted` / `surface.mutedForeground` | neutral-100 / neutral-550 | neutral-800 / neutral-400 |
+| `overlay` | black 50% | black 70% |
 
 #### Interactive intents (solid + subtle)
 
-Each of the seven intents exposes the nine tokens described above. Solid steps deepen on hover/active (light) or lighten (dark); subtle steps tint progressively.
-
-| Intent | Solid (light) | Subtle surface (light) |
-|---|---|---|
-| `primary` | brand-600 → 700 → 800 | brand-50 → 100 → 200 |
-| `secondary` | secondary-600 → 700 → 800 | secondary-50 → 100 → 200 |
-| `tertiary` | neutral-200 → 300 → 400 | neutral-100 → 200 → 300 |
-| `success` | green-600 → 700 → 800 | green-50 → 100 → 200 |
-| `warning` | amber-500 → 600 → 700 (dark text) | amber-50 → 100 → 200 |
-| `info` | blue-600 → 700 → 800 | blue-50 → 100 → 200 |
-| `destructive` | red-600 → 700 → 800 | red-50 → 100 → 200 |
+Component intentions are independent: `Button color="destructive"` maps to
+`danger`, `tertiary` maps to `neutral`, and `purple` maps to `accentPurple`.
+Built-in foregrounds retain 4.5:1 contrast across matching resting, hover and
+pressed states. Custom overrides and disabled opacity need their own assessment.
 
 #### Lines, fields & focus
 
 | Role | Description |
 |---|---|
-| `border` | Dividers, card outlines |
-| `borderStrong` | Stronger dividers, hovered borders, neutral outlines |
-| `ring` | Focus ring |
-| `highlight` / `highlightForeground` | `<mark>` element |
+| `border.subtle`, `border.muted` | Decorative, quiet separators; no 3:1 guarantee |
+| `border.main`, `border.strong`, `border.stronger` | Increasing border intensities; assess functional indicators on their actual surface |
+| `focusRing` | Focus ring |
+| `highlight.main` / `highlight.foreground` | `<mark>` element |
+
+### Primitive props and runtime overrides
+
+Box, Typography and Icon accept CSS colors directly, including any external
+custom property: `<Typography color={vars.color.primary.main}>Brand</Typography>`
+or `<Icon color="var(--app-icon)" />`. They do not resolve token-name strings.
+Explicit color props are inline; consumer `style` wins. Omitted colors leave
+inheritance and stylesheet states intact.
+
+Independent token-based props use paths, for example
+`<Separator color="primary.main" textColor="text.secondary" />`.
+
+ThemeProvider accepts partial direct leaves:
+`tokens={{ primary: { main: '#0f766e' }, surface: { elevated: '#fff' } }}`.
+Only supplied leaves are declared; siblings inherit without automatic derivation.
+Both document and subtree scopes share this conversion. Undefined leaves are
+omitted and structurally invalid runtime overrides throw.
 
 ---
 
 ## Layer 3 — CSS variable contract (`styles/contract/contract.css.ts`)
 
 `createGlobalThemeContract` turns the token shape into typed `var(--…)` references.  
-Every leaf maps: `vars.color.primaryHover` → `--color-primaryHover`.
+Every leaf maps: `vars.color.primary.hover` → `--color-primary-hover`.
 
 ### Theme registration
 

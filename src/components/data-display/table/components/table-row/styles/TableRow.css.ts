@@ -5,7 +5,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 export const TABLE_ROW_STYLES = {
     recipe: recipe({
         base: {
-            borderBottom: `1px solid ${vars.color.border}`,
+            borderBottom: `1px solid ${vars.color.border.main}`,
             transition: `background-color ${vars.duration.fast} ${vars.easing.standard}`,
         },
         variants: {
@@ -13,7 +13,7 @@ export const TABLE_ROW_STYLES = {
                 true: {
                     selectors: {
                         '&:hover': {
-                            backgroundColor: vars.color.surfaceMuted,
+                            backgroundColor: vars.color.surface.muted,
                         },
                     },
                 },
@@ -29,7 +29,7 @@ export const TABLE_ROW_STYLES = {
                     cursor: 'pointer',
                     selectors: {
                         '&:hover': {
-                            backgroundColor: vars.color.surfaceMuted,
+                            backgroundColor: vars.color.surface.muted,
                         },
                         '&:focus-visible': {
                             outline: 'none',
@@ -40,60 +40,60 @@ export const TABLE_ROW_STYLES = {
             },
             selected: {
                 true: {
-                    backgroundColor: vars.color.primarySubtle,
+                    backgroundColor: vars.color.primary.subtle,
                 },
             },
             intent: {
                 success: {
-                    backgroundColor: vars.color.successSubtle,
-                    color: vars.color.successSubtleForeground,
+                    backgroundColor: vars.color.success.subtle,
+                    color: vars.color.success.subtleForeground,
                 },
                 warning: {
-                    backgroundColor: vars.color.warningSubtle,
-                    color: vars.color.warningSubtleForeground,
+                    backgroundColor: vars.color.warning.subtle,
+                    color: vars.color.warning.subtleForeground,
                 },
                 destructive: {
-                    backgroundColor: vars.color.dangerSubtle,
-                    color: vars.color.dangerSubtleForeground,
+                    backgroundColor: vars.color.danger.subtle,
+                    color: vars.color.danger.subtleForeground,
                 },
                 info: {
-                    backgroundColor: vars.color.infoSubtle,
-                    color: vars.color.infoSubtleForeground,
+                    backgroundColor: vars.color.info.subtle,
+                    color: vars.color.info.subtleForeground,
                 },
             },
         },
         compoundVariants: [
             {
                 variants: { hoverable: true, intent: 'success' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.successSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.success.subtleHover } } },
             },
             {
                 variants: { hoverable: true, intent: 'warning' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.warningSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.warning.subtleHover } } },
             },
             {
                 variants: { hoverable: true, intent: 'destructive' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.dangerSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.danger.subtleHover } } },
             },
             {
                 variants: { hoverable: true, intent: 'info' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.infoSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.info.subtleHover } } },
             },
             {
                 variants: { selectable: true, intent: 'success' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.successSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.success.subtleHover } } },
             },
             {
                 variants: { selectable: true, intent: 'warning' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.warningSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.warning.subtleHover } } },
             },
             {
                 variants: { selectable: true, intent: 'destructive' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.dangerSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.danger.subtleHover } } },
             },
             {
                 variants: { selectable: true, intent: 'info' },
-                style: { selectors: { '&:hover': { backgroundColor: vars.color.infoSubtleHover } } },
+                style: { selectors: { '&:hover': { backgroundColor: vars.color.info.subtleHover } } },
             },
         ],
         defaultVariants: {

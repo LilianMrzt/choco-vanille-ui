@@ -12,21 +12,21 @@ export const headerStyle = (dark: boolean): CSSProperties => ({
     flexDirection: 'column',
     gap: 4,
     paddingBottom: 14,
-    borderBottom: `1px solid ${dark ? darkColors.border : lightColors.border}`,
+    borderBottom: `1px solid ${dark ? darkColors.border.main : lightColors.border.main}`,
 })
 
 export const titleStyle = (dark: boolean): CSSProperties => ({
     margin: 0,
     fontSize: 22,
     fontWeight: 700,
-    color: dark ? darkColors.foreground : lightColors.foreground,
+    color: dark ? darkColors.text.primary : lightColors.text.primary,
     letterSpacing: '-0.02em',
 })
 
 export const subtitleStyle = (dark: boolean): CSSProperties => ({
     margin: 0,
     fontSize: 13,
-    color: dark ? darkColors.foregroundMuted : lightColors.foregroundMuted,
+    color: dark ? darkColors.text.secondary : lightColors.text.secondary,
     lineHeight: 1.5,
 })
 

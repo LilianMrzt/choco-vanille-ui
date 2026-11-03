@@ -46,13 +46,13 @@ const FONT_WEIGHTS: TypographyWeight[] = [
 ]
 const ICON_SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
 const LINK_COLORS: LinkColor[] = [
-    'primary',
-    'secondary',
-    'neutral',
-    'danger',
-    'success',
-    'warning',
-    'info',
+    'primary.main',
+    'secondary.main',
+    'neutral.main',
+    'danger.main',
+    'success.main',
+    'warning.main',
+    'info.main',
 ]
 const SPACING = [
     undefined,
@@ -192,7 +192,7 @@ export const Playground: Story = {
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         await expect(
-            canvas.getByRole('link', { name: args.label as string }),
+            canvas.getByRole('link.main', { name: args.label as string }),
         ).toBeInTheDocument()
     },
 }
@@ -223,44 +223,44 @@ export const Colors: Story = {
     parameters: {
         docs: {
             ...storySource(/* language=tsx */ `
-<Link label="Primary" color="primary" />
-<Link label="Secondary" color="secondary" />
-<Link label="Tertiary" color="neutral" />
-<Link label="Destructive" color="danger" />
-<Link label="Success" color="success" />
-<Link label="Warning" color="warning" />
-<Link label="Info" color="info" />`),
+<Link label="Primary" color={'primary.main'} />
+<Link label="Secondary" color={'secondary.main'} />
+<Link label="Tertiary" color={'neutral.main'} />
+<Link label="Destructive" color={'danger.main'} />
+<Link label="Success" color={'success.main'} />
+<Link label="Warning" color={'warning.main'} />
+<Link label="Info" color={'info.main'} />`),
         },
     },
     render: () => (
         <div style={{ display: 'grid', gap: '0.5rem' }}>
             <Link
                 label={'Primary'}
-                color={'primary'}
+                color={'primary.main'}
             />
             <Link
                 label={'Secondary'}
-                color={'secondary'}
+                color={'secondary.main'}
             />
             <Link
                 label={'Tertiary'}
-                color={'neutral'}
+                color={'neutral.main'}
             />
             <Link
                 label={'Destructive'}
-                color={'danger'}
+                color={'danger.main'}
             />
             <Link
                 label={'Success'}
-                color={'success'}
+                color={'success.main'}
             />
             <Link
                 label={'Warning'}
-                color={'warning'}
+                color={'warning.main'}
             />
             <Link
                 label={'Info'}
-                color={'info'}
+                color={'info.main'}
             />
         </div>
     ),

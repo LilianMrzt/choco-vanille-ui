@@ -48,6 +48,6 @@ export type SvgImageProps = Omit<
     padding?: SvgImageSpace;
     /** The margin token applied to the SVG image. Supports `auto`. */
     margin?: SvgImageMargin;
-    /** The theme color token applied to the SVG image's background. */
+    /** CSS background color or custom-property reference. Consumer style wins. */
     backgroundColor?: BoxColor;
   };

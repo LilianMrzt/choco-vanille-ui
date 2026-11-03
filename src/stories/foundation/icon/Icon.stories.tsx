@@ -14,7 +14,7 @@ import { Icon } from '@/components/foundation/icon'
 import type { IconSize } from '@components/foundation/icon'
 import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 import { md } from '@stories/utils/markdown'
 import { storySource } from '@stories/utils/storySource'
 
@@ -95,7 +95,9 @@ const meta = {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
-A thin wrapper around locally bundled SVG components that maps design-token sizes and theme colors onto each icon.
+A thin wrapper around locally bundled SVG components with token sizes and free CSS colors.
+
+Colors accept theme variables and external custom properties, not token names. SVG \`style.color\` wins over \`color\`; omit \`color\` to preserve inheritance and stylesheet interaction colors. Background and border colors apply to the wrapper.
 
 Pass a locally bundled SVG component as the \`icon\` prop.
 
@@ -117,12 +119,12 @@ Pass a locally bundled SVG component as the \`icon\` prop.
         },
     },
     argTypes: {
-        icon: { control: 'text' },
+        icon: { control: false, description: 'Locally bundled SVG component; not editable as text.' },
         size: { control: 'select', options: SIZES },
-        color: { control: 'select', options: THEME_COLORS },
+        color: { control: 'text', description: 'CSS color or custom property reference. Inherits when omitted; SVG style.color wins.' },
         padding: { control: 'select', options: PADDINGS },
-        borderColor: { control: 'select', options: THEME_COLORS },
-        backgroundColor: { control: 'select', options: THEME_COLORS },
+        borderColor: { control: 'text', description: 'CSS border color applied to the wrapper. No default.' },
+        backgroundColor: { control: 'text', description: 'CSS background color applied to the wrapper. No default.' },
         borderWidth: { control: 'text' },
         borderStyle: { control: 'select', options: BORDER_STYLES },
         borderRadius: { control: 'select', options: BORDER_RADIUSES },
@@ -156,6 +158,34 @@ export const Playground: Story = {
             const svg = canvasElement.querySelector('svg')
             expect(svg).toBeInTheDocument()
         })
+    },
+}
+
+export const Colors: Story = {
+    args: {
+        color: 'var(--custom-color, rebeccapurple)',
+        backgroundColor: vars.color.surface.muted,
+        borderColor: vars.color.border.strong,
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        padding: 'sm',
+    },
+    parameters: {
+        docs: {
+            ...storySource(/* language=tsx */ `
+import { Icon, vars } from '@choco-vanille/ui'
+
+<Icon
+  icon={SearchIcon}
+  size="md"
+  padding="sm"
+  color="var(--custom-color, rebeccapurple)"
+  backgroundColor={vars.color.surface.muted}
+  borderColor={vars.color.border.strong}
+  borderWidth="1px"
+  borderStyle="solid"
+/>`),
+        },
     },
 }
 

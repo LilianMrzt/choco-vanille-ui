@@ -82,10 +82,10 @@ export const alertRecipe = recipe({
     base: { borderRadius: vars.radius.md, padding: vars.space.lg },
     variants: {
         variant: {
-            info:        { backgroundColor: vars.color.infoSubtle,        color: vars.color.infoSubtleForeground },
-            success:     { backgroundColor: vars.color.successSubtle,     color: vars.color.successSubtleForeground },
-            warning:     { backgroundColor: vars.color.warningSubtle,     color: vars.color.warningSubtleForeground },
-            destructive: { backgroundColor: vars.color.dangerSubtle, color: vars.color.dangerSubtleForeground },
+            info:        { backgroundColor: vars.color.info.subtle,        color: vars.color.info.subtleForeground },
+            success:     { backgroundColor: vars.color.success.subtle,     color: vars.color.success.subtleForeground },
+            warning:     { backgroundColor: vars.color.warning.subtle,     color: vars.color.warning.subtleForeground },
+            destructive: { backgroundColor: vars.color.danger.subtle, color: vars.color.danger.subtleForeground },
         },
     },
     defaultVariants: { variant: 'info' },

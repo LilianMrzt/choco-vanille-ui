@@ -8,7 +8,6 @@ import type {
 } from '@components/foundation/typography/types/Typography.types.ts'
 import type { BoxMargin } from '@components/layout/box/types/Box.types.ts'
 import type { CSSProperties, RefAttributes } from 'react'
-import type { ThemeColor } from '@theme/tokens/colors/types/index.ts'
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
   RefAttributes<HTMLElement> &
@@ -23,8 +22,8 @@ export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color'> &
     fontWeight?: TypographyWeight;
     /** Whether overflowing text should be truncated on one line. */
     ellipsis?: boolean;
-    /** Optional theme color token applied to the text's `color` CSS property. */
-    color?: ThemeColor;
+    /** CSS text color, including theme and external custom property references. */
+    color?: CSSProperties['color'];
     /** CSS `text-transform` value applied to the text. */
     textTransform?: CSSProperties['textTransform'];
     /** CSS `display` value applied to the text. */

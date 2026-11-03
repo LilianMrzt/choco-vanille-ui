@@ -16,7 +16,7 @@ const content = style({
     border: 'none',
     borderRadius: vars.radius.md,
     backgroundColor: vars.color.background,
-    color: vars.color.foreground,
+    color: vars.color.text.primary,
     transition: `transform ${vars.duration.normal} ${vars.easing.standard}`,
     willChange: 'transform',
     selectors: {

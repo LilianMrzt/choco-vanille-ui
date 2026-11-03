@@ -11,7 +11,7 @@ export const SELECT_SEPARATOR_STYLES = {
         marginBlock: vars.space.xs,
         marginInline: `calc(${vars.space.xs} * -1)`,
         height: '1px',
-        backgroundColor: vars.color.border,
+        backgroundColor: vars.color.border.main,
         opacity: 0.7,
     }),
 }

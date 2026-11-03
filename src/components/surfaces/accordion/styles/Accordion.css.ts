@@ -9,6 +9,6 @@ export const ACCORDION_STYLES = {
         alignItems: 'stretch',
         gap: 0,
         width: '100%',
-        color: vars.color.foreground,
+        color: vars.color.text.primary,
     }),
 }
