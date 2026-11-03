@@ -60,15 +60,18 @@
 - Component stories mirror the existing category layout:
   `src/components/<category>/<component>/` corresponds to
   `src/stories/<category>/<component>/<ComponentName>.stories.tsx`.
-  The existing theme provider documentation lives under the theme overview.
+  Theme provider and customization documentation live under the overview.
   Do not add `components/design-system` or `components/custom` branches.
 - Keep component API, Playground, variants, states and usage examples beside
   that component's stories. Public compound parts follow their owner; private
   implementation details do not get independent API stories.
-- Cross-cutting documentation currently lives under `src/stories/overview/`
-  and `src/stories/guidelines/`, including `Overview/Introduction` and the theme
-  reference. Reuse those sections rather than introducing a duplicate `docs/`
-  hierarchy. The Icon API belongs in component stories, not an icon catalog.
+- Keep the introduction under `src/stories/overview/` and contributor guidance
+  under `src/stories/guidelines/`. Theme, token, and CSS variable references
+  live under `src/stories/docs/`, with `Docs` ordered immediately after
+  `Guidelines` and before component categories. `Docs/Theme` covers color tokens
+  only; keep customization under `Overview/Theme/Customization`.
+  Reference stories opt out of autodocs and prefer TSX stories over new MDX pages.
+  The Icon API belongs in component stories, not an icon catalog.
 - Storybook discovers MDX and stories under `src/stories/` directly. Keep helpers
   local to their owner and new cross-story components and utilities under
   `src/stories/_shared/`. Reuse existing helpers in `src/stories/utils/` until
