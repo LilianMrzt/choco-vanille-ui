@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { copyFile, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, mkdtemp, readFile, rm } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 
 import { build } from 'vite'
@@ -22,46 +22,10 @@ describe('package distribution', () => {
             await copyFile(resolve('dist/index.d.ts'), resolve(outputDirectory, 'index.d.ts'))
 
             const consumerTypesPath = resolve(outputDirectory, 'color-consumer.tsx')
-            await writeFile(consumerTypesPath, `
-import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
-    type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides
-} from './index.js'
-const accent: ThemeColorAccent = lightTheme.color.primary
-const colors: ThemeColors = darkTheme.color
-const path: ThemeColor = 'primary.subtleForeground'
-const overrides: ThemeColorOverrides = { primary: { main: 'var(--brand)' }, surface: { elevated: '#fff' } }
-const icon = () => <svg />
-const example = <ThemeProvider tokens={overrides}>
-    <Box backgroundColor={vars.color.surface.main} borderColor="var(--app-border)" padding={80} gap={112} margin={0} borderRadius={8} boxShadow="xs">
-        <Typography color={vars.color.primary.main} fontSize={72} margin="auto">Brand</Typography>
-        <Icon icon={icon} color="var(--app-icon)" padding={0} borderRadius="full" />
-    </Box>
-</ThemeProvider>
-// @ts-expect-error A branch is not a token leaf.
-const branch: ThemeColor = 'primary'
-// @ts-expect-error Legacy names no longer exist.
-const legacy: ThemeColor = 'primaryHover'
-// @ts-expect-error Groups cannot contain another object.
-const nested: ThemeColorOverrides = { primary: { subtle: { main: 'red' } } }
-// @ts-expect-error A complete theme requires every leaf.
-const incomplete: ThemeColors = { primary: { main: 'red' } }
-// @ts-expect-error A color object is not a CSS color.
-const objectColor = <Typography color={vars.color.primary} />
-// @ts-expect-error Subtle is a direct leaf.
-const deep = vars.color.primary.subtle.main
-const numericTokens = [vars.space[16], vars.space[80], vars.space[112], vars.fontSize[14], vars.radius[8], vars.radius.full, vars.shadow.xs, vars.dropShadow.xs]
-// @ts-expect-error Spacing props require numbers, not quoted numeric keys.
-const quotedSpacing = <Box padding="16" />
-// @ts-expect-error Font-size props require numbers.
-const quotedFontSize = <Typography fontSize="14" />
-// @ts-expect-error Radius props require numbers or full.
-const quotedRadius = <Box borderRadius="8" />
-// @ts-expect-error Only the finite spacing scale is supported.
-const arbitrarySpacing = <Box padding={17} />
-// @ts-expect-error Only the finite font-size scale is supported.
-const arbitraryFontSize = <Typography fontSize={15} />
-void [accent, colors, path, example, numericTokens]
-`)
+            await copyFile(
+                resolve('tests', 'distribution', 'fixtures', 'color-consumer.tsx.txt'),
+                consumerTypesPath,
+            )
             const program = ts.createProgram([consumerTypesPath], {
                 noEmit: true,
                 strict: true,
@@ -93,6 +57,26 @@ void [accent, colors, path, example, numericTokens]
             expect(themeCss).not.toMatch(/--(?:space|fontSize|radius)-(?:none|xs|sm|md|lg|xl)\b/)
             expect(themeCss).not.toMatch(/--color-(?:primary|primaryHover|primaryActive|foreground|surface|borderStrong)\s*[:)]/)
             expect(themeCss).not.toContain('[object Object]')
+
+            for (const extension of ['js', 'cjs']) {
+                const statusStylesPath = resolve(outputDirectory, `components/data-display/status-badge/StatusBadge.css.${extension}`)
+                const statusStyles = await readFile(statusStylesPath, 'utf8')
+                const cssImports = [...statusStyles.matchAll(/(?:import\s*|require\()\s*['"]([^'"]+\.css)['"]/g)]
+                const stylesheets = await Promise.all(
+                    cssImports.map((match) => readFile(resolve(dirname(statusStylesPath), match[1]), 'utf8')),
+                )
+                const css = stylesheets.join('\n')
+                const numberedSizes = [...statusStyles.matchAll(/size:\s*["'`](sm|md|lg)["'`],\s*hasNumber:\s*(?:!0|true)\s*},\s*["'`]([^"'`]+)["'`]/g)]
+                const minimumWidths: Record<string, number> = { sm: 16, md: 20, lg: 24 }
+
+                expect(numberedSizes).toHaveLength(3)
+                for (const [, size, className] of numberedSizes) {
+                    const numberRule = css.match(new RegExp(`\\.${className}\\s*\\{([^}]+)\\}`))?.[1]
+                    expect(numberRule).toBeDefined()
+                    expect(numberRule).toMatch(new RegExp(`min-width:\\s*var\\(--space-${minimumWidths[size]}\\)`))
+                    expect(numberRule).toMatch(/(?:^|;)\s*width:\s*auto(?:;|$)/)
+                }
+            }
 
             const selectStylesPath = resolve(
                 outputDirectory,

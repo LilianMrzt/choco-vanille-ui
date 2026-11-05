@@ -1,0 +1,6 @@
+import { Avatar } from '@choco-vanille/ui'
+
+<>
+    <Avatar aria-label="Jane Doe, circle" initials="JD" shape="circle" />
+    <Avatar aria-label="Jane Doe, square" initials="JD" shape="square" />
+</>

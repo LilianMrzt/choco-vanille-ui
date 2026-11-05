@@ -1,0 +1,7 @@
+import { RichTextRenderer, type RichTextValue } from '@choco-vanille/ui'
+
+const value: RichTextValue = {{value}}
+
+export const DocumentPreview = () => (
+    <RichTextRenderer value={value}{{as}}{{width}}{{color}}{{style}} />
+)

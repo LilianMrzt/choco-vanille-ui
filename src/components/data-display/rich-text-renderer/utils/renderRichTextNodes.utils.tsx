@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react'
 
-import { extractTextFromReactNode } from '@components/data-display/_shared/utils/extractText.utils.ts'
+import { extractTextFromReactNode } from '@components/data-display/rich-text-renderer/utils/extractText.utils.ts'
 import { Typography } from '@components/foundation/typography'
 import { Link } from '@components/navigation/link'
 import type {
@@ -14,6 +14,15 @@ import {
     normalizeRichTextUrl,
 } from '@components/forms/rich-text-editor/utils/richText.utils.ts'
 
+/**
+ * Applies supported inline marks while retaining text for rejected link/style values.
+ *
+ * @param content - Inline content to wrap.
+ * @param marks - Ordered marks; defaults to no formatting.
+ * @returns Formatted inline content.
+ * @example
+ * renderMarks('Important', [{ type: 'bold' }])
+ */
 const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode =>
     marks.reduceRight<ReactNode>((children, mark) => {
         switch (mark.type) {
@@ -65,8 +74,25 @@ const renderMarks = (content: ReactNode, marks: RichTextMark[] = []): ReactNode 
         }
     }, content)
 
+/**
+ * Renders a text node and its optional formatting.
+ *
+ * @param node - Text and inline marks.
+ * @returns The formatted text.
+ * @example
+ * renderTextNode({ type: 'text', text: 'Hello' })
+ */
 const renderTextNode = (node: RichTextTextNode): ReactNode => renderMarks(node.text, node.marks)
 
+/**
+ * Recursively renders supported rich-text blocks, images and inline nodes.
+ * Unsafe URLs are omitted and invalid style values are not applied.
+ *
+ * @param nodes - Document children; defaults to an empty array.
+ * @returns Semantic elements in document order.
+ * @example
+ * renderRichTextNodes([{ type: 'paragraph', content: [{ type: 'text', text: 'Hello' }] }])
+ */
 export const renderRichTextNodes = (nodes: RichTextNode[] = []): ReactNode[] =>
     nodes.map((node, index) => {
         const key = `${node.type}-${index}`

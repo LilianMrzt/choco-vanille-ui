@@ -1,0 +1,7 @@
+import { Avatar, AvatarGroup } from '@choco-vanille/ui'
+
+<AvatarGroup
+{{attributes}}
+>
+{{children}}
+</AvatarGroup>

@@ -1,224 +1,91 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
 
-import { Badge } from '@/components/data-display/badge'
-import type { BadgeColor, BadgeSize, BadgeVariant } from '@components/data-display/badge'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import { md } from '@stories/utils/markdown'
+import { Badge } from '@components/data-display/badge'
+import BadgeColors from '@stories/data-display/badge/components/badge-colors/BadgeColors'
+import BadgeDocsPage from '@stories/data-display/badge/components/badge-docs-page/BadgeDocsPage'
+import BadgeSizes from '@stories/data-display/badge/components/badge-sizes/BadgeSizes'
+import BadgeVariants from '@stories/data-display/badge/components/badge-variants/BadgeVariants'
+import BadgeWithIcons from '@stories/data-display/badge/components/badge-with-icons/BadgeWithIcons'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/badge/constants'
+import badgeSizesSource from '@stories/data-display/badge/sources/BadgeSizes.source.tsx.txt?raw'
+import badgeWithIconsSource from '@stories/data-display/badge/sources/BadgeWithIcons.source.tsx.txt?raw'
+import { createBadgeColorsSource } from '@stories/data-display/badge/utils/create-badge-colors-source/createBadgeColorsSource.utils'
+import { createBadgeSource } from '@stories/data-display/badge/utils/create-badge-source/createBadgeSource.utils'
+import { createBadgeVariantsSource } from '@stories/data-display/badge/utils/create-badge-variants-source/createBadgeVariantsSource.utils'
+import { playBadgePlayground } from '@stories/data-display/badge/utils/playBadgePlayground.utils'
 import { storySource } from '@stories/utils/storySource'
-
-const VARIANTS: BadgeVariant[] = [
-    'contained',
-    'subtle',
-    'outlined',
-    'outlinedSubtle',
-]
-const COLORS: BadgeColor[] = [
-    'primary',
-    'secondary',
-    'tertiary',
-    'destructive',
-    'success',
-    'warning',
-    'info',
-    'purple',
-    'pink',
-    'orange',
-    'teal',
-    'cyan',
-    'indigo',
-]
-const SIZES: BadgeSize[] = ['sm', 'md', 'lg']
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Yes | \`string\` | Becomes the badge's text content. |
-| \`aria-*\` | No | — | Native span ARIA attributes are forwarded. |
-`
-
-const BadgeDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
 
 const meta = {
     title: 'Data Display/Badge',
     component: Badge,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
             page: BadgeDocsPage,
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A small status indicator built on top of the Box primitive.
-It supports four visual variants, twelve semantic color intents, and three sizes,
-while inheriting Box layout props so radius, width, padding, and more remain customizable.
-
-**Usage**
-
-\`\`\`tsx
-<Badge label="New" />
-<Badge label="Verified" variant="contained" color="success" />
-<Badge label="Draft" variant="outlined" color="secondary" size="sm" />
-<Badge label="Soft" variant="outlinedSubtle" color="secondary" size="sm" />
-<Badge label="Custom" borderRadius={8} width="fit-content" />
-\`\`\`
-
-                `,
+                component: 'A noninteractive label with four treatments, thirteen semantic color intents and three sizes. Optional icons and inherited layout props customize its presentation.',
+            },
+            source: {
+                type: 'dynamic',
+                transform: createBadgeSource,
             },
         },
     },
-    argTypes: {
-        label: { control: 'text' },
-        variant: { control: 'select', options: VARIANTS },
-        color: { control: 'select', options: COLORS },
-        size: { control: 'select', options: SIZES },
-        borderRadius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'] },
-        width: { control: 'text' },
-        startIcon: { control: 'text' },
-        endIcon: { control: 'text' },
-    },
-    args: {
-        label: 'Badge',
-        variant: 'subtle',
-        color: 'primary',
-        size: 'md',
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
 } satisfies Meta<typeof Badge>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
-            },
-            ...storySource(`<Badge label="Badge" variant="subtle" color="primary" size="md" />`),
-        },
-    },
-    play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement)
-        await expect(canvas.getByText(args.label as string)).toBeInTheDocument()
-    },
+    play: playBadgePlayground,
 }
 
 export const Variants: Story = {
     parameters: {
         docs: {
-            description: {
-                story: 'The four visual variants applied to the primary color.',
-            },
-            ...storySource(`<Badge label="contained" variant="contained" />`),
+            ...storySource(createBadgeVariantsSource()),
         },
     },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {VARIANTS.map((variant) => (
-                <Badge
-                    key={variant}
-                    label={variant}
-                    variant={variant}
-                />
-            ))}
-        </div>
-    ),
+    render: BadgeVariants,
 }
 
 export const Sizes: Story = {
     parameters: {
         docs: {
-            description: {
-                story: 'The three size variants.',
-            },
-            ...storySource(`<Badge label="SM" size="sm" /><Badge label="MD" size="md" /><Badge label="LG" size="lg" />`),
+            ...storySource(badgeSizesSource),
         },
     },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {SIZES.map((size) => (
-                <Badge
-                    key={size}
-                    label={size.toUpperCase()}
-                    size={size}
-                />
-            ))}
-        </div>
-    ),
+    render: BadgeSizes,
 }
 
 export const Colors: Story = {
     parameters: {
         docs: {
-            description: {
-                story: 'All available color intents in the default outlinedSubtle variant.',
-            },
-            ...storySource(`<Badge label="primary" color="primary" /><Badge label="success" color="success" />`),
+            ...storySource(createBadgeColorsSource()),
         },
     },
-    render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxWidth: '40rem' }}>
-            {COLORS.map((color) => (
-                <Badge
-                    key={color}
-                    label={color}
-                    color={color}
-                />
-            ))}
-        </div>
-    ),
+    render: BadgeColors,
 }
 
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            description: {
-                story: 'Badges can display an optional start or end icon.',
-            },
-            ...storySource(`<Badge label="Start icon" startIcon={CheckIcon} />`),
+            description: { story: 'Supply your own SVG components for CheckIcon and ChevronRightIcon. Both icons remain decorative.' },
+            ...storySource(badgeWithIconsSource),
         },
     },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            <Badge
-                label={'Start icon'}
-                startIcon={CheckIcon}
-                color={'success'}
-            />
-            <Badge
-                label={'End icon'}
-                endIcon={ChevronRightIcon}
-                color={'primary'}
-                variant={'outlined'}
-            />
-            <Badge
-                label={'Both icons'}
-                startIcon={CheckIcon}
-                endIcon={ChevronRightIcon}
-                color={'info'}
-                variant={'contained'}
-            />
-        </div>
-    ),
+    render: BadgeWithIcons,
+}
+
+export const LongLabel: Story = {
+    args: { label: 'A longer label remains fully visible', maxWidth: '100%' },
+    parameters: {
+        docs: {
+            description: { story: 'Labels are not truncated. Allow enough space or provide a concise label in narrow layouts.' },
+        },
+    },
 }

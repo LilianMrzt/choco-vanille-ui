@@ -1,0 +1,3 @@
+import { Badge } from '@choco-vanille/ui'
+
+<Badge label={{{label}}}{{variant}}{{color}}{{size}}{{borderRadius}}{{width}}{{maxWidth}}{{className}}{{style}}{{startIcon}}{{endIcon}} />

@@ -5,7 +5,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 import { BUTTON_COLORS_ARRAY } from '@components/actions/_shared/buttons/constants'
 import { BADGE_COLORS_ARRAY } from '@components/data-display/badge/constants'
 import { containedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/contained.ts'
-import { outlinedSubtleCompoundVariants } from '@components/data-display/badge/styles/variants/outlinedSubtle.ts'
+import { createBadgeCompoundVariants } from '@components/data-display/badge/utils/create-badge-compound-variants/createBadgeCompoundVariants.utils.ts'
 
 const INTENT_PAIRS = [
     ['primary', 'primary'],
@@ -48,7 +48,7 @@ describe('component color intentions', () => {
     it.each(BADGE_COLORS_ARRAY)('uses semantic subtle tokens for the %s badge intention', (intent) => {
         const token = COLOR_INTENT_TOKENS[intent]
 
-        expect(outlinedSubtleCompoundVariants).toContainEqual({
+        expect(createBadgeCompoundVariants()).toContainEqual({
             variants: { variant: 'outlinedSubtle', color: intent },
             style: {
                 backgroundColor: vars.color[token].subtle,

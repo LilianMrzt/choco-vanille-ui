@@ -1,0 +1,1 @@
+<Avatar.Status status={{{status}}} size={{{size}}} label={{{label}}} />

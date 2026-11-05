@@ -1,0 +1,7 @@
+import { Badge } from '@choco-vanille/ui'
+
+<>
+    <Badge label="Start icon" startIcon={CheckIcon} color="success" />
+    <Badge label="End icon" endIcon={ChevronRightIcon} color="primary" variant="outlined" />
+    <Badge label="Both icons" startIcon={CheckIcon} endIcon={ChevronRightIcon} color="info" variant="contained" />
+</>

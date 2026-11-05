@@ -150,7 +150,7 @@ describe('Table.Row', () => {
             expect(handleClick).not.toHaveBeenCalled()
         })
 
-        it('calls custom onKeyDown after selectable Enter handling', () => {
+        it('calls custom onKeyDown during selectable Enter handling', () => {
             const handleKeyDown = vi.fn()
             render(
                 <table>

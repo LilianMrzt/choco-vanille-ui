@@ -1,11 +1,45 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { createRef } from 'react'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
-import AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
-import AvatarFallback from '@components/data-display/avatar/components/avatar-fallback/AvatarFallback.tsx'
+import { Avatar, type AvatarFallbackProps } from '@components/data-display/avatar'
 import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
+const { Root: AvatarRoot, Fallback: AvatarFallback } = Avatar
+
 describe('AvatarFallback', () => {
+    it('forwards the fallback span ref, native events and attributes while filtering content props', () => {
+        const ref = createRef<HTMLSpanElement>()
+        const onClick = vi.fn()
+        const props: AvatarFallbackProps = { ref, onClick, initials: 'jd', size: 'lg', className: 'consumer', style: { opacity: 0.5 } }
+        render(<Avatar.Root aria-label="Jane Doe"><Avatar.Fallback {...props} data-testid="fallback" /></Avatar.Root>)
+        const fallback = screen.getByTestId('fallback')
+        expect(ref.current).toBe(fallback)
+        expect(fallback.tagName).toBe('SPAN')
+        expect(fallback.className).toContain('consumer')
+        expect(fallback.style.opacity).toBe('0.5')
+        expect(fallback.style.width).toBe('100%')
+        expect(fallback.style.height).toBe('100%')
+        expect(fallback.style.alignItems).toBe('center')
+        expect(fallback.style.justifyContent).toBe('center')
+        expect(fallback.hasAttribute('initials')).toBe(false)
+        expect(fallback.hasAttribute('size')).toBe(false)
+        expect(screen.getByText('JD').getAttribute('aria-hidden')).toBe('true')
+        fireEvent.click(fallback)
+        expect(onClick.mock.calls[0][0].target).toBe(fallback)
+    })
+
+    it('supports custom content without truncating it', () => {
+        render(<Avatar.Root><Avatar.Fallback initials="JD">+123</Avatar.Fallback></Avatar.Root>)
+        expect(screen.getByText('+123')).toBeTruthy()
+        expect(screen.queryByText('JD')).toBeNull()
+    })
+
+    it('treats empty initials as an icon fallback', () => {
+        const { container } = render(<Avatar.Root><Avatar.Fallback initials="" /></Avatar.Root>)
+        expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true')
+    })
+
     describe('initials', () => {
         it('renders initials text', () => {
             render(

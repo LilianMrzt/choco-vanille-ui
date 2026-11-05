@@ -1,0 +1,7 @@
+import { Avatar, StatusBadge } from '@choco-vanille/ui'
+
+<>
+    <StatusBadge number={0} size="sm"><Avatar initials="SM" /></StatusBadge>
+    <StatusBadge number={12} size="md"><Avatar initials="MD" /></StatusBadge>
+    <StatusBadge number={123456} size="lg"><Avatar initials="LG" /></StatusBadge>
+</>

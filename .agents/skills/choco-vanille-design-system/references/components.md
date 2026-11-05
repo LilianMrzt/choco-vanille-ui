@@ -227,13 +227,35 @@ Component.Content
 - Mark Storybook-only components, hooks and utilities under `src/stories/` with `@internal`.
 - Explicitly state that they are not part of the public package API.
 - Prefer documenting public compound APIs when available rather than private implementation names.
-- Document each parameter with `@param`.
+- Document every parameter with `@param`, including unused parameters that remain
+  part of the signature. Match their actual names, such as `_source` or `_args`.
 - Document return values with `@returns`.
 - Document generic parameters with `@template`.
 - Document thrown errors with `@throws` when applicable.
 - Include a concise, valid `@example` (TSX for components).
 - For destructured component props, name the props object in `@param props` and
-  document relevant fields with `@param props.<name>` using their actual API names.
-- Keep detailed field documentation on the props type when appropriate.
+  add a separate `@param props.<name>` for every explicitly destructured property.
+  A single `@param props` does not document its individual fields.
+- Use the property name, not its local binding alias: `{ label: displayLabel }`
+  requires `@param props.label`, not `@param props.displayLabel`. Apply this to
+  native attributes and composition-only Storybook controls too.
+- Use quoted bracket notation for property names containing hyphens, such as
+  `@param props["aria-labelledby"]`, so parsers do not truncate the name at `-`.
+- Apply the same rule to destructured objects in hooks, utilities, handlers and
+  Storybook source transforms. For `(_source, { args })`, document `_source`,
+  the context object, and `context.args` separately.
+- A rest binding is not an extra object property: `...nativeProps` does not
+  introduce `props.nativeProps`. Describe forwarded attributes in the root
+  parameter or component contract; do not enumerate every inherited HTML prop.
+- Describe each documented field's role and its actual default, units,
+  callback payload or ref target when relevant. Detailed props-type documentation
+  complements these tags; it does not replace them.
+- Include complete JSDoc on nontrivial local event handlers and Storybook source
+  transforms, not only the enclosing component. Storybook-only functions also
+  retain `@internal` and the statement that they are not public package API.
 - Apply tags to actual parameters, generics, return values and propagated errors;
   do not invent defaults, exceptions or usage constraints to fill a template.
+- Before delivery, compare JSDoc tags with the actual signatures and destructured
+  properties, then address the applicable lint or editor diagnostics without
+  suppressing rules or changing the API to satisfy documentation. A passing lint
+  command does not prove JSDoc completeness when no JSDoc rule is configured.

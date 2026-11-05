@@ -2,13 +2,15 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
-import { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/styles/AvatarRoot.css.ts'
-import type {
-    AvatarColor,
-    AvatarShape,
-    AvatarSize,
-} from '@components/data-display/avatar/types/Avatar.types.ts'
+import {
+    Avatar,
+    AVATAR_STYLES,
+    type AvatarColor,
+    type AvatarShape,
+    type AvatarSize,
+} from '@components/data-display/avatar'
+
+const { Root: AvatarRoot } = Avatar
 
 const SIZES: AvatarSize[] = ['sm', 'md', 'lg', 'xl']
 const SHAPES: AvatarShape[] = ['circle', 'square']

@@ -1,17 +1,34 @@
-import { BADGE_STYLES } from '@components/data-display/badge/styles/Badge.css.ts'
-import { BADGE_SIZE_TO_FONT_SIZE, BADGE_SIZE_TO_ICON_SIZE } from '@components/data-display/badge/constants'
-import type { BadgeProps } from '@components/data-display/badge/types/Badge.props.ts'
+import { BADGE_STYLES } from '@components/data-display/badge/Badge.css.ts'
+import { BADGE_SIZE_LAYOUT, BADGE_SIZE_TO_FONT_SIZE, BADGE_SIZE_TO_ICON_SIZE } from '@components/data-display/badge/constants'
+import type { BadgeProps } from '@components/data-display/badge/types'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
 import { cn } from '@utils/cn.ts'
-import { memo, type FC } from 'react'
+import type { FC } from 'react'
 
 /**
- * Inline label chip with variant, color, size, and optional leading/trailing
- * icons. Renders as a `<span>` with a Typography label and decorative Icons.
+ * Displays a noninteractive inline label with optional decorative icons.
+ * Defaults to primary, outlinedSubtle, md and a 4px radius at a 16px root.
+ * Native attributes, events and ref target the outer span. Layout props override
+ * size presets; consumer style overrides primitive props and recipe colors.
+ *
+ * @param props - Label, appearance and native span attributes.
+ * @param props.label - Required visible label; icons do not replace this text.
+ * @param props.variant - Visual treatment; defaults to `outlinedSubtle`.
+ * @param props.color - Semantic color intent; defaults to `primary`.
+ * @param props.size - Label, icon and layout size preset; defaults to `md`.
+ * @param props.startIcon - Optional decorative SVG displayed before the label.
+ * @param props.endIcon - Optional decorative SVG displayed after the label.
+ * @param props.className - Consumer class merged with the badge classes.
+ * @param props.ref - Ref forwarded to the outer span.
+ * @param props.display - Wrapper CSS display; defaults to `inline-flex`.
+ * @param props.borderRadius - Radius token; defaults to `4`.
+ * @returns The visible label and its decorative icons.
+ * @example
+ * <Badge label="Verified" color="success" startIcon={CheckIcon} />
  */
-const Badge: FC<BadgeProps> = memo(({
+const Badge: FC<BadgeProps> = ({
     label,
     variant,
     color,
@@ -25,11 +42,14 @@ const Badge: FC<BadgeProps> = memo(({
     ...props
 }) => (
     <Box
+        alignItems={'center'}
         as={'span'}
-        ref={ref}
-        display={display}
         borderRadius={borderRadius}
         className={cn(BADGE_STYLES.recipe({ variant, color, size }), className)}
+        display={display}
+        justifyContent={'center'}
+        ref={ref}
+        {...BADGE_SIZE_LAYOUT[size]}
         {...props}
     >
         {startIcon && (
@@ -40,9 +60,9 @@ const Badge: FC<BadgeProps> = memo(({
         )}
         <Typography
             as={'span'}
-            variant={'span'}
             fontSize={BADGE_SIZE_TO_FONT_SIZE[size]}
             fontWeight={'medium'}
+            variant={'span'}
         >
             {label}
         </Typography>
@@ -53,7 +73,7 @@ const Badge: FC<BadgeProps> = memo(({
             />
         )}
     </Box>
-))
+)
 
 Badge.displayName = 'Badge'
 

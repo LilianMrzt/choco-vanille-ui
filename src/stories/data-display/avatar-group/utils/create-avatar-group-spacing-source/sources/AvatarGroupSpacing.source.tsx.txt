@@ -1,0 +1,4 @@
+<AvatarGroup aria-label={{label}} role="group" spacing={{spacing}}>
+    <Avatar aria-label="Alex Brown" initials="AB" />
+    <Avatar aria-label="Chris Diaz" initials="CD" />
+</AvatarGroup>

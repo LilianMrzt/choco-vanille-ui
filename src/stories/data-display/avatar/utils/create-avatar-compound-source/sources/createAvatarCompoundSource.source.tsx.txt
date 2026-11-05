@@ -1,0 +1,4 @@
+{{rootSource}}
+    <Avatar.Image src={{{image}}} alt={{{alt}}}{{imageHandler}} />
+    <Avatar.Fallback initials={{{fallback}}} size={{{size}}} delay={{{delay}}} />{{statusSource}}
+</Avatar.Root>

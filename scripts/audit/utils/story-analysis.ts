@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { Node, SyntaxKind, type SourceFile } from 'ts-morph';
+import { Node, SyntaxKind, type ObjectLiteralExpression, type SourceFile } from 'ts-morph';
 import type { ComponentInfo } from '../types/index.ts';
 
 export type StoryFinding = {
@@ -77,12 +77,6 @@ function isComponentStory(root: string, sourceFile: SourceFile): boolean {
   );
 }
 
-function storyExportCount(sourceFile: SourceFile): number {
-  return sourceFile
-    .getVariableStatements()
-    .filter((statement) => statement.isExported()).length;
-}
-
 function storyExportNames(sourceFile: SourceFile): Set<string> {
   return new Set(
     sourceFile
@@ -96,22 +90,130 @@ function storyExportNames(sourceFile: SourceFile): Set<string> {
   );
 }
 
+/**
+ * Resolves inline or imported values through the annotations used by CSF metadata.
+ * @param node - Candidate initializer.
+ * @param visited - Nodes already visited while resolving nested references.
+ * @returns The resolved initializer, or undefined for an unresolved or cyclic reference.
+ * @example
+ * const object = getStoryObject(meta.getInitializer())
+ */
+const getStoryValue = (node: Node | undefined, visited = new Set<Node>()): Node | undefined => {
+  if (!node) {
+    return undefined;
+  }
+  if (visited.has(node)) {
+    return undefined;
+  }
+  visited.add(node);
+  if (
+    Node.isSatisfiesExpression(node) ||
+    Node.isAsExpression(node) ||
+    Node.isParenthesizedExpression(node)
+  ) {
+    return getStoryValue(node.getExpression(), visited);
+  }
+  if (Node.isIdentifier(node)) {
+    const declaration = node.getDefinitions()
+      .map((definition) => definition.getDeclarationNode())
+      .find(Node.isVariableDeclaration);
+    return getStoryValue(declaration?.getInitializer(), visited);
+  }
+  return node;
+};
+
+const getStoryObject = (node: Node | undefined): ObjectLiteralExpression | undefined =>
+  getStoryValue(node)?.asKind(SyntaxKind.ObjectLiteralExpression);
+
+/**
+ * Reads a story's owned modules without mixing in unrelated stories or package code.
+ * @param sourceFile - CSF entry whose private resources may be extracted.
+ * @returns Entry and reachable modules in its owning directory.
+ * @example
+ * const modules = getStoryModules(storyFile)
+ */
+const getStoryModules = (sourceFile: SourceFile): SourceFile[] => {
+  const owner = path.dirname(sourceFile.getFilePath());
+  const visited = new Set<SourceFile>();
+  const visit = (file: SourceFile): void => {
+    if (visited.has(file)) return;
+    visited.add(file);
+    for (const declaration of file.getImportDeclarations()) {
+      const imported = declaration.getModuleSpecifierSourceFile();
+      if (!imported) continue;
+      const relativePath = path.relative(owner, imported.getFilePath());
+      if (
+        relativePath.startsWith(`..${path.sep}`) ||
+        relativePath === '..' ||
+        path.isAbsolute(relativePath) ||
+        imported.getBaseName().endsWith('.stories.tsx')
+      ) {
+        continue;
+      }
+      visit(imported);
+    }
+  };
+  visit(sourceFile);
+  return [...visited];
+};
+
+/**
+ * Checks explicit consumer source configuration, including inherited transforms.
+ * @param initializer - CSF metadata or story object.
+ * @returns Whether its docs parameters provide code or a source transform.
+ * @example
+ * const isControlled = hasControlledStorySource(meta.getInitializer())
+ */
+const hasControlledStorySource = (initializer: Node | undefined): boolean => {
+  const object = getStoryObject(initializer);
+  const parameters = object
+    ?.getProperty('parameters')
+    ?.asKind(SyntaxKind.PropertyAssignment);
+  const docs = getStoryObject(parameters?.getInitializer())
+    ?.getProperty('docs')
+    ?.asKind(SyntaxKind.PropertyAssignment);
+  const docsObject = getStoryObject(docs?.getInitializer());
+  if (!docsObject) {
+    return false;
+  }
+
+  const hasSourceHelper = docsObject.getProperties().some((property) => {
+    if (!Node.isSpreadAssignment(property)) {
+      return false;
+    }
+    const expression = property.getExpression();
+    return Node.isCallExpression(expression) &&
+      expression.getExpression().getText() === 'storySource' &&
+      expression.getArguments().length > 0;
+  });
+  if (hasSourceHelper) {
+    return true;
+  }
+
+  const source = docsObject.getProperty('source')?.asKind(SyntaxKind.PropertyAssignment);
+  const sourceObject = getStoryObject(source?.getInitializer());
+  const code = sourceObject?.getProperty('code')?.asKind(SyntaxKind.PropertyAssignment);
+  const transform = sourceObject?.getProperty('transform');
+  if (code?.getInitializer() || Node.isMethodDeclaration(transform)) {
+    return true;
+  }
+  const transformInitializer = getStoryValue(
+    transform?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer(),
+  );
+  return Node.isArrowFunction(transformInitializer) || Node.isFunctionExpression(transformInitializer);
+};
+
 function componentNameForStory(sourceFile: SourceFile): string {
   return sourceFile.getBaseName().replace(/\.stories\.tsx$/, '');
 }
 
 function argTypeNames(sourceFile: SourceFile): Set<string> {
   const metaDeclaration = sourceFile.getVariableDeclaration('meta');
-  const metaExpression = metaDeclaration?.getInitializer();
-  const metaInitializer = Node.isSatisfiesExpression(metaExpression)
-    ? metaExpression
-        .getExpression()
-        .asKind(SyntaxKind.ObjectLiteralExpression)
-    : metaExpression?.asKind(SyntaxKind.ObjectLiteralExpression);
-  const argTypes = metaInitializer
+  const metaInitializer = getStoryObject(metaDeclaration?.getInitializer());
+  const argTypes = getStoryObject(metaInitializer
     ?.getProperty('argTypes')
     ?.asKind(SyntaxKind.PropertyAssignment)
-    ?.getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
+    ?.getInitializer());
   if (!argTypes) return new Set();
 
   return new Set(
@@ -178,7 +280,7 @@ export function analyzeComponentStories(
   const findings: StoryFinding[] = [];
 
   for (const sourceFile of stories) {
-    const source = sourceFile.getFullText();
+    const source = getStoryModules(sourceFile).map((file) => file.getFullText()).join('\n');
     const docsPagePosition = source.search(/\bpage\s*:/);
     const controlsPosition = source.search(/<Controls\b/);
     const accessibilityPosition = source.search(/<Markdown\b/);
@@ -186,11 +288,15 @@ export function analyzeComponentStories(
     const playgroundPosition = source.search(
       /export\s+const\s+Playground\b/,
     );
-    const storySourceCallCount = sourceFile
-      .getDescendantsOfKind(SyntaxKind.CallExpression)
-      .filter((call) => call.getExpression().getText() === 'storySource')
-      .length;
-    const exportedStories = storyExportCount(sourceFile);
+    const hasInheritedSource = hasControlledStorySource(
+      sourceFile.getVariableDeclaration('meta')?.getInitializer(),
+    );
+    const hasMissingSource = sourceFile.getVariableStatements()
+      .filter((statement) => statement.isExported())
+      .flatMap((statement) => statement.getDeclarations())
+      .some((declaration) =>
+        !hasInheritedSource && !hasControlledStorySource(declaration.getInitializer()),
+      );
     const exportedStoryNames = storyExportNames(sourceFile);
     const component = components.find(
       (candidate) =>
@@ -226,7 +332,7 @@ export function analyzeComponentStories(
       docsPagePosition === -1 ||
       controlsPosition === -1 ||
       storiesPosition === -1 ||
-      !/<Stories\s+includePrimary=\{false\}\s*\/>/.test(source)
+      !/<Stories\s+includePrimary=\{false}\s*\/>/.test(source)
     ) {
       addFinding(
         findings,
@@ -235,7 +341,7 @@ export function analyzeComponentStories(
         'story-docs-page',
         0,
         'La story ne contrôle pas sa page Docs pour afficher un playground primaire unique.',
-        'Définir une page Docs avec `Canvas`, `Controls` et `<Stories includePrimary={false} />`.',
+        /* language=TEXT */ 'Définir une page Docs avec `Canvas`, `Controls` et `<Stories includePrimary={false} />`.',
       );
     }
 
@@ -307,10 +413,7 @@ export function analyzeComponentStories(
       }
     }
 
-    if (
-      exportedStories > 0 &&
-      (storySourceCallCount === 0 || storySourceCallCount < exportedStories)
-    ) {
+    if (hasMissingSource) {
       addFinding(
         findings,
         root,
@@ -318,7 +421,7 @@ export function analyzeComponentStories(
         'story-source-code',
         0,
         'Chaque story exportée ne fournit pas un extrait Storybook contrôlé.',
-        'Utiliser `storySource` pour chaque story exportée afin d’afficher un exemple consommateur sans `render()` interne.',
+        'Fournir `storySource`, `docs.source.code` ou `docs.source.transform` dans la story ou son meta pour afficher un exemple consommateur.',
       );
     }
 
@@ -435,7 +538,7 @@ export function analyzeComponentStories(
       );
     }
 
-    const separatorPosition = source.search(/\/\/.*─/);
+    const separatorPosition = sourceFile.getFullText().search(/\/\/.*─/);
     if (separatorPosition !== -1) {
       addFinding(
         findings,

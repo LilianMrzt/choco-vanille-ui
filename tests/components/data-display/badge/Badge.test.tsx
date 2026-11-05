@@ -1,6 +1,7 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
     Badge,
@@ -11,6 +12,7 @@ import {
 } from '@components/data-display/badge'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
+import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
 
 // Helpers
 
@@ -20,6 +22,51 @@ const getFirstChild = (container: HTMLElement) =>
 // Suites
 
 describe('Badge', () => {
+    it('uses primitive layout presets and lets consumer props and style override them', () => {
+        const { container } = render(
+            <Badge
+                label={'Custom'}
+                size={'lg'}
+                paddingX={16}
+                minHeight={'3rem'}
+                style={{ minHeight: '4rem', color: 'rebeccapurple' }}
+            />,
+        )
+        const badge = getFirstChild(container)
+
+        expect(badge.style.display).toBe('inline-flex')
+        expect(badge.style.alignItems).toBe('center')
+        expect(badge.style.justifyContent).toBe('center')
+        expect(badge.style.minWidth).toBe('1.75rem')
+        expect(badge.style.minHeight).toBe('4rem')
+        expect(badge.style.color).toBe('rebeccapurple')
+        for (const className of BOX_STYLES.recipe({ paddingX: 16, paddingY: 4, gap: 4, borderRadius: 4 }).split(' ')) {
+            expect(badge.classList.contains(className)).toBe(true)
+        }
+        for (const prop of ['label', 'variant', 'size', 'color', 'startIcon', 'endIcon', 'paddingX']) {
+            expect(badge.hasAttribute(prop)).toBe(false)
+        }
+    })
+
+    it('forwards native events and keeps both icons decorative', async () => {
+        const handleClick = vi.fn()
+        const { container } = render(
+            <Badge
+                label={'Verified'}
+                onClick={handleClick}
+                startIcon={CheckIcon}
+                endIcon={CloseIcon}
+            />,
+        )
+
+        await userEvent.click(screen.getByText('Verified'))
+
+        expect(handleClick).toHaveBeenCalledOnce()
+        for (const icon of container.querySelectorAll('svg')) {
+            expect(icon.getAttribute('aria-hidden')).toBe('true')
+        }
+    })
+
     describe('default rendering', () => {
         it('renders a <span> element by default', () => {
             const { container } = render(<Badge label={'New'} />)

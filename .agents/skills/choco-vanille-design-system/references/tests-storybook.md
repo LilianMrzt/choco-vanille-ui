@@ -61,7 +61,25 @@
   `src/components/<category>/<component>/` corresponds to
   `src/stories/<category>/<component>/<ComponentName>.stories.tsx`.
   Theme provider and customization documentation live under the overview.
+- Apply the [component organization rules](components.md#structure) to stories
+  and their private resources: types in `types/index.ts`, constants in
+  `constants/index.ts`, child components in `components/<child-name>/`, and
+  hooks/utilities in `hooks/` and `utils/` with the same naming and recursive
+  ownership rules. Keep consumer source text in the owner's `sources/`
+  subfolder, not beside the `.stories.tsx` entry. Group cross-story resources
+  by cohesive responsibility under `_shared/<feature>/`, not in a shared
+  technical bucket. Create only the folders needed by the change.
   Do not add `components/design-system` or `components/custom` branches.
+- Keep `.stories.tsx` as a thin CSF entry: metadata, the local `Story` alias,
+  named story exports and small render/source adapters. Extract each distinct
+  JSX example and Docs page into its own `components/<example-name>/` unit,
+  control configuration and demo data into `constants/index.ts`, and custom
+  story args into `types/index.ts`. Keep source generation and play interactions
+  in owned `utils/` files; utilities with source templates own a `sources/`
+  subfolder. Static snippets do not need wrapper functions. Stories that only
+  override args reuse the existing renderer instead of duplicating it.
+  Preserve static CSF exports so discovery, story IDs and documentation links
+  remain stable. Audit the imported resources rather than requiring them inline.
 - Keep component API, Playground, variants, states and usage examples beside
   that component's stories. Public compound parts follow their owner; private
   implementation details do not get independent API stories.
@@ -131,6 +149,18 @@
   do not refer to an absent `@stories/_shared/utils/consumer-source` helper.
   Dynamic snippets must reflect current args and use explicit expressions
   for nonliteral values. Consumer snippets use package imports, not private aliases.
+- Store long consumer snippets in their owner's `sources/` subfolder as
+  `*.source.tsx.txt` files and import them with Vite's `?raw`.
+  They are source text, not modules
+  sharing the story's imports or scope. Pass static text to `storySource`;
+  for dynamic text, use `renderSource` from
+  `@stories/_shared/consumer-source/utils/renderSource.utils`
+  with named `{{placeholder}}` fragments serialized by the story. JSX expression
+  braces surround the placeholder (`width={{{width}}}`). Substitution is
+  single-pass and missing values throw. Check the generated source, not the
+  unexpanded template. Distribution consumer fixtures likewise live in plain
+  text files, copied to a temporary `.tsx` file and compiled against the built
+  package so moving the text does not remove its type checks.
 - Snippets must match every visible consumer instance, with the same props,
   values and labels. For comparative stories rendered with `.map()`, show the
   corresponding static consumer JSX, not the render scaffolding.

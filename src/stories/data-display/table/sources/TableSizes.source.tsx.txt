@@ -1,0 +1,57 @@
+import { Box, Flex, Table } from '@choco-vanille/ui'
+
+<Box
+    maxWidth="760px"
+    width="100%"
+>
+    <Flex
+        flexDirection="column"
+        gap={24}
+    >
+        <Table size="sm">
+            <Table.Caption>Density: sm</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>Invoice</Table.Head>
+                    <Table.Head align="right">Amount</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell>INV-001</Table.Cell>
+                    <Table.Cell numeric>$250.00</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+        <Table size="md">
+            <Table.Caption>Density: md</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>Invoice</Table.Head>
+                    <Table.Head align="right">Amount</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell>INV-001</Table.Cell>
+                    <Table.Cell numeric>$250.00</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+        <Table size="lg">
+            <Table.Caption>Density: lg</Table.Caption>
+            <Table.Header>
+                <Table.Row>
+                    <Table.Head>Invoice</Table.Head>
+                    <Table.Head align="right">Amount</Table.Head>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell>INV-001</Table.Cell>
+                    <Table.Cell numeric>$250.00</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+    </Flex>
+</Box>

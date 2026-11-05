@@ -1,13 +1,76 @@
 import { createRef } from 'react'
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
 import { Avatar } from '@components/data-display/avatar'
-import AvatarGroup from '@components/data-display/avatar-group/AvatarGroup.tsx'
-import { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/constants'
-import type { AvatarGroupSpacing } from '@components/data-display/avatar-group/types/AvatarGroup.props.ts'
+import { AvatarGroup, AVATAR_GROUP_SPACING, type AvatarGroupSpacing } from '@components/data-display/avatar-group'
 
 describe('AvatarGroup', () => {
+    it.each([-2, 0])('shows only the full overflow count without a leading offset for max=%s', (max) => {
+        const overflowLabel = vi.fn((count: number) => `${count} participants hidden`)
+        render(
+            <AvatarGroup max={max} overflowLabel={overflowLabel}>
+                {Array.from({ length: 12 }, (_, index) => <Avatar key={index} initials="A" />)}
+            </AvatarGroup>,
+        )
+        const overflow = screen.getByRole('img', { name: '12 participants hidden' })
+        expect(overflow.textContent).toBe('+12')
+        expect(overflow.style.marginLeft).toBe('')
+        expect(overflowLabel).toHaveBeenCalledWith(12)
+        expect(screen.queryByText('A')).toBeNull()
+    })
+
+    it('floors fractional limits before calculating overflow', () => {
+        render(<AvatarGroup max={1.9}><Avatar initials="A" /><Avatar initials="B" /><Avatar initials="C" /></AvatarGroup>)
+        expect(screen.getByText('A')).toBeTruthy()
+        expect(screen.queryByText('B')).toBeNull()
+        expect(screen.getByRole('img', { name: '2 more' }).textContent).toBe('+2')
+    })
+
+    it.each([Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])('throws RangeError for non-finite max=%s', (max) => {
+        expect(() => render(<AvatarGroup max={max}><Avatar initials="A" /><Avatar initials="B" /></AvatarGroup>))
+            .toThrow(new RangeError('AvatarGroup max must be a finite number when provided.'))
+    })
+
+    it('shows all children for an explicitly undefined max', () => {
+        render(<AvatarGroup max={undefined}><Avatar initials="A" /><Avatar initials="B" /></AvatarGroup>)
+        expect(screen.getByText('A')).toBeTruthy()
+        expect(screen.getByText('B')).toBeTruthy()
+        expect(screen.queryByRole('img')).toBeNull()
+    })
+
+    it('preserves avatar styles while group overlap overrides only the leading margin', () => {
+        render(
+            <AvatarGroup spacing="lg">
+                <Avatar initials="A" data-testid="first" style={{ marginLeft: '4px', opacity: 0.5 }} />
+                <Avatar initials="B" data-testid="second" style={{ marginLeft: '4px', opacity: 0.7 }} />
+                <span data-testid="custom">Custom child</span>
+            </AvatarGroup>,
+        )
+        expect(screen.getByTestId('first').style.marginLeft).toBe('4px')
+        expect(screen.getByTestId('second').style.marginLeft).toBe('-1rem')
+        expect(screen.getByTestId('second').style.opacity).toBe('0.7')
+        expect(screen.getByTestId('custom').parentElement?.style.marginLeft).toBe('-1rem')
+    })
+
+    it('forwards native events, ARIA and refs to the selected element without custom prop leakage', () => {
+        const ref = createRef<HTMLSpanElement>()
+        const onClick = vi.fn()
+        render(
+            <AvatarGroup as="span" ref={ref} role="group" aria-label="Participants" onClick={onClick} max={1} spacing="sm">
+                <Avatar initials="A" />
+            </AvatarGroup>,
+        )
+        const group = screen.getByRole('group', { name: 'Participants' })
+        expect(ref.current).toBe(group)
+        expect(group.tagName).toBe('SPAN')
+        expect(group.hasAttribute('max')).toBe(false)
+        expect(group.hasAttribute('spacing')).toBe(false)
+        fireEvent.click(group)
+        expect(onClick).toHaveBeenCalledOnce()
+        expect(onClick.mock.calls[0][0].target).toBe(group)
+    })
+
     describe('default rendering', () => {
         it('renders all Avatar children when max is not set', () => {
             render(

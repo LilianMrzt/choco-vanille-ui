@@ -84,7 +84,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'variant',
     source: {
       kind: 'const',
-      file: 'src/components/data-display/badge/constants/badgeVariants.const.ts',
+      file: 'src/components/data-display/badge/constants/index.ts',
       symbol: 'BADGE_VARIANTS',
     },
     expected: ['contained', 'subtle', 'outlined', 'outlinedSubtle'],
@@ -221,7 +221,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'size',
     source: {
       kind: 'const',
-      file: 'src/components/data-display/avatar/constants/avatarSizes.const.ts',
+      file: 'src/components/data-display/avatar/constants/index.ts',
       symbol: 'AVATAR_SIZES',
     },
     expected: ['sm', 'md', 'lg', 'xl'],
@@ -320,9 +320,9 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
         kind: 'const',
         file:
           component === 'Avatar'
-            ? 'src/components/data-display/avatar/constants/avatarColors.const.ts'
+            ? 'src/components/data-display/avatar/constants/index.ts'
             : component === 'Badge'
-              ? 'src/components/data-display/badge/constants/badgeColors.const.ts'
+              ? 'src/components/data-display/badge/constants/index.ts'
               : 'src/components/feedback/progress/constants/progressColors.const.ts',
         symbol:
           component === 'Avatar'

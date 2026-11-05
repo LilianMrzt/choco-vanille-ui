@@ -1,6 +1,6 @@
 import { createRef } from 'react'
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 
 import {
     Avatar,
@@ -9,6 +9,11 @@ import {
     type AvatarShape,
     type AvatarSize,
     type AvatarStatus,
+    type AvatarProps,
+    type AvatarFallbackProps,
+    type AvatarImageProps,
+    type AvatarRootProps,
+    type AvatarStatusProps,
 } from '@components/data-display/avatar'
 import { AvatarGroup } from '@components/data-display/avatar-group'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
@@ -17,6 +22,60 @@ const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
 
 describe('Avatar', () => {
+    it('exposes typed compound slots through the root namespace', () => {
+        expectTypeOf(Avatar.Root).parameter(0).toEqualTypeOf<AvatarRootProps>()
+        expectTypeOf(Avatar.Image).parameter(0).toEqualTypeOf<AvatarImageProps>()
+        expectTypeOf(Avatar.Fallback).parameter(0).toEqualTypeOf<AvatarFallbackProps>()
+        expectTypeOf(Avatar.Status).parameter(0).toEqualTypeOf<AvatarStatusProps>()
+        expectTypeOf<AvatarProps['color']>().toEqualTypeOf<AvatarColor | undefined>()
+    })
+
+    it('preserves native events, style precedence and custom prop filtering on its root', () => {
+        const onClick = vi.fn()
+        const ref = createRef<HTMLSpanElement>()
+        render(
+            <Avatar
+                ref={ref}
+                aria-label="Jane Doe"
+                initials="JD"
+                role="img"
+                size="lg"
+                shape="square"
+                color="success"
+                variant="outlined"
+                status="online"
+                className="consumer"
+                data-testid="avatar"
+                style={{ width: '50px' }}
+                onClick={onClick}
+            />,
+        )
+        const root = screen.getByRole('img', { name: 'Jane Doe' })
+        expect(ref.current).toBe(root)
+        expect(root.className).toContain('consumer')
+        expect(ref.current?.style.width).toBe('50px')
+        for (const attribute of ['initials', 'size', 'shape', 'color', 'variant', 'status']) {
+            expect(root.hasAttribute(attribute)).toBe(false)
+        }
+        fireEvent.click(root)
+        expect(onClick).toHaveBeenCalledOnce()
+        expect(onClick.mock.calls[0][0].target).toBe(root)
+    })
+
+    it('uses contained treatment for non-empty image URLs and honors outlined for empty URLs', () => {
+        const { container, rerender } = render(<Avatar src="/pending.png" initials="JD" variant="outlined" />)
+        const containedClasses = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant: 'contained' }).split(' ')
+        for (const className of containedClasses) {
+            expect(getFirstChild(container).classList.contains(className)).toBe(true)
+        }
+        expect(screen.getByText('JD')).toBeTruthy()
+        rerender(<Avatar src="" initials="JD" variant="outlined" />)
+        const outlinedClasses = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant: 'outlined' }).split(' ')
+        for (const className of outlinedClasses) {
+            expect(getFirstChild(container).classList.contains(className)).toBe(true)
+        }
+    })
+
     describe('default rendering', () => {
         it('renders a <span> element by default', () => {
             const { container } = render(<Avatar initials={'JD'} />)

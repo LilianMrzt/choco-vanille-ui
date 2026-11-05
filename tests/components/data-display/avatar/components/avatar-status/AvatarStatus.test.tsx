@@ -1,18 +1,34 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { createRef } from 'react'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
-import AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
-import AvatarStatus from '@components/data-display/avatar/components/avatar-status/AvatarStatus.tsx'
-import { AVATAR_STATUS_STYLES } from '@components/data-display/avatar/components/avatar-status/styles/AvatarStatus.css.ts'
-import type {
-    AvatarSize,
-    AvatarStatus as AvatarStatusType,
-} from '@components/data-display/avatar/types/Avatar.types.ts'
+import { Avatar, AVATAR_STATUS_STYLES, type AvatarSize, type AvatarStatus as AvatarStatusType, type AvatarStatusProps } from '@components/data-display/avatar'
+
+const { Root: AvatarRoot, Status: AvatarStatus } = Avatar
 
 const STATUSES: AvatarStatusType[] = ['online', 'offline', 'busy', 'away']
 const SIZES: AvatarSize[] = ['sm', 'md', 'lg', 'xl']
 
 describe('AvatarStatus', () => {
+    it('forwards the status span ref, native events, consumer overrides and explicit ARIA', () => {
+        const ref = createRef<HTMLSpanElement>()
+        const onClick = vi.fn()
+        const props: AvatarStatusProps = { ref, onClick, label: 'Generated label', status: 'busy', size: 'lg', style: { width: '24px', backgroundColor: 'pink' } }
+        render(<Avatar.Root><Avatar.Status {...props} aria-label="Custom presence" data-testid="presence" /></Avatar.Root>)
+        const presence = screen.getByRole('status', { name: 'Custom presence' })
+        expect(ref.current).toBe(presence)
+        expect(presence.tagName).toBe('SPAN')
+        expect(presence.style.position).toBe('absolute')
+        expect(presence.style.width).toBe('24px')
+        expect(presence.style.height).toBe('0.75rem')
+        expect(presence.style.backgroundColor).toBe('pink')
+        expect(presence.hasAttribute('label')).toBe(false)
+        expect(presence.hasAttribute('status')).toBe(false)
+        expect(presence.hasAttribute('size')).toBe(false)
+        fireEvent.click(presence)
+        expect(onClick.mock.calls[0][0].target).toBe(presence)
+    })
+
     describe('default rendering', () => {
         it('renders a <span> with role="status"', () => {
             render(<AvatarRoot><AvatarStatus /></AvatarRoot>)

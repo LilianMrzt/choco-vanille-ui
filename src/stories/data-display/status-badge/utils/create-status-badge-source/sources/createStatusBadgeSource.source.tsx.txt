@@ -1,0 +1,5 @@
+import { Avatar, StatusBadge } from '@choco-vanille/ui'
+
+<StatusBadge{{color}}{{position}}{{size}}{{number}}{{label}}{{display}}{{style}}>
+    <Avatar initials="JD" />
+</StatusBadge>

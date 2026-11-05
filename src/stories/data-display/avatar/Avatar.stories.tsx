@@ -1,384 +1,104 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ComponentProps } from 'react'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
 
-import {
-    Avatar,
-    type AvatarColor,
-    type AvatarShape,
-    type AvatarSize,
-    type AvatarStatus,
-    type AvatarVariant,
-} from '@components/data-display/avatar'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
-import { md } from '@stories/utils/markdown'
+import { Avatar } from '@components/data-display/avatar'
+import AvatarColors from '@stories/data-display/avatar/components/avatar-colors/AvatarColors'
+import AvatarDocsPage from '@stories/data-display/avatar/components/avatar-docs-page/AvatarDocsPage'
+import AvatarPlayground from '@stories/data-display/avatar/components/avatar-playground/AvatarPlayground'
+import AvatarShapes from '@stories/data-display/avatar/components/avatar-shapes/AvatarShapes'
+import AvatarSizes from '@stories/data-display/avatar/components/avatar-sizes/AvatarSizes'
+import AvatarStatuses from '@stories/data-display/avatar/components/avatar-statuses/AvatarStatuses'
+import AvatarVariants from '@stories/data-display/avatar/components/avatar-variants/AvatarVariants'
+import CompoundPlayground from '@stories/data-display/avatar/components/compound-playground/CompoundPlayground'
+import { ARG_TYPES, DEFAULT_ARGS, PREVIEW_IMAGE } from '@stories/data-display/avatar/constants'
+import avatarShapesSource from '@stories/data-display/avatar/sources/AvatarShapes.source.tsx.txt?raw'
+import avatarVariantsSource from '@stories/data-display/avatar/sources/AvatarVariants.source.tsx.txt?raw'
+import { type AvatarStoryArgs } from '@stories/data-display/avatar/types'
+import { createAvatarColorsSource } from '@stories/data-display/avatar/utils/create-avatar-colors-source/createAvatarColorsSource.utils'
+import { createAvatarCompoundSource } from '@stories/data-display/avatar/utils/create-avatar-compound-source/createAvatarCompoundSource.utils'
+import { createAvatarSizesSource } from '@stories/data-display/avatar/utils/create-avatar-sizes-source/createAvatarSizesSource.utils'
+import { createAvatarSource } from '@stories/data-display/avatar/utils/create-avatar-source/createAvatarSource.utils'
+import { createAvatarStatusesSource } from '@stories/data-display/avatar/utils/create-avatar-statuses-source/createAvatarStatusesSource.utils'
 import { storySource } from '@stories/utils/storySource'
-
-const SIZES: AvatarSize[] = ['sm', 'md', 'lg', 'xl']
-const SHAPES: AvatarShape[] = ['circle', 'square']
-const COLORS: AvatarColor[] = [
-    'primary',
-    'secondary',
-    'tertiary',
-    'destructive',
-    'success',
-    'warning',
-    'info',
-    'purple',
-    'pink',
-    'orange',
-    'teal',
-    'cyan',
-    'indigo',
-]
-const STATUS: AvatarStatus[] = ['online', 'offline', 'busy', 'away']
-const VARIANTS: AvatarVariant[] = ['contained', 'outlined']
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`alt\` | For images | \`string\` | Describes the image for screen readers. |
-| \`initials\` | For text fallback | \`string\` | Rendered when no image is provided or it fails to load. |
-| \`aria-*\` | No | — | Native attributes are forwarded to the root element. |
-`
-
-const AvatarDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-type AvatarStoryArgs = ComponentProps<typeof Avatar> & {
-    compoundFallback?: string
-    compoundImage?: string
-    compoundRoot?: string
-    compoundStatus?: AvatarStatus
-}
 
 const meta = {
     title: 'Data Display/Avatar',
     component: Avatar,
+    tags: ['autodocs'],
+    render: (args) => <AvatarPlayground {...args} />,
     parameters: {
         layout: 'centered',
         docs: {
             page: AvatarDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A profile picture component built on top of \`@base-ui/react/avatar\`.
-It displays an image when available and falls back to initials or an icon.
-
-**Usage**
-
-~~~tsx
-<Avatar src="https://github.com/shadcn.png" alt="shadcn" />
-<Avatar initials="JD" />
-<Avatar icon={UserIcon} color="secondary" />
-<Avatar status="online" statusSize="lg" />
-~~~
-
-        `,
+            description: { component: 'Displays a profile image, initials or a decorative icon, with optional presence. Compose `Avatar.Root`, `.Image`, `.Fallback` and `.Status` when individual slots need custom content.' },
+            source: {
+                type: 'dynamic',
+                transform: (_source: string, context: { args: AvatarStoryArgs }) => createAvatarSource(context.args),
             },
         },
     },
-    argTypes: {
-        src: { control: 'text' },
-        alt: { control: 'text' },
-        initials: { control: 'text' },
-        icon: { control: 'text' },
-        size: { control: 'select', options: SIZES },
-        shape: { control: 'select', options: SHAPES },
-        color: { control: 'select', options: COLORS },
-        variant: { control: 'select', options: VARIANTS },
-        status: { control: 'select', options: STATUS },
-        statusSize: { control: 'select', options: SIZES },
-        fallbackDelay: { control: 'number' },
-        compoundFallback: { control: 'text', table: { category: 'Compound: Fallback' } },
-        compoundImage: { control: 'text', table: { category: 'Compound: Image' } },
-        compoundRoot: { control: 'text', table: { category: 'Compound: Root' } },
-        compoundStatus: { control: 'text', table: { category: 'Compound: Status' } },
-    },
-    args: {
-        size: 'md',
-        shape: 'circle',
-        color: 'primary',
-        variant: 'contained',
-        compoundFallback: 'JD',
-        compoundImage: 'https://github.com/shadcn.png',
-        compoundRoot: 'Avatar',
-        compoundStatus: 'online',
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
 } satisfies Meta<AvatarStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
-export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
-            },
-            ...storySource(`<Avatar initials="JD" color="primary" />`),
-        },
-    },
-    args: {
-        initials: 'JD',
-    },
-    render: (args: AvatarStoryArgs) => {
-        const {
-            compoundFallback,
-            compoundImage,
-            compoundRoot,
-            compoundStatus,
-            ...avatarArgs
-        } = args
-
-        return (
-            <Avatar
-                {...avatarArgs}
-                aria-label={compoundRoot}
-                initials={compoundFallback}
-                src={compoundImage}
-                status={compoundStatus}
-                statusLabel={compoundStatus}
-            />
-        )
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await expect(canvas.getByText('JD')).toBeInTheDocument()
-    },
-}
+export const Playground: Story = {}
 
 export const Sizes: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'The four avatar sizes.' },
-            ...storySource(`<Avatar initials="SM" size="sm" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {SIZES.map((size) => (
-                <Avatar
-                    key={size}
-                    initials={size.toUpperCase()}
-                    size={size}
-                />
-            ))}
-        </div>
-    ),
+    parameters: { docs: storySource(createAvatarSizesSource()) },
+    render: AvatarSizes,
 }
 
 export const Shapes: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'Circle and square shapes, with initials and image fallbacks.' },
-            ...storySource(`<Avatar initials="C" shape="circle" /><Avatar initials="S" shape="square" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {SHAPES.map((shape) => (
-                <div
-                    key={shape}
-                    style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}
-                >
-                    <Avatar
-                        initials={shape[0].toUpperCase()}
-                        shape={shape}
-                    />
-                    <Avatar
-                        src={'https://github.com/shadcn.png'}
-                        alt={'shadcn'}
-                        initials={'CN'}
-                        shape={shape}
-                    />
-                </div>
-            ))}
-        </div>
-    ),
+    parameters: { docs: storySource(avatarShapesSource) },
+    render: AvatarShapes,
 }
 
 export const Colors: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'All available fallback color intents.' },
-            ...storySource(`<Avatar initials="PR" color="primary" /><Avatar initials="SU" color="success" />`),
-        },
-    },
-    render: () => (
-        <div
-            style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '0.75rem',
-                maxWidth: '40rem',
-            }}
-        >
-            {COLORS.map((color) => (
-                <Avatar
-                    key={color}
-                    initials={color.slice(0, 2).toUpperCase()}
-                    color={color}
-                />
-            ))}
-        </div>
-    ),
+    parameters: { docs: storySource(createAvatarColorsSource()) },
+    render: AvatarColors,
 }
 
 export const Variants: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: '`contained` (default) fills the avatar with the subtle color. `outlined` adds a visible color border for better boundary contrast on light surfaces.',
-            },
-            ...storySource(`<Avatar initials="JD" variant="contained" /><Avatar initials="JD" variant="outlined" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {VARIANTS.map((variant) => (
-                <div
-                    key={variant}
-                    style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}
-                >
-                    {SIZES.map((size) => (
-                        <Avatar
-                            key={size}
-                            initials={variant[0].toUpperCase()}
-                            size={size}
-                            variant={variant}
-                        />
-                    ))}
-                    {COLORS.slice(0, 4).map((color) => (
-                        <Avatar
-                            key={color}
-                            initials={color.slice(0, 2).toUpperCase()}
-                            color={color}
-                            variant={variant}
-                        />
-                    ))}
-                </div>
-            ))}
-        </div>
-    ),
-}
-
-export const WithImage: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'Avatar displaying a remote image.' },
-            ...storySource(`<Avatar src="https://github.com/shadcn.png" alt="shadcn" initials="CN" />`),
-        },
-    },
-    args: {
-        src: 'https://github.com/shadcn.png',
-        alt: 'shadcn',
-        initials: 'CN',
-    },
-}
-
-export const WithIconFallback: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'Avatar with an icon fallback.' },
-            ...storySource(`<Avatar icon={UserIcon} color="secondary" />`),
-        },
-    },
-    args: {
-        icon: UserIcon,
-        color: 'secondary',
-    },
+    parameters: { docs: storySource(avatarVariantsSource) },
+    render: AvatarVariants,
 }
 
 export const Statuses: Story = {
-    parameters: {
-        docs: {
-            description: { story: 'Status indicators for each state.' },
-            ...storySource(`<Avatar initials="O" status="online" /><Avatar initials="B" status="busy" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {STATUS.map((status) => (
-                <Avatar
-                    key={status}
-                    initials={status[0].toUpperCase()}
-                    status={status}
-                />
-            ))}
-        </div>
-    ),
+    parameters: { docs: storySource(createAvatarStatusesSource()) },
+    render: AvatarStatuses,
 }
 
-export const WithStatusSizes: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Status indicators can be sized independently of the avatar.',
-            },
-            ...storySource(`<Avatar initials="A" status="online" statusSize="lg" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {SIZES.map((statusSize) => (
-                <Avatar
-                    key={statusSize}
-                    initials={'A'}
-                    status={'online'}
-                    statusSize={statusSize}
-                />
-            ))}
-        </div>
-    ),
+export const DefaultIcon: Story = {
+    args: { initials: '', 'aria-label': 'Unnamed profile' },
 }
 
-export const OnColoredBackground: Story = {
+export const WithImage: Story = {
+    args: { src: PREVIEW_IMAGE, alt: 'Preview illustration', initials: 'PI', 'aria-label': 'Preview illustration' },
+}
+
+export const IndependentStatusSize: Story = {
+    args: { size: 'xl', status: 'online', statusSize: 'sm', statusLabel: 'Available' },
+}
+
+export const Compound: Story = {
+    args: {
+        compoundLabel: 'Jane Doe',
+        compoundFallback: 'JD',
+        compoundImage: '',
+        compoundAlt: 'Jane Doe',
+        compoundStatus: 'online',
+    },
     parameters: {
         docs: {
-            description: {
-                story: 'Avatars on a colored background, showing the default ring.',
+            description: { story: 'Composition controls are demonstration args assigned to their named slots. Appearance controls style the root; fallbackDelay and statusSize style their respective slots.' },
+            source: {
+                type: 'dynamic',
+                transform: createAvatarCompoundSource,
             },
-            ...storySource(`<Avatar initials="JD" /><Avatar src="https://github.com/shadcn.png" alt="shadcn" />`),
         },
     },
-    render: () => (
-        <div
-            style={{
-                display: 'flex',
-                gap: '0.75rem',
-                alignItems: 'center',
-                padding: '1rem',
-                background: '#f3f4f6',
-            }}
-        >
-            <Avatar initials={'JD'} />
-            <Avatar
-                src={'https://github.com/shadcn.png'}
-                alt={'shadcn'}
-                initials={'CN'}
-            />
-        </div>
-    ),
+    render: (args) => <CompoundPlayground {...args} />,
 }

@@ -1,0 +1,56 @@
+import { Avatar } from '@components/data-display/avatar'
+import {
+    StatusBadge
+} from '@components/data-display/status-badge'
+import { Flex } from '@components/layout/flex'
+import { type ReactElement } from 'react'
+
+const StatusBadgeColors = (): ReactElement => (
+    <Flex
+        flexWrap={'wrap'}
+        gap={24}
+        padding={12}
+    >
+        <StatusBadge color={'primary'}>
+            <Avatar initials={'PR'} />
+        </StatusBadge>
+        <StatusBadge color={'secondary'}>
+            <Avatar initials={'SE'} />
+        </StatusBadge>
+        <StatusBadge color={'tertiary'}>
+            <Avatar initials={'TE'} />
+        </StatusBadge>
+        <StatusBadge color={'destructive'}>
+            <Avatar initials={'DE'} />
+        </StatusBadge>
+        <StatusBadge color={'success'}>
+            <Avatar initials={'SU'} />
+        </StatusBadge>
+        <StatusBadge color={'warning'}>
+            <Avatar initials={'WA'} />
+        </StatusBadge>
+        <StatusBadge color={'info'}>
+            <Avatar initials={'IN'} />
+        </StatusBadge>
+        <StatusBadge color={'purple'}>
+            <Avatar initials={'PU'} />
+        </StatusBadge>
+        <StatusBadge color={'pink'}>
+            <Avatar initials={'PI'} />
+        </StatusBadge>
+        <StatusBadge color={'orange'}>
+            <Avatar initials={'OR'} />
+        </StatusBadge>
+        <StatusBadge color={'teal'}>
+            <Avatar initials={'TL'} />
+        </StatusBadge>
+        <StatusBadge color={'cyan'}>
+            <Avatar initials={'CY'} />
+        </StatusBadge>
+        <StatusBadge color={'indigo'}>
+            <Avatar initials={'IG'} />
+        </StatusBadge>
+    </Flex>
+)
+
+export default StatusBadgeColors

@@ -1,18 +1,19 @@
-export { Avatar } from '@components/data-display/avatar/Avatar.tsx'
-export { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/styles/AvatarRoot.css.ts'
-export { AVATAR_IMAGE_STYLES } from '@components/data-display/avatar/components/avatar-image/styles/AvatarImage.css.ts'
-export { AVATAR_FALLBACK_STYLES } from '@components/data-display/avatar/components/avatar-fallback/styles/AvatarFallback.css.ts'
-export { AVATAR_STATUS_STYLES } from '@components/data-display/avatar/components/avatar-status/styles/AvatarStatus.css.ts'
-export type { AvatarProps } from '@components/data-display/avatar/types/Avatar.props.ts'
+export { default as Avatar } from '@components/data-display/avatar/Avatar.tsx'
+export { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/AvatarRoot.css.ts'
+export { AVATAR_IMAGE_STYLES } from '@components/data-display/avatar/components/avatar-image/AvatarImage.css.ts'
+export { AVATAR_FALLBACK_STYLES } from '@components/data-display/avatar/components/avatar-fallback/AvatarFallback.css.ts'
+export { AVATAR_STATUS_STYLES } from '@components/data-display/avatar/components/avatar-status/AvatarStatus.css.ts'
+export type { AvatarProps } from '@components/data-display/avatar/types'
 export type {
     AvatarColor,
     AvatarShape,
     AvatarSize,
     AvatarStatus,
     AvatarVariant,
-} from '@components/data-display/avatar/types/Avatar.types.ts'
-export type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types/AvatarRoot.props.ts'
-export type { AvatarImageProps } from '@components/data-display/avatar/components/avatar-image/types/AvatarImage.props.ts'
-export type { AvatarFallbackProps } from '@components/data-display/avatar/components/avatar-fallback/types/AvatarFallback.props.ts'
-export type { AvatarStatusProps } from '@components/data-display/avatar/components/avatar-status/types/AvatarStatus.props.ts'
+    AvatarRecipeVariants,
+} from '@components/data-display/avatar/types'
+export type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types'
+export type { AvatarImageProps } from '@components/data-display/avatar/components/avatar-image/types'
+export type { AvatarFallbackProps } from '@components/data-display/avatar/components/avatar-fallback/types'
+export type { AvatarStatusProps } from '@components/data-display/avatar/components/avatar-status/types'
 export type { AvatarCompound } from '@components/data-display/avatar/types/index.ts'

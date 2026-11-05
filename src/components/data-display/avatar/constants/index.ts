@@ -1,20 +1,59 @@
-export {
-    AVATAR_COLORS,
-    AVATAR_COLORS_ARRAY,
-} from '@components/data-display/avatar/constants/avatarColors.const.ts'
-export {
-    AVATAR_VARIANTS,
-    AVATAR_VARIANTS_ARRAY,
-} from '@components/data-display/avatar/constants/avatarVariants.const.ts'
-export {
-    AVATAR_SHAPES,
-    AVATAR_SHAPES_ARRAY,
-} from '@components/data-display/avatar/constants/avatarShapes.const.ts'
-export {
-    AVATAR_SIZES,
-    AVATAR_SIZES_ARRAY,
-} from '@components/data-display/avatar/constants/avatarSizes.const.ts'
-export {
-    AVATAR_STATUS,
-    AVATAR_STATUS_ARRAY,
-} from '@components/data-display/avatar/constants/avatarStatus.const.ts'
+/** Supported semantic intents for avatar fallback surfaces. */
+export const AVATAR_COLORS = {
+    primary: 'primary',
+    secondary: 'secondary',
+    tertiary: 'tertiary',
+    destructive: 'destructive',
+    success: 'success',
+    warning: 'warning',
+    info: 'info',
+    purple: 'purple',
+    pink: 'pink',
+    orange: 'orange',
+    teal: 'teal',
+    cyan: 'cyan',
+    indigo: 'indigo',
+} as const
+
+/** Ordered avatar fallback intents. */
+export const AVATAR_COLORS_ARRAY = Object.values(AVATAR_COLORS)
+
+/** Supported avatar outlines. */
+export const AVATAR_SHAPES = {
+    circle: 'circle',
+    square: 'square',
+} as const
+
+/** Ordered avatar shapes. */
+export const AVATAR_SHAPES_ARRAY = Object.values(AVATAR_SHAPES)
+
+/** Avatar presets measuring 24, 32, 40 and 48 CSS pixels at a 16px root. */
+export const AVATAR_SIZES = {
+    sm: 'sm',
+    md: 'md',
+    lg: 'lg',
+    xl: 'xl',
+} as const
+
+/** Ordered avatar size presets. */
+export const AVATAR_SIZES_ARRAY = Object.values(AVATAR_SIZES)
+
+/** Supported presence indicators. */
+export const AVATAR_STATUS = {
+    online: 'online',
+    offline: 'offline',
+    busy: 'busy',
+    away: 'away',
+} as const
+
+/** Ordered presence indicators. */
+export const AVATAR_STATUS_ARRAY = Object.values(AVATAR_STATUS)
+
+/** Supported fallback surface treatments. */
+export const AVATAR_VARIANTS = {
+    contained: 'contained',
+    outlined: 'outlined',
+} as const
+
+/** Ordered fallback surface treatments. */
+export const AVATAR_VARIANTS_ARRAY = Object.values(AVATAR_VARIANTS)

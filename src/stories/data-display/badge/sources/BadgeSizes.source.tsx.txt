@@ -1,0 +1,7 @@
+import { Badge } from '@choco-vanille/ui'
+
+<>
+    <Badge label="SM" size="sm" />
+    <Badge label="MD" size="md" />
+    <Badge label="LG" size="lg" />
+</>

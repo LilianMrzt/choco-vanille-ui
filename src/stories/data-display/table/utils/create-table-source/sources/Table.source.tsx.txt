@@ -1,0 +1,97 @@
+import { useState } from 'react'
+import type { MouseEvent } from 'react'
+import { Box, Table, type TableSortDirection } from '@choco-vanille/ui'
+
+const invoices = {{invoices}}
+
+export const InvoiceTable = () => {
+    const [sortDirection, setSortDirection] = useState<TableSortDirection | undefined>({{sortDirection}})
+    const [selectedInvoice, setSelectedInvoice] = useState({{selectedInvoice}})
+    const rows = [...invoices]
+    if (sortDirection === 'asc') {
+        rows.sort((first, second) => first.amount - second.amount)
+    } else if (sortDirection === 'desc') {
+        rows.sort((first, second) => second.amount - first.amount)
+    }
+    const handleSort = () => setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+    const handleSelect = (event: MouseEvent<HTMLTableRowElement>) => {
+        const invoice = event.currentTarget.dataset.invoice
+        setSelectedInvoice(selectedInvoice === invoice ? '' : invoice ?? '')
+    }
+    return (
+        <Box
+            maxWidth="760px"
+            width="100%"
+        >
+            <Table
+                size={{{size}}}
+                striped={{{striped}}}
+                bordered={{{bordered}}}
+                fixed={{{fixed}}}
+                {{ariaLabelAttribute}}
+                {{titleAttribute}}
+            >
+                <Table.Caption>{{{caption}}}</Table.Caption>
+                <Table.ColGroup>
+                    <Table.Col
+                        maxWidth={{{columnMaxWidth}}}
+                        minWidth={{{columnMinWidth}}}
+                        width={{{columnWidth}}}
+                    />
+                    <Table.Col />
+                </Table.ColGroup>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.Head align={{headAlign}}>Invoice</Table.Head>
+                        <Table.Head
+                            align={{headAlign}}
+                            onClick={{{onSort}}}
+                            sortable={{{sortable}}}
+                            sortDirection={sortDirection}
+                        >
+                            Amount
+                        </Table.Head>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {rows.map((row) => (
+                        <Table.Row
+                            data-invoice={row.invoice}
+                            hoverable={{{hoverable}}}
+                            intent={{{intent}}}
+                            key={row.invoice}
+                            onClick={{{onSelect}}}
+                            selectable={{{selectable}}}
+                            selected={selectedInvoice === row.invoice}
+                        >
+                            <Table.Cell
+                                align={{cellAlign}}
+                                title={row.invoice}
+                                truncate={{{truncate}}}
+                            >
+                                {row.invoice}
+                            </Table.Cell>
+                            <Table.Cell
+                                align={{cellAlign}}
+                                numeric={{{numeric}}}
+                            >
+                                {'$' + row.amount.toFixed(2)}
+                            </Table.Cell>
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+                <Table.Footer>
+                    <Table.Row>
+                        <Table.Cell align={{cellAlign}}>{{{footerLabel}}}</Table.Cell>
+                        <Table.Cell
+                            align={{cellAlign}}
+                            numeric={{{numeric}}}
+                        >
+                            $750.00
+                        </Table.Cell>
+                    </Table.Row>
+                </Table.Footer>
+            </Table>
+        </Box>
+    )
+}

@@ -1,0 +1,5 @@
+import { Avatar } from '@choco-vanille/ui'
+
+<Avatar
+{{attributes}}
+/>

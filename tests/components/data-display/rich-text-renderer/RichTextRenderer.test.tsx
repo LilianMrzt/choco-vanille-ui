@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { createRef } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 
 import { RichTextRenderer } from '@components/data-display/rich-text-renderer'
 import type { RichTextValue } from '@components/forms/rich-text-editor'
@@ -33,6 +36,40 @@ const VALUE: RichTextValue = {
 }
 
 describe('RichTextRenderer', () => {
+    it('forwards its ref, native events, attributes and consumer container styles', async () => {
+        const ref = createRef<HTMLDivElement>()
+        const handleClick = vi.fn()
+        render(
+            <RichTextRenderer
+                ref={ref}
+                value={VALUE}
+                data-testid={'document'}
+                onClick={handleClick}
+                width={'20rem'}
+                style={{ width: '18rem' }}
+                className={'custom-document'}
+            />,
+        )
+
+        expect(ref.current).toBe(screen.getByTestId('document'))
+        expect(ref.current?.tagName).toBe('DIV')
+        expect(ref.current?.style.width).toBe('18rem')
+        expect(ref.current?.classList.contains('custom-document')).toBe(true)
+        expect(ref.current?.hasAttribute('value')).toBe(false)
+        await userEvent.click(screen.getByText('Bold'))
+        expect(handleClick).toHaveBeenCalledOnce()
+    })
+
+    it('renders an empty document and preserves the inherited element override during SSR', () => {
+        const markup = renderToStaticMarkup(
+            <RichTextRenderer as={'article'} value={{ type: 'doc', content: [] }} />,
+        )
+
+        expect(markup).toMatch(/^<article\b/)
+        expect(markup).toMatch(/<\/article>$/)
+        expect(markup).not.toContain('value=')
+    })
+
     it('renders the supported document nodes and marks', () => {
         render(<RichTextRenderer value={VALUE} />)
 

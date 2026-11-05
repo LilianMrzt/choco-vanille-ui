@@ -1,34 +1,35 @@
-import { memo, useCallback, type FC, type KeyboardEvent } from 'react'
+import type { FC, KeyboardEvent } from 'react'
 
-import { Icon, type IconComponent } from '@components/foundation/icon'
-import SortAscIcon from '@resources/asset/SortAscIcon.svg?react'
-import SortDescIcon from '@resources/asset/SortDescIcon.svg?react'
-import SortIcon from '@resources/asset/SortIcon.svg?react'
-import { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/styles/TableHead.css.ts'
-import type {
-    TableHeadProps,
-    TableSortDirection,
-} from '@components/data-display/table/components/table-head/types/TableHead.props.ts'
+import Icon from '@components/foundation/icon/Icon.tsx'
+import Flex from '@components/layout/flex/Flex.tsx'
+import { TABLE_HEAD_STYLES } from '@components/data-display/table/components/table-head/TableHead.css.ts'
+import type { TableHeadProps } from '@components/data-display/table/components/table-head/types/index.ts'
+import { ARIA_SORT_VALUES, SORT_ICONS } from '@components/data-display/table/components/table-head/constants'
 import { cn } from '@utils/cn.ts'
 
-const SORT_ICONS: Record<TableSortDirection, IconComponent> = {
-    none: SortIcon,
-    asc: SortAscIcon,
-    desc: SortDescIcon,
-}
-
-const ariaSortMap = {
-    asc: 'ascending',
-    desc: 'descending',
-    none: 'none',
-} as const
-
 /**
- * `<th>` slot for `Table`. Supports `align`, `sortable`, and `sortDirection`
- * (asc|desc|none). When sortable, the header is keyboard-focusable and sets
- * `aria-sort` and `scope="col"` automatically.
+ * Labels a column or row through `Table.Head`. Defaults to left alignment and
+ * scope="col"; native scope and tabIndex can override those defaults.
+ * Sortable headers activate on Enter/Space through onClick; sorting and the
+ * current sortDirection remain consumer-owned. Consumer onKeyDown runs first
+ * and preventDefault cancels keyboard activation. An explicit sortDirection
+ * supplies aria-sort and a decorative indicator, even without sortable.
+ * Provide descriptive children and set a direction only on the sorted column.
+ * Native attributes, events, className, style, and ref target the th.
+ *
+ * @param props - Native header-cell attributes and sorting presentation.
+ * @param props.align - Header text alignment; defaults to `left`.
+ * @param props.sortable - Enables focus and Enter/Space activation of onClick; defaults to false.
+ * @param props.sortDirection - Consumer-owned sort state controlling aria-sort and the decorative indicator.
+ * @param props.children - Descriptive column or row heading content.
+ * @param props.className - Consumer class merged with the header-cell classes.
+ * @param props.ref - Ref forwarded to the th element.
+ * @param props.onKeyDown - Native handler called before keyboard activation; preventDefault cancels activation.
+ * @returns A semantic header cell with an optional sort indicator.
+ * @example
+ * <Table.Head sortable sortDirection="asc" onClick={handleSort}>Invoice</Table.Head>
  */
-const TableHead: FC<TableHeadProps> = memo(({
+const TableHead: FC<TableHeadProps> = ({
     align,
     sortable,
     sortDirection,
@@ -40,22 +41,29 @@ const TableHead: FC<TableHeadProps> = memo(({
 }) => {
     const isActiveSort = sortDirection === 'asc' || sortDirection === 'desc'
 
-    const handleKeyDown = useCallback((e: KeyboardEvent<HTMLTableCellElement>) => {
-        if (sortable && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault()
-            e.currentTarget.click()
+    /**
+     * Forwards the native key event and activates an uncancelled sortable header.
+     * @param event - Header-cell keyboard event; Enter and Space activate onClick.
+     * @returns Nothing.
+     * @example
+     * <th onKeyDown={handleKeyDown}>Amount</th>
+     */
+    const handleKeyDown = (event: KeyboardEvent<HTMLTableCellElement>): void => {
+        onKeyDown?.(event)
+
+        if (sortable && !event.defaultPrevented && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault()
+            event.currentTarget.click()
         }
-        onKeyDown?.(e)
-    }, [sortable, onKeyDown])
+    }
 
     return (
         <th
-            // `scope="col"` is overridable — pass `scope="row"` for row-header cells
             scope={'col'}
             tabIndex={sortable ? 0 : undefined}
             {...props}
             ref={ref}
-            aria-sort={sortDirection ? ariaSortMap[sortDirection] : undefined}
+            aria-sort={sortDirection === undefined ? props['aria-sort'] : ARIA_SORT_VALUES[sortDirection]}
             onKeyDown={sortable || onKeyDown ? handleKeyDown : undefined}
             className={cn(
                 TABLE_HEAD_STYLES.recipe({ align }),
@@ -64,7 +72,13 @@ const TableHead: FC<TableHeadProps> = memo(({
             )}
         >
             {sortDirection !== undefined ? (
-                <span className={TABLE_HEAD_STYLES.sortWrapper}>
+                <Flex
+                    alignItems={'center'}
+                    as={'span'}
+                    className={TABLE_HEAD_STYLES.sortWrapper}
+                    gap={4}
+                    inline
+                >
                     {children}
                     <Icon
                         icon={SORT_ICONS[sortDirection]}
@@ -74,13 +88,13 @@ const TableHead: FC<TableHeadProps> = memo(({
                             isActiveSort && TABLE_HEAD_STYLES.sortIconActive,
                         )}
                     />
-                </span>
+                </Flex>
             ) : (
                 children
             )}
         </th>
     )
-})
+}
 
 TableHead.displayName = 'Table.Head'
 

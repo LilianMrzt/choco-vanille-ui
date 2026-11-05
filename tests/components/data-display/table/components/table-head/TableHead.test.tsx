@@ -162,7 +162,7 @@ describe('Table.Head', () => {
             expect(handleClick).not.toHaveBeenCalled()
         })
 
-        it('calls custom onKeyDown after sortable Enter handling', () => {
+        it('calls custom onKeyDown during sortable Enter handling', () => {
             const handleKeyDown = vi.fn()
             render(
                 <table>

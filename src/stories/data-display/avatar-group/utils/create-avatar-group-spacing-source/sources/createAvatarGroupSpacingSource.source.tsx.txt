@@ -1,0 +1,5 @@
+import { Avatar, AvatarGroup } from '@choco-vanille/ui'
+
+<>
+{{groups}}
+</>

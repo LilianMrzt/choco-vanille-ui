@@ -556,16 +556,20 @@ function componentPropsFiles(
     (candidate) => candidate.name === componentName,
   );
   if (!component) return [];
-  const directory = path.dirname(component.sourcePath);
+  const directory = normalize(path.dirname(component.sourcePath));
+  const ownedTypesPath = normalize(path.join(directory, 'types', 'index.ts'));
   return context.sourceFiles.filter(
-    (sourceFile) =>
-      path.dirname(sourceFile.getFilePath()) !== directory &&
-      normalize(sourceFile.getFilePath()).startsWith(
-        `${normalize(directory)}${path.sep}`,
-      ) &&
-      sourceFile.getBaseName().endsWith('.props.ts') &&
-      path.basename(sourceFile.getBaseName(), '.props.ts').toLowerCase() ===
-        componentName.toLowerCase(),
+    (sourceFile) => {
+      const filePath = normalize(sourceFile.getFilePath());
+      if (filePath === ownedTypesPath) {
+        return true;
+      }
+      return normalize(path.dirname(sourceFile.getFilePath())) !== directory &&
+        filePath.startsWith(`${directory}${path.sep}`) &&
+        sourceFile.getBaseName().endsWith('.props.ts') &&
+        path.basename(sourceFile.getBaseName(), '.props.ts').toLowerCase() ===
+          componentName.toLowerCase();
+    },
   );
 }
 

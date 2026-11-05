@@ -1,6 +1,7 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
     STATUS_BADGE_STYLES,
@@ -36,6 +37,40 @@ const POSITIONS: StatusBadgePosition[] = [
 const SIZES: StatusBadgeSize[] = ['sm', 'md', 'lg']
 
 describe('StatusBadge', () => {
+    it('uses primitive wrapper layout and preserves native child events and style overrides', async () => {
+        const handleClick = vi.fn()
+        render(
+            <StatusBadge
+                data-testid={'wrapper'}
+                display={'inline-flex'}
+                label={'Available'}
+                style={{ display: 'block' }}
+            >
+                <button onClick={handleClick} type={'button'}>Open</button>
+            </StatusBadge>,
+        )
+
+        const wrapper = screen.getByTestId('wrapper')
+        expect(wrapper.style.position).toBe('relative')
+        expect(wrapper.style.display).toBe('block')
+        for (const prop of ['position', 'size', 'color', 'number', 'label']) {
+            expect(wrapper.hasAttribute(prop)).toBe(false)
+        }
+        await userEvent.click(screen.getByRole('button', { name: 'Open' }))
+        expect(handleClick).toHaveBeenCalledOnce()
+    })
+
+    it('preserves an explicitly empty accessible label and a long numeric value', () => {
+        render(
+            <StatusBadge label={''} number={123456}>
+                <span>Inbox</span>
+            </StatusBadge>,
+        )
+
+        expect(screen.getByRole('status').getAttribute('aria-label')).toBe('')
+        expect(screen.getByRole('status').textContent).toBe('123456')
+    })
+
     describe('default rendering', () => {
         it('wraps its child in a span and renders an indicator', () => {
             const { container } = render(

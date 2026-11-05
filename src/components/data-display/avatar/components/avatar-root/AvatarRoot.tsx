@@ -1,15 +1,31 @@
 import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 
-import { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/styles/AvatarRoot.css.ts'
-import type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types/AvatarRoot.props.ts'
+import { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/AvatarRoot.css.ts'
+import type { AvatarRootProps } from '@components/data-display/avatar/components/avatar-root/types'
 import { cn } from '@utils/cn.ts'
-import { memo, type FC } from 'react'
+import type { FC } from 'react'
 
 /**
- * Root container slot for `Avatar`. Applies size, shape, and color recipe
- * classes and wraps Base UI Avatar.Root.
+ * Coordinates Avatar.Image and Avatar.Fallback within a styled span.
+ * Defaults to medium, circular, primary and contained. Give the root an
+ * accessible name for identifying fallback content. Native span attributes,
+ * events, consumer class/style and ref are forwarded to this root.
+ *
+ * @param props - Root appearance and native span props.
+ * @param props.size - Avatar size preset; defaults to `md`.
+ * @param props.shape - Root shape; defaults to `circle`.
+ * @param props.color - Fallback color intent; defaults to `primary`.
+ * @param props.variant - Surface treatment; defaults to `contained`.
+ * @param props.className - Consumer class merged with the root classes.
+ * @param props.ref - Ref forwarded to the root span.
+ * @param props.children - Image, fallback and optional presence slots.
+ * @returns The avatar root containing its composed slots.
+ * @example
+ * ```tsx
+ * <Avatar.Root aria-label="Jane Doe"><Avatar.Fallback initials="JD" /></Avatar.Root>
+ * ```
  */
-const AvatarRoot: FC<AvatarRootProps> = memo(({
+const AvatarRoot: FC<AvatarRootProps> = ({
     size,
     shape,
     color,
@@ -26,7 +42,7 @@ const AvatarRoot: FC<AvatarRootProps> = memo(({
         )}
         {...props}
     />
-))
+)
 
 AvatarRoot.displayName = 'Avatar.Root'
 
