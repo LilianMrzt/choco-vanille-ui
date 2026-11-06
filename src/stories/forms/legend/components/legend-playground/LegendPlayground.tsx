@@ -1,4 +1,4 @@
-import { Fieldset } from '@components/layout/fieldset'
+import { Fieldset } from '@components/forms/fieldset'
 import { Legend } from '@components/forms/legend'
 import type { ComponentProps, ReactElement } from 'react'
 

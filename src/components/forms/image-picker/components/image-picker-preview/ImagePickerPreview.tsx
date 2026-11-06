@@ -1,7 +1,7 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
-import { Image } from '@components/layout/image'
+import { Image } from '@components/data-display/image'
 import { IMAGE_PICKER_SHAPES } from '@components/forms/image-picker/constants'
 import type { ImagePickerPreviewProps } from '@components/forms/image-picker/components/image-picker-preview/types/ImagePickerPreview.props.ts'
 import { IMAGE_PICKER_STYLES } from '@components/forms/image-picker/styles/ImagePicker.css.ts'
