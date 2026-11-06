@@ -5,8 +5,8 @@ import { expect, within } from 'storybook/test'
 
 import type { TextFieldSize } from '@components/forms/text-field'
 import { TimePicker } from '@components/forms/time-picker'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIZES: TextFieldSize[] = [
     'sm',

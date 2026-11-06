@@ -21,8 +21,8 @@ import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 import ListIcon from '@resources/asset/ListIcon.svg?react'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type BottomNavigationStoryArgs = ComponentProps<typeof BottomNavigation> & {
     listClassName?: string

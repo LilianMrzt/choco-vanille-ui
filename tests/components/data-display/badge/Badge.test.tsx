@@ -12,7 +12,7 @@ import {
 } from '@components/data-display/badge'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
+import { BOX_STYLES } from '@components/layout/box/Box.css.ts'
 
 // Helpers
 

@@ -10,8 +10,8 @@ import {
 import type { ComponentProps } from 'react'
 
 import { ContextMenu } from '@/components/overlay/context-menu'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type ContextMenuPlaygroundArgs = ComponentProps<typeof ContextMenu> & {
     triggerLabel: string

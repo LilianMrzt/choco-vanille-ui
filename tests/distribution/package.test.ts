@@ -41,6 +41,9 @@ describe('package distribution', () => {
 
             const declarations = await readFile(resolve(outputDirectory, 'index.d.ts'), 'utf8')
             expect(declarations).not.toMatch(/from ['"]@(?:theme|components|utils|hooks)\b/)
+            expect(declarations).toContain('export declare const Legend:')
+            expect(declarations).toContain('export declare const LEGEND_STYLES:')
+            expect(declarations).toContain('export declare type LegendProps')
             const themeCss = await readFile(resolve(outputDirectory, 'styles.css'), 'utf8')
             expect(themeCss).toContain('--color-primary-main')
             expect(themeCss).toContain('--color-primary-subtlePressed')
@@ -59,6 +62,18 @@ describe('package distribution', () => {
             expect(themeCss).not.toContain('[object Object]')
 
             for (const extension of ['js', 'cjs']) {
+                const entry = await readFile(resolve(outputDirectory, `index.${extension}`), 'utf8')
+                expect(entry).toContain(`components/forms/legend/Legend.${extension}`)
+                const legendStylesPath = resolve(outputDirectory, `components/forms/legend/Legend.css.${extension}`)
+                const legendStyles = await readFile(legendStylesPath, 'utf8')
+                const legendClass = legendStyles.match(/root:\s*["'`]([^"'`]+)["'`]/)?.[1]
+                expect(legendClass).toBeTruthy()
+                const legendCssImports = [...legendStyles.matchAll(/(?:import\s*|require\()\s*['"]([^'"]+\.css)['"]/g)]
+                const legendStylesheets = await Promise.all(
+                    legendCssImports.map((match) => readFile(resolve(dirname(legendStylesPath), match[1]), 'utf8')),
+                )
+                expect(legendStylesheets.some((css) => css.includes(`.${legendClass}`))).toBe(true)
+
                 const statusStylesPath = resolve(outputDirectory, `components/data-display/status-badge/StatusBadge.css.${extension}`)
                 const statusStyles = await readFile(statusStylesPath, 'utf8')
                 const cssImports = [...statusStyles.matchAll(/(?:import\s*|require\()\s*['"]([^'"]+\.css)['"]/g)]

@@ -2,7 +2,7 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import Fieldset from '@components/layout/fieldset/Fieldset.tsx'
+import { Fieldset } from '@components/layout/fieldset'
 
 describe('Fieldset', () => {
     describe('default rendering', () => {

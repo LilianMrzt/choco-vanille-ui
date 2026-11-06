@@ -4,8 +4,8 @@ import { expect, within } from 'storybook/test'
 
 import { Skeleton } from '@/components/feedback/skeleton'
 import type { SkeletonVariant } from '@components/feedback/skeleton'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const VARIANTS: SkeletonVariant[] = ['circular', 'rectangular', 'rounded']
 

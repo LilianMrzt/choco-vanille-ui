@@ -17,8 +17,8 @@ import {
     type PanelPosition,
 } from '@components/overlay/panel'
 import { Typography } from '@components/foundation/typography'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type PanelPlaygroundArgs = ComponentProps<typeof Panel> & {
   position?: PanelPosition;

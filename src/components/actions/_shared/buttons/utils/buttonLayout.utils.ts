@@ -1,4 +1,4 @@
-import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
+import { BOX_STYLES } from '@components/layout/box/Box.css.ts'
 import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 
 export const getButtonLayoutClassName = ({

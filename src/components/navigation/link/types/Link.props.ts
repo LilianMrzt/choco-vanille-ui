@@ -1,6 +1,6 @@
 import type { IconComponent, IconSize } from '@components/foundation/icon'
 import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { BoxProps } from '@components/layout/box/types'
 import type { LinkColor } from '@components/navigation/link/types/Link.types.ts'
 import type * as React from 'react'
 import type { RefAttributes } from 'react'

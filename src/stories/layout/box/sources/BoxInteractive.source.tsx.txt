@@ -1,0 +1,3 @@
+import { Box } from '@choco-vanille/ui'
+
+<Box{{attributes}}>{{children}}</Box>

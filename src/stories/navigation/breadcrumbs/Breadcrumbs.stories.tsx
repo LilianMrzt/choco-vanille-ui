@@ -10,8 +10,8 @@ import {
 } from '@storybook/addon-docs/blocks'
 
 import { Breadcrumbs } from '@components/navigation/breadcrumbs'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

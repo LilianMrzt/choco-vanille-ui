@@ -10,8 +10,8 @@ import {
 import { useState } from 'react'
 
 import { Stepper } from '@components/navigation/stepper'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const defaultItems = (
     <>

@@ -1,4 +1,4 @@
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { BoxProps } from '@components/layout/box/types'
 import type { TypographyProps } from '@components/foundation/typography'
 
 /** Props for `Drawer.Section`. */

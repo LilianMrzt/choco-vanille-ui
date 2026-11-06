@@ -1,0 +1,26 @@
+import { Typography } from '@choco-vanille/ui'
+
+<Typography variant="h1">h1</Typography>
+<Typography variant="h2">h2</Typography>
+<Typography variant="h3">h3</Typography>
+<Typography variant="h4">h4</Typography>
+<Typography variant="h5">h5</Typography>
+<Typography variant="h6">h6</Typography>
+<Typography variant="p">p</Typography>
+<Typography variant="span">span</Typography>
+<Typography variant="label">label</Typography>
+<Typography variant="small">small</Typography>
+<Typography variant="strong">strong</Typography>
+<Typography variant="em">em</Typography>
+<Typography variant="blockquote">blockquote</Typography>
+<Typography variant="pre">pre</Typography>
+<Typography variant="code">code</Typography>
+<Typography variant="kbd">kbd</Typography>
+<Typography variant="samp">samp</Typography>
+<Typography variant="abbr">abbr</Typography>
+<Typography variant="cite">cite</Typography>
+<Typography variant="mark">mark</Typography>
+<Typography variant="del">del</Typography>
+<Typography variant="ins">ins</Typography>
+<Typography variant="sub">sub</Typography>
+<Typography variant="sup">sup</Typography>

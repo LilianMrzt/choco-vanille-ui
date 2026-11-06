@@ -1,4 +1,4 @@
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { BoxProps } from '@components/layout/box/types'
 
 /** Props for `Dialog.Body`. */
 export type DialogBodyProps = Omit<BoxProps, 'as'> & {

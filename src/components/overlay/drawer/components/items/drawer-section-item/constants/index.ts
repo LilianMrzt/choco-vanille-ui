@@ -1,4 +1,4 @@
-import type { BoxSpace } from '@components/layout/box/types/Box.types.ts'
+import type { BoxSpace } from '@components/layout/box/types'
 
 type PaddingVariant = BoxSpace
 

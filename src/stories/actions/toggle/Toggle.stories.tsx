@@ -19,8 +19,8 @@ import {
 import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import UploadIcon from '@resources/asset/UploadIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const VARIANTS: ToggleVariant[] = [
     'outlined',

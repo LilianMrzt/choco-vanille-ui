@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 
 import { Slider, type SliderColor, type SliderSize } from '@components/forms/slider'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIZES: SliderSize[] = ['sm', 'md', 'lg']
 const COLORS: SliderColor[] = ['primary', 'secondary', 'destructive']

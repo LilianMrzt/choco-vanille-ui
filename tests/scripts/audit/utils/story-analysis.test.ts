@@ -33,6 +33,24 @@ export const Colors = { parameters: { docs: { ...storySource('<Badge label="Succ
 `)).toEqual([])
     })
 
+    it('recognizes callable source transforms returned by factories', () => {
+        expect(findSourceErrors(`
+const createSource = (template: string) => (_source: string) => template
+const meta = { parameters: { docs: { source: { transform: createSource('<Box />') } } } }
+export default meta
+export const Playground = {}
+`)).toEqual([])
+    })
+
+    it('rejects factory results that are not callable', () => {
+        expect(findSourceErrors(`
+const createSource = () => '<Box />'
+const meta = { parameters: { docs: { source: { transform: createSource() } } } }
+export default meta
+export const Playground = {}
+`)).toEqual(['story-source-code'])
+    })
+
     it('rejects a missing source even when another story has multiple source helper calls', () => {
         expect(findSourceErrors(`
 const meta = {}
@@ -109,6 +127,39 @@ export const createSource = () => '<Badge label="Badge" />'
         expect(result.storyCount).toBe(1)
         expect(result.findings.map((finding) => finding.rule)).toEqual(['story-canonical-showcase'])
         expect(result.findings[0]?.message).toContain('Sizes')
+    })
+
+    it.each([
+        ["'eager' | 'lazy'", false, false],
+        ['boolean', false, true],
+        ["'eager' | 'lazy'", true, true],
+    ])('distinguishes native loading from interactive states (%s, disabled: %s)', (loadingType, disabled, requiresStates) => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/layout/example/Example.stories.tsx', `
+const Example = (_props: { loading?: ${loadingType}, disabled?: boolean }) => null
+const meta = { component: Example, argTypes: { loading: {}, ${disabled ? 'disabled: {},' : ''} } }
+export default meta
+export const Playground = {}
+`)
+        const component: ComponentInfo = {
+            name: 'Example',
+            sourcePath: 'src/components/layout/example/Example.tsx',
+            category: 'layout',
+            scope: 'public',
+            props: [],
+            variants: [],
+            statuses: [],
+            tones: [],
+            rawDimensions: [],
+            stylingProps: [],
+            vanillaExtractStyleBases: [],
+            exports: [],
+            subComponents: [],
+            parentComponents: [],
+        }
+        const findings = analyzeComponentStories('/', [file], [component]).findings
+        expect(findings.some((finding) => finding.rule === 'story-canonical-showcase' && finding.message.includes('States')))
+            .toBe(requiresStates)
     })
 
     it('does not borrow documentation from unrelated sibling modules', () => {

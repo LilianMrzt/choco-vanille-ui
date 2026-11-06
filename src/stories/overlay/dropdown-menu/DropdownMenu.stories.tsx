@@ -18,8 +18,8 @@ import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

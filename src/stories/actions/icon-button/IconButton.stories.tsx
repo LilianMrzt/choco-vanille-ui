@@ -16,8 +16,8 @@ import type {
     IconButtonVariant,
 } from '@components/actions/icon-button'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
 const COLORS: IconButtonColor[] = [

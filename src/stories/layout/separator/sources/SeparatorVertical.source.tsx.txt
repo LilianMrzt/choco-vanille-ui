@@ -1,0 +1,9 @@
+import { Box, Flex, Separator, vars } from '@choco-vanille/ui'
+
+<Box padding={16} backgroundColor={vars.color.surface.main} borderRadius={8} style={{ height: '120px', width: 'fit-content' }}>
+    <Flex alignItems="center" gap={12} style={{ height: '100%' }}>
+        <span>Left</span>
+        <Separator{{attributes}} />
+        <span>Right</span>
+    </Flex>
+</Box>

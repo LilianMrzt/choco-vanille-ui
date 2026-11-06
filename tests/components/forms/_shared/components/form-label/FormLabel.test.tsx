@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
-import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/styles/Typography.css.ts'
+import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/Typography.css.ts'
 
 describe('FormLabel', () => {
     it('renders selectable text with the shared label style', () => {

@@ -42,7 +42,9 @@ avec le contrat attendu avant de le modifier.
 - Adapter ensemble les exports, types, comportements, tests, exemples et
   documentation lorsqu'un contrat évolue. Signaler toute rupture de l'API
   publique ; ne pas maintenir une compatibilité obsolète sans exigence explicite.
-- Supprimer le code, les imports et les ressources rendus inutiles.
+- Supprimer le code, les imports et les ressources rendus inutiles. Après les
+  modifications ou déplacements, supprimer les dossiers devenus vides dans le
+  périmètre concerné, après avoir vérifié aussi leurs éventuels fichiers cachés.
 - Utiliser pnpm et conserver son lockfile à jour. Réutiliser les outils et
   dépendances existants avant d'en ajouter ; justifier tout ajout.
 - Traiter explicitement les erreurs. Ne pas masquer une panne par une valeur

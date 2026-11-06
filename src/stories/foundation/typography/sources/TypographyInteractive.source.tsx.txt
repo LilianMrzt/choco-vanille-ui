@@ -1,0 +1,3 @@
+import { Typography } from '@choco-vanille/ui'
+
+<Typography{{attributes}}>{{children}}</Typography>

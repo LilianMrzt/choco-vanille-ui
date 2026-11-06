@@ -18,8 +18,8 @@ import ImageIcon from '@resources/asset/ImageIcon.svg?react'
 import LinkIcon from '@resources/asset/LinkIcon.svg?react'
 import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 import UploadIcon from '@resources/asset/UploadIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type BottomSheetPlaygroundArgs = ComponentProps<typeof BottomSheet> & {
   triggerLabel?: string;

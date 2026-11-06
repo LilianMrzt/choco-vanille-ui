@@ -14,8 +14,8 @@ import type { ComponentProps } from 'react'
 import { Button } from '@components/actions/button'
 import { Dialog, type DialogSize } from '@components/overlay/dialog'
 import { Typography } from '@components/foundation/typography'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type DialogPlaygroundArgs = ComponentProps<typeof Dialog> & {
   size?: DialogSize;

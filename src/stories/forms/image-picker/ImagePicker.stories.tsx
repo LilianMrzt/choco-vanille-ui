@@ -16,8 +16,8 @@ import {
     type ImagePickerShape,
     type ImagePickerValue,
 } from '@components/forms/image-picker'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const OBJECT_FITS: ImagePickerObjectFit[] = [

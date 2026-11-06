@@ -17,8 +17,8 @@ import type {
     TypographySize,
     TypographyWeight,
 } from '@components/foundation/typography'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const FONT_SIZES: TypographySize[] = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]
 const FONT_WEIGHTS: TypographyWeight[] = [

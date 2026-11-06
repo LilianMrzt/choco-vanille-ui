@@ -2,7 +2,7 @@ import type * as React from 'react'
 import type { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types'
 
 /** Props for the styled autocomplete input. */
 export type AutocompleteInputProps = Omit<BaseAutocomplete.Input.Props, 'size'> & {

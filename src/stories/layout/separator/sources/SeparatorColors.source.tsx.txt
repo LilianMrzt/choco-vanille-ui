@@ -1,0 +1,12 @@
+import { Flex, Separator } from '@choco-vanille/ui'
+
+<Flex flexDirection="column" gap={12} width="20rem">
+<Separator color={'transparent'} />
+<Separator color={'primary.main'} />
+<Separator color={'secondary.main'} />
+<Separator color={'neutral.main'} />
+<Separator color={'danger.main'} />
+<Separator color={'success.main'} />
+<Separator color={'warning.main'} />
+<Separator color={'info.main'} />
+</Flex>

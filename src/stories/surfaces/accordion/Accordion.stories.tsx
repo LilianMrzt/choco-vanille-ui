@@ -13,8 +13,8 @@ import { expect, userEvent, within } from 'storybook/test'
 import { Accordion } from '@components/surfaces/accordion'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { IconComponent } from '@components/foundation/icon'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type AccordionPlaygroundArgs = ComponentProps<typeof Accordion> & {
   firstDisabled?: boolean;

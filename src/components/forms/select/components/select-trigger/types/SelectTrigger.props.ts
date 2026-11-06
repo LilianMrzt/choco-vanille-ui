@@ -2,7 +2,7 @@ import type * as React from 'react'
 import type { Select as BaseSelect } from '@base-ui/react/select'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types'
 
 /** Props for the styled trigger subcomponent. */
 export type SelectTriggerProps = BaseSelect.Trigger.Props & {

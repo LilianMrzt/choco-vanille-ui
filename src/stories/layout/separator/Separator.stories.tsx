@@ -1,55 +1,18 @@
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
 
-import { Box } from '@components/layout/box'
-import { Flex } from '@components/layout/flex'
 import { Separator } from '@components/layout/separator'
-import { THEME_COLORS } from '@stories/_shared/constants/themeColors.const.ts'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
-
-const ORIENTATION = ['horizontal', 'vertical'] as const
-const COLORS = [
-    'transparent',
-    'primary.main',
-    'secondary.main',
-    'neutral.main',
-    'danger.main',
-    'success.main',
-    'warning.main',
-    'info.main',
-] as const
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`aria-hidden\` | No | \`boolean\` | Hide decorative separators from assistive technologies. |
-| \`orientation\` | No | \`'horizontal' \| 'vertical'\` | Controls visual and ARIA orientation. |
-| \`label\` | No | \`string\` | Displays text between two separator lines. |
-| \`textColor\` | No | \`ThemeColor\` | Color leaf path for the label; defaults to \`text.tertiary\`. |
-`
-
-const SeparatorDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
+import { storySource } from '@stories/_shared/utils/storySource'
+import SeparatorDocsPage from '@stories/layout/separator/components/separator-docs-page/SeparatorDocsPage'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/layout/separator/constants'
+import SeparatorPlayground from '@stories/layout/separator/components/separator-playground/SeparatorPlayground'
+import SeparatorPlaygroundPlay from '@stories/layout/separator/utils/SeparatorPlaygroundPlay.utils'
+import SeparatorWithLabel from '@stories/layout/separator/components/separator-with-label/SeparatorWithLabel'
+import SeparatorColors from '@stories/layout/separator/components/separator-colors/SeparatorColors'
+import SeparatorOrientations from '@stories/layout/separator/components/separator-orientations/SeparatorOrientations'
+import SeparatorWithLabelSource from '@stories/layout/separator/sources/SeparatorWithLabel.source.tsx.txt?raw'
+import SeparatorColorsSource from '@stories/layout/separator/sources/SeparatorColors.source.tsx.txt?raw'
+import SeparatorOrientationsSource from '@stories/layout/separator/sources/SeparatorOrientations.source.tsx.txt?raw'
+import { createSeparatorSource } from '@stories/layout/separator/utils/createSeparatorSource.utils'
 
 const meta = {
     title: 'Layout/Separator',
@@ -59,42 +22,14 @@ const meta = {
         docs: {
             page: SeparatorDocsPage,
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A thin visual divider built on top of \`Box\`. Use it to separate content horizontally or vertically.
-
-\`Separator\` extends \`Box\` and therefore inherits all layout props (padding, margin, background color, border radius, etc.).
-
-**Usage**
-
-\`\`\`tsx
-// Horizontal rule between two blocks
-<Stack gap={12}>
-  <Typography>Above</Typography>
-  <Separator />
-  <Typography>Below</Typography>
-</Stack>
-
-// Vertical rule inside a row
-<Flex alignItems="center" gap={12}>
-  <Typography>Left</Typography>
-  <Separator orientation="vertical" />
-  <Typography>Right</Typography>
-</Flex>
-\`\`\`
-
-                `,
+                component: 'Separates content with a horizontal or vertical rule and an optional label. Its orientation is exposed to assistive technology.',
             },
+            source: { type: 'dynamic', transform: createSeparatorSource }
         },
     },
-    argTypes: {
-        orientation: { control: 'select', options: ORIENTATION },
-        color: { control: 'select', options: THEME_COLORS },
-        textColor: { control: 'select', options: THEME_COLORS },
-        label: { control: 'text' },
-    },
-    args: {
-        orientation: 'horizontal',
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+    tags: ['autodocs']
 } satisfies Meta<typeof Separator>
 
 export default meta
@@ -107,159 +42,36 @@ export const Playground: Story = {
             description: {
                 story:
           'Interactive playground — use the Controls panel to switch between horizontal and vertical orientations.',
-            },
-            ...storySource(/* language=tsx */ `
-<Box padding={16} backgroundColor={vars.color.surface.main} borderRadius={8}>
-    <Flex flexDirection="column" gap={12}>
-        <span>Above</span>
-        <Separator orientation="horizontal" label="Or continue" />
-        <span>Below</span>
-    </Flex>
-</Box>`),
+            }
         },
     },
-    render: (args) => (
-        <Box
-            padding={16}
-            backgroundColor={vars.color.surface.main}
-            borderRadius={8}
-            style={{
-                height: args.orientation === 'vertical' ? '120px' : undefined,
-                width: args.orientation === 'vertical' ? 'fit-content' : undefined,
-            }}
-        >
-            {args.orientation === 'vertical' ? (
-                <Flex
-                    alignItems={'center'}
-                    gap={12}
-                    style={{ height: '100%' }}
-                >
-                    <span>Left</span>
-                    <Separator {...args} />
-                    <span>Right</span>
-                </Flex>
-            ) : (
-                <Flex
-                    flexDirection={'column'}
-                    gap={12}
-                >
-                    <span>Above</span>
-                    <Separator {...args} />
-                    <span>Below</span>
-                </Flex>
-            )}
-        </Box>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await expect(canvas.getByRole('separator')).toBeInTheDocument()
-    },
+    render: SeparatorPlayground,
+    play: SeparatorPlaygroundPlay,
 }
 
 export const WithLabel: Story = {
     parameters: {
         docs: {
-            ...storySource(/* language=tsx */ `
-<Flex flexDirection="column" gap={16}>
-    <Separator label="Or continue" />
-    <Flex alignItems="center" gap={12} height="120px">
-        <span>Left</span>
-        <Separator orientation="vertical" label="Or" />
-        <span>Right</span>
-    </Flex>
-</Flex>`),
+            ...storySource(/* language=tsx */ SeparatorWithLabelSource),
         },
     },
-    render: () => (
-        <Flex
-            flexDirection={'column'}
-            gap={16}
-        >
-            <Separator label={'Or continue'} />
-            <Flex
-                alignItems={'center'}
-                gap={12}
-                height={'120px'}
-            >
-                <span>Left</span>
-                <Separator
-                    orientation={'vertical'}
-                    label={'Or'}
-                />
-                <span>Right</span>
-            </Flex>
-        </Flex>
-    ),
+    render: SeparatorWithLabel,
 }
 
 export const Colors: Story = {
     parameters: {
         docs: {
-            ...storySource(/* language=tsx */ `
-<Separator color={'transparent'} />
-<Separator color={'primary.main'} />
-<Separator color={'secondary.main'} />
-<Separator color={'neutral.main'} />
-<Separator color={'danger.main'} />
-<Separator color={'success.main'} />
-<Separator color={'warning.main'} />
-<Separator color={'info.main'} />`),
+            ...storySource(/* language=tsx */ SeparatorColorsSource),
         },
     },
-    render: () => (
-        <Flex
-            flexDirection={'column'}
-            gap={12}
-            width={'20rem'}
-        >
-            {COLORS.map((color) => (
-                <Separator
-                    key={color}
-                    color={color}
-                />
-            ))}
-        </Flex>
-    ),
+    render: SeparatorColors,
 }
 
 export const Orientations: Story = {
     parameters: {
         docs: {
-            ...storySource(/* language=tsx */ `
-<Flex alignItems="center" gap={12} height="120px">
-    <span>Left</span>
-    <Separator orientation="vertical" />
-    <span>Right</span>
-</Flex>
-<Flex flexDirection="column" gap={12}>
-    <span>Above</span>
-    <Separator orientation="horizontal" />
-    <span>Below</span>
-</Flex>`),
+            ...storySource(/* language=tsx */ SeparatorOrientationsSource),
         },
     },
-    render: () => (
-        <Flex
-            flexDirection={'column'}
-            gap={16}
-        >
-            <Flex
-                alignItems={'center'}
-                gap={12}
-                height={'120px'}
-            >
-                <span>Left</span>
-                <Separator orientation={'vertical'} />
-                <span>Right</span>
-            </Flex>
-            <Flex
-                flexDirection={'column'}
-                gap={12}
-            >
-                <span>Above</span>
-                <Separator orientation={'horizontal'} />
-                <span>Below</span>
-            </Flex>
-        </Flex>
-    ),
+    render: SeparatorOrientations,
 }

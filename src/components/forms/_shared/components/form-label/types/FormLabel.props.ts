@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types'
 
 export type FormLabelProps = Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'> & {
     /** Font size applied to the label. @default 'md' */

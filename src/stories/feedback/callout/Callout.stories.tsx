@@ -15,8 +15,8 @@ import type { CalloutRole, CalloutVariant } from '@components/feedback/callout'
 import type { IconComponent } from '@components/foundation/icon'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
 

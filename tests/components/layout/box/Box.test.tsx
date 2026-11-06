@@ -6,7 +6,7 @@ import '@theme'
 import { Box, type BoxColor, type BoxProps } from '@components/layout/box'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
-import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
+import { BOX_STYLES } from '@components/layout/box/Box.css.ts'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement

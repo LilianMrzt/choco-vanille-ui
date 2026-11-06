@@ -5,8 +5,8 @@ import { expect, within } from 'storybook/test'
 import type { DateRange } from 'react-day-picker'
 
 import { Calendar } from '@/components/forms/calendar'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const MODES = ['single', 'multiple', 'range'] as const
 

@@ -1,4 +1,4 @@
-import type { ImageObjectFit } from '@components/layout/image/types/Image.types.ts'
+import type { ImageObjectFit } from '@components/layout/image/types'
 import type { IMAGE_PICKER_SHAPES } from '@components/forms/image-picker/constants/imagePickerShapes.const.ts'
 
 /** A remote image URL, a locally selected image file, or no image. */

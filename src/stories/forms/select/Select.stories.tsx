@@ -6,8 +6,8 @@ import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
 import { SelectField } from '@components/forms/select'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { TextFieldSize } from '@components/forms/text-field'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIZES: TextFieldSize[] = [
     'sm',

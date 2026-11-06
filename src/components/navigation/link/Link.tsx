@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import type * as React from 'react'
 
-import { BOX_STYLES } from '@components/layout/box/styles/Box.css.ts'
+import { BOX_STYLES } from '@components/layout/box/Box.css.ts'
 import { LINK_STYLES } from '@components/navigation/link/styles/Link.css.ts'
 import type { LinkProps } from '@components/navigation/link/types/Link.props.ts'
 import { Icon } from '@components/foundation/icon'

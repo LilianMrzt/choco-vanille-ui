@@ -15,8 +15,8 @@ import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
 import type { IconComponent } from '@components/foundation/icon'
 import { useNotification, useToast } from '@hooks'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const VARIANTS: ToastVariant[] = ['info', 'success', 'warning', 'error']
 

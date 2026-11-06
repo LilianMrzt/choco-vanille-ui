@@ -4,8 +4,8 @@ import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storyb
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Checkbox } from '@/components/forms/checkbox'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

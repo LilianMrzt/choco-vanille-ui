@@ -13,8 +13,8 @@ import { expect, within } from 'storybook/test'
 import { Fab } from '@/components/actions/fab'
 import type { FabColor, FabPosition, FabSize } from '@components/actions/fab'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const COLORS: FabColor[] = [
     'primary',

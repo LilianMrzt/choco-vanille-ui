@@ -1,5 +1,5 @@
-import { IMAGE_STYLES } from '@components/layout/image/styles/Image.css.ts'
-import type { ImageProps } from '@components/layout/image/types/Image.props.ts'
+import { IMAGE_STYLES } from '@components/layout/image/Image.css.ts'
+import type { ImageProps } from '@components/layout/image/types'
 import { cn } from '@utils/cn.ts'
 import { memo, useMemo, type FC } from 'react'
 
@@ -7,7 +7,31 @@ import { memo, useMemo, type FC } from 'react'
  * `<img>` wrapper with design-token props for `objectFit`, `objectPosition`,
  * `borderRadius` and spacing, plus a free CSS `backgroundColor`. Dimensional props
  * (`width`, `height`, `aspectRatio`) are applied as inline styles.
- * Always provide a meaningful `alt` text.
+ * Provide meaningful `alt` text for informative images or an empty string for
+ * decorative images. Native attributes, events and ref target the image.
+ * Consumer `style` overrides individual inline style props.
+ *
+ * @param props - Native image attributes and presentation.
+ * @param props.alt - Alternative text, or an empty string for decoration.
+ * @param props.objectFit - Image fit preset.
+ * @param props.objectPosition - Image position preset.
+ * @param props.borderRadius - Radius token.
+ * @param props.padding - Padding token.
+ * @param props.margin - Margin token or `auto`.
+ * @param props.backgroundColor - CSS background color.
+ * @param props.width - CSS width.
+ * @param props.minWidth - CSS minimum width.
+ * @param props.maxWidth - CSS maximum width.
+ * @param props.height - CSS height.
+ * @param props.minHeight - CSS minimum height.
+ * @param props.maxHeight - CSS maximum height.
+ * @param props.aspectRatio - CSS aspect ratio.
+ * @param props.className - Additional image class.
+ * @param props.style - Inline style overrides.
+ * @param props.ref - Ref forwarded to the image.
+ * @returns A native image.
+ * @example
+ * <Image src="/landscape.jpg" alt="Mountain landscape" />
  */
 const Image: FC<ImageProps> = memo(({
     alt,

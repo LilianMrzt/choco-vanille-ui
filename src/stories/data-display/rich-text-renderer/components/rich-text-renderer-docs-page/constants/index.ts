@@ -1,4 +1,4 @@
-import { md } from '@stories/utils/markdown'
+import { md } from '@stories/_shared/utils/markdown'
 
 export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

@@ -1,4 +1,4 @@
-import type { IconComponent } from '@components/foundation/icon/types/Icon.types.ts'
+import type { IconComponent } from '@components/foundation/icon'
 import type { TableSortDirection } from '@components/data-display/table/components/table-head/types'
 import SortAscIcon from '@resources/asset/SortAscIcon.svg?react'
 import SortDescIcon from '@resources/asset/SortDescIcon.svg?react'

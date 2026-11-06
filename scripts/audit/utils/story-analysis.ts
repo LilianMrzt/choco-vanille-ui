@@ -200,7 +200,14 @@ const hasControlledStorySource = (initializer: Node | undefined): boolean => {
   const transformInitializer = getStoryValue(
     transform?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer(),
   );
-  return Node.isArrowFunction(transformInitializer) || Node.isFunctionExpression(transformInitializer);
+  if (Node.isArrowFunction(transformInitializer) || Node.isFunctionExpression(transformInitializer)) {
+    return true;
+  }
+  if (Node.isCallExpression(transformInitializer)) {
+    const result = transformInitializer.getType();
+    return !result.isAny() && result.getCallSignatures().length > 0;
+  }
+  return false;
 };
 
 function componentNameForStory(sourceFile: SourceFile): string {
@@ -222,6 +229,19 @@ function argTypeNames(sourceFile: SourceFile): Set<string> {
       .filter(Node.isPropertyAssignment)
       .map((property) => property.getName().replace(/^['"]|['"]$/g, '')),
   );
+}
+
+function hasNativeImageLoading(sourceFile: SourceFile): boolean {
+  const meta = getStoryObject(sourceFile.getVariableDeclaration('meta')?.getInitializer());
+  const component = meta?.getProperty('component')
+    ?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer();
+  const props = component?.getType().getCallSignatures()[0]?.getParameters()[0];
+  if (!component || !props) return false;
+  const loading = props.getTypeAtLocation(component).getProperty('loading');
+  if (!loading) return false;
+  const types = loading.getTypeAtLocation(component).getUnionTypes();
+  const values = types.filter((type) => type.isStringLiteral()).map((type) => type.getLiteralValue());
+  return values.length === 2 && values.includes('eager') && values.includes('lazy');
 }
 
 function hasAccessibilityTable(source: string): boolean {
@@ -449,7 +469,9 @@ export function analyzeComponentStories(
       }
 
       if (
-        interactiveStateProps.some((prop) => componentProps.has(prop)) &&
+        interactiveStateProps.some((prop) =>
+          componentProps.has(prop) && (prop !== 'loading' || !hasNativeImageLoading(sourceFile)),
+        ) &&
         !exportedStoryNames.has('States')
       ) {
         addFinding(

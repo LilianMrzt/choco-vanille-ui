@@ -270,19 +270,19 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'size',
     source: {
       kind: 'recipe',
-      file: 'src/components/foundation/icon/styles/Icon.css.ts',
+      file: 'src/components/foundation/icon/Icon.css.ts',
       axis: 'size',
     },
     expected: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
     defaultValue: 'md',
-    defaultSource: 'src/components/foundation/icon/styles/Icon.css.ts',
+    defaultSource: 'src/components/foundation/icon/Icon.css.ts',
   },
   {
     component: 'Typography',
     axis: 'size',
     source: {
       kind: 'type',
-      file: 'src/components/foundation/typography/types/Typography.types.ts',
+      file: 'src/components/foundation/typography/types/index.ts',
       symbol: 'TypographySize',
     },
     expected: [

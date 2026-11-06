@@ -10,8 +10,8 @@ import {
 
 import { Button } from '@components/actions/button'
 import { EmptyState } from '@components/feedback/empty-state'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

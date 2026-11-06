@@ -1,4 +1,4 @@
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { BoxProps } from '@components/layout/box/types'
 import type { BUTTON_COLORS, BUTTON_SIZES, BUTTON_VARIANTS } from '@components/actions/_shared/buttons/constants'
 
 /** Visual style variants shared by Button and IconButton. */

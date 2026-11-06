@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import Inset from '@components/layout/inset/Inset.tsx'
-import { INSET_STYLES } from '@components/layout/inset/styles/Inset.css.ts'
+import { INSET_STYLES } from '@components/layout/inset/Inset.css.ts'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement

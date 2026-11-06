@@ -1,0 +1,3 @@
+import { Icon } from '@choco-vanille/ui'
+
+<Icon icon={SearchIcon}{{attributes}} />

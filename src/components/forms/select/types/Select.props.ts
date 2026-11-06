@@ -3,7 +3,7 @@ import type { Select as BaseSelect } from '@base-ui/react/select'
 import type { IconComponent } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types'
 
 /**
  * Props for the convenience `SelectField` wrapper.

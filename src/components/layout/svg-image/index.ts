@@ -1,6 +1,6 @@
 export { default as SvgImage } from '@components/layout/svg-image/SvgImage.tsx'
-export { SVG_IMAGE_STYLES } from '@components/layout/svg-image/styles/SvgImage.css.ts'
-export type { SvgImageProps } from '@components/layout/svg-image/types/SvgImage.props.ts'
+export { SVG_IMAGE_STYLES } from '@components/layout/svg-image/SvgImage.css.ts'
+export type { SvgImageProps } from '@components/layout/svg-image/types'
 export type {
     SvgImageColor,
     SvgImageComponent,
@@ -8,4 +8,4 @@ export type {
     SvgImageObjectFit,
     SvgImageObjectPosition,
     SvgImageSpace,
-} from '@components/layout/svg-image/types/SvgImage.types.ts'
+} from '@components/layout/svg-image/types'

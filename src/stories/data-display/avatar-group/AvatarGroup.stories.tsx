@@ -7,7 +7,7 @@ import AvatarGroupSpacing from '@stories/data-display/avatar-group/components/av
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/avatar-group/constants'
 import { createAvatarGroupSpacingSource } from '@stories/data-display/avatar-group/utils/create-avatar-group-spacing-source/createAvatarGroupSpacingSource.utils'
 import { createGroupSource } from '@stories/data-display/avatar-group/utils/create-group-source/createGroupSource.utils'
-import { storySource } from '@stories/utils/storySource'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Data Display/AvatarGroup',

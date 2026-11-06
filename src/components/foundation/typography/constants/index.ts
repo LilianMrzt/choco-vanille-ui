@@ -1,4 +1,4 @@
-import type { TypographyVariant } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographyVariant } from '@components/foundation/typography/types'
 
 export const TYPOGRAPHY_ELEMENT_MAP = {
     h1: 'h1',

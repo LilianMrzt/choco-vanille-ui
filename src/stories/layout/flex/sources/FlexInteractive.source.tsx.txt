@@ -1,0 +1,7 @@
+import { Box, Flex, vars } from '@choco-vanille/ui'
+
+<Flex{{attributes}}>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem' }}>Item 1</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem' }}>Item 2</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem' }}>Item 3</Box>
+</Flex>

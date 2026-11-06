@@ -1,0 +1,11 @@
+import { Typography } from '@choco-vanille/ui'
+
+<Typography variant="p" fontWeight="thin">thin</Typography>
+<Typography variant="p" fontWeight="extralight">extralight</Typography>
+<Typography variant="p" fontWeight="light">light</Typography>
+<Typography variant="p" fontWeight="normal">normal</Typography>
+<Typography variant="p" fontWeight="medium">medium</Typography>
+<Typography variant="p" fontWeight="semibold">semibold</Typography>
+<Typography variant="p" fontWeight="bold">bold</Typography>
+<Typography variant="p" fontWeight="extrabold">extrabold</Typography>
+<Typography variant="p" fontWeight="black">black</Typography>

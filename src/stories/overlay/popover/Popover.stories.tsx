@@ -14,8 +14,8 @@ import { Popover, type PopoverContentProps } from '@/components/overlay/popover'
 import { Button } from '@/components/actions/button'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type PopoverPlaygroundArgs = ComponentProps<typeof Popover> & {
   triggerLabel?: string;

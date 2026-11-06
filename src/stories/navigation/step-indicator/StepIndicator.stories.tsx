@@ -13,8 +13,8 @@ import {
     StepIndicator,
     type StepIndicatorProps,
 } from '@components/navigation/step-indicator'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type StepIndicatorStoryArgs = Omit<StepIndicatorProps, 'children'> & {
     accountLabel: string

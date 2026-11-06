@@ -20,8 +20,8 @@ import {
 } from '@components/foundation/typography'
 import type { BoxSpace, BoxVariant } from '@components/layout/box'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type CardPlaygroundArgs = ComponentProps<typeof Card> & {
   headerAs?: 'div' | 'header';

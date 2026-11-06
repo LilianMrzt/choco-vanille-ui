@@ -16,8 +16,8 @@ import {
     type ProgressColor,
     type ProgressSize,
 } from '@components/feedback/progress'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const COLORS: ProgressColor[] = [
     'primary',

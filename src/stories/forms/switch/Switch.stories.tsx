@@ -4,8 +4,8 @@ import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storyb
 import { expect, userEvent, within } from 'storybook/test'
 
 import { Switch, type SwitchSize } from '@components/forms/switch'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIZES: SwitchSize[] = ['sm', 'md', 'lg']
 

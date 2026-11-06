@@ -31,8 +31,8 @@ import {
     DRAWER_SIZES_ARRAY,
 } from '@components/overlay/drawer/constants'
 import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   showHeader?: boolean;

@@ -16,8 +16,8 @@ import type {
     TooltipAlign,
     TooltipPosition,
 } from '@components/overlay/tooltip'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIDES: TooltipSide[] = ['top', 'right', 'bottom', 'left']
 const ALIGNS: TooltipAlign[] = ['start', 'center', 'end']

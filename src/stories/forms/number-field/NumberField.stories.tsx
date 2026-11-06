@@ -13,8 +13,8 @@ import {
     NumberField,
     type NumberFieldSize,
 } from '@components/forms/number-field'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const SIZES: NumberFieldSize[] = ['sm', 'md', 'lg']
 const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const

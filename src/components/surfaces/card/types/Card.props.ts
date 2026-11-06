@@ -1,4 +1,4 @@
-import type { BoxProps } from '@components/layout/box/types/Box.props.ts'
+import type { BoxProps } from '@components/layout/box/types'
 
 export type CardProps = Omit<BoxProps, 'backgroundColor' | 'color' | 'borderRadius' | 'borderWidth' | 'borderColor' | 'boxShadow' | 'overflow' | 'borderStyle'> & {
   /** Background color token. @default 'surface' */

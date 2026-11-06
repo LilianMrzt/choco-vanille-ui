@@ -3,8 +3,8 @@ import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storyb
 
 import { Spinner } from '@/components/feedback/spinner'
 import type { SpinnerColor, SpinnerSize } from '@components/feedback/spinner'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const COLORS: SpinnerColor[] = [
     'primary',

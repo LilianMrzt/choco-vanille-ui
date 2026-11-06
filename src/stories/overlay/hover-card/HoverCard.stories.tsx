@@ -12,8 +12,8 @@ import { screen } from '@testing-library/dom'
 
 import { HoverCard } from '@/components/overlay/hover-card'
 import { Button } from '@/components/actions/button'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility

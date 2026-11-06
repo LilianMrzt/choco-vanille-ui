@@ -16,8 +16,8 @@ import statusBadgePositionsSource from '@stories/data-display/status-badge/sourc
 import statusBadgeSizesSource from '@stories/data-display/status-badge/sources/StatusBadgeSizes.source.tsx.txt?raw'
 import { createStatusBadgeSource } from '@stories/data-display/status-badge/utils/create-status-badge-source/createStatusBadgeSource.utils'
 import { playStatusBadgePlayground } from '@stories/data-display/status-badge/utils/playStatusBadgePlayground.utils'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Data Display/StatusBadge',

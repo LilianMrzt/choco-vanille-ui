@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { BoxSpace } from '@components/layout/box/types/Box.types.ts'
+import type { BoxSpace } from '@components/layout/box/types'
 
 export type BottomNavigationListProps = Omit<
   React.HTMLAttributes<HTMLUListElement>,

@@ -67,8 +67,9 @@
   hooks/utilities in `hooks/` and `utils/` with the same naming and recursive
   ownership rules. Keep consumer source text in the owner's `sources/`
   subfolder, not beside the `.stories.tsx` entry. Group cross-story resources
-  by cohesive responsibility under `_shared/<feature>/`, not in a shared
-  technical bucket. Create only the folders needed by the change.
+  by cohesive responsibility under `_shared/<feature>/`, rather than adding
+  unrelated resources to the existing shared utility folder. Create only the
+  folders needed by the change.
   Do not add `components/design-system` or `components/custom` branches.
 - Keep `.stories.tsx` as a thin CSF entry: metadata, the local `Story` alias,
   named story exports and small render/source adapters. Extract each distinct
@@ -93,8 +94,8 @@
   The Icon API belongs in component stories, not an icon catalog.
 - Storybook discovers MDX and stories under `src/stories/` directly. Keep helpers
   local to their owner and new cross-story components and utilities under
-  `src/stories/_shared/`. Reuse existing helpers in `src/stories/utils/` until
-  their migration is requested. Do not export story-only code from the package.
+  `src/stories/_shared/`. Reuse the existing Markdown and static source helpers
+  under `src/stories/_shared/utils/`. Do not export story-only code from the package.
 - Use `import type` for `Meta` / `StoryObj` from `@storybook/react-vite`,
   a meta object with `satisfies Meta<typeof Component>`, a default meta export,
   and `type Story = StoryObj<typeof meta>`. Preserve generic and composition
@@ -145,7 +146,7 @@
   names, keyboard behavior and focus. Adapt framing to the actual component.
 - Customize consumer code through `parameters.docs.source` when generated
   Storybook source exposes story-only details. Reuse the existing
-  `storySource` helper from `@stories/utils/storySource` for static snippets;
+  `storySource` helper from `@stories/_shared/utils/storySource` for static snippets;
   do not refer to an absent `@stories/_shared/utils/consumer-source` helper.
   Dynamic snippets must reflect current args and use explicit expressions
   for nonliteral values. Consumer snippets use package imports, not private aliases.

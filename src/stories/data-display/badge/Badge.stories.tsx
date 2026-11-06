@@ -13,7 +13,7 @@ import { createBadgeColorsSource } from '@stories/data-display/badge/utils/creat
 import { createBadgeSource } from '@stories/data-display/badge/utils/create-badge-source/createBadgeSource.utils'
 import { createBadgeVariantsSource } from '@stories/data-display/badge/utils/create-badge-variants-source/createBadgeVariantsSource.utils'
 import { playBadgePlayground } from '@stories/data-display/badge/utils/playBadgePlayground.utils'
-import { storySource } from '@stories/utils/storySource'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Data Display/Badge',

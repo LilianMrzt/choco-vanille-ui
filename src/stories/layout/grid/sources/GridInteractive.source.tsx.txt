@@ -1,0 +1,13 @@
+import { Box, Grid, vars } from '@choco-vanille/ui'
+
+<Grid{{attributes}}>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 1</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 2</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 3</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 4</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 5</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 6</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 7</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 8</Box>
+    <Box padding={12} borderRadius={6} backgroundColor={vars.color.primary.subtle} style={{ fontSize: '0.875rem', textAlign: 'center' }}>Cell 9</Box>
+</Grid>

@@ -1,5 +1,5 @@
-import { FORM_STYLES } from '@components/layout/form/styles/Form.css.ts'
-import type { FormProps } from '@components/layout/form/types/Form.props.ts'
+import { FORM_STYLES } from '@components/layout/form/Form.css.ts'
+import type { FormProps } from '@components/layout/form/types'
 import { cn } from '@utils/cn.ts'
 import { forwardRef, memo } from 'react'
 
@@ -8,8 +8,15 @@ import { forwardRef, memo } from 'react'
  *
  * Use it as the root of any form so assistive technology can identify the
  * form boundary, and so you have a consistent place to handle submission
- * and validation behavior.
+ * and validation behavior. Native attributes and events are forwarded to the
+ * form; the ref targets that element. Provide an accessible name when the
+ * form needs to be exposed as a landmark.
  *
+ * @param props - Native form attributes and children.
+ * @param props.className - Additional class merged with the form reset.
+ * @param props.children - Form fields and actions.
+ * @param ref - Ref forwarded to the form element.
+ * @returns A native form element.
  * @example
  * ```tsx
  * <Form onSubmit={handleSubmit}>

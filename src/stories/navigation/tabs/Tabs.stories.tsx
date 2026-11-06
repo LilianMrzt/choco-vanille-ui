@@ -14,8 +14,8 @@ import { Tabs } from '@/components/navigation/tabs'
 import type { TabsVariant } from '@components/navigation/tabs'
 import type { IconComponent } from '@components/foundation/icon'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 type TabsPlaygroundArgs = ComponentProps<typeof Tabs> & {
   listVariant?: TabsVariant;

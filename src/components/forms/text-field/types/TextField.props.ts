@@ -2,7 +2,7 @@ import type * as React from 'react'
 import type { RefAttributes } from 'react'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-import type { TypographySize } from '@components/foundation/typography/types/Typography.types.ts'
+import type { TypographySize } from '@components/foundation/typography/types'
 import type { IconComponent } from '@components/foundation/icon'
 
 export type TextFieldProps = Omit<

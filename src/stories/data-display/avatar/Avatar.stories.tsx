@@ -18,7 +18,7 @@ import { createAvatarCompoundSource } from '@stories/data-display/avatar/utils/c
 import { createAvatarSizesSource } from '@stories/data-display/avatar/utils/create-avatar-sizes-source/createAvatarSizesSource.utils'
 import { createAvatarSource } from '@stories/data-display/avatar/utils/create-avatar-source/createAvatarSource.utils'
 import { createAvatarStatusesSource } from '@stories/data-display/avatar/utils/create-avatar-statuses-source/createAvatarStatusesSource.utils'
-import { storySource } from '@stories/utils/storySource'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Data Display/Avatar',

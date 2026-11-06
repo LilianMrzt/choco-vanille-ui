@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import Image from '@components/layout/image/Image.tsx'
-import { IMAGE_STYLES } from '@components/layout/image/styles/Image.css.ts'
+import { IMAGE_STYLES } from '@components/layout/image/Image.css.ts'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const IMAGE_SRC = 'https://example.com/image.png'

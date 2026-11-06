@@ -11,8 +11,8 @@ import {
 import { expect, within } from 'storybook/test'
 
 import { Pagination } from '@components/navigation/pagination'
-import { md } from '@stories/utils/markdown'
-import { storySource } from '@stories/utils/storySource'
+import { md } from '@stories/_shared/utils/markdown'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const handlePageChange = (_page: number) => {}
 

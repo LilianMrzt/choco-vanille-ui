@@ -1,6 +1,6 @@
 export { default as Grid } from '@components/layout/grid/Grid.tsx'
-export { GRID_STYLES } from '@components/layout/grid/styles/Grid.css.ts'
-export type { GridProps } from '@components/layout/grid/types/Grid.props.ts'
+export { GRID_STYLES } from '@components/layout/grid/Grid.css.ts'
+export type { GridProps } from '@components/layout/grid/types'
 export type {
     GridColumns,
     GridAutoRows,
@@ -10,4 +10,4 @@ export type {
     GridJustifyItems,
     GridAlignContent,
     GridJustifyContent,
-} from '@components/layout/grid/types/Grid.types.ts'
+} from '@components/layout/grid/types'
