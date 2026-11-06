@@ -1,316 +1,54 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { useArgs } from 'storybook/preview-api'
+import { expect, fn, within } from 'storybook/test'
 
-import {
-    Toggle,
-    ToggleGroup,
-    type ToggleColor,
-    type ToggleSize,
-    type ToggleVariant,
-} from '@components/actions'
+import { Toggle, ToggleGroup, type ToggleProps, type ToggleGroupProps } from '@components/actions'
 import BoldIcon from '@resources/asset/BoldIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
-import { md } from '@stories/_shared/utils/markdown'
+import ToggleDocsPage from '@stories/actions/toggle/components/toggle-docs-page/ToggleDocsPage'
+import { ToggleColors, ToggleIcons, ToggleSizes, ToggleStates, ToggleUncontrolledGroup, ToggleVariants } from '@stories/actions/toggle/components/toggle-examples/ToggleExamples'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/actions/toggle/constants'
+import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
+import { createToggleGroupSource, createToggleSource } from '@stories/actions/toggle/utils/create-toggle-source/createToggleSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
-const VARIANTS: ToggleVariant[] = [
-    'outlined',
-    'ghost',
-]
-const COLORS: ToggleColor[] = [
-    'primary',
-    'secondary',
-    'tertiary',
-    'destructive',
-    'success',
-    'warning',
-    'info',
-]
-const SIZES: ToggleSize[] = ['sm', 'md', 'lg']
-const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
-const WIDTHS = [undefined, '100%', 'fit-content'] as const
-const ALIGN_SELF = [
-    undefined,
-    'auto',
-    'flex-start',
-    'flex-end',
-    'center',
-    'stretch',
-    'baseline',
-] as const
+/** Controlled standalone toggle synchronized with Controls. */
+const ControlledToggle = (_args: ToggleStoryArgs) => {
+    const [args, updateArgs] = useArgs<ToggleStoryArgs>()
+    const { groupMultiple, groupOrientation, groupDisabled, groupValue, groupOnValueChange, ...toggleProps } = args
+    void [groupMultiple, groupOrientation, groupDisabled, groupValue, groupOnValueChange]
+    const onPressedChange: NonNullable<ToggleProps['onPressedChange']> = (pressed, details) => {
+        toggleProps.onPressedChange?.(pressed, details)
+        if (!details.isCanceled && toggleProps.pressed !== undefined) {
+            updateArgs({ pressed })
+        }
+    }
 
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required    | Type      | Notes                                                               |
-| ---------------- | ----------- | --------- | ------------------------------------------------------------------- |
-| \`label\`          | Conditional | \`string\`  | Required for text mode and used as the accessible name.             |
-| \`aria-label\`     | Conditional | \`string\`  | Required for icon-only mode and used as the accessible name.        |
-| \`disabled\`       | No          | \`boolean\` | Prevents interaction and removes the toggle from the tab order.     |
-| \`aria-pressed\`   | Auto        | \`boolean\` | Reflects the current pressed state on the underlying native button. |
-
-- The component renders a native \`<button>\` and supports keyboard activation with Space and Enter.
-- Use \`ToggleGroup\` when several related toggles should share selection behavior and keyboard navigation.
-`
-
-const ToggleDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const meta = {
-    title: 'Actions/Toggle',
-    component: Toggle,
-    parameters: {
-        layout: 'centered',
-        docs: {
-            page: ToggleDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-A two-state control that can be used on its own or as an item in \`ToggleGroup\`.
-
-**Usage**
-
-~~~tsx
-<Toggle label="Bold" />
-<Toggle icon={BoldIcon} aria-label="Bold" />
-
-<ToggleGroup>
-  <ToggleGroup.Item value="bold" label="Bold" />
-  <ToggleGroup.Item value="italic" label="Italic" />
-</ToggleGroup>
-~~~
-
-Text mode requires \`label\`. Icon-only mode requires both \`icon\` and
-\`aria-label\`.
-        `,
-            },
-        },
-    },
-    argTypes: {
-        label: { control: 'text' },
-        icon: { control: 'text' },
-        'aria-label': { control: 'text' },
-        variant: { control: 'select', options: VARIANTS },
-        subtle: { control: 'boolean' },
-        color: { control: 'select', options: COLORS },
-        size: { control: 'select', options: SIZES },
-        startIcon: { control: 'text' },
-        endIcon: { control: 'text' },
-        margin: { control: 'select', options: SPACING },
-        marginTop: { control: 'select', options: SPACING },
-        marginRight: { control: 'select', options: SPACING },
-        marginBottom: { control: 'select', options: SPACING },
-        marginLeft: { control: 'select', options: SPACING },
-        width: { control: 'select', options: WIDTHS },
-        alignSelf: { control: 'select', options: ALIGN_SELF },
-        disabled: { control: 'boolean' },
-    },
-    args: {
-        label: 'Bold',
-    },
-} satisfies Meta<typeof Toggle>
-
-export default meta
-
-type Story = StoryObj<typeof meta>;
-
-export const Playground: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="Bold" />`),
-        },
-    },
-    play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement)
-        await expect(
-            canvas.getByRole('button', { name: args.label }),
-        ).toBeInTheDocument()
-    },
+    return (
+        <Toggle
+            {...toggleProps}
+            onPressedChange={onPressedChange}
+        />
+    )
 }
 
-export const Variants: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="outlined" variant="outlined" />
-<Toggle label="ghost" variant="ghost" />
-<Toggle label="outlined subtle" variant="outlined" subtle />
-<Toggle label="ghost subtle" variant="ghost" subtle />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-            {VARIANTS.map((variant) => (
-                <Toggle
-                    key={variant}
-                    label={variant}
-                    variant={variant}
-                />
-            ))}
-        </div>
-    ),
-}
-
-export const Colors: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="primary" color="primary" />
-<Toggle label="secondary" color="secondary" />
-<Toggle label="tertiary" color="tertiary" />
-<Toggle label="destructive" color="destructive" />
-<Toggle label="success" color="success" />
-<Toggle label="warning" color="warning" />
-<Toggle label="info" color="info" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-            {COLORS.map((color) => (
-                <Toggle
-                    key={color}
-                    label={color}
-                    color={color}
-                />
-            ))}
-        </div>
-    ),
-}
-
-export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="SM" size="sm" />
-<Toggle label="MD" size="md" />
-<Toggle label="LG" size="lg" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            {SIZES.map((size) => (
-                <Toggle
-                    key={size}
-                    label={size.toUpperCase()}
-                    size={size}
-                />
-            ))}
-        </div>
-    ),
-}
-
-export const States: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="Disabled" disabled />
-<Toggle label="Pressed" defaultPressed />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <Toggle
-                label={'Disabled'}
-                disabled
-            />
-            <Toggle
-                label={'Pressed'}
-                defaultPressed
-            />
-        </div>
-    ),
-}
-
-export const WithIcons: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle label="Bold" startIcon={BoldIcon} />
-<Toggle label="Next" endIcon={ChevronRightIcon} />
-<Toggle label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            <Toggle
-                label={'Bold'}
-                startIcon={BoldIcon}
-            />
-            <Toggle
-                label={'Next'}
-                endIcon={ChevronRightIcon}
-            />
-            <Toggle
-                label={'Upload'}
-                startIcon={UploadIcon}
-                endIcon={ChevronRightIcon}
-            />
-        </div>
-    ),
-}
-
-export const IconOnly: Story = {
-    args: {
-        label: undefined,
-        icon: BoldIcon,
-        'aria-label': 'Bold',
-    },
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Toggle icon={BoldIcon} aria-label="Bold" />`),
-        },
-    },
-    play: async ({ canvasElement }) => {
-        await expect(
-            within(canvasElement).getByRole('button', { name: 'Bold' }),
-        ).toBeInTheDocument()
-    },
-}
-
-export const Group: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: md /* language=markdown */ `
-\`ToggleGroup\` coordinates a set of \`ToggleGroup.Item\` components.
-
-- By default, selecting an item unselects the previous item.
-- Set \`multiple\` to \`true\` when several options can be selected.
-- Use \`defaultValue\` for uncontrolled state.
-- Use \`value\` and \`onValueChange\` for controlled state.
-- \`orientation\` also controls arrow-key navigation.
-
-Each item supports the same text and icon-only content modes as \`Toggle\`.
-        `,
-            },
-            ...storySource(/* language=tsx */ `
-<ToggleGroup defaultValue={['bold']}>
-    <ToggleGroup.Item value="bold" label="Bold" />
-    <ToggleGroup.Item value="italic" label="Italic" />
-    <ToggleGroup.Item value="underline" label="Underline" />
-</ToggleGroup>`),
-        },
-    },
-    render: () => (
-        <ToggleGroup defaultValue={['bold']}>
+/** Controlled group synchronized with Controls. */
+const ControlledGroup = (_args: ToggleStoryArgs) => {
+    const [args, updateArgs] = useArgs<ToggleStoryArgs>()
+    const onValueChange: NonNullable<ToggleGroupProps['onValueChange']> = (value, details) => {
+        args.groupOnValueChange?.(value, details)
+        if (!details.isCanceled) {
+            updateArgs({ groupValue: value })
+        }
+    }
+    return (
+        <ToggleGroup
+            aria-label={'Text formatting'}
+            value={args.groupValue}
+            multiple={args.groupMultiple}
+            orientation={args.groupOrientation}
+            disabled={args.groupDisabled}
+            onValueChange={onValueChange}
+        >
             <ToggleGroup.Item
                 value={'bold'}
                 label={'Bold'}
@@ -324,14 +62,123 @@ Each item supports the same text and icon-only content modes as \`Toggle\`.
                 label={'Underline'}
             />
         </ToggleGroup>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await expect(
-            canvas.getByRole('button', { name: 'Bold' }),
-        ).toBeInTheDocument()
-        await expect(
-            canvas.getByRole('button', { name: 'Italic' }),
-        ).toBeInTheDocument()
+    )
+}
+
+const meta = {
+    title: 'Actions/Toggle',
+    component: Toggle,
+    render: ControlledToggle,
+    tags: ['autodocs'],
+    parameters: {
+        layout: 'centered',
+        controls: {
+            include: ['label', 'icon', 'aria-label', 'startIcon', 'endIcon', 'variant', 'color', 'size', 'margin', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'width', 'alignSelf', 'disabled', 'pressed', 'onPressedChange', 'ref'],
+        },
+        docs: {
+            page: ToggleDocsPage,
+            description: {
+                component: 'A two-state button. `Toggle` is the same component as `ToggleGroup.Item`. Use a group to coordinate selection and keyboard focus; each item needs a unique value. In a group, pressed state is managed by the group.',
+            },
+            source: { type: 'dynamic', transform: createToggleSource },
+        },
     },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<ToggleStoryArgs>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Playground: Story = {
+    render: ControlledToggle,
+    play: async ({ canvasElement, args }) => {
+        await expect(within(canvasElement).getByRole('button', { name: args.label })).toBeInTheDocument()
+    },
+}
+
+export const Uncontrolled: Story = {
+    args: { pressed: undefined, defaultPressed: true },
+    render: ControlledToggle,
+    parameters: {
+        controls: { include: ['label', 'variant', 'color', 'size', 'disabled', 'defaultPressed', 'onPressedChange'] },
+        docs: { description: { story: 'Initial state is applied on mount; remount to change defaultPressed.' } },
+    },
+}
+
+export const Variants: Story = {
+    parameters: { docs: storySource(`
+<Toggle label="outlined" variant="outlined" defaultPressed />
+<Toggle label="outlinedSubtle" variant="outlinedSubtle" defaultPressed />
+<Toggle label="ghost" variant="ghost" defaultPressed />
+<Toggle label="ghostSubtle" variant="ghostSubtle" defaultPressed />`) },
+    render: ToggleVariants,
+}
+
+export const Colors: Story = {
+    parameters: { docs: storySource(`
+<Toggle label="primary" color="primary" defaultPressed />
+<Toggle label="secondary" color="secondary" defaultPressed />
+<Toggle label="tertiary" color="tertiary" defaultPressed />
+<Toggle label="destructive" color="destructive" defaultPressed />
+<Toggle label="success" color="success" defaultPressed />
+<Toggle label="warning" color="warning" defaultPressed />
+<Toggle label="info" color="info" defaultPressed />`) },
+    render: ToggleColors,
+}
+
+export const Sizes: Story = {
+    parameters: { docs: storySource(`
+<Toggle label="SM" size="sm" />
+<Toggle label="MD" size="md" />
+<Toggle label="LG" size="lg" />`) },
+    render: ToggleSizes,
+}
+
+export const States: Story = {
+    parameters: { docs: storySource(`
+<Toggle label="Disabled" disabled />
+<Toggle label="Pressed" defaultPressed />`) },
+    render: ToggleStates,
+}
+
+export const WithIcons: Story = {
+    parameters: { docs: storySource(`
+<Toggle label="Bold" startIcon={BoldIcon} />
+<Toggle label="Next" endIcon={ChevronRightIcon} />
+<Toggle label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} />`) },
+    render: ToggleIcons,
+}
+
+export const IconOnly: Story = {
+    args: { label: undefined, icon: BoldIcon, 'aria-label': 'Bold' },
+    render: ControlledToggle,
+    play: async ({ canvasElement }) => {
+        await expect(within(canvasElement).getByRole('button', { name: 'Bold' })).toBeInTheDocument()
+    },
+}
+
+export const Group: Story = {
+    args: { groupValue: ['bold'], groupMultiple: false, groupOrientation: 'horizontal', groupDisabled: false, groupOnValueChange: fn() },
+    parameters: {
+        controls: { include: ['groupValue', 'groupMultiple', 'groupOrientation', 'groupDisabled', 'groupOnValueChange'] },
+        docs: {
+            description: { story: 'Controlled group. Select multiple to allow several items; change orientation to change arrow-key navigation. Group demo controls are passed only to the group.' },
+            source: { type: 'dynamic', transform: createToggleGroupSource },
+        },
+    },
+    render: ControlledGroup,
+    play: async ({ canvasElement }) => {
+        await expect(within(canvasElement).getByRole('group', { name: 'Text formatting' })).toBeInTheDocument()
+    },
+}
+
+export const GroupUncontrolled: Story = {
+    parameters: { docs: { ...storySource(`
+<ToggleGroup aria-label="Text formatting" multiple defaultValue={['bold']}>
+    <ToggleGroup.Item value="bold" label="Bold" />
+    <ToggleGroup.Item value="italic" label="Italic" />
+    <ToggleGroup.Item value="underline" label="Underline" />
+</ToggleGroup>`), description: { story: 'Uncontrolled multiple selection using defaultValue.' } } },
+    render: ToggleUncontrolledGroup,
 }

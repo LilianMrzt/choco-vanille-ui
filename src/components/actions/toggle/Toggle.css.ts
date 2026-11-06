@@ -11,24 +11,24 @@ import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles
 
 const pressedSelector = '&[data-pressed]'
 const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
-    (['ghost', 'outlined'] as const).map((variant) => ({
-        variants: { variant, color, subtle: true },
+    (['ghostSubtle', 'outlinedSubtle'] as const).map((variant) => ({
+        variants: { variant, color },
         style: {
-            borderColor: variant === 'outlined'
+            borderColor: variant === 'outlinedSubtle'
                 ? vars.color.border.main
                 : 'transparent',
             color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
-                    borderColor: variant === 'outlined'
+                    borderColor: variant === 'outlinedSubtle'
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
                 '&:active': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
-                    borderColor: variant === 'outlined'
+                    borderColor: variant === 'outlinedSubtle'
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
@@ -36,7 +36,7 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
                 [pressedSelector]: {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
-                    borderColor: variant === 'outlined'
+                    borderColor: variant === 'outlinedSubtle'
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                 },
@@ -86,12 +86,14 @@ export const TOGGLE_STYLES = {
                 ghost: {
                     borderColor: 'transparent',
                 },
-            },
-            subtle: {
-                true: {
+                outlinedSubtle: {
+                    borderColor: vars.color.border.main,
                     backgroundColor: 'transparent',
                 },
-                false: {},
+                ghostSubtle: {
+                    borderColor: 'transparent',
+                    backgroundColor: 'transparent',
+                },
             },
             color: {
                 [BUTTON_COLORS.primary]: {
@@ -299,7 +301,7 @@ export const TOGGLE_STYLES = {
         },
         compoundVariants: subtleCompoundVariants,
         defaultVariants: {
-            variant: 'outlined',
+            variant: 'ghostSubtle',
             color: BUTTON_COLORS.primary,
             size: BUTTON_SIZES.md,
             radius: 6,

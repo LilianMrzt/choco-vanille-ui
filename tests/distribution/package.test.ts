@@ -46,8 +46,12 @@ describe('package distribution', () => {
             expect(declarations).toContain('export declare type LegendProps')
             expect(declarations).toContain('export declare type AvatarGroupItemProps')
             expect(declarations).toContain('export declare type AvatarGroupCompound')
+            expect(declarations).toContain('export declare type ToggleGroupItemProps')
+            expect(declarations).toContain('export declare type ToggleGroupCompound')
             const themeCss = await readFile(resolve(outputDirectory, 'styles.css'), 'utf8')
             expect(themeCss).toContain('--color-primary-main')
+            expect(themeCss).toContain('--color-border-main:#878d99')
+            expect(themeCss).toContain('--color-border-main:#6d737f')
             expect(themeCss).toContain('--color-primary-subtlePressed')
             expect(themeCss).toContain('--color-text-primary')
             expect(themeCss).toContain('--space-128')
@@ -89,7 +93,6 @@ describe('package distribution', () => {
                 'forms/calendar/styles/calendarRoot.css.js',
                 'forms/select/components/select-content/styles/SelectContent.css.js',
                 'forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.js',
-                'forms/rich-text-editor/components/toolbar/styles/Toolbar.css.js',
                 'forms/time-picker/components/time-picker-panel/styles/TimePickerPanel.css.js',
                 'overlay/dialog/Dialog.css.js',
                 'overlay/popover/components/content/PopoverContent.css.js',
@@ -125,8 +128,67 @@ describe('package distribution', () => {
                 expect(await readComponentCss(componentModule), componentModule).toContain('var(--color-border-main)')
             }
 
+            const editorStylesPath = resolve(outputDirectory, 'components/forms/rich-text-editor/styles/RichTextEditor.css.js')
+            const toolbarStylesPath = resolve(outputDirectory, 'components/forms/rich-text-editor/components/toolbar/styles/Toolbar.css.js')
+            const editorStyles = await readFile(editorStylesPath, 'utf8')
+            const toolbarStyles = await readFile(toolbarStylesPath, 'utf8')
+            const editorClass = editorStyles.match(/editor:\s*["']([^"']+)["']/)?.[1]
+            const toolbarClass = toolbarStyles.match(/root:\s*["']([^"']+)["']/)?.[1]
+            expect(editorClass).toBeTruthy()
+            expect(toolbarClass).toBeTruthy()
+            const editorCss = await readComponentCss('forms/rich-text-editor/styles/RichTextEditor.css.js')
+            const toolbarCss = await readComponentCss('forms/rich-text-editor/components/toolbar/styles/Toolbar.css.js')
+            const editorRule = editorCss.match(new RegExp(`\\.${editorClass}\\s*\\{([^}]+)\\}`))?.[1]
+            const toolbarRule = toolbarCss.match(new RegExp(`\\.${toolbarClass}\\s*\\{([^}]+)\\}`))?.[1]
+            const sharedBorder = /border:1px solid var\(--color-border-main\)/
+            expect(editorRule).toMatch(sharedBorder)
+            expect(toolbarRule).toMatch(sharedBorder)
+            expect(toolbarRule).toContain('border-bottom:none')
+            expect(editorCss).toContain('var(--color-danger-main)')
+            expect(editorCss).toContain('var(--color-primary-main)')
+
             const avatarCss = await readComponentCss('data-display/avatar/components/avatar-root/AvatarRoot.css.js')
             const badgeCss = await readComponentCss('data-display/badge/Badge.css.js')
+            const toggleCss = await readComponentCss('actions/toggle/Toggle.css.js')
+            const toggleStyles = await readFile(
+                resolve(outputDirectory, 'components/actions/toggle/Toggle.css.js'),
+                'utf8',
+            )
+            const toggleDefaults = toggleStyles.match(/defaultVariants:\s*\{([^}]+)}/)?.[1]
+            expect(toggleDefaults).toMatch(/variant:\s*["']ghostSubtle["']/)
+            expect(toggleStyles).not.toMatch(/subtle:\s*\{\s*true:/)
+            const ghostSubtleClass = toggleStyles.match(
+                /variant:\s*["']ghostSubtle["'],\s*color:\s*["']primary["']\s*},\s*["']([^"']+)["']/,
+            )?.[1]
+            const primaryClass = toggleStyles.match(/color:\s*\{\s*primary:\s*["']([^"']+)["']/)?.[1]
+            expect(ghostSubtleClass).toBeTruthy()
+            expect(primaryClass).toBeTruthy()
+            const subtlePressedRule = toggleCss.match(new RegExp(`\\.${ghostSubtleClass}\\[data-pressed]\\s*\\{([^}]+)\\}`))?.[1]
+            expect(subtlePressedRule).toContain('background-color:var(--color-primary-subtlePressed)')
+            expect(subtlePressedRule).toContain('color:var(--color-primary-subtleForeground)')
+            expect(toggleCss.indexOf(`.${ghostSubtleClass}[data-pressed]`))
+                .toBeGreaterThan(toggleCss.indexOf(`.${primaryClass}[data-pressed]`))
+            for (const [color, intent] of [
+                ['primary', 'primary'], ['secondary', 'secondary'], ['tertiary', 'neutral'],
+                ['destructive', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
+            ]) {
+                for (const variant of ['ghostSubtle', 'outlinedSubtle']) {
+                    const className = toggleStyles.match(new RegExp(
+                        `variant:\\s*["']${variant}["'],\\s*color:\\s*["']${color}["']\\s*},\\s*["']([^"']+)["']`,
+                    ))?.[1]
+                    expect(className, `${variant} ${color}`).toBeTruthy()
+                    const pressedRule = toggleCss.match(new RegExp(`\\.${className}\\[data-pressed]\\s*\\{([^}]+)\\}`))?.[1]
+                    const hoverRule = toggleCss.match(new RegExp(`\\.${className}:hover\\s*\\{([^}]+)\\}`))?.[1]
+                    expect(pressedRule, `${variant} ${color}`).toContain(`background-color:var(--color-${intent}-subtlePressed)`)
+                    expect(pressedRule, `${variant} ${color}`).toContain(`color:var(--color-${intent}-subtleForeground)`)
+                    expect(hoverRule, `${variant} ${color}`).toContain(`background-color:var(--color-${intent}-subtle)`)
+                    if (variant === 'outlinedSubtle') {
+                        expect(pressedRule).toContain(`border-color:var(--color-${intent}-border)`)
+                    } else {
+                        expect(pressedRule).toMatch(/border-color:(?:transparent|#0000)/)
+                    }
+                }
+            }
             const avatarStyles = await readFile(
                 resolve(outputDirectory, 'components/data-display/avatar/components/avatar-root/AvatarRoot.css.js'),
                 'utf8',
@@ -141,7 +203,7 @@ describe('package distribution', () => {
             expect(avatarBaseRule).toMatch(/border:1px solid (?:transparent|#0000)/)
             expect(avatarStyles).toMatch(/defaultVariants:\s*\{[^}]*variant:\s*["']outlinedSubtle["']/)
             for (const [css, styles] of [[avatarCss, avatarStyles], [badgeCss, badgeStyles]]) {
-                const variantSection = styles.match(/variant:\s*\{([^}]+)\}/)?.[1]
+                const variantSection = styles.match(/variant:\s*\{([^}]+)}/)?.[1]
                 const outlinedClass = variantSection?.match(/outlined:\s*["']([^"']+)["']/)?.[1]
                 expect(outlinedClass).toBeTruthy()
                 const outlinedRule = css.match(new RegExp(`\\.${outlinedClass}\\s*\\{([^}]+)\\}`))?.[1]
@@ -183,6 +245,8 @@ describe('package distribution', () => {
                 const entry = await readFile(resolve(outputDirectory, `index.${extension}`), 'utf8')
                 expect(entry).toContain(`components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.${extension}`)
                 expect(entry).toContain(`components/data-display/avatar-group/AvatarGroup.${extension}`)
+                expect(entry).toContain(`components/actions/toggle-group/components/toggle-group-item/ToggleGroupItem.${extension}`)
+                expect(entry).toContain(`components/actions/toggle-group/ToggleGroup.${extension}`)
                 expect(entry).toContain(`components/forms/legend/Legend.${extension}`)
                 const legendStylesPath = resolve(outputDirectory, `components/forms/legend/Legend.css.${extension}`)
                 const legendStyles = await readFile(legendStylesPath, 'utf8')

@@ -62,7 +62,7 @@ describe('Toggle', () => {
     })
 
     describe('variant styling', () => {
-        const variants: ToggleVariant[] = ['ghost', 'outlined']
+        const variants: ToggleVariant[] = ['ghost', 'ghostSubtle', 'outlined', 'outlinedSubtle']
 
         it.each(variants)(
             'applies a non-empty class for variant="%s"',
@@ -74,11 +74,19 @@ describe('Toggle', () => {
             },
         )
 
-        it('falls back to the outlined variant when none is provided', () => {
+        it('defaults to the ghost subtle treatment', () => {
             const { container } = render(<Toggle label={'btn'} />)
             expect(getFirstChild(container).className).toBe(
-                TOGGLE_STYLES.recipe({ variant: 'outlined', size: 'md' }),
+                TOGGLE_STYLES.recipe({ variant: 'ghostSubtle', size: 'md' }),
             )
+        })
+
+        it.each(variants)('supports the explicit %s treatment', (variant) => {
+            const { container } = render(<Toggle label={'btn'} variant={variant} />)
+            expect(getFirstChild(container).className).toBe(
+                TOGGLE_STYLES.recipe({ variant, size: 'md' }),
+            )
+            expect(getFirstChild(container).hasAttribute('variant')).toBe(false)
         })
 
         it('produces distinct class names for each variant', () => {
@@ -270,7 +278,7 @@ describe('Toggle', () => {
 
     describe('displayName', () => {
         it('is set to "Toggle"', () => {
-            expect(Toggle.displayName).toBe('Toggle')
+            expect(Toggle.displayName).toBe('ToggleGroup.Item')
         })
     })
 })

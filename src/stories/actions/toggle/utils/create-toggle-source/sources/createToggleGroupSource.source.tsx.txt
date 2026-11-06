@@ -1,0 +1,14 @@
+import { useState } from 'react'
+import { ToggleGroup } from '@choco-vanille/ui'
+
+export const FormattingOptions = () => {
+    const [value, setValue] = useState<string[]>({{value}})
+
+    return (
+        <ToggleGroup aria-label="Text formatting"{{attributes}} value={value} onValueChange={setValue}>
+            <ToggleGroup.Item value="bold" label="Bold" />
+            <ToggleGroup.Item value="italic" label="Italic" />
+            <ToggleGroup.Item value="underline" label="Underline" />
+        </ToggleGroup>
+    )
+}

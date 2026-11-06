@@ -1,5 +1,6 @@
 import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
-    Avatar, AvatarGroup, Badge, StatusBadge, RichTextRenderer, Table,
+    Avatar, AvatarGroup, Badge, StatusBadge, RichTextRenderer, Table, Toggle, ToggleGroup, TOGGLE_STYLES,
+    type ToggleProps, type ToggleGroupItemProps, type ToggleGroupProps, type ToggleGroupCompound,
     type AvatarGroupItemProps, type AvatarGroupCompound, type BadgeProps, type StatusBadgeProps, type RichTextRendererProps,
     type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides
 } from './index.js'
@@ -20,6 +21,36 @@ const statusProps: StatusBadgeProps = { number: 0, children: <Avatar initials="J
 const rendererProps: RichTextRendererProps = { value: { type: 'doc', content: [] } }
 const avatarItemProps: AvatarGroupItemProps = { initials: 'JD', ref: createRef<HTMLSpanElement>() }
 const avatarGroup: AvatarGroupCompound = AvatarGroup
+const toggleGroup: ToggleGroupCompound = ToggleGroup
+const toggleProps: ToggleProps = { label: 'Bold', ref: createRef<HTMLButtonElement>() }
+const toggleItemProps: ToggleGroupItemProps = { value: 'bold', label: 'Bold' }
+const formattingProps: ToggleGroupProps<'bold' | 'italic'> = { defaultValue: ['bold'] }
+const toggleStyle = TOGGLE_STYLES.recipe({ variant: 'outlinedSubtle' })
+// @ts-expect-error The public style recipe uses the same four variants.
+const legacyToggleStyle = TOGGLE_STYLES.recipe({ variant: 'ghost', subtle: true })
+const toggleExamples = <>
+    <Toggle {...toggleProps} variant="ghostSubtle" onPressedChange={(_pressed, details) => details.cancel()} />
+    <Toggle label="Ghost" variant="ghost" />
+    <ToggleGroup {...formattingProps} aria-label="Formatting" onValueChange={(value, details) => {
+        const selected: ('bold' | 'italic')[] = value
+        details.cancel()
+        void selected
+    }}>
+        <ToggleGroup.Item {...toggleItemProps} variant="outlinedSubtle" />
+        <Toggle value="italic" label="Italic" variant="outlined" />
+    </ToggleGroup>
+    <ToggleGroup value={['left', 'right'] as const} onValueChange={(value, details) => {
+        const selected: ('left' | 'right')[] = value
+        details.cancel()
+        void selected
+    }} />
+</>
+// @ts-expect-error Group items require a value.
+const missingToggleValue = <ToggleGroup.Item label="Bold" />
+// @ts-expect-error Toggle treatments no longer use a separate subtle prop.
+const legacyToggleSubtle = <Toggle label="Bold" subtle />
+// @ts-expect-error Icon-only toggles require an accessible name.
+const unnamedToggle = <Toggle icon={icon} />
 const dataDisplay = <>
     <AvatarGroup>
         <AvatarGroup.Item {...avatarItemProps} />
@@ -60,6 +91,6 @@ const quotedRadius = <Box borderRadius="8" />
 const arbitrarySpacing = <Box padding={17} />
 // @ts-expect-error Only the finite font-size scale is supported.
 const arbitraryFontSize = <Typography fontSize={15} />
-void [accent, colors, path, example, numericTokens, dataDisplay, avatarGroup,
+void [accent, colors, path, example, numericTokens, dataDisplay, avatarGroup, toggleGroup, toggleStyle, legacyToggleStyle, toggleExamples, missingToggleValue, legacyToggleSubtle, unnamedToggle,
     branch, legacy, nested, incomplete, objectColor, deep,
     quotedSpacing, quotedFontSize, quotedRadius, arbitrarySpacing, arbitraryFontSize]

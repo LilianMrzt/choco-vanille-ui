@@ -7,6 +7,8 @@ import {
     ToggleGroup,
     TOGGLE_GROUP_STYLES,
 } from '@components/actions/toggle-group'
+import { Toggle } from '@components/actions/toggle'
+import { Toggle as PublicToggle, ToggleGroup as PublicToggleGroup } from '@/index'
 import { BOX_STYLES } from '@components/layout/box'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 
@@ -233,6 +235,64 @@ describe('ToggleGroup', () => {
     })
 
     describe('compound slots', () => {
+        it('shares the same component through standalone and public exports', () => {
+            expect(ToggleGroup.Item).toBe(Toggle)
+            expect(PublicToggleGroup).toBe(ToggleGroup)
+            expect(PublicToggle).toBe(ToggleGroup.Item)
+        })
+
+        it('supports the standalone shortcut in a group and forwards refs and handlers', async () => {
+            const ref = createRef<HTMLButtonElement>()
+            const onClick = vi.fn()
+            const onPressedChange = vi.fn()
+            const onValueChange = vi.fn()
+            render(
+                <ToggleGroup aria-label={'Group'} onValueChange={onValueChange}>
+                    <Toggle value={'bold'} label={'Bold'} ref={ref} onClick={onClick} onPressedChange={onPressedChange} />
+                </ToggleGroup>,
+            )
+            const button = screen.getByRole('button', { name: 'Bold' })
+            await userEvent.click(button)
+            expect(ref.current).toBe(button)
+            expect(onClick).toHaveBeenCalledOnce()
+            expect(onPressedChange).toHaveBeenCalledWith(true, expect.objectContaining({ cancel: expect.any(Function) }))
+            expect(onValueChange).toHaveBeenCalledWith(['bold'], expect.objectContaining({ cancel: expect.any(Function) }))
+            expect(button.getAttribute('aria-pressed')).toBe('true')
+        })
+
+        it('allows an item callback to cancel group selection', async () => {
+            const onValueChange = vi.fn()
+            render(
+                <ToggleGroup aria-label={'Group'} onValueChange={onValueChange}>
+                    <ToggleGroup.Item value={'bold'} label={'Bold'} onPressedChange={(_, details) => details.cancel()} />
+                </ToggleGroup>,
+            )
+            const button = screen.getByRole('button', { name: 'Bold' })
+            await userEvent.click(button)
+            expect(button.getAttribute('aria-pressed')).toBe('false')
+            expect(onValueChange).not.toHaveBeenCalled()
+        })
+
+        it('allows a group callback to cancel selection', async () => {
+            render(
+                <ToggleGroup aria-label={'Group'} onValueChange={(_, details) => details.cancel()}>
+                    <ToggleGroup.Item value={'bold'} label={'Bold'} />
+                </ToggleGroup>,
+            )
+            const button = screen.getByRole('button', { name: 'Bold' })
+            await userEvent.click(button)
+            expect(button.getAttribute('aria-pressed')).toBe('false')
+        })
+
+        it('uses the group value instead of an item controlled pressed prop', () => {
+            render(
+                <ToggleGroup aria-label={'Group'} value={['bold']}>
+                    <ToggleGroup.Item value={'bold'} label={'Bold'} pressed={false} />
+                </ToggleGroup>,
+            )
+            expect(screen.getByRole('button', { name: 'Bold' }).getAttribute('aria-pressed')).toBe('true')
+        })
+
         it('exposes ToggleGroup.Item', () => {
             expect(ToggleGroup.Item).toBeDefined()
         })

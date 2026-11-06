@@ -27,7 +27,7 @@ export type VisualVocabularyContract = {
 };
 
 const ACTION_VARIANTS = ['contained', 'outlined', 'ghost'] as const;
-const TOGGLE_VARIANTS = ['outlined', 'ghost'] as const;
+const TOGGLE_VARIANTS = ['outlined', 'ghost', 'outlinedSubtle', 'ghostSubtle'] as const;
 const SEMANTIC_COLORS = [
   'primary',
   'secondary',
@@ -75,7 +75,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'variant',
     source: {
       kind: 'recipe',
-      file: 'src/components/actions/toggle/styles/Toggle.css.ts',
+      file: 'src/components/actions/toggle/Toggle.css.ts',
       axis: 'variant',
     },
     expected: TOGGLE_VARIANTS,
@@ -154,7 +154,9 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     expected: TEXT_CONTROL_SIZES,
     defaultValue: 'md',
     defaultSource:
-      'src/components/actions/toggle/styles/Toggle.css.ts',
+      'src/components/actions/toggle/Toggle.css.ts',
+    documentationSource:
+      'src/components/actions/toggle/types/index.ts',
   },
   {
     component: 'TextField',

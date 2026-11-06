@@ -92,6 +92,13 @@ describe('semantic colors', () => {
         expect(darkColors.border.muted).toBe('#4f5460')
     })
 
+    it('uses a lighter functional border without changing the decorative border', () => {
+        expect(lightColors.border.main).toBe('#878d99')
+        expect(lightColors.border.main).toBe(palette.neutral[450])
+        expect(getLuminance(lightColors.border.main)).toBeGreaterThan(getLuminance('#848a96'))
+        expectContrast(lightColors.border.main, lightColors.surface.muted, 3, 'light border on muted surface')
+    })
+
     it('restores the original light accent surfaces and their decorative borders', () => {
         const expected = {
             primary: ['#dfeaff', '#c5daff'],

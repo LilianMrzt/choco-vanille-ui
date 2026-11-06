@@ -224,7 +224,7 @@ exports[`semantic colors > light theme > preserves the built-in color values 1`]
   "accentTeal.subtleHover": "#a5f3e3",
   "accentTeal.subtlePressed": "#17eace",
   "background": "#f9fafb",
-  "border.main": "#848a96",
+  "border.main": "#878d99",
   "border.muted": "#d2d5db",
   "border.strong": "#6d737f",
   "border.stronger": "#4f5460",

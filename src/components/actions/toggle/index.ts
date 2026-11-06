@@ -1,6 +1,5 @@
-export { default as Toggle } from '@components/actions/toggle/Toggle.tsx'
-export { TOGGLE_STYLES } from '@components/actions/toggle/styles/Toggle.css.ts'
-export type { ToggleProps } from '@components/actions/toggle/types/Toggle.props.ts'
+export { default as Toggle } from '@components/actions/toggle-group/components/toggle-group-item/ToggleGroupItem.tsx'
+export { TOGGLE_STYLES } from '@components/actions/toggle/Toggle.css.ts'
 export type {
     ToggleColor,
     ToggleContent,
@@ -9,4 +8,5 @@ export type {
     ToggleRadius,
     ToggleSize,
     ToggleVariant,
-} from '@components/actions/toggle/types/Toggle.types.ts'
+    ToggleProps,
+} from '@components/actions/toggle/types'
