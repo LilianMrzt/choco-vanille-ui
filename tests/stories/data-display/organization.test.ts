@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest'
 
 const ENTRIES = [
     ['avatar', 'Avatar'],
-    ['avatar-group', 'AvatarGroup'],
     ['badge', 'Badge'],
     ['rich-text-renderer', 'RichTextRenderer'],
     ['status-badge', 'StatusBadge'],

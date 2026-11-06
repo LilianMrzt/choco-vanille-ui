@@ -619,10 +619,19 @@ function detectVisualVocabularyContracts(
       }
 
       if (contract.axis === 'size') {
-        const propsFiles = componentPropsFiles(
-          context,
-          contract.documentationComponent ?? contract.component,
-        );
+        let propsFiles: SourceFile[];
+        if (contract.documentationSource) {
+          const documentationSource = contractSourceFile(
+            context,
+            contract.documentationSource,
+          );
+          propsFiles = documentationSource ? [documentationSource] : [];
+        } else {
+          propsFiles = componentPropsFiles(
+            context,
+            contract.documentationComponent ?? contract.component,
+          );
+        }
         const documented = propsFiles.some((propsFile) =>
           new RegExp(
             `(?:Defaults? to|@default)[^\\n]*[\\x60'"]${contract.defaultValue}[\\x60'"]`,

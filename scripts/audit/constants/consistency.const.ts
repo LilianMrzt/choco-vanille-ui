@@ -23,6 +23,7 @@ export type VisualVocabularyContract = {
   defaultValue?: string;
   defaultSource?: string;
   documentationComponent?: string;
+  documentationSource?: string;
 };
 
 const ACTION_VARIANTS = ['contained', 'outlined', 'ghost'] as const;
@@ -226,7 +227,8 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     },
     expected: ['sm', 'md', 'lg', 'xl'],
     defaultValue: 'md',
-    defaultSource: 'src/components/data-display/avatar/Avatar.tsx',
+    defaultSource: 'src/components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.tsx',
+    documentationSource: 'src/components/data-display/avatar/types/index.ts',
   },
   {
     component: 'Progress',

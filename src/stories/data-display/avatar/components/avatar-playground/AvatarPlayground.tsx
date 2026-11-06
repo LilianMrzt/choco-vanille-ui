@@ -11,6 +11,10 @@ import type { FC } from 'react'
  * @param props.compoundFallback - Composition-only initials excluded from convenience Avatar props.
  * @param props.compoundLabel - Composition-only accessible root name excluded from convenience Avatar props.
  * @param props.compoundStatus - Composition-only presence value excluded from convenience Avatar props.
+ * @param props.groupMax - Group demonstration limit, excluded from Avatar props.
+ * @param props.groupSpacing - Group demonstration spacing, excluded from Avatar props.
+ * @param props.groupLabel - Group demonstration label, excluded from Avatar props.
+ * @param props.groupOverflowLabel - Group demonstration formatter, excluded from Avatar props.
  * @returns A convenience Avatar driven by Controls.
  * @example
  * <AvatarPlayground initials="JD" aria-label="Jane Doe" />
@@ -21,6 +25,10 @@ const AvatarPlayground: FC<AvatarStoryArgs> = ({
     compoundFallback: _compoundFallback,
     compoundLabel: _compoundLabel,
     compoundStatus: _compoundStatus,
+    groupMax: _groupMax,
+    groupSpacing: _groupSpacing,
+    groupLabel: _groupLabel,
+    groupOverflowLabel: _groupOverflowLabel,
     ...args
 }) => <Avatar {...args} />
 

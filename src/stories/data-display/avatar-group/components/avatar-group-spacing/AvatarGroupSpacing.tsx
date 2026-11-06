@@ -1,4 +1,3 @@
-import { Avatar } from '@components/data-display/avatar'
 import { AvatarGroup } from '@components/data-display/avatar-group'
 import { Flex } from '@components/layout/flex'
 import { SPACINGS } from '@stories/data-display/avatar-group/constants'
@@ -17,11 +16,11 @@ const AvatarGroupSpacing = (): ReactElement => (
                 role={'group'}
                 spacing={spacing}
             >
-                <Avatar
+                <AvatarGroup.Item
                     aria-label={'Alex Brown'}
                     initials={'AB'}
                 />
-                <Avatar
+                <AvatarGroup.Item
                     aria-label={'Chris Diaz'}
                     initials={'CD'}
                 />

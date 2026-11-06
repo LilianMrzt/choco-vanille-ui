@@ -16,7 +16,7 @@ export type AvatarRootProps = Readonly<React.HTMLAttributes<HTMLSpanElement> &
     shape?: AvatarShape
     /** Semantic color intent for the fallback background. Defaults to `primary`. */
     color?: AvatarColor
-    /** Visual variant. `outlined` adds a visible color border. Defaults to `contained`. */
+    /** Surface and border treatment; defaults to `outlinedSubtle`, as with Badge. */
     variant?: AvatarVariant
     /** Accessible label for the avatar. Use when the avatar represents a user or entity. */
     'aria-label'?: string

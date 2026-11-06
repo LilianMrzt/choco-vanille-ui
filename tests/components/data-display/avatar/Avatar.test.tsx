@@ -1,6 +1,6 @@
 import { createRef } from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, expectTypeOf, it, vi } from 'vitest'
+import { act, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 
 import {
     Avatar,
@@ -9,6 +9,7 @@ import {
     type AvatarShape,
     type AvatarSize,
     type AvatarStatus,
+    type AvatarVariant,
     type AvatarProps,
     type AvatarFallbackProps,
     type AvatarImageProps,
@@ -21,6 +22,10 @@ import UserIcon from '@resources/asset/UserIcon.svg?react'
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
 
+afterEach(() => {
+    vi.restoreAllMocks()
+})
+
 describe('Avatar', () => {
     it('exposes typed compound slots through the root namespace', () => {
         expectTypeOf(Avatar.Root).parameter(0).toEqualTypeOf<AvatarRootProps>()
@@ -28,6 +33,7 @@ describe('Avatar', () => {
         expectTypeOf(Avatar.Fallback).parameter(0).toEqualTypeOf<AvatarFallbackProps>()
         expectTypeOf(Avatar.Status).parameter(0).toEqualTypeOf<AvatarStatusProps>()
         expectTypeOf<AvatarProps['color']>().toEqualTypeOf<AvatarColor | undefined>()
+        expectTypeOf<AvatarVariant>().toEqualTypeOf<'contained' | 'subtle' | 'outlined' | 'outlinedSubtle'>()
     })
 
     it('preserves native events, style precedence and custom prop filtering on its root', () => {
@@ -62,16 +68,45 @@ describe('Avatar', () => {
         expect(onClick.mock.calls[0][0].target).toBe(root)
     })
 
-    it('uses contained treatment for non-empty image URLs and honors outlined for empty URLs', () => {
-        const { container, rerender } = render(<Avatar src="/pending.png" initials="JD" variant="outlined" />)
-        const containedClasses = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant: 'contained' }).split(' ')
-        for (const className of containedClasses) {
-            expect(getFirstChild(container).classList.contains(className)).toBe(true)
-        }
-        expect(screen.getByText('JD')).toBeTruthy()
-        rerender(<Avatar src="" initials="JD" variant="outlined" />)
-        const outlinedClasses = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant: 'outlined' }).split(' ')
-        for (const className of outlinedClasses) {
+    it.each(['contained', 'subtle', 'outlined', 'outlinedSubtle'] as const)(
+        'preserves the %s treatment while an image loads, succeeds, or fails',
+        async (variant) => {
+            const requests: HTMLImageElement[] = []
+            const NativeImage = window.Image
+            vi.spyOn(window, 'Image').mockImplementation(class extends NativeImage {
+                constructor(width?: number, height?: number) {
+                    super(width, height)
+                    requests.push(this)
+                }
+            })
+            const { container, rerender } = render(
+                <Avatar src="/first.png" alt="Portrait" initials="JD" variant={variant} />,
+            )
+            const expected = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant }).split(' ')
+            const expectTreatment = (): void => {
+                for (const className of expected) {
+                    expect(getFirstChild(container).classList.contains(className)).toBe(true)
+                }
+            }
+
+            expect(screen.getByText('JD')).toBeTruthy()
+            expectTreatment()
+            await act(async () => fireEvent.load(requests[0]))
+            expect(screen.getByRole('img', { name: 'Portrait' })).toBeTruthy()
+            expectTreatment()
+            rerender(<Avatar src="/broken.png" alt="Portrait" initials="JD" variant={variant} />)
+            await act(async () => fireEvent.error(requests[1]))
+            expect(screen.getByText('JD')).toBeTruthy()
+            expectTreatment()
+            rerender(<Avatar src="" initials="JD" variant={variant} />)
+            expectTreatment()
+        },
+    )
+
+    it('uses the same default treatment as Badge', () => {
+        const { container } = render(<Avatar initials="JD" />)
+        const expected = AVATAR_STYLES.recipe({ size: 'md', shape: 'circle', color: 'primary', variant: 'outlinedSubtle' }).split(' ')
+        for (const className of expected) {
             expect(getFirstChild(container).classList.contains(className)).toBe(true)
         }
     })

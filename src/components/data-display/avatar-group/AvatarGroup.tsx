@@ -5,9 +5,9 @@ import {
     type FC,
 } from 'react'
 
-import { Avatar } from '@components/data-display/avatar'
+import AvatarGroupItem from '@components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.tsx'
 import { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/constants'
-import type { AvatarGroupProps } from '@components/data-display/avatar-group/types'
+import type { AvatarGroupCompound, AvatarGroupProps } from '@components/data-display/avatar-group/types'
 import type { AvatarProps } from '@components/data-display/avatar/types'
 import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
@@ -44,10 +44,10 @@ const defaultOverflowLabel = (count: number): string => `${count} more`
  * @throws {RangeError} When max is NaN, positive infinity or negative infinity.
  * @example
  * ```tsx
- * <AvatarGroup max={1}><Avatar initials="JD" aria-label="Jane Doe" /><Avatar initials="AB" aria-label="Alex Brown" /></AvatarGroup>
+ * <AvatarGroup max={1}><AvatarGroup.Item initials="JD" aria-label="Jane Doe" /><AvatarGroup.Item initials="AB" aria-label="Alex Brown" /></AvatarGroup>
  * ```
  */
-const AvatarGroup: FC<AvatarGroupProps> = ({
+const AvatarGroupRoot: FC<AvatarGroupProps> = ({
     children,
     max,
     spacing = 'md',
@@ -82,7 +82,7 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
                 const isFirst = index === 0
                 const style = isFirst ? undefined : { marginLeft: overlap }
 
-                if (isValidElement<AvatarProps>(child) && child.type === Avatar) {
+                if (isValidElement<AvatarProps>(child) && child.type === AvatarGroupItem) {
                     const avatarChild = child
                     const existingStyle = avatarChild.props.style ?? {}
                     return cloneElement(avatarChild, {
@@ -104,12 +104,12 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
                 )
             })}
             {overflowCount > 0 && (
-                <Avatar.Root
+                <AvatarGroupItem.Root
                     aria-label={overflowLabel(overflowCount)}
                     role={'img'}
                     style={visibleCount > 0 ? { marginLeft: overlap } : undefined}
                 >
-                    <Avatar.Fallback>
+                    <AvatarGroupItem.Fallback>
                         <Typography
                             aria-hidden={'true'}
                             as={'span'}
@@ -117,13 +117,18 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
                         >
                             {`+${overflowCount}`}
                         </Typography>
-                    </Avatar.Fallback>
-                </Avatar.Root>
+                    </AvatarGroupItem.Fallback>
+                </AvatarGroupItem.Root>
             )}
         </Flex>
     )
 }
 
-AvatarGroup.displayName = 'AvatarGroup'
+AvatarGroupRoot.displayName = 'AvatarGroup'
+
+/** Avatar group with its reusable individual avatar component. */
+const AvatarGroup: AvatarGroupCompound = Object.assign(AvatarGroupRoot, {
+    Item: AvatarGroupItem,
+})
 
 export default AvatarGroup

@@ -1,4 +1,4 @@
-export { default as Avatar } from '@components/data-display/avatar/Avatar.tsx'
+export { default as Avatar } from '@components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.tsx'
 export { AVATAR_STYLES } from '@components/data-display/avatar/components/avatar-root/AvatarRoot.css.ts'
 export { AVATAR_IMAGE_STYLES } from '@components/data-display/avatar/components/avatar-image/AvatarImage.css.ts'
 export { AVATAR_FALLBACK_STYLES } from '@components/data-display/avatar/components/avatar-fallback/AvatarFallback.css.ts'

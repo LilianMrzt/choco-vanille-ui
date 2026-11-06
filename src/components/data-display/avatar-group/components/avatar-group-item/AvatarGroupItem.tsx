@@ -2,7 +2,7 @@ import AvatarFallback from '@components/data-display/avatar/components/avatar-fa
 import AvatarImage from '@components/data-display/avatar/components/avatar-image/AvatarImage.tsx'
 import AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
 import AvatarStatus from '@components/data-display/avatar/components/avatar-status/AvatarStatus.tsx'
-import { AVATAR_SIZES, AVATAR_VARIANTS } from '@components/data-display/avatar/constants'
+import { AVATAR_SIZES } from '@components/data-display/avatar/constants'
 import type { AvatarCompound } from '@components/data-display/avatar/types/index.ts'
 import type { AvatarProps } from '@components/data-display/avatar/types'
 import type { FC } from 'react'
@@ -14,7 +14,9 @@ import type { FC } from 'react'
  * Provide an accessible root name when fallback content identifies a person;
  * informative images need `alt`. Native attributes, events and ref are forwarded
  * to the root span. Use `Avatar.Root`, `.Image`, `.Fallback` and `.Status` for
- * custom composition. A non-empty image URL always uses the contained treatment.
+ * custom composition. The selected treatment also applies when an image is present.
+ * `Avatar` and `AvatarGroup.Item` are the same component and can both be used
+ * independently or inside an `AvatarGroup`.
  *
  * @param props - Native span and avatar presentation props.
  * @param props.src - Image URL; omitted or empty values display the fallback.
@@ -24,7 +26,7 @@ import type { FC } from 'react'
  * @param props.size - Avatar size preset; defaults to `md`.
  * @param props.shape - Root shape; defaults to `circle`.
  * @param props.color - Fallback color intent; defaults to `primary`.
- * @param props.variant - Fallback treatment; defaults to `contained` and is ignored for non-empty image URLs.
+ * @param props.variant - Surface and border treatment; defaults to `outlinedSubtle`.
  * @param props.status - Optional presence indicator.
  * @param props.statusLabel - Accessible presence name; defaults to the status value.
  * @param props.statusSize - Presence size; defaults to the avatar size.
@@ -38,7 +40,7 @@ import type { FC } from 'react'
  * <Avatar aria-label="Jane Doe" initials="JD" status="online" />
  * ```
  */
-const AvatarComponent: FC<AvatarProps> = ({
+const AvatarGroupItemComponent: FC<AvatarProps> = ({
     src,
     alt,
     initials,
@@ -46,7 +48,7 @@ const AvatarComponent: FC<AvatarProps> = ({
     size = AVATAR_SIZES.md,
     shape = 'circle',
     color = 'primary',
-    variant = 'contained',
+    variant = 'outlinedSubtle',
     status,
     statusLabel,
     statusSize,
@@ -57,16 +59,13 @@ const AvatarComponent: FC<AvatarProps> = ({
     ...props
 }) => {
     const hasImage = Boolean(src)
-    // The outlined border only frames the initials/icon fallback, not a profile picture.
-    const resolvedVariant = hasImage ? AVATAR_VARIANTS.contained : variant
-
     return (
         <AvatarRoot
             ref={ref}
             size={size}
             shape={shape}
             color={color}
-            variant={resolvedVariant}
+            variant={variant}
             className={className}
             {...props}
         >
@@ -94,12 +93,12 @@ const AvatarComponent: FC<AvatarProps> = ({
     )
 }
 
-AvatarComponent.displayName = 'Avatar'
+AvatarGroupItemComponent.displayName = 'Avatar'
 
 /**
  * Displays an accessible profile image or fallback with optional presence.
  * Native span props and ref target the root; defaults are medium, circular,
- * primary and contained. Compose the namespaced slots for custom content.
+ * primary and outlinedSubtle. Compose the namespaced slots for custom content.
  *
  * @param props - Avatar presentation and native root span props.
  * @param props.src - Image URL; omitted or empty values display the fallback.
@@ -109,7 +108,7 @@ AvatarComponent.displayName = 'Avatar'
  * @param props.size - Avatar size preset; defaults to `md`.
  * @param props.shape - Root shape; defaults to `circle`.
  * @param props.color - Fallback color intent; defaults to `primary`.
- * @param props.variant - Fallback treatment; defaults to `contained` and is ignored for non-empty image URLs.
+ * @param props.variant - Surface and border treatment; defaults to `outlinedSubtle`.
  * @param props.status - Optional presence indicator.
  * @param props.statusLabel - Accessible presence name; defaults to the status value.
  * @param props.statusSize - Presence size; defaults to the avatar size.
@@ -123,11 +122,11 @@ AvatarComponent.displayName = 'Avatar'
  * <Avatar aria-label="Jane Doe" initials="JD" status="online" />
  * ```
  */
-const Avatar: AvatarCompound = Object.assign(AvatarComponent, {
+const AvatarGroupItem: AvatarCompound = Object.assign(AvatarGroupItemComponent, {
     Root: AvatarRoot,
     Image: AvatarImage,
     Fallback: AvatarFallback,
     Status: AvatarStatus,
 })
 
-export default Avatar
+export default AvatarGroupItem

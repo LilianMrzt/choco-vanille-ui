@@ -1,7 +1,6 @@
-import { BADGE_COLORS_ARRAY, BADGE_VARIANTS } from '@components/data-display/badge/constants'
+import { BADGE_COLORS_ARRAY, BADGE_VARIANTS_ARRAY } from '@components/data-display/badge/constants'
 import type { BadgeCompoundVariant } from '@components/data-display/badge/utils/create-badge-compound-variants/types'
-import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents'
-import { vars } from '@theme/styles/contract/contract.css.ts'
+import { getColorTreatmentStyles } from '@components/data-display/_shared/color-treatments/getColorTreatmentStyles.utils.ts'
 
 /**
  * Resolves every Badge treatment to its semantic surface, foreground and border.
@@ -14,28 +13,10 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  */
 export const createBadgeCompoundVariants = (): BadgeCompoundVariant[] =>
     BADGE_COLORS_ARRAY.flatMap((color) => {
-        const family = vars.color[COLOR_INTENT_TOKENS[color]]
+        const styles = getColorTreatmentStyles(color)
 
-        return [
-            {
-                variants: { variant: BADGE_VARIANTS.contained, color },
-                style: { backgroundColor: family.main, color: family.foreground },
-            },
-            {
-                variants: { variant: BADGE_VARIANTS.subtle, color },
-                style: { backgroundColor: family.subtle, color: family.subtleForeground },
-            },
-            {
-                variants: { variant: BADGE_VARIANTS.outlined, color },
-                style: { borderColor: family.subtleHover, color: family.subtleForeground },
-            },
-            {
-                variants: { variant: BADGE_VARIANTS.outlinedSubtle, color },
-                style: {
-                    backgroundColor: family.subtle,
-                    borderColor: family.subtleHover,
-                    color: family.subtleForeground,
-                },
-            },
-        ]
+        return BADGE_VARIANTS_ARRAY.map((variant) => ({
+            variants: { variant, color },
+            style: styles[variant],
+        }))
     })

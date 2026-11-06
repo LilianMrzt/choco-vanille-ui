@@ -1,12 +1,13 @@
-import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
+import { getColorTreatmentStyles } from '@components/data-display/_shared/color-treatments/getColorTreatmentStyles.utils.ts'
 import {
     AVATAR_COLORS,
     AVATAR_COLORS_ARRAY,
     AVATAR_SHAPES,
     AVATAR_SIZES,
     AVATAR_VARIANTS,
+    AVATAR_VARIANTS_ARRAY,
 } from '@components/data-display/avatar/constants'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
@@ -37,9 +38,7 @@ const avatarRecipe = recipe({
         justifyContent: 'center',
         flexShrink: 0,
         overflow: 'visible',
-        backgroundColor: vars.color.primary.subtle,
-        color: vars.color.primary.subtleForeground,
-        border: `2px solid ${vars.color.background}`,
+        border: '1px solid transparent',
         fontFamily: vars.fontFamily.sans,
         fontWeight: vars.fontWeight.medium,
         lineHeight: '1',
@@ -80,39 +79,33 @@ const avatarRecipe = recipe({
             },
         },
 
-        color: Object.fromEntries(
-            AVATAR_COLORS_ARRAY.map((color) => [
-                color,
-                {
-                    backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
-                    color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
-                },
-            ]),
-        ),
+        color: Object.fromEntries(AVATAR_COLORS_ARRAY.map((color) => [color, {}])),
 
         variant: {
             [AVATAR_VARIANTS.contained]: {},
-            [AVATAR_VARIANTS.outlined]: {},
+            [AVATAR_VARIANTS.subtle]: {},
+            [AVATAR_VARIANTS.outlined]: {
+                backgroundColor: 'transparent',
+            },
+            [AVATAR_VARIANTS.outlinedSubtle]: {},
         },
 
     },
 
-    compoundVariants: AVATAR_COLORS_ARRAY.map((color) => ({
-        variants: {
-            variant: AVATAR_VARIANTS.outlined,
-            color,
-        },
-        style: {
-            borderWidth: '1px',
-            borderColor: vars.color[COLOR_INTENT_TOKENS[color]].subtleHover,
-        },
-    })),
+    compoundVariants: AVATAR_COLORS_ARRAY.flatMap((color) => {
+        const styles = getColorTreatmentStyles(color)
+
+        return AVATAR_VARIANTS_ARRAY.map((variant) => ({
+            variants: { variant, color },
+            style: styles[variant],
+        }))
+    }),
 
     defaultVariants: {
         size: AVATAR_SIZES.md,
         shape: AVATAR_SHAPES.circle,
         color: AVATAR_COLORS.primary,
-        variant: AVATAR_VARIANTS.contained,
+        variant: AVATAR_VARIANTS.outlinedSubtle,
     },
 })
 

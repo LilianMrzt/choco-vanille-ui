@@ -1,1 +1,1 @@
-<Avatar aria-label={{label}} initials={{initials}} />
+<AvatarGroup.Item aria-label={{label}} initials={{initials}} />

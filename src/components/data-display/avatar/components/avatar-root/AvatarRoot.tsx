@@ -7,16 +7,16 @@ import type { FC } from 'react'
 
 /**
  * Coordinates Avatar.Image and Avatar.Fallback within a styled span.
- * Defaults to medium, circular, primary and contained. Give the root an
+ * Defaults to medium, circular, primary and outlinedSubtle. Give the root an
  * accessible name for identifying fallback content. Native span attributes,
  * events, consumer class/style and ref are forwarded to this root.
- * The outlined fallback uses its color family's `subtleHover` as a decorative border.
+ * Treatments use the same surface, foreground and decorative border colors as Badge.
  *
  * @param props - Root appearance and native span props.
  * @param props.size - Avatar size preset; defaults to `md`.
  * @param props.shape - Root shape; defaults to `circle`.
  * @param props.color - Fallback color intent; defaults to `primary`.
- * @param props.variant - Surface treatment; defaults to `contained`.
+ * @param props.variant - Surface and border treatment; defaults to `outlinedSubtle`.
  * @param props.className - Consumer class merged with the root classes.
  * @param props.ref - Ref forwarded to the root span.
  * @param props.children - Image, fallback and optional presence slots.

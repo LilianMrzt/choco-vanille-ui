@@ -20,7 +20,7 @@ export const createAvatarSource = (args: AvatarProps): string => {
             return ['    onClick={(event) => { /* Handle click */ }}']
         }
 
-        if (value === undefined || value === null || typeof value === 'function' || name === 'children' || name === 'ref' || name.startsWith('compound')) {
+        if (value === undefined || value === null || typeof value === 'function' || name === 'children' || name === 'ref' || name.startsWith('compound') || name.startsWith('group')) {
             return []
         }
 

@@ -1,0 +1,5 @@
+import { Avatar, Flex, Typography } from '@choco-vanille/ui'
+
+<Flex flexDirection="column" gap={12}>
+{{rows}}
+</Flex>

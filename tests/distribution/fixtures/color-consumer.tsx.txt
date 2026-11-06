@@ -1,6 +1,6 @@
 import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
     Avatar, AvatarGroup, Badge, StatusBadge, RichTextRenderer, Table,
-    type BadgeProps, type StatusBadgeProps, type RichTextRendererProps,
+    type AvatarGroupItemProps, type AvatarGroupCompound, type BadgeProps, type StatusBadgeProps, type RichTextRendererProps,
     type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides
 } from './index.js'
 import { createRef } from 'react'
@@ -18,8 +18,16 @@ const example = <ThemeProvider tokens={overrides}>
 const badgeProps: BadgeProps = { label: 'Verified', color: 'success', size: 'sm' }
 const statusProps: StatusBadgeProps = { number: 0, children: <Avatar initials="JD" /> }
 const rendererProps: RichTextRendererProps = { value: { type: 'doc', content: [] } }
+const avatarItemProps: AvatarGroupItemProps = { initials: 'JD', ref: createRef<HTMLSpanElement>() }
+const avatarGroup: AvatarGroupCompound = AvatarGroup
 const dataDisplay = <>
-    <AvatarGroup><Avatar.Root ref={createRef<HTMLSpanElement>()}><Avatar.Fallback>JD</Avatar.Fallback><Avatar.Status status="online" /></Avatar.Root></AvatarGroup>
+    <AvatarGroup>
+        <AvatarGroup.Item {...avatarItemProps} />
+        <Avatar initials="AB" />
+        <Avatar initials="CD" variant="subtle" />
+        <AvatarGroup.Item src="/image.png" alt="Portrait" variant="outlinedSubtle" />
+        <AvatarGroup.Item.Root><AvatarGroup.Item.Fallback>JD</AvatarGroup.Item.Fallback><AvatarGroup.Item.Status status="online" /></AvatarGroup.Item.Root>
+    </AvatarGroup>
     <Badge {...badgeProps} ref={createRef<HTMLSpanElement>()} />
     <StatusBadge {...statusProps} ref={createRef<HTMLSpanElement>()} />
     <RichTextRenderer {...rendererProps} ref={createRef<HTMLDivElement>()} />
@@ -52,6 +60,6 @@ const quotedRadius = <Box borderRadius="8" />
 const arbitrarySpacing = <Box padding={17} />
 // @ts-expect-error Only the finite font-size scale is supported.
 const arbitraryFontSize = <Typography fontSize={15} />
-void [accent, colors, path, example, numericTokens, dataDisplay,
+void [accent, colors, path, example, numericTokens, dataDisplay, avatarGroup,
     branch, legacy, nested, incomplete, objectColor, deep,
     quotedSpacing, quotedFontSize, quotedRadius, arbitrarySpacing, arbitraryFontSize]

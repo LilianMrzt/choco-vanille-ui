@@ -14,7 +14,10 @@ import type AvatarImage from '@components/data-display/avatar/components/avatar-
 import type AvatarRoot from '@components/data-display/avatar/components/avatar-root/AvatarRoot.tsx'
 import type AvatarStatusComponent from '@components/data-display/avatar/components/avatar-status/AvatarStatus.tsx'
 
-/** Supported fallback surface treatments. */
+/**
+ * Badge-aligned treatments: solid `contained`, soft `subtle`, transparent
+ * `outlined`, or soft `outlinedSubtle` with a colored border.
+ */
 export type AvatarVariant = (typeof AVATAR_VARIANTS)[keyof typeof AVATAR_VARIANTS]
 
 /** Supported avatar size presets. */
@@ -45,7 +48,7 @@ export type AvatarProps = Readonly<HTMLAttributes<HTMLSpanElement> & RefAttribut
     shape?: AvatarShape
     /** Fallback semantic intent. Defaults to `primary`. */
     color?: AvatarColor
-    /** Fallback treatment. Defaults to `contained`; ignored for a non-empty image URL, including while loading or after failure. */
+    /** Solid `contained`, soft `subtle`, transparent `outlined`, or soft bordered `outlinedSubtle`. Defaults to `outlinedSubtle`; also applies to images and their fallbacks. */
     variant?: AvatarVariant
     /** Optional presence indicator. */
     status?: AvatarStatus

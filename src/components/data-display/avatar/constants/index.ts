@@ -49,11 +49,13 @@ export const AVATAR_STATUS = {
 /** Ordered presence indicators. */
 export const AVATAR_STATUS_ARRAY = Object.values(AVATAR_STATUS)
 
-/** Supported fallback surface treatments. */
+/** Supported avatar surface and border treatments, matching Badge. */
 export const AVATAR_VARIANTS = {
     contained: 'contained',
+    subtle: 'subtle',
     outlined: 'outlined',
+    outlinedSubtle: 'outlinedSubtle',
 } as const
 
-/** Ordered fallback surface treatments. */
+/** Ordered avatar treatments. */
 export const AVATAR_VARIANTS_ARRAY = Object.values(AVATAR_VARIANTS)

@@ -10,9 +10,9 @@ export const COLORS = ['primary', 'secondary', 'tertiary', 'destructive', 'succe
 
 export const STATUSES = ['online', 'offline', 'busy', 'away'] as const
 
-export const VARIANTS = ['contained', 'outlined'] as const
+export const VARIANTS = ['contained', 'subtle', 'outlined', 'outlinedSubtle'] as const
 
-export const PREVIEW_IMAGE = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"%3E%3Crect width="40" height="40" fill="%233b82f6"/%3E%3Ccircle cx="20" cy="15" r="7" fill="white"/%3E%3Cpath d="M6 40a14 14 0 0128 0" fill="white"/%3E%3C/svg%3E'
+export const PREVIEW_IMAGE = 'https://github.com/shadcn.png'
 
 export const DEFAULT_ARGS = {
     initials: 'JD',
@@ -20,7 +20,7 @@ export const DEFAULT_ARGS = {
     size: 'md',
     shape: 'circle',
     color: 'primary',
-    variant: 'contained',
+    variant: 'outlinedSubtle',
     fallbackDelay: 0,
     onLoadingStatusChange: fn(),
     onClick: fn(),
@@ -34,7 +34,7 @@ export const ARG_TYPES = {
     size: { control: 'select', options: SIZES, description: 'Avatar size.', table: { defaultValue: { summary: 'md' } } },
     shape: { control: 'select', options: SHAPES, description: 'Root outline.', table: { defaultValue: { summary: 'circle' } } },
     color: { control: 'select', options: COLORS, description: 'Fallback semantic intent.', table: { defaultValue: { summary: 'primary' } } },
-    variant: { control: 'select', options: VARIANTS, description: 'Fallback treatment. A non-empty image URL always uses contained, even after failure.', table: { defaultValue: { summary: 'contained' } } },
+    variant: { control: 'select', options: VARIANTS, description: 'Badge treatments: solid contained, soft subtle, transparent outlined, or soft outlinedSubtle. Applies to images and fallbacks.', table: { defaultValue: { summary: 'outlinedSubtle' } } },
     status: { control: 'select', options: [undefined, ...STATUSES], description: 'Optional presence indicator.' },
     statusLabel: { control: 'text', description: 'Presence accessible name; defaults to the status value.' },
     statusSize: { control: 'select', options: [undefined, ...SIZES], description: 'Independent indicator size; defaults to avatar size.' },
@@ -53,4 +53,8 @@ export const ARG_TYPES = {
     compoundFallback: { control: 'text', description: 'Demo initials, wired only to Avatar.Fallback.', table: { category: 'Compound: Fallback' } },
     compoundLabel: { control: 'text', description: 'Demo accessible root label.', table: { category: 'Compound: Root' } },
     compoundStatus: { control: 'select', options: [undefined, ...STATUSES], description: 'Demo presence, wired only to Avatar.Status.', table: { category: 'Compound: Status' } },
+    groupMax: { control: { type: 'number', min: 0, step: 1 }, description: 'Demo maximum visible group items; omitted shows all.', table: { category: 'Compound: Group' } },
+    groupSpacing: { control: 'select', options: ['none', 'sm', 'md', 'lg', 'xl'], description: 'Demo overlap between group items.', table: { category: 'Compound: Group' } },
+    groupLabel: { control: 'text', description: 'Demo accessible group name.', table: { category: 'Compound: Group' } },
+    groupOverflowLabel: { control: false, description: 'Demo formatter for the accessible overflow name; defaults to an English count label.', table: { category: 'Compound: Group' } },
 } satisfies NonNullable<Meta<AvatarStoryArgs>['argTypes']>

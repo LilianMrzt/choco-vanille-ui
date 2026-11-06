@@ -1,1 +1,1 @@
-<Avatar aria-label={{label}} color={{color}} initials="JD" />
+<Avatar aria-label={{label}} color={{color}} initials="JD" variant={{variant}} />

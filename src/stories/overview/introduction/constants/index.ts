@@ -3,7 +3,7 @@ const componentCategories = [
     { name: 'Layout', items: ['Box', 'Flex', 'Grid', 'Inset', 'Separator'] },
     { name: 'Actions', items: ['Button', 'Fab', 'IconButton', 'Toggle'] },
     { name: 'Forms', items: ['Autocomplete', 'Calendar', 'Checkbox', 'CheckboxGroup', 'DatePicker', 'Fieldset', 'Form', 'ImagePicker', 'Legend', 'NumberField', 'RadioGroup', 'RichTextEditor', 'Select', 'Slider', 'Switch', 'TextArea', 'TextField', 'TimePicker'] },
-    { name: 'Data Display', items: ['Avatar', 'AvatarGroup', 'Badge', 'Image', 'RichTextRenderer', 'StatusBadge', 'SvgImage', 'Table'] },
+    { name: 'Data Display', items: ['Avatar', 'Badge', 'Image', 'RichTextRenderer', 'StatusBadge', 'SvgImage', 'Table'] },
     { name: 'Surfaces', items: ['Accordion', 'Card', 'Collapsible'] },
     { name: 'Navigation', items: ['BottomNavigation', 'Breadcrumbs', 'Link', 'Pagination', 'StepIndicator', 'Stepper', 'Tabs'] },
     { name: 'Overlay', items: ['AlertDialog', 'BottomSheet', 'Command', 'ContextMenu', 'Dialog', 'Drawer', 'DropdownMenu', 'HoverCard', 'Panel', 'Popover', 'Tooltip'] },

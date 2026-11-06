@@ -6,4 +6,4 @@ export const ACCESSIBILITY_DESCRIPTION = `## Accessibility
 | \`alt\` | For informative images | \`string\` | Omit only for decorative images. |
 | \`statusLabel\` | For localized presence | \`string\` | Defaults to the status value. |
 
-For interaction, wrap the avatar in a named native button rather than assigning a button role to a span.`
+For interaction, wrap the avatar in a named native button rather than assigning a button role to a span. Name an \`AvatarGroup\` with \`role="group"\` and an accessible label when the group needs identification; use \`overflowLabel\` to localize its hidden-item count.`

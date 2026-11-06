@@ -1,5 +1,5 @@
-import { Avatar } from '@choco-vanille/ui'
+import { Avatar, Flex, Typography } from '@choco-vanille/ui'
 
-<>
+<Flex flexDirection="column" gap={12} maxWidth="30rem">
 {{avatars}}
-</>
+</Flex>

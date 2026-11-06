@@ -1,11 +1,33 @@
 import { createRef } from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 
-import { Avatar } from '@components/data-display/avatar'
-import { AvatarGroup, AVATAR_GROUP_SPACING, type AvatarGroupSpacing } from '@components/data-display/avatar-group'
+import { Avatar, type AvatarProps } from '@components/data-display/avatar'
+import { AvatarGroup, AVATAR_GROUP_SPACING, type AvatarGroupItemProps, type AvatarGroupSpacing } from '@components/data-display/avatar-group'
+import { Avatar as PublicAvatar, AvatarGroup as PublicAvatarGroup } from '@/index'
 
 describe('AvatarGroup', () => {
+    it('exports the same item and shortcut, including its composable slots', () => {
+        expect(AvatarGroup.Item).toBe(Avatar)
+        expect(PublicAvatarGroup.Item).toBe(PublicAvatar)
+        expect(AvatarGroup.Item.Root).toBe(Avatar.Root)
+        expectTypeOf<AvatarGroupItemProps>().toEqualTypeOf<AvatarProps>()
+    })
+
+    it('accepts namespaced items with refs and preserves their styles and overflow', () => {
+        const ref = createRef<HTMLSpanElement>()
+        render(
+            <AvatarGroup max={2} spacing="lg" role="group" aria-label="People">
+                <AvatarGroup.Item initials="A" />
+                <AvatarGroup.Item ref={ref} initials="B" style={{ opacity: 0.5 }} />
+                <AvatarGroup.Item initials="C" />
+            </AvatarGroup>,
+        )
+        expect(ref.current?.textContent).toBe('B')
+        expect(ref.current?.style.marginLeft).toBe('-1rem')
+        expect(ref.current?.style.opacity).toBe('0.5')
+        expect(screen.getByRole('img', { name: '1 more' }).textContent).toBe('+1')
+    })
     it.each([-2, 0])('shows only the full overflow count without a leading offset for max=%s', (max) => {
         const overflowLabel = vi.fn((count: number) => `${count} participants hidden`)
         render(

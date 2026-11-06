@@ -44,6 +44,8 @@ describe('package distribution', () => {
             expect(declarations).toContain('export declare const Legend:')
             expect(declarations).toContain('export declare const LEGEND_STYLES:')
             expect(declarations).toContain('export declare type LegendProps')
+            expect(declarations).toContain('export declare type AvatarGroupItemProps')
+            expect(declarations).toContain('export declare type AvatarGroupCompound')
             const themeCss = await readFile(resolve(outputDirectory, 'styles.css'), 'utf8')
             expect(themeCss).toContain('--color-primary-main')
             expect(themeCss).toContain('--color-primary-subtlePressed')
@@ -125,17 +127,62 @@ describe('package distribution', () => {
 
             const avatarCss = await readComponentCss('data-display/avatar/components/avatar-root/AvatarRoot.css.js')
             const badgeCss = await readComponentCss('data-display/badge/Badge.css.js')
-            for (const intent of [
-                'primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info',
-                'accentPurple', 'accentPink', 'accentOrange', 'accentTeal', 'accentCyan', 'accentIndigo',
+            const avatarStyles = await readFile(
+                resolve(outputDirectory, 'components/data-display/avatar/components/avatar-root/AvatarRoot.css.js'),
+                'utf8',
+            )
+            const badgeStyles = await readFile(
+                resolve(outputDirectory, 'components/data-display/badge/Badge.css.js'),
+                'utf8',
+            )
+            const avatarBaseClass = avatarStyles.match(/defaultClassName:\s*["']([^"']+)["']/)?.[1]
+            expect(avatarBaseClass).toBeTruthy()
+            const avatarBaseRule = avatarCss.match(new RegExp(`\\.${avatarBaseClass}\\s*\\{([^}]+)\\}`))?.[1]
+            expect(avatarBaseRule).toMatch(/border:1px solid (?:transparent|#0000)/)
+            expect(avatarStyles).toMatch(/defaultVariants:\s*\{[^}]*variant:\s*["']outlinedSubtle["']/)
+            for (const [css, styles] of [[avatarCss, avatarStyles], [badgeCss, badgeStyles]]) {
+                const variantSection = styles.match(/variant:\s*\{([^}]+)\}/)?.[1]
+                const outlinedClass = variantSection?.match(/outlined:\s*["']([^"']+)["']/)?.[1]
+                expect(outlinedClass).toBeTruthy()
+                const outlinedRule = css.match(new RegExp(`\\.${outlinedClass}\\s*\\{([^}]+)\\}`))?.[1]
+                expect(outlinedRule).toMatch(/background-color:(?:transparent|#0000)/)
+            }
+            for (const [color, intent] of [
+                ['primary', 'primary'], ['secondary', 'secondary'], ['tertiary', 'neutral'],
+                ['destructive', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
+                ['purple', 'accentPurple'], ['pink', 'accentPink'], ['orange', 'accentOrange'],
+                ['teal', 'accentTeal'], ['cyan', 'accentCyan'], ['indigo', 'accentIndigo'],
             ]) {
-                const border = `border-color:var(--color-${intent}-subtleHover)`
-                expect(avatarCss).toContain(border)
-                expect(badgeCss.split(border)).toHaveLength(3)
+                for (const variant of ['contained', 'subtle', 'outlined', 'outlinedSubtle']) {
+                    const matchPattern = new RegExp(
+                        `variant:\\s*["']${variant}["'],\\s*color:\\s*["']${color}["']\\s*},\\s*["']([^"']+)["']`,
+                    )
+                    const avatarClass = avatarStyles.match(matchPattern)?.[1]
+                    const badgeClass = badgeStyles.match(matchPattern)?.[1]
+                    expect(avatarClass, `${color} ${variant}`).toBeTruthy()
+                    expect(badgeClass, `${color} ${variant}`).toBeTruthy()
+                    const avatarRule = avatarCss.match(new RegExp(`\\.${avatarClass}\\s*\\{([^}]+)\\}`))?.[1]
+                    const badgeRule = badgeCss.match(new RegExp(`\\.${badgeClass}\\s*\\{([^}]+)\\}`))?.[1]
+                    expect(avatarRule, `${color} ${variant}`).toBe(badgeRule)
+                    if (variant === 'contained') {
+                        expect(avatarRule).toContain(`background-color:var(--color-${intent}-main)`)
+                        expect(avatarRule).toContain(`color:var(--color-${intent}-foreground)`)
+                    } else {
+                        expect(avatarRule).toContain(`color:var(--color-${intent}-subtleForeground)`)
+                    }
+                    if (variant === 'subtle' || variant === 'outlinedSubtle') {
+                        expect(avatarRule).toContain(`background-color:var(--color-${intent}-subtle)`)
+                    }
+                    if (variant === 'outlined' || variant === 'outlinedSubtle') {
+                        expect(avatarRule).toContain(`border-color:var(--color-${intent}-subtleHover)`)
+                    }
+                }
             }
 
             for (const extension of ['js', 'cjs']) {
                 const entry = await readFile(resolve(outputDirectory, `index.${extension}`), 'utf8')
+                expect(entry).toContain(`components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.${extension}`)
+                expect(entry).toContain(`components/data-display/avatar-group/AvatarGroup.${extension}`)
                 expect(entry).toContain(`components/forms/legend/Legend.${extension}`)
                 const legendStylesPath = resolve(outputDirectory, `components/forms/legend/Legend.css.${extension}`)
                 const legendStyles = await readFile(legendStylesPath, 'utf8')

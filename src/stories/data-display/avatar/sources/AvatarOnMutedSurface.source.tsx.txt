@@ -1,0 +1,7 @@
+import { Avatar, Flex, vars } from '@choco-vanille/ui'
+
+<Flex alignItems="center" backgroundColor={vars.color.surface.muted} gap={12} padding={16}>
+    <Avatar aria-label="Jane Doe, subtle" initials="JD" variant="subtle" />
+    <Avatar aria-label="Jane Doe, outlined subtle" initials="JD" variant="outlinedSubtle" />
+    <Avatar alt="shadcn" aria-label="shadcn" initials="CN" src={{{image}}} variant="outlined" />
+</Flex>

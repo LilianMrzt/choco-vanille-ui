@@ -3,4 +3,6 @@ export { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/cons
 export type {
     AvatarGroupProps,
     AvatarGroupSpacing,
+    AvatarGroupItemProps,
+    AvatarGroupCompound,
 } from '@components/data-display/avatar-group/types'

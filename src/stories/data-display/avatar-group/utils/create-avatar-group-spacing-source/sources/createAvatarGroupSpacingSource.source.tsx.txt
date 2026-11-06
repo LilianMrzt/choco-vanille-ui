@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from '@choco-vanille/ui'
+import { AvatarGroup } from '@choco-vanille/ui'
 
 <>
 {{groups}}
