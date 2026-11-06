@@ -2,12 +2,20 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Card } from '@components/surfaces/card/Card.tsx'
+import { Card } from '@components/surfaces/card'
+import { Card as PublicCard } from '@/index'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement
 
 describe('Card', () => {
+    it('exposes the compound API through the public entry', () => {
+        expect(PublicCard).toBe(Card)
+        expect(PublicCard.Header).toBe(Card.Header)
+        expect(PublicCard.Body).toBe(Card.Body)
+        expect(PublicCard.Footer).toBe(Card.Footer)
+    })
+
     describe('default rendering', () => {
         it('renders a <div> element by default', () => {
             const { container } = render(<Card>content</Card>)

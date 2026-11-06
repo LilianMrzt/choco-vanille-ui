@@ -1,0 +1,5 @@
+import { Fab } from '@choco-vanille/ui'
+
+<Fab icon={SearchIcon} aria-label="sm" size="sm" />
+<Fab icon={SearchIcon} aria-label="md" size="md" />
+<Fab icon={SearchIcon} aria-label="lg" size="lg" />

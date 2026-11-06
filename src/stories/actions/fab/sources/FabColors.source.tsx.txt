@@ -1,0 +1,9 @@
+import { Fab } from '@choco-vanille/ui'
+
+<Fab icon={SearchIcon} aria-label="primary" color="primary" />
+<Fab icon={SearchIcon} aria-label="secondary" color="secondary" />
+<Fab icon={SearchIcon} aria-label="tertiary" color="tertiary" />
+<Fab icon={SearchIcon} aria-label="destructive" color="destructive" />
+<Fab icon={SearchIcon} aria-label="success" color="success" />
+<Fab icon={SearchIcon} aria-label="warning" color="warning" />
+<Fab icon={SearchIcon} aria-label="info" color="info" />

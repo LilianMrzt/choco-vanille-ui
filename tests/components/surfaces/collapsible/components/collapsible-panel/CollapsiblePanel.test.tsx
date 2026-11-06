@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import Collapsible from '@components/surfaces/collapsible/Collapsible.tsx'
+import { Collapsible } from '@components/surfaces/collapsible'
 import CollapsiblePanel from '@components/surfaces/collapsible/components/collapsible-panel/CollapsiblePanel.tsx'
 /** Render an open collapsible so the panel is visible. */
 const buildPanel = (

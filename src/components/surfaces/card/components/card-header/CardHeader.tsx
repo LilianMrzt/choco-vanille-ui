@@ -3,8 +3,8 @@ import { memo, type FC } from 'react'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
-import { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/styles/CardHeader.css.ts'
-import type { CardHeaderProps } from '@components/surfaces/card/components/card-header/types/CardHeader.props.ts'
+import { CARD_HEADER_STYLES } from '@components/surfaces/card/components/card-header/CardHeader.css.ts'
+import type { CardHeaderProps } from '@components/surfaces/card/components/card-header/types'
 
 /**
   * Header section of a `Card`. Renders an optional title, description and
@@ -13,12 +13,25 @@ import type { CardHeaderProps } from '@components/surfaces/card/components/card-
   * `children` can be used for fully custom header content alongside or instead
   * of the `title` / `description` props.
   *
+  * Forwarded attributes and ref apply to the header element. Select a heading
+  * level appropriate for the page when providing a title.
+  * @param props - Header options and forwarded Flex attributes.
+  * @param props.as - Header element; defaults to div.
+  * @param props.title - Optional heading text.
+  * @param props.titleAs - Heading element; defaults to h3.
+  * @param props.titleProps - Additional heading typography props.
+  * @param props.description - Optional description text.
+  * @param props.descriptionProps - Additional description typography props.
+  * @param props.actions - Optional trailing actions.
+  * @param props.className - Additional header class.
+  * @param props.children - Custom content alongside the heading and actions.
+  * @returns The card header.
   * @example
   * ```tsx
-  * <CardHeader
+  * <Card.Header
   *   title="Account settings"
   *   description="Manage your profile and preferences."
-  *   actions={<IconButton icon="lucide:ellipsis-vertical" aria-label="More" variant="ghost" color="primary" />}
+  *   actions={<IconButton icon={MoreIcon} aria-label="More" variant="ghost" color="primary" />}
   * />
   * ```
   */

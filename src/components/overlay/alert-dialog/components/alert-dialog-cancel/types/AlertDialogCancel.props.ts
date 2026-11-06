@@ -1,4 +1,4 @@
-import type { ButtonProps } from '@components/actions/button/types/Button.props.ts'
+import type { ButtonProps } from '@components/actions/button/types'
 
 type DistributiveOmit<T, Keys extends PropertyKey> =
     T extends unknown ? Omit<T, Keys> : never

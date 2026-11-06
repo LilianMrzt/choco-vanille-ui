@@ -1,0 +1,5 @@
+import { Button } from '@choco-vanille/ui'
+
+<Button label="Delete" startIcon={TrashIcon} variant="outlined" color="destructive" />
+<Button label="Next" endIcon={ChevronRightIcon} />
+<Button label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} color="primary" />

@@ -2,7 +2,9 @@ import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import CardFooter from '@components/surfaces/card/components/card-footer/CardFooter.tsx'
+import { Card } from '@components/surfaces/card'
+
+const CardFooter = Card.Footer
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement

@@ -112,7 +112,7 @@ describe('package distribution', () => {
             }
 
             const buttonStyles = await readFile(
-                resolve(outputDirectory, 'components/actions/button/styles/Button.css.js'),
+                resolve(outputDirectory, 'components/actions/button/Button.css.js'),
                 'utf8',
             )
             const buttonClass = buttonStyles.match(/defaultClassName:\s*["']([^"']+)["']/)?.[1]

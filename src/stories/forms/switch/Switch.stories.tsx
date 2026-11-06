@@ -1,165 +1,99 @@
-﻿import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, userEvent, within } from 'storybook/test'
+import { useArgs } from 'storybook/preview-api'
 
-import { Switch, type SwitchSize } from '@components/forms/switch'
-import { md } from '@stories/_shared/utils/markdown'
+import { Switch, type SwitchProps } from '@components/forms/switch'
+import SwitchDocsPage from '@stories/forms/switch/components/switch-docs-page/SwitchDocsPage'
+import SwitchSizes from '@stories/forms/switch/components/switch-sizes/SwitchSizes'
+import SwitchStates from '@stories/forms/switch/components/switch-states/SwitchStates'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/forms/switch/constants'
+import sizesSource from '@stories/forms/switch/sources/SwitchSizes.source.tsx.txt?raw'
+import statesSource from '@stories/forms/switch/sources/SwitchStates.source.tsx.txt?raw'
+import { createSwitchSource } from '@stories/forms/switch/utils/create-switch-source/createSwitchSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
-
-const SIZES: SwitchSize[] = ['sm', 'md', 'lg']
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Conditional | \`string\` | Provides the accessible name when no ARIA name is supplied. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables the switch. |
-| \`required\` | No | \`boolean\` | Marks the switch as required for form validation. |
-| \`checked\` | No | \`boolean\` | Controlled checked state; pair with \`onCheckedChange\`. |
-| \`defaultChecked\` | No | \`boolean\` | Uncontrolled initial checked state. |
-
-- Keyboard: \`Space\` toggles the switch when focused.
-`
-
-const SwitchDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
 
 const meta = {
     title: 'Forms/Switch',
     component: Switch,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
-
-            page: SwitchDocsPage,            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A styled switch control built on top of \`@base-ui/react/switch\`.
-Supports both controlled (\`checked\` + \`onCheckedChange\`) and uncontrolled (\`defaultChecked\`) modes, and renders an optional accessible inline label.
-
-**Usage**
-
-~~~tsx
-// Uncontrolled
-<Switch label="Airplane mode" defaultChecked />
-
-// Controlled
-const [enabled, setEnabled] = useState(false)
-<Switch
-  label="Airplane mode"
-  checked={enabled}
-  onCheckedChange={setEnabled}
-/>
-~~~
-
-        `,
+            page: SwitchDocsPage,
+            description: {
+                component: 'A two-state switch with optional label, helper text and error message. It supports controlled and uncontrolled usage.',
+            },
+            source: {
+                type: 'dynamic',
+                transform: createSwitchSource,
             },
         },
     },
-    argTypes: {
-        label: { control: 'text' },
-        helperText: { control: 'text' },
-        error: { control: 'text' },
-        size: { control: 'select', options: SIZES },
-        checked: { control: 'boolean' },
-        disabled: { control: 'boolean' },
-        required: { control: 'boolean' },
-    },
-    args: {
-        label: 'Airplane mode',
-    },
-    decorators: [
-        (Story) => (
-            <div style={{ width: '300px' }}>
-                <Story />
-            </div>
-        ),
-    ],
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
 } satisfies Meta<typeof Switch>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
+
+/**
+ * Synchronizes the controlled example with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @param _args - Storybook render arguments; current values come from useArgs.
+ * @returns The controlled switch.
+ * @example
+ * <ControlledSwitch />
+ */
+const ControlledSwitch = (_args: SwitchProps) => {
+    const [args, updateArgs] = useArgs<SwitchProps>()
+
+    /**
+     * Notifies the consumer before updating the control unless canceled.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param checked - Requested checked state.
+     * @param details - Base UI change details.
+     * @returns Nothing.
+     * @example
+     * handleCheckedChange(true, details)
+     */
+    const handleCheckedChange: NonNullable<SwitchProps['onCheckedChange']> = (checked, details) => {
+        args.onCheckedChange?.(checked, details)
+
+        if (!details.isCanceled) {
+            updateArgs({ checked })
+        }
+    }
+
+    return (
+        <Switch
+            {...args}
+            onCheckedChange={handleCheckedChange}
+        />
+    )
+}
 
 export const Playground: Story = {
+    render: ControlledSwitch,
+}
+
+export const Uncontrolled: Story = {
+    args: {
+        checked: undefined,
+        defaultChecked: true,
+    },
     parameters: {
-        docs: { ...storySource(`<Switch />`),
-            description: {
-                story:
-          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
-            },
+        docs: {
+            description: { story: 'The initial value applies on mount; remount the story to apply changes to defaultChecked.' },
         },
-    },
-    render: (args) => {
-        const [checked, setChecked] = useState(args.checked ?? false)
-
-        useEffect(() => {
-            setChecked(args.checked ?? false)
-        }, [args.checked])
-
-        return (
-            <Switch
-                {...args}
-                checked={checked}
-                onCheckedChange={setChecked}
-            />
-        )
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const switchControl = canvas.getByRole('switch')
-        await expect(switchControl).toBeInTheDocument()
-        await expect(switchControl).not.toBeChecked()
-        await userEvent.click(switchControl)
-        await expect(switchControl).toBeChecked()
     },
 }
 
 export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`
-<Switch label="Small" size="sm" />
-<Switch label="Medium" size="md" />
-<Switch label="Large" size="lg" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Switch
-                label={'Small'}
-                size={'sm'}
-            />
-            <Switch
-                label={'Medium'}
-                size={'md'}
-            />
-            <Switch
-                label={'Large'}
-                size={'lg'}
-            />
-        </div>
-    ),
+    parameters: { docs: { ...storySource(sizesSource) } },
+    render: SwitchSizes,
 }
 
 export const States: Story = {
-    parameters: { docs: { ...storySource(`<Switch label="Disabled" disabled />`) } },
-    render: () => (
-        <Switch
-            label={'Disabled'}
-            disabled
-        />
-    ),
+    parameters: { docs: { ...storySource(statesSource) } },
+    render: SwitchStates,
 }

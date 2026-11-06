@@ -1,0 +1,9 @@
+import { Button } from '@choco-vanille/ui'
+
+<Button label="primary" color="primary" />
+<Button label="secondary" color="secondary" />
+<Button label="tertiary" color="tertiary" />
+<Button label="destructive" color="destructive" />
+<Button label="success" color="success" />
+<Button label="warning" color="warning" />
+<Button label="info" color="info" />

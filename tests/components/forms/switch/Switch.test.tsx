@@ -54,6 +54,18 @@ describe('Switch', () => {
             render(<Switch checked={false} onCheckedChange={() => undefined} />)
             expect(getSwitch().getAttribute('data-unchecked')).toBe('')
         })
+
+        it('passes the requested value and event details to the consumer', async () => {
+            const handler = vi.fn()
+            const { rerender } = render(<Switch aria-label={'Updates'} checked={false} onCheckedChange={handler} />)
+
+            await userEvent.click(screen.getByRole('switch', { name: 'Updates' }))
+            expect(handler).toHaveBeenCalledWith(true, expect.objectContaining({ event: expect.any(Event), cancel: expect.any(Function) }))
+            expect(getSwitch().getAttribute('data-unchecked')).toBe('')
+
+            rerender(<Switch aria-label={'Updates'} checked onCheckedChange={handler} />)
+            expect(getSwitch().getAttribute('data-checked')).toBe('')
+        })
     })
 
     describe('uncontrolled checked state', () => {
@@ -160,6 +172,24 @@ describe('Switch', () => {
             const switchControl = getSwitch()
             const helper = screen.getByText('Enable push notifications')
             expect(switchControl.getAttribute('aria-describedby')).toBe(helper.id)
+        })
+
+        it('assigns unique description IDs to unlabeled switches and preserves external descriptions', () => {
+            render(
+                <>
+                    <span id={'external-description'}>External</span>
+                    <Switch aria-describedby={'external-description'} aria-label={'First'} helperText={'First help'} />
+                    <Switch aria-label={'Second'} helperText={'Second help'} />
+                </>,
+            )
+
+            const firstHelp = screen.getByText('First help')
+            const secondHelp = screen.getByText('Second help')
+            expect(firstHelp.id).not.toBe(secondHelp.id)
+            expect(screen.getByRole('switch', { name: 'First' }).getAttribute('aria-describedby'))
+                .toBe(`external-description ${firstHelp.id}`)
+            expect(screen.getByRole('switch', { name: 'Second' }).getAttribute('aria-describedby'))
+                .toBe(secondHelp.id)
         })
     })
 

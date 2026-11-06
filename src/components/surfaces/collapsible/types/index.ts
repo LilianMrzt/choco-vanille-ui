@@ -1,12 +1,8 @@
-import type { FC } from 'react'
+import type { Collapsible } from '@base-ui/react/collapsible'
+import type { CSSProperties } from 'react'
 
-import type CollapsiblePanel from '@components/surfaces/collapsible/components/collapsible-panel/CollapsiblePanel.tsx'
-import type CollapsibleTrigger from '@components/surfaces/collapsible/components/collapsible-trigger/CollapsibleTrigger.tsx'
-import type { CollapsibleProps } from '@components/surfaces/collapsible/types/Collapsible.props.ts'
-
-export type CollapsibleCompound = FC<CollapsibleProps> & {
-    Trigger: typeof CollapsibleTrigger
-    Panel: typeof CollapsiblePanel
-}
-
-export type { CollapsibleProps } from '@components/surfaces/collapsible/types/Collapsible.props.ts'
+/** Props for the collapsible root and outer width. */
+export type CollapsibleProps = Readonly<Collapsible.Root.Props & {
+    /** Width of the outer container; defaults to 100%. */
+    width?: CSSProperties['width']
+}>

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import Collapsible from '@components/surfaces/collapsible/Collapsible.tsx'
+import { Collapsible } from '@components/surfaces/collapsible'
 
 const buildCollapsible = (
     props: Partial<React.ComponentProps<typeof Collapsible>> = {},
@@ -69,6 +69,24 @@ describe('Collapsible', () => {
             const [firstArg] = handleOpenChange.mock.calls[0]
             expect(firstArg).toBe(true)
         })
+
+        it('passes event details through and respects cancellation', async () => {
+            const handler: NonNullable<React.ComponentProps<typeof Collapsible>['onOpenChange']> = vi.fn((_open, details) => details.cancel())
+            buildCollapsible({ onOpenChange: handler })
+            const trigger = screen.getByRole('button', { name: 'Toggle' })
+
+            await userEvent.click(trigger)
+            expect(handler).toHaveBeenCalledWith(true, expect.objectContaining({ event: expect.any(Event), cancel: expect.any(Function) }))
+            expect(trigger.getAttribute('aria-expanded')).toBe('false')
+        })
+
+        it('opens using the keyboard', async () => {
+            buildCollapsible()
+            const trigger = screen.getByRole('button', { name: 'Toggle' })
+            trigger.focus()
+            await userEvent.keyboard('{Enter}')
+            expect(trigger.getAttribute('aria-expanded')).toBe('true')
+        })
     })
 
     describe('controlled open behavior', () => {
@@ -103,6 +121,39 @@ describe('Collapsible', () => {
             const { container } = buildCollapsible({ className: 'my-collapsible' })
             const wrapper = container.firstElementChild as HTMLElement
             expect(wrapper.className).toContain('my-collapsible')
+        })
+
+        it('updates state-dependent classes on the root, trigger, and panel', async () => {
+            render(
+                <Collapsible className={(state) => state.open ? 'root-open' : 'root-closed'}>
+                    <Collapsible.Trigger className={(state) => state.open ? 'trigger-open' : 'trigger-closed'} label={'Toggle'} />
+                    <Collapsible.Panel className={(state) => state.open ? 'panel-open' : 'panel-closed'}>Content</Collapsible.Panel>
+                </Collapsible>,
+            )
+
+            const trigger = screen.getByRole('button', { name: 'Toggle' })
+            expect(trigger.className).toContain('trigger-closed')
+            expect(document.querySelector('.root-closed')).toBeTruthy()
+            expect(document.querySelector('.panel-closed')).toBeTruthy()
+            await userEvent.click(trigger)
+            expect(trigger.className).toContain('trigger-open')
+            expect(document.querySelector('.root-open')).toBeTruthy()
+            expect(document.querySelector('.panel-open')).toBeTruthy()
+        })
+
+        it('merges a state-dependent panel style with its default padding', () => {
+            render(
+                <Collapsible defaultOpen>
+                    <Collapsible.Trigger label={'Toggle'} />
+                    <Collapsible.Panel data-testid={'panel'} style={(state) => ({ opacity: state.open ? 0.8 : 0 })}>
+                        Content
+                    </Collapsible.Panel>
+                </Collapsible>,
+            )
+
+            const panel = screen.getByTestId('panel')
+            expect(panel.style.paddingBottom).toContain('--')
+            expect(panel.style.opacity).toBe('0.8')
         })
     })
 

@@ -1,0 +1,3 @@
+import { Button } from '@choco-vanille/ui'
+
+<Button{{props}} />

@@ -9,8 +9,7 @@ import {
 } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
 
-import { Button } from '@components/actions/button'
-import type { ButtonColor, ButtonVariant } from '@components/actions/button/types/Button.types.ts'
+import { Button, type ButtonColor, type ButtonVariant } from '@components/actions/button'
 import { Toast } from '@/components/feedback/toast'
 import type { ToastRole, ToastVariant } from '@components/feedback/toast'
 import type { IconComponent } from '@components/foundation/icon'

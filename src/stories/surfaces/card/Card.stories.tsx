@@ -1,377 +1,44 @@
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
-import type { ComponentProps } from 'react'
 
-import { Button } from '@components/actions/button'
-import { IconButton } from '@components/actions/icon-button'
 import { Card } from '@components/surfaces/card'
-import {
-    Typography,
-    type TypographyProps,
-} from '@components/foundation/typography'
-import type { BoxSpace, BoxVariant } from '@components/layout/box'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import { md } from '@stories/_shared/utils/markdown'
+import CardColors from '@stories/surfaces/card/components/card-colors/CardColors'
+import CardDocsPage from '@stories/surfaces/card/components/card-docs-page/CardDocsPage'
+import CardPlayground from '@stories/surfaces/card/components/card-playground/CardPlayground'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/surfaces/card/constants'
+import colorsSource from '@stories/surfaces/card/sources/CardColors.source.tsx.txt?raw'
+import type { CardStoryArgs } from '@stories/surfaces/card/types'
+import { createCardSource } from '@stories/surfaces/card/utils/create-card-source/createCardSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
-type CardPlaygroundArgs = ComponentProps<typeof Card> & {
-  headerAs?: 'div' | 'header';
-  title?: string;
-  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  titleFontSize?: TypographyProps['fontSize'];
-  titleFontWeight?: TypographyProps['fontWeight'];
-  description?: string;
-  descriptionFontSize?: TypographyProps['fontSize'];
-  bodyAs?: 'div' | 'section';
-  bodyPadding?: BoxSpace;
-  footerAs?: 'div' | 'footer';
-  showFooter?: boolean;
-  footerActionLabel?: string;
-};
-
-const CARD_ELEMENTS: BoxVariant[] = [
-    'div',
-    'section',
-    'article',
-    'aside',
-    'main',
-    'header',
-    'footer',
-    'nav',
-    'ul',
-    'ol',
-    'li',
-    'form',
-    'fieldset',
-    'figure',
-    'figcaption',
-    'details',
-    'summary',
-    'dialog',
-    'address',
-    'span',
-]
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required    | Type                                 | Notes                                                |
-| ---------------- | ----------- | ------------------------------------ | ---------------------------------------------------- |
-| \`title\`          | Recommended | \`string\`                             | Provides an accessible heading for card content.     |
-| \`titleAs\`        | No          | \`h1\`–\`h6\`                            | Choose the heading level that fits the page outline. |
-| \`as\`             | No          | Supported HTML element                      | Use the semantically correct element.                |
-
-**Sub-components**
-
-| Sub-component | Description |
-| ------------- | ----------- |
-| \`Card\` | Root surface container. |
-| \`Card.Header\` | Title, description, and actions. |
-| \`Card.Body\` | Main content area. |
-| \`Card.Footer\` | Bottom area for actions or metadata. |
-`
-
-const CardDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
-const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
-const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
-
-const meta: Meta<CardPlaygroundArgs> = {
+const meta = {
     title: 'Surfaces/Card',
     component: Card,
+    tags: ['autodocs'],
+    render: (args) => <CardPlayground {...args} />,
     parameters: {
         layout: 'centered',
         docs: {
             page: CardDocsPage,
             description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A surface container with consistent background, border, shadow and rounded corners.
-Built on \`Box\`. Compose with \`Card.Header\`, \`Card.Body\` and \`Card.Footer\`.
-
-\`Card.Header\` accepts props for title, description and actions directly — no separate sub-components needed. Customize the typography via \`titleProps\` and \`descriptionProps\`.
-
-**Usage**
-
-~~~tsx
-<Card>
-  <Card.Header
-    title="Account settings"
-    description="Manage your profile."
-    titleAs="h3"
-    titleProps={{ fontSize: 18, fontWeight: 'semibold' }}
-    actions={
-      <IconButton
-        icon={SearchIcon}
-        aria-label="More"
-        variant="ghost"
-        color="primary"
-      />
-    }
-  />
-  <Card.Body>…</Card.Body>
-  <Card.Footer>
-    <Button label="Save" variant="contained" color="primary" />
-  </Card.Footer>
-</Card>
-~~~
-
-        `,
+                component: 'A surface container for related content. Compose its header, body and footer to structure the content and actions. Supply your own SVG component for SearchIcon in the example.',
+            },
+            source: {
+                type: 'dynamic',
+                transform: createCardSource,
             },
         },
     },
-    argTypes: {
-        as: {
-            control: 'select',
-            options: CARD_ELEMENTS,
-            table: { category: 'Card' },
-        },
-        borderRadius: {
-            control: 'select',
-            options: ROUNDED,
-            table: { category: 'Card' },
-        },
-        borderWidth: {
-            control: 'select',
-            options: [undefined, '0', '1px', '2px', '4px', '8px'],
-            table: { category: 'Card' },
-        },
-        borderStyle: {
-            control: 'select',
-            options: [undefined, 'solid', 'dashed', 'dotted', 'double'],
-            table: { category: 'Card' },
-        },
-        backgroundColor: {
-            control: 'text',
-            table: { category: 'Card' },
-        },
-        padding: {
-            control: 'select',
-            options: SPACING,
-            table: { category: 'Card' },
-        },
-        headerAs: {
-            control: 'select',
-            options: ['div', 'header'],
-            table: { category: 'Card.Header' },
-        },
-        title: {
-            control: 'text',
-            table: { category: 'Card.Header' },
-        },
-        titleAs: {
-            control: 'select',
-            options: HEADING_LEVELS,
-            table: { category: 'Card.Header' },
-        },
-        titleFontSize: {
-            control: 'select',
-            options: [
-                undefined,
-                10,
-                12,
-                14,
-                16,
-                18,
-                20,
-                24,
-                30,
-                36,
-                48,
-                60,
-                72,
-            ],
-            table: { category: 'Card.Header' },
-        },
-        titleFontWeight: {
-            control: 'select',
-            options: [
-                undefined,
-                'thin',
-                'extralight',
-                'light',
-                'normal',
-                'medium',
-                'semibold',
-                'bold',
-                'extrabold',
-                'black',
-            ],
-            table: { category: 'Card.Header' },
-        },
-        description: {
-            control: 'text',
-            table: { category: 'Card.Header' },
-        },
-        descriptionFontSize: {
-            control: 'select',
-            options: [undefined, 10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72],
-            table: { category: 'Card.Header' },
-        },
-        bodyAs: {
-            control: 'select',
-            options: ['div', 'section'],
-            table: { category: 'Card.Body' },
-        },
-        bodyPadding: {
-            control: 'select',
-            options: SPACING,
-            table: { category: 'Card.Body' },
-        },
-        footerAs: {
-            control: 'select',
-            options: ['div', 'footer'],
-            table: { category: 'Card.Footer' },
-        },
-        showFooter: {
-            control: 'boolean',
-            table: { category: 'Card.Footer' },
-        },
-        footerActionLabel: {
-            control: 'text',
-            table: { category: 'Card.Footer' },
-        },
-    },
-    args: {
-        as: 'div',
-        borderRadius: 10,
-        headerAs: 'div',
-        title: 'Account settings',
-        titleAs: 'h3',
-        description: 'Manage your profile and preferences.',
-        bodyAs: 'div',
-        bodyPadding: undefined,
-        footerAs: 'div',
-        showFooter: true,
-        footerActionLabel: 'Save changes',
-    },
-} satisfies Meta<CardPlaygroundArgs>
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<CardStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
-export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — every prop for all sub-components is exposed in the Controls panel, grouped by component.',
-            },
-            ...storySource(/* language=tsx */ `
-<Card>
-    <Card.Header title="Account settings" description="Manage your profile." />
-    <Card.Body>Content goes here.</Card.Body>
-    <Card.Footer>
-        <Button label="Save" variant="contained" color="primary" />
-    </Card.Footer>
-</Card>`),
-        },
-    },
-    render: ({
-        as,
-        borderRadius,
-        borderWidth,
-        borderStyle,
-        backgroundColor,
-        padding,
-        headerAs,
-        title,
-        titleAs,
-        titleFontSize,
-        titleFontWeight,
-        description,
-        descriptionFontSize,
-        bodyAs,
-        bodyPadding,
-        footerAs,
-        showFooter,
-        footerActionLabel,
-    }) => (
-        <Card
-            as={as}
-            borderRadius={borderRadius}
-            borderWidth={borderWidth}
-            borderStyle={borderStyle}
-            backgroundColor={backgroundColor}
-            padding={padding}
-            style={{ width: '22rem' }}
-        >
-            <Card.Header
-                as={headerAs}
-                title={title}
-                titleAs={titleAs}
-                titleProps={
-                    titleFontSize || titleFontWeight
-                        ? { fontSize: titleFontSize, fontWeight: titleFontWeight }
-                        : undefined
-                }
-                description={description}
-                descriptionProps={
-                    descriptionFontSize ? { fontSize: descriptionFontSize } : undefined
-                }
-                actions={
-                    <IconButton
-                        icon={SearchIcon}
-                        aria-label={'More options'}
-                        variant={'ghost'}
-                        color={'primary'}
-                        size={'sm'}
-                    />
-                }
-            />
-            <Card.Body
-                as={bodyAs}
-                padding={bodyPadding}
-            >
-                <Typography
-                    variant={'p'}
-                    fontSize={14}
-                    color={vars.color.text.primary}
-                >
-                    Your content goes here.
-                </Typography>
-            </Card.Body>
-            {showFooter && (
-                <Card.Footer as={footerAs}>
-                    <Button
-                        label={footerActionLabel ?? 'Save changes'}
-                        variant={'contained'}
-                        color={'primary'}
-                        size={'sm'}
-                    />
-                    <Button
-                        label={'Cancel'}
-                        variant={'outlined'}
-                        color={'primary'}
-                        size={'sm'}
-                    />
-                </Card.Footer>
-            )}
-        </Card>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await expect(canvas.getByText('Account settings')).toBeInTheDocument()
-    },
+export const Playground: Story = {}
+
+export const Colors: Story = {
+    parameters: { docs: { ...storySource(colorsSource) } },
+    render: CardColors,
 }

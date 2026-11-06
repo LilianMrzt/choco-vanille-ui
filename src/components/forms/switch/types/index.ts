@@ -1,0 +1,16 @@
+import type { Switch } from '@base-ui/react/switch'
+
+/** Visual size of a switch. */
+export type SwitchSize = 'sm' | 'md' | 'lg'
+
+/** Switch interaction props and optional supporting text. */
+export type SwitchProps = Readonly<Switch.Root.Props & {
+  /** Optional text label rendered beside the switch. When provided, `id` is used to associate the label. */
+  label?: string;
+  /** Optional helper text rendered below the switch. Hidden when `error` is provided. */
+  helperText?: string;
+  /** Error message rendered below the switch. When set, the switch is styled in its error state. */
+  error?: string;
+  /** Visual size of the switch. Defaults to `md`. */
+  size?: SwitchSize;
+}>

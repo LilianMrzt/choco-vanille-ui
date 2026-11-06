@@ -1,1 +1,9 @@
-export { FAB_POSITIONS, FAB_POSITIONS_ARRAY } from '@components/actions/fab/constants/fabPositions.const.ts'
+/** Viewport positions supported by Fab. */
+export const FAB_POSITIONS = {
+    bottomEnd: 'bottom-end',
+    bottomStart: 'bottom-start',
+    bottomCenter: 'bottom-center',
+} as const
+
+/** Available viewport positions for Fab. */
+export const FAB_POSITIONS_ARRAY = Object.values(FAB_POSITIONS)

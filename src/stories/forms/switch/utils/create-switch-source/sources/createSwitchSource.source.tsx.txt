@@ -1,0 +1,3 @@
+{{stateImport}}import { Switch } from '@choco-vanille/ui'
+
+{{state}}<Switch{{props}} />{{end}}

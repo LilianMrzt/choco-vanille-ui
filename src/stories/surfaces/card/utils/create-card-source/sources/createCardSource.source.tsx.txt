@@ -1,0 +1,10 @@
+import { Button, Card, IconButton, Typography, vars } from '@choco-vanille/ui'
+
+<Card{{rootProps}}>
+  <Card.Header{{headerProps}}
+    actions={<IconButton aria-label="More options" color="primary" icon={SearchIcon} size="sm" variant="ghost" />}
+  />
+  <Card.Body{{bodyProps}}>
+    <Typography color={vars.color.text.primary} fontSize={14} variant="p">Your content goes here.</Typography>
+  </Card.Body>{{footer}}
+</Card>

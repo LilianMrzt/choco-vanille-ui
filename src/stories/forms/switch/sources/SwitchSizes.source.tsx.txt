@@ -1,0 +1,5 @@
+import { Switch } from '@choco-vanille/ui'
+
+<Switch label="Small" size="sm" />
+<Switch label="Medium" size="md" />
+<Switch label="Large" size="lg" />

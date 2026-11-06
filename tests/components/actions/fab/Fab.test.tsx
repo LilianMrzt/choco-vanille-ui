@@ -1,18 +1,26 @@
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 import {
     Fab,
     FAB_POSITIONS_ARRAY,
     FAB_STYLES,
+    type FabProps,
     type FabSize,
 } from '@components/actions/fab'
 import { BUTTON_STYLES } from '@components/actions/button'
 import { ICON_BUTTON_STYLES } from '@components/actions/icon-button'
 import BoldIcon from '@resources/asset/BoldIcon.svg?react'
+import { Fab as PublicFab } from '@/index'
+import type { IconComponent } from '@components/foundation/icon'
 
 describe('Fab', () => {
+    it('exposes the same component from the public entry', () => {
+        expect(PublicFab).toBe(Fab)
+        expectTypeOf<FabProps['icon']>().toEqualTypeOf<IconComponent>()
+    })
+
     describe('round (icon-only) rendering', () => {
         it('renders a button named by aria-label', () => {
             render(<Fab icon={BoldIcon} aria-label={'New trip'} />)
