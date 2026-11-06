@@ -114,6 +114,6 @@ export const TIME_PICKER_PANEL_STYLES = {
         justifyContent: 'space-between',
         gap: vars.space[8],
         paddingTop: vars.space[8],
-        borderTop: `1px solid ${vars.color.border.main}`,
+        borderTop: `1px solid ${vars.color.border.muted}`,
     }),
 }

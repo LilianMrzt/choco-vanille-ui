@@ -10,8 +10,11 @@ import {
     type ButtonSize,
 } from '@components/actions/button'
 import { BOX_STYLES } from '@components/layout/box'
+import { outlinedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/outlined.ts'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
+import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 // Helper
 
@@ -74,6 +77,12 @@ describe('Button', () => {
 
     describe('variant styling', () => {
         const variants: ButtonVariant[] = ['contained', 'outlined', 'ghost']
+
+        it('uses the accessible intent border for each outlined button', () => {
+            for (const entry of outlinedCompoundVariants) {
+                expect(entry.style.borderColor).toBe(vars.color[COLOR_INTENT_TOKENS[entry.variants.color]].border)
+            }
+        })
 
         it.each(variants)(
             'applies a non-empty class for variant="%s"',

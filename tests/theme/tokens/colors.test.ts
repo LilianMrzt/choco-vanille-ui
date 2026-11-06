@@ -87,6 +87,33 @@ describe('semantic colors', () => {
         })
     })
 
+    it('uses the original light gray for decorative borders', () => {
+        expect(lightColors.border.muted).toBe('#d2d5db')
+        expect(darkColors.border.muted).toBe('#4f5460')
+    })
+
+    it('restores the original light accent surfaces and their decorative borders', () => {
+        const expected = {
+            primary: ['#dfeaff', '#c5daff'],
+            secondary: ['#ffe8fa', '#ffcff4'],
+            neutral: ['#e3e6ea', '#d2d5db'],
+            success: ['#dcfce7', '#b9f8cf'],
+            warning: ['#fef3c6', '#fee685'],
+            info: ['#d5ecfc', '#b4dffb'],
+            danger: ['#ffe2e2', '#ffc9c9'],
+            accentPurple: ['#f3ebff', '#e6d4ff'],
+            accentPink: ['#ffe9f4', '#ffd3ea'],
+            accentOrange: ['#ffe9d7', '#ffd0a9'],
+            accentTeal: ['#d6fbf3', '#a5f3e3'],
+            accentCyan: ['#d6faff', '#a4f2ff'],
+            accentIndigo: ['#e5edff', '#c9dbff'],
+        } as const
+
+        for (const intent of intents) {
+            expect([lightColors[intent].subtle, lightColors[intent].subtleHover]).toEqual(expected[intent])
+        }
+    })
+
     describe.each([
         { name: 'light', colors: lightColors },
         { name: 'dark', colors: darkColors },
@@ -144,6 +171,13 @@ describe('semantic colors', () => {
             }
         })
 
+        it('keeps callout descriptions and icons legible on their subtle surfaces', () => {
+            for (const intent of ['info', 'success', 'warning', 'danger'] as const) {
+                expectContrast(colors.text.secondary, colors[intent].subtle, 4.5, `description on ${intent}.subtle`)
+                expectContrast(colors[intent].main, colors[intent].subtle, 3, `icon on ${intent}.subtle`)
+            }
+        })
+
         it('maintains 3:1 focus and field borders on supported neutral surfaces', () => {
             for (const surface of surfaces) {
                 for (const token of ['focusRing', 'border.main', 'border.strong'] as const) {
@@ -156,6 +190,9 @@ describe('semantic colors', () => {
             for (const intent of intents) {
                 for (const state of states) {
                     expectContrast(colors[intent].subtleBorder, colors[intent][subtleStates[state]], 3, `${intent}.subtleBorder on ${state}`)
+                }
+                for (const surface of surfaces) {
+                    expectContrast(colors[intent].border, leaves[surface], 3, `${intent}.border on ${surface}`)
                 }
             }
         })

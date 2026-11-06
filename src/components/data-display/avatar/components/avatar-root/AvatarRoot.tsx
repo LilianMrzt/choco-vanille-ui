@@ -10,6 +10,7 @@ import type { FC } from 'react'
  * Defaults to medium, circular, primary and contained. Give the root an
  * accessible name for identifying fallback content. Native span attributes,
  * events, consumer class/style and ref are forwarded to this root.
+ * The outlined fallback uses its color family's `subtleHover` as a decorative border.
  *
  * @param props - Root appearance and native span props.
  * @param props.size - Avatar size preset; defaults to `md`.

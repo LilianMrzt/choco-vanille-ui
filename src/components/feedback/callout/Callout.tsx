@@ -22,6 +22,7 @@ const isActionChild = (child: ReactNode) =>
  * by default; pass `role="alert"` for urgent feedback. Supports compound
  * children via `Callout.Icon`, `.Title`, `.Description`, and `.Action` slots.
  * `Callout.Action` is positioned at the right edge.
+ * The decorative border uses the color family's `subtleHover` token.
  *
  * Compound slots: `Callout.Icon`, `Callout.Title`, `Callout.Description`, `Callout.Action`.
  * @param calloutProps - Root attributes and callout options.

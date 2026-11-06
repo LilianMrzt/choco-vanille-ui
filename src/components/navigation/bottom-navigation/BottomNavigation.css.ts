@@ -16,7 +16,7 @@ export const BOTTOM_NAVIGATION_STYLES = {
     }),
 
     bordered: style({
-        borderTop: `1px solid ${vars.color.border.main}`,
+        borderTop: `1px solid ${vars.color.border.muted}`,
     }),
 
     list: style({

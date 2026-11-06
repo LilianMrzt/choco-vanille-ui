@@ -9,9 +9,10 @@ import type { CardProps } from '@components/surfaces/card/types'
 import { cn } from '@utils/cn.ts'
 
 /**
-  * A surface container with a consistent background, border, shadow and
-  * rounded corners. Compose with the named sub-components for a structured
-  * layout.
+  * A surface container with a consistent background, decorative muted border,
+  * shadow and rounded corners. Compose with the named sub-components for a
+  * structured layout. Use a stronger border when it is needed to identify an
+  * interactive card.
   *
   * Native attributes and refs are forwarded to the root element. Choose
   * an appropriate semantic element and heading level for the surrounding page.

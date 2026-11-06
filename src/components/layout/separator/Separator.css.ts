@@ -25,7 +25,7 @@ const localSeparatorRecipe = recipe({
     base: {
         flexShrink: 0,
         backgroundColor: 'currentColor',
-        color: vars.color.border.main,
+        color: vars.color.border.muted,
     },
 
     variants: {

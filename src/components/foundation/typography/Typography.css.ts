@@ -158,7 +158,7 @@ const localTypographyRecipe = recipe({
                 fontStyle: 'italic',
             },
             blockquote: {
-                borderLeft: `2px solid ${vars.color.border.main}`,
+                borderLeft: `2px solid ${vars.color.border.muted}`,
                 paddingLeft: vars.space[24],
                 fontStyle: 'italic',
                 color: vars.color.surface.mutedForeground,
@@ -182,7 +182,7 @@ const localTypographyRecipe = recipe({
             },
             kbd: {
                 borderRadius: vars.radius[6],
-                border: `1px solid ${vars.color.border.main}`,
+                border: `1px solid ${vars.color.border.muted}`,
                 backgroundColor: vars.color.surface.muted,
                 paddingInline: vars.space[8],
                 paddingBlock: vars.space[4],

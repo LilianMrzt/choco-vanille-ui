@@ -21,17 +21,23 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
             selectors: {
                 '&:hover': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
+                    borderColor: variant === 'outlined'
+                        ? vars.color[COLOR_INTENT_TOKENS[color]].border
+                        : 'transparent',
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
                 '&:active': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
+                    borderColor: variant === 'outlined'
+                        ? vars.color[COLOR_INTENT_TOKENS[color]].border
+                        : 'transparent',
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
                 [pressedSelector]: {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                     borderColor: variant === 'outlined'
-                        ? vars.color[COLOR_INTENT_TOKENS[color]].main
+                        ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                 },
                 [`${pressedSelector}:hover`]: {

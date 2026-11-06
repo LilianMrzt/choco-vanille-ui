@@ -10,7 +10,7 @@ export type CardProps = Readonly<Omit<BoxProps, 'backgroundColor' | 'color' | 'b
     borderRadius?: BoxProps['borderRadius']
     /** Border width. Defaults to 1px. */
     borderWidth?: BoxProps['borderWidth']
-    /** CSS border color; the stylesheet uses the main border color by default. */
+    /** CSS border color; the stylesheet uses the muted border color by default. */
     borderColor?: BoxProps['borderColor']
     /** Border style. Defaults to solid. */
     borderStyle?: BoxProps['borderStyle']

@@ -17,7 +17,7 @@ const colorReferences = Object.fromEntries(getColorEntries(vars.color))
  *
  * @param props - Separator appearance and inherited layout attributes.
  * @param props.orientation - Line direction; defaults to `horizontal`.
- * @param props.color - Theme color token for the line.
+ * @param props.color - Theme color token for the line; defaults to `border.muted`.
  * @param props.textColor - Theme color token for the label; defaults to `text.tertiary`.
  * @param props.label - Optional text displayed between line segments.
  * @param props.className - Additional separator class.

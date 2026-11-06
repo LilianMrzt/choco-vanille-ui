@@ -5,6 +5,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * Resolves every Badge treatment to its semantic surface, foreground and border.
+ * Outlined badges use the subtle hover shade as a decorative border.
  * Called when defining styles, not during component rendering.
  *
  * @returns Color and treatment combinations for the Badge stylesheet.
@@ -26,13 +27,13 @@ export const createBadgeCompoundVariants = (): BadgeCompoundVariant[] =>
             },
             {
                 variants: { variant: BADGE_VARIANTS.outlined, color },
-                style: { borderColor: family.subtleBorder, color: family.subtleForeground },
+                style: { borderColor: family.subtleHover, color: family.subtleForeground },
             },
             {
                 variants: { variant: BADGE_VARIANTS.outlinedSubtle, color },
                 style: {
                     backgroundColor: family.subtle,
-                    borderColor: family.subtleBorder,
+                    borderColor: family.subtleHover,
                     color: family.subtleForeground,
                 },
             },

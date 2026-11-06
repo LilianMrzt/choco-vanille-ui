@@ -150,7 +150,7 @@ describe('theme', () => {
         expectTypeOf(darkTheme).toMatchTypeOf<Theme>()
         expectTypeOf<Theme['color']['primary']>().toEqualTypeOf<ThemeColorAccent>()
         expectTypeOf<Theme['color']['primary']['main']>().toEqualTypeOf<string>()
-        expectTypeOf(lightTheme.color.primary.main).toEqualTypeOf<'#2563eb'>()
+        expectTypeOf(lightTheme.color.primary.main).toEqualTypeOf<'#2961ed'>()
         expectTypeOf<Theme['editorColors']['ocean']['base']>().toEqualTypeOf<string>()
         expectTypeOf<ThemeVars>().toEqualTypeOf<typeof vars>()
         expectTypeOf<'primary.main'>().toMatchTypeOf<ThemeColor>()

@@ -7,7 +7,7 @@ export const CALENDAR_ROOT_STYLES = {
         padding: vars.space[16],
         backgroundColor: vars.color.surface.main,
         borderRadius: vars.radius[10],
-        border: `1px solid ${vars.color.border.main}`,
+        border: `1px solid ${vars.color.border.muted}`,
         fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize[14],
         color: vars.color.text.primary,

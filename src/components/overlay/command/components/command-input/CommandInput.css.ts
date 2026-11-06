@@ -9,7 +9,7 @@ export const COMMAND_INPUT_STYLES = {
         display: 'flex',
         alignItems: 'center',
         gap: vars.space[8],
-        borderBottom: `1px solid ${vars.color.border.main}`,
+        borderBottom: `1px solid ${vars.color.border.muted}`,
         paddingInline: vars.space[16],
         paddingBlock: vars.space[10],
         flexShrink: 0,

@@ -52,7 +52,14 @@ describe('component color intentions', () => {
             variants: { variant: 'outlinedSubtle', color: intent },
             style: {
                 backgroundColor: vars.color[token].subtle,
-                borderColor: vars.color[token].subtleBorder,
+                borderColor: vars.color[token].subtleHover,
+                color: vars.color[token].subtleForeground,
+            },
+        })
+        expect(createBadgeCompoundVariants()).toContainEqual({
+            variants: { variant: 'outlined', color: intent },
+            style: {
+                borderColor: vars.color[token].subtleHover,
                 color: vars.color[token].subtleForeground,
             },
         })

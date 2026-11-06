@@ -25,7 +25,7 @@ export const AUTOCOMPLETE_CONTENT_STYLES = {
         maxHeight: 'var(--available-height)',
         overflow: 'hidden',
         borderRadius: vars.radius[8],
-        border: `1px solid ${vars.color.border.main}`,
+        border: `1px solid ${vars.color.border.muted}`,
         backgroundColor: vars.color.surface.elevated,
         color: vars.color.surface.elevatedForeground,
         padding: vars.space[4],

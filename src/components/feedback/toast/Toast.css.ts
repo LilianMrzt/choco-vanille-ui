@@ -17,7 +17,7 @@ export const TOAST_STYLES = {
             maxWidth: TOAST_WIDTH,
             padding: vars.space[12],
             borderRadius: vars.radius[6],
-            border: `1px solid ${vars.color.border.main}`,
+            border: `1px solid ${vars.color.border.muted}`,
             backgroundColor: vars.color.surface.main,
             color: vars.color.surface.foreground,
         },

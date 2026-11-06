@@ -104,7 +104,7 @@ const avatarRecipe = recipe({
         },
         style: {
             borderWidth: '1px',
-            borderColor: vars.color[COLOR_INTENT_TOKENS[color]].subtleBorder,
+            borderColor: vars.color[COLOR_INTENT_TOKENS[color]].subtleHover,
         },
     })),
 

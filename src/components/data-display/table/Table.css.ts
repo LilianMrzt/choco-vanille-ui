@@ -25,7 +25,7 @@ globalStyle(`${tableBase}[data-striped="true"] tbody tr:nth-child(even):not([dat
 })
 
 globalStyle(`${tableBase}[data-bordered="true"] th, ${tableBase}[data-bordered="true"] td`, {
-    border: `1px solid ${vars.color.border.main}`,
+    border: `1px solid ${vars.color.border.muted}`,
 })
 
 const wrapper = style({})

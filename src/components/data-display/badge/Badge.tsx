@@ -10,6 +10,7 @@ import type { FC } from 'react'
 /**
  * Displays a noninteractive inline label with optional decorative icons.
  * Defaults to primary, outlinedSubtle, md and a 4px radius at a 16px root.
+ * Outlined and outlinedSubtle borders use the color family's subtleHover token.
  * Native attributes, events and ref target the outer span. Layout props override
  * size presets; consumer style overrides primitive props and recipe colors.
  *

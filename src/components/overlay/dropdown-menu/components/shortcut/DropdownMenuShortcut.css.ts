@@ -15,7 +15,7 @@ export const DROPDOWN_MENU_SHORTCUT_STYLES = {
         letterSpacing: '0.025em',
         color: vars.color.surface.mutedForeground,
         backgroundColor: vars.color.surface.muted,
-        border: `1px solid ${vars.color.border.main}`,
+        border: `1px solid ${vars.color.border.muted}`,
         borderRadius: vars.radius[4],
         paddingBlock: '0.0625rem',
         paddingInline: vars.space[4],

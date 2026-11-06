@@ -7,7 +7,9 @@ import {
     CALLOUT_STYLES,
     type CalloutVariant,
 } from '@components/feedback/callout'
+import { CALLOUT_VARIANT_STYLES } from '@components/feedback/callout/Callout.css.ts'
 import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
+import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
@@ -41,6 +43,19 @@ describe('Callout', () => {
     })
 
     describe('variant styling', () => {
+        it.each([
+            ['info', 'info'],
+            ['success', 'success'],
+            ['warning', 'warning'],
+            ['error', 'danger'],
+        ] as const)('uses the soft decorative border for %s', (variant, intent) => {
+            expect(CALLOUT_VARIANT_STYLES[variant]).toEqual({
+                backgroundColor: vars.color[intent].subtle,
+                borderColor: vars.color[intent].subtleHover,
+                color: vars.color[intent].subtleForeground,
+            })
+        })
+
         it.each(VARIANTS)(
             'applies a non-empty class for variant="%s"',
             (variant) => {

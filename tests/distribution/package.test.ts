@@ -61,6 +61,79 @@ describe('package distribution', () => {
             expect(themeCss).not.toMatch(/--color-(?:primary|primaryHover|primaryActive|foreground|surface|borderStrong)\s*[:)]/)
             expect(themeCss).not.toContain('[object Object]')
 
+            const readComponentCss = async (componentModule: string): Promise<string> => {
+                const modulePath = resolve(outputDirectory, 'components', ...componentModule.split('/'))
+                const contents = await readFile(modulePath, 'utf8')
+                const cssImports = [...contents.matchAll(/import\s*['"]([^'"]+\.css)['"]/g)]
+                    .map((match) => match[1])
+                    .filter((path) => path.includes('assets/components/'))
+
+                expect(cssImports, componentModule).not.toHaveLength(0)
+                const stylesheets = await Promise.all(cssImports.map((path) => readFile(resolve(dirname(modulePath), path), 'utf8')))
+
+                return stylesheets.join('\n')
+            }
+
+            const decorativeBorders = [
+                'surfaces/card/Card.css.js',
+                'surfaces/accordion/components/accordion-item/styles/AccordionItem.css.js',
+                'data-display/table/Table.css.js',
+                'data-display/table/components/table-row/TableRow.css.js',
+                'data-display/table/components/table-header/TableHeader.css.js',
+                'data-display/table/components/table-footer/TableFooter.css.js',
+                'data-display/rich-text-renderer/RichTextRenderer.css.js',
+                'foundation/typography/Typography.css.js',
+                'feedback/toast/Toast.css.js',
+                'forms/calendar/styles/calendarRoot.css.js',
+                'forms/select/components/select-content/styles/SelectContent.css.js',
+                'forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.js',
+                'forms/rich-text-editor/components/toolbar/styles/Toolbar.css.js',
+                'forms/time-picker/components/time-picker-panel/styles/TimePickerPanel.css.js',
+                'overlay/dialog/Dialog.css.js',
+                'overlay/popover/components/content/PopoverContent.css.js',
+                'overlay/dropdown-menu/components/content/DropdownMenuContent.css.js',
+                'overlay/dropdown-menu/components/shortcut/DropdownMenuShortcut.css.js',
+                'overlay/command/Command.css.js',
+                'overlay/command/components/command-input/CommandInput.css.js',
+                'overlay/command/components/command-item/CommandItem.css.js',
+                'navigation/tabs/components/tabs-list/TabsList.css.js',
+                'navigation/bottom-navigation/BottomNavigation.css.js',
+                'layout/separator/Separator.css.js',
+                'forms/select/components/select-separator/styles/SelectSeparator.css.js',
+                'forms/autocomplete/components/autocomplete-separator/styles/AutocompleteSeparator.css.js',
+                'forms/rich-text-editor/components/toolbar-separator/styles/ToolbarSeparator.css.js',
+                'overlay/command/components/command-separator/CommandSeparator.css.js',
+                'overlay/dropdown-menu/components/separator/DropdownMenuSeparator.css.js',
+                'overlay/bottom-sheet/components/bottom-sheet-separator/BottomSheetSeparator.css.js',
+            ]
+            for (const componentModule of decorativeBorders) {
+                expect(await readComponentCss(componentModule), componentModule).toContain('var(--color-border-muted)')
+            }
+
+            const functionalBorders = [
+                'forms/text-field/styles/TextField.css.js',
+                'forms/text-area/styles/TextArea.css.js',
+                'forms/select/components/select-trigger/styles/SelectTrigger.css.js',
+                'forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.js',
+                'forms/checkbox/styles/Checkbox.css.js',
+                'forms/radio-group/components/radio-item/styles/RadioItem.css.js',
+                'forms/image-picker/styles/ImagePicker.css.js',
+            ]
+            for (const componentModule of functionalBorders) {
+                expect(await readComponentCss(componentModule), componentModule).toContain('var(--color-border-main)')
+            }
+
+            const avatarCss = await readComponentCss('data-display/avatar/components/avatar-root/AvatarRoot.css.js')
+            const badgeCss = await readComponentCss('data-display/badge/Badge.css.js')
+            for (const intent of [
+                'primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info',
+                'accentPurple', 'accentPink', 'accentOrange', 'accentTeal', 'accentCyan', 'accentIndigo',
+            ]) {
+                const border = `border-color:var(--color-${intent}-subtleHover)`
+                expect(avatarCss).toContain(border)
+                expect(badgeCss.split(border)).toHaveLength(3)
+            }
+
             for (const extension of ['js', 'cjs']) {
                 const entry = await readFile(resolve(outputDirectory, `index.${extension}`), 'utf8')
                 expect(entry).toContain(`components/forms/legend/Legend.${extension}`)

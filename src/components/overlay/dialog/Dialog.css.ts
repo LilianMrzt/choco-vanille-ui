@@ -16,7 +16,7 @@ const content = style({
     maxHeight: 'calc(100% - 2rem)',
     overflow: 'hidden',
     borderRadius: vars.radius[8],
-    border: `1px solid ${vars.color.border.main}`,
+    border: `1px solid ${vars.color.border.muted}`,
     backgroundColor: vars.color.background,
     color: vars.color.text.primary,
     transform: 'translate(-50%, -50%)',

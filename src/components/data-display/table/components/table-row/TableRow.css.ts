@@ -6,7 +6,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const rowRecipe = recipe({
     base: {
-        borderBottom: `1px solid ${vars.color.border.main}`,
+        borderBottom: `1px solid ${vars.color.border.muted}`,
         transition: `background-color ${vars.duration.fast} ${vars.easing.standard}`,
     },
     variants: {

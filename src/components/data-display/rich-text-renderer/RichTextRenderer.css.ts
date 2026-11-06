@@ -44,7 +44,7 @@ globalStyle(`${root} a:hover`, {
 globalStyle(`${root} blockquote`, {
     marginInline: 0,
     paddingInlineStart: vars.space[12],
-    borderInlineStart: `3px solid ${vars.color.border.main}`,
+    borderInlineStart: `3px solid ${vars.color.border.muted}`,
     color: vars.color.surface.mutedForeground,
 })
 
