@@ -1,12 +1,15 @@
-import type { FC } from 'react'
+import type { Popover as BasePopover } from '@base-ui/react/popover'
 
-import type PopoverContent from '@components/overlay/popover/components/content/PopoverContent.tsx'
-import type PopoverItem from '@components/overlay/popover/components/item/PopoverItem.tsx'
-import type PopoverTrigger from '@components/overlay/popover/components/trigger/PopoverTrigger.tsx'
-import type { PopoverProps } from '@components/overlay/popover/types/Popover.props.ts'
+import type Popover from '@components/overlay/popover/Popover.tsx'
+import type { OverlayAlign, OverlayPosition, OverlaySide } from '@components/overlay/_shared/types'
 
-export type PopoverCompound = FC<PopoverProps> & {
-  Trigger: typeof PopoverTrigger;
-  Content: typeof PopoverContent;
-  Item: typeof PopoverItem;
-};
+/** Props for the Base UI popover root. */
+export type PopoverProps = BasePopover.Root.Props
+/** Side position relative to the trigger. */
+export type PopoverSide = OverlaySide
+/** Alignment relative to the trigger. */
+export type PopoverAlign = OverlayAlign
+/** Position combining side and alignment. */
+export type PopoverPosition = OverlayPosition
+/** Popover root and compound slots. */
+export type PopoverCompound = typeof Popover

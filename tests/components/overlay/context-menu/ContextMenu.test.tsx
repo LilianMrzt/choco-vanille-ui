@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { ContextMenu } from '@components/overlay/context-menu'
 
@@ -26,6 +26,24 @@ describe('ContextMenu', () => {
             expect(document.activeElement).not.toBe(screen.getByRole('menuitem', { name: 'Item' }))
         })
     }, 10000)
+
+    it('forwards cancelable open details and leaves the menu closed when canceled', async () => {
+        const user = userEvent.setup()
+        const onOpenChange = vi.fn<NonNullable<React.ComponentProps<typeof ContextMenu>['onOpenChange']>>(
+            (_open, details) => details.cancel(),
+        )
+
+        render(
+            <ContextMenu onOpenChange={onOpenChange}>
+                <ContextMenu.Trigger><div>Target</div></ContextMenu.Trigger>
+                <ContextMenu.Content><ContextMenu.Item label={'Item'} /></ContextMenu.Content>
+            </ContextMenu>,
+        )
+
+        await user.pointer({ keys: '[MouseRight]', target: screen.getByText('Target') })
+        expect(onOpenChange).toHaveBeenCalledWith(true, expect.objectContaining({ cancel: expect.any(Function) }))
+        expect(screen.queryByRole('menu')).toBeNull()
+    })
 
     it('does not add styles to the trigger wrapper', () => {
         render(

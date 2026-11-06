@@ -63,6 +63,23 @@ describe('Spinner', () => {
         expect(ref.current?.tagName.toLowerCase()).toBe('span')
     })
 
+    it('forwards native attributes while keeping variant props off the DOM', () => {
+        render(
+            <Spinner
+                aria-label={'Saving'}
+                color={'success'}
+                data-testid={'spinner'}
+                size={'lg'}
+                title={'Progress'}
+            />,
+        )
+
+        const spinner = screen.getByTestId('spinner')
+        expect(spinner.getAttribute('title')).toBe('Progress')
+        expect(spinner.getAttribute('color')).toBeNull()
+        expect(spinner.getAttribute('size')).toBeNull()
+    })
+
     it('sets its display name', () => {
         expect(Spinner.displayName).toBe('Spinner')
     })

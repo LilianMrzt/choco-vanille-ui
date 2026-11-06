@@ -1,5 +1,7 @@
+import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 
 import { Popover } from '@components/overlay/popover'
 import { Button } from '@components/actions/button'
@@ -58,6 +60,46 @@ describe('Popover', () => {
             )
 
             expect(screen.getByRole('dialog', { name: 'Dialog title' })).toBeTruthy()
+        })
+
+        it('forwards the content ref to the dialog and clears it on unmount', () => {
+            const ref = createRef<HTMLDivElement>()
+            const { unmount } = render(
+                <Popover defaultOpen>
+                    <Popover.Trigger><Button label={'Open'} /></Popover.Trigger>
+                    <Popover.Content ref={ref}>Content</Popover.Content>
+                </Popover>,
+            )
+
+            expect(ref.current).toBe(screen.getByRole('dialog', { name: 'Popover' }))
+            unmount()
+            expect(ref.current).toBeNull()
+        })
+
+        it('passes change details and honors cancellation of Escape', async () => {
+            const onOpenChange = vi.fn<NonNullable<React.ComponentProps<typeof Popover>['onOpenChange']>>((open, details) => {
+                if (!open) {
+                    details.cancel()
+                }
+            })
+            const user = userEvent.setup()
+
+            render(
+                <Popover onOpenChange={onOpenChange}>
+                    <Popover.Trigger>
+                        <Button label={'Open'} />
+                    </Popover.Trigger>
+                    <Popover.Content>
+                        <Popover.Item label={'Edit'} />
+                    </Popover.Content>
+                </Popover>,
+            )
+
+            await user.click(screen.getByRole('button', { name: 'Open' }))
+            await user.keyboard('{Escape}')
+
+            expect(onOpenChange).toHaveBeenLastCalledWith(false, expect.objectContaining({ reason: 'escape-key', isCanceled: true }))
+            expect(screen.getByRole('dialog')).toBeTruthy()
         })
     })
 })

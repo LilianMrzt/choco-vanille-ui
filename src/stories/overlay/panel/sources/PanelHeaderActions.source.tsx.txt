@@ -1,0 +1,12 @@
+import { Button, Panel } from '@choco-vanille/ui'
+
+<Panel>
+  <Panel.Trigger><Button color="primary" label="Open panel with actions" variant="outlined" /></Panel.Trigger>
+  <Panel.Content>
+    <Panel.Header
+      actions={<Button color="primary" label="Save" size="sm" variant="ghost" />}
+      description="Additional context is truncated when it exceeds the available header width."
+      title="Panel settings with a long title that stays on one line"
+    />
+  </Panel.Content>
+</Panel>

@@ -1,0 +1,26 @@
+import { useState } from 'react'
+import { Button, DropdownMenu } from '@choco-vanille/ui'
+
+function Example() {
+  const [open, setOpen] = useState({{open}})
+  return (
+    <DropdownMenu open={open} onOpenChange={setOpen} modal={{{modal}}}>
+      <DropdownMenu.Trigger><Button label={{{triggerLabel}}} /></DropdownMenu.Trigger>
+      <DropdownMenu.Content side={{{side}}} align={{{align}}}>
+        <DropdownMenu.Group>
+          <DropdownMenu.Label label="Actions" />
+          <DropdownMenu.Item label={{{itemLabel}}} destructive={{{destructive}}} />
+          <DropdownMenu.Item label="Unavailable" disabled />
+        </DropdownMenu.Group>{{checkbox}}
+        <DropdownMenu.Separator />
+        <DropdownMenu.RadioGroup defaultValue="top">
+          <DropdownMenu.Label label="Position" />
+          <DropdownMenu.RadioItem label="Top" value="top" />
+          <DropdownMenu.RadioItem label="Bottom" value="bottom" />
+        </DropdownMenu.RadioGroup>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Sub><DropdownMenu.SubTrigger label="More" /><DropdownMenu.SubContent><DropdownMenu.Item label="Details" /></DropdownMenu.SubContent></DropdownMenu.Sub>
+      </DropdownMenu.Content>
+    </DropdownMenu>
+  )
+}

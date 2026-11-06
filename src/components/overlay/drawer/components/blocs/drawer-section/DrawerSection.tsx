@@ -3,7 +3,7 @@ import { memo, type FC, useId } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { Box } from '@components/layout/box'
-import type { DrawerSectionProps } from '@components/overlay/drawer/components/blocs/drawer-section/types/DrawerSection.props.ts'
+import type { DrawerSectionProps } from '@components/overlay/drawer/components/blocs/drawer-section/types'
 
 /**
  * A grouping section rendered inside a `Drawer`.

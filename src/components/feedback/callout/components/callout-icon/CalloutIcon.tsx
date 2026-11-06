@@ -1,6 +1,6 @@
 import { Icon } from '@components/foundation/icon'
-import { CALLOUT_ICON_STYLES } from '@components/feedback/callout/components/callout-icon/styles/CalloutIcon.css.ts'
-import type { CalloutIconProps } from '@components/feedback/callout/components/callout-icon/types/CalloutIcon.props.ts'
+import { CALLOUT_ICON_STYLES } from '@components/feedback/callout/components/callout-icon/CalloutIcon.css.ts'
+import type { CalloutIconProps } from '@components/feedback/callout/components/callout-icon/types'
 import { VARIANT_TO_COLOR, VARIANT_TO_ICON } from '@components/feedback/callout/constants'
 import { CalloutContext } from '@components/feedback/callout/context/Callout.context.ts'
 import { cn } from '@utils/cn.ts'
@@ -10,6 +10,13 @@ import { memo, useContext, type FC } from 'react'
  * Icon slot for `Callout`. Reads `variant` from context to resolve the
  * default icon and color. Override both with explicit `icon` and `color`
  * props.
+ * @param props - Icon options.
+ * @param props.icon - Custom icon; defaults to the current variant icon.
+ * @param props.color - Custom color; defaults to the current variant color.
+ * @param props.className - Additional class.
+ * @returns A callout icon.
+ * @example
+ * <Callout.Icon />
  */
 const CalloutIcon: FC<CalloutIconProps> = memo(({
     icon,

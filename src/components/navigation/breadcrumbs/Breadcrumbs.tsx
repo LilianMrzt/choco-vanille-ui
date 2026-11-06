@@ -3,20 +3,20 @@ import {
     isValidElement,
     memo,
     type ReactElement,
+    type FC,
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import BreadcrumbsItem from '@components/navigation/breadcrumbs/components/breadcrumbs-item/BreadcrumbsItem.tsx'
-import type { BreadcrumbsItemProps } from '@components/navigation/breadcrumbs/components/breadcrumbs-item/types/BreadcrumbsItem.props.ts'
+import type { BreadcrumbsItemProps } from '@components/navigation/breadcrumbs/components/breadcrumbs-item/types'
 import {
     BREADCRUMBS_SEPARATOR_SYMBOLS,
     BREADCRUMBS_SEPARATORS,
 } from '@components/navigation/breadcrumbs/constants'
-import { BREADCRUMBS_STYLES } from '@components/navigation/breadcrumbs/styles/Breadcrumbs.css.ts'
-import type { BreadcrumbsCompound } from '@components/navigation/breadcrumbs/types/BreadcrumbsCompound.ts'
-import type { BreadcrumbsProps } from '@components/navigation/breadcrumbs/types/Breadcrumbs.props.ts'
+import { BREADCRUMBS_STYLES } from '@components/navigation/breadcrumbs/Breadcrumbs.css.ts'
+import type { BreadcrumbsProps } from '@components/navigation/breadcrumbs/types'
 
 /**
  * Breadcrumb trail rendered as a `<nav>` with an ordered list. Each child
@@ -25,8 +25,19 @@ import type { BreadcrumbsProps } from '@components/navigation/breadcrumbs/types/
  * `aria-current="page"`.
  *
  * Compound slot: `Breadcrumbs.Item`.
+ * Native attributes and ref target the navigation landmark.
+ * @param props - Navigation attributes and breadcrumb options.
+ * @param props["aria-label"] - Accessible landmark name.
+ * @param props.children - Ordered breadcrumb items.
+ * @param props.color - Theme color for links.
+ * @param props.separator - Decorative separator; defaults to `chevron`.
+ * @param props.className - Additional navigation class.
+ * @param props.ref - Ref to the navigation element.
+ * @returns The breadcrumb landmark.
+ * @example
+ * <Breadcrumbs aria-label="Breadcrumb"><Breadcrumbs.Item label="Home" /></Breadcrumbs>
  */
-const Breadcrumbs = memo(({
+const BreadcrumbsRoot: FC<BreadcrumbsProps> = memo(({
     'aria-label': ariaLabel,
     children,
     color,
@@ -87,9 +98,15 @@ const Breadcrumbs = memo(({
             </ol>
         </nav>
     )
-}) as unknown as BreadcrumbsCompound
+})
 
-Breadcrumbs.displayName = 'Breadcrumbs'
-Breadcrumbs.Item = BreadcrumbsItem
+BreadcrumbsRoot.displayName = 'Breadcrumbs'
+
+/**
+ * Breadcrumb navigation with a namespaced item slot.
+ * @example
+ * <Breadcrumbs aria-label="Breadcrumb"><Breadcrumbs.Item label="Home" /></Breadcrumbs>
+ */
+const Breadcrumbs = Object.assign(BreadcrumbsRoot, { Item: BreadcrumbsItem })
 
 export default Breadcrumbs

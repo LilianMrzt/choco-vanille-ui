@@ -139,6 +139,19 @@ describe('Pagination', () => {
     })
 
     describe('siblingCount and boundaryCount', () => {
+        it('rejects non-finite display counts', () => {
+            expect(() => render(<Pagination {...defaultProps} siblingCount={Infinity} />)).toThrow(RangeError)
+            expect(() => render(<Pagination {...defaultProps} boundaryCount={NaN} />)).toThrow(RangeError)
+        })
+
+        it('bounds large display counts to the available pages', () => {
+            render(<Pagination {...defaultProps} totalPages={3} currentPage={2} siblingCount={1e100} boundaryCount={1e100} />)
+
+            expect(screen.getByRole('button', { name: '1' })).toBeTruthy()
+            expect(screen.getByRole('button', { name: '2' })).toBeTruthy()
+            expect(screen.getByRole('button', { name: '3' })).toBeTruthy()
+        })
+
         it('renders fewer sibling pages with siblingCount=0', () => {
             const { getAllByRole: getAll1 } = render(
                 <Pagination {...defaultProps} currentPage={5} siblingCount={0} />,

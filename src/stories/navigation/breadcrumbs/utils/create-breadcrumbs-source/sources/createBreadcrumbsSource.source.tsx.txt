@@ -1,0 +1,7 @@
+import { Breadcrumbs } from '@choco-vanille/ui'
+
+<Breadcrumbs aria-label={{{label}}}{{color}}{{separator}}>
+  <Breadcrumbs.Item label="Home" href="/" />
+  <Breadcrumbs.Item label="Products" href="/products" />
+  <Breadcrumbs.Item label={{{currentLabel}}} />
+</Breadcrumbs>

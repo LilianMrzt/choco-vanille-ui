@@ -2,13 +2,13 @@ import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/styles/DropdownMenuSubTrigger.css.ts'
+import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.css.ts'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
-import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types/DropdownMenuSubTrigger.props.ts'
+import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types'
 
 /**
   * The item that opens the nested sub-menu on hover/focus.

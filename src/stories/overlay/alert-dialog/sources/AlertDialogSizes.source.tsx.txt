@@ -1,0 +1,10 @@
+import { AlertDialog, Button, Flex } from '@choco-vanille/ui'
+
+<Flex flexWrap="wrap" gap={12}>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="sm" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="sm"><AlertDialog.Header title="SM alert" /><AlertDialog.Body>Size: sm</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="md" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="md"><AlertDialog.Header title="MD alert" /><AlertDialog.Body>Size: md</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="lg" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="lg"><AlertDialog.Header title="LG alert" /><AlertDialog.Body>Size: lg</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="xl" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="xl"><AlertDialog.Header title="XL alert" /><AlertDialog.Body>Size: xl</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="2xl" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="2xl"><AlertDialog.Header title="2XL alert" /><AlertDialog.Body>Size: 2xl</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+  <AlertDialog><AlertDialog.Trigger><Button color="primary" label="full" variant="outlined" /></AlertDialog.Trigger><AlertDialog.Content size="full"><AlertDialog.Header title="FULL alert" /><AlertDialog.Body>Size: full</AlertDialog.Body></AlertDialog.Content></AlertDialog>
+</Flex>

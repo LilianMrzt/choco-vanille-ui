@@ -1,7 +1,7 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC } from 'react'
 
-import type { CommandTriggerProps } from '@components/overlay/command/components/command-trigger/types/CommandTrigger.props.ts'
+import type { CommandTriggerProps } from '@components/overlay/command/components/command-trigger/types'
 
 /**
  * The element that opens the command palette.

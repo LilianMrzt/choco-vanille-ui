@@ -1,8 +1,8 @@
 import { Separator as BaseSeparator } from '@base-ui/react/separator'
 import { memo, type FC } from 'react'
 
-import { BOTTOM_SHEET_SEPARATOR_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-separator/styles/BottomSheetSeparator.css.ts'
-import type { BottomSheetSeparatorProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-separator/types/BottomSheetSeparator.props.ts'
+import { BOTTOM_SHEET_SEPARATOR_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-separator/BottomSheetSeparator.css.ts'
+import type { BottomSheetSeparatorProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-separator/types'
 import { cn } from '@utils/cn.ts'
 
 /** A thin horizontal rule dividing groups of rows in a bottom sheet. */

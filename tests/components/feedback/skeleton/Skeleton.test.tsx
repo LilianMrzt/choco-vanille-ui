@@ -76,6 +76,15 @@ describe('Skeleton', () => {
             expect(element.style.height).toBe('2rem')
             expect(element.style.opacity).toBe('0.5')
         })
+
+        it('lets consumer styles override dimension props', () => {
+            const { container } = render(
+                <Skeleton width={'10rem'} height={'2rem'} style={{ width: '5rem', height: '1rem' }} />,
+            )
+            const element = getFirstChild(container)
+            expect(element.style.width).toBe('5rem')
+            expect(element.style.height).toBe('1rem')
+        })
     })
 
     describe('ref forwarding', () => {

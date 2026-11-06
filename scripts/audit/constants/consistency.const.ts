@@ -94,7 +94,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'variant',
     source: {
       kind: 'type',
-      file: 'src/components/feedback/callout/types/Callout.types.ts',
+      file: 'src/components/feedback/callout/types/index.ts',
       symbol: 'CalloutVariant',
     },
     expected: ['info', 'success', 'warning', 'error'],
@@ -104,7 +104,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'variant',
     source: {
       kind: 'recipe',
-      file: 'src/components/feedback/toast/styles/Toast.css.ts',
+      file: 'src/components/feedback/toast/Toast.css.ts',
       axis: 'variant',
     },
     expected: ['info', 'success', 'warning', 'error'],
@@ -114,7 +114,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'variant',
     source: {
       kind: 'recipe',
-      file: 'src/components/feedback/skeleton/styles/Skeleton.css.ts',
+      file: 'src/components/feedback/skeleton/Skeleton.css.ts',
       axis: 'variant',
     },
     expected: ['circular', 'rectangular', 'rounded'],
@@ -233,7 +233,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'size',
     source: {
       kind: 'type',
-      file: 'src/components/feedback/progress/types/Progress.types.ts',
+      file: 'src/components/feedback/progress/types/index.ts',
       symbol: 'ProgressSize',
     },
     expected: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -245,7 +245,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'size',
     source: {
       kind: 'type',
-      file: 'src/components/feedback/progress/types/Progress.types.ts',
+      file: 'src/components/feedback/progress/types/index.ts',
       symbol: 'ProgressSize',
     },
     expected: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -258,7 +258,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     axis: 'size',
     source: {
       kind: 'const',
-      file: 'src/components/overlay/drawer/constants/drawerSizes.const.ts',
+      file: 'src/components/overlay/drawer/constants/index.ts',
       symbol: 'DRAWER_SIZES',
     },
     expected: ['sm', 'md', 'lg', 'xl', '2xl', 'full'],
@@ -323,7 +323,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
             ? 'src/components/data-display/avatar/constants/index.ts'
             : component === 'Badge'
               ? 'src/components/data-display/badge/constants/index.ts'
-              : 'src/components/feedback/progress/constants/progressColors.const.ts',
+              : 'src/components/feedback/progress/constants/index.ts',
         symbol:
           component === 'Avatar'
             ? 'AVATAR_COLORS'

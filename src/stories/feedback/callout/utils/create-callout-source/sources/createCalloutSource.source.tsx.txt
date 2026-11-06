@@ -1,0 +1,6 @@
+import { Callout } from '@choco-vanille/ui'
+
+// Supply InfoIcon and CloseIcon from your icon library as needed.
+<Callout variant={{{variant}}} role={{{role}}}>
+{{children}}
+</Callout>

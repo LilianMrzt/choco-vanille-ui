@@ -1,0 +1,18 @@
+{{stateImport}}import { AlertDialog, Button{{typographyImport}} } from '@choco-vanille/ui'
+
+const Example = () => {
+{{state}}  return (
+    <AlertDialog{{rootProps}}>
+      <AlertDialog.Trigger>
+        <Button color="destructive" label={{{triggerLabel}}} variant="contained" />
+      </AlertDialog.Trigger>
+      <AlertDialog.Content{{contentProps}}>
+        <AlertDialog.Header{{headerProps}} />{{body}}
+        <AlertDialog.Footer>
+          <AlertDialog.Cancel label={{{cancelLabel}}} />
+          <AlertDialog.Action label={{{actionLabel}}} />
+        </AlertDialog.Footer>
+      </AlertDialog.Content>
+    </AlertDialog>
+  )
+}

@@ -1,8 +1,8 @@
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 import { memo, type FC } from 'react'
 
-import { BOTTOM_SHEET_STYLES } from '@components/overlay/bottom-sheet/styles/BottomSheet.css.ts'
-import type { BottomSheetContentProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-content/types/BottomSheetContent.props.ts'
+import { BOTTOM_SHEET_STYLES } from '@components/overlay/bottom-sheet/BottomSheet.css.ts'
+import type { BottomSheetContentProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-content/types'
 import { cn } from '@utils/cn.ts'
 
 /**

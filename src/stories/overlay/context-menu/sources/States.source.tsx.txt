@@ -1,0 +1,12 @@
+import { ContextMenu } from '@choco-vanille/ui'
+
+<div style={{ display: 'grid', gap: '1rem' }}>
+  <ContextMenu disabled>
+    <ContextMenu.Trigger><div style={{ padding: '2rem', border: '1px dashed currentColor' }}>Disabled context menu</div></ContextMenu.Trigger>
+    <ContextMenu.Content><ContextMenu.Item label="Edit" /></ContextMenu.Content>
+  </ContextMenu>
+  <ContextMenu>
+    <ContextMenu.Trigger><div style={{ padding: '2rem', border: '1px dashed currentColor' }}>Disabled menu item</div></ContextMenu.Trigger>
+    <ContextMenu.Content><ContextMenu.Item label="Edit" /><ContextMenu.Item label="Unavailable" disabled /></ContextMenu.Content>
+  </ContextMenu>
+</div>

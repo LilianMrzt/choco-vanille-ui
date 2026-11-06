@@ -1,5 +1,15 @@
 export type PaginationPageItem = number | 'ellipsis'
 
+/**
+ * Builds the visible, ordered page numbers and ellipses.
+ * @param totalPages - Total number of pages.
+ * @param currentPage - Current page number.
+ * @param siblingCount - Pages shown on either side of the current page.
+ * @param boundaryCount - Pages shown at each boundary.
+ * @returns Ordered page numbers and ellipsis markers.
+ * @example
+ * getPaginationPageItems(10, 5, 1, 1)
+ */
 export const getPaginationPageItems = (
     totalPages: number,
     currentPage: number,

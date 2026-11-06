@@ -1,9 +1,9 @@
 ﻿import { memo, type FC, useMemo } from 'react'
 
 import { Box } from '@components/layout/box'
-import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
-import { DRAWER_INLINE_STYLES } from '@components/overlay/drawer/components/variants/drawer-inline/styles/DrawerInline.css.ts'
-import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
+import { DRAWER_STYLES } from '@components/overlay/drawer/Drawer.css.ts'
+import { DRAWER_INLINE_STYLES } from '@components/overlay/drawer/components/variants/drawer-inline/DrawerInline.css.ts'
+import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types'
 import { cn } from '@utils/cn.ts'
 
 /**

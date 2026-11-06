@@ -5,8 +5,7 @@ import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 import TabsContent from '@components/navigation/tabs/components/tabs-content/TabsContent.tsx'
 import TabsList from '@components/navigation/tabs/components/tabs-list/TabsList.tsx'
 import TabsTrigger from '@components/navigation/tabs/components/tabs-trigger/TabsTrigger.tsx'
-import type { TabsCompound } from '@components/navigation/tabs/types'
-import type { TabsProps } from '@components/navigation/tabs/types/Tabs.props.ts'
+import type { TabsProps } from '@components/navigation/tabs/types'
 
 /**
  * A styled tab interface built on top of `@base-ui/react/tabs`.
@@ -14,6 +13,8 @@ import type { TabsProps } from '@components/navigation/tabs/types/Tabs.props.ts'
  * Composes `Tabs`, `Tabs.List`, `Tabs.Trigger`, and `Tabs.Content`.
  * Supports controlled (`value` + `onValueChange`) and uncontrolled
  * (`defaultValue`) modes, disabled triggers, and keyboard navigation.
+ * @param props - Base UI tab root props.
+ * @returns A tab root.
  *
  * @example
  * ```tsx
@@ -27,13 +28,13 @@ import type { TabsProps } from '@components/navigation/tabs/types/Tabs.props.ts'
  * </Tabs>
  * ```
  */
-const Tabs = memo<TabsProps>((props) => (
+const TabsRoot = memo<TabsProps>((props) => (
     <BaseTabs.Root {...props} />
-)) as unknown as TabsCompound
+))
 
-Tabs.displayName = 'Tabs'
-Tabs.List = TabsList
-Tabs.Trigger = TabsTrigger
-Tabs.Content = TabsContent
+TabsRoot.displayName = 'Tabs'
+
+/** Tab root with list, trigger and panel slots. */
+const Tabs = Object.assign(TabsRoot, { List: TabsList, Trigger: TabsTrigger, Content: TabsContent })
 
 export default Tabs

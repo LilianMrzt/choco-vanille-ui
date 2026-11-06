@@ -1,25 +1,7 @@
-import type { FC } from 'react'
+import type { Dialog } from '@base-ui/react/dialog'
 
-import type DialogBody from '@components/overlay/dialog/components/dialog-body/DialogBody.tsx'
-import type DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
-import type DialogContent from '@components/overlay/dialog/components/dialog-content/DialogContent.tsx'
-import type DialogDescription from '@components/overlay/dialog/components/dialog-description/DialogDescription.tsx'
-import type DialogFooter from '@components/overlay/dialog/components/dialog-footer/DialogFooter.tsx'
-import type DialogHeader from '@components/overlay/dialog/components/dialog-header/DialogHeader.tsx'
-import type DialogTitle from '@components/overlay/dialog/components/dialog-title/DialogTitle.tsx'
-import type DialogTrigger from '@components/overlay/dialog/components/dialog-trigger/DialogTrigger.tsx'
-import type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.ts'
+/** Props for the root `Dialog` wrapper. */
+export type DialogProps = Readonly<Dialog.Root.Props>
 
-export type DialogCompound = FC<DialogProps> & {
-    Trigger: typeof DialogTrigger
-    Content: typeof DialogContent
-    Header: typeof DialogHeader
-    Body: typeof DialogBody
-    Footer: typeof DialogFooter
-    Title: typeof DialogTitle
-    Description: typeof DialogDescription
-    Close: typeof DialogClose
-}
-
-export type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.ts'
-export type { DialogSize } from '@components/overlay/dialog/types/Dialog.types.ts'
+/** Responsive width presets for dialog content. */
+export type DialogSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'

@@ -1,233 +1,72 @@
-import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, userEvent, within, waitFor } from 'storybook/test'
+import { useArgs } from 'storybook/preview-api'
 
-import { Popover, type PopoverContentProps } from '@/components/overlay/popover'
-import { Button } from '@/components/actions/button'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import { md } from '@stories/_shared/utils/markdown'
-import { storySource } from '@stories/_shared/utils/storySource'
+import { Popover } from '@components/overlay/popover'
+import PopoverDocsPage from '@stories/overlay/popover/components/popover-docs-page/PopoverDocsPage'
+import PopoverExample from '@stories/overlay/popover/components/popover-example/PopoverExample'
+import { ARG_TYPES, DEFAULT_ARGS, type PopoverStoryArgs } from '@stories/overlay/popover/constants'
+import { createPopoverSource } from '@stories/overlay/popover/utils/create-popover-source/createPopoverSource.utils'
 
-type PopoverPlaygroundArgs = ComponentProps<typeof Popover> & {
-  triggerLabel?: string;
-  contentWidth?: string;
-  contentPadding?: PopoverContentProps['padding'];
-  itemLabel?: string;
-  itemDisabled?: boolean;
-  itemDestructive?: boolean;
-};
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute            | Required | Type      | Notes                                                                                                             |
-| --------------------------- | -------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
-| Trigger (focusable element) | ✅ Yes   | —         | Pass your own \`Button\` or \`IconButton\` as \`children\` of \`Popover.Trigger\`.                                        |
-| \`open\`                      | No       | \`boolean\` | Controlled open state; pair with \`onOpenChange\`.                                                                  |
-| \`defaultOpen\`               | No       | \`boolean\` | Uncontrolled initial open state.                                                                                  |
-| \`modal\`                     | No       | \`boolean\` | @default \`true\`. When \`true\`, interaction outside the popover is blocked and the rest of the page is aria-hidden. |
-| \`closeOnClick\` on \`Popover.Item\` | No       | \`boolean\` | @default \`true\`. Closes the surrounding popover after activation. |
-
-- The popover renders with \`role="dialog"\` and traps focus when modal.
-- Keyboard navigation: **Enter** / **Space** to open, **Escape** to close, **Tab** cycles inside the content.
-
-**Sub-components**
-
-| Sub-component     | Description                                                                                              |
-| ----------------- | -------------------------------------------------------------------------------------------------------- |
-| \`Popover\`         | Root context provider — wraps the entire popover.                                                        |
-| \`Popover.Trigger\` | The element that opens the popover on click. Pass your own button as \`children\`.                         |
-| \`Popover.Content\` | The floating panel containing the popover content. Handles positioning, animations and focus management. |
-| \`Popover.Item\`    | An actionable item with optional icons, shortcut hint, and destructive styling.                         |
-`
-
-const PopoverDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const meta: Meta<PopoverPlaygroundArgs> = {
+const meta = {
     title: 'Overlay/Popover',
     component: Popover,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
+            description: { component: 'A floating panel composed from a trigger, content and optional action items.' },
             page: PopoverDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A composable popover overlay built on top of \`@base-ui/react/popover\`.
-Use it to display rich content, forms, or action items attached to a trigger element.
-
-**Usage**
-
-~~~tsx
-<Popover>
-  <Popover.Trigger>
-    <Button label="Open popover" />
-  </Popover.Trigger>
-
-  <Popover.Content>
-    <Popover.Item label="Edit" startIcon={SearchIcon} shortcut="⌘E" />
-    <Popover.Item label="Delete" startIcon={TrashIcon} destructive />
-  </Popover.Content>
-</Popover>
-~~~
-
-        `,
-            },
+            source: { type: 'dynamic', transform: createPopoverSource },
         },
     },
-    argTypes: {
-        open: { control: 'boolean' },
-        defaultOpen: { control: 'boolean' },
-        modal: { control: 'boolean' },
-        triggerLabel: {
-            control: 'text',
-            table: { category: 'Compound: Trigger' },
-        },
-        contentWidth: {
-            control: 'text',
-            table: { category: 'Compound: Content' },
-        },
-        contentPadding: {
-            control: 'select',
-            options: [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128],
-            table: { category: 'Compound: Content' },
-        },
-        itemLabel: {
-            control: 'text',
-            table: { category: 'Compound: Item' },
-        },
-        itemDisabled: {
-            control: 'boolean',
-            table: { category: 'Compound: Item' },
-        },
-        itemDestructive: {
-            control: 'boolean',
-            table: { category: 'Compound: Item' },
-        },
-    },
-    args: {
-        modal: true,
-        defaultOpen: false,
-        triggerLabel: 'Open popover',
-        contentWidth: '20rem',
-        contentPadding: 12,
-        itemLabel: 'Edit',
-        itemDisabled: false,
-        itemDestructive: false,
-    },
-}
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<PopoverStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<PopoverStoryArgs>
 
-export const Playground: Story = {
+/**
+ * Synchronizes popover state with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @returns The controlled popover.
+ * @example
+ * <ControlledPopover />
+ */
+const ControlledPopover = () => {
+    const [args, updateArgs] = useArgs<PopoverStoryArgs>()
+
+    /**
+     * Forwards Base UI event details and applies uncanceled changes.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param open - Requested open state.
+     * @param details - Base UI change details.
+     * @returns Nothing.
+     * @example
+     * handleOpenChange(true, details)
+     */
+    const handleOpenChange: NonNullable<PopoverStoryArgs['onOpenChange']> = (open, details) => {
+        args.onOpenChange?.(open, details)
+        if (!details.isCanceled) {
+            updateArgs({ open })
+        }
+    }
+
+    return (
+        <PopoverExample
+            {...args}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
+export const Playground: Story = { render: ControlledPopover }
+
+export const Uncontrolled: Story = {
+    args: { open: undefined, defaultOpen: false },
     parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — use the Controls panel to toggle open behaviour and configure the trigger, content width, and item state.',
-            },
-            ...storySource(/* language=tsx */ `
-const [open, setOpen] = useState(false)
-
-<Popover open={open} onOpenChange={setOpen} modal>
-  <Popover.Trigger>
-    <Button label="Open popover" />
-  </Popover.Trigger>
-
-  <Popover.Content width={'20rem'} padding={'12'}>
-    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-      Popover title
-    </h4>
-    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surface-mutedForeground)' }}>
-      You can put any content here: text, images, forms, or action buttons.
-    </p>
-    <Popover.Item label="Edit" startIcon={SearchIcon} shortcut="⌘E" />
-    <Popover.Item label="Delete" startIcon={TrashIcon} destructive />
-  </Popover.Content>
-</Popover>`),
-        },
+        docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } },
     },
-    render: ({
-        triggerLabel,
-        contentWidth,
-        contentPadding,
-        itemLabel,
-        itemDisabled,
-        itemDestructive,
-        ...args
-    }) => {
-        const [open, setOpen] = useState(args.open ?? args.defaultOpen ?? false)
-        return (
-            <Popover
-                {...args}
-                open={open}
-                onOpenChange={setOpen}
-            >
-                <Popover.Trigger>
-                    <Button label={triggerLabel ?? 'Open popover'} />
-                </Popover.Trigger>
-
-                <Popover.Content
-                    width={contentWidth || '20rem'}
-                    padding={contentPadding}
-                >
-                    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-                        Popover title
-                    </h4>
-                    <p
-                        style={{
-                            margin: '0.5rem 0 0',
-                            fontSize: '0.875rem',
-                            color: 'var(--color-surface-mutedForeground)',
-                        }}
-                    >
-                        You can put any content here: text, images, forms, or action
-                        buttons.
-                    </p>
-                    <Popover.Item
-                        label={itemLabel ?? 'Edit'}
-                        startIcon={SearchIcon}
-                        shortcut={'⌘E'}
-                        disabled={itemDisabled}
-                        destructive={itemDestructive}
-                    />
-                    <Popover.Item
-                        label={'Delete'}
-                        startIcon={TrashIcon}
-                        destructive
-                    />
-                </Popover.Content>
-            </Popover>
-        )
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const trigger = canvas.getByRole('button', { name: 'Open popover' })
-        await expect(trigger).toBeInTheDocument()
-        await userEvent.click(trigger)
-        await waitFor(() =>
-            expect(document.querySelector('[role="dialog"]')).toBeTruthy(),
-        )
-    },
+    render: PopoverExample,
 }

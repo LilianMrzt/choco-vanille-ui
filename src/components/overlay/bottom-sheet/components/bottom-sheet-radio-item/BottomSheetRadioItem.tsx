@@ -3,9 +3,8 @@ import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
-import { BOTTOM_SHEET_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/_shared/styles/BottomSheetItem.css.ts'
-import { BOTTOM_SHEET_RADIO_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/styles/BottomSheetRadioItem.css.ts'
-import type { BottomSheetRadioItemProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/types/BottomSheetRadioItem.props.ts'
+import { BOTTOM_SHEET_RADIO_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/BottomSheetRadioItem.css.ts'
+import type { BottomSheetRadioItemProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/types'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
@@ -21,14 +20,14 @@ const BottomSheetRadioItem: FC<BottomSheetRadioItemProps> = memo(({
 }) => (
     <Radio.Root
         className={cn(
-            BOTTOM_SHEET_ITEM_STYLES.root,
+            BOTTOM_SHEET_RADIO_ITEM_STYLES.item.root,
             BOTTOM_SHEET_RADIO_ITEM_STYLES.root,
             className,
         )}
         {...props}
     >
         {startIcon && (
-            <span className={BOTTOM_SHEET_ITEM_STYLES.icon}>
+            <span className={BOTTOM_SHEET_RADIO_ITEM_STYLES.item.icon}>
                 <Icon
                     icon={startIcon}
                     size={'sm'}
@@ -39,13 +38,13 @@ const BottomSheetRadioItem: FC<BottomSheetRadioItemProps> = memo(({
             as={'span'}
             variant={'span'}
             maxLines={1}
-            className={BOTTOM_SHEET_ITEM_STYLES.label}
+            className={BOTTOM_SHEET_RADIO_ITEM_STYLES.item.label}
         >
             {label}
         </Typography>
         <Radio.Indicator
             className={cn(
-                BOTTOM_SHEET_ITEM_STYLES.icon,
+                BOTTOM_SHEET_RADIO_ITEM_STYLES.item.icon,
                 BOTTOM_SHEET_RADIO_ITEM_STYLES.indicator,
             )}
         >

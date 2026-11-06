@@ -4,8 +4,8 @@ import type * as React from 'react'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { BottomNavigationContext } from '@components/navigation/bottom-navigation/context/BottomNavigation.context.ts'
-import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/styles/BottomNavigation.css.ts'
-import type { BottomNavigationItemProps } from '@components/navigation/bottom-navigation/components/bottom-navigation-item/types/BottomNavigationItem.props.ts'
+import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/BottomNavigation.css.ts'
+import type { BottomNavigationItemProps } from '@components/navigation/bottom-navigation/components/bottom-navigation-item/types'
 import { cn } from '@utils/cn.ts'
 
 /**

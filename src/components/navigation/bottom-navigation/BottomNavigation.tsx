@@ -3,9 +3,8 @@ import { memo, useCallback, useMemo, useState } from 'react'
 import BottomNavigationItem from '@components/navigation/bottom-navigation/components/bottom-navigation-item/BottomNavigationItem.tsx'
 import BottomNavigationList from '@components/navigation/bottom-navigation/components/bottom-navigation-list/BottomNavigationList.tsx'
 import { BottomNavigationContext } from '@components/navigation/bottom-navigation/context/BottomNavigation.context.ts'
-import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/styles/BottomNavigation.css.ts'
-import type { BottomNavigationCompound } from '@components/navigation/bottom-navigation/types/BottomNavigationCompound.ts'
-import type { BottomNavigationProps } from '@components/navigation/bottom-navigation/types/BottomNavigation.props.ts'
+import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/BottomNavigation.css.ts'
+import type { BottomNavigationProps } from '@components/navigation/bottom-navigation/types'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -15,7 +14,7 @@ import { cn } from '@utils/cn.ts'
  * `BottomNavigation.Item`. Items can be links or native buttons and selection
  * supports both controlled and uncontrolled state.
  */
-const BottomNavigation = memo<BottomNavigationProps>(
+const BottomNavigationRoot = memo<BottomNavigationProps>(
     ({
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
@@ -66,10 +65,14 @@ const BottomNavigation = memo<BottomNavigationProps>(
             </BottomNavigationContext.Provider>
         )
     },
-) as unknown as BottomNavigationCompound
+)
 
-BottomNavigation.displayName = 'BottomNavigation'
-BottomNavigation.List = BottomNavigationList
-BottomNavigation.Item = BottomNavigationItem
+BottomNavigationRoot.displayName = 'BottomNavigation'
+
+/** Navigation landmark with list and item slots. */
+const BottomNavigation = Object.assign(BottomNavigationRoot, {
+    List: BottomNavigationList,
+    Item: BottomNavigationItem,
+})
 
 export default BottomNavigation

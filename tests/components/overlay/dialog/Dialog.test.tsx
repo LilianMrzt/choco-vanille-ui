@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Button } from '@components/actions/button'
-import { Dialog } from '@components/overlay/dialog/Dialog.tsx'
+import { Dialog } from '@components/overlay/dialog'
 
 describe('Dialog', () => {
     describe('compound components', () => {
@@ -59,6 +59,23 @@ describe('Dialog', () => {
             )
 
             expect(screen.queryByLabelText('Close dialog')).toBeNull()
+        })
+
+        it('renders title and description slots without nested headings or paragraphs', () => {
+            render(
+                <Dialog defaultOpen>
+                    <Dialog.Content>
+                        <Dialog.Title>Settings</Dialog.Title>
+                        <Dialog.Description>Manage settings.</Dialog.Description>
+                    </Dialog.Content>
+                </Dialog>,
+            )
+
+            const title = screen.getByRole('heading', { name: 'Settings' })
+            const description = screen.getByText('Manage settings.')
+            expect(title.querySelector('h2')).toBeNull()
+            expect(description.closest('p')?.querySelector('p')).toBeNull()
+            expect(screen.getByRole('dialog').getAttribute('aria-describedby')).toBe(description.closest('p')?.id)
         })
     })
 

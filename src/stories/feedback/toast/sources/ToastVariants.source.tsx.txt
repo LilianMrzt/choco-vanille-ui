@@ -1,0 +1,7 @@
+import { Toast } from '@choco-vanille/ui'
+
+<div style={{ display: 'grid', gap: '0.75rem', width: '32rem', maxWidth: '100%' }}>
+  {(['info', 'success', 'warning', 'error'] as const).map((variant) => (
+    <Toast key={variant} variant={variant} title={variant} description="A notification message." />
+  ))}
+</div>

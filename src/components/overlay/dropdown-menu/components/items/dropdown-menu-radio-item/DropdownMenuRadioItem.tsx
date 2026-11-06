@@ -6,7 +6,7 @@ import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/com
 import { Box } from '@components/layout/box'
 import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/styles/RadioItem.css.ts'
 import { Typography } from '@components/foundation/typography'
-import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types/DropdownMenuRadioItem.props.ts'
+import type { DropdownMenuRadioItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-radio-item/types'
 
 const DropdownMenuRadioItem: FC<DropdownMenuRadioItemProps> = memo(({
     className,

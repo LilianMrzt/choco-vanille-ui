@@ -1,0 +1,4 @@
+
+        <Drawer.Footer justifyContent="start">
+          <Drawer.Section title="Actions"><Drawer.ActionItem label="Sign out" startIcon={CloseIcon} color="destructive" hideTooltip={{{actionHideTooltip}}} /></Drawer.Section>
+        </Drawer.Footer>

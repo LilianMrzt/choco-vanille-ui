@@ -1,339 +1,24 @@
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/drawer/constants'
+import sourceSizes from '@stories/overlay/drawer/sources/Sizes.source.tsx.txt?raw'
+import DrawerDocsPage from '@stories/overlay/drawer/components/drawer-docs-page/DrawerDocsPage'
+import DrawerUncontrolled from '@stories/overlay/drawer/components/drawer-uncontrolled/DrawerUncontrolled'
+import uncontrolledSource from '@stories/overlay/drawer/sources/Uncontrolled.source.tsx.txt?raw'
+import DrawerExample from '@stories/overlay/drawer/components/drawer-example/DrawerExample'
+import DrawerSizeSample from '@stories/overlay/drawer/components/drawer-size-sample/DrawerSizeSample'
+import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, userEvent, waitFor } from 'storybook/test'
-import { useState, type ComponentProps } from 'react'
 
-import { Button } from '@components/actions/button'
-import { IconButton } from '@components/actions/icon-button'
-import { Badge } from '@components/data-display/badge'
-import { Flex } from '@components/layout/flex'
+import { expect, userEvent, waitFor } from 'storybook/test'
+
 import {
     Drawer,
-    type DrawerMode,
-    type DrawerPosition,
-    type DrawerSize,
 } from '@components/overlay/drawer'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 import {
-    DRAWER_MODES_ARRAY,
-    DRAWER_POSITIONS_ARRAY,
     DRAWER_SIZES_ARRAY,
 } from '@components/overlay/drawer/constants'
-import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
-
-type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
-  showHeader?: boolean;
-  showFooter?: boolean;
-  showNavigation?: boolean;
-  showSettings?: boolean;
-  navigationTitle?: string;
-  settingsTitle?: string;
-  firstNavItemLabel?: string;
-  secondNavItemLabel?: string;
-  thirdNavItemLabel?: string;
-  fourthNavItemLabel?: string;
-  navItemActive?: boolean;
-  navItemDisabled?: boolean;
-  navItemHideTooltip?: boolean;
-  navItemVariant?: 'default' | 'outlined';
-  navItemColor?:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'destructive'
-    | 'success'
-    | 'warning'
-    | 'info';
-  sectionItemLabel?: string;
-  sectionItemDefaultExpanded?: boolean;
-  sectionItemDisabled?: boolean;
-  sectionItemHideTooltip?: boolean;
-  sectionItemColor?:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'destructive'
-    | 'success'
-    | 'warning'
-    | 'info';
-  actionItemHideTooltip?: boolean;
-};
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute                              | Required    | Type      | Notes                                                                                                                    |
-| --------------------------------------------- | ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------ |
-| \`aria-label\` or \`aria-labelledby\` on \`Drawer\` | No          | \`string\`  | Name the drawer for screen readers. Add a visible title in \`Drawer.Header\` and reference its \`id\` via \`aria-labelledby\`. |
-| \`aria-label\` on \`Drawer.Body as="nav"\`        | Recommended | \`string\`  | Provide an accessible name for the navigation region.                                                                    |
-| \`aria-expanded\` / \`aria-controls\`             | Auto        | \`boolean\` | Set automatically by \`Drawer.SectionItem\`.                                                                               |
-| \`aria-disabled\` on \`Drawer.NavItem\`           | Auto        | \`boolean\` | Set when \`disabled\` is true; keeps the item discoverable.                                                                |
-
-- Portal drawers are always modal and trap focus while open.
-- Pressing \`Escape\` or clicking the backdrop closes a portal drawer.
-- In \`inline\` mode the collapsed panel is hidden with \`aria-hidden\` and \`inert\`.
-- In \`mini\` mode the panel stays visible and accessible when collapsed.
-`
-
-const DrawerDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const renderDrawer = ({
-    defaultOpen,
-    mode,
-    position,
-    size,
-    withBackdrop,
-    collapsedWidth,
-    backgroundColor,
-    showHeader,
-    showFooter,
-    showNavigation,
-    showSettings,
-    navigationTitle,
-    settingsTitle,
-    firstNavItemLabel,
-    secondNavItemLabel,
-    thirdNavItemLabel,
-    fourthNavItemLabel,
-    navItemActive,
-    navItemDisabled,
-    navItemHideTooltip,
-    navItemVariant,
-    navItemColor,
-    sectionItemLabel,
-    sectionItemDefaultExpanded,
-    sectionItemDisabled,
-    sectionItemHideTooltip,
-    sectionItemColor,
-    actionItemHideTooltip,
-}: DrawerPlaygroundArgs) => {
-    const [open, setOpen] = useState(defaultOpen ?? false)
-    const isPortal = mode === 'portal'
-    const isMini = mode === 'mini'
-
-    return (
-        <div style={{ display: 'flex', height: '100%' }}>
-            <Drawer
-                open={open}
-                onOpenChange={setOpen}
-                mode={mode}
-                position={position}
-                size={size}
-                withBackdrop={withBackdrop}
-                collapsedWidth={collapsedWidth}
-                backgroundColor={backgroundColor}
-            >
-                {showHeader && (
-                    <Drawer.Header>
-                        <IconButton
-                            icon={open ? CloseIcon : ChevronRightIcon}
-                            aria-label={open ? 'Collapse mini' : 'Expand mini'}
-                            size={'sm'}
-                            onClick={() => setOpen(!open)}
-                        />
-                    </Drawer.Header>
-                )}
-                <Drawer.Body
-                    as={'nav'}
-                    aria-label={'Main navigation'}
-                >
-                    <Flex
-                        flexDirection={'column'}
-                        gap={16}
-                    >
-                        {showNavigation && (
-                            <Drawer.Section title={navigationTitle}>
-                                <Drawer.NavItem
-                                    label={firstNavItemLabel ?? 'Dashboard'}
-                                    href={'/dashboard'}
-                                    startIcon={UserIcon}
-                                    active={navItemActive}
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                                <Drawer.NavItem
-                                    label={secondNavItemLabel ?? 'Team'}
-                                    href={'/team'}
-                                    startIcon={UserIcon}
-                                    endIcon={ChevronRightIcon}
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                                <Drawer.NavItem
-                                    label={'Messages'}
-                                    href={'/messages'}
-                                    startIcon={SearchIcon}
-                                    trailing={
-                                        <Badge
-                                            label={'3'}
-                                            size={'sm'}
-                                            color={'orange'}
-                                            borderRadius={6}
-                                        />
-                                    }
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                            </Drawer.Section>
-                        )}
-                        {showSettings && (
-                            <Drawer.Section title={settingsTitle}>
-                                <Drawer.SectionItem
-                                    label={sectionItemLabel ?? 'Section item'}
-                                    startIcon={SearchIcon}
-                                    endIcon={InfoIcon}
-                                    trailing={
-                                        <Badge
-                                            label={'Pro'}
-                                            size={'sm'}
-                                            color={'secondary'}
-                                        />
-                                    }
-                                    defaultExpanded={sectionItemDefaultExpanded}
-                                    disabled={sectionItemDisabled}
-                                    hideTooltip={sectionItemHideTooltip}
-                                    color={sectionItemColor}
-                                >
-                                    <Drawer.NavItem
-                                        label={'Notifications'}
-                                        href={'/notifications'}
-                                        startIcon={InfoIcon}
-                                        trailing={
-                                            <Badge
-                                                label={'New'}
-                                                size={'sm'}
-                                                borderRadius={6}
-                                                color={'destructive'}
-                                            />
-                                        }
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
-                                    />
-                                    <Drawer.NavItem
-                                        label={thirdNavItemLabel ?? 'Profile'}
-                                        href={'/profile'}
-                                        startIcon={UserIcon}
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
-                                    />
-                                    <Drawer.NavItem
-                                        label={fourthNavItemLabel ?? 'Billing'}
-                                        href={'/billing'}
-                                        startIcon={UserIcon}
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
-                                    />
-                                </Drawer.SectionItem>
-                                <Drawer.NavItem
-                                    label={thirdNavItemLabel ?? 'Profile'}
-                                    href={'/profile'}
-                                    startIcon={UserIcon}
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                            </Drawer.Section>
-                        )}
-                    </Flex>
-                </Drawer.Body>
-                {showFooter && (
-                    <Drawer.Footer justifyContent={'start'}>
-                        <Drawer.Section title={'Actions'}>
-                            <Drawer.ActionItem
-                                label={'Sign out'}
-                                startIcon={CloseIcon}
-                                color={'destructive'}
-                                hideTooltip={actionItemHideTooltip}
-                            />
-                        </Drawer.Section>
-                    </Drawer.Footer>
-                )}
-            </Drawer>
-
-            <div style={{ padding: '1rem' }}>
-                <Button
-                    label={
-                        isPortal
-                            ? open
-                                ? 'Close drawer'
-                                : 'Open drawer'
-                            : isMini
-                                ? open
-                                    ? 'Collapse mini'
-                                    : 'Expand mini'
-                                : open
-                                    ? 'Collapse drawer'
-                                    : 'Expand drawer'
-                    }
-                    variant={'contained'}
-                    color={'primary'}
-                    onClick={() => setOpen(!open)}
-                />
-            </div>
-        </div>
-    )
-}
-
-const DrawerSizeSample = ({ size }: { size: DrawerSize }) => {
-    const [open, setOpen] = useState(false)
-
-    return (
-        <>
-            <Drawer
-                open={open}
-                onOpenChange={setOpen}
-                mode={'portal'}
-                size={size}
-            >
-                <Drawer.Body>
-                    <div style={{ padding: '1rem' }}>
-                        <strong>size: {size}</strong>
-                    </div>
-                </Drawer.Body>
-            </Drawer>
-            <Button
-                label={size}
-                variant={'outlined'}
-                onClick={() => setOpen(true)}
-            />
-        </>
-    )
-}
+import { createDrawerSource } from '@stories/overlay/drawer/utils/create-drawer-source/createDrawerSource.utils'
 
 const meta: Meta<DrawerPlaygroundArgs> = {
     title: 'Overlay/Drawer',
@@ -405,168 +90,8 @@ const [open, setOpen] = useState(false)
             },
         },
     },
-    argTypes: {
-        open: {
-            control: 'boolean',
-            table: { category: 'Drawer' },
-        },
-        defaultOpen: {
-            control: 'boolean',
-            table: { category: 'Drawer' },
-        },
-        mode: {
-            control: 'select',
-            options: DRAWER_MODES_ARRAY,
-            table: { category: 'Drawer' },
-        },
-        position: {
-            control: 'select',
-            options: DRAWER_POSITIONS_ARRAY,
-            table: { category: 'Drawer' },
-        },
-        size: {
-            control: 'select',
-            options: DRAWER_SIZES_ARRAY,
-            table: { category: 'Drawer' },
-        },
-        withBackdrop: {
-            control: 'boolean',
-            table: { category: 'Drawer' },
-        },
-        collapsedWidth: {
-            control: 'text',
-            table: { category: 'Drawer' },
-        },
-        backgroundColor: {
-            control: 'select',
-            options: [
-                'background',
-                'card',
-                'popover',
-                'muted',
-                'primary',
-                'secondary',
-                'transparent',
-            ],
-            table: { category: 'Drawer' },
-        },
-        showHeader: {
-            control: 'boolean',
-            table: { category: 'Drawer.Header' },
-        },
-        showFooter: {
-            control: 'boolean',
-            table: { category: 'Drawer.Footer' },
-        },
-        showNavigation: {
-            control: 'boolean',
-            table: { category: 'Drawer.Body' },
-        },
-        showSettings: {
-            control: 'boolean',
-            table: { category: 'Drawer.Body' },
-        },
-        navigationTitle: {
-            control: 'text',
-            table: { category: 'Drawer.Section' },
-        },
-        settingsTitle: {
-            control: 'text',
-            table: { category: 'Drawer.Section' },
-        },
-        firstNavItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.NavItem' },
-        },
-        secondNavItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.NavItem' },
-        },
-        thirdNavItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.NavItem' },
-        },
-        fourthNavItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.NavItem' },
-        },
-        navItemActive: {
-            control: 'boolean',
-            table: { category: 'Drawer.NavItem' },
-        },
-        navItemDisabled: {
-            control: 'boolean',
-            table: { category: 'Drawer.NavItem' },
-        },
-        navItemHideTooltip: {
-            control: 'boolean',
-            table: { category: 'Drawer.NavItem' },
-        },
-        navItemVariant: {
-            control: 'select',
-            options: ['default', 'outlined'],
-            table: { category: 'Drawer.NavItem' },
-        },
-        navItemColor: {
-            control: 'select',
-            options: DRAWER_ITEM_COLORS_ARRAY,
-            table: { category: 'Drawer.NavItem' },
-        },
-        sectionItemLabel: {
-            control: 'text',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemDefaultExpanded: {
-            control: 'boolean',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemDisabled: {
-            control: 'boolean',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemHideTooltip: {
-            control: 'boolean',
-            table: { category: 'Drawer.SectionItem' },
-        },
-        sectionItemColor: {
-            control: 'select',
-            options: DRAWER_ITEM_COLORS_ARRAY,
-            table: { category: 'Drawer.SectionItem' },
-        },
-        actionItemHideTooltip: {
-            control: 'boolean',
-            table: { category: 'Drawer.ActionItem' },
-        },
-    },
-    args: {
-        defaultOpen: false,
-        mode: 'portal' as DrawerMode,
-        position: 'left' as DrawerPosition,
-        size: 'md' as DrawerSize,
-        withBackdrop: true,
-        collapsedWidth: '3.875rem',
-        showHeader: true,
-        showFooter: true,
-        showNavigation: true,
-        showSettings: true,
-        navigationTitle: 'Navigation',
-        settingsTitle: 'Settings',
-        firstNavItemLabel: 'Dashboard',
-        secondNavItemLabel: 'Team',
-        thirdNavItemLabel: 'Profile',
-        fourthNavItemLabel: 'Billing',
-        navItemActive: true,
-        navItemDisabled: false,
-        navItemHideTooltip: false,
-        navItemVariant: 'default',
-        navItemColor: 'primary',
-        sectionItemLabel: 'Section item ',
-        sectionItemDefaultExpanded: true,
-        sectionItemDisabled: false,
-        sectionItemHideTooltip: false,
-        sectionItemColor: 'primary',
-        actionItemHideTooltip: false,
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
 } satisfies Meta<DrawerPlaygroundArgs>
 
 export default meta
@@ -580,30 +105,10 @@ export const Playground: Story = {
                 story:
           'Interactive playground — switch modes, positions and sizes from the Controls panel.',
             },
-            ...storySource(/* language=tsx */ `
-const [open, setOpen] = useState(false)
-
-<Drawer open={open} onOpenChange={setOpen} mode="portal" size="md">
-  <Drawer.Header>
-    <IconButton icon={CloseIcon} aria-label="Close drawer" size="sm" onClick={() => setOpen(false)} />
-  </Drawer.Header>
-  <Drawer.Body as="nav" aria-label="Main navigation">
-    <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} active />
-      <Drawer.NavItem label="Team" href="/team" startIcon={UserIcon} />
-    </Drawer.Section>
-  </Drawer.Body>
-  <Drawer.Footer justifyContent="start">
-    <Drawer.Section title="Actions">
-      <Drawer.ActionItem label="Sign out" startIcon={CloseIcon} color="destructive" />
-    </Drawer.Section>
-  </Drawer.Footer>
-</Drawer>
-
-<Button label="Open drawer" variant="contained" color="primary" onClick={() => setOpen(true)} />`),
+            source: { type: 'dynamic', transform: createDrawerSource },
         },
     },
-    render: renderDrawer,
+    render: DrawerExample,
     play: async ({ canvasElement }) => {
         await userEvent.click(canvasElement.querySelector('button')!)
 
@@ -635,9 +140,14 @@ const [open, setOpen] = useState(false)
     ],
 }
 
+export const Uncontrolled: Story = {
+    render: DrawerUncontrolled,
+    parameters: { docs: { ...storySource(uncontrolledSource), description: { story: 'The drawer owns its open state and is remounted to apply its initial state.' } } },
+}
+
 export const Inline: Story = {
     args: {
-        defaultOpen: false,
+        open: false,
         mode: 'inline',
         size: 'sm',
     },
@@ -646,19 +156,10 @@ export const Inline: Story = {
             description: {
                 story: 'Inline drawer that takes layout space when open.',
             },
-            ...storySource(/* language=tsx */ `
-const [open, setOpen] = useState(false)
-
-<Drawer open={open} onOpenChange={setOpen} mode="inline" size="sm">
-  <Drawer.Body as="nav" aria-label="Main navigation">
-    <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
-    </Drawer.Section>
-  </Drawer.Body>
-</Drawer>`),
+            source: { type: 'dynamic', transform: createDrawerSource },
         },
     },
-    render: renderDrawer,
+    render: DrawerExample,
     decorators: [
         (Story) => (
             <div style={{ height: '100vh' }}>
@@ -670,7 +171,7 @@ const [open, setOpen] = useState(false)
 
 export const Mini: Story = {
     args: {
-        defaultOpen: false,
+        open: false,
         mode: 'mini',
         size: 'sm',
     },
@@ -680,19 +181,10 @@ export const Mini: Story = {
                 story:
           'Mini drawer that stays visible when closed, collapsing to a narrow width.',
             },
-            ...storySource(/* language=tsx */ `
-const [open, setOpen] = useState(false)
-
-<Drawer open={open} onOpenChange={setOpen} mode="mini" size="sm">
-  <Drawer.Body as="nav" aria-label="Main navigation">
-    <Drawer.Section title="Navigation">
-      <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={UserIcon} />
-    </Drawer.Section>
-  </Drawer.Body>
-</Drawer>`),
+            source: { type: 'dynamic', transform: createDrawerSource },
         },
     },
-    render: renderDrawer,
+    render: DrawerExample,
     decorators: [
         (Story) => (
             <div style={{ height: '100vh' }}>
@@ -709,62 +201,7 @@ export const Sizes: Story = {
                 story:
           'Portal drawer sizes rendered as explicit samples for every supported width.',
             },
-            ...storySource(/* language=tsx */ `
-<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="sm">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: sm</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="sm" variant="outlined" />
-
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="md">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: md</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="md" variant="outlined" />
-
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="lg">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: lg</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="lg" variant="outlined" />
-
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="xl">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: xl</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="xl" variant="outlined" />
-
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="2xl">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: 2xl</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="2xl" variant="outlined" />
-
-  <Drawer open={false} onOpenChange={() => {}} mode="portal" size="full">
-    <Drawer.Body>
-      <div style={{ padding: '1rem' }}>
-        <strong>size: full</strong>
-      </div>
-    </Drawer.Body>
-  </Drawer>
-  <Button label="full" variant="outlined" />
-</div>`),
+            ...storySource(/* language=tsx */ sourceSizes),
         },
     },
     render: () => (

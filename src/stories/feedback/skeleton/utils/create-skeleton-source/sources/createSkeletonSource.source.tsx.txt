@@ -1,0 +1,3 @@
+import { Skeleton } from '@choco-vanille/ui'
+
+<Skeleton{{attributes}} />

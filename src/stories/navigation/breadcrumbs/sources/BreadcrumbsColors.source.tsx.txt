@@ -1,0 +1,10 @@
+import { Breadcrumbs } from '@choco-vanille/ui'
+
+<div style={{ display: 'grid', gap: '1rem' }}>
+  {(['primary.main', 'secondary.main', 'neutral.main', 'danger.main', 'success.main', 'warning.main', 'info.main'] as const).map((color) => (
+    <Breadcrumbs key={color} aria-label={`${color} breadcrumb`} color={color}>
+      <Breadcrumbs.Item label="Home" href="/" />
+      <Breadcrumbs.Item label="Current" />
+    </Breadcrumbs>
+  ))}
+</div>

@@ -1,35 +1,38 @@
-﻿import type { FC } from 'react'
+﻿import type { HTMLAttributes, ReactNode } from 'react'
+import { DRAWER_MODES, DRAWER_POSITIONS, DRAWER_SIZES } from '@components/overlay/drawer/constants'
+import type { ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
 
-import type DrawerActionItem from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.tsx'
-import type DrawerBody from '@components/overlay/drawer/components/blocs/drawer-body/DrawerBody.tsx'
-import type DrawerFooter from '@components/overlay/drawer/components/blocs/drawer-footer/DrawerFooter.tsx'
-import type DrawerHeader from '@components/overlay/drawer/components/blocs/drawer-header/DrawerHeader.tsx'
-import type DrawerSection from '@components/overlay/drawer/components/blocs/drawer-section/DrawerSection.tsx'
-import type DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
-import type DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
-import type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
+/** Render mode for the drawer. */
+export type DrawerMode = (typeof DRAWER_MODES)[keyof typeof DRAWER_MODES]
+/** Side the drawer attaches to. */
+export type DrawerPosition = (typeof DRAWER_POSITIONS)[keyof typeof DRAWER_POSITIONS]
+/** Predefined drawer width. */
+export type DrawerSize = (typeof DRAWER_SIZES)[keyof typeof DRAWER_SIZES]
+/** Theme color token used for the panel background. */
+export type DrawerColor = ThemeColorValue
 
-export type DrawerCompound = FC<DrawerProps> & {
-  Header: typeof DrawerHeader;
-  Body: typeof DrawerBody;
-  Footer: typeof DrawerFooter;
-  Section: typeof DrawerSection;
-  NavItem: typeof DrawerNavItem;
-  ActionItem: typeof DrawerActionItem;
-  SectionItem: typeof DrawerSectionItem;
-};
-
-export type { DrawerProps } from '@components/overlay/drawer/types/Drawer.props.ts'
-export type {
-    DrawerColor,
-    DrawerMode,
-    DrawerPosition,
-    DrawerSize,
-} from '@components/overlay/drawer/types/Drawer.types.ts'
-export type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types/DrawerHeader.props.ts'
-export type { DrawerBodyProps } from '@components/overlay/drawer/components/blocs/drawer-body/types/DrawerBody.props.ts'
-export type { DrawerFooterProps } from '@components/overlay/drawer/components/blocs/drawer-footer/types/DrawerFooter.props.ts'
-export type { DrawerSectionProps } from '@components/overlay/drawer/components/blocs/drawer-section/types/DrawerSection.props.ts'
-export type { DrawerNavItemProps } from '@components/overlay/drawer/components/items/drawer-nav-item/types/DrawerNavItem.props.ts'
-export type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
-export type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
+/** Props for the drawer root. */
+export type DrawerProps = Readonly<HTMLAttributes<HTMLDivElement> & {
+    /** Controlled open state. */
+    open?: boolean
+    /** Initial uncontrolled state. Defaults to false. */
+    defaultOpen?: boolean
+    /** Called when the open state changes. */
+    onOpenChange?: (open: boolean) => void
+    /** Render mode. Defaults to portal. */
+    mode?: DrawerMode
+    /** Attachment side. Defaults to left. */
+    position?: DrawerPosition
+    /** Width preset. @default 'md' */
+    size?: DrawerSize
+    /** Shows a backdrop in portal mode. Defaults to true. */
+    withBackdrop?: boolean
+    /** Collapsed mini width. Defaults to 4rem. */
+    collapsedWidth?: string
+    /** Theme token for the panel background. */
+    backgroundColor?: DrawerColor
+    /** Accessible fallback name. Defaults to Drawer. */
+    defaultAriaLabel?: string
+    /** Drawer slots. */
+    children?: ReactNode
+}>

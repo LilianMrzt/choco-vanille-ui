@@ -1,0 +1,14 @@
+import { BottomSheet, Button } from '@choco-vanille/ui'
+// Replace these with icon components from your application.
+import { ImageIcon, ChevronRightIcon, LinkIcon } from './icons'
+
+<BottomSheet>
+  <BottomSheet.Trigger>
+    <Button label="Open with icons" variant="outlined" color="primary" />
+  </BottomSheet.Trigger>
+  <BottomSheet.Content aria-label="Icons">
+    <BottomSheet.Item label="Start icon" startIcon={ImageIcon} />
+    <BottomSheet.Item label="End icon" endIcon={ChevronRightIcon} />
+    <BottomSheet.Item label="Both icons" startIcon={LinkIcon} endIcon={ChevronRightIcon} />
+  </BottomSheet.Content>
+</BottomSheet>

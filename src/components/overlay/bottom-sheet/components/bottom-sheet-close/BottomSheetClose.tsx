@@ -1,8 +1,8 @@
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 import { memo, type FC } from 'react'
 
-import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/styles/BottomSheetClose.css.ts'
-import type { BottomSheetCloseProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/types/BottomSheetClose.props.ts'
+import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/BottomSheetClose.css.ts'
+import type { BottomSheetCloseProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/types'
 import { cn } from '@utils/cn.ts'
 
 /**

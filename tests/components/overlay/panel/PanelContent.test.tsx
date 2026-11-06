@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Panel } from '@components/overlay/panel/Panel.tsx'
+import { Panel } from '@components/overlay/panel'
 
 describe('Panel.Content', () => {
     it('renders the configured position and width', () => {

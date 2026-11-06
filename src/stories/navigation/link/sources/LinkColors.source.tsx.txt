@@ -1,0 +1,11 @@
+import { Grid, Link } from '@choco-vanille/ui'
+
+<Grid gap={8}>
+  <Link color="primary.main" label="Primary" />
+  <Link color="secondary.main" label="Secondary" />
+  <Link color="neutral.main" label="Tertiary" />
+  <Link color="danger.main" label="Destructive" />
+  <Link color="success.main" label="Success" />
+  <Link color="warning.main" label="Warning" />
+  <Link color="info.main" label="Info" />
+</Grid>

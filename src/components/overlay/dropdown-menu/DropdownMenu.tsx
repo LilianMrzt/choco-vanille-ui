@@ -14,30 +14,33 @@ import DropdownMenuSubContent from '@components/overlay/dropdown-menu/components
 import DropdownMenuSub from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub/DropdownMenuSub.tsx'
 import DropdownMenuSubTrigger from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.tsx'
 import DropdownMenuTrigger from '@components/overlay/dropdown-menu/components/trigger/DropdownMenuTrigger.tsx'
-import type { DropdownMenuCompound } from '@components/overlay/dropdown-menu/types'
-import type { DropdownMenuProps } from '@components/overlay/dropdown-menu/types/DropdownMenu.props.ts'
+import type { DropdownMenuProps } from '@components/overlay/dropdown-menu/types'
 
 /**
  * The root wrapper that manages open/close state.
  * Accepts `open`, `onOpenChange`, `defaultOpen` and `modal` from Base UI Menu.
  */
-const DropdownMenu = memo<DropdownMenuProps>((props) => (
+const DropdownMenuRoot = memo<DropdownMenuProps>((props) => (
     <BaseMenu.Root {...props} />
-)) as unknown as DropdownMenuCompound
+))
 
-DropdownMenu.displayName = 'DropdownMenu'
-DropdownMenu.Trigger = DropdownMenuTrigger
-DropdownMenu.Content = DropdownMenuContent
-DropdownMenu.Group = DropdownMenuGroup
-DropdownMenu.RadioGroup = DropdownMenuRadioGroup
-DropdownMenu.Item = DropdownMenuItem
-DropdownMenu.CheckboxItem = DropdownMenuCheckboxItem
-DropdownMenu.RadioItem = DropdownMenuRadioItem
-DropdownMenu.Label = DropdownMenuLabel
-DropdownMenu.Separator = DropdownMenuSeparator
-DropdownMenu.Shortcut = DropdownMenuShortcut
-DropdownMenu.Sub = DropdownMenuSub
-DropdownMenu.SubTrigger = DropdownMenuSubTrigger
-DropdownMenu.SubContent = DropdownMenuSubContent
+DropdownMenuRoot.displayName = 'DropdownMenu'
+
+/** Dropdown menu root with its item and submenu slots. */
+const DropdownMenu = Object.assign(DropdownMenuRoot, {
+    Trigger: DropdownMenuTrigger,
+    Content: DropdownMenuContent,
+    Group: DropdownMenuGroup,
+    RadioGroup: DropdownMenuRadioGroup,
+    Item: DropdownMenuItem,
+    CheckboxItem: DropdownMenuCheckboxItem,
+    RadioItem: DropdownMenuRadioItem,
+    Label: DropdownMenuLabel,
+    Separator: DropdownMenuSeparator,
+    Shortcut: DropdownMenuShortcut,
+    Sub: DropdownMenuSub,
+    SubTrigger: DropdownMenuSubTrigger,
+    SubContent: DropdownMenuSubContent,
+})
 
 export default DropdownMenu

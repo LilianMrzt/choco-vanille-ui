@@ -1,12 +1,12 @@
 ﻿import { memo, type FC, useMemo } from 'react'
 
 import { Box } from '@components/layout/box'
-import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
+import { DRAWER_STYLES } from '@components/overlay/drawer/Drawer.css.ts'
 import { cn } from '@utils/cn.ts'
 import type {
     DrawerMiniProps
-} from '@components/overlay/drawer/components/variants/drawer-mini/types/DrawerMini.props.ts'
-import { DRAWER_MINI_STYLES } from '@components/overlay/drawer/components/variants/drawer-mini/styles/DrawerMini.css.ts'
+} from '@components/overlay/drawer/components/variants/drawer-mini/types'
+import { DRAWER_MINI_STYLES } from '@components/overlay/drawer/components/variants/drawer-mini/DrawerMini.css.ts'
 import { COLLAPSED_WIDTH } from '@components/overlay/drawer/components/variants/drawer-mini/constants'
 
 /**

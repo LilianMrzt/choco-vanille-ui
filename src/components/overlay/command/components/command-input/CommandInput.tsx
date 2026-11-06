@@ -5,8 +5,8 @@ import { Icon } from '@components/foundation/icon'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
-import { COMMAND_INPUT_STYLES } from '@components/overlay/command/components/command-input/styles/CommandInput.css.ts'
-import type { CommandInputProps } from '@components/overlay/command/components/command-input/types/CommandInput.props.ts'
+import { COMMAND_INPUT_STYLES } from '@components/overlay/command/components/command-input/CommandInput.css.ts'
+import type { CommandInputProps } from '@components/overlay/command/components/command-input/types'
 import { cn } from '@utils/cn.ts'
 
 /**

@@ -2,9 +2,10 @@ import { PreviewCard } from '@base-ui/react/preview-card'
 import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
-import type { HoverCardContentProps } from '@components/overlay/hover-card/components/content/types/HoverCardContent.props.ts'
+import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
+import type { HoverCardContentProps } from '@components/overlay/hover-card/components/content/types'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
+import { useComposedPopupRef } from '@components/overlay/_shared/hooks/use-composed-popup-ref/useComposedPopupRef.hook.ts'
 import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
 /**
@@ -22,6 +23,17 @@ import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hoo
  * accessible-name fallback: a Base UI preview-card panel is non-modal and exposes
  * no `dialog` role, so it needs no required accessible name. Any `aria-label` /
  * `aria-labelledby` a consumer passes is still forwarded via `...props`.
+ * @param props - Preview card popup attributes and positioning options.
+ * @param props.position - Combined side and alignment, overriding separate values.
+ * @param props.side - Side relative to the trigger; defaults to `bottom`.
+ * @param props.align - Alignment; defaults to `center`.
+ * @param props.sideOffset - Trigger offset in pixels; defaults to `6`.
+ * @param props.collisionPadding - Viewport padding; defaults to `8`.
+ * @param props.className - Additional popup class.
+ * @param props.ref - Ref to the popup.
+ * @returns The portaled preview card.
+ * @example
+ * <HoverCard.Content>Profile preview</HoverCard.Content>
  */
 const HoverCardContent: FC<HoverCardContentProps> = memo(({
     className,
@@ -30,9 +42,11 @@ const HoverCardContent: FC<HoverCardContentProps> = memo(({
     align: alignProp = 'center',
     sideOffset = 6,
     collisionPadding = 8,
+    ref,
     ...props
 }) => {
     const contentRef = useViewportShift(collisionPadding)
+    const mergedRef = useComposedPopupRef(contentRef, ref)
 
     const { side, align } = position
         ? parsePosition(position)
@@ -49,7 +63,7 @@ const HoverCardContent: FC<HoverCardContentProps> = memo(({
                 collisionAvoidance={{ side: 'none', align: 'none', fallbackAxisSide: 'none' }}
             >
                 <PreviewCard.Popup
-                    ref={contentRef}
+                    ref={mergedRef}
                     className={cn(POPOVER_CONTENT_STYLES.root, className)}
                     {...props}
                 />

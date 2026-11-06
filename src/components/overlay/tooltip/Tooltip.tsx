@@ -1,8 +1,8 @@
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import { memo, useContext, type FC } from 'react'
 
-import type { TooltipProps } from '@components/overlay/tooltip/types/Tooltip.props.ts'
-import { TOOLTIP_STYLES } from '@components/overlay/tooltip/styles/Tooltip.css.ts'
+import type { TooltipProps } from '@components/overlay/tooltip/types'
+import { TOOLTIP_STYLES } from '@components/overlay/tooltip/Tooltip.css.ts'
 import { TooltipProviderContext } from '@components/overlay/tooltip/context/TooltipProvider.context.ts'
 import { cn } from '@utils/cn.ts'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
@@ -14,6 +14,24 @@ import { useTooltip } from '@components/overlay/tooltip/hooks/use-tooltip/useToo
  * `TooltipProvider` when available; otherwise falls back to a local
  * provider. Supports `position` shorthand or explicit `side`/`align`.
  * Set `disabled` to suppress the popup without removing the trigger.
+ * @param props - Tooltip trigger, content and options.
+ * @param props.children - Focusable trigger element.
+ * @param props.content - Supplementary text.
+ * @param props.position - Combined side and alignment, overriding separate values.
+ * @param props.side - Side relative to the trigger; defaults to `top`.
+ * @param props.align - Alignment; defaults to `center`.
+ * @param props.delayDuration - Opening delay in milliseconds; defaults to `0`.
+ * @param props.disabled - Suppresses the popup.
+ * @param props.openOnFocus - Opens on focus; defaults to `true`.
+ * @param props.arrow - Displays an arrow; defaults to `false`.
+ * @param props.closeOnClick - Closes on trigger click; defaults to `true`.
+ * @param props.className - Additional popup class.
+ * @param props.open - Controlled open state.
+ * @param props.defaultOpen - Initial uncontrolled open state.
+ * @param props.onOpenChange - Receives the requested open state.
+ * @returns A tooltip and its trigger.
+ * @example
+ * <Tooltip content="Edit"><button>Edit</button></Tooltip>
  */
 const Tooltip: FC<TooltipProps> = memo(({
     children,

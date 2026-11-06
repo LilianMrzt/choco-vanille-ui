@@ -77,6 +77,19 @@ describe('Tabs', () => {
     })
 
     describe('keyboard navigation', () => {
+        it('keeps selection on the current tab by default until the focused tab is activated', async () => {
+            const user = userEvent.setup()
+            render(<TestTabs defaultValue="account" />)
+            const account = screen.getByRole('tab', { name: 'Account' })
+            const password = screen.getByRole('tab', { name: 'Password' })
+
+            account.focus()
+            await user.keyboard('{ArrowRight}')
+            expect(password.getAttribute('aria-selected')).toBe('false')
+            await user.keyboard('{Enter}')
+            expect(password.getAttribute('aria-selected')).toBe('true')
+        })
+
         it('moves focus to the next tab with ArrowRight', async () => {
             render(<TestTabs defaultValue="account" />)
             const accountTab = screen.getByRole('tab', { name: 'Account' })

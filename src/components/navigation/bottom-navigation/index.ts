@@ -1,5 +1,5 @@
 export { default as BottomNavigation } from '@components/navigation/bottom-navigation/BottomNavigation.tsx'
-export { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/styles/BottomNavigation.css.ts'
+export { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/BottomNavigation.css.ts'
 export type {
     BottomNavigationCompound,
     BottomNavigationProps,

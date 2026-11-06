@@ -1,5 +1,5 @@
 export { default as Stepper } from '@components/navigation/stepper/Stepper.tsx'
-export { STEPPER_STYLES } from '@components/navigation/stepper/styles/Stepper.css.ts'
+export { STEPPER_STYLES } from '@components/navigation/stepper/Stepper.css.ts'
 export { STEPPER_ORIENTATIONS } from '@components/navigation/stepper/constants'
 export { STEPPER_ITEM_SIZES } from '@components/navigation/stepper/constants'
 export type {

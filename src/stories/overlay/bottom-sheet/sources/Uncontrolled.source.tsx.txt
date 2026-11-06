@@ -1,0 +1,10 @@
+import { BottomSheet, Button } from '@choco-vanille/ui'
+
+<BottomSheet defaultOpen={false}>
+  <BottomSheet.Trigger><Button label="Open sheet" /></BottomSheet.Trigger>
+  <BottomSheet.Content>
+    <BottomSheet.Header title="Actions" />
+    <BottomSheet.Item label="Continue" />
+    <BottomSheet.Close><Button label="Cancel" /></BottomSheet.Close>
+  </BottomSheet.Content>
+</BottomSheet>

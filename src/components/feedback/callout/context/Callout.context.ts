@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import type { CalloutVariant } from '@components/feedback/callout/types/Callout.types.ts'
+import type { CalloutVariant } from '@components/feedback/callout/types'
 
 export interface CalloutContextValue {
     variant: CalloutVariant

@@ -1,14 +1,27 @@
-import type { FC } from 'react'
+import type * as React from 'react'
 
-import type CalloutAction from '@components/feedback/callout/components/callout-action/CalloutAction.tsx'
-import type CalloutDescription from '@components/feedback/callout/components/callout-description/CalloutDescription.tsx'
-import type CalloutIcon from '@components/feedback/callout/components/callout-icon/CalloutIcon.tsx'
-import type CalloutTitle from '@components/feedback/callout/components/callout-title/CalloutTitle.tsx'
-import type { CalloutProps } from '@components/feedback/callout/types/Callout.props.ts'
+import type Callout from '@components/feedback/callout/Callout.tsx'
+import type { IconProps } from '@components/foundation/icon'
 
-export type CalloutCompound = FC<CalloutProps> & {
-    Icon: typeof CalloutIcon
-    Title: typeof CalloutTitle
-    Description: typeof CalloutDescription
-    Action: typeof CalloutAction
-}
+/** Visual intent variants. */
+export type CalloutVariant = 'info' | 'success' | 'warning' | 'error'
+/** Live-region role. */
+export type CalloutRole = 'alert' | 'status' | undefined
+
+/** Root callout attributes and options. */
+export type CalloutProps = Readonly<React.HTMLAttributes<HTMLDivElement> &
+    React.RefAttributes<HTMLDivElement> & {
+        /** Visual intent; defaults to `info`. */
+        variant?: CalloutVariant
+        /** Live-region role; defaults to `status`. Explicit `undefined` removes the role. */
+        role?: CalloutRole
+        /** Optional icon; a default is provided per variant. */
+        icon?: IconProps['icon']
+        /** Optional title content. */
+        title?: React.ReactNode
+        /** Optional description content. */
+        description?: React.ReactNode
+    }>
+
+/** Callout root and its compound slots. */
+export type CalloutCompound = typeof Callout

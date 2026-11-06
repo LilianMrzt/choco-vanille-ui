@@ -1,0 +1,6 @@
+
+          <Command.Group label="Actions">
+            <Command.Item{{searchIcon}}{{editShortcut}} onSelect={() => {}}>Edit profile</Command.Item>
+            <Command.Item{{searchIcon}}{{settingsShortcut}} onSelect={() => {}}>Settings</Command.Item>
+            <Command.Item{{trashIcon}} disabled>Delete account</Command.Item>
+          </Command.Group>

@@ -7,7 +7,7 @@ import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/DropdownMenuShortcut.tsx'
-import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types/DropdownMenuItem.props.ts'
+import type { DropdownMenuItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-item/types'
 
 /**
   * A single actionable item inside the dropdown.

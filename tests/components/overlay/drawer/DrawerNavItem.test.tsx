@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
+import { Drawer } from '@components/overlay/drawer'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 

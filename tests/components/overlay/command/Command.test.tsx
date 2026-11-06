@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Button } from '@components/actions/button'
-import { Command } from '@components/overlay/command/Command.tsx'
+import { Command } from '@components/overlay/command'
 
 describe('Command', () => {
     describe('compound components', () => {

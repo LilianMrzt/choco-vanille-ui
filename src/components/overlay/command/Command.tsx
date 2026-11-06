@@ -11,8 +11,7 @@ import {
     CommandSeparator,
     CommandTrigger,
 } from '@components/overlay/command/components'
-import type { CommandCompound } from '@components/overlay/command/types'
-import type { CommandProps } from '@components/overlay/command/types/Command.props.ts'
+import type { CommandProps } from '@components/overlay/command/types'
 
 /**
  * A modal command palette for action search and keyboard navigation.
@@ -39,16 +38,16 @@ import type { CommandProps } from '@components/overlay/command/types/Command.pro
  *     <Command.Input placeholder="Search actions…" />
  *     <Command.List aria-label="Commands">
  *       <Command.Group label="Actions">
- *         <Command.Item icon="lucide:pencil" shortcut="⌘E" onSelect={() => {}}>
+ *         <Command.Item shortcut="⌘E" onSelect={() => {}}>
  *           Edit profile
  *         </Command.Item>
- *         <Command.Item icon="lucide:settings" shortcut="⌘S" onSelect={() => {}}>
+ *         <Command.Item shortcut="⌘S" onSelect={() => {}}>
  *           Settings
  *         </Command.Item>
  *       </Command.Group>
  *       <Command.Separator />
  *       <Command.Group label="Navigation">
- *         <Command.Item icon="lucide:home" onSelect={() => {}}>
+ *         <Command.Item onSelect={() => {}}>
  *           Go to dashboard
  *         </Command.Item>
  *       </Command.Group>
@@ -57,22 +56,29 @@ import type { CommandProps } from '@components/overlay/command/types/Command.pro
  *   </Command.Content>
  * </Command>
  * ```
+ * @param props - Dialog root props, including controlled or uncontrolled open state.
+ * @param props.defaultOpen - Initial uncontrolled state; defaults to false.
+ * @returns The command palette root.
  */
-const Command = memo<CommandProps>(({ defaultOpen = false, ...props }) => (
+const CommandRoot = memo<CommandProps>(({ defaultOpen = false, ...props }) => (
     <BaseDialog.Root
         {...props}
         defaultOpen={defaultOpen}
     />
-)) as unknown as CommandCompound
+))
 
-Command.displayName = 'Command'
-Command.Trigger = CommandTrigger
-Command.Content = CommandContent
-Command.Input = CommandInput
-Command.List = CommandList
-Command.Group = CommandGroup
-Command.Item = CommandItem
-Command.Empty = CommandEmpty
-Command.Separator = CommandSeparator
+CommandRoot.displayName = 'Command'
 
-export { Command }
+/** Command palette root with search and action slots. */
+const Command = Object.assign(CommandRoot, {
+    Trigger: CommandTrigger,
+    Content: CommandContent,
+    Input: CommandInput,
+    List: CommandList,
+    Group: CommandGroup,
+    Item: CommandItem,
+    Empty: CommandEmpty,
+    Separator: CommandSeparator,
+})
+
+export default Command

@@ -1,9 +1,9 @@
 ﻿import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC, useMemo } from 'react'
 
-import { DRAWER_STYLES } from '@components/overlay/drawer/styles/Drawer.css.ts'
-import { DRAWER_PORTAL_STYLES } from '@components/overlay/drawer/components/variants/drawer-portal/styles/DrawerPortal.css.ts'
-import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'
+import { DRAWER_STYLES } from '@components/overlay/drawer/Drawer.css.ts'
+import { DRAWER_PORTAL_STYLES } from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.css.ts'
+import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types'
 import { cn } from '@utils/cn.ts'
 
 /**

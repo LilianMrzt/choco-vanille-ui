@@ -3,8 +3,8 @@ import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
-import { BOTTOM_SHEET_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/_shared/styles/BottomSheetItem.css.ts'
-import type { BottomSheetItemProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-item/types/BottomSheetItem.props.ts'
+import { BOTTOM_SHEET_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-item/BottomSheetItem.css.ts'
+import type { BottomSheetItemProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-item/types'
 import { cn } from '@utils/cn.ts'
 
 /**

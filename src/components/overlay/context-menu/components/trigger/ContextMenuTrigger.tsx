@@ -2,8 +2,19 @@ import { ContextMenu as BaseContextMenu } from '@base-ui/react/context-menu'
 import { memo, type FC } from 'react'
 
 import { useContextMenuContext } from '@components/overlay/context-menu/context/ContextMenu.context.ts'
-import type { ContextMenuTriggerProps } from '@components/overlay/context-menu/components/trigger/types/ContextMenuTrigger.props.ts'
+import type { ContextMenuTriggerProps } from '@components/overlay/context-menu/components/trigger/types'
 
+/**
+ * Makes a child a keyboard-accessible context menu trigger.
+ * @param props - Trigger attributes and child element.
+ * @param props.children - Element receiving trigger behavior.
+ * @param props.tabIndex - Keyboard tab order; defaults to 0.
+ * @param props.onPointerDown - Pointer handler.
+ * @param props.onKeyDown - Keyboard handler.
+ * @returns The trigger element.
+ * @example
+ * <ContextMenu.Trigger><div>Open menu</div></ContextMenu.Trigger>
+ */
 const ContextMenuTrigger: FC<ContextMenuTriggerProps> = memo(({
     children,
     tabIndex = 0,

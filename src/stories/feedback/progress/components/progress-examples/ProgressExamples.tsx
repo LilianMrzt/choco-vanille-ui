@@ -1,0 +1,47 @@
+import type { ReactElement } from 'react'
+
+import { CircularProgress, Progress } from '@components/feedback/progress'
+
+/**
+ * Demonstrates quantities and circular sizes.
+ * @internal Storybook-only component; not part of the public package API.
+ * @returns Progress examples.
+ * @example
+ * <ProgressExamples />
+ */
+const ProgressExamples = (): ReactElement => (
+    <div style={{ display: 'grid', gap: '1rem', width: '20rem', maxWidth: '100%' }}>
+        <Progress
+            value={33}
+            label={'Uploading file'}
+            quantityLabel
+        />
+        <Progress
+            value={66}
+            label={'Custom quantity'}
+            quantityLabel={'2/3'}
+        />
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <CircularProgress
+                value={25}
+                size={'sm'}
+                quantityLabel
+                aria-label={'25 percent'}
+            />
+            <CircularProgress
+                value={50}
+                size={'md'}
+                quantityLabel
+                aria-label={'50 percent'}
+            />
+            <CircularProgress
+                value={75}
+                size={'lg'}
+                label={'Processing'}
+                quantityLabel
+            />
+        </div>
+    </div>
+)
+
+export default ProgressExamples

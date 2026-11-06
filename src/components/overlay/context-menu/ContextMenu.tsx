@@ -14,8 +14,7 @@ import DropdownMenuSubContent from '@components/overlay/dropdown-menu/components
 import DropdownMenuSubTrigger from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/DropdownMenuSubTrigger.tsx'
 import ContextMenuContent from '@components/overlay/context-menu/components/content/ContextMenuContent.tsx'
 import ContextMenuTrigger from '@components/overlay/context-menu/components/trigger/ContextMenuTrigger.tsx'
-import type { ContextMenuCompound } from '@components/overlay/context-menu/types/ContextMenuCompound.ts'
-import type { ContextMenuProps } from '@components/overlay/context-menu/types/ContextMenu.props.ts'
+import type { ContextMenuProps } from '@components/overlay/context-menu/types'
 import {
     ContextMenuContext,
     type ContextMenuInputModality,
@@ -29,7 +28,7 @@ import {
  * `.RadioGroup`, `.Item`, `.CheckboxItem`, `.RadioItem`, `.Label`,
  * `.Separator`, `.Shortcut`, `.Sub`, `.SubTrigger`, `.SubContent`.
  */
-const ContextMenu = memo<ContextMenuProps>((props) => {
+const ContextMenuRoot = memo<ContextMenuProps>((props) => {
     const [inputModality, setInputModality] = useState<ContextMenuInputModality>('pointer')
     const contextValue = useMemo(
         () => ({ inputModality, setInputModality }),
@@ -41,21 +40,25 @@ const ContextMenu = memo<ContextMenuProps>((props) => {
             <BaseContextMenu.Root {...props} />
         </ContextMenuContext.Provider>
     )
-}) as unknown as ContextMenuCompound
+})
 
-ContextMenu.displayName = 'ContextMenu'
-ContextMenu.Trigger = ContextMenuTrigger
-ContextMenu.Content = ContextMenuContent
-ContextMenu.Group = DropdownMenuGroup
-ContextMenu.RadioGroup = DropdownMenuRadioGroup
-ContextMenu.Item = DropdownMenuItem
-ContextMenu.CheckboxItem = DropdownMenuCheckboxItem
-ContextMenu.RadioItem = DropdownMenuRadioItem
-ContextMenu.Label = DropdownMenuLabel
-ContextMenu.Separator = DropdownMenuSeparator
-ContextMenu.Shortcut = DropdownMenuShortcut
-ContextMenu.Sub = DropdownMenuSub
-ContextMenu.SubTrigger = DropdownMenuSubTrigger
-ContextMenu.SubContent = DropdownMenuSubContent
+ContextMenuRoot.displayName = 'ContextMenu'
+
+/** Context menu root and its interaction slots. */
+const ContextMenu = Object.assign(ContextMenuRoot, {
+    Trigger: ContextMenuTrigger,
+    Content: ContextMenuContent,
+    Group: DropdownMenuGroup,
+    RadioGroup: DropdownMenuRadioGroup,
+    Item: DropdownMenuItem,
+    CheckboxItem: DropdownMenuCheckboxItem,
+    RadioItem: DropdownMenuRadioItem,
+    Label: DropdownMenuLabel,
+    Separator: DropdownMenuSeparator,
+    Shortcut: DropdownMenuShortcut,
+    Sub: DropdownMenuSub,
+    SubTrigger: DropdownMenuSubTrigger,
+    SubContent: DropdownMenuSubContent,
+})
 
 export default ContextMenu

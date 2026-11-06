@@ -1,0 +1,17 @@
+import { useState } from 'react'
+import { Button, Drawer } from '@choco-vanille/ui'
+
+function Example() {
+  const [mounted, setMounted] = useState(false)
+  return (
+    <>
+      <Button label="Open uncontrolled drawer" onClick={() => setMounted(true)} />
+      {mounted && (
+        <Drawer defaultOpen onOpenChange={(open) => { if (!open) setMounted(false) }}>
+          <Drawer.Header title="Navigation" />
+          <Drawer.Body>Press Escape to close.</Drawer.Body>
+        </Drawer>
+      )}
+    </>
+  )
+}

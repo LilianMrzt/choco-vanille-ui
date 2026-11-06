@@ -3,8 +3,8 @@ import { memo, useCallback, useId, useMemo, useRef, useState, type FC } from 're
 
 import { OverlayBackdrop } from '@components/overlay/_shared/components/overlay-backdrop'
 import { CommandContext, type CommandContextValue } from '@components/overlay/command/context/Command.context.ts'
-import { COMMAND_STYLES } from '@components/overlay/command/styles/Command.css.ts'
-import type { CommandContentProps } from '@components/overlay/command/components/command-content/types/CommandContent.props.ts'
+import { COMMAND_STYLES } from '@components/overlay/command/Command.css.ts'
+import type { CommandContentProps } from '@components/overlay/command/components/command-content/types'
 import { cn } from '@utils/cn.ts'
 
 /**

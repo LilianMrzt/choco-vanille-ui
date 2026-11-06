@@ -1,9 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Callout } from '@components/feedback/callout'
+import { Callout, CALLOUT_ACTION_STYLES } from '@components/feedback/callout'
 import CalloutAction from '@components/feedback/callout/components/callout-action/CalloutAction.tsx'
-import { CALLOUT_ACTION_STYLES } from '@components/feedback/callout/components/callout-action/styles/CalloutAction.css.ts'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 
 describe('CalloutAction', () => {

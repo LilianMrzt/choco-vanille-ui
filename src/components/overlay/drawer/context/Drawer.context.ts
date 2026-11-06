@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer/types/Drawer.types.ts'
+import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer/types'
 
 export type DrawerContextValue = {
     /** Current open state. */

@@ -1,5 +1,5 @@
 export { default as StepIndicator } from '@components/navigation/step-indicator/StepIndicator.tsx'
-export { STEP_INDICATOR_STYLES } from '@components/navigation/step-indicator/styles/StepIndicator.css.ts'
+export { STEP_INDICATOR_STYLES } from '@components/navigation/step-indicator/StepIndicator.css.ts'
 export type {
     StepIndicatorCompound,
     StepIndicatorProps,

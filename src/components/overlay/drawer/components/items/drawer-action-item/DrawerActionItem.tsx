@@ -1,6 +1,6 @@
 import { memo, type FC } from 'react'
 
-import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types/DrawerActionItem.props.ts'
+import type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types'
 import {
     DRAWER_ITEM_STYLES,
     DrawerItemContent,

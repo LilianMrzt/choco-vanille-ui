@@ -8,7 +8,7 @@ import { CHECKBOX_STYLES } from '@components/forms/checkbox/styles/Checkbox.css.
 import { Icon } from '@components/foundation/icon'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
-import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types/DropdownMenuCheckboxItem.props.ts'
+import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types'
 
 const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = memo(({
     className,

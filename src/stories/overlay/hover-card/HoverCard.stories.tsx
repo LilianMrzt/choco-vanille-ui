@@ -1,150 +1,70 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, userEvent, waitFor, within } from 'storybook/test'
-import { screen } from '@testing-library/dom'
+import { useArgs } from 'storybook/preview-api'
 
-import { HoverCard } from '@/components/overlay/hover-card'
-import { Button } from '@/components/actions/button'
-import { md } from '@stories/_shared/utils/markdown'
-import { storySource } from '@stories/_shared/utils/storySource'
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute            | Required | Type      | Notes                                                                      |
-| --------------------------- | -------- | --------- | -------------------------------------------------------------------------- |
-| Trigger (focusable element) | ✅ Yes   | —         | Pass your own \`Button\` or \`IconButton\` as children of \`HoverCard.Trigger\`. |
-| \`open\`                      | No       | \`boolean\` | Controlled open state; pair with \`onOpenChange\`.                           |
-| \`defaultOpen\`               | No       | \`boolean\` | Uncontrolled initial open state.                                           |
-| \`openDelay\`                 | No       | \`number\`  | Delay in ms before opening. @default \`700\`.                                |
-| \`closeDelay\`                | No       | \`number\`  | Delay in ms before closing. @default \`300\`.                                |
-
-**Sub-components**
-
-| Sub-component       | Description                                                                                      |
-| ------------------- | ------------------------------------------------------------------------------------------------ |
-| \`HoverCard\`         | Root context provider — wraps the entire hover card.                                             |
-| \`HoverCard.Trigger\` | The element that opens the hover card on hover. Pass your own button as children.                |
-| \`HoverCard.Content\` | The floating panel containing the hover card content. Handles positioning and viewport shifting. |
-`
-
-const HoverCardDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
+import { HoverCard } from '@components/overlay/hover-card'
+import HoverCardDocsPage from '@stories/overlay/hover-card/components/hover-card-docs-page/HoverCardDocsPage'
+import HoverCardExample from '@stories/overlay/hover-card/components/hover-card-example/HoverCardExample'
+import { ARG_TYPES, DEFAULT_ARGS, type HoverCardStoryArgs } from '@stories/overlay/hover-card/constants'
+import { createHoverCardSource } from '@stories/overlay/hover-card/utils/create-hover-card-source/createHoverCardSource.utils'
 
 const meta = {
     title: 'Overlay/HoverCard',
     component: HoverCard,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
+            description: { component: 'A preview card shown when hovering or focusing its trigger.' },
             page: HoverCardDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A hover-activated overlay built on top of \`@base-ui/react/preview-card\`.
-Use it to display rich content when the user hovers over a trigger element.
-It reuses the popover visual styles for consistency.
-
-**Usage**
-
-~~~tsx
-<HoverCard>
-  <HoverCard.Trigger>
-    <Button label="Open hover card" />
-  </HoverCard.Trigger>
-
-  <HoverCard.Content>
-    <p>Place any content here: text, images, or actions.</p>
-  </HoverCard.Content>
-</HoverCard>
-~~~
-
-        `,
-            },
+            source: { type: 'dynamic', transform: createHoverCardSource },
         },
     },
-    argTypes: {
-        open: { control: 'boolean' },
-        defaultOpen: { control: 'boolean' },
-    },
-    args: {
-        defaultOpen: false,
-    },
-} satisfies Meta<typeof HoverCard>
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<HoverCardStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<HoverCardStoryArgs>
 
-export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Interactive playground — hover the button to reveal the panel.',
-            },
-            ...storySource(/* language=tsx */ `
-<HoverCard>
-  <HoverCard.Trigger>
-    <Button label="Hover me" />
-  </HoverCard.Trigger>
+/**
+ * Synchronizes preview card state with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @returns The controlled preview card.
+ * @example
+ * <ControlledHoverCard />
+ */
+const ControlledHoverCard = () => {
+    const [args, updateArgs] = useArgs<HoverCardStoryArgs>()
 
-  <HoverCard.Content style={{ width: '20rem' }}>
-    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-      Hover card title
-    </h4>
-    <p style={{ margin: '0.5rem 0 0', fontSize: '0.875rem', color: 'var(--color-surface-mutedForeground)' }}>
-      This panel stays open while your cursor is over the trigger or this content.
-    </p>
-  </HoverCard.Content>
-</HoverCard>`),
-        },
-    },
-    render: (args) => (
-        <HoverCard {...args}>
-            <HoverCard.Trigger>
-                <Button label={'Hover me'} />
-            </HoverCard.Trigger>
+    /**
+     * Forwards Base UI event details and applies uncanceled changes.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param open - Requested open state.
+     * @param details - Base UI change details.
+     * @returns Nothing.
+     * @example
+     * handleOpenChange(true, details)
+     */
+    const handleOpenChange: NonNullable<HoverCardStoryArgs['onOpenChange']> = (open, details) => {
+        args.onOpenChange?.(open, details)
+        if (!details.isCanceled) {
+            updateArgs({ open })
+        }
+    }
 
-            <HoverCard.Content style={{ width: '20rem' }}>
-                <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-                    Hover card title
-                </h4>
-                <p
-                    style={{
-                        margin: '0.5rem 0 0',
-                        fontSize: '0.875rem',
-                        color: 'var(--color-surface-mutedForeground)',
-                    }}
-                >
-                    This panel stays open while your cursor is over the trigger or this
-                    content.
-                </p>
-            </HoverCard.Content>
-        </HoverCard>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const trigger = canvas.getByRole('button', { name: 'Hover me' })
-        await expect(trigger).toBeInTheDocument()
-        await userEvent.hover(trigger)
-        await waitFor(() =>
-            expect(screen.getByText('Hover card title')).toBeInTheDocument(),
-        )
-    },
+    return (
+        <HoverCardExample
+            {...args}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
+export const Playground: Story = { render: ControlledHoverCard }
+
+export const Uncontrolled: Story = {
+    args: { open: undefined, defaultOpen: false },
+    parameters: { docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } } },
+    render: HoverCardExample,
 }

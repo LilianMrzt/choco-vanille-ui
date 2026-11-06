@@ -741,7 +741,8 @@ ${findingsMarkdown}
 Généré automatiquement le ${generatedAt}.
 
 Une story de composant en erreur possède un rapport dédié. Les fichiers MDX et
-\`src/stories/overview/**\` restent exclus du périmètre.
+les stories de \`src/stories/overview/**\`, \`src/stories/guidelines/**\` et
+\`src/stories/docs/**\` restent exclus du périmètre de l'audit des composants.
 
 ${storyIndexEntries.join('\n') || '- Aucune story en erreur.'}
 `,

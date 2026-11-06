@@ -1,0 +1,24 @@
+import { Command, Button } from '@choco-vanille/ui'
+// Replace these with icon components from your application.
+import { SearchIcon } from './icons'
+
+<Command>
+  <Command.Trigger><Button label="Show icon variants" /></Command.Trigger>
+  <Command.Content>
+    <Command.Input placeholder="Search…" />
+    <Command.List aria-label="Commands">
+      <Command.Group label="Icon variants">
+        <Command.Item onSelect={() => {}}>
+          No icon
+        </Command.Item>
+        <Command.Item icon={SearchIcon} onSelect={() => {}}>
+          With icon
+        </Command.Item>
+        <Command.Item icon={SearchIcon} shortcut="⌘S" onSelect={() => {}}>
+          Icon and shortcut
+        </Command.Item>
+      </Command.Group>
+      <Command.Empty>No results found.</Command.Empty>
+    </Command.List>
+  </Command.Content>
+</Command>

@@ -9,8 +9,7 @@ import BottomSheetRadioGroup from '@components/overlay/bottom-sheet/components/b
 import BottomSheetRadioItem from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/BottomSheetRadioItem.tsx'
 import BottomSheetSeparator from '@components/overlay/bottom-sheet/components/bottom-sheet-separator/BottomSheetSeparator.tsx'
 import BottomSheetTrigger from '@components/overlay/bottom-sheet/components/bottom-sheet-trigger/BottomSheetTrigger.tsx'
-import type { BottomSheetCompound } from '@components/overlay/bottom-sheet/types'
-import type { BottomSheetProps } from '@components/overlay/bottom-sheet/types/BottomSheet.props.ts'
+import type { BottomSheetProps } from '@components/overlay/bottom-sheet/types'
 
 /**
  * A modal sheet that slides up from the bottom of the screen — the mobile
@@ -33,21 +32,25 @@ import type { BottomSheetProps } from '@components/overlay/bottom-sheet/types/Bo
  * </BottomSheet>
  * ```
  */
-const BottomSheet = memo<BottomSheetProps>((props) => (
+const BottomSheetRoot = memo<BottomSheetProps>((props) => (
     <BaseDrawer.Root
         {...props}
         swipeDirection={'down'}
     />
-)) as unknown as BottomSheetCompound
+))
 
-BottomSheet.displayName = 'BottomSheet'
-BottomSheet.Trigger = BottomSheetTrigger
-BottomSheet.Content = BottomSheetContent
-BottomSheet.Header = BottomSheetHeader
-BottomSheet.Item = BottomSheetItem
-BottomSheet.RadioGroup = BottomSheetRadioGroup
-BottomSheet.RadioItem = BottomSheetRadioItem
-BottomSheet.Separator = BottomSheetSeparator
-BottomSheet.Close = BottomSheetClose
+BottomSheetRoot.displayName = 'BottomSheet'
 
-export { BottomSheet }
+/** Bottom sheet root with its action, selection and dismissal slots. */
+const BottomSheet = Object.assign(BottomSheetRoot, {
+    Trigger: BottomSheetTrigger,
+    Content: BottomSheetContent,
+    Header: BottomSheetHeader,
+    Item: BottomSheetItem,
+    RadioGroup: BottomSheetRadioGroup,
+    RadioItem: BottomSheetRadioItem,
+    Separator: BottomSheetSeparator,
+    Close: BottomSheetClose,
+})
+
+export default BottomSheet

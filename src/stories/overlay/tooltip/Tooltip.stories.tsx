@@ -1,199 +1,75 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, userEvent, within, waitFor } from 'storybook/test'
+import { useArgs } from 'storybook/preview-api'
 
-import { Tooltip } from '@/components/overlay/tooltip'
-import { Button } from '@/components/actions/button'
-import type {
-    TooltipSide,
-    TooltipAlign,
-    TooltipPosition,
-} from '@components/overlay/tooltip'
-import { md } from '@stories/_shared/utils/markdown'
+import { Tooltip } from '@components/overlay/tooltip'
+import TooltipDocsPage from '@stories/overlay/tooltip/components/tooltip-docs-page/TooltipDocsPage'
+import TooltipExample from '@stories/overlay/tooltip/components/tooltip-example/TooltipExample'
+import TooltipStates from '@stories/overlay/tooltip/components/tooltip-states/TooltipStates'
+import { ARG_TYPES, DEFAULT_ARGS, type TooltipStoryArgs } from '@stories/overlay/tooltip/constants'
+import statesSource from '@stories/overlay/tooltip/sources/TooltipStates.source.tsx.txt?raw'
+import { createTooltipSource } from '@stories/overlay/tooltip/utils/create-tooltip-source/createTooltipSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
-
-const SIDES: TooltipSide[] = ['top', 'right', 'bottom', 'left']
-const ALIGNS: TooltipAlign[] = ['start', 'center', 'end']
-const POSITIONS: TooltipPosition[] = [
-    'top-start',
-    'top',
-    'top-end',
-    'right-start',
-    'right',
-    'right-end',
-    'bottom-start',
-    'bottom',
-    'bottom-end',
-    'left-start',
-    'left',
-    'left-end',
-]
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type              | Notes                                                                                      |
-| ---------------- | -------- | ----------------- | ------------------------------------------------------------------------------------------ |
-| \`content\`        | ✅ Yes   | \`ReactNode\`       | Must be supplementary — never put task-critical information exclusively in a tooltip.      |
-| \`children\`       | ✅ Yes   | Focusable element | Must be a single focusable element; add \`tabIndex={0}\` when wrapping a non-focusable node. |
-| \`delayDuration\`  | No       | \`number\` (ms)     | Set to \`0\` in tests or for persistent labels (e.g. alongside an \`IconButton\`).             |
-| \`disabled\`       | No       | \`boolean\`         | Suppresses the tooltip entirely when \`true\`.                                               |
-| \`arrow\`          | No       | \`boolean\`         | Shows a directional arrow on the tooltip when \`true\`.                                      |
-| \`open\`           | No       | \`boolean\`         | Controlled open state; pair with \`onOpenChange\` for custom show/hide logic.                |
-
-- The tooltip is shown on both **hover** and **keyboard focus**, ensuring keyboard-only users are not excluded.
-- Avoid interactive content (buttons, links) inside \`content\` — tooltips are not keyboard-reachable once open.
-`
-
-const TooltipDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
 
 const meta = {
     title: 'Overlay/Tooltip',
     component: Tooltip,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
+            description: { component: 'Supplementary text displayed on hover or keyboard focus.' },
             page: TooltipDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-<!--suppress HtmlUnknownAttribute -->
-
-A contextual tooltip that appears on hover or keyboard focus, built on top of \`@base-ui/react/tooltip\`.
-Wrap any focusable element with \`Tooltip\` and provide a \`content\` prop.
-
-**Usage**
-
-~~~tsx
-<Tooltip content="Edit this item">
-  <IconButton icon={SearchIcon} aria-label="Edit" />
-</Tooltip>
-~~~
-        `,
-            },
+            source: { type: 'dynamic', transform: createTooltipSource },
         },
     },
-    argTypes: {
-        content: { control: 'text' },
-        position: {
-            control: 'select',
-            options: [undefined, ...POSITIONS],
-            description:
-        'Shorthand combining `side` + `align` in one prop. Takes precedence over `side` and `align` when set.',
-        },
-        side: { control: 'select', options: SIDES },
-        align: { control: 'select', options: ALIGNS },
-        delayDuration: { control: 'number' },
-        disabled: { control: 'boolean' },
-        arrow: { control: 'boolean' },
-        open: { control: 'boolean' },
-    },
-    args: {
-        content: 'Tooltip content',
-        side: 'top',
-        align: 'center',
-        delayDuration: 0,
-        arrow: false,
-        children: <Button label={'Hover me'} />,
-    },
-} satisfies Meta<typeof Tooltip>
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<TooltipStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<TooltipStoryArgs>
 
-export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — use the Controls panel to adjust content, position, side, alignment, delay, and disabled state.',
-            },
-            ...storySource(/* language=tsx */ `
-<Tooltip content="Tooltip content" side="top" align="center" delayDuration={0}>
-  <Button label="Hover me" />
-</Tooltip>`),
-        },
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        const trigger = canvas.getByRole('button', { name: 'Hover me' })
-        await expect(trigger).toBeInTheDocument()
-        await userEvent.hover(trigger)
-        await waitFor(() =>
-            expect(document.querySelector('[role="tooltip"]')).toBeTruthy(),
-        )
-    },
+/**
+ * Synchronizes tooltip state with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @returns The controlled tooltip.
+ * @example
+ * <ControlledTooltip />
+ */
+const ControlledTooltip = () => {
+    const [args, updateArgs] = useArgs<TooltipStoryArgs>()
+
+    /**
+     * Forwards and applies the requested open state.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param open - Requested open state.
+     * @returns Nothing.
+     * @example
+     * handleOpenChange(true)
+     */
+    const handleOpenChange = (open: boolean): void => {
+        args.onOpenChange?.(open)
+        updateArgs({ open })
+    }
+
+    return (
+        <TooltipExample
+            {...args}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
+export const Playground: Story = { render: ControlledTooltip }
+
+export const Uncontrolled: Story = {
+    args: { open: undefined, defaultOpen: false },
+    parameters: { docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } } },
+    render: TooltipExample,
 }
 
 export const States: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Enabled, disabled, and controlled-open tooltip states.',
-            },
-            ...storySource(/* language=tsx */ `
-<div style={{ display: 'flex', gap: '2rem', alignItems: 'center', padding: '3rem 1rem 2rem' }}>
-  <Tooltip content="Enabled tooltip" delayDuration={0}>
-    <Button label="Enabled" />
-  </Tooltip>
-
-  <Tooltip content="Disabled tooltip" delayDuration={0} disabled>
-    <Button label="Disabled" />
-  </Tooltip>
-
-  <Tooltip content="Controlled open tooltip" delayDuration={0} open>
-    <Button label="Controlled open" />
-  </Tooltip>
-</div>`),
-        },
-    },
-    render: () => (
-        <div
-            style={{
-                display: 'flex',
-                gap: '2rem',
-                alignItems: 'center',
-                padding: '3rem 1rem 2rem',
-            }}
-        >
-            <Tooltip
-                content={'Enabled tooltip'}
-                delayDuration={0}
-            >
-                <Button label={'Enabled'} />
-            </Tooltip>
-
-            <Tooltip
-                content={'Disabled tooltip'}
-                delayDuration={0}
-                disabled
-            >
-                <Button label={'Disabled'} />
-            </Tooltip>
-
-            <Tooltip
-                content={'Controlled open tooltip'}
-                delayDuration={0}
-                open
-            >
-                <Button label={'Controlled open'} />
-            </Tooltip>
-        </div>
-    ),
+    parameters: { docs: { ...storySource(statesSource) } },
+    render: TooltipStates,
 }

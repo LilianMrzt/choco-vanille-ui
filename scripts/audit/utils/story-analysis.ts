@@ -73,7 +73,9 @@ function isComponentStory(root: string, sourceFile: SourceFile): boolean {
   return (
     relativePath.startsWith('src/stories/') &&
     relativePath.endsWith('.stories.tsx') &&
-    !relativePath.startsWith('src/stories/overview/')
+    !relativePath.startsWith('src/stories/overview/') &&
+    !relativePath.startsWith('src/stories/guidelines/') &&
+    !relativePath.startsWith('src/stories/docs/')
   );
 }
 
@@ -261,9 +263,12 @@ function componentDescriptionHasSection(
   source: string,
   section: string,
 ): boolean {
-  return new RegExp(
-    `\\bdescription\\s*:\\s*\\{\\s*component\\s*:[\\s\\S]*?\\*\\*${section}\\*\\*`,
-  ).test(source);
+  const descriptions = source.matchAll(
+    /\bdescription\s*:\s*\{\s*component\s*:\s*(?:md\s*(?:\/\*[\s\S]*?\*\/\s*)?)?(?:`((?:\\[\s\S]|[^`])*)`|'((?:\\[\s\S]|[^'])*)'|"((?:\\[\s\S]|[^"])*)")/g,
+  );
+  return Array.from(descriptions).some((match) =>
+    (match[1] ?? match[2] ?? match[3] ?? '').includes(`**${section}**`),
+  );
 }
 
 function hasMarkdownSubcomponentsSection(source: string): boolean {

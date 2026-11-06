@@ -1,7 +1,7 @@
 import { memo, type FC } from 'react'
 
 import { Flex } from '@components/layout/flex'
-import type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types/DrawerHeader.props.ts'
+import type { DrawerHeaderProps } from '@components/overlay/drawer/components/blocs/drawer-header/types'
 
 /** Header section of a `Drawer`. Accepts free-form `children`. */
 const DrawerHeader: FC<DrawerHeaderProps> = memo(({

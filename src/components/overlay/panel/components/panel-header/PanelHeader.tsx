@@ -5,8 +5,8 @@ import { memo, type FC, useEffect } from 'react'
 import { IconButton } from '@components/actions/icon-button'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
-import type { PanelHeaderProps } from '@components/overlay/panel/components/panel-header/types/PanelHeader.props.ts'
-import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/styles/PanelHeader.css.ts'
+import type { PanelHeaderProps } from '@components/overlay/panel/components/panel-header/types'
+import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/PanelHeader.css.ts'
 import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { usePanelContext } from '@components/overlay/panel/context/Panel.context.ts'
 
@@ -16,6 +16,22 @@ import { usePanelContext } from '@components/overlay/panel/context/Panel.context
  * the close button in the trailing row. Registers the title
  * presence with `Panel` context so `Panel.Content` can set
  * `aria-labelledby` automatically.
+ * Native attributes and ref target the selected root element.
+ * @param props - Header layout attributes and content.
+ * @param props.as - Root element; defaults to `div`.
+ * @param props.title - Optional accessible title.
+ * @param props.titleAs - Heading element; defaults to `h2`.
+ * @param props.titleProps - Additional title attributes.
+ * @param props.description - Optional description.
+ * @param props.descriptionProps - Additional description attributes.
+ * @param props.actions - Trailing content before the close button.
+ * @param props.showCloseButton - Show the close control; defaults to `true`.
+ * @param props.closeLabel - Close control name; defaults to `Close panel`.
+ * @param props.className - Additional root class.
+ * @param props.children - Additional header content.
+ * @returns The panel header.
+ * @example
+ * <Panel.Header title="Settings" />
  */
 const PanelHeader: FC<PanelHeaderProps> = memo(
     ({

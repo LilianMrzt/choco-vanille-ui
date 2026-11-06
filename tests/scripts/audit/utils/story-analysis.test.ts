@@ -13,6 +13,52 @@ const findSourceErrors = (source: string): string[] => {
 }
 
 describe('Storybook consumer source audit', () => {
+    it('audits component stories without applying component rules to reference pages', () => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const paths = [
+            '/src/stories/docs/colors/Colors.stories.tsx',
+            '/src/stories/docs/css-variables/CssVariables.stories.tsx',
+            '/src/stories/docs/tokens/Tokens.stories.tsx',
+            '/src/stories/guidelines/example/Example.stories.tsx',
+            '/src/stories/overview/example/Example.stories.tsx',
+            '/src/stories/data-display/badge/docs/Badge.stories.tsx',
+        ]
+        const files = paths.map((filePath) => project.createSourceFile(filePath, 'export const Reference = {}'))
+        const result = analyzeComponentStories('/', files, [])
+
+        expect(result.storyCount).toBe(1)
+        expect(result.findings.map((finding) => finding.rule)).toContain('story-playground')
+        expect(result.findings.every((finding) => finding.file === 'src/stories/data-display/badge/docs/Badge.stories.tsx')).toBe(true)
+    })
+
+    it('does not confuse a docs-page subsection with the component description', () => {
+        const project = new Project({ useInMemoryFileSystem: true, compilerOptions: { paths: { '@stories/*': ['/src/stories/*'] } } })
+        const file = project.createSourceFile('/src/stories/data-display/badge/Badge.stories.tsx', `
+import DocsPage from '@stories/data-display/badge/components/docs-page/DocsPage'
+const meta = { parameters: { docs: { page: DocsPage, description: { component: 'A badge.' } } } }
+export default meta
+export const Playground = {}
+`)
+        project.createSourceFile('/src/stories/data-display/badge/components/docs-page/DocsPage.tsx', `
+const details = md\`**Sub-components**\`
+const DocsPage = () => <><Controls /><Markdown>{details}</Markdown></>
+export default DocsPage
+`)
+        const findings = analyzeComponentStories('/', [file], []).findings
+        expect(findings.filter((finding) => finding.rule === 'story-subcomponents-order')).toEqual([])
+    })
+
+    it('still flags subcomponents inside the component description', () => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/data-display/badge/Badge.stories.tsx', `
+const meta = { parameters: { docs: { description: { component: md\`Badge. **Sub-components**\` } } } }
+export default meta
+export const Playground = {}
+`)
+        const findings = analyzeComponentStories('/', [file], []).findings
+        expect(findings.some((finding) => finding.rule === 'story-subcomponents-order')).toBe(true)
+    })
+
     it('accepts a shared dynamic source transform inherited by stories', () => {
         expect(findSourceErrors(`
 const meta = {

@@ -1,6 +1,6 @@
-import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types/DrawerInline.props.ts'
-import type { DrawerMiniProps } from '@components/overlay/drawer/components/variants/drawer-mini/types/DrawerMini.props.ts'
-import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types/DrawerPortal.props.ts'
+import type { DrawerInlineProps } from '@components/overlay/drawer/components/variants/drawer-inline/types'
+import type { DrawerMiniProps } from '@components/overlay/drawer/components/variants/drawer-mini/types'
+import type { DrawerPortalProps } from '@components/overlay/drawer/components/variants/drawer-portal/types'
 import type { DrawerProps } from '@components/overlay/drawer/types'
 import type { DrawerContextValue } from '@components/overlay/drawer/context/Drawer.context.ts'
 

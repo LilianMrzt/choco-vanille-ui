@@ -1,14 +1,22 @@
 import { memo, useContext } from 'react'
 
-import { STEP_INDICATOR_ITEM_STYLES } from '@components/navigation/step-indicator/components/step-indicator-item/styles/StepIndicatorItem.css.ts'
+import { STEP_INDICATOR_ITEM_STYLES } from '@components/navigation/step-indicator/components/step-indicator-item/StepIndicatorItem.css.ts'
 import { StepIndicatorContext } from '@components/navigation/step-indicator/context/StepIndicator.context.ts'
-import type { StepIndicatorItemProps } from '@components/navigation/step-indicator/components/step-indicator-item/types/StepIndicatorItem.props.ts'
+import type { StepIndicatorItemProps } from '@components/navigation/step-indicator/components/step-indicator-item/types'
 import { cn } from '@utils/cn.ts'
 
 /**
  * Single dot step slot for `StepIndicator`. Renders as a `<button>` with
  * `aria-label` and `aria-current="step"` when `onStepChange` is in context,
  * otherwise as a `role="img"` `<span>`.
+ * @param props - Item options.
+ * @param props.label - Accessible step name.
+ * @param props.disabled - Prevents selection of an interactive step.
+ * @param props.ref - Ref to the button when interactive.
+ * @returns A step dot.
+ * @throws When rendered outside a step indicator.
+ * @example
+ * <StepIndicator.Item label="Account" />
  */
 const StepIndicatorItem = memo(
     ({ label, disabled, ref }: StepIndicatorItemProps) => {

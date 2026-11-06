@@ -1,7 +1,7 @@
 import { cn } from '@utils/cn.ts'
 import { Flex } from '@components/layout/flex'
-import { DROPDOWN_MENU_SHORTCUT_STYLES } from '@components/overlay/dropdown-menu/components/shortcut/styles/DropdownMenuShortcut.css.ts'
-import type { DropdownMenuShortcutProps } from '@components/overlay/dropdown-menu/components/shortcut/types/DropdownMenuShortcut.props.ts'
+import { DROPDOWN_MENU_SHORTCUT_STYLES } from '@components/overlay/dropdown-menu/components/shortcut/DropdownMenuShortcut.css.ts'
+import type { DropdownMenuShortcutProps } from '@components/overlay/dropdown-menu/components/shortcut/types'
 import { memo, type FC } from 'react'
 
 /**

@@ -1,5 +1,5 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
-import { memo } from 'react'
+import { memo, type FC } from 'react'
 
 import DialogBody from '@components/overlay/dialog/components/dialog-body/DialogBody.tsx'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
@@ -9,8 +9,7 @@ import DialogFooter from '@components/overlay/dialog/components/dialog-footer/Di
 import DialogHeader from '@components/overlay/dialog/components/dialog-header/DialogHeader.tsx'
 import DialogTitle from '@components/overlay/dialog/components/dialog-title/DialogTitle.tsx'
 import DialogTrigger from '@components/overlay/dialog/components/dialog-trigger/DialogTrigger.tsx'
-import type { DialogCompound } from '@components/overlay/dialog/types'
-import type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.ts'
+import type { DialogProps } from '@components/overlay/dialog/types'
 
 /**
  * A modal dialog built on Base UI Dialog.
@@ -19,6 +18,8 @@ import type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.
  * `Dialog.Trigger`, `Dialog.Content`, `Dialog.Header`, `Dialog.Body`,
  * `Dialog.Footer`, `Dialog.Title`, `Dialog.Description` and `Dialog.Close`.
  *
+ * @param props - Dialog state, callbacks and root composition.
+ * @returns The dialog root and its composed slots.
  * @example
  * ```tsx
  * <Dialog>
@@ -43,18 +44,27 @@ import type { DialogProps } from '@components/overlay/dialog/types/Dialog.props.
  * </Dialog>
  * ```
  */
-const Dialog = memo<DialogProps>((props) => (
+const DialogRoot: FC<DialogProps> = memo((props) => (
     <BaseDialog.Root {...props} />
-)) as unknown as DialogCompound
+))
 
-Dialog.displayName = 'Dialog'
-Dialog.Trigger = DialogTrigger
-Dialog.Content = DialogContent
-Dialog.Header = DialogHeader
-Dialog.Body = DialogBody
-Dialog.Footer = DialogFooter
-Dialog.Title = DialogTitle
-Dialog.Description = DialogDescription
-Dialog.Close = DialogClose
+DialogRoot.displayName = 'Dialog'
 
-export { Dialog }
+/**
+ * Dialog root with namespaced trigger, content, and section slots.
+ * Compose a named content panel and include an accessible close control.
+ * @example
+ * <Dialog><Dialog.Content aria-label="Settings" /></Dialog>
+ */
+const Dialog = Object.assign(DialogRoot, {
+    Trigger: DialogTrigger,
+    Content: DialogContent,
+    Header: DialogHeader,
+    Body: DialogBody,
+    Footer: DialogFooter,
+    Title: DialogTitle,
+    Description: DialogDescription,
+    Close: DialogClose,
+})
+
+export default Dialog

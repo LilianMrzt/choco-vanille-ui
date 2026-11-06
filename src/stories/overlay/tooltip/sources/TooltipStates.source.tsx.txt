@@ -1,0 +1,7 @@
+import { Button, Tooltip } from '@choco-vanille/ui'
+
+<div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', padding: '3rem 1rem 2rem' }}>
+  <Tooltip content="Enabled tooltip"><Button label="Enabled" /></Tooltip>
+  <Tooltip content="Disabled tooltip" disabled><Button label="Disabled" /></Tooltip>
+  <Tooltip content="Controlled open tooltip" open><Button label="Open" /></Tooltip>
+</div>

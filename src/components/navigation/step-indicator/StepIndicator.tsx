@@ -6,11 +6,10 @@ import {
 } from 'react'
 
 import StepIndicatorItem from '@components/navigation/step-indicator/components/step-indicator-item/StepIndicatorItem.tsx'
-import type { StepIndicatorItemProps } from '@components/navigation/step-indicator/components/step-indicator-item/types/StepIndicatorItem.props.ts'
+import type { StepIndicatorItemProps } from '@components/navigation/step-indicator/components/step-indicator-item/types'
 import { StepIndicatorContext } from '@components/navigation/step-indicator/context/StepIndicator.context.ts'
-import { STEP_INDICATOR_STYLES } from '@components/navigation/step-indicator/styles/StepIndicator.css.ts'
-import type { StepIndicatorProps } from '@components/navigation/step-indicator/types/StepIndicator.props.ts'
-import type { StepIndicatorCompound } from '@components/navigation/step-indicator/types/StepIndicatorCompound.ts'
+import { STEP_INDICATOR_STYLES } from '@components/navigation/step-indicator/StepIndicator.css.ts'
+import type { StepIndicatorProps } from '@components/navigation/step-indicator/types'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -19,8 +18,18 @@ import { cn } from '@utils/cn.ts'
  * for each `StepIndicator.Item`.
  *
  * Compound slot: `StepIndicator.Item`.
+ * @param props - Navigation attributes and step options.
+ * @param props["aria-label"] - Accessible landmark name.
+ * @param props.children - Ordered step items.
+ * @param props.currentStep - Current one-based step.
+ * @param props.onStepChange - Makes dots interactive and receives the selected step.
+ * @param props.className - Additional navigation class.
+ * @param props.ref - Ref to the navigation element.
+ * @returns A step navigation landmark.
+ * @example
+ * <StepIndicator aria-label="Progress" currentStep={1}><StepIndicator.Item label="First" /></StepIndicator>
  */
-const StepIndicator = memo(
+const StepIndicatorRoot = memo(
     ({
         'aria-label': ariaLabel,
         children,
@@ -67,9 +76,15 @@ const StepIndicator = memo(
             </nav>
         )
     },
-) as unknown as StepIndicatorCompound
+)
 
-StepIndicator.displayName = 'StepIndicator'
-StepIndicator.Item = StepIndicatorItem
+StepIndicatorRoot.displayName = 'StepIndicator'
+
+/**
+ * Controlled step indicator with an item slot.
+ * @example
+ * <StepIndicator aria-label="Progress" currentStep={1}><StepIndicator.Item label="First" /></StepIndicator>
+ */
+const StepIndicator = Object.assign(StepIndicatorRoot, { Item: StepIndicatorItem })
 
 export default StepIndicator

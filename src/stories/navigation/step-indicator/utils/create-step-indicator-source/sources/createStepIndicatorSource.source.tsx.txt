@@ -1,0 +1,15 @@
+import { useState } from 'react'
+import { StepIndicator } from '@choco-vanille/ui'
+
+function Example() {
+  const [currentStep, setCurrentStep] = useState({{currentStep}})
+
+  return (
+    <StepIndicator aria-label={{{ariaLabel}}} currentStep={currentStep} onStepChange={setCurrentStep}>
+      <StepIndicator.Item label={{{accountLabel}}} />
+      <StepIndicator.Item label={{{preferencesLabel}}} />
+      <StepIndicator.Item label={{{reviewLabel}}} />
+      <StepIndicator.Item label={{{confirmationLabel}}} />
+    </StepIndicator>
+  )
+}

@@ -1,5 +1,5 @@
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
-import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types/DrawerSectionItem.props.ts'
+import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types'
 
 export type UseDrawerSectionItemOptions = Pick<
     DrawerSectionItemProps,

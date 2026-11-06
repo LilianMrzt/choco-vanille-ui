@@ -5,14 +5,24 @@ import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import { StepperItemContext } from '@components/navigation/stepper/context/Stepper.context.ts'
 import { STEPPER_ITEM_SIZES } from '@components/navigation/stepper/constants'
-import { STEPPER_STYLES } from '@components/navigation/stepper/styles/Stepper.css.ts'
-import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types/StepperItem.props.ts'
+import { STEPPER_STYLES } from '@components/navigation/stepper/Stepper.css.ts'
+import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types'
 import { cn } from '@utils/cn.ts'
 
 /**
  * Individual step slot for `Stepper`. Displays a numbered marker (check icon
  * when completed), a label, and an optional description. Renders a `<button>`
  * when `onStepChange` is present in context, otherwise a static `<span>`.
+ * @param props - Item options.
+ * @param props.label - Visible step title.
+ * @param props.description - Optional supporting text.
+ * @param props.disabled - Prevents selection of an interactive step.
+ * @param props.size - Marker size; defaults to `md`.
+ * @param props.children - Custom content replacing the default label.
+ * @returns A step marker and content.
+ * @throws When rendered outside a stepper.
+ * @example
+ * <Stepper.Item label="Account" />
  */
 const StepperItem = memo(
     ({

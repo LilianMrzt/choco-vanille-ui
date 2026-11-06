@@ -5,22 +5,35 @@ import {
     type PaginationPageItem,
 } from '@components/navigation/pagination/utils/pagination.utils.ts'
 
-type UsePaginationOptions = {
+type UsePaginationOptions = Readonly<{
     currentPage: number
     totalPages: number
     siblingCount: number
     boundaryCount: number
     onPageChange: (page: number) => void
-}
+}>
 
-type UsePaginationReturn = {
+type UsePaginationReturn = Readonly<{
     pageItems: PaginationPageItem[]
     isFirstPage: boolean
     isLastPage: boolean
     goToPreviousPage: () => void
     goToNextPage: () => void
-}
+}>
 
+/**
+ * Resolves visible pages and previous/next actions.
+ * @param options - Current page, total, display counts and change callback.
+ * @param options.currentPage - Current page, starting at one.
+ * @param options.totalPages - Total pages, at least one.
+ * @param options.siblingCount - Pages shown around the current page.
+ * @param options.boundaryCount - Pages shown at each boundary.
+ * @param options.onPageChange - Callback receiving the requested page.
+ * @returns Page items, boundary state and navigation actions.
+ * @throws {RangeError} When pages are invalid or display counts are not finite.
+ * @example
+ * usePagination({ currentPage: 1, totalPages: 5, siblingCount: 1, boundaryCount: 1, onPageChange })
+ */
 export const usePagination = ({
     currentPage,
     totalPages,
@@ -40,13 +53,17 @@ export const usePagination = ({
         )
     }
 
+    if (!Number.isFinite(siblingCount) || !Number.isFinite(boundaryCount)) {
+        throw new RangeError('Pagination requires finite siblingCount and boundaryCount.')
+    }
+
     const pageItems = useMemo(
         () =>
             getPaginationPageItems(
                 totalPages,
                 currentPage,
-                Math.max(0, Math.floor(siblingCount)),
-                Math.max(0, Math.floor(boundaryCount)),
+                Math.min(totalPages, Math.max(0, Math.floor(siblingCount))),
+                Math.min(totalPages, Math.max(0, Math.floor(boundaryCount))),
             ),
         [boundaryCount, currentPage, siblingCount, totalPages],
     )

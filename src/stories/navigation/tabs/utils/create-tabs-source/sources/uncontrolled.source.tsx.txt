@@ -1,0 +1,12 @@
+import { Tabs } from '@choco-vanille/ui'
+
+<Tabs defaultValue={{{value}}} orientation={{{orientation}}}>
+  <Tabs.List aria-label="User settings" variant={{{listVariant}}} bordered={{{listBordered}}} activationMode={{{activationMode}}}>
+    <Tabs.Trigger value="account" label="Account" />
+    <Tabs.Trigger value="password" label="Password" />
+    <Tabs.Trigger value="billing" label="Billing" disabled={{{billingDisabled}}}{{billingWidth}} />
+  </Tabs.List>
+  <Tabs.Content value="account">Account settings</Tabs.Content>
+  <Tabs.Content value="password">Password settings</Tabs.Content>
+  <Tabs.Content value="billing">Billing settings</Tabs.Content>
+</Tabs>

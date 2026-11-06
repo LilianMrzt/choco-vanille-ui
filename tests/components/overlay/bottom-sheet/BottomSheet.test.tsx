@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Button } from '@components/actions/button'
-import { BottomSheet } from '@components/overlay/bottom-sheet/BottomSheet.tsx'
-import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/styles/BottomSheetClose.css.ts'
+import { BottomSheet } from '@components/overlay/bottom-sheet'
+import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/BottomSheetClose.css.ts'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 

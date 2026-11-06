@@ -1,5 +1,5 @@
-export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared/styles/DrawerItemShared.css.ts'
-export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/_shared/styles/DrawerItemShared.css.ts'
+export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared/DrawerItemShared.css.ts'
+export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/_shared/DrawerItemShared.css.ts'
 export {
     DRAWER_ITEM_VARIANTS,
     DRAWER_ITEM_COLORS,
@@ -12,4 +12,4 @@ export type { DrawerItemContentProps } from '@components/overlay/drawer/componen
 export type {
     DrawerItemVariant,
     DrawerItemColor,
-} from '@components/overlay/drawer/components/items/_shared/types/DrawerItem.types.ts'
+} from '@components/overlay/drawer/components/items/_shared/types'

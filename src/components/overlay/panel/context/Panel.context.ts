@@ -9,6 +9,13 @@ type PanelContextValue = {
 
 export const PanelContext = createContext<PanelContextValue | null>(null)
 
+/**
+ * Reads panel state shared by its content and header.
+ * @returns The current panel context.
+ * @throws When used outside a panel root.
+ * @example
+ * const { titleId } = usePanelContext()
+ */
 export const usePanelContext = (): PanelContextValue => {
     const context = useContext(PanelContext)
 

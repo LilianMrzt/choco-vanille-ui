@@ -1,7 +1,7 @@
 ﻿import { memo, type AriaRole, type FC } from 'react'
 
 import { Box } from '@components/layout/box'
-import type { DrawerBodyProps } from '@components/overlay/drawer/components/blocs/drawer-body/types/DrawerBody.props.ts'
+import type { DrawerBodyProps } from '@components/overlay/drawer/components/blocs/drawer-body/types'
 
 /** Main content area of a `Drawer` with uniform padding and overflow handling. */
 const DrawerBody: FC<DrawerBodyProps> = memo(({

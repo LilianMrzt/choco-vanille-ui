@@ -1,0 +1,6 @@
+import { Toast{{buttonImport}} } from '@choco-vanille/ui'
+
+{{iconNote}}
+<Toast variant={{{variant}}} role={{{role}}}>
+{{children}}
+</Toast>

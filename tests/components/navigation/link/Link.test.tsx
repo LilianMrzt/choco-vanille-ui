@@ -49,6 +49,7 @@ describe('Link', () => {
             await userEvent.click(link)
 
             expect(onClick).toHaveBeenCalledTimes(1)
+            expect(onClick.mock.calls[0][0].defaultPrevented).toBe(true)
             expect(link.getAttribute('href')).toBe('/dashboard')
         })
 

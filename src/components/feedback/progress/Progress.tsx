@@ -1,18 +1,29 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { PROGRESS_STYLES } from '@components/feedback/progress/styles/Progress.css.ts'
-import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types/Progress.props.ts'
+import { PROGRESS_STYLES } from '@components/feedback/progress/Progress.css.ts'
+import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types'
+import { clamp } from '@components/feedback/progress/utils/clamp.utils.ts'
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
-
-const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
 /**
  * Horizontal `role="progressbar"` with label, optional quantity display,
  * design-token `size` (xs|sm|md|lg|xl), `color`, and `borderRadius`.
  * Requires an accessible name via `label`, `aria-label`, or
  * `aria-labelledby`.
+ * @param props - Progress value, accessible name and outer box props.
+ * @param props.value - Progress percentage, clamped to 0–100.
+ * @param props.color - Semantic color, defaulting to `primary`.
+ * @param props.size - Track height, defaulting to `sm`.
+ * @param props.borderRadius - Track radius, defaulting to `6`.
+ * @param props.label - Visible label and accessible name.
+ * @param props.quantityLabel - Percentage or custom quantity.
+ * @param props.width - Outer width, defaulting to `100%`.
+ * @param props.ref - Ref to the outer element.
+ * @returns A horizontal progress indicator.
+ * @example
+ * <Progress value={50} aria-label="Loading" />
  */
 const Progress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,

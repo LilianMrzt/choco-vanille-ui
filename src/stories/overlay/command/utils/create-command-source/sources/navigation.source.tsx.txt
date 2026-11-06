@@ -1,0 +1,5 @@
+
+          <Command.Group label="Navigation">
+            <Command.Item{{userIcon}}{{dashboardShortcut}} onSelect={() => {}}>Go to dashboard</Command.Item>
+            <Command.Item{{userIcon}}{{profileShortcut}} onSelect={() => {}}>My profile</Command.Item>
+          </Command.Group>

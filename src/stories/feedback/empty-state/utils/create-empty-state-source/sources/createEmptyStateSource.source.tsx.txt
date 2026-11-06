@@ -1,0 +1,6 @@
+import { EmptyState{{buttonImport}} } from '@choco-vanille/ui'
+
+<EmptyState
+  title={{{title}}}
+  description={{{description}}}{{action}}{{className}}
+/>

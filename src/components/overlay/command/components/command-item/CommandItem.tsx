@@ -4,8 +4,8 @@ import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
-import { COMMAND_ITEM_STYLES } from '@components/overlay/command/components/command-item/styles/CommandItem.css.ts'
-import type { CommandItemProps } from '@components/overlay/command/components/command-item/types/CommandItem.props.ts'
+import { COMMAND_ITEM_STYLES } from '@components/overlay/command/components/command-item/CommandItem.css.ts'
+import type { CommandItemProps } from '@components/overlay/command/components/command-item/types'
 import { cn } from '@utils/cn.ts'
 
 /**

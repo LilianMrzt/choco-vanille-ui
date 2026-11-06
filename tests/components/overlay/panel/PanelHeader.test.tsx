@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Panel } from '@components/overlay/panel/Panel.tsx'
-import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/styles/PanelHeader.css.ts'
+import { Panel } from '@components/overlay/panel'
+import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/PanelHeader.css.ts'
 
 describe('Panel.Header', () => {
     it('renders a localized close button label', () => {

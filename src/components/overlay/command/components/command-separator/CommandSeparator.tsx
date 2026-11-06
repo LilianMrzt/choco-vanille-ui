@@ -2,8 +2,8 @@ import { Separator as BaseSeparator } from '@base-ui/react/separator'
 import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { COMMAND_SEPARATOR_STYLES } from '@components/overlay/command/components/command-separator/styles/CommandSeparator.css.ts'
-import type { CommandSeparatorProps } from '@components/overlay/command/components/command-separator/types/CommandSeparator.props.ts'
+import { COMMAND_SEPARATOR_STYLES } from '@components/overlay/command/components/command-separator/CommandSeparator.css.ts'
+import type { CommandSeparatorProps } from '@components/overlay/command/components/command-separator/types'
 
 /**
  * A thin horizontal rule used to visually divide groups of commands.

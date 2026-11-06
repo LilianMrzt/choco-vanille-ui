@@ -3,9 +3,9 @@ import { memo, type FC } from 'react'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared/hooks/use-drawer-item-attributes/useDrawerItemAttributes.hook.ts'
-import type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/types/DrawerItemContent.props.ts'
+import type { DrawerItemContentProps } from '@components/overlay/drawer/components/items/_shared/components/drawer-item-content/types'
 import { RotatingChevron } from '@components/_common/rotating-chevron'
-import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared/styles/DrawerItemShared.css.ts'
+import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared/DrawerItemShared.css.ts'
 
 /**
  * Shared inner content of a drawer item row.

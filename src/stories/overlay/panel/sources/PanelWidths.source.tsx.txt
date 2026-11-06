@@ -1,0 +1,12 @@
+import { Button, Panel } from '@choco-vanille/ui'
+
+<>
+  <Panel>
+    <Panel.Trigger><Button color="primary" label="Open narrow panel" variant="outlined" /></Panel.Trigger>
+    <Panel.Content width="20rem"><Panel.Header title="Narrow panel" /></Panel.Content>
+  </Panel>
+  <Panel>
+    <Panel.Trigger><Button color="primary" label="Open wide panel" variant="outlined" /></Panel.Trigger>
+    <Panel.Content width="42rem"><Panel.Header title="Wide panel" /></Panel.Content>
+  </Panel>
+</>

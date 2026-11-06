@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import type { ToastVariant } from '@components/feedback/toast/types/Toast.types.ts'
+import type { ToastVariant } from '@components/feedback/toast/types'
 
 export interface ToastContextValue {
   variant: ToastVariant;

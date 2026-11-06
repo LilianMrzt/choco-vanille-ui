@@ -1,0 +1,9 @@
+import { Flex, Spinner } from '@choco-vanille/ui'
+
+<Flex alignItems="center" gap={16}>
+  <Spinner aria-label="Loading" size="xs" />
+  <Spinner aria-label="Loading" size="sm" />
+  <Spinner aria-label="Loading" size="md" />
+  <Spinner aria-label="Loading" size="lg" />
+  <Spinner aria-label="Loading" size="xl" />
+</Flex>

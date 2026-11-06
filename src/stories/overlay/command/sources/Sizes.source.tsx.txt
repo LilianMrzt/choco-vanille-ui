@@ -1,0 +1,45 @@
+import { Command, Button } from '@choco-vanille/ui'
+
+<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+  <Command>
+    <Command.Trigger>
+      <Button label="sm" variant="outlined" color="primary" />
+    </Command.Trigger>
+    <Command.Content size="sm">
+      <Command.Input placeholder="Search…" />
+      <Command.List aria-label="Commands">
+        <Command.Item onSelect={() => {}}>Edit profile</Command.Item>
+        <Command.Item onSelect={() => {}}>Settings</Command.Item>
+        <Command.Empty>No results found.</Command.Empty>
+      </Command.List>
+    </Command.Content>
+  </Command>
+
+  <Command>
+    <Command.Trigger>
+      <Button label="md" variant="outlined" color="primary" />
+    </Command.Trigger>
+    <Command.Content size="md">
+      <Command.Input placeholder="Search…" />
+      <Command.List aria-label="Commands">
+        <Command.Item onSelect={() => {}}>Edit profile</Command.Item>
+        <Command.Item onSelect={() => {}}>Settings</Command.Item>
+        <Command.Empty>No results found.</Command.Empty>
+      </Command.List>
+    </Command.Content>
+  </Command>
+
+  <Command>
+    <Command.Trigger>
+      <Button label="lg" variant="outlined" color="primary" />
+    </Command.Trigger>
+    <Command.Content size="lg">
+      <Command.Input placeholder="Search…" />
+      <Command.List aria-label="Commands">
+        <Command.Item onSelect={() => {}}>Edit profile</Command.Item>
+        <Command.Item onSelect={() => {}}>Settings</Command.Item>
+        <Command.Empty>No results found.</Command.Empty>
+      </Command.List>
+    </Command.Content>
+  </Command>
+</div>

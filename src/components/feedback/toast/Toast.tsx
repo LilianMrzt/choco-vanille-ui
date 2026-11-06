@@ -1,14 +1,13 @@
 import { Children, isValidElement, memo, useCallback } from 'react'
 
-import { TOAST_STYLES } from '@components/feedback/toast/styles/Toast.css.ts'
+import { TOAST_STYLES } from '@components/feedback/toast/Toast.css.ts'
 import { ToastActions } from '@components/feedback/toast/components/toast-actions'
 import { ToastClose } from '@components/feedback/toast/components/toast-close'
 import { ToastDescription } from '@components/feedback/toast/components/toast-description'
 import { ToastIcon } from '@components/feedback/toast/components/toast-icon'
 import { ToastTitle } from '@components/feedback/toast/components/toast-title'
 import { ToastContext } from '@components/feedback/toast/context/Toast.context.ts'
-import type { ToastCompound } from '@components/feedback/toast/types'
-import type { ToastProps } from '@components/feedback/toast/types/Toast.props.ts'
+import type { ToastProps } from '@components/feedback/toast/types'
 import { Box } from '@components/layout/box'
 import { createIconChildUtils } from '@utils/createIconChildUtils.ts'
 import { cn } from '@utils/cn.ts'
@@ -24,8 +23,22 @@ const { hasIconChild } = createIconChildUtils(ToastIcon)
  *
  * Compound slots: `Toast.Icon`, `Toast.Title`, `Toast.Description`,
  * `Toast.Actions`, `Toast.Close`.
+ * @param props - Toast content and root attributes.
+ * @param props.variant - Visual intent; defaults to `info`.
+ * @param props.role - Live-region role; defaults to `status`.
+ * @param props.icon - Optional icon override.
+ * @param props.title - Convenience title.
+ * @param props.description - Convenience description.
+ * @param props.closeLabel - Convenience close label; defaults to `Close notification`.
+ * @param props.onClose - Renders the convenience close button when provided.
+ * @param props.children - Compound content.
+ * @param props.className - Additional root class.
+ * @param props.ref - Ref to the root element.
+ * @returns A notification card.
+ * @example
+ * <Toast title="Saved" variant="success" />
  */
-const Toast = memo<ToastProps>(({
+const ToastRoot = memo<ToastProps>(({
     variant = 'info',
     role = 'status',
     icon,
@@ -83,13 +96,17 @@ const Toast = memo<ToastProps>(({
             </Box>
         </ToastContext.Provider>
     )
-}) as unknown as ToastCompound
+})
 
-Toast.displayName = 'Toast'
-Toast.Icon = ToastIcon
-Toast.Title = ToastTitle
-Toast.Description = ToastDescription
-Toast.Actions = ToastActions
-Toast.Close = ToastClose
+ToastRoot.displayName = 'Toast'
+
+/** Notification card with namespaced content slots. */
+const Toast = Object.assign(ToastRoot, {
+    Icon: ToastIcon,
+    Title: ToastTitle,
+    Description: ToastDescription,
+    Actions: ToastActions,
+    Close: ToastClose,
+})
 
 export default Toast

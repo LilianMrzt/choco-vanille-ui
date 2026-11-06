@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Button } from '@components/actions/button'
-import { Panel } from '@components/overlay/panel/Panel.tsx'
+import { Panel } from '@components/overlay/panel'
 
 describe('Panel', () => {
     it('exposes the dialog-like compound components', () => {

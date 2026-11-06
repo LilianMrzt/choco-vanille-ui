@@ -1,0 +1,3 @@
+import { Progress } from '@choco-vanille/ui'
+
+<Progress{{attributes}} />

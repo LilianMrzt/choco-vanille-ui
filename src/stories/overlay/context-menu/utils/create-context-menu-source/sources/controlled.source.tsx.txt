@@ -1,0 +1,15 @@
+import { useState } from 'react'
+import { ContextMenu } from '@choco-vanille/ui'
+
+function Example() {
+  const [open, setOpen] = useState({{open}})
+  return (
+    <ContextMenu open={open} onOpenChange={setOpen} disabled={{{disabled}}} loopFocus={{{loopFocus}}} highlightItemOnHover={{{highlightItemOnHover}}}>
+      <ContextMenu.Trigger><div style={{ padding: '4rem', border: '1px dashed currentColor' }}>{{{triggerLabel}}}</div></ContextMenu.Trigger>
+      <ContextMenu.Content>
+        <ContextMenu.Item label={{{editLabel}}} />
+        <ContextMenu.Item label={{{deleteLabel}}} destructive />{{disabledItem}}
+      </ContextMenu.Content>
+    </ContextMenu>
+  )
+}

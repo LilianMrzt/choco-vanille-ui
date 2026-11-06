@@ -1,0 +1,10 @@
+import { Button, HoverCard } from '@choco-vanille/ui'
+
+<HoverCard defaultOpen={{{open}}}>
+  <HoverCard.Trigger delay={{{triggerDelay}}} closeDelay={{{closeDelay}}}>
+    <Button label={{{triggerLabel}}} />
+  </HoverCard.Trigger>
+  <HoverCard.Content style={{ width: {{contentWidth}}, padding: '1rem' }}>
+    <p style={{ margin: 0 }}>{ {{contentText}} }</p>
+  </HoverCard.Content>
+</HoverCard>

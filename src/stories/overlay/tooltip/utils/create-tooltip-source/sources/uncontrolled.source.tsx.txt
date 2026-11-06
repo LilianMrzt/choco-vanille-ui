@@ -1,0 +1,5 @@
+import { Button, Tooltip } from '@choco-vanille/ui'
+
+<Tooltip{{attributes}} defaultOpen={{{open}}}>
+  <Button label={{{triggerLabel}}} />
+</Tooltip>

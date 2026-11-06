@@ -7,14 +7,30 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import DropdownMenuShortcut from '@components/overlay/dropdown-menu/components/shortcut/DropdownMenuShortcut.tsx'
-import { POPOVER_ITEM_STYLES } from '@components/overlay/popover/components/item/styles/PopoverItem.css.ts'
-import type { PopoverItemProps } from '@components/overlay/popover/components/item/types/PopoverItem.props.ts'
+import { POPOVER_ITEM_STYLES } from '@components/overlay/popover/components/item/PopoverItem.css.ts'
+import type { PopoverItemProps } from '@components/overlay/popover/components/item/types'
 
 /**
  * A single actionable item inside the popover.
  *
  * It shares the dropdown item presentation while remaining a native button
  * because a popover does not provide a menu context.
+ * @param props - Native button attributes and item options.
+ * @param props.label - Visible item text.
+ * @param props.active - Whether the item is visually active.
+ * @param props.destructive - Whether to use destructive styling.
+ * @param props.startIcon - Optional leading icon.
+ * @param props.endIcon - Optional trailing icon.
+ * @param props.shortcut - Optional shortcut hint.
+ * @param props.closeOnClick - Whether activation closes the popover; defaults to `true`.
+ * @param props.disabled - Whether activation is disabled.
+ * @param props.onClick - Native click handler.
+ * @param props.ref - Ref to the button.
+ * @param props.type - Button type; defaults to `button`.
+ * @param props.className - Additional class.
+ * @returns An actionable row.
+ * @example
+ * <Popover.Item label="Edit" />
  */
 const PopoverItem: FC<PopoverItemProps> = memo(({
     className,

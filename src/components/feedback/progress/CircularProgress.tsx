@@ -3,8 +3,8 @@ import {
     PROGRESS_SIZE_TO_CIRCULAR_SIZE,
     PROGRESS_SIZE_TO_STROKE_WIDTH,
 } from '@components/feedback/progress/constants'
-import { PROGRESS_STYLES } from '@components/feedback/progress/styles/Progress.css.ts'
-import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types/Progress.props.ts'
+import { PROGRESS_STYLES } from '@components/feedback/progress/Progress.css.ts'
+import type { ProgressBaseProps, ProgressRenderProps } from '@components/feedback/progress/types'
 import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
@@ -16,6 +16,16 @@ import { clamp } from '@components/feedback/progress/utils/clamp.utils.ts'
  * and an outer text label. Shares `size` (xs|sm|md|lg|xl) and `color` tokens
  * with `Progress`. Requires an accessible name via `label`, `aria-label`, or
  * `aria-labelledby`.
+ * @param props - Progress value, accessible name and outer box props.
+ * @param props.value - Progress percentage, clamped to 0–100.
+ * @param props.color - Semantic color, defaulting to `primary`.
+ * @param props.size - Diameter, defaulting to `sm`.
+ * @param props.label - Visible label and accessible name.
+ * @param props.quantityLabel - Percentage or custom quantity.
+ * @param props.ref - Ref to the outer element.
+ * @returns A circular progress indicator.
+ * @example
+ * <CircularProgress value={50} aria-label="Loading" />
  */
 const CircularProgress: FC<ProgressBaseProps> = memo<ProgressRenderProps>(({
     value,

@@ -1,0 +1,7 @@
+import { Grid, Link } from '@choco-vanille/ui'
+
+<Grid gap={8}>
+  <Link label="Start icon" startIcon={ChevronLeftIcon} />
+  <Link endIcon={ChevronRightIcon} label="End icon" />
+  <Link endIcon={ChevronRightIcon} label="Both icons" startIcon={ChevronLeftIcon} />
+</Grid>

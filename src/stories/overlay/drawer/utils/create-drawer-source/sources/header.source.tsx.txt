@@ -1,0 +1,2 @@
+
+        <Drawer.Header><IconButton icon={open ? CloseIcon : ChevronRightIcon} aria-label={open ? 'Collapse mini' : 'Expand mini'} size="sm" onClick={() => setOpen(!open)} /></Drawer.Header>

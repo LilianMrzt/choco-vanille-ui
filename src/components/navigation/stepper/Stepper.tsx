@@ -8,12 +8,11 @@ import {
 
 import { Separator } from '@components/layout/separator'
 import StepperItem from '@components/navigation/stepper/components/stepper-item/StepperItem.tsx'
-import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types/StepperItem.props.ts'
+import type { StepperItemProps } from '@components/navigation/stepper/components/stepper-item/types'
 import { StepperItemContext } from '@components/navigation/stepper/context/Stepper.context.ts'
 import { STEPPER_ORIENTATIONS } from '@components/navigation/stepper/constants'
-import { STEPPER_STYLES } from '@components/navigation/stepper/styles/Stepper.css.ts'
-import type { StepperProps } from '@components/navigation/stepper/types/Stepper.props.ts'
-import type { StepperCompound } from '@components/navigation/stepper/types/StepperCompound.ts'
+import { STEPPER_STYLES } from '@components/navigation/stepper/Stepper.css.ts'
+import type { StepperProps } from '@components/navigation/stepper/types'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -23,8 +22,19 @@ import { cn } from '@utils/cn.ts'
  * completed and current states for slot rendering.
  *
  * Compound slot: `Stepper.Item`.
+ * @param props - Navigation attributes and step options.
+ * @param props["aria-label"] - Accessible landmark name.
+ * @param props.children - Ordered step items.
+ * @param props.currentStep - Current one-based step.
+ * @param props.onStepChange - Makes steps interactive and receives the selected step.
+ * @param props.orientation - Layout direction; defaults to `horizontal`.
+ * @param props.className - Additional navigation class.
+ * @param props.ref - Ref to the navigation element.
+ * @returns A step navigation landmark.
+ * @example
+ * <Stepper aria-label="Progress" currentStep={1}><Stepper.Item label="First" /></Stepper>
  */
-const Stepper = memo(
+const StepperRoot = memo(
     ({
         'aria-label': ariaLabel,
         children,
@@ -112,9 +122,11 @@ const Stepper = memo(
             </nav>
         )
     },
-) as unknown as StepperCompound
+)
 
-Stepper.displayName = 'Stepper'
-Stepper.Item = StepperItem
+StepperRoot.displayName = 'Stepper'
+
+/** Controlled stepper with an item slot. */
+const Stepper = Object.assign(StepperRoot, { Item: StepperItem })
 
 export default Stepper

@@ -1,7 +1,7 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { memo } from 'react'
 
-import type { DropdownMenuTriggerProps } from '@components/overlay/dropdown-menu/components/trigger/types/DropdownMenuTrigger.props.ts'
+import type { DropdownMenuTriggerProps } from '@components/overlay/dropdown-menu/components/trigger/types'
 
 /**
  * The element that opens the dropdown.

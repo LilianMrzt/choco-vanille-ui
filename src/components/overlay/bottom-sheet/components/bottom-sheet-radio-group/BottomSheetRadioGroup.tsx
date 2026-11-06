@@ -1,8 +1,8 @@
 import { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group'
 import { memo, useCallback, type FC } from 'react'
 
-import { BOTTOM_SHEET_RADIO_GROUP_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-group/styles/BottomSheetRadioGroup.css.ts'
-import type { BottomSheetRadioGroupProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-group/types/BottomSheetRadioGroup.props.ts'
+import { BOTTOM_SHEET_RADIO_GROUP_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-group/BottomSheetRadioGroup.css.ts'
+import type { BottomSheetRadioGroupProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-group/types'
 import { cn } from '@utils/cn.ts'
 
 /**

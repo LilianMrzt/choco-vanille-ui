@@ -1,346 +1,95 @@
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import {
-    Canvas,
-    Controls,
-    Description,
-    Markdown,
-    Stories,
-    Title,
-} from '@storybook/addon-docs/blocks'
-import { expect, userEvent, within } from 'storybook/test'
-import type { ComponentProps } from 'react'
+import { useArgs } from 'storybook/preview-api'
 
-import { Button } from '@components/actions/button'
-import {
-    Panel,
-    type PanelPosition,
-} from '@components/overlay/panel'
-import { Typography } from '@components/foundation/typography'
-import { md } from '@stories/_shared/utils/markdown'
+import { Panel } from '@components/overlay/panel'
+import PanelDocsPage from '@stories/overlay/panel/components/panel-docs-page/PanelDocsPage'
+import PanelExample from '@stories/overlay/panel/components/panel-example/PanelExample'
+import PanelHeaderActions from '@stories/overlay/panel/components/panel-header-actions/PanelHeaderActions'
+import PanelPositions from '@stories/overlay/panel/components/panel-positions/PanelPositions'
+import PanelWidths from '@stories/overlay/panel/components/panel-widths/PanelWidths'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/panel/constants'
+import headerActionsSource from '@stories/overlay/panel/sources/PanelHeaderActions.source.tsx.txt?raw'
+import positionsSource from '@stories/overlay/panel/sources/PanelPositions.source.tsx.txt?raw'
+import widthsSource from '@stories/overlay/panel/sources/PanelWidths.source.tsx.txt?raw'
+import type { PanelStoryArgs } from '@stories/overlay/panel/types'
+import { createPanelSource } from '@stories/overlay/panel/utils/create-panel-source/createPanelSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
-type PanelPlaygroundArgs = ComponentProps<typeof Panel> & {
-  position?: PanelPosition;
-  width?: string;
-  title?: string;
-  description?: string;
-  showDescription?: boolean;
-};
-
-const POSITIONS: PanelPosition[] = ['left', 'right']
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute           | Required    | Type     | Notes                                 |
-| -------------------------- | ----------- | -------- | ------------------------------------- |
-| \`Panel.Header title\`       | Recommended | \`string\` | Provides the accessible panel title.  |
-| \`Panel.Content aria-label\` | No          | \`string\` | Supplies a localizable fallback name. |
-
-- Focus is trapped inside the panel while it is open.
-- Pressing \`Escape\` closes the panel; clicking the backdrop also closes it when \`withBackdrop\` is enabled.
-- The panel slides from the configured \`position\`.
-`
-
-const PanelDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const meta: Meta<PanelPlaygroundArgs> = {
+const meta = {
     title: 'Overlay/Panel',
     component: Panel,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
-            page: PanelDocsPage,
             description: {
-                component: md /* language=markdown */ `
-A modal side panel built on Base UI Dialog. Compose it with \`Panel.Trigger\`, \`Panel.Content\`, \`Panel.Header\`, \`Panel.Body\`, \`Panel.Footer\` and \`Panel.Close\`.
-        `,
+                component: 'A side panel for focused content and actions. Compose its trigger, content and header to provide an accessible title and close control.',
+            },
+            page: PanelDocsPage,
+            source: {
+                type: 'dynamic',
+                transform: createPanelSource,
             },
         },
     },
-    argTypes: {
-        defaultOpen: {
-            control: 'boolean',
-            table: { category: 'Panel' },
-        },
-        modal: {
-            control: 'boolean',
-            table: { category: 'Panel' },
-        },
-        withBackdrop: {
-            control: 'boolean',
-            table: { category: 'Panel' },
-        },
-        position: {
-            control: 'select',
-            options: POSITIONS,
-            table: { category: 'Panel.Content' },
-        },
-        width: {
-            control: 'text',
-            table: { category: 'Panel.Content' },
-        },
-        title: {
-            control: 'text',
-            table: { category: 'Panel.Header' },
-        },
-        description: {
-            control: 'text',
-            table: { category: 'Panel.Header' },
-        },
-        showDescription: {
-            control: 'boolean',
-            table: { category: 'Panel.Header' },
-        },
-    },
-    args: {
-        defaultOpen: false,
-        modal: true,
-        withBackdrop: true,
-        position: 'right',
-        width: '33.333vw',
-        title: 'Panel settings',
-        description: 'Manage your profile and preferences.',
-        showDescription: true,
-    },
-} satisfies Meta<PanelPlaygroundArgs>
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<PanelStoryArgs>
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
+
+/**
+ * Synchronizes the controlled panel with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @param _args - Storybook render args; current values come from useArgs.
+ * @returns The controlled panel example.
+ * @example
+ * ControlledPanel(args)
+ */
+const ControlledPanel = (_args: PanelStoryArgs) => {
+    const [args, updateArgs] = useArgs<PanelStoryArgs>()
+
+    /**
+     * Forwards change details and applies uncanceled changes to Controls.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param open - Requested open state.
+     * @param details - Change event details.
+     * @returns Nothing.
+     * @example
+     * handleOpenChange(true, details)
+     */
+    const handleOpenChange: NonNullable<PanelStoryArgs['onOpenChange']> = (open, details) => {
+        args.onOpenChange?.(open, details)
+
+        if (!details.isCanceled) {
+            updateArgs({ open })
+        }
+    }
+
+    return (
+        <PanelExample
+            {...args}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
 
 export const Playground: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Panel withBackdrop>
-    <Panel.Trigger>
-        <Button label="Open panel" variant="contained" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content position="right" width="33.333vw">
-        <Panel.Header title="Panel settings" description="Manage your profile and preferences." />
-        <Panel.Body>
-            <Typography variant="p" fontSize={14} color={vars.color.text.primary}>
-                Your content goes here.
-            </Typography>
-        </Panel.Body>
-        <Panel.Footer>
-            <Panel.Close>
-                <Button label="Close" variant="outlined" color="primary" size="sm" />
-            </Panel.Close>
-        </Panel.Footer>
-    </Panel.Content>
-</Panel>`),
-        },
-    },
-    render: ({
-        defaultOpen,
-        modal,
-        withBackdrop,
-        position,
-        width,
-        title,
-        description,
-        showDescription,
-    }) => (
-        <Panel
-            defaultOpen={defaultOpen}
-            modal={modal}
-            withBackdrop={withBackdrop}
-        >
-            <Panel.Trigger>
-                <Button
-                    label={'Open panel'}
-                    variant={'contained'}
-                    color={'primary'}
-                />
-            </Panel.Trigger>
-            <Panel.Content
-                position={position}
-                width={width}
-            >
-                <Panel.Header
-                    title={title}
-                    description={showDescription ? description : undefined}
-                />
-                <Panel.Body>
-                    <Typography
-                        variant={'p'}
-                        fontSize={14}
-                        color={vars.color.text.primary}
-                    >
-                        Your content goes here. This panel demonstrates the dialog-like
-                        compound component with side placement.
-                    </Typography>
-                </Panel.Body>
-            </Panel.Content>
-        </Panel>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await userEvent.click(canvas.getByRole('button', { name: 'Open panel' }))
-        await expect(canvas.getByRole('dialog')).toBeVisible()
-    },
+    render: ControlledPanel,
 }
 
-export const HeaderActions: Story = {
-    render: () => (
-        <Panel>
-            <Panel.Trigger>
-                <Button
-                    label={'Open panel with actions'}
-                    variant={'outlined'}
-                    color={'primary'}
-                />
-            </Panel.Trigger>
-            <Panel.Content>
-                <Panel.Header
-                    title={'Panel settings with a long title that stays on one line'}
-                    description={'Additional context is truncated when it exceeds the available header width.'}
-                    actions={
-                        <Button
-                            label={'Save'}
-                            variant={'ghost'}
-                            color={'primary'}
-                            size={'sm'}
-                        />
-                    }
-                />
-            </Panel.Content>
-        </Panel>
-    ),
+export const Uncontrolled: Story = {
+    args: { open: undefined, defaultOpen: false },
+    render: (args) => <PanelExample {...args} />,
     parameters: {
         docs: {
-            ...storySource(/* language=tsx */ `
-<Panel>
-    <Panel.Trigger>
-        <Button label="Open panel with actions" variant="outlined" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content>
-        <Panel.Header
-            title="Panel settings with a long title that stays on one line"
-            description="Additional context is truncated when it exceeds the available header width."
-            actions={<Button label="Save" variant="ghost" color="primary" size="sm" />}
-        />
-    </Panel.Content>
-</Panel>`),
+            description: { story: 'The initial open state applies on mount; remount to apply changes to defaultOpen.' },
         },
     },
 }
 
-export const Positions: Story = {
-    render: () => (
-        <>
-            <Panel>
-                <Panel.Trigger>
-                    <Button
-                        label={'Open left panel'}
-                        variant={'outlined'}
-                        color={'primary'}
-                    />
-                </Panel.Trigger>
-                <Panel.Content position={'left'}>
-                    <Panel.Header title={'Left panel'} />
-                    <Panel.Body>Slides in from the left.</Panel.Body>
-                </Panel.Content>
-            </Panel>
-            <Panel>
-                <Panel.Trigger>
-                    <Button
-                        label={'Open right panel'}
-                        variant={'outlined'}
-                        color={'primary'}
-                    />
-                </Panel.Trigger>
-                <Panel.Content position={'right'}>
-                    <Panel.Header title={'Right panel'} />
-                    <Panel.Body>Slides in from the right.</Panel.Body>
-                </Panel.Content>
-            </Panel>
-        </>
-    ),
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Panel>
-    <Panel.Trigger>
-        <Button label="Open left panel" variant="outlined" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content position="left">
-        <Panel.Header title="Left panel" />
-        <Panel.Body>Slides in from the left.</Panel.Body>
-    </Panel.Content>
-</Panel>
-<Panel>
-    <Panel.Trigger>
-        <Button label="Open right panel" variant="outlined" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content position="right">
-        <Panel.Header title="Right panel" />
-        <Panel.Body>Slides in from the right.</Panel.Body>
-    </Panel.Content>
-</Panel>`),
-        },
-    },
-}
-
-export const Widths: Story = {
-    render: () => (
-        <>
-            <Panel>
-                <Panel.Trigger>
-                    <Button
-                        label={'Open narrow panel'}
-                        variant={'outlined'}
-                        color={'primary'}
-                    />
-                </Panel.Trigger>
-                <Panel.Content width={'20rem'}>
-                    <Panel.Header title={'Narrow panel'} />
-                </Panel.Content>
-            </Panel>
-            <Panel>
-                <Panel.Trigger>
-                    <Button
-                        label={'Open wide panel'}
-                        variant={'outlined'}
-                        color={'primary'}
-                    />
-                </Panel.Trigger>
-                <Panel.Content width={'42rem'}>
-                    <Panel.Header title={'Wide panel'} />
-                </Panel.Content>
-            </Panel>
-        </>
-    ),
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<Panel>
-    <Panel.Trigger>
-        <Button label="Open narrow panel" variant="outlined" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content width="20rem">
-        <Panel.Header title="Narrow panel" />
-    </Panel.Content>
-</Panel>
-<Panel>
-    <Panel.Trigger>
-        <Button label="Open wide panel" variant="outlined" color="primary" />
-    </Panel.Trigger>
-    <Panel.Content width="42rem">
-        <Panel.Header title="Wide panel" />
-    </Panel.Content>
-</Panel>`),
-        },
-    },
-}
+export const HeaderActions: Story = { parameters: { docs: { ...storySource(headerActionsSource) } }, render: PanelHeaderActions }
+export const Positions: Story = { parameters: { docs: { ...storySource(positionsSource) } }, render: PanelPositions }
+export const Widths: Story = { parameters: { docs: { ...storySource(widthsSource) } }, render: PanelWidths }

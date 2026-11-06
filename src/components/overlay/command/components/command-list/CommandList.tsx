@@ -1,8 +1,8 @@
 import { memo, type FC } from 'react'
 
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
-import { COMMAND_LIST_STYLES } from '@components/overlay/command/components/command-list/styles/CommandList.css.ts'
-import type { CommandListProps } from '@components/overlay/command/components/command-list/types/CommandList.props.ts'
+import { COMMAND_LIST_STYLES } from '@components/overlay/command/components/command-list/CommandList.css.ts'
+import type { CommandListProps } from '@components/overlay/command/components/command-list/types'
 import { cn } from '@utils/cn.ts'
 
 /**

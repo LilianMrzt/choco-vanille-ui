@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { Pagination } from '@choco-vanille/ui'
+
+const Example = () => {
+  const [currentPage, setCurrentPage] = useState({{currentPage}})
+
+  return <Pagination currentPage={currentPage} onPageChange={setCurrentPage}{{attributes}} />
+}

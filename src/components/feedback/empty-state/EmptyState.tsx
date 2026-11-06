@@ -1,15 +1,26 @@
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
-import { EMPTY_STATE_STYLES } from '@components/feedback/empty-state/styles/EmptyState.css.ts'
-import type { EmptyStateProps } from '@components/feedback/empty-state/types/EmptyState.props.ts'
+import { EMPTY_STATE_STYLES } from '@components/feedback/empty-state/EmptyState.css.ts'
+import type { EmptyStateProps } from '@components/feedback/empty-state/types'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 
 /**
  * Centered placeholder for empty data states. Renders a heading `title`,
  * a descriptive paragraph, and an optional `action` slot for a call-to-action
- * button or link.
+ * button or link. Native div attributes and the ref are forwarded to the root.
+ * Name interactive actions and choose a title appropriate for an `h2`.
+ *
+ * @param props - Native div attributes and empty-state content.
+ * @param props.title - Heading content.
+ * @param props.description - Supporting paragraph content.
+ * @param props.action - Optional action.
+ * @param props.className - Additional root class.
+ * @param props.ref - Ref to the root div.
+ * @returns The empty state.
+ * @example
+ * <EmptyState title="No results" description="Try another search." />
  */
 const EmptyState: FC<EmptyStateProps> = memo(({
     title,

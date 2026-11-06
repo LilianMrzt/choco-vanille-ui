@@ -4,7 +4,7 @@ import { memo, type FC } from 'react'
 
 import { Typography } from '@components/foundation/typography'
 import { Flex } from '@components/layout/flex'
-import type { BottomSheetHeaderProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-header/types/BottomSheetHeader.props.ts'
+import type { BottomSheetHeaderProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-header/types'
 
 /**
  * Title and optional description of a `BottomSheet`.

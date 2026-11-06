@@ -1,7 +1,7 @@
 import { memo, type FC } from 'react'
 
-import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/styles/BottomNavigation.css.ts'
-import type { BottomNavigationListProps } from '@components/navigation/bottom-navigation/components/bottom-navigation-list/types/BottomNavigationList.props.ts'
+import { BOTTOM_NAVIGATION_STYLES } from '@components/navigation/bottom-navigation/BottomNavigation.css.ts'
+import type { BottomNavigationListProps } from '@components/navigation/bottom-navigation/components/bottom-navigation-list/types'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 

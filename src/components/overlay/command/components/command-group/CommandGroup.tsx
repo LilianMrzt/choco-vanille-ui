@@ -1,7 +1,7 @@
 import { memo, useId, useLayoutEffect, useRef, useState, type FC } from 'react'
 
-import { COMMAND_GROUP_STYLES } from '@components/overlay/command/components/command-group/styles/CommandGroup.css.ts'
-import type { CommandGroupProps } from '@components/overlay/command/components/command-group/types/CommandGroup.props.ts'
+import { COMMAND_GROUP_STYLES } from '@components/overlay/command/components/command-group/CommandGroup.css.ts'
+import type { CommandGroupProps } from '@components/overlay/command/components/command-group/types'
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
 import { cn } from '@utils/cn.ts'
 

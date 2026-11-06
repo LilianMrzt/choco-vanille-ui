@@ -1,0 +1,28 @@
+import { Button, Dialog, Flex } from '@choco-vanille/ui'
+
+<Flex flexWrap="wrap" gap={12}>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="sm" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="sm"><Dialog.Header title="SM dialog" description="Size: sm" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="md" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="md"><Dialog.Header title="MD dialog" description="Size: md" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="lg" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="lg"><Dialog.Header title="LG dialog" description="Size: lg" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="xl" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="xl"><Dialog.Header title="XL dialog" description="Size: xl" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="2xl" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="2xl"><Dialog.Header title="2XL dialog" description="Size: 2xl" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+  <Dialog>
+    <Dialog.Trigger><Button color="primary" label="full" variant="outlined" /></Dialog.Trigger>
+    <Dialog.Content size="full"><Dialog.Header title="FULL dialog" description="Size: full" /><Dialog.Body>Dialog content.</Dialog.Body></Dialog.Content>
+  </Dialog>
+</Flex>

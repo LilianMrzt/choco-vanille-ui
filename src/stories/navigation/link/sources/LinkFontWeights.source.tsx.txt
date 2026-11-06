@@ -1,0 +1,13 @@
+import { Grid, Link } from '@choco-vanille/ui'
+
+<Grid gap={8}>
+  <Link fontWeight="thin" label="thin" />
+  <Link fontWeight="extralight" label="extralight" />
+  <Link fontWeight="light" label="light" />
+  <Link fontWeight="normal" label="normal" />
+  <Link fontWeight="medium" label="medium" />
+  <Link fontWeight="semibold" label="semibold" />
+  <Link fontWeight="bold" label="bold" />
+  <Link fontWeight="extrabold" label="extrabold" />
+  <Link fontWeight="black" label="black" />
+</Grid>

@@ -1,7 +1,7 @@
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 import { memo, type FC } from 'react'
 
-import type { BottomSheetTriggerProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-trigger/types/BottomSheetTrigger.props.ts'
+import type { BottomSheetTriggerProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-trigger/types'
 
 /**
  * The element that opens the bottom sheet.

@@ -1,0 +1,19 @@
+import { useState } from 'react'
+import { Button, Command } from '@choco-vanille/ui'
+// Replace these with icon components from your application.
+import { SearchIcon, TrashIcon, UserIcon } from './icons'
+
+function Example() {
+  const [open, setOpen] = useState({{open}})
+  return (
+    <Command open={open} onOpenChange={setOpen} modal={{{modal}}}>
+      <Command.Trigger><Button label="Open command palette" variant="outlined" color="primary" /></Command.Trigger>
+      <Command.Content size={{{size}}}>
+        <Command.Input placeholder={{{placeholder}}} defaultClearAriaLabel={{{clearLabel}}} />
+        <Command.List aria-label="Commands">{{actions}}{{separator}}{{navigation}}
+          <Command.Empty>No results found.</Command.Empty>
+        </Command.List>
+      </Command.Content>
+    </Command>
+  )
+}

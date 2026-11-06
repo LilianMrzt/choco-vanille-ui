@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Drawer } from '@components/overlay/drawer/Drawer.tsx'
+import { Drawer } from '@components/overlay/drawer'
 
 describe('Drawer.Section', () => {
     it('renders the uppercase title and children', () => {

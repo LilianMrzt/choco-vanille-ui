@@ -1,12 +1,8 @@
-import type { FC } from 'react'
+import type { Tabs as BaseTabs } from '@base-ui/react/tabs'
 
-import type TabsContent from '@components/navigation/tabs/components/tabs-content/TabsContent.tsx'
-import type TabsList from '@components/navigation/tabs/components/tabs-list/TabsList.tsx'
-import type TabsTrigger from '@components/navigation/tabs/components/tabs-trigger/TabsTrigger.tsx'
-import type { TabsProps } from '@components/navigation/tabs/types/Tabs.props.ts'
+import type Tabs from '@components/navigation/tabs/Tabs.tsx'
 
-export type TabsCompound = FC<TabsProps> & {
-    List: typeof TabsList
-    Trigger: typeof TabsTrigger
-    Content: typeof TabsContent
-}
+/** Base UI tab root props. */
+export type TabsProps = BaseTabs.Root.Props
+/** Tab root and its compound slots. */
+export type TabsCompound = typeof Tabs

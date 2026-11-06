@@ -1,0 +1,19 @@
+{{stateImport}}import { Button, Panel, Typography, vars } from '@choco-vanille/ui'
+
+const Example = () => {
+{{state}}  return (
+    <Panel{{rootProps}}>
+      <Panel.Trigger>
+        <Button color="primary" label="Open panel" variant="contained" />
+      </Panel.Trigger>
+      <Panel.Content{{contentProps}}>
+        <Panel.Header{{headerProps}} />
+        <Panel.Body>
+          <Typography color={vars.color.text.primary} fontSize={14} variant="p">
+            Your content goes here. This panel demonstrates the dialog-like compound component with side placement.
+          </Typography>
+        </Panel.Body>
+      </Panel.Content>
+    </Panel>
+  )
+}

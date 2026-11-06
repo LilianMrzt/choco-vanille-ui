@@ -2,9 +2,10 @@ import { Popover as BasePopover } from '@base-ui/react/popover'
 import { memo, type FC } from 'react'
 
 import { cn } from '@utils/cn.ts'
-import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/styles/PopoverContent.css.ts'
-import type { PopoverContentProps } from '@components/overlay/popover/components/content/types/PopoverContent.props.ts'
+import { POPOVER_CONTENT_STYLES } from '@components/overlay/popover/components/content/PopoverContent.css.ts'
+import type { PopoverContentProps } from '@components/overlay/popover/components/content/types'
 import { parsePosition } from '@components/overlay/_shared/utils/parsePosition.utils.ts'
+import { useComposedPopupRef } from '@components/overlay/_shared/hooks/use-composed-popup-ref/useComposedPopupRef.hook.ts'
 import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 
 /**
@@ -16,6 +17,21 @@ import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hoo
  * Instead, `useViewportShift` detects any overflow after positioning and
  * shifts the panel inward by exactly the overflowing amount — keeping the
  * original side and never cropping the content.
+ * @param props - Popup attributes and positioning options.
+ * @param props.position - Combined side and alignment; takes precedence over separate values.
+ * @param props.side - Side relative to the trigger; defaults to `bottom`.
+ * @param props.align - Alignment; defaults to `center`.
+ * @param props.sideOffset - Trigger offset in pixels; defaults to `6`.
+ * @param props.collisionPadding - Viewport padding; defaults to `8`.
+ * @param props.padding - Padding token; defaults to `12`.
+ * @param props.width - Panel width.
+ * @param props.defaultAriaLabel - Fallback accessible name; defaults to `Popover`.
+ * @param props.className - Additional popup class.
+ * @param props.style - Inline popup styles.
+ * @param props.ref - Ref to the popup.
+ * @returns The portaled popup.
+ * @example
+ * <Popover.Content aria-label="Options">Content</Popover.Content>
  */
 const PopoverContent: FC<PopoverContentProps> = memo(({
     className,
@@ -30,9 +46,11 @@ const PopoverContent: FC<PopoverContentProps> = memo(({
     'aria-labelledby': ariaLabelledBy,
     defaultAriaLabel = 'Popover',
     style,
+    ref,
     ...props
 }) => {
     const contentRef = useViewportShift(collisionPadding)
+    const mergedRef = useComposedPopupRef(contentRef, ref)
 
     const { side, align } = position
         ? parsePosition(position)
@@ -54,7 +72,7 @@ const PopoverContent: FC<PopoverContentProps> = memo(({
                 collisionAvoidance={{ side: 'none', align: 'none', fallbackAxisSide: 'none' }}
             >
                 <BasePopover.Popup
-                    ref={contentRef}
+                    ref={mergedRef}
                     className={cn(
                         POPOVER_CONTENT_STYLES.root,
                         POPOVER_CONTENT_STYLES.padding({ padding }),

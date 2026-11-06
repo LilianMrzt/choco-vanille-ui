@@ -4,10 +4,23 @@ import { memo, useCallback, type CSSProperties, type FC } from 'react'
 import { cn } from '@utils/cn.ts'
 import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hook.ts'
 import { useContextMenuContext } from '@components/overlay/context-menu/context/ContextMenu.context.ts'
-import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/styles/DropdownMenuContent.css.ts'
-import { CONTEXT_MENU_CONTENT_STYLES } from '@components/overlay/context-menu/components/content/styles/ContextMenuContent.css.ts'
-import type { ContextMenuContentProps } from '@components/overlay/context-menu/components/content/types/ContextMenuContent.props.ts'
+import { DROPDOWN_MENU_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/content/DropdownMenuContent.css.ts'
+import { CONTEXT_MENU_CONTENT_STYLES } from '@components/overlay/context-menu/components/content/ContextMenuContent.css.ts'
+import type { ContextMenuContentProps } from '@components/overlay/context-menu/components/content/types'
 
+/**
+ * Renders the context menu in a document portal at the trigger position.
+ * The positioner receives its native props and ref; popup width defaults to 14rem.
+ * @param props - Positioner props and popup width.
+ * @param props.className - Additional popup class.
+ * @param props.sideOffset - Pointer offset in pixels; defaults to 4.
+ * @param props.collisionPadding - Viewport edge padding; defaults to 8.
+ * @param props.width - Popup width; defaults to 14rem.
+ * @param props.style - Popup styles.
+ * @returns The portalled menu.
+ * @example
+ * <ContextMenu.Content><ContextMenu.Item label="Edit" /></ContextMenu.Content>
+ */
 const ContextMenuContent: FC<ContextMenuContentProps> = memo(({
     className,
     sideOffset = 4,

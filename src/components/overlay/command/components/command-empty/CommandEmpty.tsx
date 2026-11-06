@@ -1,7 +1,7 @@
 import { memo, type FC } from 'react'
 
-import { COMMAND_EMPTY_STYLES } from '@components/overlay/command/components/command-empty/styles/CommandEmpty.css.ts'
-import type { CommandEmptyProps } from '@components/overlay/command/components/command-empty/types/CommandEmpty.props.ts'
+import { COMMAND_EMPTY_STYLES } from '@components/overlay/command/components/command-empty/CommandEmpty.css.ts'
+import type { CommandEmptyProps } from '@components/overlay/command/components/command-empty/types'
 import { cn } from '@utils/cn.ts'
 
 /**

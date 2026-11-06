@@ -1,193 +1,92 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import type { ComponentProps } from 'react'
-import { Button } from '@components/actions/button'
-import { AlertDialog, type AlertDialogSize } from '@components/overlay/alert-dialog'
-import { Typography } from '@components/foundation/typography'
-import { md } from '@stories/_shared/utils/markdown'
+import { useArgs } from 'storybook/preview-api'
+
+import { AlertDialog } from '@components/overlay/alert-dialog'
+import AlertDialogDocsPage from '@stories/overlay/alert-dialog/components/alert-dialog-docs-page/AlertDialogDocsPage'
+import AlertDialogExample from '@stories/overlay/alert-dialog/components/alert-dialog-example/AlertDialogExample'
+import AlertDialogSizes from '@stories/overlay/alert-dialog/components/alert-dialog-sizes/AlertDialogSizes'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/alert-dialog/constants'
+import sizesSource from '@stories/overlay/alert-dialog/sources/AlertDialogSizes.source.tsx.txt?raw'
+import type { AlertDialogStoryArgs } from '@stories/overlay/alert-dialog/types'
+import { createAlertDialogSource } from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/createAlertDialogSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
-type AlertDialogPlaygroundArgs = ComponentProps<typeof AlertDialog> & {
-    size?: AlertDialogSize
-    title?: string
-    description?: string
-    triggerLabel?: string
-    actionLabel?: string
-    cancelLabel?: string
-    showBody?: boolean
-}
-
-const SIZES: AlertDialogSize[] = ['sm', 'md', 'lg', 'xl', '2xl', 'full']
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`AlertDialog.Header\` title | Recommended | \`string\` | Names the dialog when rendered visibly. |
-| \`AlertDialog.Content\` \`aria-label\` | When no title is visible | \`string\` | Provides the accessible dialog name. |
-| \`AlertDialog.Action\` | Recommended | \`ButtonProps\` | Confirms the destructive operation. |
-| \`AlertDialog.Cancel\` | Recommended | \`ButtonProps\` | Gives the user an explicit safe exit. |
-
-- Focus is trapped while the alert dialog is open.
-- Escape and the overlay close the dialog through Base UI.
-- The action defaults to \`contained\` / \`destructive\`; cancel defaults to \`outlined\` / \`primary\`.
-`
-
-const AlertDialogDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
-
-const meta: Meta<AlertDialogPlaygroundArgs> = {
+const meta = {
     title: 'Overlay/AlertDialog',
     component: AlertDialog,
+    tags: ['autodocs'],
     parameters: {
         layout: 'centered',
         docs: {
-            page: AlertDialogDocsPage,
             description: {
-                component: md /* language=markdown */ `
-A confirmation dialog for destructive actions, built by composing the accessible Dialog slots.
-
-~~~tsx
-<AlertDialog>
-    <AlertDialog.Trigger>
-        <Button label="Delete account" variant="contained" color="destructive" />
-    </AlertDialog.Trigger>
-    <AlertDialog.Content>
-        <AlertDialog.Header title="Delete account" description="This action cannot be undone." />
-        <AlertDialog.Body>
-            <Typography>Your account and its data will be permanently deleted.</Typography>
-        </AlertDialog.Body>
-        <AlertDialog.Footer>
-            <AlertDialog.Cancel />
-            <AlertDialog.Action label="Delete account" />
-        </AlertDialog.Footer>
-    </AlertDialog.Content>
-</AlertDialog>
-~~~
-`,
+                component: 'A confirmation dialog for actions that require a decision. Compose the trigger, content and action slots to provide context and a safe exit.',
+            },
+            page: AlertDialogDocsPage,
+            source: {
+                type: 'dynamic',
+                transform: createAlertDialogSource,
             },
         },
     },
-    argTypes: {
-        defaultOpen: { control: 'boolean', table: { category: 'AlertDialog' } },
-        modal: { control: 'boolean', table: { category: 'AlertDialog' } },
-        triggerLabel: { control: 'text', table: { category: 'Compound: Trigger' } },
-        size: { control: 'select', options: SIZES, table: { category: 'Compound: Content' } },
-        title: { control: 'text', table: { category: 'Compound: Header' } },
-        description: { control: 'text', table: { category: 'Compound: Header' } },
-        showBody: { control: 'boolean', table: { category: 'Compound: Body' } },
-        actionLabel: { control: 'text', table: { category: 'Compound: Action' } },
-        cancelLabel: { control: 'text', table: { category: 'Compound: Cancel' } },
-    },
-    args: {
-        defaultOpen: false,
-        modal: true,
-        size: 'md',
-        triggerLabel: 'Delete account',
-        title: 'Delete account',
-        description: 'This action cannot be undone.',
-        showBody: true,
-        actionLabel: 'Delete account',
-        cancelLabel: 'Cancel',
-    },
-} satisfies Meta<AlertDialogPlaygroundArgs>
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+} satisfies Meta<AlertDialogStoryArgs>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
+/**
+ * Synchronizes the controlled confirmation dialog with Storybook Controls.
+ * @internal Storybook-only render function; not part of the public package API.
+ * @param _args - Storybook render args; current values come from useArgs.
+ * @returns The controlled dialog example.
+ * @example
+ * ControlledAlertDialog(args)
+ */
+const ControlledAlertDialog = (_args: AlertDialogStoryArgs) => {
+    const [args, updateArgs] = useArgs<AlertDialogStoryArgs>()
+
+    /**
+     * Forwards change details and applies uncanceled changes to Controls.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param open - Requested open state.
+     * @param details - Change event details.
+     * @returns Nothing.
+     * @example
+     * handleOpenChange(true, details)
+     */
+    const handleOpenChange: NonNullable<AlertDialogStoryArgs['onOpenChange']> = (open, details) => {
+        args.onOpenChange?.(open, details)
+
+        if (!details.isCanceled) {
+            updateArgs({ open })
+        }
+    }
+
+    return (
+        <AlertDialogExample
+            {...args}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
 export const Playground: Story = {
+    render: ControlledAlertDialog,
+}
+
+export const Uncontrolled: Story = {
+    args: { open: undefined, defaultOpen: false },
+    render: (args) => <AlertDialogExample {...args} />,
     parameters: {
         docs: {
-            ...storySource(/* language=tsx */ `
-<AlertDialog>
-    <AlertDialog.Trigger>
-        <Button label="Delete account" variant="contained" color="destructive" />
-    </AlertDialog.Trigger>
-    <AlertDialog.Content size="md">
-        <AlertDialog.Header title="Delete account" description="This action cannot be undone." />
-        <AlertDialog.Body>
-            <Typography>Your account and its data will be permanently deleted.</Typography>
-        </AlertDialog.Body>
-        <AlertDialog.Footer>
-            <AlertDialog.Cancel />
-            <AlertDialog.Action label="Delete account" />
-        </AlertDialog.Footer>
-    </AlertDialog.Content>
-</AlertDialog>`),
+            description: { story: 'The initial open state applies on mount; remount to apply changes to defaultOpen.' },
         },
     },
-    render: ({ defaultOpen, modal, triggerLabel, size, title, description, showBody, actionLabel, cancelLabel }) => (
-        <AlertDialog
-            defaultOpen={defaultOpen}
-            modal={modal}
-        >
-            <AlertDialog.Trigger>
-                <Button
-                    label={triggerLabel ?? 'Delete account'}
-                    variant={'contained'}
-                    color={'destructive'}
-                />
-            </AlertDialog.Trigger>
-            <AlertDialog.Content size={size}>
-                <AlertDialog.Header
-                    title={title}
-                    description={description}
-                />
-                {showBody && (
-                    <AlertDialog.Body>
-                        <Typography>Your account and its data will be permanently deleted.</Typography>
-                    </AlertDialog.Body>
-                )}
-                <AlertDialog.Footer>
-                    <AlertDialog.Cancel label={cancelLabel} />
-                    <AlertDialog.Action label={actionLabel ?? 'Delete account'} />
-                </AlertDialog.Footer>
-            </AlertDialog.Content>
-        </AlertDialog>
-    ),
 }
 
 export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ `
-<div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-    <AlertDialog><AlertDialog.Trigger><Button label="sm" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="sm"><AlertDialog.Header title="Small alert" /><AlertDialog.Body>Size: sm</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-    <AlertDialog><AlertDialog.Trigger><Button label="md" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="md"><AlertDialog.Header title="Medium alert" /><AlertDialog.Body>Size: md</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-    <AlertDialog><AlertDialog.Trigger><Button label="lg" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="lg"><AlertDialog.Header title="Large alert" /><AlertDialog.Body>Size: lg</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-    <AlertDialog><AlertDialog.Trigger><Button label="xl" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="xl"><AlertDialog.Header title="Extra large alert" /><AlertDialog.Body>Size: xl</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-    <AlertDialog><AlertDialog.Trigger><Button label="2xl" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="2xl"><AlertDialog.Header title="2XL alert" /><AlertDialog.Body>Size: 2xl</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-    <AlertDialog><AlertDialog.Trigger><Button label="full" variant="outlined" color="primary" /></AlertDialog.Trigger><AlertDialog.Content size="full"><AlertDialog.Header title="Full alert" /><AlertDialog.Body>Size: full</AlertDialog.Body></AlertDialog.Content></AlertDialog>
-</div>`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-            {SIZES.map((size) => (
-                <AlertDialog key={size}>
-                    <AlertDialog.Trigger>
-                        <Button
-                            label={size}
-                            variant={'outlined'}
-                            color={'primary'}
-                        />
-                    </AlertDialog.Trigger>
-                    <AlertDialog.Content size={size}>
-                        <AlertDialog.Header title={`${size.toUpperCase()} alert`} />
-                        <AlertDialog.Body>Size: {size}</AlertDialog.Body>
-                    </AlertDialog.Content>
-                </AlertDialog>
-            ))}
-        </div>
-    ),
+    parameters: { docs: { ...storySource(sizesSource) } },
+    render: AlertDialogSizes,
 }

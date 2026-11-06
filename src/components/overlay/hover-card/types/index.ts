@@ -1,10 +1,15 @@
-import type { FC } from 'react'
+import type { PreviewCard } from '@base-ui/react/preview-card'
 
-import type HoverCardContent from '@components/overlay/hover-card/components/content/HoverCardContent.tsx'
-import type HoverCardTrigger from '@components/overlay/hover-card/components/trigger/HoverCardTrigger.tsx'
-import type { HoverCardProps } from '@components/overlay/hover-card/types/HoverCard.props.ts'
+import type HoverCard from '@components/overlay/hover-card/HoverCard.tsx'
+import type { OverlayAlign, OverlayPosition, OverlaySide } from '@components/overlay/_shared/types'
 
-export type HoverCardCompound = FC<HoverCardProps> & {
-  Trigger: typeof HoverCardTrigger;
-  Content: typeof HoverCardContent;
-};
+/** Props for the Base UI preview card root. */
+export type HoverCardProps = PreviewCard.Root.Props
+/** Side position relative to the trigger. */
+export type HoverCardSide = OverlaySide
+/** Alignment relative to the trigger. */
+export type HoverCardAlign = OverlayAlign
+/** Position combining side and alignment. */
+export type HoverCardPosition = OverlayPosition
+/** Hover card root and slots. */
+export type HoverCardCompound = typeof HoverCard
