@@ -7,6 +7,7 @@ export const TEXT_FIELD_STYLES = {
         base: {
             width: '100%',
             fontFamily: vars.fontFamily.sans,
+            fontSize: vars.fontSize[16],
             lineHeight: '1.5',
             borderRadius: vars.radius[4],
             border: `1px solid ${vars.color.border.main}`,
@@ -45,17 +46,14 @@ export const TEXT_FIELD_STYLES = {
                 [TEXT_FIELD_SIZES.sm]: {
                     height: '2.25rem',
                     paddingInline: vars.space[8],
-                    fontSize: vars.fontSize[14],
                 },
                 [TEXT_FIELD_SIZES.md]: {
                     height: '2.5rem',
                     paddingInline: vars.space[12],
-                    fontSize: vars.fontSize[14],
                 },
                 [TEXT_FIELD_SIZES.lg]: {
                     height: '2.75rem',
                     paddingInline: vars.space[16],
-                    fontSize: vars.fontSize[16],
                 },
             },
             hasError: {

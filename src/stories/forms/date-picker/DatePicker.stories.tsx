@@ -1,12 +1,14 @@
-﻿import { useState, type ComponentProps } from 'react'
+﻿import { type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 
 import { DatePicker } from '@components/forms/date-picker'
 import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
+import source from '@stories/forms/date-picker/sources/DatePicker.source.tsx.txt?raw'
 
 const SIZES: TextFieldSize[] = [
     'sm',
@@ -45,12 +47,15 @@ const DatePickerDocsPage = () => (
 
 const meta = {
     title: 'Forms/DatePicker',
+    tags: ['autodocs'],
     component: DatePicker,
     parameters: {
         layout: 'centered',
         docs: {
 
-            page: DatePickerDocsPage,            description: {
+            page: DatePickerDocsPage,
+            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof DatePicker>>(source, { omit: ['onChange'] }) },
+            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A date picker built on React Aria's \`DateField\`. The input is a segmented day / month / year field on every device, so it keeps segment-by-segment keyboard entry and screen-reader semantics, and the browser or OS date picker never takes over on mobile.
 
@@ -86,6 +91,13 @@ const [date, setDate] = useState<Date | undefined>()
         disabled: { control: 'boolean', table: { category: 'DatePicker' } },
         required: { control: 'boolean', table: { category: 'DatePicker' } },
         calendarAriaLabel: { control: 'text', table: { category: 'DatePicker' } },
+        showRequiredIndicator: { control: 'boolean', table: { category: 'DatePicker' } },
+        value: { control: false, description: 'Date object for controlled usage; not editable in this uncontrolled playground.' },
+        defaultValue: { control: false, description: 'Initial Date; changes require a remount.' },
+        minDate: { control: false, description: 'Earliest selectable Date.' },
+        maxDate: { control: false, description: 'Latest selectable Date.' },
+        calendarProps: { control: false, description: 'Props forwarded to the calendar.' },
+        onChange: { control: false },
     },
     args: {
         label: 'Pick a date',
@@ -94,6 +106,7 @@ const [date, setDate] = useState<Date | undefined>()
         required: false,
         calendarAriaLabel: 'Calendar',
         width: '300px',
+        onChange: fn(),
     },
 } satisfies Meta<ComponentProps<typeof DatePicker> & { width?: string }>
 
@@ -103,22 +116,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: { ...storySource(`<DatePicker />`),
+        docs: {
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Uncontrolled playground. Use the Controls panel for serializable props; Date values and calendar props are documented but not editable here.',
             },
         },
-    },
-    render: (args) => {
-        const [date, setDate] = useState<Date | undefined>()
-        return (
-            <DatePicker
-                {...args}
-                value={date}
-                onChange={setDate}
-            />
-        )
     },
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
@@ -156,13 +159,24 @@ export const Sizes: Story = {
         </div>
     ),
 }
-
 export const States: Story = {
-    parameters: { docs: { ...storySource(`<DatePicker label="Disabled" disabled />`) } },
+    parameters: { docs: { ...storySource(`<DatePicker label="Disabled" disabled />
+<DatePicker label="Appointment" helperText="Choose an available date." />
+<DatePicker label="Invalid date" error="Choose a valid date." />`) } },
     render: () => (
-        <DatePicker
-            label={'Disabled'}
-            disabled
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <DatePicker
+                label={'Disabled'}
+                disabled
+            />
+            <DatePicker
+                label={'Appointment'}
+                helperText={'Choose an available date.'}
+            />
+            <DatePicker
+                label={'Invalid date'}
+                error={'Choose a valid date.'}
+            />
+        </div>
     ),
 }

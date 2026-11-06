@@ -1,20 +1,20 @@
-import { useState, type ComponentProps, type ComponentType } from 'react'
+import { useArgs } from 'storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
+import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test'
 
-import { AutocompleteField } from '@components/forms/autocomplete'
+import { AutocompleteField, type AutocompleteFieldProps } from '@components/forms/autocomplete'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
 
 const SIZES: TextFieldSize[] = [
     'sm',
     'md',
     'lg',
 ]
-const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -46,11 +46,6 @@ const GROUPED_OPTIONS = [
     },
 ]
 
-type AutocompletePlaygroundArgs = Omit<ComponentProps<typeof AutocompleteField>, 'options'> & {
-    options?: ComponentProps<typeof AutocompleteField>['options']
-    optionsType?: 'flat' | 'grouped'
-}
-
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
 
@@ -81,12 +76,15 @@ const AutocompleteDocsPage = () => (
 
 const meta = {
     title: 'Forms/Autocomplete',
-    component: AutocompleteField as ComponentType<AutocompletePlaygroundArgs>,
+    tags: ['autodocs'],
+    component: AutocompleteField,
     parameters: {
         layout: 'centered',
         docs: {
 
-            page: AutocompleteDocsPage,            description: {
+            page: AutocompleteDocsPage,
+            source: { type: 'dynamic', transform: createControlledSource<AutocompleteFieldProps>({ component: 'AutocompleteField', stateProp: 'value', eventProp: 'onValueChange', handler: 'setValue', openState: true, icon: { prop: 'startIcon', name: 'SearchIcon' } }) },
+            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A styled autocomplete control built on top of \`@base-ui/react/autocomplete\`.
 
@@ -142,57 +140,79 @@ const [value, setValue] = useState('')
             options: SIZES,
             table: { category: 'AutocompleteField' },
         },
-        fontSize: { control: 'select', options: FONT_SIZES, table: { category: 'AutocompleteField' } },
-        startIcon: { control: 'text', table: { category: 'AutocompleteField' } },
+        startIcon: { control: 'select', options: ['none', 'search'], mapping: { none: undefined, search: SearchIcon }, table: { category: 'AutocompleteField' } },
         disabled: { control: 'boolean', table: { category: 'AutocompleteField' } },
         required: { control: 'boolean', table: { category: 'AutocompleteField' } },
         listboxAriaLabel: { control: 'text', table: { category: 'AutocompleteField' } },
         emptyText: { control: 'text', table: { category: 'AutocompleteField' } },
-        optionsType: {
-            control: 'select',
-            options: ['flat', 'grouped'],
-            table: { category: 'AutocompleteField' },
-        },
+        options: { control: 'object', table: { category: 'AutocompleteField' } },
+        value: { control: 'text', table: { category: 'AutocompleteField' } },
+        defaultValue: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
+        onValueChange: { control: false, table: { category: 'AutocompleteField' } },
+        onOpenChange: { control: false, table: { category: 'AutocompleteField' } },
+        open: { control: 'boolean', description: 'Controlled popup state.', table: { category: 'AutocompleteField' } },
+        defaultOpen: { control: false, description: 'Initial popup state for uncontrolled usage.', table: { category: 'AutocompleteField' } },
     },
     args: {
         label: 'Fruit',
         placeholder: 'Search a fruit',
         size: 'md',
-        fontSize: 16,
         disabled: false,
         required: false,
         listboxAriaLabel: 'Fruits',
         emptyText: 'No results found.',
-        optionsType: 'flat',
+        options: FRUIT_OPTIONS,
+        value: '',
+        onValueChange: fn(),
+        onOpenChange: fn(),
         width: '300px',
     },
-} satisfies Meta<AutocompletePlaygroundArgs>
+} satisfies Meta<typeof AutocompleteField>
 
 export default meta
 
 type Story = StoryObj<typeof meta>;
 
+/**
+ * Synchronizes the input with Controls and forwards the consumer callback.
+ * @internal Not part of the public package API.
+ * @param _args - Storybook render arguments.
+ * @returns The controlled autocomplete field.
+ * @example
+ * <ControlledAutocomplete label="Fruit" options={[]} />
+ */
+const ControlledAutocomplete = (_args: AutocompleteFieldProps) => {
+    const [args, updateArgs] = useArgs<AutocompleteFieldProps>()
+    const handleValueChange: NonNullable<AutocompleteFieldProps['onValueChange']> = (value) => {
+        args.onValueChange?.(value)
+        updateArgs({ value })
+    }
+    const handleOpenChange: NonNullable<AutocompleteFieldProps['onOpenChange']> = (open) => {
+        args.onOpenChange?.(open)
+        if (args.open !== undefined) {
+            updateArgs({ open })
+        }
+    }
+
+    return (
+        <AutocompleteField
+            {...args}
+            onValueChange={handleValueChange}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
 export const Playground: Story = {
     parameters: {
-        docs: { ...storySource(`<AutocompleteField />`),
+        docs: {
             description: {
                 story:
-          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
+          'Use the Controls panel to experiment with the field props.',
             },
         },
     },
-    render: (args) => {
-        const [value, setValue] = useState<string>('')
-        const options = args.optionsType === 'grouped' ? GROUPED_OPTIONS : FRUIT_OPTIONS
-        return (
-            <AutocompleteField
-                {...args}
-                options={options}
-                value={value}
-                onValueChange={setValue}
-            />
-        )
-    },
+    render: ControlledAutocomplete,
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         const input = canvas.getByRole('combobox')
@@ -207,13 +227,18 @@ export const Playground: Story = {
     },
 }
 
+export const GroupedOptions: Story = {
+    args: { options: GROUPED_OPTIONS },
+    render: ControlledAutocomplete,
+}
+
 export const Sizes: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<AutocompleteField label="Small" size="sm" options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="Medium" size="md" options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="Large" size="lg" options={[{ value: "apple", label: "Apple" }]} />`),
+<AutocompleteField label="Small" size="sm" options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<AutocompleteField label="Medium" size="md" options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<AutocompleteField label="Large" size="lg" options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (
@@ -237,57 +262,39 @@ export const Sizes: Story = {
     ),
 }
 
-export const FontSizes: Story = {
+export const States: Story = {
     parameters: {
         docs: {
-            ...storySource(`
-<AutocompleteField label="10" fontSize={10} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="12" fontSize={12} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="14" fontSize={14} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="16" fontSize={16} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="18" fontSize={18} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="20" fontSize={20} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="24" fontSize={24} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="30" fontSize={30} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="36" fontSize={36} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="48" fontSize={48} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="60" fontSize={60} options={[{ value: "apple", label: "Apple" }]} />
-<AutocompleteField label="72" fontSize={72} options={[{ value: "apple", label: "Apple" }]} />`),
+            ...storySource(`<AutocompleteField label="Disabled" disabled options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<AutocompleteField label="Fruit" helperText="Search for a fruit." options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<AutocompleteField label="Invalid fruit" error="Choose a fruit." options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {FONT_SIZES.map((fontSize) => (
-                <AutocompleteField
-                    key={fontSize}
-                    label={String(fontSize)}
-                    fontSize={fontSize}
-                    options={FRUIT_OPTIONS}
-                />
-            ))}
+            <AutocompleteField
+                label={'Disabled'}
+                disabled
+                options={FRUIT_OPTIONS}
+            />
+            <AutocompleteField
+                label={'Fruit'}
+                helperText={'Search for a fruit.'}
+                options={FRUIT_OPTIONS}
+            />
+            <AutocompleteField
+                label={'Invalid fruit'}
+                error={'Choose a fruit.'}
+                options={FRUIT_OPTIONS}
+            />
         </div>
-    ),
-}
-
-export const States: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`<AutocompleteField label="Disabled" disabled options={[{ value: "apple", label: "Apple" }]} />`),
-        },
-    },
-    render: () => (
-        <AutocompleteField
-            label={'Disabled'}
-            disabled
-            options={FRUIT_OPTIONS}
-        />
     ),
 }
 
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<AutocompleteField label="Search" startIcon={SearchIcon} options={[{ value: "apple", label: "Apple" }]} />`),
+            ...storySource(`<AutocompleteField label="Search" startIcon={SearchIcon} options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (

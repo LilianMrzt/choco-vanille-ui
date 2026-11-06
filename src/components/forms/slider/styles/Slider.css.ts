@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
+import { HELPER_TEXT_STYLES } from '@components/forms/_shared/components/helper-text/HelperText.css.ts'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const SLIDER_STYLES = {
@@ -14,12 +15,6 @@ export const SLIDER_STYLES = {
             },
         },
     }),
-    helper: style({
-        color: vars.color.surface.mutedForeground,
-        fontSize: vars.fontSize[12],
-    }),
-    error: style({
-        color: vars.color.danger.main,
-        fontSize: vars.fontSize[12],
-    }),
+    helper: HELPER_TEXT_STYLES.root,
+    error: HELPER_TEXT_STYLES.error,
 }

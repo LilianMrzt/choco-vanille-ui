@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useArgs } from 'storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 
-import { TextArea, type TextAreaSize } from '@components/forms/text-area'
+import { TextArea, type TextAreaProps, type TextAreaSize } from '@components/forms/text-area'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
 
 const SIZES: TextAreaSize[] = ['sm', 'md', 'lg']
-const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -18,7 +18,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 
 | Prop / Attribute                 | Required    | Type      | Notes                                                                      |
 | -------------------------------- | ----------- | --------- | -------------------------------------------------------------------------- |
-| \`label\`                          | Recommended | \`string\`  | Visible label linked to the textarea via \`htmlFor\`.                        |
+| \`label\`                          | Recommended | \`string\`  | Visible label linked to the textarea via \`aria-labelledby\`.                |
 | \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\`  | Required when \`label\` is omitted.                                          |
 | \`error\`                          | No          | \`string\`  | Sets \`aria-invalid="true"\` and replaces helper text in \`aria-describedby\`. |
 | \`helperText\`                     | No          | \`string\`  | Described by the textarea when no error is present.                        |
@@ -42,12 +42,13 @@ const TextAreaDocsPage = () => (
 
 const meta = {
     title: 'Forms/TextArea',
+    tags: ['autodocs'],
     component: TextArea,
     parameters: {
         layout: 'centered',
         docs: {
-
-            page: TextAreaDocsPage,            description: {
+            page: TextAreaDocsPage,
+            description: {
                 component: md /* language=markdown */ `
 <!--suppress HtmlUnknownAttribute -->
 
@@ -59,7 +60,7 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 
 ~~~tsx
 // Basic
-<TextArea label="Description" placeholder="Tell us moreâ€¦" rows={4} />
+<TextArea label="Description" placeholder="Tell us more..." rows={4} />
 
 // With start icon
 <TextArea label="Comment" startIcon={InfoIcon} />
@@ -74,12 +75,17 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
 ~~~
                 `,
             },
+            source: { type: 'dynamic', transform: createControlledSource<TextAreaProps>({ component: 'TextArea', stateProp: 'value', eventProp: 'onChange', handler: '(event) => setValue(event.target.value)', icon: { prop: 'startIcon', name: 'InfoIcon' } }) },
         },
     },
     argTypes: {
         label: { control: 'text' },
         placeholder: { control: 'text' },
-        startIcon: { control: 'text' },
+        startIcon: { control: 'select', options: ['none', 'info'], mapping: { none: undefined, info: InfoIcon } },
+        endAction: { control: false, description: 'React node; use composition to provide a custom action.' },
+        onChange: { control: false },
+        value: { control: 'text' },
+        defaultValue: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
         helperText: { control: 'text' },
         error: { control: 'text' },
         width: { control: 'text' },
@@ -87,19 +93,19 @@ Supports controlled (\`value\` + \`onChange\`) and uncontrolled (\`defaultValue\
         minRows: { control: 'number' },
         maxRows: { control: 'number' },
         size: { control: 'select', options: SIZES },
-        fontSize: { control: 'select', options: FONT_SIZES },
         disabled: { control: 'boolean' },
         required: { control: 'boolean' },
     },
     args: {
         label: 'Description',
-        placeholder: 'Tell us moreâ€¦',
+        placeholder: 'Tell us more...',
         size: 'md',
-        fontSize: 16,
         rows: 4,
         minRows: 2,
         maxRows: 6,
         width: '300px',
+        value: '',
+        onChange: fn(),
     },
 } satisfies Meta<typeof TextArea>
 
@@ -107,25 +113,39 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+/**
+ * Keeps the textarea value and callback synchronized with Storybook args.
+ * @internal Not part of the public package API.
+ * @param _args - Storybook render arguments.
+ * @returns The controlled text area.
+ * @example
+ * <ControlledTextArea label="Description" />
+ */
+const ControlledTextArea = (_args: TextAreaProps) => {
+    const [args, updateArgs] = useArgs<TextAreaProps>()
+    const handleChange: NonNullable<TextAreaProps['onChange']> = (event) => {
+        args.onChange?.(event)
+        updateArgs({ value: event.currentTarget.value })
+    }
+
+    return (
+        <TextArea
+            {...args}
+            onChange={handleChange}
+        />
+    )
+}
+
 export const Playground: Story = {
     parameters: {
-        docs: { ...storySource(`<TextArea />`),
+        docs: {
             description: {
                 story:
-                    'Interactive playground â€” use the Controls panel to experiment with every available prop.',
+                    'Use the Controls panel to experiment with the field props.',
             },
         },
     },
-    render: (args) => {
-        const [value, setValue] = useState('')
-        return (
-            <TextArea
-                {...args}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-            />
-        )
-    },
+    render: ControlledTextArea,
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         const label = args.label as string | undefined
@@ -140,7 +160,7 @@ export const Playground: Story = {
 export const Sizes: Story = {
     parameters: {
         docs: {
-            ...storySource(`
+            ...storySource(/* language=TEXT */ String.raw`
 <TextArea label="Small" size="sm" />
 <TextArea label="Medium" size="md" />
 <TextArea label="Large" size="lg" />`),
@@ -164,53 +184,34 @@ export const Sizes: Story = {
     ),
 }
 
-export const FontSizes: Story = {
+export const States: Story = {
     parameters: {
-        docs: {
-            ...storySource(`
-<TextArea label="10" fontSize={10} />
-<TextArea label="12" fontSize={12} />
-<TextArea label="14" fontSize={14} />
-<TextArea label="16" fontSize={16} />
-<TextArea label="18" fontSize={18} />
-<TextArea label="20" fontSize={20} />
-<TextArea label="24" fontSize={24} />
-<TextArea label="30" fontSize={30} />
-<TextArea label="36" fontSize={36} />
-<TextArea label="48" fontSize={48} />
-<TextArea label="60" fontSize={60} />
-<TextArea label="72" fontSize={72} />`),
-        },
+        docs: { ...storySource(/* language=TEXT */ String.raw`<TextArea label="Disabled" disabled />
+<TextArea label="Comment" helperText="Add useful details." />
+<TextArea label="Invalid comment" error="Enter a comment." />`) },
     },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {FONT_SIZES.map((fontSize) => (
-                <TextArea
-                    key={fontSize}
-                    label={String(fontSize)}
-                    fontSize={fontSize}
-                />
-            ))}
+            <TextArea
+                label={'Disabled'}
+                disabled
+            />
+            <TextArea
+                label={'Comment'}
+                helperText={'Add useful details.'}
+            />
+            <TextArea
+                label={'Invalid comment'}
+                error={'Enter a comment.'}
+            />
         </div>
-    ),
-}
-
-export const States: Story = {
-    parameters: {
-        docs: { ...storySource(`<TextArea label="Disabled" disabled />`) },
-    },
-    render: () => (
-        <TextArea
-            label={'Disabled'}
-            disabled
-        />
     ),
 }
 
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TextArea label="Comment" startIcon={InfoIcon} />`),
+            ...storySource(/* language=TEXT */ String.raw`<TextArea label="Comment" startIcon={InfoIcon} />`),
         },
     },
     render: () => (

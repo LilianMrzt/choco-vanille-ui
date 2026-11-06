@@ -41,11 +41,6 @@ export const Variants: Story = {
     parameters: { docs: { description: { story: 'Use a typography variant without changing the native legend element.' } } },
 }
 
-export const FontSizes: Story = {
-    args: { fontSize: 24 },
-    parameters: { docs: { description: { story: 'Adjust the legend font size independently of its semantics.' } } },
-}
-
 export const FontWeights: Story = {
     args: { fontWeight: 'bold' },
     parameters: { docs: { description: { story: 'Adjust the legend font weight using typography tokens.' } } },

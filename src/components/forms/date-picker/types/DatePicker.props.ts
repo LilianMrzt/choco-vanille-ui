@@ -11,7 +11,6 @@ export type DatePickerProps = Pick<
     | 'showRequiredIndicator'
     | 'disabled'
     | 'size'
-    | 'fontSize'
     | 'width'
     | 'aria-label'
     | 'aria-labelledby'

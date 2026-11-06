@@ -1,0 +1,3 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+<TimePicker{{attributes}} />

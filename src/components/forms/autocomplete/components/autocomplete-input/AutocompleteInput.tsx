@@ -5,7 +5,6 @@ import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
 import { cn } from '@utils/cn.ts'
 import type { AutocompleteInputProps } from '@components/forms/autocomplete/components/autocomplete-input/types/AutocompleteInput.props.ts'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 
 /**
  * The text input that filters the autocomplete list.
@@ -19,7 +18,6 @@ const AutocompleteInput: FC<AutocompleteInputProps> = memo(({
     placeholder,
     startIcon,
     size = 'md',
-    fontSize = 16,
     hasError = false,
     width,
     onMouseDown,
@@ -68,7 +66,7 @@ const AutocompleteInput: FC<AutocompleteInputProps> = memo(({
                     }),
                     className,
                 )}
-                style={{ fontSize: vars.fontSize[fontSize], ...mergedStyle }}
+                style={mergedStyle}
                 placeholder={placeholder}
                 onMouseDown={handleMouseDown}
                 onFocus={handleFocus}

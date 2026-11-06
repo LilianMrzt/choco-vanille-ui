@@ -1,20 +1,20 @@
-import { useState, type ComponentProps, type ComponentType } from 'react'
+import { useArgs } from 'storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, screen, userEvent, waitFor, within } from 'storybook/test'
+import { expect, fn, screen, userEvent, waitFor, within } from 'storybook/test'
 
-import { SelectField } from '@components/forms/select'
+import { SelectField, type SelectFieldProps } from '@components/forms/select'
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { TextFieldSize } from '@components/forms/text-field'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
 
 const SIZES: TextFieldSize[] = [
     'sm',
     'md',
     'lg',
 ]
-const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },
@@ -45,11 +45,6 @@ const GROUPED_OPTIONS = [
         ],
     },
 ]
-
-type SelectPlaygroundArgs = Omit<ComponentProps<typeof SelectField>, 'options'> & {
-    options?: ComponentProps<typeof SelectField>['options']
-    optionsType?: 'flat' | 'grouped'
-}
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -94,12 +89,15 @@ const SelectDocsPage = () => (
 
 const meta = {
     title: 'Forms/Select',
-    component: SelectField as ComponentType<SelectPlaygroundArgs>,
+    tags: ['autodocs'],
+    component: SelectField,
     parameters: {
         layout: 'centered',
         docs: {
 
-            page: SelectDocsPage,            description: {
+            page: SelectDocsPage,
+            source: { type: 'dynamic', transform: createControlledSource<SelectFieldProps>({ component: 'SelectField', stateProp: 'value', eventProp: 'onValueChange', handler: 'setValue', openState: true, icon: { prop: 'startIcon', name: 'SearchIcon' } }) },
+            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A styled select control built on top of \`@base-ui/react/select\`.
 
@@ -154,55 +152,77 @@ const [value, setValue] = useState('')
             options: SIZES,
             table: { category: 'SelectField' },
         },
-        fontSize: { control: 'select', options: FONT_SIZES, table: { category: 'SelectField' } },
-        startIcon: { control: 'text', table: { category: 'SelectField' } },
+        startIcon: { control: 'select', options: ['none', 'search'], mapping: { none: undefined, search: SearchIcon }, table: { category: 'SelectField' } },
         disabled: { control: 'boolean', table: { category: 'SelectField' } },
         required: { control: 'boolean', table: { category: 'SelectField' } },
         listboxAriaLabel: { control: 'text', table: { category: 'SelectField' } },
-        optionsType: {
-            control: 'select',
-            options: ['flat', 'grouped'],
-            table: { category: 'SelectField' },
-        },
+        options: { control: 'object', table: { category: 'SelectField' } },
+        value: { control: 'text', table: { category: 'SelectField' } },
+        defaultValue: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
+        onValueChange: { control: false, table: { category: 'SelectField' } },
+        onOpenChange: { control: false, table: { category: 'SelectField' } },
+        open: { control: 'boolean', description: 'Controlled popup state.', table: { category: 'SelectField' } },
+        defaultOpen: { control: false, description: 'Initial popup state for uncontrolled usage.', table: { category: 'SelectField' } },
     },
     args: {
         label: 'Fruit',
         placeholder: 'Pick a fruit',
         size: 'md',
-        fontSize: 16,
         disabled: false,
         required: false,
         listboxAriaLabel: 'Fruits',
-        optionsType: 'flat',
+        options: FRUIT_OPTIONS,
+        value: '',
+        onValueChange: fn(),
+        onOpenChange: fn(),
         width: '300px',
     },
-} satisfies Meta<SelectPlaygroundArgs>
+} satisfies Meta<typeof SelectField>
 
 export default meta
 
 type Story = StoryObj<typeof meta>;
 
+/**
+ * Synchronizes selection with Controls and forwards the consumer callback.
+ * @internal Not part of the public package API.
+ * @param _args - Storybook render arguments.
+ * @returns The controlled select field.
+ * @example
+ * <ControlledSelect label="Fruit" options={[]} />
+ */
+const ControlledSelect = (_args: SelectFieldProps) => {
+    const [args, updateArgs] = useArgs<SelectFieldProps>()
+    const handleValueChange: NonNullable<SelectFieldProps['onValueChange']> = (value) => {
+        args.onValueChange?.(value)
+        updateArgs({ value })
+    }
+    const handleOpenChange: NonNullable<SelectFieldProps['onOpenChange']> = (open) => {
+        args.onOpenChange?.(open)
+        if (args.open !== undefined) {
+            updateArgs({ open })
+        }
+    }
+
+    return (
+        <SelectField
+            {...args}
+            onValueChange={handleValueChange}
+            onOpenChange={handleOpenChange}
+        />
+    )
+}
+
 export const Playground: Story = {
     parameters: {
-        docs: { ...storySource(`<SelectField />`),
+        docs: {
             description: {
                 story:
-          'Interactive playground â€” use the Controls panel to experiment with every available prop.',
+          'Use the Controls panel to experiment with the field props.',
             },
         },
     },
-    render: (args) => {
-        const [value, setValue] = useState<string>('')
-        const options = args.optionsType === 'grouped' ? GROUPED_OPTIONS : FRUIT_OPTIONS
-        return (
-            <SelectField
-                {...args}
-                options={options}
-                value={value}
-                onValueChange={setValue}
-            />
-        )
-    },
+    render: ControlledSelect,
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         const trigger = canvas.getByRole('combobox')
@@ -212,19 +232,24 @@ export const Playground: Story = {
         const listbox = await screen.findByRole('listbox')
         await expect(listbox).toBeInTheDocument()
         // Close the listbox so the a11y audit runs against a stable, valid DOM
-        // (Radix marks the rest of the page `aria-hidden` while the Select is open).
+        // The popup is portaled outside the story canvas.
         await userEvent.keyboard('{Escape}')
         await waitFor(() => expect(screen.queryByRole('listbox')).not.toBeInTheDocument())
     },
+}
+
+export const GroupedOptions: Story = {
+    args: { options: GROUPED_OPTIONS },
+    render: ControlledSelect,
 }
 
 export const Sizes: Story = {
     parameters: {
         docs: {
             ...storySource(`
-<SelectField label="Small" size="sm" options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="Medium" size="md" options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="Large" size="lg" options={[{ value: "apple", label: "Apple" }]} />`),
+<SelectField label="Small" size="sm" options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<SelectField label="Medium" size="md" options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<SelectField label="Large" size="lg" options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (
@@ -248,57 +273,39 @@ export const Sizes: Story = {
     ),
 }
 
-export const FontSizes: Story = {
+export const States: Story = {
     parameters: {
         docs: {
-            ...storySource(`
-<SelectField label="10" fontSize={10} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="12" fontSize={12} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="14" fontSize={14} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="16" fontSize={16} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="18" fontSize={18} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="20" fontSize={20} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="24" fontSize={24} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="30" fontSize={30} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="36" fontSize={36} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="48" fontSize={48} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="60" fontSize={60} options={[{ value: "apple", label: "Apple" }]} />
-<SelectField label="72" fontSize={72} options={[{ value: "apple", label: "Apple" }]} />`),
+            ...storySource(`<SelectField label="Disabled" disabled options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<SelectField label="Fruit" helperText="Choose a fruit." options={${JSON.stringify(FRUIT_OPTIONS)}} />
+<SelectField label="Invalid fruit" error="Choose a fruit." options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {FONT_SIZES.map((fontSize) => (
-                <SelectField
-                    key={fontSize}
-                    label={String(fontSize)}
-                    fontSize={fontSize}
-                    options={FRUIT_OPTIONS}
-                />
-            ))}
+            <SelectField
+                label={'Disabled'}
+                disabled
+                options={FRUIT_OPTIONS}
+            />
+            <SelectField
+                label={'Fruit'}
+                helperText={'Choose a fruit.'}
+                options={FRUIT_OPTIONS}
+            />
+            <SelectField
+                label={'Invalid fruit'}
+                error={'Choose a fruit.'}
+                options={FRUIT_OPTIONS}
+            />
         </div>
-    ),
-}
-
-export const States: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`<SelectField label="Disabled" disabled options={[{ value: "apple", label: "Apple" }]} />`),
-        },
-    },
-    render: () => (
-        <SelectField
-            label={'Disabled'}
-            disabled
-            options={FRUIT_OPTIONS}
-        />
     ),
 }
 
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            ...storySource(`<SelectField label="Fruit" startIcon={SearchIcon} options={[{ value: "apple", label: "Apple" }]} />`),
+            ...storySource(`<SelectField label="Fruit" startIcon={SearchIcon} options={${JSON.stringify(FRUIT_OPTIONS)}} />`),
         },
     },
     render: () => (

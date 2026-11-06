@@ -1,6 +1,8 @@
 import { CheckboxGroup as BaseCheckboxGroup } from '@base-ui/react/checkbox-group'
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useId, useState } from 'react'
 
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import Checkbox from '@components/forms/checkbox/Checkbox.tsx'
 import CheckboxGroupHeader from '@components/forms/checkbox-group/components/header/CheckboxGroupHeader.tsx'
 import { CheckboxGroupProvider } from '@components/forms/checkbox-group/context/CheckboxGroup.context.ts'
@@ -28,12 +30,22 @@ import { cn } from '@utils/cn.ts'
 const CheckboxGroup = memo<CheckboxGroupProps>(({
     className,
     children,
+    label,
+    helperText,
+    error,
     value,
     defaultValue,
     allValues,
     onValueChange,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
     ...props
 }) => {
+    const generatedId = useId()
+    const labelId = label ? `${generatedId}-label` : undefined
+    const helperId = error || helperText ? `${generatedId}-helper` : undefined
+    const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(' ') || undefined
     const resolvedAllValues = allValues ?? getCheckboxGroupValues(children)
     const [internalValue, setInternalValue] = useState(defaultValue ?? [])
     const currentValue = value ?? internalValue
@@ -53,6 +65,9 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
             onValueChange={handleValueChange}
             value={currentValue}
             allValues={resolvedAllValues}
+            aria-labelledby={ariaLabelledBy ?? labelId}
+            aria-describedby={describedBy}
+            aria-invalid={error ? true : ariaInvalid}
             {...props}
         >
             <CheckboxGroupProvider value={{ value: currentValue, allValues: resolvedAllValues, onValueChange: handleValueChange }}>
@@ -61,7 +76,16 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
                     gap={8}
                     alignItems={'start'}
                 >
+                    {label && <FormLabel id={labelId}>{label}</FormLabel>}
                     {children}
+                    {(error || helperText) && (
+                        <HelperText
+                            id={helperId}
+                            hasError={Boolean(error)}
+                        >
+                            {error ?? helperText}
+                        </HelperText>
+                    )}
                 </Flex>
             </CheckboxGroupProvider>
         </BaseCheckboxGroup>

@@ -16,7 +16,6 @@ import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePic
 import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
 import { toCalendarDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
 import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 
 /**
@@ -52,7 +51,6 @@ const DatePicker = memo(
         showRequiredIndicator = true,
         disabled,
         size = 'md',
-        fontSize = 16,
         width,
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
@@ -124,7 +122,6 @@ const DatePicker = memo(
                         id={labelId}
                         disabled={disabled}
                         required={required && showRequiredIndicator}
-                        fontSize={fontSize}
                     >
                         {label}
                     </FormLabel>
@@ -169,7 +166,6 @@ const DatePicker = memo(
                                         DATE_PICKER_STYLES.input,
                                     )
                                 }
-                                style={{ fontSize: vars.fontSize[fontSize] }}
                             >
                                 {(segment) => (
                                     <DateSegment

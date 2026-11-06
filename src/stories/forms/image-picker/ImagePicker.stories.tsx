@@ -8,7 +8,7 @@ import {
     Stories,
     Title,
 } from '@storybook/addon-docs/blocks'
-import { expect, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, within } from 'storybook/test'
 
 import {
     ImagePicker,
@@ -18,6 +18,7 @@ import {
 } from '@components/forms/image-picker'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
 import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const OBJECT_FITS: ImagePickerObjectFit[] = [
@@ -72,6 +73,7 @@ type ImagePickerStoryArgs = ComponentProps<typeof ImagePicker> & {
 
 const meta = {
     title: 'Forms/ImagePicker',
+    tags: ['autodocs'],
     component: ImagePicker,
     parameters: {
         layout: 'centered',
@@ -149,6 +151,8 @@ const [avatar, setAvatar] = useState<File | string | null>(user.avatarUrl)
         objectFit: 'cover',
         crop: false,
         value: null,
+        onValueChange: fn(),
+        onValidationError: fn(),
     },
 } satisfies Meta<ImagePickerStoryArgs>
 
@@ -161,11 +165,19 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-          'Interactive controlled playground — click or drop an image onto the shaped area. Toggle `isMobile` to see the touch layout.',
+          'Interactive controlled playground — click or drop an image onto the shaped area. Toggle `isMobile` to see the touch layout. Files are kept in local React state rather than Storybook args; resetting Controls does not clear a selected file. Use the remove action or remount the story to clear it. The source shows the initial value, not the selected file.',
             },
-            ...storySource(
-                `<ImagePicker label="Cover image" alt="Cover image preview" accept="image/*" clearable width="28rem" height="16rem" shape="rounded" objectFit="cover" />`,
-            ),
+            source: {
+                type: 'dynamic',
+                transform: createControlledSource<ImagePickerStoryArgs>({
+                    component: 'ImagePicker',
+                    stateProp: 'value',
+                    eventProp: 'onValueChange',
+                    stateType: 'File | string | null',
+                    handler: 'setValue',
+                    icon: { prop: 'icon', name: 'UserIcon' },
+                }),
+            },
         },
     },
     render: (args) => {
@@ -179,7 +191,10 @@ export const Playground: Story = {
             <ImagePicker
                 {...args}
                 value={value}
-                onValueChange={setValue}
+                onValueChange={(nextValue) => {
+                    args.onValueChange?.(nextValue)
+                    setValue(nextValue)
+                }}
             />
         )
     },

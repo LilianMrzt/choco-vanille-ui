@@ -13,7 +13,6 @@ import { Flex } from '@components/layout/flex'
 import EyeIcon from '@resources/asset/EyeIcon.svg?react'
 import EyeOffIcon from '@resources/asset/EyeOffIcon.svg?react'
 import { cn } from '@utils/cn.ts'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, useCallback } from 'react'
 import type { TextFieldProps } from '@/components'
 
@@ -65,7 +64,6 @@ const TextField = memo<TextFieldProps>((props) => {
         showRequiredIndicator = true,
         endAction,
         size: sizeProp,
-        fontSize: fontSizeProp = 16,
         placeholder,
         value,
         onChange,
@@ -75,6 +73,7 @@ const TextField = memo<TextFieldProps>((props) => {
         style: inputStyle,
         type: _type,
         'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
         ...inputProps
     } = props
     const size = sizeProp ?? 'md'
@@ -113,7 +112,6 @@ const TextField = memo<TextFieldProps>((props) => {
                     id={labelId}
                     disabled={disabled}
                     required={required && showRequiredIndicator}
-                    fontSize={fontSizeProp}
                 >
                     {label}
                 </FormLabel>
@@ -140,7 +138,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     required={required}
                     aria-labelledby={ariaLabelledBy ?? labelId}
                     aria-invalid={hasError || undefined}
-                    aria-describedby={error || helperText ? helperId : undefined}
+                    aria-describedby={[ariaDescribedBy, error || helperText ? helperId : undefined].filter(Boolean).join(' ') || undefined}
                     onMouseDown={handleMouseDown}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -159,7 +157,7 @@ const TextField = memo<TextFieldProps>((props) => {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     {...inputProps}
-                    style={{ fontSize: vars.fontSize[fontSizeProp], ...inputStyle }}
+                    style={inputStyle}
                 />
 
                 {hasEndAction && (

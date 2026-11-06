@@ -73,20 +73,32 @@ const ControlledSwitch = (_args: SwitchProps) => {
 }
 
 export const Playground: Story = {
+    argTypes: {
+        defaultChecked: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
+    },
     render: ControlledSwitch,
 }
 
-export const Uncontrolled: Story = {
+export const Uncontrolled = {
     args: {
         checked: undefined,
         defaultChecked: true,
     },
+    argTypes: {
+        checked: { control: false },
+    },
+    render: (args: SwitchProps) => (
+        <Switch
+            key={String(args.defaultChecked)}
+            {...args}
+        />
+    ),
     parameters: {
         docs: {
-            description: { story: 'The initial value applies on mount; remount the story to apply changes to defaultChecked.' },
+            description: { story: 'Changing defaultChecked remounts the switch with the new initial state.' },
         },
     },
-}
+} satisfies Story
 
 export const Sizes: Story = {
     parameters: { docs: { ...storySource(sizesSource) } },

@@ -1,0 +1,3 @@
+import { HelperText } from '@choco-vanille/ui'
+
+<HelperText{{attributes}}>{{children}}</HelperText>

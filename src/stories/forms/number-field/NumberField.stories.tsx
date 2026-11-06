@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useArgs } from 'storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
     Canvas,
@@ -8,16 +8,18 @@ import {
     Stories,
     Title,
 } from '@storybook/addon-docs/blocks'
+import { fn } from 'storybook/test'
 
 import {
     NumberField,
     type NumberFieldSize,
+    type NumberFieldProps,
 } from '@components/forms/number-field'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
 
 const SIZES: NumberFieldSize[] = ['sm', 'md', 'lg']
-const FONT_SIZES = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 **Accessibility**
@@ -45,11 +47,13 @@ const NumberFieldDocsPage = () => (
 
 const meta = {
     title: 'Forms/NumberField',
+    tags: ['autodocs'],
     component: NumberField,
     parameters: {
         layout: 'centered',
         docs: {
             page: NumberFieldDocsPage,
+            source: { type: 'dynamic', transform: createControlledSource<NumberFieldProps>({ component: 'NumberField', stateProp: 'value', eventProp: 'onValueChange', stateType: 'number | null', handler: 'setValue' }) },
             description: {
                 component: md /* language=markdown */ `
 A numeric field with min/max constraints, keyboard and button increments, and TextField-compatible helper and error messaging.
@@ -62,22 +66,26 @@ A numeric field with min/max constraints, keyboard and button increments, and Te
         helperText: { control: 'text' },
         error: { control: 'text' },
         size: { control: 'select', options: SIZES },
-        fontSize: { control: 'select', options: FONT_SIZES },
         min: { control: 'number' },
         max: { control: 'number' },
         step: { control: 'number' },
         disabled: { control: 'boolean' },
         required: { control: 'boolean' },
         readOnly: { control: 'boolean' },
+        value: { control: 'number' },
+        defaultValue: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
+        onValueChange: { control: false },
+        onValueCommitted: { control: false },
     },
     args: {
         label: 'Quantity',
-        defaultValue: 2,
+        value: 2,
+        onValueChange: fn(),
+        onValueCommitted: fn(),
         min: 0,
         max: 10,
         step: 1,
         size: 'md',
-        fontSize: 16,
     },
 } satisfies Meta<typeof NumberField>
 
@@ -85,28 +93,41 @@ export default meta
 
 type Story = StoryObj<typeof meta>;
 
+/**
+ * Keeps the numeric value and callback synchronized with Storybook args.
+ * @internal Not part of the public package API.
+ * @param _args - Storybook render arguments.
+ * @returns The controlled numeric field.
+ * @example
+ * <ControlledNumberField label="Quantity" />
+ */
+const ControlledNumberField = (_args: NumberFieldProps) => {
+    const [args, updateArgs] = useArgs<NumberFieldProps>()
+    const handleValueChange: NonNullable<NumberFieldProps['onValueChange']> = (value, details) => {
+        args.onValueChange?.(value, details)
+        if (!details.isCanceled) {
+            updateArgs({ value })
+        }
+    }
+
+    return (
+        <NumberField
+            {...args}
+            onValueChange={handleValueChange}
+        />
+    )
+}
+
 export const Playground: Story = {
     parameters: {
         docs: {
-            ...storySource('<NumberField />'),
             description: {
                 story:
           'Interactive playground for numeric values and validation constraints.',
             },
         },
     },
-    render: (args) => {
-        const [value, setValue] = useState<number | null>(
-            args.defaultValue ?? null,
-        )
-        return (
-            <NumberField
-                {...args}
-                value={value}
-                onValueChange={(nextValue) => setValue(nextValue)}
-            />
-        )
-    },
+    render: ControlledNumberField,
 }
 
 export const Sizes: Story = {
@@ -135,38 +156,6 @@ export const Sizes: Story = {
                 size={'lg'}
                 defaultValue={1}
             />
-        </div>
-    ),
-}
-
-export const FontSizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`
-<NumberField label="10" fontSize={10} defaultValue={1} />
-<NumberField label="12" fontSize={12} defaultValue={1} />
-<NumberField label="14" fontSize={14} defaultValue={1} />
-<NumberField label="16" fontSize={16} defaultValue={1} />
-<NumberField label="18" fontSize={18} defaultValue={1} />
-<NumberField label="20" fontSize={20} defaultValue={1} />
-<NumberField label="24" fontSize={24} defaultValue={1} />
-<NumberField label="30" fontSize={30} defaultValue={1} />
-<NumberField label="36" fontSize={36} defaultValue={1} />
-<NumberField label="48" fontSize={48} defaultValue={1} />
-<NumberField label="60" fontSize={60} defaultValue={1} />
-<NumberField label="72" fontSize={72} defaultValue={1} />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {FONT_SIZES.map((fontSize) => (
-                <NumberField
-                    key={fontSize}
-                    label={String(fontSize)}
-                    fontSize={fontSize}
-                    defaultValue={1}
-                />
-            ))}
         </div>
     ),
 }

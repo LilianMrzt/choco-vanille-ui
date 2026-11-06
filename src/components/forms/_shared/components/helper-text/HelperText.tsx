@@ -4,9 +4,19 @@ import { HELPER_TEXT_STYLES } from '@components/forms/_shared/components/helper-
 import type { HelperTextProps } from '@components/forms/_shared/components/helper-text/types'
 
 /**
- * Inline helper / error text displayed below a form field.
- *
- * Used by TextField (and any other form control that needs assistive copy).
+ * Supporting text for a form control. Associate it using `aria-describedby`.
+ * Normal messages are polite status regions; errors are assertive alerts.
+ * @param props - Content, ID and announcement settings.
+ * @param props.id - ID referenced by the control.
+ * @param props.hasError - Uses error styling and an assertive announcement.
+ * @param props.role - Overrides the default live-region role.
+ * @param props["aria-live"] - Overrides the default announcement politeness.
+ * @param props.children - Supporting message.
+ * @returns The supporting text.
+ * @example
+ * ```tsx
+ * <HelperText id="email-help">Use your work email.</HelperText>
+ * ```
  */
 const HelperText: FC<HelperTextProps> = memo(({
     id,

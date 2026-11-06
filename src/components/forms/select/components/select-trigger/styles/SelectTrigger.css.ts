@@ -37,6 +37,7 @@ export const SELECT_TRIGGER_STYLES = {
             alignItems: 'center',
             width: '100%',
             fontFamily: vars.fontFamily.sans,
+            fontSize: vars.fontSize[16],
             lineHeight: '1.5',
             borderRadius: vars.radius[4],
             border: `1px solid ${vars.color.border.main}`,
@@ -76,17 +77,14 @@ export const SELECT_TRIGGER_STYLES = {
                 sm: {
                     height: '2.25rem',
                     paddingInline: vars.space[8],
-                    fontSize: vars.fontSize[14],
                 },
                 md: {
                     height: '2.5rem',
                     paddingInline: vars.space[12],
-                    fontSize: vars.fontSize[14],
                 },
                 lg: {
                     height: '2.75rem',
                     paddingInline: vars.space[16],
-                    fontSize: vars.fontSize[16],
                 },
             },
             hasError: {

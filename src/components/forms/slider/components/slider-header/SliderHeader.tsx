@@ -1,5 +1,5 @@
 import { Slider as BaseSlider } from '@base-ui/react/slider'
-import { Typography } from '@components/foundation/typography'
+import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
 
 import { SLIDER_HEADER_STYLES } from '@components/forms/slider/components/slider-header/styles/SliderHeader.css.ts'
 import type { SliderHeaderProps } from '@components/forms/slider/components/slider-header/types/SliderHeader.props.ts'
@@ -7,14 +7,11 @@ import type { SliderHeaderProps } from '@components/forms/slider/components/slid
 const SliderHeader = ({ label, labelId, showValue }: SliderHeaderProps) => (
     <div className={SLIDER_HEADER_STYLES.root}>
         {label && (
-            <Typography
-                as={'span'}
-                variant={'label'}
+            <FormLabel
                 id={labelId}
-                className={SLIDER_HEADER_STYLES.label}
             >
                 {label}
-            </Typography>
+            </FormLabel>
         )}
         {showValue && (
             <BaseSlider.Value className={SLIDER_HEADER_STYLES.value}>

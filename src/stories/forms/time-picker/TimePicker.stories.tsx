@@ -1,12 +1,14 @@
-import { useState, type ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, within } from 'storybook/test'
+import { expect, fn, within } from 'storybook/test'
 
 import type { TextFieldSize } from '@components/forms/text-field'
 import { TimePicker } from '@components/forms/time-picker'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
+import source from '@stories/forms/time-picker/sources/TimePicker.source.tsx.txt?raw'
 
 const SIZES: TextFieldSize[] = [
     'sm',
@@ -47,11 +49,13 @@ const TimePickerDocsPage = () => (
 
 const meta = {
     title: 'Forms/TimePicker',
+    tags: ['autodocs'],
     component: TimePicker,
     parameters: {
         layout: 'centered',
         docs: {
             page: TimePickerDocsPage,
+            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof TimePicker>>(source, { omit: ['onChange'] }) },
             description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A time picker that combines a native \`type="time"\` text field with a popover listing hours and minutes.
@@ -94,6 +98,15 @@ const [time, setTime] = useState<string | undefined>()
         clearable: { control: 'boolean', table: { category: 'TimePicker' } },
         disabled: { control: 'boolean', table: { category: 'TimePicker' } },
         required: { control: 'boolean', table: { category: 'TimePicker' } },
+        value: { control: false, description: 'Controlled time; use the uncontrolled playground or a controlled example.' },
+        defaultValue: { control: 'text', description: 'Initial time in HH:mm format; changing it remounts the playground.' },
+        onChange: { control: false },
+        nowLabel: { control: 'text' },
+        clearLabel: { control: 'text' },
+        panelAriaLabel: { control: 'text' },
+        hoursAriaLabel: { control: 'text' },
+        minutesAriaLabel: { control: 'text' },
+        triggerAriaLabel: { control: 'text' },
     },
     args: {
         label: 'Start time',
@@ -102,6 +115,7 @@ const [time, setTime] = useState<string | undefined>()
         disabled: false,
         required: false,
         width: '300px',
+        onChange: fn(),
     },
 } satisfies Meta<ComponentProps<typeof TimePicker> & { width?: string }>
 
@@ -109,26 +123,21 @@ export default meta
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {
+export const Playground = {
     parameters: {
         docs: {
-            ...storySource(`<TimePicker />`),
             description: {
                 story:
-          'Interactive playground — use the Controls panel to experiment with every available prop.',
+          'Uncontrolled playground. Changing defaultValue remounts the field with the new initial time.',
             },
         },
     },
-    render: (args) => {
-        const [time, setTime] = useState<string | undefined>()
-        return (
-            <TimePicker
-                {...args}
-                value={time}
-                onChange={setTime}
-            />
-        )
-    },
+    render: (args: ComponentProps<typeof TimePicker>) => (
+        <TimePicker
+            key={args.defaultValue ?? ''}
+            {...args}
+        />
+    ),
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement)
         const label = args.label as string | undefined
@@ -136,7 +145,7 @@ export const Playground: Story = {
             await expect(canvas.getByLabelText(label)).toBeInTheDocument()
         }
     },
-}
+} satisfies Story
 
 export const Sizes: Story = {
     parameters: {
@@ -238,11 +247,23 @@ export const Actions: Story = {
 }
 
 export const States: Story = {
-    parameters: { docs: { ...storySource(`<TimePicker label="Disabled" disabled />`) } },
+    parameters: { docs: { ...storySource(`<TimePicker label="Disabled" disabled />
+<TimePicker label="Start time" helperText="Choose an available time." />
+<TimePicker label="Invalid time" error="Choose a valid time." />`) } },
     render: () => (
-        <TimePicker
-            label={'Disabled'}
-            disabled
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <TimePicker
+                label={'Disabled'}
+                disabled
+            />
+            <TimePicker
+                label={'Start time'}
+                helperText={'Choose an available time.'}
+            />
+            <TimePicker
+                label={'Invalid time'}
+                error={'Choose a valid time.'}
+            />
+        </div>
     ),
 }

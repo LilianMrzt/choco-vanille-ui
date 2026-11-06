@@ -20,7 +20,6 @@ export const ARG_TYPES = {
         description: 'Typography style only; Legend always renders a legend element. Defaults to label.',
         table: { defaultValue: { summary: 'label' } },
     },
-    fontSize: TYPOGRAPHY_ARG_TYPES.fontSize,
     fontWeight: TYPOGRAPHY_ARG_TYPES.fontWeight,
     color: TYPOGRAPHY_ARG_TYPES.color,
     margin: TYPOGRAPHY_ARG_TYPES.margin,

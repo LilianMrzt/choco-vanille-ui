@@ -14,7 +14,7 @@ describe('FormLabel', () => {
         expect(label.tagName.toLowerCase()).toBe('span')
         expect(label.id).toBe('field-label')
         expect(label.className).toContain(FORM_LABEL_STYLES.root)
-        expect(FORM_LABEL_STYLES.root).toBe(TYPOGRAPHY_STYLES.recipe({ variant: 'label' }))
+        expect(FORM_LABEL_STYLES.root).toBe(TYPOGRAPHY_STYLES.recipe({ variant: 'label', fontSize: 14 }))
     })
 
     it('renders the disabled state and required indicator', () => {

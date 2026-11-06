@@ -2,6 +2,7 @@ import { Field } from '@base-ui/react/field'
 import { Slider as BaseSlider } from '@base-ui/react/slider'
 import { memo, type FC, useId } from 'react'
 
+import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
 import SliderHeader from '@components/forms/slider/components/slider-header/SliderHeader.tsx'
 import SliderTrack from '@components/forms/slider/components/slider-track/SliderTrack.tsx'
 import { SLIDER_STYLES } from '@components/forms/slider/styles/Slider.css.ts'
@@ -25,12 +26,14 @@ export const Slider: FC<SliderProps> = memo(({
     ref,
     value,
     defaultValue,
+    'aria-describedby': ariaDescribedBy,
     ...props
 }) => {
     const descriptionId = useId()
     const labelId = useId()
     const hasDescription = Boolean(error || helperText)
     const range = Array.isArray(value ?? defaultValue)
+    const describedBy = [ariaDescribedBy, hasDescription ? descriptionId : undefined].filter(Boolean).join(' ') || undefined
 
     return (
         <Field.Root invalid={Boolean(error)}>
@@ -39,7 +42,7 @@ export const Slider: FC<SliderProps> = memo(({
                 className={cn(SLIDER_STYLES.root, className)}
                 style={{ width }}
                 aria-labelledby={label ? labelId : undefined}
-                aria-describedby={hasDescription ? descriptionId : undefined}
+                aria-describedby={describedBy}
                 value={value}
                 defaultValue={defaultValue}
                 {...props}
@@ -54,15 +57,15 @@ export const Slider: FC<SliderProps> = memo(({
                     size={size}
                     color={color}
                     error={error}
-                    descriptionId={hasDescription ? descriptionId : undefined}
+                    descriptionId={describedBy}
                 />
                 {hasDescription && (
-                    <span
+                    <HelperText
                         id={descriptionId}
-                        className={error ? SLIDER_STYLES.error : SLIDER_STYLES.helper}
+                        hasError={Boolean(error)}
                     >
                         {error ?? helperText}
-                    </span>
+                    </HelperText>
                 )}
             </BaseSlider.Root>
         </Field.Root>

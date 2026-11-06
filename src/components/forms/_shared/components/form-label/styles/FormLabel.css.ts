@@ -4,7 +4,7 @@ import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/Typography.
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const FORM_LABEL_STYLES = {
-    root: TYPOGRAPHY_STYLES.recipe({ variant: 'label' }),
+    root: TYPOGRAPHY_STYLES.recipe({ variant: 'label', fontSize: 14 }),
     requiredIndicator: style({
         color: vars.color.danger.main,
     }),

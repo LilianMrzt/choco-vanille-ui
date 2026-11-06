@@ -2,7 +2,6 @@ import type * as React from 'react'
 import type { IconComponent } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
-import type { TypographySize } from '@components/foundation/typography/types'
 
 /**
  * Props for the convenience `AutocompleteField` wrapper.
@@ -40,8 +39,6 @@ export type AutocompleteFieldProps = {
     placeholder?: string
     /** Visual size of the input. */
     size?: TextFieldSize
-    /** Font size applied to the label and input text. @default 'md' */
-    fontSize?: TypographySize
     /** CSS width of the outer wrapper. Defaults to `100%`. */
     width?: React.CSSProperties['width']
     /** Whether the field is disabled. */

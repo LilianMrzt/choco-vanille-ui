@@ -20,7 +20,7 @@ export const ARG_TYPES = {
     error: { control: 'text', description: 'Error message; marks the switch invalid.' },
     size: { control: 'select', options: SIZES, description: 'Size preset.', table: { defaultValue: { summary: 'md' } } },
     checked: { control: 'boolean', description: 'Controlled state; the playground synchronizes this value with Controls.' },
-    defaultChecked: { control: 'boolean', description: 'Initial state in the uncontrolled story only; changes apply on remount.' },
+    defaultChecked: { control: 'boolean', description: 'Initial state in the uncontrolled story; changes remount the switch.' },
     onCheckedChange: { control: false, description: 'Receives the checked value and event details.' },
     disabled: { control: 'boolean', description: 'Disables interaction.' },
     readOnly: { control: 'boolean', description: 'Prevents changing the value.' },

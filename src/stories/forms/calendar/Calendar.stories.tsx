@@ -1,12 +1,12 @@
-﻿import { type ComponentType, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import { expect, within } from 'storybook/test'
-import type { DateRange } from 'react-day-picker'
 
 import { Calendar } from '@/components/forms/calendar'
 import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
+import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
+import source from '@stories/forms/calendar/sources/Calendar.source.tsx.txt?raw'
 
 const MODES = ['single', 'multiple', 'range'] as const
 
@@ -16,11 +16,44 @@ type CalendarArgs = {
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
     startYear?: number
     endYear?: number
-    compoundCaption?: string
-    compoundMonthButton?: string
-    compoundMonthView?: string
-    compoundYearButton?: string
-    compoundYearView?: string
+}
+
+/**
+ * Renders an uncontrolled calendar for the selected demonstration mode.
+ * Changing modes remounts it to avoid carrying an incompatible selection.
+ * @internal Not part of the public package API.
+ * @param props - Calendar demonstration controls.
+ * @param props.mode - Selection mode.
+ * @returns The calendar.
+ * @example
+ * <CalendarPlayground mode="single" />
+ */
+const CalendarPlayground = ({ mode = 'single', ...props }: CalendarArgs) => {
+    if (mode === 'range') {
+        return (
+            <Calendar
+                key={mode}
+                {...props}
+                mode={'range'}
+            />
+        )
+    }
+    if (mode === 'multiple') {
+        return (
+            <Calendar
+                key={mode}
+                {...props}
+                mode={'multiple'}
+            />
+        )
+    }
+    return (
+        <Calendar
+            key={mode}
+            {...props}
+            mode={'single'}
+        />
+    )
 }
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -30,7 +63,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| \`mode\` | âœ… Yes | \`'single' \\| 'multiple' \\| 'range'\` | Determines selection behaviour and ARIA semantics. |
+| \`mode\` | Yes | \`'single' \\| 'multiple' \\| 'range'\` | Determines selection behaviour and ARIA semantics. |
 | \`aria-label\` | No | \`string\` | Accessible name for the calendar region. |
 | \`disabled\` | No | \`Date \\| Date[] \\| matcher\` | Prevents selection of matching dates. |
 | \`showOutsideDays\` | No | \`boolean\` | Shows days from adjacent months (default \`true\`). |
@@ -52,18 +85,21 @@ const CalendarDocsPage = () => (
 
 const meta = {
     title: 'Forms/Calendar',
-    component: Calendar as ComponentType<CalendarArgs>,
+    tags: ['autodocs'],
+    component: CalendarPlayground,
     parameters: {
         layout: 'centered',
         docs: {
 
-            page: CalendarDocsPage,            description: {
+            page: CalendarDocsPage,
+            source: { type: 'dynamic', transform: createPrimitiveSource<CalendarArgs>(source) },
+            description: {
                 component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A date-picker calendar built on top of \`react-day-picker\`.
 
 Supports **single**, **multiple**, and **range** selection modes.
 
-The header shows **[â† Month Year â†’]** in day view. Clicking **Month** opens a 3Ã—4 month picker; clicking **Year** opens a 3Ã—4 year picker with decade pagination â€” no scrolling required.
+The header provides month and year selection as well as navigation between periods.
 
 **Usage**
 
@@ -86,11 +122,6 @@ const [range, setRange] = useState<DateRange>()
         weekStartsOn: { control: 'select', options: [0, 1, 2, 3, 4, 5, 6] },
         startYear: { control: 'number' },
         endYear: { control: 'number' },
-        compoundCaption: { control: 'text', table: { category: 'Compound: Caption' } },
-        compoundMonthButton: { control: 'text', table: { category: 'Compound: MonthButton' } },
-        compoundMonthView: { control: 'text', table: { category: 'Compound: MonthView' } },
-        compoundYearButton: { control: 'text', table: { category: 'Compound: YearButton' } },
-        compoundYearView: { control: 'text', table: { category: 'Compound: YearView' } },
     },
     args: {
         mode: 'single',
@@ -112,48 +143,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
     parameters: {
-        docs: { ...storySource(`<Calendar />`),
+        docs: {
             description: {
                 story:
-          'Interactive playground â€” use the Controls panel to switch selection mode, toggle outside days, and adjust the year range.',
+          'Use the Controls panel to change selection mode, outside days and the year range.',
             },
         },
-    },
-    render: ({ mode, ...args }: CalendarArgs) => {
-        const [single, setSingle] = useState<Date | undefined>()
-        const [multiple, setMultiple] = useState<Date[] | undefined>()
-        const [range, setRange] = useState<DateRange | undefined>()
-
-        if (mode === 'range') {
-            return (
-                <Calendar
-                    {...args}
-                    mode={'range'}
-                    selected={range}
-                    onSelect={setRange}
-                />
-            )
-        }
-
-        if (mode === 'multiple') {
-            return (
-                <Calendar
-                    {...args}
-                    mode={'multiple'}
-                    selected={multiple}
-                    onSelect={setMultiple}
-                />
-            )
-        }
-
-        return (
-            <Calendar
-                {...args}
-                mode={'single'}
-                selected={single}
-                onSelect={setSingle}
-            />
-        )
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement)

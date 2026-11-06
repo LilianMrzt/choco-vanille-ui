@@ -9,7 +9,7 @@ import LegendPlayground from '@stories/forms/legend/components/legend-playground
 describe('Legend stories', () => {
     it('forwards controls to the first legend and names the fieldset', async () => {
         const user = userEvent.setup()
-        const { rerender } = render(<LegendPlayground fontSize={24}>Notification preferences</LegendPlayground>)
+        const { rerender } = render(<LegendPlayground>Notification preferences</LegendPlayground>)
         const group = screen.getByRole('group', { name: 'Notification preferences' })
         const legend = group.querySelector('legend')
 
@@ -26,11 +26,10 @@ describe('Legend stories', () => {
 
     it('generates public consumer JSX from the current legend args', () => {
         const source = legendMeta.parameters.docs.source.transform('', {
-            args: { children: 'Email "alerts"', fontSize: 24, color: 'rebeccapurple' },
+            args: { children: 'Email "alerts"', color: 'rebeccapurple' },
         })
 
         expect(source).toContain("import { Fieldset, Legend } from '@choco-vanille/ui'")
-        expect(source).toContain('fontSize={24}')
         expect(source).toContain('color={"rebeccapurple"}')
         expect(source).toContain('{"Email \\"alerts\\""}')
         expect(source).toContain('value="email"')

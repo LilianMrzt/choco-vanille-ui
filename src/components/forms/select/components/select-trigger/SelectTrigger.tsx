@@ -27,7 +27,6 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
     placeholder,
     startIcon,
     size = 'md',
-    fontSize = 16,
     hasError = false,
     width,
     children,
@@ -57,7 +56,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
                 }),
                 className,
             )}
-            style={{ fontSize: vars.fontSize[fontSize], ...mergedStyle }}
+            style={mergedStyle}
             onMouseDown={handleMouseDown}
             onFocus={handleFocus}
             onBlur={handleBlur}
