@@ -30,7 +30,11 @@ const config: StorybookConfig = {
 
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: '.storybook/vite.config.ts',
+      },
+    },
   },
 
   viteFinal: async (viteConfig) => {
@@ -62,6 +66,7 @@ const config: StorybookConfig = {
         '@resources': resolve(root, 'src/resources'),
         '@stories': resolve(root, 'src/stories'),
         '@tests': resolve(root, 'tests'),
+        '@scripts': resolve(root, 'scripts'),
       },
     };
 
