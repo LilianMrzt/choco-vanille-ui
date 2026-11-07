@@ -14,7 +14,7 @@ describe('AlertDialog.Action', () => {
         )
 
         const action = screen.getByRole('button', { name: 'Delete' })
-        expect(action.getAttribute('class')).toContain('destructive')
+        expect(action.getAttribute('class')).toContain('danger')
         expect(action.getAttribute('class')).toContain('contained')
     })
 })

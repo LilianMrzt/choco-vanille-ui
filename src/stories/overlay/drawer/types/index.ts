@@ -19,8 +19,8 @@ export type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   navItemColor?:
     | 'primary'
     | 'secondary'
-    | 'tertiary'
-    | 'destructive'
+    | 'neutral'
+    | 'danger'
     | 'success'
     | 'warning'
     | 'info';
@@ -31,8 +31,8 @@ export type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   sectionItemColor?:
     | 'primary'
     | 'secondary'
-    | 'tertiary'
-    | 'destructive'
+    | 'neutral'
+    | 'danger'
     | 'success'
     | 'warning'
     | 'info';

@@ -4,7 +4,7 @@ import consumerSource1 from '@stories/forms/slider/sources/SliderUsage1.source.t
 import { fn } from 'storybook/test'
 
 export const SIZES: SliderSize[] = ['sm', 'md', 'lg']
-export const COLORS: SliderColor[] = ['primary', 'secondary', 'destructive']
+export const COLORS: SliderColor[] = ['primary', 'secondary', 'danger']
 export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
 

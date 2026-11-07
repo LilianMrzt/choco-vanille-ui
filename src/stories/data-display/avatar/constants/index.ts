@@ -6,7 +6,7 @@ export const SIZES = ['sm', 'md', 'lg', 'xl'] as const
 
 export const SHAPES = ['circle', 'square'] as const
 
-export const COLORS = ['primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info', 'purple', 'pink', 'orange', 'teal', 'cyan', 'indigo'] as const
+export const COLORS = ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info', 'purple', 'pink', 'orange', 'teal', 'cyan', 'indigo'] as const
 
 export const STATUSES = ['online', 'offline', 'busy', 'away'] as const
 

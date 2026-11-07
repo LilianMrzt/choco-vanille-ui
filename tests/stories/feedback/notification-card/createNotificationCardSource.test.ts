@@ -18,11 +18,11 @@ describe('createNotificationCardSource', () => {
 
     it('reflects compound controls and escapes labels', () => {
         const source = createNotificationCardSource('', {
-            args: { ...DEFAULT_ARGS, variant: 'error', role: 'none', title: 'An "error"', showCustomIcon: true, showActions: true, showClose: false },
+            args: { ...DEFAULT_ARGS, variant: 'danger', role: 'none', title: 'An "error"', showCustomIcon: true, showActions: true, showClose: false },
         })
 
         expect(source).toContain('import { Box, NotificationCard, Button }')
-        expect(source).toContain('variant={"error"} role={"none"}')
+        expect(source).toContain('variant={"danger"} role={"none"}')
         expect(source).toContain('{"An \\"error\\""}')
         expect(source).toContain('<NotificationCard.Icon icon={InfoIcon} />')
         expect(source).toContain('<NotificationCard.Actions>')

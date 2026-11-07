@@ -59,7 +59,7 @@ export const SLIDER_TRACK_STYLES = {
             color: {
                 primary: { backgroundColor: vars.color.primary.main },
                 secondary: { backgroundColor: vars.color.secondary.main },
-                destructive: { backgroundColor: vars.color.danger.main },
+                danger: { backgroundColor: vars.color.danger.main },
             },
         },
         defaultVariants: { color: 'primary' },
@@ -93,7 +93,7 @@ export const SLIDER_TRACK_STYLES = {
             color: {
                 primary: { border: `2px solid ${vars.color.primary.main}` },
                 secondary: { border: `2px solid ${vars.color.secondary.main}` },
-                destructive: { border: `2px solid ${vars.color.danger.main}` },
+                danger: { border: `2px solid ${vars.color.danger.main}` },
             },
         },
         defaultVariants: { size: 'md', color: 'primary' },

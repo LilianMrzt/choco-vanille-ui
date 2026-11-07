@@ -11,19 +11,19 @@ export const VARIANT_TO_ICON: Record<CalloutVariant, IconComponent> = {
     info: InfoIcon,
     success: CircleCheckIcon,
     warning: TriangleAlertIcon,
-    error: CircleErrorIcon,
+    danger: CircleErrorIcon,
 }
 
 export const VARIANT_TO_COLOR: Record<CalloutVariant, string> = {
     info: vars.color.info.main,
     success: vars.color.success.main,
     warning: vars.color.warning.main,
-    error: vars.color.danger.main,
+    danger: vars.color.danger.main,
 }
 
 export const VARIANT_TO_ACTION_COLOR: Record<CalloutVariant, IconButtonColor> = {
     info: 'info',
     success: 'success',
     warning: 'warning',
-    error: 'destructive',
+    danger: 'danger',
 }

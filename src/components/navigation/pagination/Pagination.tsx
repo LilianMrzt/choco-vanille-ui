@@ -77,7 +77,7 @@ const Pagination: FC<PaginationProps> = ({
                 <li>
                     <IconButton
                         variant={'ghost'}
-                        color={'tertiary'}
+                        color={'neutral'}
                         size={'sm'}
                         icon={ChevronLeftIcon}
                         disabled={isFirstPage}
@@ -120,7 +120,7 @@ const Pagination: FC<PaginationProps> = ({
                 <li>
                     <IconButton
                         variant={'ghost'}
-                        color={'tertiary'}
+                        color={'neutral'}
                         size={'sm'}
                         icon={ChevronRightIcon}
                         disabled={isLastPage}

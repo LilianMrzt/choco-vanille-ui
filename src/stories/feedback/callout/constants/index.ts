@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react-vite'
 import type { CalloutVariant } from '@components/feedback/callout'
 import type { CalloutStoryArgs } from '@stories/feedback/callout/types'
 
-export const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
+export const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'danger']
 
 export const DEFAULT_ARGS = {
     variant: 'info',

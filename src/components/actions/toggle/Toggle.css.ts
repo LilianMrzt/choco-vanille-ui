@@ -142,7 +142,7 @@ export const TOGGLE_STYLES = {
                         },
                     },
                 },
-                [BUTTON_COLORS.tertiary]: {
+                [BUTTON_COLORS.neutral]: {
                     color: vars.color.neutral.foreground,
                     selectors: {
                         '&:hover:not(:disabled):not([aria-disabled="true"])': {
@@ -165,7 +165,7 @@ export const TOGGLE_STYLES = {
                         },
                     },
                 },
-                [BUTTON_COLORS.destructive]: {
+                [BUTTON_COLORS.danger]: {
                     color: vars.color.danger.subtleForeground,
                     selectors: {
                         '&:hover:not(:disabled):not([aria-disabled="true"])': {

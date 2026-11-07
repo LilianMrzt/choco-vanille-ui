@@ -8,7 +8,7 @@ describe('createToasterSource', () => {
         const source = createToasterSource('', {
             args: {
                 ...DEFAULT_ARGS,
-                messageVariant: 'error',
+                messageVariant: 'danger',
                 title: 'An "error"',
                 toastPosition: 'top-center',
                 notificationDuration: 2000,
@@ -21,7 +21,7 @@ describe('createToasterSource', () => {
         expect(source).toContain('</ToasterProvider>')
         expect(source).not.toContain('<Toaster\n')
         expect(source).toContain('toastPosition={"top-center"}')
-        expect(source).toContain('show("error"')
+        expect(source).toContain('show("danger"')
         expect(source).toContain('title: "An \\"error\\""')
         expect(source).toContain('duration: 5000')
         expect(source).toContain('duration: 2000')

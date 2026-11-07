@@ -22,20 +22,20 @@ const Example = () => (
                         <Button label="ghost" color="secondary" variant="ghost" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">tertiary</Typography>
+                <Flex aria-label="neutral" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">neutral</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Button label="contained" color="tertiary" variant="contained" />
-                        <Button label="outlined" color="tertiary" variant="outlined" />
-                        <Button label="ghost" color="tertiary" variant="ghost" />
+                        <Button label="contained" color="neutral" variant="contained" />
+                        <Button label="outlined" color="neutral" variant="outlined" />
+                        <Button label="ghost" color="neutral" variant="ghost" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">destructive</Typography>
+                <Flex aria-label="danger" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">danger</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Button label="contained" color="destructive" variant="contained" />
-                        <Button label="outlined" color="destructive" variant="outlined" />
-                        <Button label="ghost" color="destructive" variant="ghost" />
+                        <Button label="contained" color="danger" variant="contained" />
+                        <Button label="outlined" color="danger" variant="outlined" />
+                        <Button label="ghost" color="danger" variant="ghost" />
                     </Flex>
                 </Flex>
                 <Flex aria-label="success" role="group" flexDirection="column" gap={8}>

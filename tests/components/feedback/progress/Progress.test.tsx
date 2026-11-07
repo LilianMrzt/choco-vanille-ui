@@ -139,7 +139,7 @@ describe('Progress', () => {
         const colors: ProgressColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

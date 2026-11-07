@@ -138,7 +138,7 @@ describe('Badge', () => {
         const colors: BadgeColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

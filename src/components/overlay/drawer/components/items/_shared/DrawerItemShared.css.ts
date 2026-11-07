@@ -84,8 +84,8 @@ const drawerItemRecipe = recipe({
         color: {
             [DRAWER_ITEM_COLORS.primary]: {},
             [DRAWER_ITEM_COLORS.secondary]: {},
-            [DRAWER_ITEM_COLORS.tertiary]: {},
-            [DRAWER_ITEM_COLORS.destructive]: {},
+            [DRAWER_ITEM_COLORS.neutral]: {},
+            [DRAWER_ITEM_COLORS.danger]: {},
             [DRAWER_ITEM_COLORS.success]: {},
             [DRAWER_ITEM_COLORS.warning]: {},
             [DRAWER_ITEM_COLORS.info]: {},

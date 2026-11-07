@@ -176,7 +176,7 @@ describe('Avatar', () => {
         const colors: AvatarColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

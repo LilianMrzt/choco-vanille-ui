@@ -36,8 +36,8 @@ describe('Spinner', () => {
         const colors: SpinnerColor[] = [
             'primary',
             'secondary',
-            'tertiary',
-            'destructive',
+            'neutral',
+            'danger',
             'success',
             'warning',
             'info',

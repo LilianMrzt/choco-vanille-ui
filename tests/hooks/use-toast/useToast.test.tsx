@@ -2,7 +2,7 @@ import { act, render, renderHook, screen, waitFor, within } from '@testing-libra
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { NotificationCard } from '@components/feedback/notification-card'
+import { NotificationCard, NOTIFICATION_CARD_STYLES } from '@components/feedback/notification-card'
 import { Toaster } from '@components/feedback/toaster'
 import { useNotification, useToast } from '@hooks'
 import { toast } from 'sonner'
@@ -13,6 +13,20 @@ afterEach(() => {
 })
 
 describe('useToast', () => {
+    it('renders showError using the danger variant', async () => {
+        render(<Toaster />)
+        const { result } = renderHook(() => useToast())
+
+        act(() => {
+            result.current.showError({ title: 'Unable to save' })
+        })
+
+        const title = await screen.findByText('Unable to save')
+        const card = title.closest(`.${NOTIFICATION_CARD_STYLES.recipe({ variant: 'danger' }).split(' ').at(-1)}`)
+        expect(card).toBeTruthy()
+        expect(card?.querySelector('svg')).toBeTruthy()
+    })
+
     it('shows a transient toast without a close button in the bottom-right channel', async () => {
         render(<Toaster />)
         const { result } = renderHook(() => useToast())

@@ -48,8 +48,8 @@ export const SIZES: IconButtonSize[] = ['xs', 'sm', 'md', 'lg']
 export const COLORS: IconButtonColor[] = [
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',

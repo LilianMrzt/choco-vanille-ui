@@ -24,22 +24,22 @@ const Example = () => (
                         <Badge label="outlinedSubtle" color="secondary" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">tertiary</Typography>
+                <Flex aria-label="neutral" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">neutral</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Badge label="contained" color="tertiary" variant="contained" />
-                        <Badge label="subtle" color="tertiary" variant="subtle" />
-                        <Badge label="outlined" color="tertiary" variant="outlined" />
-                        <Badge label="outlinedSubtle" color="tertiary" variant="outlinedSubtle" />
+                        <Badge label="contained" color="neutral" variant="contained" />
+                        <Badge label="subtle" color="neutral" variant="subtle" />
+                        <Badge label="outlined" color="neutral" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="neutral" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">destructive</Typography>
+                <Flex aria-label="danger" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">danger</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Badge label="contained" color="destructive" variant="contained" />
-                        <Badge label="subtle" color="destructive" variant="subtle" />
-                        <Badge label="outlined" color="destructive" variant="outlined" />
-                        <Badge label="outlinedSubtle" color="destructive" variant="outlinedSubtle" />
+                        <Badge label="contained" color="danger" variant="contained" />
+                        <Badge label="subtle" color="danger" variant="subtle" />
+                        <Badge label="outlined" color="danger" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="danger" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
                 <Flex aria-label="success" role="group" flexDirection="column" gap={8}>

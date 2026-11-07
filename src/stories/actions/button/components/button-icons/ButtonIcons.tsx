@@ -20,7 +20,7 @@ const ButtonIcons = (): ReactElement => (
         gap={12}
     >
         <Button
-            color={'destructive'}
+            color={'danger'}
             label={'Delete'}
             startIcon={TrashIcon}
             variant={'outlined'}

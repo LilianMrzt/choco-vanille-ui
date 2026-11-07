@@ -5,7 +5,7 @@ const Example = () => {
   return (
     <AlertDialog{{rootProps}}>
       <AlertDialog.Trigger>
-        <Button color="destructive" label={{{triggerLabel}}} variant="contained" />
+        <Button color="danger" label={{{triggerLabel}}} variant="contained" />
       </AlertDialog.Trigger>
       <AlertDialog.Content{{contentProps}}>
         <AlertDialog.Header{{headerProps}} />{{body}}

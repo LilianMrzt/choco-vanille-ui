@@ -3,7 +3,7 @@ import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
 import { fn } from 'storybook/test'
 
 export const VARIANTS = ['outlined', 'outlinedSubtle', 'ghost', 'ghostSubtle'] as const
-export const COLORS = ['primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info'] as const
+export const COLORS = ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'] as const
 export const SIZES = ['sm', 'md', 'lg'] as const
 const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
 

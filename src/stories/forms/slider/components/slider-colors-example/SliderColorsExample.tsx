@@ -22,7 +22,7 @@ const SliderColorsExample = (): ReactElement => (
         />
         <Slider
             label={'Destructive'}
-            color={'destructive'}
+            color={'danger'}
             defaultValue={40}
         />
     </div>

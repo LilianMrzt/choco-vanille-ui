@@ -101,7 +101,7 @@ describe('Toggle', () => {
         const colors: ToggleColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

@@ -66,7 +66,7 @@ export const outlinedCompoundVariants = [
     {
         variants: {
             variant: DRAWER_ITEM_VARIANTS.outlined,
-            color: DRAWER_ITEM_COLORS.tertiary,
+            color: DRAWER_ITEM_COLORS.neutral,
         },
         style: {
             selectors: {
@@ -93,7 +93,7 @@ export const outlinedCompoundVariants = [
     {
         variants: {
             variant: DRAWER_ITEM_VARIANTS.outlined,
-            color: DRAWER_ITEM_COLORS.destructive,
+            color: DRAWER_ITEM_COLORS.danger,
         },
         style: {
             selectors: {

@@ -12,8 +12,8 @@ import type { ProgressBorderRadius } from '@components/feedback/progress/types'
 const PROGRESS_TRACK_COLORS = {
     primary: vars.color.primary.subtle,
     secondary: vars.color.secondary.subtle,
-    tertiary: vars.color.neutral.main,
-    destructive: vars.color.danger.subtle,
+    neutral: vars.color.neutral.main,
+    danger: vars.color.danger.subtle,
     success: vars.color.success.subtle,
     warning: vars.color.warning.subtle,
     info: vars.color.info.subtle,
@@ -28,8 +28,8 @@ const PROGRESS_TRACK_COLORS = {
 const PROGRESS_FILL_COLORS = {
     primary: vars.color.primary.main,
     secondary: vars.color.secondary.main,
-    tertiary: vars.color.neutral.subtleBorder,
-    destructive: vars.color.danger.main,
+    neutral: vars.color.neutral.subtleBorder,
+    danger: vars.color.danger.main,
     success: vars.color.success.main,
     warning: vars.color.warning.main,
     info: vars.color.info.main,

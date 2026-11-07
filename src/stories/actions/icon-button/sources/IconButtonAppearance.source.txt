@@ -23,20 +23,20 @@ const Example = () => (
                         <IconButton aria-label="secondary, ghost" color="secondary" icon={SearchIcon} variant="ghost" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">tertiary</Typography>
+                <Flex aria-label="neutral" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">neutral</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <IconButton aria-label="tertiary, contained" color="tertiary" icon={SearchIcon} variant="contained" />
-                        <IconButton aria-label="tertiary, outlined" color="tertiary" icon={SearchIcon} variant="outlined" />
-                        <IconButton aria-label="tertiary, ghost" color="tertiary" icon={SearchIcon} variant="ghost" />
+                        <IconButton aria-label="neutral, contained" color="neutral" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="neutral, outlined" color="neutral" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="neutral, ghost" color="neutral" icon={SearchIcon} variant="ghost" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">destructive</Typography>
+                <Flex aria-label="danger" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">danger</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <IconButton aria-label="destructive, contained" color="destructive" icon={SearchIcon} variant="contained" />
-                        <IconButton aria-label="destructive, outlined" color="destructive" icon={SearchIcon} variant="outlined" />
-                        <IconButton aria-label="destructive, ghost" color="destructive" icon={SearchIcon} variant="ghost" />
+                        <IconButton aria-label="danger, contained" color="danger" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="danger, outlined" color="danger" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="danger, ghost" color="danger" icon={SearchIcon} variant="ghost" />
                     </Flex>
                 </Flex>
                 <Flex aria-label="success" role="group" flexDirection="column" gap={8}>

@@ -186,8 +186,8 @@ describe('package distribution', () => {
             expect(toggleCss.indexOf(`.${ghostSubtleClass}[data-pressed]`))
                 .toBeGreaterThan(toggleCss.indexOf(`.${primaryClass}[data-pressed]`))
             for (const [color, intent] of [
-                ['primary', 'primary'], ['secondary', 'secondary'], ['tertiary', 'neutral'],
-                ['destructive', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
+                ['primary', 'primary'], ['secondary', 'secondary'], ['neutral', 'neutral'],
+                ['danger', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
             ]) {
                 for (const variant of ['ghostSubtle', 'outlinedSubtle']) {
                     const className = toggleStyles.match(new RegExp(
@@ -195,7 +195,9 @@ describe('package distribution', () => {
                     ))?.[1]
                     expect(className, `${variant} ${color}`).toBeTruthy()
                     const pressedRule = toggleCss.match(new RegExp(`\\.${className}\\[data-pressed]\\s*\\{([^}]+)\\}`))?.[1]
-                    const hoverRule = toggleCss.match(new RegExp(`\\.${className}:hover\\s*\\{([^}]+)\\}`))?.[1]
+                    const hoverRule = toggleCss.match(new RegExp(
+                        `\\.${className}:hover:not\\(:disabled\\):not\\(\\[aria-disabled=(?:true|"true")\\]\\)\\s*\\{([^}]+)\\}`,
+                    ))?.[1]
                     expect(pressedRule, `${variant} ${color}`).toContain(`background-color:var(--color-${intent}-subtlePressed)`)
                     expect(pressedRule, `${variant} ${color}`).toContain(`color:var(--color-${intent}-subtleForeground)`)
                     expect(hoverRule, `${variant} ${color}`).toContain(`background-color:var(--color-${intent}-subtle)`)
@@ -227,8 +229,8 @@ describe('package distribution', () => {
                 expect(outlinedRule).toMatch(/background-color:(?:transparent|#0000)/)
             }
             for (const [color, intent] of [
-                ['primary', 'primary'], ['secondary', 'secondary'], ['tertiary', 'neutral'],
-                ['destructive', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
+                ['primary', 'primary'], ['secondary', 'secondary'], ['neutral', 'neutral'],
+                ['danger', 'danger'], ['success', 'success'], ['warning', 'warning'], ['info', 'info'],
                 ['purple', 'accentPurple'], ['pink', 'accentPink'], ['orange', 'accentOrange'],
                 ['teal', 'accentTeal'], ['cyan', 'accentCyan'], ['indigo', 'accentIndigo'],
             ]) {

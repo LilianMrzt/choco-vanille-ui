@@ -5,6 +5,6 @@ const Example = () => (
         <Callout variant="info" title="info" description="A contextual message." />
         <Callout variant="success" title="success" description="A contextual message." />
         <Callout variant="warning" title="warning" description="A contextual message." />
-        <Callout variant="error" title="error" description="A contextual message." />
+        <Callout variant="danger" title="danger" description="A contextual message." />
     </div>
 )

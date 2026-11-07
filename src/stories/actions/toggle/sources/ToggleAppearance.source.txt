@@ -25,22 +25,22 @@ const Example = () => (
                         <Toggle label="ghostSubtle" color="secondary" variant="ghostSubtle" defaultPressed />
                     </Flex>
                 </Flex>
-                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">tertiary</Typography>
+                <Flex aria-label="neutral" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">neutral</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Toggle label="outlined" color="tertiary" variant="outlined" defaultPressed />
-                        <Toggle label="outlinedSubtle" color="tertiary" variant="outlinedSubtle" defaultPressed />
-                        <Toggle label="ghost" color="tertiary" variant="ghost" defaultPressed />
-                        <Toggle label="ghostSubtle" color="tertiary" variant="ghostSubtle" defaultPressed />
+                        <Toggle label="outlined" color="neutral" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="neutral" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="neutral" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="neutral" variant="ghostSubtle" defaultPressed />
                     </Flex>
                 </Flex>
-                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">destructive</Typography>
+                <Flex aria-label="danger" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">danger</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Toggle label="outlined" color="destructive" variant="outlined" defaultPressed />
-                        <Toggle label="outlinedSubtle" color="destructive" variant="outlinedSubtle" defaultPressed />
-                        <Toggle label="ghost" color="destructive" variant="ghost" defaultPressed />
-                        <Toggle label="ghostSubtle" color="destructive" variant="ghostSubtle" defaultPressed />
+                        <Toggle label="outlined" color="danger" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="danger" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="danger" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="danger" variant="ghostSubtle" defaultPressed />
                     </Flex>
                 </Flex>
                 <Flex aria-label="success" role="group" flexDirection="column" gap={8}>

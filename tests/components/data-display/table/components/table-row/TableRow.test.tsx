@@ -75,7 +75,7 @@ describe('Table.Row', () => {
         })
 
         it('applies className for each intent variant', () => {
-            const intents = ['success', 'warning', 'destructive', 'info'] as const
+            const intents = ['success', 'warning', 'danger', 'info'] as const
             const { rerender } = render(
                 <table>
                     <tbody>

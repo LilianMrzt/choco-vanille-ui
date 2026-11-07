@@ -11,8 +11,8 @@ import { UserIcon } from './icons'
                 <Drawer.Section title="Navigation">
                     <Drawer.NavItem color="primary" href="#" label="Navigate default primary" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="secondary" href="#" label="Navigate default secondary" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
-                    <Drawer.NavItem color="tertiary" href="#" label="Navigate default tertiary" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
-                    <Drawer.NavItem color="destructive" href="#" label="Navigate default destructive" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
+                    <Drawer.NavItem color="neutral" href="#" label="Navigate default neutral" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
+                    <Drawer.NavItem color="danger" href="#" label="Navigate default danger" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="success" href="#" label="Navigate default success" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="warning" href="#" label="Navigate default warning" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="info" href="#" label="Navigate default info" startIcon={UserIcon} variant="default" onClick={(event) => event.preventDefault()} />
@@ -20,8 +20,8 @@ import { UserIcon } from './icons'
                 <Drawer.Section title="Actions">
                     <Drawer.ActionItem color="primary" label="Run default primary" startIcon={UserIcon} variant="default" />
                     <Drawer.ActionItem color="secondary" label="Run default secondary" startIcon={UserIcon} variant="default" />
-                    <Drawer.ActionItem color="tertiary" label="Run default tertiary" startIcon={UserIcon} variant="default" />
-                    <Drawer.ActionItem color="destructive" label="Run default destructive" startIcon={UserIcon} variant="default" />
+                    <Drawer.ActionItem color="neutral" label="Run default neutral" startIcon={UserIcon} variant="default" />
+                    <Drawer.ActionItem color="danger" label="Run default danger" startIcon={UserIcon} variant="default" />
                     <Drawer.ActionItem color="success" label="Run default success" startIcon={UserIcon} variant="default" />
                     <Drawer.ActionItem color="warning" label="Run default warning" startIcon={UserIcon} variant="default" />
                     <Drawer.ActionItem color="info" label="Run default info" startIcon={UserIcon} variant="default" />
@@ -34,8 +34,8 @@ import { UserIcon } from './icons'
                 <Drawer.Section title="Navigation">
                     <Drawer.NavItem color="primary" href="#" label="Navigate outlined primary" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="secondary" href="#" label="Navigate outlined secondary" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
-                    <Drawer.NavItem color="tertiary" href="#" label="Navigate outlined tertiary" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
-                    <Drawer.NavItem color="destructive" href="#" label="Navigate outlined destructive" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
+                    <Drawer.NavItem color="neutral" href="#" label="Navigate outlined neutral" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
+                    <Drawer.NavItem color="danger" href="#" label="Navigate outlined danger" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="success" href="#" label="Navigate outlined success" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="warning" href="#" label="Navigate outlined warning" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
                     <Drawer.NavItem color="info" href="#" label="Navigate outlined info" startIcon={UserIcon} variant="outlined" onClick={(event) => event.preventDefault()} />
@@ -43,8 +43,8 @@ import { UserIcon } from './icons'
                 <Drawer.Section title="Actions">
                     <Drawer.ActionItem color="primary" label="Run outlined primary" startIcon={UserIcon} variant="outlined" />
                     <Drawer.ActionItem color="secondary" label="Run outlined secondary" startIcon={UserIcon} variant="outlined" />
-                    <Drawer.ActionItem color="tertiary" label="Run outlined tertiary" startIcon={UserIcon} variant="outlined" />
-                    <Drawer.ActionItem color="destructive" label="Run outlined destructive" startIcon={UserIcon} variant="outlined" />
+                    <Drawer.ActionItem color="neutral" label="Run outlined neutral" startIcon={UserIcon} variant="outlined" />
+                    <Drawer.ActionItem color="danger" label="Run outlined danger" startIcon={UserIcon} variant="outlined" />
                     <Drawer.ActionItem color="success" label="Run outlined success" startIcon={UserIcon} variant="outlined" />
                     <Drawer.ActionItem color="warning" label="Run outlined warning" startIcon={UserIcon} variant="outlined" />
                     <Drawer.ActionItem color="info" label="Run outlined info" startIcon={UserIcon} variant="outlined" />

@@ -5,7 +5,7 @@ import { Button } from '@choco-vanille/ui'
 
 const Example = () => (
     <>
-        <Button label="Delete" startIcon={TrashIcon} variant="outlined" color="destructive" />
+        <Button label="Delete" startIcon={TrashIcon} variant="outlined" color="danger" />
         <Button label="Next" endIcon={ChevronRightIcon} />
         <Button label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} color="primary" />
     </>

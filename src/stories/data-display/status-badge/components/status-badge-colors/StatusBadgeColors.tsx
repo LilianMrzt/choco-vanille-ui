@@ -17,10 +17,10 @@ const StatusBadgeColors = (): ReactElement => (
         <StatusBadge color={'secondary'}>
             <Avatar initials={'SE'} />
         </StatusBadge>
-        <StatusBadge color={'tertiary'}>
+        <StatusBadge color={'neutral'}>
             <Avatar initials={'TE'} />
         </StatusBadge>
-        <StatusBadge color={'destructive'}>
+        <StatusBadge color={'danger'}>
             <Avatar initials={'DE'} />
         </StatusBadge>
         <StatusBadge color={'success'}>

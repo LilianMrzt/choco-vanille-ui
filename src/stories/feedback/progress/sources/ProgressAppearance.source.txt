@@ -15,12 +15,12 @@ const Example = () => (
                     <CircularProgress value={60} color="secondary" size="sm" quantityLabel aria-label="secondary" />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <Progress value={60} color="tertiary" label="tertiary" quantityLabel />
-                    <CircularProgress value={60} color="tertiary" size="sm" quantityLabel aria-label="tertiary" />
+                    <Progress value={60} color="neutral" label="neutral" quantityLabel />
+                    <CircularProgress value={60} color="neutral" size="sm" quantityLabel aria-label="neutral" />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <Progress value={60} color="destructive" label="destructive" quantityLabel />
-                    <CircularProgress value={60} color="destructive" size="sm" quantityLabel aria-label="destructive" />
+                    <Progress value={60} color="danger" label="danger" quantityLabel />
+                    <CircularProgress value={60} color="danger" size="sm" quantityLabel aria-label="danger" />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <Progress value={60} color="success" label="success" quantityLabel />

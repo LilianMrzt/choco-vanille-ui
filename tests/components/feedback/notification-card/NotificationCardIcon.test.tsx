@@ -42,12 +42,12 @@ describe('NotificationCardIcon', () => {
     })
 
     describe('variant context', () => {
-        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'error']
+        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'danger']
         const borderColors = {
             info: vars.color.info.subtleHover,
             success: vars.color.success.subtleHover,
             warning: vars.color.warning.subtleHover,
-            error: vars.color.danger.subtleHover,
+            danger: vars.color.danger.subtleHover,
         }
 
         it.each(variants)('matches the outlined-subtle badge border for %s', (variant) => {

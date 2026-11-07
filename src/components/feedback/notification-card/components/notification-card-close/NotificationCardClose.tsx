@@ -23,7 +23,7 @@ const NotificationCardClose: FC<NotificationCardCloseProps> = memo(({
     return (
         <IconButton
             variant={'ghost'}
-            color={'tertiary'}
+            color={'neutral'}
             size={'sm'}
             icon={CloseIcon}
             aria-label={ariaLabel}

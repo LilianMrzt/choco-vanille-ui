@@ -5,7 +5,7 @@ import type { FabColor, FabPosition, FabProps, FabSize } from '@components/actio
 import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 export const COLORS: FabColor[] = [
-    'primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info',
+    'primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info',
 ]
 export const SIZES: FabSize[] = ['sm', 'md', 'lg']
 export const POSITIONS: FabPosition[] = ['bottom-end', 'bottom-start', 'bottom-center']

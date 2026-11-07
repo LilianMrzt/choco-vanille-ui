@@ -7,7 +7,7 @@ export type TableSize = 'sm' | 'md' | 'lg'
 export type TableCellAlign = 'left' | 'center' | 'right'
 
 /** Semantic row background; provide text as well as color to convey meaning. */
-export type TableRowIntent = 'success' | 'warning' | 'destructive' | 'info'
+export type TableRowIntent = 'success' | 'warning' | 'danger' | 'info'
 
 /** Native table attributes and density/layout options; the ref targets the table. */
 export type TableProps = Readonly<ComponentPropsWithRef<'table'> & {

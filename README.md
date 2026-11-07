@@ -132,9 +132,9 @@ Built-in color ramps use sRGB hex values, with blue primary and violet secondary
 colors. Semantic paths include `surface.main`, `surface.elevated`, `surface.muted`,
 `text.primary`, `text.secondary`, `text.tertiary`, `neutral.main`, `danger.main`, `accent*`, and
 `focusRing`. These replace the previous color token and CSS variable names;
-update consumer theme objects and overrides accordingly. Component intent props
-remain independent (for example, Button's `color="destructive"` uses `danger`
-tokens).
+update consumer theme objects and overrides accordingly. Component color intents
+use `neutral` and `danger`; feedback variants also use `danger`. The `purple`
+and other accent intents use their corresponding `accent*` tokens.
 `ThemeColors`, `ThemeEditorColors`, and `Theme` accept customizable string
 values; `ThemeColorOverrides` types the provider's partial semantic color
 overrides. All are exported from `@choco-vanille/ui`.

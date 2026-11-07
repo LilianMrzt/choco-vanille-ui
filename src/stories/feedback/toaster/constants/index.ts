@@ -26,7 +26,7 @@ export const ARG_TYPES = {
     notificationLabel: { control: 'text', description: 'Accessible persistent region name. Defaults to Notifications.', table: { defaultValue: { summary: "'Notifications'" } } },
     className: { control: false, description: 'Additional class applied to both viewports.' },
     style: { control: false, description: 'Style overrides applied to both viewports.' },
-    messageVariant: { control: 'select', options: ['info', 'success', 'warning', 'error'], description: 'Demo message intent, not a viewport configuration prop.', table: { category: 'Demo: Message' } },
+    messageVariant: { control: 'select', options: ['info', 'success', 'warning', 'danger'], description: 'Demo message intent, not a viewport configuration prop.', table: { category: 'Demo: Message' } },
     title: { control: 'text', table: { category: 'Demo: Message' } },
     description: { control: 'text', table: { category: 'Demo: Message' } },
     duration: { control: { type: 'number', min: 0, step: 1000 }, description: 'Toast lifetime in milliseconds; hook default is 5000.', table: { category: 'Demo: Message' } },

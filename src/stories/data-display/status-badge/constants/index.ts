@@ -12,8 +12,8 @@ import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 export const COLORS: BadgeColor[] = [
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',

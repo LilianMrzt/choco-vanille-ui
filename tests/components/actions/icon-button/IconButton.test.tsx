@@ -75,7 +75,7 @@ describe('IconButton', () => {
         const colors: IconButtonColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

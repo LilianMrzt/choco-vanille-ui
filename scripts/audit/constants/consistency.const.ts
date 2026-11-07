@@ -31,8 +31,8 @@ const TOGGLE_VARIANTS = ['outlined', 'ghost', 'outlinedSubtle', 'ghostSubtle'] a
 const SEMANTIC_COLORS = [
   'primary',
   'secondary',
-  'tertiary',
-  'destructive',
+  'neutral',
+  'danger',
   'success',
   'warning',
   'info',
@@ -98,7 +98,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
       file: 'src/components/feedback/callout/types/index.ts',
       symbol: 'CalloutVariant',
     },
-    expected: ['info', 'success', 'warning', 'error'],
+    expected: ['info', 'success', 'warning', 'danger'],
   },
   {
     component: 'NotificationCard',
@@ -108,7 +108,7 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
       file: 'src/components/feedback/notification-card/NotificationCard.css.ts',
       axis: 'variant',
     },
-    expected: ['info', 'success', 'warning', 'error'],
+    expected: ['info', 'success', 'warning', 'danger'],
   },
   {
     component: 'Skeleton',

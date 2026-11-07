@@ -35,7 +35,7 @@ describe('NotificationCard', () => {
     })
 
     describe('variant styling', () => {
-        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'error']
+        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'danger']
 
         it.each(variants)(
             'applies a non-empty class for variant="%s"',

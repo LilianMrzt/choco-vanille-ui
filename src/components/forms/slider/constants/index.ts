@@ -7,5 +7,5 @@ export const SLIDER_SIZES = {
 export const SLIDER_COLORS = {
     primary: 'primary',
     secondary: 'secondary',
-    destructive: 'destructive',
+    danger: 'danger',
 } as const

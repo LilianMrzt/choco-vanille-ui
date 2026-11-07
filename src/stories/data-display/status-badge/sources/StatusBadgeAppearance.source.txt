@@ -8,8 +8,8 @@ const Example = () => (
             <>
                 <StatusBadge color="primary"><Avatar initials="PR" /></StatusBadge>
                 <StatusBadge color="secondary"><Avatar initials="SE" /></StatusBadge>
-                <StatusBadge color="tertiary"><Avatar initials="TE" /></StatusBadge>
-                <StatusBadge color="destructive"><Avatar initials="DE" /></StatusBadge>
+                <StatusBadge color="neutral"><Avatar initials="TE" /></StatusBadge>
+                <StatusBadge color="danger"><Avatar initials="DE" /></StatusBadge>
                 <StatusBadge color="success"><Avatar initials="SU" /></StatusBadge>
                 <StatusBadge color="warning"><Avatar initials="WA" /></StatusBadge>
                 <StatusBadge color="info"><Avatar initials="IN" /></StatusBadge>

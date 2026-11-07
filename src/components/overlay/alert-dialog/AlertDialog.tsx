@@ -9,7 +9,7 @@ import type { AlertDialogProps } from '@components/overlay/alert-dialog/types'
  * A modal confirmation dialog for destructive actions.
  *
  * It reuses the accessible Dialog slots and adds `Action` and `Cancel`
- * buttons with destructive and outlined defaults respectively.
+ * buttons with danger and outlined defaults respectively.
  * @param props - Dialog state, callbacks and root composition.
  * @returns The confirmation dialog root.
  * @example

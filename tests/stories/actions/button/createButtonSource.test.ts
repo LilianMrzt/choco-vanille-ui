@@ -8,7 +8,7 @@ describe('createButtonSource', () => {
         const source = createButtonSource('', {
             args: {
                 label: 'Delete "item"',
-                color: 'destructive',
+                color: 'danger',
                 size: 'sm',
                 startIcon: TrashIcon,
                 margin: 0,
@@ -19,7 +19,7 @@ describe('createButtonSource', () => {
         })
 
         expect(source).toContain('label={"Delete \\"item\\""}')
-        expect(source).toContain('color={"destructive"}')
+        expect(source).toContain('color={"danger"}')
         expect(source).toContain('size={"sm"}')
         expect(source).toContain('margin={0}')
         expect(source).toContain('startIcon={TrashIcon}')

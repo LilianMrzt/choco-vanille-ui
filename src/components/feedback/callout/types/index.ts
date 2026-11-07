@@ -4,7 +4,7 @@ import type Callout from '@components/feedback/callout/Callout.tsx'
 import type { IconProps } from '@components/foundation/icon'
 
 /** Visual intent variants. */
-export type CalloutVariant = 'info' | 'success' | 'warning' | 'error'
+export type CalloutVariant = 'info' | 'success' | 'warning' | 'danger'
 /** Live-region role. */
 export type CalloutRole = 'alert' | 'status' | undefined
 

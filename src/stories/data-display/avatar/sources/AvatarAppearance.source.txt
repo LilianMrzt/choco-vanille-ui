@@ -24,22 +24,22 @@ const Example = () => (
                         <Avatar aria-label="Jane Doe, secondary, outlinedSubtle" color="secondary" initials="JD" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">tertiary</Typography>
+                <Flex aria-label="neutral" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">neutral</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Avatar aria-label="Jane Doe, tertiary, contained" color="tertiary" initials="JD" variant="contained" />
-                        <Avatar aria-label="Jane Doe, tertiary, subtle" color="tertiary" initials="JD" variant="subtle" />
-                        <Avatar aria-label="Jane Doe, tertiary, outlined" color="tertiary" initials="JD" variant="outlined" />
-                        <Avatar aria-label="Jane Doe, tertiary, outlinedSubtle" color="tertiary" initials="JD" variant="outlinedSubtle" />
+                        <Avatar aria-label="Jane Doe, neutral, contained" color="neutral" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, neutral, subtle" color="neutral" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, neutral, outlined" color="neutral" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, neutral, outlinedSubtle" color="neutral" initials="JD" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
-                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
-                    <Typography as="h4">destructive</Typography>
+                <Flex aria-label="danger" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">danger</Typography>
                     <Flex alignItems="center" flexWrap="wrap" gap={12}>
-                        <Avatar aria-label="Jane Doe, destructive, contained" color="destructive" initials="JD" variant="contained" />
-                        <Avatar aria-label="Jane Doe, destructive, subtle" color="destructive" initials="JD" variant="subtle" />
-                        <Avatar aria-label="Jane Doe, destructive, outlined" color="destructive" initials="JD" variant="outlined" />
-                        <Avatar aria-label="Jane Doe, destructive, outlinedSubtle" color="destructive" initials="JD" variant="outlinedSubtle" />
+                        <Avatar aria-label="Jane Doe, danger, contained" color="danger" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, danger, subtle" color="danger" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, danger, outlined" color="danger" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, danger, outlinedSubtle" color="danger" initials="JD" variant="outlinedSubtle" />
                     </Flex>
                 </Flex>
                 <Flex aria-label="success" role="group" flexDirection="column" gap={8}>

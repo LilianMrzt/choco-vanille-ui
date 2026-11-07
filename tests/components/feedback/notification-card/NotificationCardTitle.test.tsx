@@ -22,7 +22,7 @@ describe('NotificationCardTitle', () => {
     })
 
     describe('variant context', () => {
-        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'error']
+        const variants: NotificationCardVariant[] = ['info', 'success', 'warning', 'danger']
 
         it.each(variants)(
             'renders the title text for the "%s" variant via the NotificationCard root',

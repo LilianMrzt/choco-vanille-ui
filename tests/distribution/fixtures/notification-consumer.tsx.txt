@@ -1,6 +1,6 @@
 import { createRef } from 'react'
 import {
-    NotificationCard, Toaster, ToasterProvider, useNotification, useToast,
+    Callout, NotificationCard, Toaster, ToasterProvider, useNotification, useToast,
     NOTIFICATION_CARD_STYLES, NOTIFICATION_CARD_ICON_STYLES, TOASTER_STYLES,
     type NotificationCardProps, type NotificationCardCompound,
     type NotificationCardIconProps, type NotificationCardTitleProps,
@@ -39,16 +39,23 @@ const example = <ToasterProvider {...provider}>
     </NotificationCard>
 </ToasterProvider>
 const Example = () => {
-    const { showSuccess } = useToast()
+    const { showSuccess, show: showToast } = useToast()
     const { show } = useNotification()
     return <button onClick={() => {
         showSuccess({ title: 'Saved', actions: <button>Undo</button> })
+        showToast('danger', { title: 'Failed' })
+        show({ variant: 'danger', title: 'Failed' })
         show({ children: <NotificationCard.Header><NotificationCard.Title>Update</NotificationCard.Title></NotificationCard.Header>, closeLabel: 'Dismiss update' })
     }}>Show feedback</button>
 }
 const rootClass = NOTIFICATION_CARD_STYLES.recipe({ variant })
 const iconClass = NOTIFICATION_CARD_ICON_STYLES.icon
 const viewportClass = TOASTER_STYLES.viewport
+const dangerFeedback = <><Callout variant="danger" /><NotificationCard variant="danger" /></>
+// @ts-expect-error Feedback variants use danger.
+const legacyCallout = <Callout variant="error" />
+// @ts-expect-error Feedback variants use danger.
+const legacyNotification = <NotificationCard variant="error" />
 // @ts-expect-error Close controls require an accessible name.
 const unnamedClose = <NotificationCard.Close />
 // @ts-expect-error Toaster is a viewport, not a message card.

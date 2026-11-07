@@ -12,7 +12,7 @@ const cardRecipe = recipe({
             info: {},
             success: {},
             warning: {},
-            error: {},
+            danger: {},
         },
     },
     defaultVariants: {

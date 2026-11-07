@@ -5,18 +5,18 @@ export const semanticSizeTokens = new Set(['xs', 'sm', 'md', 'lg', 'xl']);
 export const semanticColorTokens = new Set([
   'primary',
   'secondary',
-  'tertiary',
+  'neutral',
   'success',
   'warning',
   'info',
-  'destructive',
+  'danger',
 ]);
 
 export const statusToneTokens = new Set([
   ...semanticColorTokens,
   'error',
-  'danger',
-  'neutral',
+  'destructive',
+  'tertiary',
   'pending',
   'loading',
 ]);

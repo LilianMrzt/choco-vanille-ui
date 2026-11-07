@@ -123,7 +123,7 @@ const ImageGroup = ({ presentation = 'menu' }: ImageGroupProps) => {
                             icon={TrashIcon}
                             aria-label={labels.removeImage}
                             variant={'ghost'}
-                            color={'destructive'}
+                            color={'danger'}
                             size={'sm'}
                             disabled={disabled || !editor.isActive('image')}
                             onClick={() => editor.chain().focus().deleteSelection().run()}

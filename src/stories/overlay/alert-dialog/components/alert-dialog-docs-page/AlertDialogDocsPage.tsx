@@ -45,7 +45,7 @@ Supply a localized accessible name appropriate to the confirmation.
 | AlertDialog.Footer | Confirmation action row. |
 | AlertDialog.Close | Custom close element. |
 | AlertDialog.Cancel | Safe exit button with outlined defaults. |
-| AlertDialog.Action | Confirmation button with destructive defaults; closes after activation. |
+| AlertDialog.Action | Confirmation button with a danger color by default; closes after activation. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

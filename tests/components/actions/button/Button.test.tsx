@@ -113,7 +113,7 @@ describe('Button', () => {
         const colors: ButtonColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

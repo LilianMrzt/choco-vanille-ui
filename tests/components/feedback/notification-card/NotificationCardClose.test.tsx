@@ -15,7 +15,7 @@ describe('NotificationCardClose', () => {
     describe('default rendering', () => {
         it('uses the small close-button size', () => {
             render(<NotificationCard.Close aria-label={'Close'} />)
-            for (const className of ICON_BUTTON_STYLES.recipe({ variant: 'ghost', color: 'tertiary', size: 'sm' }).split(' ')) {
+            for (const className of ICON_BUTTON_STYLES.recipe({ variant: 'ghost', color: 'neutral', size: 'sm' }).split(' ')) {
                 expect(getButton().className).toContain(className)
             }
         })

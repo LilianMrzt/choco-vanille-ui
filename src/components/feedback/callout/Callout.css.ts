@@ -20,7 +20,7 @@ export const CALLOUT_VARIANT_STYLES = {
         borderColor: vars.color.warning.subtleHover,
         color: vars.color.warning.subtleForeground,
     },
-    error: {
+    danger: {
         backgroundColor: vars.color.danger.subtle,
         borderColor: vars.color.danger.subtleHover,
         color: vars.color.danger.subtleForeground,

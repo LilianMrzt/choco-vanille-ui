@@ -31,7 +31,7 @@ describe('AlertDialog', () => {
         expect(screen.getByRole('button', { name: 'Cancel' }).getAttribute('class')).toContain('outlined')
         expect(screen.getByRole('button', { name: 'Cancel' }).getAttribute('class')).toContain('primary')
         expect(screen.getByRole('button', { name: 'Delete account' }).getAttribute('class')).toContain('contained')
-        expect(screen.getByRole('button', { name: 'Delete account' }).getAttribute('class')).toContain('destructive')
+        expect(screen.getByRole('button', { name: 'Delete account' }).getAttribute('class')).toContain('danger')
     })
 
     it('closes when cancel is activated', async () => {

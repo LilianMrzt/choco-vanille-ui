@@ -156,7 +156,7 @@ const DrawerExample = () => {
                                                 label={'New'}
                                                 size={'sm'}
                                                 borderRadius={6}
-                                                color={'destructive'}
+                                                color={'danger'}
                                             />
                                         }
                                         disabled={navItemDisabled}
@@ -202,7 +202,7 @@ const DrawerExample = () => {
                             <Drawer.ActionItem
                                 label={'Sign out'}
                                 startIcon={CloseIcon}
-                                color={'destructive'}
+                                color={'danger'}
                                 hideTooltip={actionItemHideTooltip}
                             />
                         </Drawer.Section>

@@ -14,7 +14,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
 
-const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
+const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'danger']
 
 describe('Callout', () => {
     describe('default rendering', () => {
@@ -47,7 +47,7 @@ describe('Callout', () => {
             ['info', 'info'],
             ['success', 'success'],
             ['warning', 'warning'],
-            ['error', 'danger'],
+            ['danger', 'danger'],
         ] as const)('uses the soft decorative border for %s', (variant, intent) => {
             expect(CALLOUT_VARIANT_STYLES[variant]).toEqual({
                 backgroundColor: vars.color[intent].subtle,

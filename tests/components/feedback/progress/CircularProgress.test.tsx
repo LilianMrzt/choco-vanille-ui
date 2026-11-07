@@ -102,7 +102,7 @@ describe('CircularProgress', () => {
         const colors: ProgressColor[] = [
             'primary',
             'secondary',
-            'destructive',
+            'danger',
             'success',
             'warning',
             'info',

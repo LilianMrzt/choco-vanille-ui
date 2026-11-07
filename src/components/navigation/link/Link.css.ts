@@ -36,9 +36,7 @@ const base = style({
 
 const color = recipe({
     variants: {
-        color: createColorVariants('color', {
-            tertiary: vars.color.neutral.foreground,
-        }),
+        color: createColorVariants('color'),
     },
 })
 

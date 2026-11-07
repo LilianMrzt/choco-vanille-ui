@@ -1,5 +1,5 @@
 import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
-    Avatar, AvatarGroup, Badge, StatusBadge, RichTextRenderer, Table, Toggle, ToggleGroup, TOGGLE_STYLES, Checkbox, CheckboxGroup,
+    Avatar, AvatarGroup, Badge, Button, Slider, Spinner, StatusBadge, RichTextRenderer, Table, Toggle, ToggleGroup, TOGGLE_STYLES, Checkbox, CheckboxGroup,
     type CheckboxCompound, type CheckboxGroupCompound, type CheckboxRootProps, type CheckboxIndicatorProps,
     type ToggleProps, type ToggleGroupItemProps, type ToggleGroupProps, type ToggleGroupCompound,
     type AvatarGroupItemProps, type AvatarGroupCompound, type BadgeProps, type StatusBadgeProps, type RichTextRendererProps,
@@ -80,6 +80,19 @@ const dataDisplay = <>
         <Table.Body><Table.Row><Table.Cell>Jane Doe</Table.Cell></Table.Row></Table.Body>
     </Table>
 </>
+const semanticColors = <>
+    <Button label="Neutral" color="neutral" />
+    <Button label="Danger" color="danger" />
+    <Avatar initials="JD" color="neutral" />
+    <Badge label="Warning" color="danger" />
+    <Spinner aria-label="Loading" color="neutral" />
+    <Slider aria-label="Level" color="danger" />
+    <Table><Table.Body><Table.Row intent="danger"><Table.Cell>Danger</Table.Cell></Table.Row></Table.Body></Table>
+</>
+// @ts-expect-error The former color name is no longer supported.
+const legacyButtonColor = <Button label="Old" color="tertiary" />
+// @ts-expect-error The former color name is no longer supported.
+const legacyBadgeColor = <Badge label="Old" color="destructive" />
 // @ts-expect-error A branch is not a token leaf.
 const branch: ThemeColor = 'primary'
 // @ts-expect-error Legacy names no longer exist.
@@ -103,6 +116,6 @@ const quotedRadius = <Box borderRadius="8" />
 const arbitrarySpacing = <Box padding={17} />
 // @ts-expect-error Only the finite font-size scale is supported.
 const arbitraryFontSize = <Typography fontSize={15} />
-void [accent, colors, path, example, numericTokens, dataDisplay, avatarGroup, toggleGroup, checkbox, checkboxGroup, checkboxExample, toggleStyle, legacyToggleStyle, toggleExamples, missingToggleValue, legacyToggleSubtle, unnamedToggle,
+void [accent, colors, path, example, numericTokens, dataDisplay, semanticColors, legacyButtonColor, legacyBadgeColor, avatarGroup, toggleGroup, checkbox, checkboxGroup, checkboxExample, toggleStyle, legacyToggleStyle, toggleExamples, missingToggleValue, legacyToggleSubtle, unnamedToggle,
     branch, legacy, nested, incomplete, objectColor, deep,
     quotedSpacing, quotedFontSize, quotedRadius, arbitrarySpacing, arbitraryFontSize]

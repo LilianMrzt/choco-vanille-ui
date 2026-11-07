@@ -16,7 +16,7 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 import { cn } from '@utils/cn.ts'
 
 /**
- * Notification card compound with `variant` (info|success|warning|error),
+ * Notification card compound with `variant` (info|success|warning|danger),
  * optional `icon`, `title`, `description`, and a close button. Renders with
  * `role="status"` by default; pass `role="alert"` for urgent messages.
  * Compose Header, Body and Footer sections. Place Icon, Title and Close in

@@ -4,5 +4,5 @@ import { Grid, NotificationCard } from '@choco-vanille/ui'
   <NotificationCard variant="info" title="info" description="A notification message." />
   <NotificationCard variant="success" title="success" description="A notification message." />
   <NotificationCard variant="warning" title="warning" description="A notification message." />
-  <NotificationCard variant="error" title="error" description="A notification message." />
+  <NotificationCard variant="danger" title="danger" description="A notification message." />
 </Grid>

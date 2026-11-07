@@ -39,7 +39,7 @@ const AlertDialogExample = ({
     <AlertDialog {...rootProps}>
         <AlertDialog.Trigger>
             <Button
-                color={'destructive'}
+                color={'danger'}
                 label={triggerLabel ?? 'Delete account'}
                 variant={'contained'}
             />

@@ -47,7 +47,7 @@ const rowRecipe = recipe({
                 backgroundColor: vars.color.warning.subtle,
                 color: vars.color.warning.subtleForeground,
             },
-            destructive: {
+            danger: {
                 backgroundColor: vars.color.danger.subtle,
                 color: vars.color.danger.subtleForeground,
             },
@@ -87,7 +87,7 @@ const rowRecipe = recipe({
         {
             variants: {
                 hoverable: true,
-                intent: 'destructive',
+                intent: 'danger',
             },
             style: {
                 selectors: {
@@ -139,7 +139,7 @@ const rowRecipe = recipe({
         {
             variants: {
                 selectable: true,
-                intent: 'destructive',
+                intent: 'danger',
             },
             style: {
                 selectors: {

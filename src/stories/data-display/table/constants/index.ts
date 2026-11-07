@@ -117,7 +117,7 @@ export const ARG_TYPES = {
     },
     intent: {
         control: 'select',
-        options: ['unset', 'success', 'warning', 'destructive', 'info'],
+        options: ['unset', 'success', 'warning', 'danger', 'info'],
         description: 'Body Row intent; unset omits it. Add content conveying its meaning.',
         table: { category: 'Compound: Row', defaultValue: { summary: 'undefined' } },
     },

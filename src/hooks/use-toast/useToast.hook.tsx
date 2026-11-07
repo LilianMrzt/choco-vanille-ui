@@ -37,7 +37,7 @@ export const useToast = (): UseToastReturn => {
     return {
         show,
         showSuccess: (options) => show('success', options),
-        showError: (options) => show('error', options),
+        showError: (options) => show('danger', options),
         showWarning: (options) => show('warning', options),
         showInfo: (options) => show('info', options),
         dismiss,

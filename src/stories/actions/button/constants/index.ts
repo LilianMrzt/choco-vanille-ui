@@ -6,7 +6,7 @@ import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 
 export const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
-export const COLORS: ButtonColor[] = ['primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info']
+export const COLORS: ButtonColor[] = ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info']
 export const SIZES: ButtonSize[] = ['sm', 'md', 'lg']
 const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto']
 

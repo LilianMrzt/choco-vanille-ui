@@ -17,7 +17,7 @@ const isActionChild = (child: ReactNode) =>
     isValidElement(child) && child.type === CalloutAction
 
 /**
- * Informational callout with `variant` (info|success|warning|error), an
+ * Informational callout with `variant` (info|success|warning|danger), an
  * optional `icon`, `title`, and `description`. Renders with `role="status"`
  * by default; pass `role="alert"` for urgent feedback. Supports compound
  * children via `Callout.Icon`, `.Title`, `.Description`, and `.Action` slots.

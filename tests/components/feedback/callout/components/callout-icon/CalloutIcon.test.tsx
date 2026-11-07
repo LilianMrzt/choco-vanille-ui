@@ -35,9 +35,9 @@ describe('CalloutIcon', () => {
             expect(container.querySelector('svg')).toBeTruthy()
         })
 
-        it('renders an SVG icon for the error variant', () => {
+        it('renders an SVG icon for the danger variant', () => {
             const { container } = render(
-                <Callout variant="error">
+                <Callout variant="danger">
                     <CalloutIcon />
                 </Callout>,
             )

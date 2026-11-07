@@ -4,7 +4,7 @@ import { fn } from 'storybook/test'
 import type { NotificationCardVariant } from '@components/feedback/notification-card'
 import type { NotificationCardStoryArgs } from '@stories/feedback/notification-card/types'
 
-export const VARIANTS: NotificationCardVariant[] = ['info', 'success', 'warning', 'error']
+export const VARIANTS: NotificationCardVariant[] = ['info', 'success', 'warning', 'danger']
 
 export const DEFAULT_ARGS = {
     variant: 'info',

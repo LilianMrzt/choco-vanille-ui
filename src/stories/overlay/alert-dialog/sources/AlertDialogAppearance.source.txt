@@ -16,8 +16,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Action color="primary" label="Confirm contained primary" variant="contained" />
                     <AlertDialog.Action color="secondary" label="Confirm contained secondary" variant="contained" />
-                    <AlertDialog.Action color="tertiary" label="Confirm contained tertiary" variant="contained" />
-                    <AlertDialog.Action color="destructive" label="Confirm contained destructive" variant="contained" />
+                    <AlertDialog.Action color="neutral" label="Confirm contained neutral" variant="contained" />
+                    <AlertDialog.Action color="danger" label="Confirm contained danger" variant="contained" />
                     <AlertDialog.Action color="success" label="Confirm contained success" variant="contained" />
                     <AlertDialog.Action color="warning" label="Confirm contained warning" variant="contained" />
                     <AlertDialog.Action color="info" label="Confirm contained info" variant="contained" />
@@ -28,8 +28,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Action color="primary" label="Confirm outlined primary" variant="outlined" />
                     <AlertDialog.Action color="secondary" label="Confirm outlined secondary" variant="outlined" />
-                    <AlertDialog.Action color="tertiary" label="Confirm outlined tertiary" variant="outlined" />
-                    <AlertDialog.Action color="destructive" label="Confirm outlined destructive" variant="outlined" />
+                    <AlertDialog.Action color="neutral" label="Confirm outlined neutral" variant="outlined" />
+                    <AlertDialog.Action color="danger" label="Confirm outlined danger" variant="outlined" />
                     <AlertDialog.Action color="success" label="Confirm outlined success" variant="outlined" />
                     <AlertDialog.Action color="warning" label="Confirm outlined warning" variant="outlined" />
                     <AlertDialog.Action color="info" label="Confirm outlined info" variant="outlined" />
@@ -40,8 +40,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Action color="primary" label="Confirm ghost primary" variant="ghost" />
                     <AlertDialog.Action color="secondary" label="Confirm ghost secondary" variant="ghost" />
-                    <AlertDialog.Action color="tertiary" label="Confirm ghost tertiary" variant="ghost" />
-                    <AlertDialog.Action color="destructive" label="Confirm ghost destructive" variant="ghost" />
+                    <AlertDialog.Action color="neutral" label="Confirm ghost neutral" variant="ghost" />
+                    <AlertDialog.Action color="danger" label="Confirm ghost danger" variant="ghost" />
                     <AlertDialog.Action color="success" label="Confirm ghost success" variant="ghost" />
                     <AlertDialog.Action color="warning" label="Confirm ghost warning" variant="ghost" />
                     <AlertDialog.Action color="info" label="Confirm ghost info" variant="ghost" />
@@ -53,8 +53,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Cancel color="primary" label="Cancel contained primary" variant="contained" />
                     <AlertDialog.Cancel color="secondary" label="Cancel contained secondary" variant="contained" />
-                    <AlertDialog.Cancel color="tertiary" label="Cancel contained tertiary" variant="contained" />
-                    <AlertDialog.Cancel color="destructive" label="Cancel contained destructive" variant="contained" />
+                    <AlertDialog.Cancel color="neutral" label="Cancel contained neutral" variant="contained" />
+                    <AlertDialog.Cancel color="danger" label="Cancel contained danger" variant="contained" />
                     <AlertDialog.Cancel color="success" label="Cancel contained success" variant="contained" />
                     <AlertDialog.Cancel color="warning" label="Cancel contained warning" variant="contained" />
                     <AlertDialog.Cancel color="info" label="Cancel contained info" variant="contained" />
@@ -65,8 +65,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Cancel color="primary" label="Cancel outlined primary" variant="outlined" />
                     <AlertDialog.Cancel color="secondary" label="Cancel outlined secondary" variant="outlined" />
-                    <AlertDialog.Cancel color="tertiary" label="Cancel outlined tertiary" variant="outlined" />
-                    <AlertDialog.Cancel color="destructive" label="Cancel outlined destructive" variant="outlined" />
+                    <AlertDialog.Cancel color="neutral" label="Cancel outlined neutral" variant="outlined" />
+                    <AlertDialog.Cancel color="danger" label="Cancel outlined danger" variant="outlined" />
                     <AlertDialog.Cancel color="success" label="Cancel outlined success" variant="outlined" />
                     <AlertDialog.Cancel color="warning" label="Cancel outlined warning" variant="outlined" />
                     <AlertDialog.Cancel color="info" label="Cancel outlined info" variant="outlined" />
@@ -77,8 +77,8 @@ import { AlertDialog, Button } from '@choco-vanille/ui'
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <AlertDialog.Cancel color="primary" label="Cancel ghost primary" variant="ghost" />
                     <AlertDialog.Cancel color="secondary" label="Cancel ghost secondary" variant="ghost" />
-                    <AlertDialog.Cancel color="tertiary" label="Cancel ghost tertiary" variant="ghost" />
-                    <AlertDialog.Cancel color="destructive" label="Cancel ghost destructive" variant="ghost" />
+                    <AlertDialog.Cancel color="neutral" label="Cancel ghost neutral" variant="ghost" />
+                    <AlertDialog.Cancel color="danger" label="Cancel ghost danger" variant="ghost" />
                     <AlertDialog.Cancel color="success" label="Cancel ghost success" variant="ghost" />
                     <AlertDialog.Cancel color="warning" label="Cancel ghost warning" variant="ghost" />
                     <AlertDialog.Cancel color="info" label="Cancel ghost info" variant="ghost" />

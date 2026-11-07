@@ -86,9 +86,9 @@ one without a concrete requirement and an explicit dependency decision.
 - For semantic controls, public color props express supported intent, not
   private token paths. Map each intent and interaction state to existing tokens.
   The theme uses `neutral`, `danger`, and `accent*` families. Independent
-  component intents such as `tertiary`, `destructive`, or `purple` map through
-  the internal `COLOR_INTENT_TOKENS` constant; an `error` feedback status maps
-  to `danger` without renaming its status axis.
+  component intents use `neutral` and `danger`, while accents such as `purple`
+  map through the internal `COLOR_INTENT_TOKENS` constant. Feedback color
+  variants also use `danger`.
 - Box, Typography and Icon accept CSS color values directly, including any
   custom-property reference. Pass `vars.color.primary.main`, not `"primary"`
   or `"primary.main"`. Box-derived layout props inherit this contract.

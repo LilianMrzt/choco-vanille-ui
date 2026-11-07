@@ -4,8 +4,8 @@ import type { ThemeColorIntent } from '@theme/tokens/colors/types/index.ts'
 export const COLOR_INTENT_TOKENS = {
     primary: 'primary',
     secondary: 'secondary',
-    tertiary: 'neutral',
-    destructive: 'danger',
+    neutral: 'neutral',
+    danger: 'danger',
     success: 'success',
     warning: 'warning',
     info: 'info',

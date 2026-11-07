@@ -12,8 +12,8 @@ export const DRAWER_ITEM_VARIANTS = {
 export const DRAWER_ITEM_COLORS = {
     primary: 'primary',
     secondary: 'secondary',
-    tertiary: 'tertiary',
-    destructive: 'destructive',
+    neutral: 'neutral',
+    danger: 'danger',
     success: 'success',
     warning: 'warning',
     info: 'info',

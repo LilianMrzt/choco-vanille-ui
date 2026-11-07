@@ -3,8 +3,8 @@ import type { ProgressSize } from '@components/feedback/progress/types'
 export const PROGRESS_COLORS = {
     primary: 'primary',
     secondary: 'secondary',
-    tertiary: 'tertiary',
-    destructive: 'destructive',
+    neutral: 'neutral',
+    danger: 'danger',
     success: 'success',
     warning: 'warning',
     info: 'info',

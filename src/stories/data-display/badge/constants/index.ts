@@ -7,7 +7,7 @@ import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 export const VARIANTS: BadgeVariant[] = ['contained', 'subtle', 'outlined', 'outlinedSubtle']
 
 export const COLORS: BadgeColor[] = [
-    'primary', 'secondary', 'tertiary', 'destructive', 'success', 'warning', 'info',
+    'primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info',
     'purple', 'pink', 'orange', 'teal', 'cyan', 'indigo',
 ]
 

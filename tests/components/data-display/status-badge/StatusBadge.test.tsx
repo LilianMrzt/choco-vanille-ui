@@ -14,8 +14,8 @@ import type { BadgeColor } from '@components/data-display/badge'
 const COLORS: BadgeColor[] = [
     'primary',
     'secondary',
-    'tertiary',
-    'destructive',
+    'neutral',
+    'danger',
     'success',
     'warning',
     'info',

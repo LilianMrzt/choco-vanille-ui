@@ -7,17 +7,17 @@ import type { AlertDialogActionProps } from '@components/overlay/alert-dialog/co
 /**
  * Confirm action slot for `AlertDialog`. Wraps a `Button` inside a
  * `DialogClose` so the dialog closes on confirmation. Defaults to
- * `color="destructive"` and `variant="contained"`.
+ * `color="danger"` and `variant="contained"`.
  * Button attributes and ref are forwarded to the action.
  * @param props - Action button attributes.
- * @param props.color - Color intent; defaults to `destructive`.
+ * @param props.color - Color intent; defaults to `danger`.
  * @param props.variant - Visual treatment; defaults to `contained`.
  * @returns The confirmation action.
  * @example
  * <AlertDialog.Action label="Delete" />
  */
 const AlertDialogAction: FC<AlertDialogActionProps> = memo(({
-    color = 'destructive',
+    color = 'danger',
     variant = 'contained',
     ...props
 }) => (
