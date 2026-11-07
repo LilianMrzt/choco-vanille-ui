@@ -1,7 +1,7 @@
 import { RadioGroup as BaseRadioGroup } from '@base-ui/react/radio-group'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import RadioItem from '@components/forms/radio-group/components/radio-item/RadioItem.tsx'
 import type { RadioGroupCompound } from '@components/forms/radio-group/types'
 import type { RadioGroupProps } from '@components/forms/radio-group/types/RadioGroup.props.ts'

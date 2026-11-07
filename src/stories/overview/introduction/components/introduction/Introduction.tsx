@@ -42,7 +42,7 @@ const Introduction = (): ReactElement => (
                                 >
                                     <a
                                         className={INTRODUCTION_STYLES.link}
-                                        href={`./?path=/docs/${name.toLowerCase().replaceAll(' ', '-')}-${item.toLowerCase()}--docs`}
+                                        href={`./?path=/docs/${name.toLowerCase().replaceAll(' ', '-').replaceAll('/', '-')}-${item.toLowerCase()}--docs`}
                                         target={'_top'}
                                     >
                                         {item}

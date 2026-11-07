@@ -1,76 +1,75 @@
 import { CheckboxGroup as BaseCheckboxGroup } from '@base-ui/react/checkbox-group'
-import { memo, useCallback, useId, useState } from 'react'
+import { useId, type FC } from 'react'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import Checkbox from '@components/forms/checkbox/Checkbox.tsx'
 import CheckboxGroupHeader from '@components/forms/checkbox-group/components/header/CheckboxGroupHeader.tsx'
-import { CheckboxGroupProvider } from '@components/forms/checkbox-group/context/CheckboxGroup.context.ts'
-import type { CheckboxGroupCompound } from '@components/forms/checkbox-group/types/CheckboxGroupCompound.ts'
-import type { CheckboxGroupProps } from '@components/forms/checkbox-group/types/CheckboxGroup.props.ts'
-import { getCheckboxGroupValues } from '@components/forms/checkbox-group/utils/getCheckboxGroupValues.utils.ts'
+import { CheckboxGroupContext } from '@components/forms/checkbox-group/context/CheckboxGroup.context.ts'
+import { useCheckboxGroup } from '@components/forms/checkbox-group/hooks/useCheckboxGroup.hook.ts'
+import type { CheckboxGroupCompound, CheckboxGroupProps } from '@components/forms/checkbox-group/types'
 import { Flex } from '@components/layout/flex'
-import { cn } from '@utils/cn.ts'
 
 /**
- * The root container for a group of `CheckboxGroup.Item` components.
- * Manages the selection state for multiple checkboxes.
- *
+ * A named group of checkboxes with controlled or uncontrolled selection.
+ * CheckboxGroup.Item and Checkbox are the same component. Provide `allValues`
+ * when using CheckboxGroup.Header, including values rendered through wrappers.
+ * Parent selection preserves selected disabled items and values outside
+ * allValues. The default selection is empty; callbacks can cancel changes.
+ * Native attributes and ref target the group div.
+ * @param props - Group selection, accessible name and native attributes. aria-labelledby overrides the group name, aria-describedby adds description IDs, and aria-invalid sets the invalid state when no error is supplied.
+ * @param props.className - Consumer class or state-dependent class callback.
+ * @param props.children - Checkbox items, header and custom content.
+ * @param props.label - Optional visible group name.
+ * @param props.helperText - Supporting text, replaced by an error when present.
+ * @param props.error - Error message and invalid state.
+ * @param props.allValues - All item values; required when composing a header.
+ * @param props.value - Controlled selected values.
+ * @param props.defaultValue - Initial uncontrolled selected values.
+ * @param props.onValueChange - Receives selected values and cancellable event details.
+ * @returns The group and its children.
  * @example
  * ```tsx
- * <CheckboxGroup value={values} onValueChange={setValues}>
+ * <CheckboxGroup label="Notifications" allValues={['email', 'sms']}>
+ *   <CheckboxGroup.Header label="All" />
  *   <CheckboxGroup.Item value="email" label="Email" />
  *   <CheckboxGroup.Item value="sms" label="SMS" />
  * </CheckboxGroup>
- *
- * `allValues` is inferred from direct `CheckboxGroup.Item` children. Provide it
- * explicitly only when the values are rendered indirectly or need an override.
  * ```
  */
-const CheckboxGroup = memo<CheckboxGroupProps>(({
-    className,
-    children,
-    label,
-    helperText,
-    error,
-    value,
-    defaultValue,
-    allValues,
-    onValueChange,
-    'aria-labelledby': ariaLabelledBy,
-    'aria-describedby': ariaDescribedBy,
-    'aria-invalid': ariaInvalid,
-    ...props
-}) => {
+const CheckboxGroupRoot: FC<CheckboxGroupProps> = (props) => {
+    const {
+        className,
+        children,
+        label,
+        helperText,
+        error,
+        allValues,
+        value,
+        defaultValue,
+        onValueChange,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
+        'aria-invalid': ariaInvalid,
+        ...nativeProps
+    } = props
     const generatedId = useId()
     const labelId = label ? `${generatedId}-label` : undefined
     const helperId = error || helperText ? `${generatedId}-helper` : undefined
     const describedBy = [ariaDescribedBy, helperId].filter(Boolean).join(' ') || undefined
-    const resolvedAllValues = allValues ?? getCheckboxGroupValues(children)
-    const [internalValue, setInternalValue] = useState(defaultValue ?? [])
-    const currentValue = value ?? internalValue
-    const handleValueChange = useCallback(
-        (...args: Parameters<NonNullable<CheckboxGroupProps['onValueChange']>>) => {
-            if (value === undefined) {
-                setInternalValue(args[0])
-            }
-            onValueChange?.(...args)
-        },
-        [onValueChange, value],
-    )
+    const group = useCheckboxGroup({ allValues, value, defaultValue, onValueChange })
 
     return (
         <BaseCheckboxGroup
-            className={cn(className)}
-            onValueChange={handleValueChange}
-            value={currentValue}
-            allValues={resolvedAllValues}
+            className={className}
+            value={group.value}
+            onValueChange={group.onValueChange}
             aria-labelledby={ariaLabelledBy ?? labelId}
             aria-describedby={describedBy}
             aria-invalid={error ? true : ariaInvalid}
-            {...props}
+            {...nativeProps}
         >
-            <CheckboxGroupProvider value={{ value: currentValue, allValues: resolvedAllValues, onValueChange: handleValueChange }}>
+            <CheckboxGroupContext.Provider value={group}>
                 <Flex
                     flexDirection={'column'}
                     gap={8}
@@ -87,13 +86,24 @@ const CheckboxGroup = memo<CheckboxGroupProps>(({
                         </HelperText>
                     )}
                 </Flex>
-            </CheckboxGroupProvider>
+            </CheckboxGroupContext.Provider>
         </BaseCheckboxGroup>
     )
-}) as unknown as CheckboxGroupCompound
+}
 
-CheckboxGroup.displayName = 'CheckboxGroup'
-CheckboxGroup.Item = Checkbox
-CheckboxGroup.Header = CheckboxGroupHeader
+CheckboxGroupRoot.displayName = 'CheckboxGroup'
+
+/**
+ * Checkbox group exposing Item and Header slots. Name the group accessibly and
+ * provide allValues for a header; its ref targets the group div.
+ * @param props - Group selection, accessible name and composed children.
+ * @returns The group and its checkbox slots.
+ * @example
+ * <CheckboxGroup label="Options"><CheckboxGroup.Item value="a" label="A" /></CheckboxGroup>
+ */
+const CheckboxGroup: CheckboxGroupCompound = Object.assign(CheckboxGroupRoot, {
+    Item: Checkbox,
+    Header: CheckboxGroupHeader,
+})
 
 export default CheckboxGroup

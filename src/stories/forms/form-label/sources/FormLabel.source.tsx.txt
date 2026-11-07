@@ -1,3 +1,0 @@
-import { FormLabel } from '@choco-vanille/ui'
-
-<FormLabel{{attributes}}>{{children}}</FormLabel>

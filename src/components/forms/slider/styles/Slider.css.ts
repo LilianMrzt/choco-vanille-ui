@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { HELPER_TEXT_STYLES } from '@components/forms/_shared/components/helper-text/HelperText.css.ts'
+import { HELPER_TEXT_STYLES } from '@components/forms/primitives/helper-text/HelperText.css.ts'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 export const SLIDER_STYLES = {

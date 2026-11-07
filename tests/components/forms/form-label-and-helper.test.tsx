@@ -7,7 +7,7 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 import { AutocompleteField, Checkbox, CheckboxGroup, DatePicker, FormLabel, HelperText, NumberField, RadioGroup, SelectField, Slider, TextArea, TextField, type AutocompleteFieldProps, type DatePickerProps, type FormLabelProps, type LegendProps, type NumberFieldProps, type SelectFieldProps, type TextAreaProps, type TextFieldProps, type TimePickerProps } from '@/index'
 import type { AutocompleteInputProps } from '@components/forms/autocomplete/components/autocomplete-input/types/AutocompleteInput.props.ts'
 import type { SelectTriggerProps } from '@components/forms/select/components/select-trigger/types/SelectTrigger.props.ts'
-import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
+import { FORM_LABEL_STYLES } from '@components/forms/primitives/form-label/styles/FormLabel.css.ts'
 
 describe('Form labels and supporting text', () => {
     it('exports the shared primitives with a consistent default label size', () => {

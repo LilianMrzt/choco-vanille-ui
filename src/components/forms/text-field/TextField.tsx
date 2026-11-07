@@ -1,11 +1,11 @@
 import { IconButton } from '@components/actions/icon-button'
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import {
     TextFieldStartIcon,
     TextFieldEndAction,
 } from '@components/forms/text-field/components/index.ts'
 import { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField.css.ts'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldCompound } from '@components/forms/text-field/types'

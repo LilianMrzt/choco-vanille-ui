@@ -3,7 +3,7 @@ import { useId, memo } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Slider } from '@components/forms/slider'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { Box } from '@components/layout/box'
 import { Flex } from '@components/layout/flex'
 import { IMAGE_PICKER_CROP_DIALOG_STYLES } from '@components/forms/image-picker/components/image-picker-crop-dialog/styles/ImagePickerCropDialog.css.ts'

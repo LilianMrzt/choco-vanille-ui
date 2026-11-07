@@ -60,6 +60,8 @@
 - Component stories mirror the existing category layout:
   `src/components/<category>/<component>/` corresponds to
   `src/stories/<category>/<component>/<ComponentName>.stories.tsx`.
+  Form primitives under `forms/primitives/` use the same subfolder in stories
+  and the `Forms/Primitives/<Component>` Storybook titles.
   Theme provider and customization documentation live under the overview.
 - Apply the [component organization rules](components.md#structure) to stories
   and their private resources: types in `types/index.ts`, constants in

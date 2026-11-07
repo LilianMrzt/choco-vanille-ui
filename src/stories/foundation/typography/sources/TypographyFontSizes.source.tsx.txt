@@ -1,5 +1,6 @@
 import { Typography } from '@choco-vanille/ui'
 
+<div style={{ display: 'grid', gap: '0.5rem' }}>
 <Typography variant="p" fontSize={10}>10</Typography>
 <Typography variant="p" fontSize={12}>12</Typography>
 <Typography variant="p" fontSize={14}>14</Typography>
@@ -12,3 +13,4 @@ import { Typography } from '@choco-vanille/ui'
 <Typography variant="p" fontSize={48}>48</Typography>
 <Typography variant="p" fontSize={60}>60</Typography>
 <Typography variant="p" fontSize={72}>72</Typography>
+</div>

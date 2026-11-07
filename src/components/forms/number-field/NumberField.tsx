@@ -1,8 +1,8 @@
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field'
 import { memo, useId } from 'react'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import NumberFieldInput from '@components/forms/number-field/components/number-field-input/NumberFieldInput.tsx'
 import { NUMBER_FIELD_STYLES } from '@components/forms/number-field/styles/NumberField.css.ts'
 import type { NumberFieldProps } from '@components/forms/number-field/types'

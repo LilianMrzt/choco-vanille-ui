@@ -1,8 +1,8 @@
 import { Radio } from '@base-ui/react/radio'
 import { memo, useId, type FC } from 'react'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { Flex } from '@components/layout/flex'
 import { cn } from '@utils/cn.ts'
 import { RADIO_ITEM_STYLES } from '@components/forms/radio-group/components/radio-item/styles/RadioItem.css.ts'

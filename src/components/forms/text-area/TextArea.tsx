@@ -2,9 +2,9 @@ import {
     TextAreaStartIcon,
     TextAreaEndAction,
 } from '@components/forms/text-area/components/index.ts'
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import { TEXT_AREA_STYLES } from '@components/forms/text-area/styles/TextArea.css.ts'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { useAutoResizeTextArea } from '@components/forms/text-area/hooks/useAutoResizeTextArea.hook.tsx'
 import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.tsx'
 import type { TextAreaCompound } from '@components/forms/text-area/types'

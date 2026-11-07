@@ -1,8 +1,8 @@
 import { Fragment, type FC, memo, useCallback, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import type { AutocompleteFieldProps } from '@components/forms/autocomplete/types/Autocomplete.props.ts'

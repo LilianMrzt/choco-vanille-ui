@@ -2,7 +2,7 @@ import { Field } from '@base-ui/react/field'
 import { Slider as BaseSlider } from '@base-ui/react/slider'
 import { memo, type FC, useId } from 'react'
 
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import SliderHeader from '@components/forms/slider/components/slider-header/SliderHeader.tsx'
 import SliderTrack from '@components/forms/slider/components/slider-track/SliderTrack.tsx'
 import { SLIDER_STYLES } from '@components/forms/slider/styles/Slider.css.ts'

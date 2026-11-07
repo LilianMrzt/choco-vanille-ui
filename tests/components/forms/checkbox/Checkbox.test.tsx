@@ -1,7 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { createRef } from 'react'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 import { Checkbox } from '@components/forms/checkbox'
+import { CheckboxGroup } from '@components/forms/checkbox-group'
+import type { CheckboxIndicatorProps, CheckboxRootProps } from '@/index'
 
 // Helpers
 
@@ -10,6 +13,60 @@ const getCheckbox = () => screen.getByRole('checkbox') as HTMLButtonElement
 // Suites
 
 describe('Checkbox', () => {
+    it('exposes the same compound checkbox as the group item', () => {
+        expect(CheckboxGroup.Item).toBe(Checkbox)
+        expectTypeOf(Checkbox.Root).toBeCallableWith({} as CheckboxRootProps)
+        expectTypeOf(Checkbox.Indicator).toBeCallableWith({} as CheckboxIndicatorProps)
+    })
+
+    it('composes custom indicator content and forwards refs and state classes', async () => {
+        const rootRef = createRef<HTMLElement>()
+        const inputRef = createRef<HTMLInputElement>()
+        const indicatorRef = createRef<HTMLSpanElement>()
+        render(
+            <Checkbox.Root aria-label={'Composed'} ref={rootRef} inputRef={inputRef} className={(state) => state.checked ? 'selected' : 'unselected'}>
+                <Checkbox.Indicator ref={indicatorRef}><span>Selected</span></Checkbox.Indicator>
+            </Checkbox.Root>,
+        )
+        const checkbox = screen.getByRole('checkbox', { name: 'Composed' })
+        expect(rootRef.current).toBe(checkbox)
+        expect(inputRef.current?.type).toBe('checkbox')
+        expect(checkbox.className).toContain('unselected')
+        await userEvent.click(checkbox)
+        expect(checkbox.className).toContain('selected')
+        expect(indicatorRef.current?.textContent).toBe('Selected')
+        await userEvent.keyboard(' ')
+        expect(checkbox.getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('updates controlled composition from its parent and forwards change details', async () => {
+        const onCheckedChange = vi.fn()
+        const { rerender } = render(
+            <Checkbox.Root aria-label={'Composed'} checked={false} onCheckedChange={onCheckedChange}>
+                <Checkbox.Indicator />
+            </Checkbox.Root>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'Composed' }))
+        expect(onCheckedChange).toHaveBeenCalledWith(true, expect.objectContaining({ cancel: expect.any(Function) }))
+        expect(screen.getByRole('checkbox').getAttribute('aria-checked')).toBe('false')
+        rerender(
+            <Checkbox.Root aria-label={'Composed'} checked onCheckedChange={onCheckedChange}>
+                <Checkbox.Indicator />
+            </Checkbox.Root>,
+        )
+        expect(screen.getByRole('checkbox').getAttribute('aria-checked')).toBe('true')
+    })
+
+    it('calls the consumer callback ref cleanup when the checkbox unmounts', () => {
+        const cleanup = vi.fn()
+        const ref = vi.fn((element: HTMLElement | null) => element ? cleanup : undefined)
+        const { unmount } = render(<Checkbox.Root aria-label={'Composed'} ref={ref} />)
+
+        expect(ref).toHaveBeenCalledWith(screen.getByRole('checkbox', { name: 'Composed' }))
+        unmount()
+        expect(cleanup).toHaveBeenCalledTimes(1)
+    })
+
     describe('default rendering', () => {
         it('renders a checkbox element', () => {
             render(<Checkbox />)

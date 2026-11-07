@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import { TextArea } from '@components/forms/text-area'
 import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 

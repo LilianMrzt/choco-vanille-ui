@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 import { Typography, TYPOGRAPHY_STYLES, TYPOGRAPHY_ELEMENT_MAP, type TypographyProps, type TypographyVariant } from '@components/foundation/typography'
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { FORM_LABEL_STYLES } from '@components/forms/_shared/components/form-label/styles/FormLabel.css.ts'
+import { FORM_LABEL_STYLES } from '@components/forms/primitives/form-label/styles/FormLabel.css.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
 
 // Helpers
@@ -166,11 +166,14 @@ describe('Typography', () => {
             )
         })
 
-        it('uses the shared form label style for variant="label"', () => {
-            const { container } = render(
+        it('uses the shared form label style when the label font size is 14', () => {
+            const { container, rerender } = render(
                 <Typography variant="label">Label</Typography>,
             )
-            expect(getFirstChild(container).className).toContain(FORM_LABEL_STYLES.root)
+            expect(getFirstChild(container).className).toBe(TYPOGRAPHY_STYLES.recipe({ variant: 'label' }))
+
+            rerender(<Typography variant="label" fontSize={14}>Label</Typography>)
+            expect(getFirstChild(container).className).toBe(FORM_LABEL_STYLES.root)
         })
 
         it('applies the ellipsis class when ellipsis=true', () => {

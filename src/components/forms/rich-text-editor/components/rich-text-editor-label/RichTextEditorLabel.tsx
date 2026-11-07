@@ -1,6 +1,6 @@
 import { memo, useContext, type FC } from 'react'
 
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import type { RichTextEditorLabelProps } from '@components/forms/rich-text-editor/components/rich-text-editor-label/types/RichTextEditorLabel.props.ts'
 import { RichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 

@@ -1,6 +1,6 @@
 import { memo, type FC } from 'react'
 
-import SharedHelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import SharedHelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { RichTextEditorHelperTextProps } from '@components/forms/rich-text-editor/components/helper-text/types/HelperText.props.ts'
 

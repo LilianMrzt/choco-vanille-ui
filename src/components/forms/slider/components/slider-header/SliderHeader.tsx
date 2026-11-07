@@ -1,5 +1,5 @@
 import { Slider as BaseSlider } from '@base-ui/react/slider'
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 
 import { SLIDER_HEADER_STYLES } from '@components/forms/slider/components/slider-header/styles/SliderHeader.css.ts'
 import type { SliderHeaderProps } from '@components/forms/slider/components/slider-header/types/SliderHeader.props.ts'

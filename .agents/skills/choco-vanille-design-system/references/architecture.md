@@ -23,6 +23,8 @@ Les composants publics vivent dans
 
 - Conserver ce classement pour les primitives et les compositions publiques.
   Ne pas introduire de branches `design-system` et `custom` sans besoin explicite.
+- Regrouper les primitives structurelles et descriptives de formulaire dans
+  `src/components/forms/primitives/`, distinctement des contrôles de saisie.
 - Le contrat, les tokens, le provider, ses hooks et les utilitaires de thème
   vivent dans `src/theme/`. Préserver leurs exports publics depuis cette entrée.
 - Créer une catégorie avec son premier composant. Un squelette explicitement

@@ -48,6 +48,11 @@ describe('package distribution', () => {
             expect(declarations).toContain('export declare type AvatarGroupCompound')
             expect(declarations).toContain('export declare type ToggleGroupItemProps')
             expect(declarations).toContain('export declare type ToggleGroupCompound')
+            expect(declarations).toContain('export declare type CheckboxCompound')
+            expect(declarations).toContain('export declare type CheckboxRootProps')
+            expect(declarations).toContain('export declare type CheckboxIndicatorProps')
+            expect(declarations).toContain('export declare type CheckboxGroupCompound')
+            expect(declarations).toContain('export declare type CheckboxGroupHeaderProps')
             const themeCss = await readFile(resolve(outputDirectory, 'styles.css'), 'utf8')
             expect(themeCss).toContain('--color-primary-main')
             expect(themeCss).toContain('--color-border-main:#878d99')
@@ -120,7 +125,7 @@ describe('package distribution', () => {
                 'forms/text-area/styles/TextArea.css.js',
                 'forms/select/components/select-trigger/styles/SelectTrigger.css.js',
                 'forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.js',
-                'forms/checkbox/styles/Checkbox.css.js',
+                'forms/checkbox/Checkbox.css.js',
                 'forms/radio-group/components/radio-item/styles/RadioItem.css.js',
                 'forms/image-picker/styles/ImagePicker.css.js',
             ]
@@ -247,8 +252,8 @@ describe('package distribution', () => {
                 expect(entry).toContain(`components/data-display/avatar-group/AvatarGroup.${extension}`)
                 expect(entry).toContain(`components/actions/toggle-group/components/toggle-group-item/ToggleGroupItem.${extension}`)
                 expect(entry).toContain(`components/actions/toggle-group/ToggleGroup.${extension}`)
-                expect(entry).toContain(`components/forms/legend/Legend.${extension}`)
-                const legendStylesPath = resolve(outputDirectory, `components/forms/legend/Legend.css.${extension}`)
+                expect(entry).toContain(`components/forms/primitives/legend/Legend.${extension}`)
+                const legendStylesPath = resolve(outputDirectory, `components/forms/primitives/legend/Legend.css.${extension}`)
                 const legendStyles = await readFile(legendStylesPath, 'utf8')
                 const legendClass = legendStyles.match(/root:\s*["'`]([^"'`]+)["'`]/)?.[1]
                 expect(legendClass).toBeTruthy()

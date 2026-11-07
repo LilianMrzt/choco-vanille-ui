@@ -1,8 +1,8 @@
 import { type FC, memo, useCallback, useMemo } from 'react'
 
 import { Flex } from '@components/layout/flex'
-import FormLabel from '@components/forms/_shared/components/form-label/FormLabel.tsx'
-import HelperText from '@components/forms/_shared/components/helper-text/HelperText.tsx'
+import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
+import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
 import Select from '@components/forms/select/Select.tsx'
 import type { SelectFieldProps } from '@components/forms/select/types/Select.props.ts'
 import useSelectField from '@components/forms/select/components/select-field/hooks/useSelectField.hook.ts'

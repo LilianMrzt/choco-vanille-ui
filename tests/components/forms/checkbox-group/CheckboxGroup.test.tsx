@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { useState } from 'react'
+import { StrictMode, useState } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { Checkbox } from '@components/forms/checkbox'
 import { CheckboxGroup } from '@components/forms/checkbox-group'
 
 const renderGroup = (defaultValue?: string[], disabled?: boolean) =>
@@ -21,12 +22,12 @@ describe('CheckboxGroup', () => {
         expect(screen.getAllByRole('checkbox')).toHaveLength(3)
     })
 
-    it('infers all values from direct items', async () => {
+    it('coordinates a parent with values rendered through wrappers', async () => {
         render(
-            <CheckboxGroup defaultValue={['email']} aria-label={'Test group'}>
+            <CheckboxGroup allValues={['email', 'sms']} defaultValue={['email']} aria-label={'Test group'}>
                 <CheckboxGroup.Header label={'All notifications'} />
-                <CheckboxGroup.Item value={'email'} label={'Email'} />
-                <CheckboxGroup.Item value={'sms'} label={'SMS'} />
+                <div><CheckboxGroup.Item value={'email'} label={'Email'} /></div>
+                <div><CheckboxGroup.Item value={'sms'} label={'SMS'} /></div>
             </CheckboxGroup>,
         )
 
@@ -193,5 +194,147 @@ describe('CheckboxGroup', () => {
         )
 
         expect(screen.getByRole('checkbox').className).toContain('custom-checkbox')
+    })
+
+    it('preserves disabled selections when toggling the parent', async () => {
+        render(
+            <CheckboxGroup allValues={['email', 'sms']} defaultValue={['email']} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All'} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} disabled />
+                <CheckboxGroup.Item value={'sms'} label={'SMS'} />
+            </CheckboxGroup>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('aria-checked')).toBe('true')
+        expect(screen.getByRole('checkbox', { name: 'SMS' }).getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('preserves a disabled value supplied by a controlled parent', async () => {
+        const handler = vi.fn()
+        const group = (value: string[]) => (
+            <CheckboxGroup allValues={['email', 'sms']} value={value} onValueChange={handler} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All'} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} disabled />
+                <CheckboxGroup.Item value={'sms'} label={'SMS'} />
+            </CheckboxGroup>
+        )
+        const { rerender } = render(group([]))
+        rerender(group(['email']))
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(handler).toHaveBeenLastCalledWith(['email', 'sms'], expect.anything())
+    })
+
+    it('supports composed parent and item slots with accessible relationships', async () => {
+        render(
+            <CheckboxGroup allValues={['a', 'b']} defaultValue={['a']} aria-label={'Options'}>
+                <Checkbox.Root parent aria-label={'All'} aria-controls={'extra'}><Checkbox.Indicator /></Checkbox.Root>
+                <CheckboxGroup.Item.Root value={'a'} aria-label={'First'}><Checkbox.Indicator /></CheckboxGroup.Item.Root>
+                <div><CheckboxGroup.Item.Root value={'b'} aria-label={'Second'} disabled><Checkbox.Indicator /></CheckboxGroup.Item.Root></div>
+            </CheckboxGroup>,
+        )
+        const parent = screen.getByRole('checkbox', { name: 'All' })
+        const first = screen.getByRole('checkbox', { name: 'First' })
+        const second = screen.getByRole('checkbox', { name: 'Second' })
+        expect(parent.getAttribute('aria-controls')?.split(' ')).toEqual(['extra', first.id, second.id])
+        expect(parent.getAttribute('aria-checked')).toBe('mixed')
+        await userEvent.click(parent)
+        expect(first.getAttribute('aria-checked')).toBe('true')
+        expect(second.getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('updates parent relationships when items unmount under StrictMode', () => {
+        const group = (showSecond: boolean) => (
+            <StrictMode>
+                <CheckboxGroup allValues={['a', 'b']} aria-label={'Options'}>
+                    <CheckboxGroup.Header label={'All'} />
+                    <CheckboxGroup.Item value={'a'} label={'First'} />
+                    {showSecond && <CheckboxGroup.Item value={'b'} label={'Second'} />}
+                </CheckboxGroup>
+            </StrictMode>
+        )
+        const { rerender } = render(group(true))
+        const header = screen.getByRole('checkbox', { name: 'All' })
+        const firstId = screen.getByRole('checkbox', { name: 'First' }).id
+        const secondId = screen.getByRole('checkbox', { name: 'Second' }).id
+        expect(header.getAttribute('aria-controls')?.split(' ')).toEqual([firstId, secondId])
+
+        rerender(group(false))
+
+        expect(header.getAttribute('aria-controls')).toBe(firstId)
+    })
+
+    it('preserves selected values outside the parent scope', async () => {
+        const handler = vi.fn()
+        render(
+            <CheckboxGroup allValues={['a']} defaultValue={['other']} onValueChange={handler} aria-label={'Options'}>
+                <CheckboxGroup.Header label={'All'} />
+                <CheckboxGroup.Item value={'a'} label={'First'} />
+            </CheckboxGroup>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(handler).toHaveBeenLastCalledWith(['a', 'other'], expect.anything())
+    })
+
+    it('respects cancellation of a group change', async () => {
+        const handler = vi.fn((_value, details) => details.cancel())
+        render(
+            <CheckboxGroup onValueChange={handler} aria-label={'Test group'}>
+                <CheckboxGroup.Item value={'email'} label={'Email'} />
+            </CheckboxGroup>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'Email' }))
+        expect(handler).toHaveBeenCalledTimes(1)
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('allows cancellation from the parent checkbox callback', async () => {
+        const onCheckedChange = vi.fn((_checked, details) => details.cancel())
+        const onValueChange = vi.fn()
+        render(
+            <CheckboxGroup allValues={['email']} onValueChange={onValueChange} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All'} onCheckedChange={onCheckedChange} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} />
+            </CheckboxGroup>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(onCheckedChange).toHaveBeenCalledWith(true, expect.objectContaining({ cancel: expect.any(Function) }))
+        expect(onValueChange).not.toHaveBeenCalled()
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('respects cancellation by the group for a parent change', async () => {
+        const handler = vi.fn((_value, details) => details.cancel())
+        render(
+            <CheckboxGroup allValues={['email']} onValueChange={handler} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All'} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} />
+            </CheckboxGroup>,
+        )
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(handler).toHaveBeenCalledWith(['email'], expect.anything())
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('aria-checked')).toBe('false')
+        expect(screen.getByRole('checkbox', { name: 'All' }).getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('updates parent behavior when an item becomes disabled', async () => {
+        const group = (disabled: boolean) => (
+            <CheckboxGroup allValues={['email', 'sms']} defaultValue={['email']} aria-label={'Test group'}>
+                <CheckboxGroup.Header label={'All'} />
+                <CheckboxGroup.Item value={'email'} label={'Email'} disabled={disabled} />
+                <CheckboxGroup.Item value={'sms'} label={'SMS'} />
+            </CheckboxGroup>
+        )
+        const { rerender } = render(group(false))
+        rerender(group(true))
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        await userEvent.click(screen.getByRole('checkbox', { name: 'All' }))
+        expect(screen.getByRole('checkbox', { name: 'Email' }).getAttribute('aria-checked')).toBe('true')
+        expect(screen.getByRole('checkbox', { name: 'SMS' }).getAttribute('aria-checked')).toBe('false')
+    })
+
+    it('reports an invalid header composition', () => {
+        expect(() => render(<CheckboxGroup.Header label={'All'} />)).toThrow('must be used inside CheckboxGroup')
+        expect(() => render(<CheckboxGroup aria-label={'Options'}><CheckboxGroup.Header label={'All'} /></CheckboxGroup>)).toThrow('requires allValues')
     })
 })
