@@ -1,0 +1,10 @@
+import { Fieldset, Legend, RadioGroup } from '@choco-vanille/ui'
+
+<Fieldset{{attributes}}>
+    <Legend>{{{legend}}}</Legend>
+    <RadioGroup aria-label={{{legend}}} defaultValue="starter"{{radioDisabled}}>
+        <RadioGroup.Item label="Starter" value="starter" />
+        <RadioGroup.Item label="Pro" value="pro" />
+        <RadioGroup.Item label="Enterprise" value="enterprise" />
+    </RadioGroup>
+</Fieldset>

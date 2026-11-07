@@ -1,0 +1,12 @@
+import { Checkbox, Fieldset, Flex, Legend } from '@choco-vanille/ui'
+
+<Flex flexDirection="column" gap={12}>
+    <Fieldset>
+        <Legend>Enabled group</Legend>
+        <Checkbox label="Email" />
+    </Fieldset>
+    <Fieldset disabled>
+        <Legend>Disabled group</Legend>
+        <Checkbox disabled label="Push" />
+    </Fieldset>
+</Flex>

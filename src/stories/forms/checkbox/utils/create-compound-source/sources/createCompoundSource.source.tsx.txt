@@ -1,0 +1,14 @@
+import { useState } from 'react'
+import { Checkbox } from '@choco-vanille/ui'
+
+const Example = () => {
+    const [checked, setChecked] = useState({{checked}})
+
+    return (
+        <Checkbox.Root aria-label={{{label}}} checked={checked} disabled={{{disabled}}} indeterminate={{{indeterminate}}} required={{{required}}} onCheckedChange={setChecked}>
+            <Checkbox.Indicator keepMounted={{{keepMounted}}}>
+                <span aria-hidden="true">{{{indicator}}}</span>
+            </Checkbox.Indicator>
+        </Checkbox.Root>
+    )
+}
