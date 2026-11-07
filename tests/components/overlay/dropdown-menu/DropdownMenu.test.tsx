@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
+import { DROPDOWN_MENU_SUB_CONTENT_STYLES } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-content/DropdownMenuSubContent.css.ts'
 
 describe('DropdownMenu', () => {
     it('renders the trigger and opens the menu', async () => {
@@ -45,6 +46,37 @@ describe('DropdownMenu', () => {
             expect(onOpenChange).toHaveBeenLastCalledWith(true, expect.anything())
         })
         expect(screen.queryByRole('menu')).toBeNull()
+    }, 10000)
+
+    it.each([
+        { alignOffset: undefined, isAligned: true },
+        { alignOffset: 0, isAligned: false },
+        { alignOffset: 12, isAligned: false },
+    ])('uses the default submenu alignment only without an explicit offset: $alignOffset', async ({ alignOffset, isAligned }) => {
+        const user = userEvent.setup()
+        render(
+            <DropdownMenu>
+                <DropdownMenu.Trigger>
+                    <button type={'button'}>Open</button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                    <DropdownMenu.Sub>
+                        <DropdownMenu.SubTrigger label={'More'} />
+                        <DropdownMenu.SubContent alignOffset={alignOffset}>
+                            <DropdownMenu.Item label={'First item'} />
+                        </DropdownMenu.SubContent>
+                    </DropdownMenu.Sub>
+                </DropdownMenu.Content>
+            </DropdownMenu>,
+        )
+
+        await user.click(screen.getByRole('button', { name: 'Open' }))
+        await user.click(await screen.findByRole('menuitem', { name: 'More' }))
+
+        const item = await screen.findByRole('menuitem', { name: 'First item' })
+        const positioner = item.closest('[data-side]')?.parentElement
+
+        expect(positioner?.classList.contains(DROPDOWN_MENU_SUB_CONTENT_STYLES.alignedPositioner)).toBe(isAligned)
     }, 10000)
 
     it('exposes all compound sub-components', () => {

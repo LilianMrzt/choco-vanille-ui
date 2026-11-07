@@ -13,8 +13,11 @@ import { useViewportShift } from '@hooks/use-viewport-shift/useViewportShift.hoo
  *
  * Same viewport-shift strategy as DropdownMenuContent:
  * Base UI's side-flipping is disabled and replaced by an offset correction.
+ * By default, the first item aligns with the submenu trigger when space allows.
+ * An explicit alignOffset overrides this alignment.
  */
 const DropdownMenuSubContent: FC<DropdownMenuSubContentProps> = memo(({
+    alignOffset,
     className,
     collisionPadding = 8,
     width = '14rem',
@@ -26,11 +29,15 @@ const DropdownMenuSubContent: FC<DropdownMenuSubContentProps> = memo(({
     return (
         <BaseMenu.Portal>
             <BaseMenu.Positioner
+                alignOffset={alignOffset}
                 sideOffset={6}
                 // Disable Base UI's flip/shift — our hook handles collision instead.
                 collisionAvoidance={{ side: 'none', align: 'none' }}
                 {...props}
-                className={DROPDOWN_MENU_CONTENT_STYLES.positioner}
+                className={cn(
+                    DROPDOWN_MENU_CONTENT_STYLES.positioner,
+                    alignOffset === undefined && DROPDOWN_MENU_SUB_CONTENT_STYLES.alignedPositioner,
+                )}
             >
                 <BaseMenu.Popup
                     ref={contentRef}
