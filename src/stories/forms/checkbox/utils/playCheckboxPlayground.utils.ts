@@ -1,5 +1,5 @@
 import { expect, within } from 'storybook/test'
-import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { CheckboxProps } from '@components/forms/checkbox'
 import type { StoryObj } from '@storybook/react-vite'
 
 /**
@@ -8,8 +8,8 @@ import type { StoryObj } from '@storybook/react-vite'
  * @param context - Storybook play context.
  * @returns The interaction promise.
  */
-export const playCheckboxPlayground: NonNullable<StoryObj<CheckboxStoryArgs>['play']> = async ({ canvasElement }) => {
+export const playCheckboxPlayground: NonNullable<StoryObj<CheckboxProps>['play']> = async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const checkbox = canvas.getAllByRole('checkbox')[0]
+    const checkbox = canvas.getByRole('checkbox')
     await expect(checkbox).toBeInTheDocument()
 }

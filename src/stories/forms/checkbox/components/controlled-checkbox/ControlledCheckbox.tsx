@@ -1,5 +1,5 @@
 import { Checkbox } from '@/components/forms/checkbox'
-import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { CheckboxProps } from '@components/forms/checkbox'
 import type { ReactElement } from 'react'
 
 /**
@@ -10,19 +10,6 @@ import type { ReactElement } from 'react'
  * @example
  * <ControlledCheckbox />
  */
-const ControlledCheckbox = (args: CheckboxStoryArgs): ReactElement => {
-    const {
-        compoundLabel: _compoundLabel, indicatorText: _indicatorText, indicatorKeepMounted: _indicatorKeepMounted,
-        groupLabel: _groupLabel, groupHelperText: _groupHelperText, groupError: _groupError,
-        groupDisabled: _groupDisabled, groupValue: _groupValue, groupOnValueChange: _groupOnValueChange,
-        groupHeaderLabel: _groupHeaderLabel, groupLabelOne: _groupLabelOne,
-        groupLabelTwo: _groupLabelTwo, groupLabelThree: _groupLabelThree, ...checkboxProps
-    } = args
-    return (
-        <Checkbox
-            {...checkboxProps}
-        />
-    )
-}
+const ControlledCheckbox = (args: CheckboxProps): ReactElement => <Checkbox {...args} />
 
 export default ControlledCheckbox

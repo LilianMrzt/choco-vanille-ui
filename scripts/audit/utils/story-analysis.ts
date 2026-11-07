@@ -133,6 +133,100 @@ const getStoryObject = (node: Node | undefined): ObjectLiteralExpression | undef
   getStoryValue(node)?.asKind(SyntaxKind.ObjectLiteralExpression);
 
 /**
+ * Detects compound slots in the primary renderer and its story-owned JSX children.
+ * @param sourceFile - Component's CSF entry.
+ * @param componentName - Name of the public compound component.
+ * @returns Whether the playground explicitly renders one of its slots.
+ * @example
+ * const isCompound = hasCompoundPlayground(storyFile, 'Checkbox')
+ */
+const hasCompoundPlayground = (sourceFile: SourceFile, componentName: string): boolean => {
+  const playground = getStoryObject(sourceFile.getVariableDeclaration('Playground')?.getInitializer());
+  if (!playground) return false;
+  const meta = getStoryObject(sourceFile.getVariableDeclaration('meta')?.getInitializer());
+  const render = playground.getProperty('render') ?? meta?.getProperty('render');
+  const initializer = Node.isPropertyAssignment(render) ? render.getInitializer() : render;
+  const renderer = Node.isIdentifier(initializer)
+    ? initializer.getDefinitions().map((definition) => definition.getDeclarationNode())
+      .find(Node.isFunctionDeclaration) ?? getStoryValue(initializer)
+    : getStoryValue(initializer);
+  const owner = path.dirname(sourceFile.getFilePath());
+  const visited = new Set<Node>();
+
+  const visit = (node: Node | undefined): boolean => {
+    if (!node || visited.has(node)) return false;
+    visited.add(node);
+    const file = node.getSourceFile();
+    const relativePath = path.relative(owner, file.getFilePath());
+    if (relativePath === '..' || relativePath.startsWith(`..${path.sep}`) || path.isAbsolute(relativePath)) {
+      return false;
+    }
+
+    const aliases = new Set([componentName]);
+    for (const declaration of file.getImportDeclarations()) {
+      for (const specifier of declaration.getNamedImports()) {
+        if (specifier.getName() === componentName) {
+          aliases.add(specifier.getAliasNode()?.getText() ?? componentName);
+        }
+      }
+    }
+
+    const tags = [
+      ...node.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+      ...node.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ];
+    for (const tag of tags) {
+      const name = tag.getTagNameNode();
+      if (Node.isPropertyAccessExpression(name) && aliases.has(name.getExpression().getText())) {
+        return true;
+      }
+      if (!Node.isIdentifier(name)) continue;
+      const definitions = name.getDefinitions().map((definition) => definition.getDeclarationNode());
+      for (const definition of definitions) {
+        const target = Node.isVariableDeclaration(definition)
+          ? definition.getInitializer()
+          : Node.isFunctionDeclaration(definition) ? definition : undefined;
+        if (visit(target)) return true;
+      }
+    }
+    return false;
+  };
+
+  const playgroundArgs = getStoryObject(
+    playground.getProperty('args')?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer(),
+  );
+  const metaArgs = getStoryObject(meta?.getProperty('args')?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer());
+  const children = playgroundArgs?.getProperty('children') ?? metaArgs?.getProperty('children');
+  return visit(renderer) || visit(children);
+};
+
+/**
+ * Finds the compound slot categories configured in the meta argTypes.
+ * @param sourceFile - Component's CSF entry.
+ * @returns Slot names with a dedicated category.
+ * @example
+ * const slots = compoundControlCategories(storyFile)
+ */
+const compoundControlCategories = (sourceFile: SourceFile): Set<string> => {
+  const categories = new Set<string>();
+  const argTypes = storyArgTypes(sourceFile);
+  for (const property of argTypes?.getProperties() ?? []) {
+    if (!Node.isPropertyAssignment(property)) continue;
+    const config = getStoryObject(property.getInitializer());
+    const table = config?.getProperty('table')?.asKind(SyntaxKind.PropertyAssignment);
+    const tableObject = getStoryObject(table?.getInitializer());
+    for (const key of ['category', 'subcategory']) {
+      const category = tableObject?.getProperty(key)?.asKind(SyntaxKind.PropertyAssignment);
+      const value = getStoryValue(category?.getInitializer());
+      if (Node.isStringLiteral(value) && value.getLiteralValue().startsWith('Compound: ')) {
+        categories.add(value.getLiteralValue().slice('Compound: '.length));
+      }
+    }
+  }
+  return categories;
+};
+
+/**
  * Recognizes labelled, populated axes in an exported combined comparison.
  * @param sourceFile - Component's CSF entry.
  * @param axis - Canonical comparative section.
@@ -567,17 +661,13 @@ export function analyzeComponentStories(
         );
       }
 
-      const isFieldWrapperStory = /\bcomponent\s*:\s*[^,\n]*Field\b/.test(
-        source,
-      );
       const hasCompoundPublicApi = component.exports.includes(
         `${component.name}Compound`,
       );
 
       if (
         component.subComponents.length > 0 &&
-        hasCompoundPublicApi &&
-        !isFieldWrapperStory
+        hasCompoundPublicApi
       ) {
         if (componentDescriptionHasSection(source, 'Sub-components')) {
           addFinding(
@@ -591,6 +681,7 @@ export function analyzeComponentStories(
           );
         }
 
+        const categories = compoundControlCategories(sourceFile);
         const missingCompoundControls = component.subComponents
           .map((subComponent) =>
             subComponent.startsWith(component.name)
@@ -598,9 +689,9 @@ export function analyzeComponentStories(
               : subComponent,
           )
           .filter(
-            (slotName) => !source.includes(`Compound: ${slotName}`),
+            (slotName) => !categories.has(slotName),
           );
-        if (missingCompoundControls.length > 0) {
+        if (hasCompoundPlayground(sourceFile, component.name) && missingCompoundControls.length > 0) {
           addFinding(
             findings,
             root,

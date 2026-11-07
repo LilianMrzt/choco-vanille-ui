@@ -157,23 +157,19 @@ The toolbar is a named \`toolbar\`; its icon actions have accessible names and e
 export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<RichTextEditorPlaygroundArgs> = {
     label: {
         control: 'text',
-        table: { category: 'Compound: Label' },
         description: 'Sets the public label prop.'
     },
     labels: {
         control: 'object',
         description:
         'Localized accessible names and prompt messages for all compound toolbar slots.',
-        table: { category: 'Compound: Labels' },
     },
     placeholder: {
         control: 'text',
-        table: { category: 'Compound: EditorField' },
         description: 'Sets the public placeholder prop.'
     },
     helperText: {
         control: 'text',
-        table: { category: 'Compound: HelperText' },
         description: 'Sets the public helperText prop.'
     },
     error: { control: 'text',
@@ -184,89 +180,19 @@ export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<RichTextEditorP
     },
     disabled: {
         control: 'boolean',
-        table: { category: 'Compound: Toolbar' },
         description: 'Sets the public disabled prop.'
     },
     readOnly: {
         control: 'boolean',
-        table: { category: 'Compound: ReadOnlyField' },
         description: 'Sets the public readOnly prop.'
     },
     required: {
         control: 'boolean',
-        table: { category: 'Compound: EditorField' },
         description: 'Sets the public required prop.'
     },
     name: {
         control: 'text',
-        table: { category: 'Compound: EditorField' },
         description: 'Sets the public name prop.'
-    },
-    showToolbarGroups: {
-        control: 'boolean',
-        table: { category: 'Compound: ToolbarGroups' },
-        description: 'Sets the public showToolbarGroups prop.'
-    },
-    showTextStyleGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: TextStyleGroup' },
-        description: 'Sets the public showTextStyleGroup prop.'
-    },
-    showTextAppearanceGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: TextAppearanceGroup' },
-        description: 'Sets the public showTextAppearanceGroup prop.'
-    },
-    showTextColorMenu: {
-        control: 'boolean',
-        table: { category: 'Compound: TextColorMenu' },
-        description: 'Sets the public showTextColorMenu prop.'
-    },
-    showTextSizeMenu: {
-        control: 'boolean',
-        table: { category: 'Compound: TextSizeMenu' },
-        description: 'Sets the public showTextSizeMenu prop.'
-    },
-    textSizePresentation: {
-        control: 'radio',
-        options: ['icon', 'select'],
-        table: { category: 'Compound: TextSizeMenu' },
-        description: 'Sets the public textSizePresentation prop.'
-    },
-    showLinkGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: LinkGroup' },
-        description: 'Sets the public showLinkGroup prop.'
-    },
-    showSetLink: {
-        control: 'boolean',
-        table: { category: 'Compound: SetLink' },
-        description: 'Sets the public showSetLink prop.'
-    },
-    showUnsetLink: {
-        control: 'boolean',
-        table: { category: 'Compound: UnsetLink' },
-        description: 'Sets the public showUnsetLink prop.'
-    },
-    showListsGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: ListsGroup' },
-        description: 'Sets the public showListsGroup prop.'
-    },
-    showAlignmentGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: AlignmentGroup' },
-        description: 'Sets the public showAlignmentGroup prop.'
-    },
-    showImageGroup: {
-        control: 'boolean',
-        table: { category: 'Compound: ImageGroup' },
-        description: 'Sets the public showImageGroup prop.'
-    },
-    showToolbarSeparator: {
-        control: 'boolean',
-        table: { category: 'Compound: ToolbarSeparator' },
-        description: 'Sets the public showToolbarSeparator prop.'
     },
     value: { control: 'object', description: 'Controlled rich-text document.' },
     defaultValue: { control: false, description: 'Initial value for uncontrolled usage; the playground is controlled.' },
@@ -290,13 +216,8 @@ export const DEFAULT_ARGS = {
         bold: 'Bold',
     },
     width: 'min(100%, 42rem)',
-    showToolbarGroups: false,
-    textSizePresentation: 'select',
     value: INITIAL_VALUE,
     onValueChange: fn(),
-    showTextSizeMenu: true,
-    showTextStyleGroup: true,
-    showToolbarSeparator: true
 } satisfies Partial<RichTextEditorPlaygroundArgs>
 export const DESCRIPTION = md`A rich-text field with keyboard-accessible formatting and semantic document output. Use RichTextEditorField for the standard field, or compose the RichTextEditor slots for a custom toolbar.
 

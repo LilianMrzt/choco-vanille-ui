@@ -2,7 +2,7 @@
 import { Checkbox } from '@/components/forms/checkbox'
 import { storySource } from '@stories/_shared/utils/storySource'
 import GroupDisabledExample from '@stories/forms/checkbox/components/group-disabled/GroupDisabled'
-import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { CheckboxProps } from '@components/forms/checkbox'
 import consumerSource2 from '@stories/forms/checkbox/sources/CheckboxExample2.source.txt?raw'
 import consumerSource3 from '@stories/forms/checkbox/sources/CheckboxExample3.source.txt?raw'
 import CheckboxDocsPage from '@stories/forms/checkbox/components/checkbox-docs-page/CheckboxDocsPage'
@@ -32,7 +32,7 @@ const meta = {
     decorators: [
         CheckboxFrame,
     ],
-} satisfies Meta<CheckboxStoryArgs>
+} satisfies Meta<CheckboxProps>
 
 export default meta
 

@@ -1,4 +1,0 @@
-<RichTextEditor.Toolbar>
-{{fragment1}}
-        </RichTextEditor.Toolbar>
-        <RichTextEditor.EditorField />

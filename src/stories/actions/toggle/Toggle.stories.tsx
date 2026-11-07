@@ -7,13 +7,12 @@ import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 import ToggleDocsPage from '@stories/actions/toggle/components/toggle-docs-page/ToggleDocsPage'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/actions/toggle/constants'
 import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
-import { createTogglePlaygroundSource, createToggleSource } from '@stories/actions/toggle/utils/create-toggle-source/createToggleSource.utils'
+import { createToggleSource } from '@stories/actions/toggle/utils/create-toggle-source/createToggleSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 import groupUncontrolledSource from '@stories/actions/toggle/sources/ToggleGroupUncontrolled.source.txt?raw'
 import iconsSource from '@stories/actions/toggle/sources/ToggleWithIcons.source.txt?raw'
 import statesSource from '@stories/actions/toggle/sources/ToggleStates.source.txt?raw'
 import ControlledToggle from '@stories/actions/toggle/components/controlled-toggle/ControlledToggle'
-import TogglePlayground from '@stories/actions/toggle/components/toggle-playground/TogglePlayground'
 import { playTogglePlayground } from '@stories/actions/toggle/utils/playTogglePlayground.utils'
 import { playToggleIconOnly } from '@stories/actions/toggle/utils/playToggleIconOnly.utils'
 import ToggleStates from '@stories/actions/toggle/components/toggle-states/ToggleStates'
@@ -45,8 +44,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
-    parameters: { docs: { source: { type: 'dynamic', transform: createTogglePlaygroundSource } } },
-    render: TogglePlayground,
     play: playTogglePlayground,
 }
 

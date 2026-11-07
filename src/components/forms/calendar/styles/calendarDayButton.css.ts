@@ -35,7 +35,6 @@ export const CALENDAR_DAY_BUTTON_STYLES = {
             '&:disabled': {
                 opacity: 0.4,
                 cursor: 'not-allowed',
-                pointerEvents: 'none',
             },
         },
     }),
@@ -89,7 +88,6 @@ globalStyle(`${CALENDAR_DAY_BUTTON_STYLES.disabled} button`, {
     color: vars.color.surface.mutedForeground,
     opacity: 0.4,
     cursor: 'not-allowed',
-    pointerEvents: 'none',
 })
 
 // Range start

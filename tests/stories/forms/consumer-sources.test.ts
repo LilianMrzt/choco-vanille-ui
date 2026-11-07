@@ -35,13 +35,12 @@ describe('Form consumer sources', () => {
         expectValidTsx(source)
     })
 
-    it('shows all three primary checkbox APIs with usable named examples', () => {
+    it('shows only the standalone checkbox in the playground source', () => {
         const source = createCheckboxPlaygroundSource('', { args: CHECKBOX_ARGS })
         expectValidTsx(source)
-        expect(source).toContain('const FieldExample')
-        expect(source).toContain('const CompoundExample')
-        expect(source).toContain('const GroupExample')
-        expect(source).toContain('allValues=')
+        expect(source).toContain('<Checkbox ')
+        expect(source).not.toContain('CheckboxGroup')
+        expect(source).not.toContain('Checkbox.Root')
     })
 
     it('keeps calendar Date values and selection modes in consumer source', () => {

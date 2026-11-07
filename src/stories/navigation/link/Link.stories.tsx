@@ -27,7 +27,7 @@ const meta = {
         layout: 'centered',
         docs: {
             description: {
-                component: 'A native link with typography and optional decorative icons. Supplying an onClick handler prevents native navigation; supply your own SVG components for the icon examples.',
+                component: 'A native link with typography and optional decorative icons. Supplying an onClick handler prevents native navigation; aria-disabled removes the destination and prevents activation.',
             },
             page: LinkDocsPage,
             source: {

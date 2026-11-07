@@ -22,7 +22,7 @@ const fabRecipe = recipe({
             '&&:focus-visible': {
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}, ${vars.shadow.md}`,
             },
-            '&&:active': {
+            '&&:active:not(:disabled)': {
                 boxShadow: vars.shadow.sm,
             },
         },

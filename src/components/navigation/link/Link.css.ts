@@ -14,11 +14,11 @@ const base = style({
     cursor: 'pointer',
     transition: `color ${vars.duration.normal} ${vars.easing.standard}`,
     selectors: {
-        '&:hover': {
+        '&:hover:not([aria-disabled="true"])': {
             color: vars.color.link.hover,
             textDecoration: 'underline',
         },
-        '&:active': {
+        '&:active:not([aria-disabled="true"])': {
             color: vars.color.link.pressed,
             textDecoration: 'underline',
         },
@@ -28,7 +28,7 @@ const base = style({
             borderRadius: vars.radius[4],
         },
         '&[aria-disabled="true"]': {
-            pointerEvents: 'none',
+            cursor: 'not-allowed',
             opacity: 0.5,
         },
     },

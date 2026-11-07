@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ToggleGroupProps, ToggleProps } from '@components/actions'
-import TogglePlayground from '@stories/actions/toggle/components/toggle-playground/TogglePlayground'
+import type { ToggleProps } from '@components/actions'
+import ControlledToggle from '@stories/actions/toggle/components/controlled-toggle/ControlledToggle'
 import { DEFAULT_ARGS } from '@stories/actions/toggle/constants'
 import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
 
@@ -23,7 +23,7 @@ describe('Toggle primary playground', () => {
         })
         const args: ToggleStoryArgs = { ...DEFAULT_ARGS, label: 'Standalone bold', pressed: false, onPressedChange }
         controls.getArgs.mockReturnValue(args)
-        render(<TogglePlayground {...args} />)
+        render(<ControlledToggle {...args} />)
         await userEvent.click(screen.getByRole('button', { name: 'Standalone bold' }))
 
         expect(onPressedChange).toHaveBeenCalledWith(true, expect.objectContaining({ isCanceled: cancelled }))
@@ -31,17 +31,10 @@ describe('Toggle primary playground', () => {
         else {expect(controls.updateArgs).toHaveBeenCalledWith({ pressed: true })}
     })
 
-    it.each([false, true])('preserves group callbacks and cancellation (cancelled: %s)', async (cancelled) => {
-        const groupOnValueChange = vi.fn<NonNullable<ToggleGroupProps['onValueChange']>>((_value, details) => {
-            if (cancelled) {details.cancel()}
-        })
-        const args: ToggleStoryArgs = { ...DEFAULT_ARGS, label: 'Standalone bold', groupValue: [], groupOnValueChange }
+    it('renders only the standalone toggle', () => {
+        const args: ToggleStoryArgs = { ...DEFAULT_ARGS, label: 'Standalone bold' }
         controls.getArgs.mockReturnValue(args)
-        render(<TogglePlayground {...args} />)
-        await userEvent.click(screen.getByRole('button', { name: 'Bold' }))
-
-        expect(groupOnValueChange).toHaveBeenCalledWith(['bold'], expect.objectContaining({ isCanceled: cancelled }))
-        if (cancelled) {expect(controls.updateArgs).not.toHaveBeenCalled()}
-        else {expect(controls.updateArgs).toHaveBeenCalledWith({ groupValue: ['bold'] })}
+        render(<ControlledToggle {...args} />)
+        expect(screen.getAllByRole('button')).toHaveLength(1)
     })
 })

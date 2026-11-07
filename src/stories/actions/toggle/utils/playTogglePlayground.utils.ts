@@ -5,6 +5,5 @@ export const playTogglePlayground = async ({ canvasElement, args }: Readonly<{
     canvasElement: HTMLElement
     args: Readonly<{ label?: string }>
 }>): Promise<void> => {
-    const standalone = within(within(canvasElement).getByRole('region', { name: 'Standalone' }))
-    await expect(standalone.getByRole('button', { name: args.label })).toBeInTheDocument()
+    await expect(within(canvasElement).getByRole('button', { name: args.label })).toBeInTheDocument()
 }

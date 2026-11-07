@@ -5,8 +5,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Avatar } from '@components/data-display/avatar'
 import AvatarDocsPage from '@stories/data-display/avatar/components/avatar-docs-page/AvatarDocsPage'
 import AvatarOnMutedSurface from '@stories/data-display/avatar/components/avatar-on-muted-surface/AvatarOnMutedSurface'
-import AvatarApiPlayground from '@stories/data-display/avatar/components/avatar-api-playground/AvatarApiPlayground'
-import { createAvatarPlaygroundSource } from '@stories/data-display/avatar/utils/create-avatar-playground-source/createAvatarPlaygroundSource.utils'
+import AvatarPlayground from '@stories/data-display/avatar/components/avatar-playground/AvatarPlayground'
+import { createAvatarSource } from '@stories/data-display/avatar/utils/create-avatar-source/createAvatarSource.utils'
 import AvatarStatuses from '@stories/data-display/avatar/components/avatar-statuses/AvatarStatuses'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/avatar/constants'
 import { type AvatarStoryArgs } from '@stories/data-display/avatar/types'
@@ -24,7 +24,7 @@ const meta = {
     title: 'Data Display/Avatar',
     component: Avatar,
     tags: ['autodocs'],
-    render: AvatarApiPlayground,
+    render: AvatarPlayground,
     parameters: {
         layout: 'centered',
         docs: {
@@ -32,7 +32,7 @@ const meta = {
             description: { component: 'Displays a profile image, initials or a decorative icon, with optional presence. Use `AvatarGroup.Item` to compose a group; `Avatar` is the same component and also exposes individual slots for custom content.' },
             source: {
                 type: 'dynamic',
-                transform: createAvatarPlaygroundSource,
+                transform: (_source: string, { args }: Readonly<{ args: AvatarStoryArgs }>) => createAvatarSource(args),
             },
         },
     },

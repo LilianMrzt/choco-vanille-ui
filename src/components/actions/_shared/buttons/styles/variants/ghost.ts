@@ -13,19 +13,19 @@ export const ghostCompoundVariants = createButtonCompoundVariantUtils(
     (color) => ({
         color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
         selectors: {
-            '&:hover': {
+            '&:hover:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
-            '&:active': {
+            '&:active:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
             '&[data-active="true"]': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
-            '&[data-active="true"]:hover': {
+            '&[data-active="true"]:hover:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
             },
-            '&[data-active="true"]:active': {
+            '&[data-active="true"]:active:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
             },
         },

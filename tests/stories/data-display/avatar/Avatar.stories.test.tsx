@@ -23,11 +23,11 @@ describe('Avatar stories', () => {
             title: 'Profile',
             compoundLabel: 'Not a native prop',
         }))
-        const convenience = within(screen.getByRole('region', { name: 'Convenience API' }))
-        const avatar = convenience.getByLabelText('Alex Brown')
+        const avatar = screen.getByLabelText('Alex Brown')
         expect(avatar.getAttribute('title')).toBe('Profile')
         expect(avatar.hasAttribute('compoundLabel')).toBe(false)
-        expect(convenience.getByText('AB')).toBeTruthy()
+        expect(within(avatar).getByText('AB')).toBeTruthy()
+        expect(screen.queryByRole('group')).toBeNull()
     })
 
     it('passes the selected variant through when the playground has an image', () => {
@@ -112,7 +112,7 @@ describe('Avatar stories', () => {
     })
 
     it('renders group controls and produces matching namespaced consumer source', () => {
-        const args = { ...meta.args, groupLabel: '{{children}} $&' }
+        const args = { ...meta.args, groupMax: 3, groupLabel: '{{children}} $&' }
         render(createElement(AvatarGroupExample, args))
         expect(screen.getByRole('group', { name: '{{children}} $&' })).toBeTruthy()
         expect(screen.getByLabelText('Alex Brown')).toBeTruthy()

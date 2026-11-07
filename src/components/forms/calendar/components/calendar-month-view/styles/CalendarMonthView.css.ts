@@ -34,7 +34,6 @@ export const CALENDAR_MONTH_VIEW_STYLES = {
             '&:disabled': {
                 opacity: 0.4,
                 cursor: 'not-allowed',
-                pointerEvents: 'none',
             },
         },
     }),

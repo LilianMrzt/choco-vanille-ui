@@ -7,7 +7,6 @@ import groupSource from '@stories/actions/toggle/utils/create-toggle-source/sour
 import template from '@stories/actions/toggle/utils/create-toggle-source/sources/Toggle.source.txt?raw'
 import stateTemplate from '@stories/actions/toggle/utils/create-toggle-source/sources/ToggleState.source.txt?raw'
 import stateImport from '@stories/actions/toggle/utils/create-toggle-source/sources/StateImport.source.txt?raw'
-import playgroundTemplate from '@stories/actions/toggle/utils/create-toggle-source/sources/TogglePlayground.source.txt?raw'
 import iconImportTemplate from '@stories/_shared/controlled-source/utils/create-controlled-source/sources/IconImport.source.txt?raw'
 
 /**
@@ -68,26 +67,5 @@ export const createToggleGroupSource = (_source: string, { args }: Readonly<{ ar
     return renderSource(groupSource, {
         attributes,
         value: JSON.stringify(args.groupValue ?? []),
-    })
-}
-
-/**
- * Includes both controlled APIs displayed in the primary playground.
- * @internal Not part of the public package API.
- * @param _source - Generated source replaced by the consumer examples.
- * @param context - Current story context.
- * @param context.args - Standalone props and group controls.
- * @returns One source block with both controlled examples.
- * @example createTogglePlaygroundSource('', { args: { label: 'Bold', pressed: false } })
- */
-export const createTogglePlaygroundSource = (_source: string, context: Readonly<{ args: ToggleStoryArgs }>): string => {
-    const standalone = createToggleSource(_source, context)
-    const group = createToggleGroupSource(_source, context)
-    const iconImports = standalone.split(/\r?\n/).filter(line => /^import .+ from '\.\//.test(line)).join('\n')
-
-    return renderSource(playgroundTemplate, {
-        iconImports,
-        standalone: standalone.replace(/^import .*\r?\n/gm, '').replace('const Example', 'const StandaloneExample').trim(),
-        group: group.replace(/^import .*\r?\n/gm, '').replace('export const FormattingOptions', 'const GroupExample').trim(),
     })
 }

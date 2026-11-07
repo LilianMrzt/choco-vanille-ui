@@ -39,6 +39,7 @@ export const ARG_TYPES = {
     alignSelf: { control: 'select', options: [undefined, 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline'], description: 'CSS self-alignment.' },
     target: { control: 'text', description: 'Native link target.' },
     rel: { control: 'text', description: 'Native link relationship.' },
+    'aria-disabled': { control: 'boolean', description: 'Removes the destination and disables activation while retaining the link role.' },
     onClick: { control: false, description: 'Click handler; prevents native navigation when supplied.' },
     className: { control: false, description: 'Additional anchor class.' },
     style: { control: false, description: 'Inline style overrides.' },

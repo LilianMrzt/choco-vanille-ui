@@ -13,6 +13,137 @@ const findSourceErrors = (source: string): string[] => {
 }
 
 describe('Storybook consumer source audit', () => {
+    it('requires compound controls only for slots rendered by the primary playground', () => {
+        const component: ComponentInfo = {
+            name: 'Example', sourcePath: 'src/components/forms/example/Example.tsx',
+            category: 'forms', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: ['ExampleCompound'], subComponents: ['ExampleRoot', 'ExampleIndicator'], parentComponents: [],
+        }
+        const cases = [
+            {
+                name: 'standalone playground with compound documentation and secondary story',
+                render: '() => <Example label="Standalone" />',
+                extra: 'const documentation = "Compound: Root"; export const Compound = { render: () => <Example.Root /> }',
+                controls: '',
+                missing: false,
+            },
+            {
+                name: 'compound playground with missing controls',
+                render: '() => <Example.Root><Example.Indicator /></Example.Root>',
+                extra: 'const documentation = "Compound: Root Compound: Indicator";',
+                controls: '',
+                missing: true,
+            },
+            {
+                name: 'compound playground with a missing slot category',
+                render: '() => <Example.Root><Example.Indicator /></Example.Root>',
+                extra: '',
+                controls: "root: { control: 'text', table: { category: 'Compound: Root' } }",
+                missing: true,
+            },
+            {
+                name: 'compound playground with both slot categories',
+                render: '() => <Example.Root><Example.Indicator /></Example.Root>',
+                extra: '',
+                controls: "root: { table: { category: 'Compound: Root' } }, indicator: { table: { category: 'Compound: Root', subcategory: 'Compound: Indicator' } }",
+                missing: false,
+            },
+        ]
+        for (const testCase of cases) {
+            const project = new Project({ useInMemoryFileSystem: true })
+            const file = project.createSourceFile('/src/stories/forms/example/Example.stories.tsx', `
+const meta = { component: ExampleField, argTypes: { ${testCase.controls} } }
+export default meta
+export const Playground = { render: ${testCase.render} }
+${testCase.extra}
+`)
+            const findings = analyzeComponentStories('/', [file], [component]).findings
+                .filter((finding) => finding.rule === 'story-compound-controls')
+            expect(findings.length, testCase.name).toBe(testCase.missing ? 1 : 0)
+        }
+    })
+
+    it('follows extracted primary renderers and named component aliases but not other stories', () => {
+        const project = new Project({
+            useInMemoryFileSystem: true,
+            compilerOptions: { baseUrl: '/', paths: { '@stories/*': ['src/stories/*'] } },
+        })
+        const file = project.createSourceFile('/src/stories/forms/example/Example.stories.tsx', `
+import PlaygroundRenderer from '@stories/forms/example/components/playground/Playground'
+import Secondary from '@stories/forms/example/components/secondary/Secondary'
+const meta = { render: () => <PlaygroundRenderer />, argTypes: {} }
+export default meta
+export const Playground = {}
+export const Other = { render: Secondary }
+`)
+        project.createSourceFile('/src/stories/forms/example/components/playground/Playground.tsx', `
+import Nested from '../nested/Nested'
+const Playground = () => <Nested />
+export default Playground
+`)
+        const nested = project.createSourceFile('/src/stories/forms/example/components/nested/Nested.tsx', `
+import { Example as Alias } from '@components/forms/example'
+const Nested = () => <Alias.Root />
+export default Nested
+`)
+        project.createSourceFile('/src/stories/forms/example/components/secondary/Secondary.tsx', `
+const Secondary = () => <Example.Indicator />
+export default Secondary
+`)
+        const component: ComponentInfo = {
+            name: 'Example', sourcePath: 'src/components/forms/example/Example.tsx',
+            category: 'forms', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: ['ExampleCompound'], subComponents: ['ExampleRoot', 'ExampleIndicator'], parentComponents: [],
+        }
+        const compoundFindings = () => analyzeComponentStories('/', [file], [component]).findings
+            .filter((finding) => finding.rule === 'story-compound-controls')
+
+        expect(compoundFindings()).toHaveLength(1)
+        nested.replaceWithText('const Nested = () => <Example label="Standalone" />; export default Nested')
+        expect(compoundFindings()).toHaveLength(0)
+    })
+
+    it('recognizes inherited JSX children and respects playground overrides', () => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/forms/example/Example.stories.tsx', `
+const meta = { component: Example, args: { children: <Example.Root /> } }
+export default meta
+export const Playground = {}
+`)
+        const component: ComponentInfo = {
+            name: 'Example', sourcePath: 'src/components/forms/example/Example.tsx',
+            category: 'forms', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: ['ExampleCompound'], subComponents: ['ExampleRoot'], parentComponents: [],
+        }
+        const compoundFindings = () => analyzeComponentStories('/', [file], [component]).findings
+            .filter((finding) => finding.rule === 'story-compound-controls')
+
+        expect(compoundFindings()).toHaveLength(1)
+        file.getVariableDeclarationOrThrow('Playground').setInitializer('{ args: { children: "Simple" } }')
+        expect(compoundFindings()).toHaveLength(0)
+    })
+
+    it('recognizes a function declaration used as the playground renderer', () => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/forms/example/Example.stories.tsx', `
+function renderExample() { return <Example.Root /> }
+const meta = { component: Example }
+export default meta
+export const Playground = { render: renderExample }
+`)
+        const component: ComponentInfo = {
+            name: 'Example', sourcePath: 'src/components/forms/example/Example.tsx',
+            category: 'forms', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: ['ExampleCompound'], subComponents: ['ExampleRoot'], parentComponents: [],
+        }
+        const findings = analyzeComponentStories('/', [file], [component]).findings
+        expect(findings.some((finding) => finding.rule === 'story-compound-controls')).toBe(true)
+    })
+
     it.each(['color', 'text', 'select'])('distinguishes free CSS colors from finite color axes (%s)', (control) => {
         const project = new Project({ useInMemoryFileSystem: true })
         const file = project.createSourceFile('/src/stories/layout/box/Box.stories.tsx', `

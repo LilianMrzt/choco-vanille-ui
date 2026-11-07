@@ -36,8 +36,8 @@ export const BUTTON_SHARED_STYLES = {
                 outline: 'none',
                 boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
             },
-            '&:disabled': {
-                pointerEvents: 'none',
+            '&:disabled, &[aria-disabled="true"]': {
+                cursor: 'not-allowed',
                 opacity: 0.5,
             },
         },

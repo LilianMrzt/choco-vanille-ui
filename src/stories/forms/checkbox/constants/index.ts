@@ -1,5 +1,5 @@
 import { md } from '@stories/_shared/utils/markdown'
-import { type CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { CheckboxProps } from '@components/forms/checkbox'
 import consumerSource1 from '@stories/forms/checkbox/sources/CheckboxUsage1.source.txt?raw'
 import { fn } from 'storybook/test'
 /** Values used by the controlled group example and its parent checkbox. */
@@ -34,7 +34,7 @@ export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | CheckboxGroup.Header | Parent checkbox selecting the scoped items. |
 | CheckboxGroup.Item | Individually labeled checkbox option. |
 `
-export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<CheckboxStoryArgs> = {
+export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<CheckboxProps> = {
     label: { control: 'text',
         description: 'Sets the public label prop.'
     },
@@ -60,19 +60,6 @@ export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<CheckboxStoryAr
     required: { control: 'boolean',
         description: 'Sets the public required prop.'
     },
-    compoundLabel: { control: 'text', description: 'Accessible name for the compound example.', table: { category: 'Compound: Root' } },
-    indicatorText: { control: 'text', description: 'Custom indicator content for the compound example.', table: { category: 'Compound: Indicator' } },
-    indicatorKeepMounted: { control: 'boolean', description: 'Keeps the indicator mounted while unchecked.', table: { category: 'Compound: Indicator' } },
-    groupLabel: { control: 'text', description: 'Visible group name.', table: { category: 'Compound: Group' } },
-    groupHelperText: { control: 'text', description: 'Group supporting text.', table: { category: 'Compound: Group' } },
-    groupError: { control: 'text', description: 'Group error message.', table: { category: 'Compound: Group' } },
-    groupDisabled: { control: 'boolean', description: 'Disables the group.', table: { category: 'Compound: Group' } },
-    groupValue: { control: 'object', description: 'Controlled selected group values.', table: { category: 'Compound: Group' } },
-    groupOnValueChange: { control: false, description: 'Receives selected values and change details.', table: { category: 'Compound: Group' } },
-    groupHeaderLabel: { control: 'text', description: 'Parent checkbox label.', table: { category: 'Compound: Header' } },
-    groupLabelOne: { control: 'text', description: 'First item label.', table: { category: 'Compound: Item' } },
-    groupLabelTwo: { control: 'text', description: 'Second item label.', table: { category: 'Compound: Item' } },
-    groupLabelThree: { control: 'text', description: 'Third item label.', table: { category: 'Compound: Item' } },
     'id': { control: 'text', description: 'Editable id forwarded to the rendered public component.' },
     'name': { control: 'text', description: 'Editable name forwarded to the rendered public component.' },
     'value': { control: 'text', description: 'Editable value forwarded to the rendered public component.' },
@@ -89,19 +76,7 @@ export const DEFAULT_ARGS = {
     label: 'Accept terms and conditions',
     checked: false,
     onCheckedChange: fn(),
-    compoundLabel: 'Accept terms',
-    indicatorText: 'X',
-    indicatorKeepMounted: false,
-    groupLabel: 'Notification preferences',
-    groupHelperText: 'Select all that apply.',
-    groupDisabled: false,
-    groupValue: [],
-    groupOnValueChange: fn(),
-    groupHeaderLabel: 'All notifications',
-    groupLabelOne: 'Email',
-    groupLabelTwo: 'SMS',
-    groupLabelThree: 'Push notifications',
-} satisfies Partial<CheckboxStoryArgs>
+} satisfies Partial<CheckboxProps>
 export const DESCRIPTION = md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
 A checkbox with controlled and uncontrolled modes and optional supporting text.
 \`CheckboxGroup.Item\` is the same component. Compose \`Checkbox.Root\` and \`Checkbox.Indicator\` for custom content.

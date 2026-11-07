@@ -210,6 +210,16 @@ describe('Link', () => {
                 'true',
             )
         })
+
+        it('does not navigate or invoke the click handler when disabled', async () => {
+            const onClick = vi.fn()
+            render(<Link href="/dashboard" aria-disabled label={'Dashboard'} onClick={onClick} />)
+
+            const link = screen.getByRole('link', { name: 'Dashboard' })
+            expect(link.hasAttribute('href')).toBe(false)
+            await userEvent.click(link)
+            expect(onClick).not.toHaveBeenCalled()
+        })
     })
 
     describe('ref forwarding', () => {

@@ -14,6 +14,7 @@ import { cn } from '@utils/cn.ts'
  * routing adapters. The visible label names the link unless an ARIA name is
  * supplied. Native anchor attributes and the ref are forwarded to the anchor.
  * Custom colors apply at rest; hover and active use the theme link colors.
+ * When aria-disabled is true, the link retains its role but has no destination.
  *
  * @param props - Native anchor attributes and link presentation options.
  * @param props.href - Destination; defaults to `#`.
@@ -36,6 +37,7 @@ import { cn } from '@utils/cn.ts'
  * @param props.width - CSS width.
  * @param props.alignSelf - CSS self-alignment.
  * @param props.style - Inline style overrides.
+ * @param props["aria-disabled"] - Removes the destination and prevents activation when true.
  * @returns The anchor.
  * @example
  * <Link href="/settings" label="Settings" />
@@ -61,8 +63,10 @@ const Link: React.FC<LinkProps> = memo(({
     width,
     alignSelf,
     style,
+    'aria-disabled': ariaDisabled,
     ...props
 }) => {
+    const isDisabled = ariaDisabled === true || ariaDisabled === 'true'
     const layoutClassName = (
         margin !== undefined ||
         marginTop !== undefined ||
@@ -83,18 +87,22 @@ const Link: React.FC<LinkProps> = memo(({
      */
     const handleClick = useCallback(
         (event: React.MouseEvent<HTMLAnchorElement>) => {
-            if (onClick) {
+            if (isDisabled) {
+                event.preventDefault()
+            } else if (onClick) {
                 event.preventDefault()
                 onClick(event)
             }
         },
-        [onClick],
+        [isDisabled, onClick],
     )
 
     return (
         <a
             ref={ref}
-            href={href}
+            href={isDisabled ? undefined : href}
+            role={isDisabled ? 'link' : undefined}
+            aria-disabled={ariaDisabled}
             className={cn(
                 LINK_STYLES.base,
                 LINK_STYLES.color({ color }),

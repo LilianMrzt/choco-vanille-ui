@@ -22,6 +22,9 @@ export const STEP_INDICATOR_ITEM_STYLES = {
             '&:hover:not(:disabled)': {
                 opacity: 0.8,
             },
+            '&:disabled': {
+                cursor: 'not-allowed',
+            },
         },
     }),
     staticItem: style({

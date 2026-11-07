@@ -42,6 +42,7 @@ export const createLinkSource = (_source: string, { args }: Readonly<{ args: Lin
         serializeAttribute('alignSelf', args.alignSelf),
         serializeAttribute('target', args.target),
         serializeAttribute('rel', args.rel),
+        args['aria-disabled'] === undefined ? '' : ` aria-disabled={${JSON.stringify(args['aria-disabled'])}}`,
         args.startIcon ? ' startIcon={ChevronLeftIcon}' : '',
         args.endIcon ? ' endIcon={ChevronRightIcon}' : '',
         args.onClick ? ' onClick={handleClick}' : '',

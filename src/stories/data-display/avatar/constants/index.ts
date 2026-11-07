@@ -24,13 +24,6 @@ export const DEFAULT_ARGS = {
     fallbackDelay: 0,
     onLoadingStatusChange: fn(),
     onClick: fn(),
-    compoundLabel: 'Custom profile',
-    compoundFallback: 'AB',
-    compoundImage: '',
-    compoundAlt: 'Custom profile',
-    groupMax: 3,
-    groupSpacing: 'md',
-    groupLabel: 'Project participants',
 } satisfies NonNullable<Meta<AvatarStoryArgs>['args']>
 
 export const ARG_TYPES = {
@@ -55,13 +48,4 @@ export const ARG_TYPES = {
     ref: { control: false, description: 'Forwarded to the root span; refs cannot be edited in Controls.' },
     children: { control: false, description: 'Convenience Avatar generates its slots; use the compound API for custom children.' },
     onClick: { control: false, description: 'Native root click event; prefer a native control for keyboard interaction.' },
-    compoundImage: { control: 'text', description: 'Demo image URL, wired only to Avatar.Image.', table: { category: 'Compound: Image' } },
-    compoundAlt: { control: 'text', description: 'Demo image alternative.', table: { category: 'Compound: Image' } },
-    compoundFallback: { control: 'text', description: 'Demo initials, wired only to Avatar.Fallback.', table: { category: 'Compound: Fallback' } },
-    compoundLabel: { control: 'text', description: 'Demo accessible root label.', table: { category: 'Compound: Root' } },
-    compoundStatus: { control: 'select', options: [undefined, ...STATUSES], description: 'Demo presence, wired only to Avatar.Status.', table: { category: 'Compound: Status' } },
-    groupMax: { control: { type: 'number', min: 0, step: 1 }, description: 'Demo maximum visible group items; omitted shows all.', table: { category: 'Compound: Group' } },
-    groupSpacing: { control: 'select', options: ['none', 'sm', 'md', 'lg', 'xl'], description: 'Demo overlap between group items.', table: { category: 'Compound: Group' } },
-    groupLabel: { control: 'text', description: 'Demo accessible group name.', table: { category: 'Compound: Group' } },
-    groupOverflowLabel: { control: false, description: 'Demo formatter for the accessible overflow name; defaults to an English count label.', table: { category: 'Compound: Group' } },
 } satisfies NonNullable<Meta<AvatarStoryArgs>['argTypes']>

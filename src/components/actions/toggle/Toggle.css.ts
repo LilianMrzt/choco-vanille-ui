@@ -20,14 +20,14 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
                 : 'transparent',
             color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
             selectors: {
-                '&:hover': {
+                '&:hover:not(:disabled):not([aria-disabled="true"])': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
                     borderColor: variant === 'outlinedSubtle'
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
-                '&:active': {
+                '&:active:not(:disabled):not([aria-disabled="true"])': {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
                     borderColor: variant === 'outlinedSubtle'
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
@@ -41,11 +41,11 @@ const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
                         ? vars.color[COLOR_INTENT_TOKENS[color]].border
                         : 'transparent',
                 },
-                [`${pressedSelector}:hover`]: {
+                [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtle,
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
-                [`${pressedSelector}:active`]: {
+                [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                     backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].subtlePressed,
                     color: vars.color[COLOR_INTENT_TOKENS[color]].subtleForeground,
                 },
@@ -68,8 +68,8 @@ export const TOGGLE_STYLES = {
                     outline: 'none',
                     boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
                 },
-                '&:disabled': {
-                    pointerEvents: 'none',
+                '&:disabled, &[aria-disabled="true"]': {
+                    cursor: 'not-allowed',
                     opacity: 0.5,
                 },
                 '&[data-icon-only]': {
@@ -99,11 +99,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.primary]: {
                     color: vars.color.primary.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.primary.subtleForeground,
                             backgroundColor: vars.color.primary.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.primary.subtleForeground,
                             backgroundColor: vars.color.primary.subtlePressed,
                         },
@@ -111,10 +111,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.primary.main,
                             color: vars.color.primary.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.primary.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.primary.pressed,
                         },
                     },
@@ -122,11 +122,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.secondary]: {
                     color: vars.color.secondary.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.secondary.subtleForeground,
                             backgroundColor: vars.color.secondary.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.secondary.subtleForeground,
                             backgroundColor: vars.color.secondary.subtlePressed,
                         },
@@ -134,10 +134,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.secondary.main,
                             color: vars.color.secondary.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.secondary.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.secondary.pressed,
                         },
                     },
@@ -145,11 +145,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.tertiary]: {
                     color: vars.color.neutral.foreground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.neutral.foreground,
                             backgroundColor: vars.color.neutral.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.neutral.foreground,
                             backgroundColor: vars.color.neutral.subtlePressed,
                         },
@@ -157,10 +157,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.neutral.main,
                             color: vars.color.neutral.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.neutral.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.neutral.pressed,
                         },
                     },
@@ -168,11 +168,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.destructive]: {
                     color: vars.color.danger.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.danger.subtleForeground,
                             backgroundColor: vars.color.danger.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.danger.subtleForeground,
                             backgroundColor: vars.color.danger.subtlePressed,
                         },
@@ -180,10 +180,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.danger.main,
                             color: vars.color.danger.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.danger.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.danger.pressed,
                         },
                     },
@@ -191,11 +191,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.success]: {
                     color: vars.color.success.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.success.subtleForeground,
                             backgroundColor: vars.color.success.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.success.subtleForeground,
                             backgroundColor: vars.color.success.subtlePressed,
                         },
@@ -203,10 +203,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.success.main,
                             color: vars.color.success.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.success.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.success.pressed,
                         },
                     },
@@ -214,11 +214,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.warning]: {
                     color: vars.color.warning.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.warning.subtleForeground,
                             backgroundColor: vars.color.warning.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.warning.subtleForeground,
                             backgroundColor: vars.color.warning.subtlePressed,
                         },
@@ -226,10 +226,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.warning.main,
                             color: vars.color.warning.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.warning.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.warning.pressed,
                         },
                     },
@@ -237,11 +237,11 @@ export const TOGGLE_STYLES = {
                 [BUTTON_COLORS.info]: {
                     color: vars.color.info.subtleForeground,
                     selectors: {
-                        '&:hover': {
+                        '&:hover:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.info.subtleForeground,
                             backgroundColor: vars.color.info.subtle,
                         },
-                        '&:active': {
+                        '&:active:not(:disabled):not([aria-disabled="true"])': {
                             color: vars.color.info.subtleForeground,
                             backgroundColor: vars.color.info.subtlePressed,
                         },
@@ -249,10 +249,10 @@ export const TOGGLE_STYLES = {
                             backgroundColor: vars.color.info.main,
                             color: vars.color.info.foreground,
                         },
-                        [`${pressedSelector}:hover`]: {
+                        [`${pressedSelector}:hover:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.info.hover,
                         },
-                        [`${pressedSelector}:active`]: {
+                        [`${pressedSelector}:active:not(:disabled):not([aria-disabled="true"])`]: {
                             backgroundColor: vars.color.info.pressed,
                         },
                     },

@@ -38,7 +38,7 @@ export const Playground: Story = {
         docs: {
             description: {
                 story:
-          'Edit the document and see the semantic RichTextRenderer output update below it. All compound toolbar controls target the visible compound section; the toolbar is hidden in read-only mode.',
+          'Edit the document with the standard formatting toolbar. The field is controlled by Storybook.',
             },
             source: { type: 'dynamic', transform: createRichTextPlaygroundSource(INITIAL_VALUE) },
         },

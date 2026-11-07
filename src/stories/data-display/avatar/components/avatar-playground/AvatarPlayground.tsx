@@ -1,6 +1,6 @@
 import { Avatar } from '@components/data-display/avatar'
 import type { AvatarStoryArgs } from '@stories/data-display/avatar/types'
-import type { FC } from 'react'
+import type { ReactElement } from 'react'
 
 /**
  * Removes composition-only demonstration controls before forwarding real args.
@@ -19,7 +19,7 @@ import type { FC } from 'react'
  * @example
  * <AvatarPlayground initials="JD" aria-label="Jane Doe" />
  */
-const AvatarPlayground: FC<AvatarStoryArgs> = ({
+const AvatarPlayground = ({
     compoundImage: _compoundImage,
     compoundAlt: _compoundAlt,
     compoundFallback: _compoundFallback,
@@ -30,6 +30,6 @@ const AvatarPlayground: FC<AvatarStoryArgs> = ({
     groupLabel: _groupLabel,
     groupOverflowLabel: _groupOverflowLabel,
     ...args
-}) => <Avatar {...args} />
+}: AvatarStoryArgs): ReactElement => <Avatar {...args} />
 
 export default AvatarPlayground

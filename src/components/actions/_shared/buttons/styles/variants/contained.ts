@@ -13,19 +13,19 @@ export const containedCompoundVariants = createButtonCompoundVariantUtils(
         backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].main,
         color: vars.color[COLOR_INTENT_TOKENS[color]].foreground,
         selectors: {
-            '&:hover': {
+            '&:hover:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].hover,
             },
-            '&:active': {
+            '&:active:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
             '&[data-active="true"]': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
-            '&[data-active="true"]:hover': {
+            '&[data-active="true"]:hover:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].hover,
             },
-            '&[data-active="true"]:active': {
+            '&[data-active="true"]:active:not(:disabled):not([aria-disabled="true"])': {
                 backgroundColor: vars.color[COLOR_INTENT_TOKENS[color]].pressed,
             },
         },

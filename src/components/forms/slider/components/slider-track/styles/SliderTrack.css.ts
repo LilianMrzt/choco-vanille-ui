@@ -17,6 +17,9 @@ export const SLIDER_TRACK_STYLES = {
                 width: '2rem',
                 justifyContent: 'center',
             },
+            '&[data-disabled]': {
+                cursor: 'not-allowed',
+            },
         },
     }),
     track: recipe({
@@ -75,6 +78,9 @@ export const SLIDER_TRACK_STYLES = {
                 },
                 '&[data-dragging]': {
                     cursor: 'grabbing',
+                },
+                '&[data-disabled]': {
+                    cursor: 'not-allowed',
                 },
             },
         },

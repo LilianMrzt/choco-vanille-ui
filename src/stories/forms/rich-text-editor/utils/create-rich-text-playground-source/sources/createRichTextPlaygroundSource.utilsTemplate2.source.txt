@@ -1,3 +1,0 @@
-<RichTextEditor.Label>{{{fragment1}}}</RichTextEditor.Label>
-{{fragment2}}
-        <RichTextEditor.HelperText />

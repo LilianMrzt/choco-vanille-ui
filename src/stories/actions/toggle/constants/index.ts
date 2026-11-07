@@ -12,11 +12,6 @@ export const DEFAULT_ARGS = {
     pressed: false,
     variant: 'ghostSubtle',
     onPressedChange: fn(),
-    groupValue: ['bold'],
-    groupMultiple: false,
-    groupOrientation: 'horizontal',
-    groupDisabled: false,
-    groupOnValueChange: fn(),
 } satisfies NonNullable<Meta<ToggleStoryArgs>['args']>
 
 export const ARG_TYPES = {
@@ -41,9 +36,4 @@ export const ARG_TYPES = {
     defaultPressed: { control: 'boolean', description: 'Initial state when pressed is unset. Changing it remounts the uncontrolled example.' },
     onPressedChange: { control: false, description: 'Receives the requested state and cancellable event details.' },
     ref: { control: false, description: 'Ref to the button.' },
-    groupMultiple: { control: 'boolean', description: 'Allow multiple selections.', table: { category: 'Group demo' } },
-    groupOrientation: { control: 'select', options: ['horizontal', 'vertical'], description: 'Layout and arrow-key direction.', table: { category: 'Group demo' } },
-    groupDisabled: { control: 'boolean', description: 'Disable all items.', table: { category: 'Group demo' } },
-    groupValue: { control: 'check', options: ['bold', 'italic', 'underline'], description: 'Controlled group selection.', table: { category: 'Group demo' } },
-    groupOnValueChange: { control: false, description: 'Group change callback with cancellable event details.', table: { category: 'Group demo' } },
 } satisfies NonNullable<Meta<ToggleStoryArgs>['argTypes']>

@@ -11,6 +11,7 @@ export const SLIDER_STYLES = {
         color: vars.color.text.primary,
         selectors: {
             '&[data-disabled]': {
+                cursor: 'not-allowed',
                 opacity: 0.45,
             },
         },
