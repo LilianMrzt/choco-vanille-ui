@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/TabsUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const TabsDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -27,6 +32,14 @@ const TabsDocsPage = (): ReactElement => (
 | \`activationMode\` | No | \`manual \\| automatic\` | On Tabs.List; defaults to manual unless activateOnFocus is supplied. |
 
 Use arrow keys to move focus and Enter or Space to activate in manual mode.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Tabs.List | Named tab set with appearance and activation-mode options. |
+| Tabs.Trigger | Named tab button associated with a value; supports decorative icons and width. |
+| Tabs.Content | Tab panel associated with a trigger value. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

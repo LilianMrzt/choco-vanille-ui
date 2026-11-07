@@ -1,0 +1,22 @@
+import { Select, SelectField } from '@choco-vanille/ui'
+
+const options = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+]
+
+const ConvenienceExample = () => (
+    <SelectField label="Fruit" placeholder="Pick a fruit" options={options} />
+)
+
+const CompoundExample = () => (
+    <Select>
+        <Select.Trigger aria-label="Fruit" placeholder="Pick a fruit" />
+        <Select.Content>
+            <Select.List>
+                <Select.Item value="apple">Apple</Select.Item>
+                <Select.Item value="banana">Banana</Select.Item>
+            </Select.List>
+        </Select.Content>
+    </Select>
+)

@@ -1,6 +1,6 @@
 import { type RichTextRendererProps } from '@components/data-display/rich-text-renderer'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import rendererSource from '@stories/data-display/rich-text-renderer/utils/create-rich-text-renderer-source/sources/RichTextRenderer.source.tsx.txt?raw'
+import rendererSource from '@stories/data-display/rich-text-renderer/utils/create-rich-text-renderer-source/sources/RichTextRenderer.source.txt?raw'
 
 /**
  * Creates a typed document example matching the renderer Controls.

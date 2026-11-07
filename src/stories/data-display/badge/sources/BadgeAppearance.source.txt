@@ -1,0 +1,129 @@
+import { Flex, Typography, Badge } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Variants / Colors</Typography>
+            <Flex flexDirection="column" gap={16}>
+                <Flex aria-label="primary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">primary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="primary" variant="contained" />
+                        <Badge label="subtle" color="primary" variant="subtle" />
+                        <Badge label="outlined" color="primary" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="primary" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="secondary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">secondary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="secondary" variant="contained" />
+                        <Badge label="subtle" color="secondary" variant="subtle" />
+                        <Badge label="outlined" color="secondary" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="secondary" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">tertiary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="tertiary" variant="contained" />
+                        <Badge label="subtle" color="tertiary" variant="subtle" />
+                        <Badge label="outlined" color="tertiary" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="tertiary" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">destructive</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="destructive" variant="contained" />
+                        <Badge label="subtle" color="destructive" variant="subtle" />
+                        <Badge label="outlined" color="destructive" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="destructive" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="success" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">success</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="success" variant="contained" />
+                        <Badge label="subtle" color="success" variant="subtle" />
+                        <Badge label="outlined" color="success" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="success" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="warning" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">warning</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="warning" variant="contained" />
+                        <Badge label="subtle" color="warning" variant="subtle" />
+                        <Badge label="outlined" color="warning" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="warning" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="info" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">info</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="info" variant="contained" />
+                        <Badge label="subtle" color="info" variant="subtle" />
+                        <Badge label="outlined" color="info" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="info" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="purple" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">purple</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="purple" variant="contained" />
+                        <Badge label="subtle" color="purple" variant="subtle" />
+                        <Badge label="outlined" color="purple" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="purple" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="pink" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">pink</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="pink" variant="contained" />
+                        <Badge label="subtle" color="pink" variant="subtle" />
+                        <Badge label="outlined" color="pink" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="pink" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="orange" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">orange</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="orange" variant="contained" />
+                        <Badge label="subtle" color="orange" variant="subtle" />
+                        <Badge label="outlined" color="orange" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="orange" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="teal" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">teal</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="teal" variant="contained" />
+                        <Badge label="subtle" color="teal" variant="subtle" />
+                        <Badge label="outlined" color="teal" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="teal" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="cyan" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">cyan</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="cyan" variant="contained" />
+                        <Badge label="subtle" color="cyan" variant="subtle" />
+                        <Badge label="outlined" color="cyan" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="cyan" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="indigo" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">indigo</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Badge label="contained" color="indigo" variant="contained" />
+                        <Badge label="subtle" color="indigo" variant="subtle" />
+                        <Badge label="outlined" color="indigo" variant="outlined" />
+                        <Badge label="outlinedSubtle" color="indigo" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+            </Flex>
+        </section>
+    </Flex>
+)

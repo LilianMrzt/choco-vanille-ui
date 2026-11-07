@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import ts from 'typescript'
 
-import meta, { Colors, Sizes, Variants, WithIcons } from '@stories/data-display/badge/Badge.stories'
+import meta, { Appearance, WithIcons } from '@stories/data-display/badge/Badge.stories'
 import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('Badge stories', () => {
-    it.each([Colors, Sizes, Variants, WithIcons])('emits valid TSX for comparative examples', (story) => {
+    it.each([Appearance, WithIcons])('emits valid TSX for comparative examples', (story) => {
         const source = story.parameters?.docs.source.code
         expect(typeof source).toBe('string')
         const result = ts.transpileModule(source, {

@@ -1,0 +1,15 @@
+import { Collapsible } from '@choco-vanille/ui'
+
+const ConvenientTrigger = () => (
+    <Collapsible>
+        <Collapsible.Trigger label="Details" />
+        <Collapsible.Panel>More information.</Collapsible.Panel>
+    </Collapsible>
+)
+
+const ComposedTrigger = () => (
+    <Collapsible>
+        <Collapsible.Trigger><strong>Details</strong></Collapsible.Trigger>
+        <Collapsible.Panel>More information.</Collapsible.Panel>
+    </Collapsible>
+)

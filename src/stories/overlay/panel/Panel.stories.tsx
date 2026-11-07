@@ -5,12 +5,12 @@ import { Panel } from '@components/overlay/panel'
 import PanelDocsPage from '@stories/overlay/panel/components/panel-docs-page/PanelDocsPage'
 import PanelExample from '@stories/overlay/panel/components/panel-example/PanelExample'
 import PanelHeaderActions from '@stories/overlay/panel/components/panel-header-actions/PanelHeaderActions'
-import PanelPositions from '@stories/overlay/panel/components/panel-positions/PanelPositions'
-import PanelWidths from '@stories/overlay/panel/components/panel-widths/PanelWidths'
+import PanelAppearance from './components/panel-appearance/PanelAppearance'
+import PanelWidths from './components/panel-widths/PanelWidths'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/panel/constants'
-import headerActionsSource from '@stories/overlay/panel/sources/PanelHeaderActions.source.tsx.txt?raw'
-import positionsSource from '@stories/overlay/panel/sources/PanelPositions.source.tsx.txt?raw'
-import widthsSource from '@stories/overlay/panel/sources/PanelWidths.source.tsx.txt?raw'
+import headerActionsSource from '@stories/overlay/panel/sources/PanelHeaderActions.source.txt?raw'
+import appearanceSource from './sources/PanelAppearance.source.txt?raw'
+import sizesSource from './sources/PanelSizes.source.txt?raw'
 import type { PanelStoryArgs } from '@stories/overlay/panel/types'
 import { createPanelSource } from '@stories/overlay/panel/utils/create-panel-source/createPanelSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
@@ -19,6 +19,13 @@ const meta = {
     title: 'Overlay/Panel',
     component: Panel,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -82,7 +89,13 @@ export const Playground: Story = {
 
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
-    render: (args) => <PanelExample {...args} />,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <PanelExample
+            {...args}
+            key={JSON.stringify([args.defaultOpen, args.defaultTriggerId])}
+        />
+    ),
     parameters: {
         docs: {
             description: { story: 'The initial open state applies on mount; remount to apply changes to defaultOpen.' },
@@ -91,5 +104,11 @@ export const Uncontrolled: Story = {
 }
 
 export const HeaderActions: Story = { parameters: { docs: { ...storySource(headerActionsSource) } }, render: PanelHeaderActions }
-export const Positions: Story = { parameters: { docs: { ...storySource(positionsSource) } }, render: PanelPositions }
-export const Widths: Story = { parameters: { docs: { ...storySource(widthsSource) } }, render: PanelWidths }
+export const Appearance: Story = {
+    parameters: { docs: { ...storySource(appearanceSource), description: { story: 'Compare left and right placement at the same content width.' } } },
+    render: PanelAppearance,
+}
+export const Sizes: Story = {
+    parameters: { docs: { ...storySource(sizesSource), description: { story: 'Compare narrow and wide panel content independently of placement. Portalled panels remain constrained by the viewport.' } } },
+    render: PanelWidths,
+}

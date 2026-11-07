@@ -1,0 +1,10 @@
+/* @choco-vanille/ui — theme override template                       */
+/* Change the values you want to override and delete the rest.        */
+
+:root {
+{{fragment4}}
+}
+
+[data-theme="dark"] {
+{{fragment8}}
+}

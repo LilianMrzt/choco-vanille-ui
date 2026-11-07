@@ -1,6 +1,7 @@
 import { type RichTextRendererProps } from '@components/data-display/rich-text-renderer'
 import { RICH_TEXT_COLOR_PALETTES, type RichTextValue } from '@components/forms/rich-text-editor'
 import type { Meta } from '@storybook/react-vite'
+import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
 export const VALUE: RichTextValue = {
     type: 'doc',
@@ -36,6 +37,51 @@ export const ARG_TYPES = {
     className: { control: false, description: 'Consumer class for the outer div.' },
     style: { control: 'object', description: 'CSS overrides for the document container.' },
     ref: { control: false, description: 'Ref to the document container; not editable in Controls.' },
+    height: LAYOUT_ARG_TYPES.height,
+    minWidth: LAYOUT_ARG_TYPES.minWidth,
+    maxWidth: LAYOUT_ARG_TYPES.maxWidth,
+    minHeight: LAYOUT_ARG_TYPES.minHeight,
+    maxHeight: LAYOUT_ARG_TYPES.maxHeight,
+    borderRadius: LAYOUT_ARG_TYPES.borderRadius,
+    padding: LAYOUT_ARG_TYPES.padding,
+    margin: LAYOUT_ARG_TYPES.margin,
+    backgroundColor: LAYOUT_ARG_TYPES.backgroundColor,
+    display: LAYOUT_ARG_TYPES.display,
+    overflow: LAYOUT_ARG_TYPES.overflow,
+    overflowX: LAYOUT_ARG_TYPES.overflowX,
+    overflowY: LAYOUT_ARG_TYPES.overflowY,
+    position: LAYOUT_ARG_TYPES.position,
+    flex: LAYOUT_ARG_TYPES.flex,
+    flexDirection: LAYOUT_ARG_TYPES.flexDirection,
+    flexWrap: LAYOUT_ARG_TYPES.flexWrap,
+    alignSelf: LAYOUT_ARG_TYPES.alignSelf,
+    alignItems: LAYOUT_ARG_TYPES.alignItems,
+    alignContent: LAYOUT_ARG_TYPES.alignContent,
+    justifyContent: LAYOUT_ARG_TYPES.justifyContent,
+    textAlign: LAYOUT_ARG_TYPES.textAlign,
+    borderWidth: LAYOUT_ARG_TYPES.borderWidth,
+    borderTopWidth: LAYOUT_ARG_TYPES.borderTopWidth,
+    borderRightWidth: LAYOUT_ARG_TYPES.borderRightWidth,
+    borderBottomWidth: LAYOUT_ARG_TYPES.borderBottomWidth,
+    borderLeftWidth: LAYOUT_ARG_TYPES.borderLeftWidth,
+    borderStyle: LAYOUT_ARG_TYPES.borderStyle,
+    paddingX: LAYOUT_ARG_TYPES.paddingX,
+    paddingY: LAYOUT_ARG_TYPES.paddingY,
+    paddingTop: LAYOUT_ARG_TYPES.paddingTop,
+    paddingRight: LAYOUT_ARG_TYPES.paddingRight,
+    paddingBottom: LAYOUT_ARG_TYPES.paddingBottom,
+    paddingLeft: LAYOUT_ARG_TYPES.paddingLeft,
+    marginX: LAYOUT_ARG_TYPES.marginX,
+    marginY: LAYOUT_ARG_TYPES.marginY,
+    marginTop: LAYOUT_ARG_TYPES.marginTop,
+    marginRight: LAYOUT_ARG_TYPES.marginRight,
+    marginBottom: LAYOUT_ARG_TYPES.marginBottom,
+    marginLeft: LAYOUT_ARG_TYPES.marginLeft,
+    gap: LAYOUT_ARG_TYPES.gap,
+    columnGap: LAYOUT_ARG_TYPES.columnGap,
+    rowGap: LAYOUT_ARG_TYPES.rowGap,
+    borderColor: LAYOUT_ARG_TYPES.borderColor,
+    boxShadow: LAYOUT_ARG_TYPES.boxShadow
 } satisfies NonNullable<Meta<RichTextRendererProps>['argTypes']>
 
 export const LINKS_VALUE: RichTextValue = {

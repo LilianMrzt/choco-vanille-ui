@@ -1,9 +1,9 @@
 import type { ReactElement } from 'react'
 
-import { Breadcrumbs, BREADCRUMBS_SEPARATORS } from '@components/navigation/breadcrumbs'
+import { Breadcrumbs } from '@components/navigation/breadcrumbs'
 
 /**
- * Demonstrates separators and an explicitly current item.
+ * Demonstrates an explicitly current item rather than relying on the last item.
  * @internal Storybook-only component; not part of the public package API.
  * @returns Breadcrumb examples.
  * @example
@@ -11,23 +11,6 @@ import { Breadcrumbs, BREADCRUMBS_SEPARATORS } from '@components/navigation/brea
  */
 const BreadcrumbsExamples = (): ReactElement => (
     <div style={{ display: 'grid', gap: '1rem' }}>
-        {Object.values(BREADCRUMBS_SEPARATORS).map((separator) => (
-            <Breadcrumbs
-                key={separator}
-                aria-label={`${separator} breadcrumb`}
-                separator={separator}
-            >
-                <Breadcrumbs.Item
-                    label={'Home'}
-                    href={'/'}
-                />
-                <Breadcrumbs.Item
-                    label={'Products'}
-                    href={'/products'}
-                />
-                <Breadcrumbs.Item label={'Current'} />
-            </Breadcrumbs>
-        ))}
         <Breadcrumbs aria-label={'Explicit current page'}>
             <Breadcrumbs.Item
                 label={'Home'}

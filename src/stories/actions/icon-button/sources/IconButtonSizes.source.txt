@@ -1,0 +1,11 @@
+import { Flex, IconButton } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+        <IconButton icon={SearchIcon} aria-label="xs" size="xs" />
+        <IconButton icon={SearchIcon} aria-label="sm" size="sm" />
+        <IconButton icon={SearchIcon} aria-label="md" size="md" />
+        <IconButton icon={SearchIcon} aria-label="lg" size="lg" />
+    </Flex>
+)

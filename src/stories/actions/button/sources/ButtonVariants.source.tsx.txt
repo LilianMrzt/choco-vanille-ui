@@ -1,5 +1,0 @@
-import { Button } from '@choco-vanille/ui'
-
-<Button label="contained" variant="contained" />
-<Button label="outlined" variant="outlined" />
-<Button label="ghost" variant="ghost" />

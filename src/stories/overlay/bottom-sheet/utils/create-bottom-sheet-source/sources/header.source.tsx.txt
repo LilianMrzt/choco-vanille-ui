@@ -1,1 +1,0 @@
-<BottomSheet.Header title={{{title}}}{{description}} />

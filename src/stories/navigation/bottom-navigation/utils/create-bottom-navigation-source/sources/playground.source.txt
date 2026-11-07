@@ -1,0 +1,22 @@
+import { useState, type MouseEvent } from 'react'
+import { BottomNavigation } from '@choco-vanille/ui'
+// Replace these with icon components from your application.
+import { CircleIcon, SearchIcon, CalendarIcon, UserIcon } from './icons'
+
+const Example = () => {
+  const [value, setValue] = useState({{value}})
+  const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    // Navigate with your router here.
+  }
+  return (
+    <BottomNavigation aria-label={{{ariaLabel}}}{{ariaLabelledBy}}{{className}} bordered={{{bordered}}} value={value} onValueChange={setValue}>
+      <BottomNavigation.List{{listClassName}}{{listGap}}{{listWidth}}{{listMaxWidth}}>
+        <BottomNavigation.Item value="home" {{itemName}} icon={CircleIcon} href={{{itemHref}}}{{itemHeight}} disabled={{{itemDisabled}}} onClick={handleLinkClick} />
+        <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search"{{itemHeight}} onClick={handleLinkClick} />
+        <BottomNavigation.Item value="calendar" label="Calendar" icon={CalendarIcon} href="/calendar"{{itemHeight}} onClick={handleLinkClick} />
+        <BottomNavigation.Item value="profile" label="Profile" icon={UserIcon} href="/profile"{{itemHeight}} onClick={handleLinkClick} />
+      </BottomNavigation.List>
+    </BottomNavigation>
+  )
+}

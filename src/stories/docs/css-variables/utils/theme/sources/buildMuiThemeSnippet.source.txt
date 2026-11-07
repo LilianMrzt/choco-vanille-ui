@@ -1,0 +1,26 @@
+// @choco-vanille/ui — MUI createTheme bridge                          
+// Feed kit CSS variables into MUI palette so both libraries share one  
+// source of truth. MUI resolves var() at runtime → dark mode and       
+// scoped overrides (data-theme / data-brand) apply automatically.      
+
+import { createTheme } from '@mui/material/styles';
+
+// All available color variables: {{fragment7_0}}
+
+export const muiTheme = createTheme({
+  palette: {
+    primary: { main: 'var(--color-primary-main)', dark: 'var(--color-primary-hover)', contrastText: 'var(--color-primary-foreground)' },
+    secondary: { main: 'var(--color-secondary-main)', dark: 'var(--color-secondary-hover)', contrastText: 'var(--color-secondary-foreground)' },
+    error: { main: 'var(--color-danger-main)', contrastText: 'var(--color-danger-foreground)' },
+    warning: { main: 'var(--color-warning-main)', contrastText: 'var(--color-warning-foreground)' },
+    success: { main: 'var(--color-success-main)', contrastText: 'var(--color-success-foreground)' },
+    background: {
+      paper: 'var(--color-surface-main)',
+      default: 'var(--color-background)',
+    },
+    text: {
+      primary: 'var(--color-text-primary)',
+      secondary: 'var(--color-surface-mutedForeground)',
+    },
+  },
+});

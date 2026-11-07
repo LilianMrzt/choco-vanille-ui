@@ -1,6 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { CollapsibleStoryArgs } from '@stories/surfaces/collapsible/types'
-import sourceTemplate from '@stories/surfaces/collapsible/utils/create-collapsible-source/sources/createCollapsibleSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/surfaces/collapsible/utils/create-collapsible-source/sources/createCollapsibleSource.source.txt?raw'
+import controlledTemplate from '@stories/surfaces/collapsible/utils/create-collapsible-source/sources/controlled.source.txt?raw'
 
 /**
  * Serializes a string or number as a JSX attribute.
@@ -39,9 +40,10 @@ export const createCollapsibleSource = (_source: string, { args }: Readonly<{ ar
         args.triggerWidth === undefined ? '' : ` style={{ width: ${JSON.stringify(args.triggerWidth)} }}`,
     ].join('')
     const panelProps = serializeAttribute('padding', args.panelPadding)
-    const stateImport = controlled ? "import { useState } from 'react'\n" : ''
-    const state = controlled ? `const Example = () => {\n    const [open, setOpen] = useState(${args.open})\n\n    return (\n` : ''
-    const end = controlled ? '\n    )\n}' : ''
-
-    return renderSource(sourceTemplate, { rootProps, triggerProps, panelProps, stateImport, state, end })
+    return renderSource(controlled ? controlledTemplate : sourceTemplate, {
+        rootProps,
+        triggerProps,
+        panelProps,
+        open: JSON.stringify(args.open ?? false),
+    })
 }

@@ -1,4 +1,5 @@
 import { CheckboxGroup } from '@components/forms/checkbox-group'
+import type { ReactElement } from 'react'
 
 /**
  * Shows a disabled group and its parent checkbox.
@@ -7,7 +8,7 @@ import { CheckboxGroup } from '@components/forms/checkbox-group'
  * @example
  * <GroupDisabled />
  */
-const GroupDisabled = () => (
+const GroupDisabled = (): ReactElement => (
     <CheckboxGroup
         disabled
         aria-label={'Notifications'}

@@ -1,0 +1,4 @@
+
+        <AlertDialog.Body>
+          <Typography>Your account and its data will be permanently deleted.</Typography>
+        </AlertDialog.Body>

@@ -1,6 +1,6 @@
 import type { FabProps } from '@components/actions/fab'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/actions/fab/utils/create-fab-source/sources/createFabSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/actions/fab/utils/create-fab-source/sources/createFabSource.source.txt?raw'
 
 /**
  * Creates a consumer example from the current Fab controls.

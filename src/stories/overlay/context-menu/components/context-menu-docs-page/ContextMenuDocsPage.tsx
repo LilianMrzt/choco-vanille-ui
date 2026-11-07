@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/ContextMenuUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 import { md } from '@stories/_shared/utils/markdown'
 
@@ -13,6 +14,10 @@ const ContextMenuDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -26,6 +31,20 @@ const ContextMenuDocsPage = (): ReactElement => (
 
 Use the context menu key or Shift+F10 to open; arrow keys navigate and Escape closes.
 The popup is portalled to the document and does not inherit a locally scoped theme.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| ContextMenu.Trigger | Focusable context-menu target. |
+| ContextMenu.Content | Positioned menu surface. |
+| ContextMenu.Item | Named action with optional icons, shortcut, active and destructive styling. |
+| ContextMenu.Group / Label | Group and accessible group heading. |
+| ContextMenu.CheckboxItem | Independently checked menu option. |
+| ContextMenu.RadioGroup / RadioItem | Coordinated single-choice menu options. |
+| ContextMenu.Separator | Decorative group divider. |
+| ContextMenu.Shortcut | Keyboard-shortcut annotation. |
+| ContextMenu.Sub / SubTrigger / SubContent | Nested menu, named trigger and positioned surface. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

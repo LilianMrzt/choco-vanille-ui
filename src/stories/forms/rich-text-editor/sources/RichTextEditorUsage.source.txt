@@ -1,0 +1,69 @@
+import { useState } from 'react'
+import { RichTextEditor, RichTextEditorField, type RichTextValue } from '@choco-vanille/ui'
+
+const initialValue: RichTextValue = { type: 'doc', content: [] }
+
+export const FieldExample = () => {
+    const [value, setValue] = useState<RichTextValue>(initialValue)
+
+    return <RichTextEditorField label="Description" placeholder="Start writing..." value={value} onValueChange={setValue} />
+}
+
+export const CompoundExample = () => {
+    const [value, setValue] = useState<RichTextValue>(initialValue)
+
+    return (
+<RichTextEditor
+  label="Description"
+  value={value}
+  onValueChange={setValue}
+  labels={{
+    toolbar: 'Text formatting',
+    historyGroup: 'History',
+    undo: 'Undo',
+    redo: 'Redo',
+    textStyleGroup: 'Text style',
+    bold: 'Bold',
+    italic: 'Italic',
+    underline: 'Underline',
+    strikethrough: 'Strikethrough',
+    linkGroup: 'Links',
+    addOrEditLink: 'Add or edit link',
+    linkGroupTrigger: 'Link actions',
+    linkOptions: 'Link options',
+    removeLink: 'Remove link',
+    blockFormatGroup: 'Block format',
+    listsGroup: 'Lists',
+    alignmentGroup: 'Text alignment',
+    imageGroup: 'Image actions',
+    fontSizeAndBlockFormatGroup: 'Font size and block format',
+    alignmentAndListsGroup: 'Alignment and lists',
+    linksAndImagesGroup: 'Links et images',
+  }}
+>
+  <RichTextEditor.Label>Description</RichTextEditor.Label>
+  <RichTextEditor.Toolbar aria-label="Text formatting">
+    <RichTextEditor.ToolbarGroup aria-label="Font size and block format">
+      <RichTextEditor.TextAppearanceGroup.TextSizeMenu />
+      <RichTextEditor.BlockFormatGroup />
+    </RichTextEditor.ToolbarGroup>
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.TextStyleGroup />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.TextAppearanceGroup.TextColorMenu />
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.ToolbarGroup aria-label="Alignment and lists">
+      <RichTextEditor.AlignmentGroup />
+      <RichTextEditor.ListsGroup />
+    </RichTextEditor.ToolbarGroup>
+    <RichTextEditor.ToolbarSeparator />
+    <RichTextEditor.ToolbarGroup aria-label="Links and images">
+      <RichTextEditor.LinkGroup />
+      <RichTextEditor.ImageGroup presentation="inline" />
+    </RichTextEditor.ToolbarGroup>
+  </RichTextEditor.Toolbar>
+  <RichTextEditor.EditorField />
+  <RichTextEditor.HelperText />
+</RichTextEditor>
+    )
+}

@@ -1,17 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useArgs } from 'storybook/preview-api'
 
-import { StepIndicator } from '@components/navigation/step-indicator'
 import StepIndicatorDocsPage from '@stories/navigation/step-indicator/components/step-indicator-docs-page/StepIndicatorDocsPage'
 import StepIndicatorStates from '@stories/navigation/step-indicator/components/step-indicator-states/StepIndicatorStates'
-import { ARG_TYPES, DEFAULT_ARGS, type StepIndicatorStoryArgs } from '@stories/navigation/step-indicator/constants'
-import statesSource from '@stories/navigation/step-indicator/sources/StepIndicatorStates.source.tsx.txt?raw'
+import StepIndicatorPlayground from './components/step-indicator-playground/StepIndicatorPlayground'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/navigation/step-indicator/constants'
+import type { StepIndicatorStoryArgs } from './types'
+import statesSource from '@stories/navigation/step-indicator/sources/StepIndicatorStates.source.txt?raw'
 import { createStepIndicatorSource } from '@stories/navigation/step-indicator/utils/create-step-indicator-source/createStepIndicatorSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Navigation/StepIndicator',
+    component: StepIndicatorPlayground,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -37,7 +46,6 @@ type Story = StoryObj<StepIndicatorStoryArgs>
  */
 const ControlledStepIndicator = () => {
     const [args, updateArgs] = useArgs<StepIndicatorStoryArgs>()
-    const { accountLabel, preferencesLabel, reviewLabel, confirmationLabel, onStepChange, ...rootProps } = args
 
     /**
      * Forwards selection and updates Storybook Controls.
@@ -48,20 +56,15 @@ const ControlledStepIndicator = () => {
      * handleStepChange(2)
      */
     const handleStepChange = (step: number): void => {
-        onStepChange?.(step)
+        args.onStepChange?.(step)
         updateArgs({ currentStep: step })
     }
 
     return (
-        <StepIndicator
-            {...rootProps}
+        <StepIndicatorPlayground
+            {...args}
             onStepChange={handleStepChange}
-        >
-            <StepIndicator.Item label={accountLabel} />
-            <StepIndicator.Item label={preferencesLabel} />
-            <StepIndicator.Item label={reviewLabel} />
-            <StepIndicator.Item label={confirmationLabel} />
-        </StepIndicator>
+        />
     )
 }
 

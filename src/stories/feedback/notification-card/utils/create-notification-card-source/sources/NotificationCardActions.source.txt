@@ -1,0 +1,5 @@
+    <NotificationCard.Footer>
+      <NotificationCard.Actions>
+        <Button label={{{label}}} size="sm" variant="outlined" />
+      </NotificationCard.Actions>
+    </NotificationCard.Footer>

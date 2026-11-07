@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react-vite'
+import { type Meta } from '@storybook/react-vite'
 import { Legend } from '@components/forms/primitives/legend'
 import { ARG_TYPES as TYPOGRAPHY_ARG_TYPES } from '@stories/foundation/typography/constants'
 import { md } from '@stories/_shared/utils/markdown'
@@ -47,3 +47,4 @@ export const ARG_TYPES = {
 export const DEFAULT_ARGS = {
     children: 'Notification preferences',
 } satisfies NonNullable<Meta<typeof Legend>['args']>
+export const DESCRIPTION = 'Names a fieldset using a native legend. Typography props customize its presentation without changing its semantics.'

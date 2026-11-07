@@ -1,3 +1,11 @@
+import customizationExample1 from '@stories/overview/customization/sources/customizationExample1.source.txt?raw'
+import customizationExample2 from '@stories/overview/customization/sources/customizationExample2.source.txt?raw'
+import customizationExample3 from '@stories/overview/customization/sources/customizationExample3.source.txt?raw'
+import customizationExample4 from '@stories/overview/customization/sources/customizationExample4.source.txt?raw'
+import customizationExample5 from '@stories/overview/customization/sources/customizationExample5.source.txt?raw'
+import customizationExample6 from '@stories/overview/customization/sources/customizationExample6.source.txt?raw'
+import customizationExample7 from '@stories/overview/customization/sources/customizationExample7.source.txt?raw'
+import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import { Meta, Source } from '@storybook/addon-docs/blocks'
 import { THEME_LAYER } from '@theme/constants/index.ts'
 
@@ -35,18 +43,11 @@ import `@choco-vanille/ui/styles.css` once in the application entry.
 
 Add your overrides to an application stylesheet:
 
-<Source language="css" code={`/* app.css */
-:root {
-  --color-primary-main: #005a9c;
-  --color-primary-hover: #004b83;
-  --color-primary-pressed: #003c6a;
-  --color-primary-foreground: #ffffff;
-  --radius-8: 0.75rem;
-}`} />
+<Source language="css" code={customizationExample1} />
 
 The theme's default tokens live in a CSS cascade layer:
 
-<Source language="css" code={`@layer ${THEME_LAYER};`} />
+<Source language="css" code={renderSource(customizationExample2, { THEME_LAYER: THEME_LAYER })} />
 
 Keep application overrides **outside a layer** to take precedence over normal
 layered defaults on the same element, without `!important`. If your application
@@ -70,22 +71,9 @@ against their actual backgrounds, in both light and dark modes.
 
 Declare variables on an ancestor to customize only that part of the interface:
 
-<Source language="css" code={`[data-brand="acme"] {
-  --color-primary-main: #005a9c;
-  --color-primary-hover: #004b83;
-  --color-primary-pressed: #003c6a;
-  --color-primary-foreground: #ffffff;
-  --radius-8: 0.75rem;
-}`} />
+<Source language="css" code={customizationExample3} />
 
-<Source language="tsx" code={`import { Button } from '@choco-vanille/ui';
-import './app.css';
-
-export const BrandedAction = () => (
-  <div data-brand="acme">
-    <Button color="primary" label="Acme action" variant="contained" />
-  </div>
-);`} />
+<Source language="tsx" code={customizationExample4} />
 
 Variables inherit through the DOM. An explicit theme on a descendant can
 redeclare color tokens and replace inherited overrides; target that theme
@@ -99,29 +87,7 @@ The root follows the OS preference unless an explicit theme is set.
 `data-theme="light"` and `data-theme="dark"` select a theme on the element that
 carries the attribute. Match the same element when overriding its defaults:
 
-<Source language="css" code={`:root,
-[data-theme="light"] {
-  --color-primary-main: #005a9c;
-  --color-primary-hover: #004b83;
-  --color-primary-pressed: #003c6a;
-  --color-primary-foreground: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]):not(.choco-vanille-theme-light):not(.choco-vanille-theme-dark) {
-    --color-primary-main: #8dceff;
-    --color-primary-hover: #b4dfff;
-    --color-primary-pressed: #d6edff;
-    --color-primary-foreground: #001e33;
-  }
-}
-
-[data-theme="dark"] {
-  --color-primary-main: #8dceff;
-  --color-primary-hover: #b4dfff;
-  --color-primary-pressed: #d6edff;
-  --color-primary-foreground: #001e33;
-}`} />
+<Source language="css" code={customizationExample5} />
 
 If you select themes with `.choco-vanille-theme-light` or `.choco-vanille-theme-dark`, include
 those classes alongside the corresponding attribute selectors above.
@@ -139,33 +105,9 @@ Use `globalStyle` for document or attribute-scoped overrides, or `style` for
 a local class. Set existing tokens through the `vars` field rather than
 creating a second theme contract or copying variable names:
 
-<Source language="ts" code={`// brand.css.ts
-import { globalStyle, style } from '@vanilla-extract/css';
-import { vars } from '@choco-vanille/ui';
+<Source language="ts" code={customizationExample6} />
 
-globalStyle(':root', {
-  vars: {
-    [vars.radius[8]]: '0.75rem',
-  },
-});
-
-export const brand = style({
-  vars: {
-    [vars.color.primary.main]: '#005a9c',
-    [vars.color.primary.hover]: '#004b83',
-    [vars.color.primary.pressed]: '#003c6a',
-    [vars.color.primary.foreground]: '#ffffff',
-  },
-});`} />
-
-<Source language="tsx" code={`import { Button } from '@choco-vanille/ui';
-import { brand } from './brand.css';
-
-export const BrandedAction = () => (
-  <div className={brand}>
-    <Button color="primary" label="Acme action" variant="contained" />
-  </div>
-);`} />
+<Source language="tsx" code={customizationExample7} />
 
 Read tokens directly in other styles, for example
 `color: vars.color.surface.foreground` and `padding: vars.space[12]`.

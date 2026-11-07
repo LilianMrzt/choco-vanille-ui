@@ -11,6 +11,13 @@ const meta = {
     title: 'Overlay/DropdownMenu',
     component: DropdownMenu,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -51,6 +58,12 @@ const ControlledDropdownMenu = () => {
 export const Playground: Story = { render: ControlledDropdownMenu }
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
-    render: DropdownMenuExample,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <DropdownMenuExample
+            {...args}
+            key={String(args.defaultOpen)}
+        />
+    ),
     parameters: { docs: { description: { story: 'Remount the example to apply a changed defaultOpen.' } } },
 }

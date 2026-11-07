@@ -1,0 +1,9 @@
+import { Flex, Button } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+        <Button label="SM" size="sm" />
+        <Button label="MD" size="md" />
+        <Button label="LG" size="lg" />
+    </Flex>
+)

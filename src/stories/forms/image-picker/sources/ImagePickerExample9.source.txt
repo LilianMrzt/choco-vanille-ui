@@ -1,0 +1,14 @@
+import { ImagePicker } from '@choco-vanille/ui'
+import UserIcon from './UserIcon.svg?react'
+
+export const ProfilePictureExample = () => (
+    <ImagePicker
+        label={'Profile picture'}
+        defaultValue={'https://picsum.photos/seed/image-picker-avatar/320/320'}
+        shape={'circle'}
+        width={'10rem'}
+        icon={UserIcon}
+        maxSize={5242880}
+        helperText={'PNG or JPG up to 5 MB.'}
+    />
+)

@@ -6,7 +6,7 @@ import ContextMenuDocsPage from '@stories/overlay/context-menu/components/contex
 import ContextMenuExample from '@stories/overlay/context-menu/components/context-menu-example/ContextMenuExample'
 import ContextMenuStates from '@stories/overlay/context-menu/components/context-menu-states/ContextMenuStates'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/context-menu/constants'
-import statesSource from '@stories/overlay/context-menu/sources/States.source.tsx.txt?raw'
+import statesSource from '@stories/overlay/context-menu/sources/States.source.txt?raw'
 import type { ContextMenuStoryArgs } from '@stories/overlay/context-menu/types'
 import { createContextMenuSource } from '@stories/overlay/context-menu/utils/create-context-menu-source/createContextMenuSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
@@ -15,6 +15,13 @@ const meta = {
     title: 'Overlay/ContextMenu',
     component: ContextMenu,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -55,7 +62,13 @@ const ControlledContextMenu = () => {
 export const Playground: Story = { render: ControlledContextMenu }
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
-    render: ContextMenuExample,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <ContextMenuExample
+            {...args}
+            key={String(args.defaultOpen)}
+        />
+    ),
     parameters: { docs: { description: { story: 'Changing defaultOpen requires remounting the example.' } } },
 }
 export const States: Story = { render: ContextMenuStates, parameters: { docs: { ...storySource(statesSource) } } }

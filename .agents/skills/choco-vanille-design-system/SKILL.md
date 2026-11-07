@@ -226,7 +226,8 @@ Commencer par les preuves nécessaires au contrat modifié :
 4. Pour une story contrôlée, lire les args avec `useArgs`, appeler le callback
    fourni et mettre à jour les args. Vérifier les changements depuis le
    composant et depuis Controls, ainsi que la réinitialisation.
-5. Ajouter des exemples ciblés sur les axes utiles, sans produit cartésien.
+5. Comparer les variantes pour chaque couleur dans un même exemple, avec les
+   tailles dans une story séparée, selon la référence Tests et Storybook.
    Adapter les extraits consommateur à toutes les instances affichées.
 6. Vérifier noms accessibles, focus et cohérence visuelle dans Storybook.
    Si cette revue ne peut pas être exécutée, l'indiquer ; le build ne la remplace pas.

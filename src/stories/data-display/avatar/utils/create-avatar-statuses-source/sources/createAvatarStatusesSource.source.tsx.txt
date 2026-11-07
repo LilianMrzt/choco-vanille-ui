@@ -1,5 +1,0 @@
-import { Avatar } from '@choco-vanille/ui'
-
-<>
-{{avatars}}
-</>

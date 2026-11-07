@@ -1,0 +1,12 @@
+import { Fieldset, Legend, Flex, Checkbox } from '@choco-vanille/ui'
+
+export const CheckboxGroupExample = () => (
+    <Fieldset>
+        <Legend>Notification preferences</Legend>
+        <Flex alignItems={'start'} flexDirection={'column'} gap={8}>
+            <Checkbox defaultChecked label={'Email'} />
+            <Checkbox label={'Push'} />
+            <Checkbox label={'SMS'} />
+        </Flex>
+    </Fieldset>
+)

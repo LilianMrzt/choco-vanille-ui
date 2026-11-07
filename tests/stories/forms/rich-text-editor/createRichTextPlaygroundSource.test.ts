@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import type { RichTextValue } from '@components/forms/rich-text-editor'
-import { createRichTextPlaygroundSource } from '@stories/forms/rich-text-editor/utils/createRichTextPlaygroundSource.utils'
+import { createRichTextPlaygroundSource } from '@stories/forms/rich-text-editor/utils/create-rich-text-playground-source/createRichTextPlaygroundSource.utils'
 
 const value: RichTextValue = { type: 'doc', content: [] }
 
@@ -24,7 +24,6 @@ describe('createRichTextPlaygroundSource', () => {
             args: {
                 label: 'Details',
                 value,
-                useCompoundLayout: true,
                 showTextSizeMenu: true,
                 textSizePresentation: 'select',
                 showTextStyleGroup: true,
@@ -44,7 +43,7 @@ describe('createRichTextPlaygroundSource', () => {
 
     it('uses the read-only slot without an editable toolbar', () => {
         const source = transform('', {
-            args: { label: 'Details', value, useCompoundLayout: true, readOnly: true, showToolbarGroups: true },
+            args: { label: 'Details', value, readOnly: true, showToolbarGroups: true },
         })
 
         expect(source).toContain('<RichTextEditor.ReadOnlyField />')

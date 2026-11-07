@@ -1,0 +1,11 @@
+import { RadioGroup } from '@choco-vanille/ui'
+
+export const ItemHelpExample = () => (
+    <RadioGroup label={'Theme'}>
+        <RadioGroup.Item
+            value={'system'}
+            label={'System'}
+            helperText={'Follow your device settings.'}
+        />
+    </RadioGroup>
+)

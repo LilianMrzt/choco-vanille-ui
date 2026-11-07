@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/StepIndicatorUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const StepIndicatorDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -27,6 +32,12 @@ const StepIndicatorDocsPage = (): ReactElement => (
 | \`aria-current\` | Automatic | \`step\` | Marks the current step. |
 
 Dots are native buttons when \`onStepChange\` is supplied.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| StepIndicator.Item | Named step dot; becomes interactive when the root has an onStepChange callback. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

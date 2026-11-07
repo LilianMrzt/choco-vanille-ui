@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/create-controlled-source/createControlledSource.utils'
 
 describe('createControlledSource', () => {
     it('serializes current controls and controlled text state', () => {

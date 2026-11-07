@@ -1,19 +1,12 @@
-import { createControlledSource } from '@stories/_shared/controlled-source/utils/createControlledSource.utils'
+import { createControlledSource } from '@stories/_shared/controlled-source/utils/create-controlled-source/createControlledSource.utils'
 import { GROUP_VALUES } from '@stories/forms/checkbox/constants'
 import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
-
-type GroupSourceArgs = Readonly<{
-    label: string
-    helperText: string
-    error?: string
-    disabled: boolean
-    value: string[]
-    allValues: string[]
-    headerLabel: string
-    labelOne: string
-    labelTwo: string
-    labelThree: string
-}>
+import consumerSource1 from '@stories/forms/checkbox/utils/create-group-source/sources/createGroupSource.utilsTemplate1.source.txt?raw'
+import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
+import consumerSource2 from '@stories/forms/checkbox/utils/create-group-source/sources/createGroupSource.utilsTemplate2.source.txt?raw'
+import consumerSource3 from '@stories/forms/checkbox/utils/create-group-source/sources/createGroupSource.utilsTemplate3.source.txt?raw'
+import consumerSource4 from '@stories/forms/checkbox/utils/create-group-source/sources/createGroupSource.utilsTemplate4.source.txt?raw'
+import type { GroupSourceArgs } from '@stories/forms/checkbox/utils/create-group-source/types'
 
 const transformGroupSource = createControlledSource<GroupSourceArgs>({
     component: 'CheckboxGroup',
@@ -23,10 +16,10 @@ const transformGroupSource = createControlledSource<GroupSourceArgs>({
     handler: 'setValue',
     omitted: ['headerLabel', 'labelOne', 'labelTwo', 'labelThree'],
     children: (args) => [
-        `        <CheckboxGroup.Header label={${JSON.stringify(args.headerLabel)}} />`,
-        `        <CheckboxGroup.Item value="email" label={${JSON.stringify(args.labelOne)}} />`,
-        `        <CheckboxGroup.Item value="sms" label={${JSON.stringify(args.labelTwo)}} />`,
-        `        <CheckboxGroup.Item value="push" label={${JSON.stringify(args.labelThree)}} />`,
+        renderSource(consumerSource4, { fragment1: JSON.stringify(args.headerLabel) }),
+        renderSource(consumerSource3, { fragment1: JSON.stringify(args.labelOne) }),
+        renderSource(consumerSource2, { fragment1: JSON.stringify(args.labelTwo) }),
+        renderSource(consumerSource1, { fragment1: JSON.stringify(args.labelThree) }),
     ].join('\n'),
 })
 

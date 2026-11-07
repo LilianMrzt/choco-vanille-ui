@@ -1,122 +1,43 @@
 import { type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, fn, within } from 'storybook/test'
-
-import type { TextFieldSize } from '@components/forms/text-field'
+import { FormStoryFrame } from '@stories/forms/utils/FormStoryFrame.utils'
 import { TimePicker } from '@components/forms/time-picker'
-import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import source from '@stories/forms/time-picker/sources/TimePicker.source.tsx.txt?raw'
-
-const SIZES: TextFieldSize[] = [
-    'sm',
-    'md',
-    'lg',
-]
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label linked to the input. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables the input and the popover trigger. |
-| \`error\` | No | \`string\` | Sets \`aria-invalid\` on the input. |
-| \`triggerAriaLabel\` | No | \`string\` | Accessible name for the trigger button. |
-| \`panelAriaLabel\` | No | \`string\` | Accessible name for the popover dialog. |
-| \`hoursAriaLabel\` / \`minutesAriaLabel\` | No | \`string\` | Accessible names for the two lists. |
-
-- The trigger is an \`IconButton\` with an \`aria-label\`; the popover content is a \`role="dialog"\`.
-- Hours and minutes are lists of buttons exposing \`aria-pressed\` for the selected value.
-- Native time inputs provide built-in keyboard and screen-reader support.
-`
-
-const TimePickerDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
+import consumerSource2 from '@stories/forms/time-picker/sources/TimePickerExample2.source.txt?raw'
+import consumerSource3 from '@stories/forms/time-picker/sources/TimePickerExample3.source.txt?raw'
+import consumerSource4 from '@stories/forms/time-picker/sources/TimePickerExample4.source.txt?raw'
+import consumerSource5 from '@stories/forms/time-picker/sources/TimePickerExample5.source.txt?raw'
+import consumerSource6 from '@stories/forms/time-picker/sources/TimePickerExample6.source.txt?raw'
+import TimePickerDocsPage from '@stories/forms/time-picker/components/time-picker-docs-page/TimePickerDocsPage'
+import TimePickerPlaygroundExample from '@stories/forms/time-picker/components/time-picker-playground-example/TimePickerPlaygroundExample'
+import { playTimePickerPlayground } from '@stories/forms/time-picker/utils/playTimePickerPlayground.utils'
+import TimePickerDefaultPanelTimeExample from '@stories/forms/time-picker/components/time-picker-default-panel-time-example/TimePickerDefaultPanelTimeExample'
+import TimePickerRangeExample from '@stories/forms/time-picker/components/time-picker-range-example/TimePickerRangeExample'
+import TimePickerStepsExample from '@stories/forms/time-picker/components/time-picker-steps-example/TimePickerStepsExample'
+import TimePickerActionsExample from '@stories/forms/time-picker/components/time-picker-actions-example/TimePickerActionsExample'
+import TimePickerStatesExample from '@stories/forms/time-picker/components/time-picker-states-example/TimePickerStatesExample'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/time-picker/constants'
+import TimePickerSizesExample from '@stories/forms/time-picker/components/time-picker-sizes-example/TimePickerSizesExample'
+import sizesSource from '@stories/forms/time-picker/sources/TimePickerSizes.source.txt?raw'
+import { createTimePickerSource } from '@stories/forms/time-picker/utils/createTimePickerSource.utils'
 
 const meta = {
     title: 'Forms/TimePicker',
     tags: ['autodocs'],
     component: TimePicker,
     parameters: {
-        layout: 'centered',
+        layout: 'padded',
         docs: {
             page: TimePickerDocsPage,
-            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof TimePicker>>(source, { omit: ['onChange'] }) },
+            source: { type: 'dynamic', transform: createTimePickerSource },
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A time picker that combines a native \`type="time"\` text field with a popover listing hours and minutes.
-
-- **Direct input** — type a time in 24-hour \`HH:mm\` format.
-- **Popover selection** — click the clock button, choose an hour, then a minute.
-- **Accessible** — the input keeps its native time semantics and is annotated with \`aria-haspopup="dialog"\`.
-
-**Usage**
-
-\`\`\`tsx
-const [time, setTime] = useState<string | undefined>()
-
-<TimePicker
-  label="Start time"
-  value={time}
-  onChange={setTime}
-/>
-\`\`\`
-                `,
+                component: DESCRIPTION,
             },
         },
     },
-    argTypes: {
-        label: { control: 'text', table: { category: 'TimePicker' } },
-        helperText: { control: 'text', table: { category: 'TimePicker' } },
-        error: { control: 'text', table: { category: 'TimePicker' } },
-        width: { control: 'text', table: { category: 'TimePicker' } },
-        size: {
-            control: 'select',
-            options: SIZES,
-            table: { category: 'TimePicker' },
-        },
-        minuteStep: { control: 'number', table: { category: 'TimePicker' } },
-        hourStep: { control: 'number', table: { category: 'TimePicker' } },
-        defaultPanelTime: { control: 'text', table: { category: 'TimePicker' } },
-        minTime: { control: 'text', table: { category: 'TimePicker' } },
-        maxTime: { control: 'text', table: { category: 'TimePicker' } },
-        showNowButton: { control: 'boolean', table: { category: 'TimePicker' } },
-        clearable: { control: 'boolean', table: { category: 'TimePicker' } },
-        disabled: { control: 'boolean', table: { category: 'TimePicker' } },
-        required: { control: 'boolean', table: { category: 'TimePicker' } },
-        value: { control: false, description: 'Controlled time; use the uncontrolled playground or a controlled example.' },
-        defaultValue: { control: 'text', description: 'Initial time in HH:mm format; changing it remounts the playground.' },
-        onChange: { control: false },
-        nowLabel: { control: 'text' },
-        clearLabel: { control: 'text' },
-        panelAriaLabel: { control: 'text' },
-        hoursAriaLabel: { control: 'text' },
-        minutesAriaLabel: { control: 'text' },
-        triggerAriaLabel: { control: 'text' },
-    },
-    args: {
-        label: 'Start time',
-        size: 'md',
-        minuteStep: 5,
-        disabled: false,
-        required: false,
-        width: '300px',
-        onChange: fn(),
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+    decorators: [FormStoryFrame],
 } satisfies Meta<ComponentProps<typeof TimePicker> & { width?: string }>
 
 export default meta
@@ -132,138 +53,55 @@ export const Playground = {
             },
         },
     },
-    render: (args: ComponentProps<typeof TimePicker>) => (
-        <TimePicker
-            key={args.defaultValue ?? ''}
-            {...args}
-        />
-    ),
-    play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement)
-        const label = args.label as string | undefined
-        if (label) {
-            await expect(canvas.getByLabelText(label)).toBeInTheDocument()
-        }
-    },
+    render: TimePickerPlaygroundExample,
+    play: playTimePickerPlayground,
 } satisfies Story
-
-export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`
-<TimePicker label="Small" size="sm" />
-<TimePicker label="Medium" size="md" />
-<TimePicker label="Large" size="lg" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TimePicker
-                label={'Small'}
-                size={'sm'}
-            />
-            <TimePicker
-                label={'Medium'}
-                size={'md'}
-            />
-            <TimePicker
-                label={'Large'}
-                size={'lg'}
-            />
-        </div>
-    ),
-}
-
 export const DefaultPanelTime: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TimePicker label="Start time" defaultPanelTime="09:00" />`),
+            ...storySource(consumerSource6),
             description: {
                 story: 'The popover opens on defaultPanelTime while no time is selected. The value stays empty until the user picks one.',
             },
         },
     },
-    render: () => (
-        <TimePicker
-            label={'Start time'}
-            defaultPanelTime={'09:00'}
-        />
-    ),
+    render: TimePickerDefaultPanelTimeExample,
 }
 
 export const Range: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TimePicker label="Opening hours" minTime="09:00" maxTime="17:30" minuteStep={15} />`),
+            ...storySource(consumerSource5),
             description: { story: 'Options outside minTime and maxTime are disabled.' },
         },
     },
-    render: () => (
-        <TimePicker
-            label={'Opening hours'}
-            minTime={'09:00'}
-            maxTime={'17:30'}
-            minuteStep={15}
-        />
-    ),
+    render: TimePickerRangeExample,
 }
 
 export const Steps: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TimePicker label="Every 15 minutes" minuteStep={15} />
-<TimePicker label="Every 6 hours" hourStep={6} minuteStep={30} />`),
+            ...storySource(consumerSource4),
         },
     },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TimePicker
-                label={'Every 15 minutes'}
-                minuteStep={15}
-            />
-            <TimePicker
-                label={'Every 6 hours'}
-                hourStep={6}
-                minuteStep={30}
-            />
-        </div>
-    ),
+    render: TimePickerStepsExample,
 }
 
 export const Actions: Story = {
     parameters: {
         docs: {
-            ...storySource(`<TimePicker label="Start time" showNowButton clearable />`),
+            ...storySource(consumerSource3),
             description: { story: 'showNowButton and clearable add a footer to the popover.' },
         },
     },
-    render: () => (
-        <TimePicker
-            label={'Start time'}
-            showNowButton
-            clearable
-        />
-    ),
+    render: TimePickerActionsExample,
 }
 
 export const States: Story = {
-    parameters: { docs: { ...storySource(`<TimePicker label="Disabled" disabled />
-<TimePicker label="Start time" helperText="Choose an available time." />
-<TimePicker label="Invalid time" error="Choose a valid time." />`) } },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <TimePicker
-                label={'Disabled'}
-                disabled
-            />
-            <TimePicker
-                label={'Start time'}
-                helperText={'Choose an available time.'}
-            />
-            <TimePicker
-                label={'Invalid time'}
-                error={'Choose a valid time.'}
-            />
-        </div>
-    ),
+    parameters: { docs: { ...storySource(consumerSource2) } },
+    render: TimePickerStatesExample,
+}
+export const Sizes: Story = {
+    parameters: { docs: { ...storySource(sizesSource), description: { story: 'Compare small, medium and large fields in the same bounded container.' } } },
+    render: TimePickerSizesExample,
 }

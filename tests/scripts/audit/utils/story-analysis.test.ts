@@ -13,6 +13,63 @@ const findSourceErrors = (source: string): string[] => {
 }
 
 describe('Storybook consumer source audit', () => {
+    it.each(['color', 'text', 'select'])('distinguishes free CSS colors from finite color axes (%s)', (control) => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/layout/box/Box.stories.tsx', `
+const Box = (_props: { color?: string }) => null
+const meta = { component: Box, argTypes: { color: { control: '${control}' } } }
+export default meta
+export const Playground = {}
+`)
+        const component: ComponentInfo = {
+            name: 'Box', sourcePath: 'src/components/layout/box/Box.tsx',
+            category: 'layout', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: [], subComponents: [], parentComponents: [],
+        }
+        const findings = analyzeComponentStories('/', [file], [component]).findings
+        expect(findings.some((finding) => finding.rule === 'story-canonical-showcase')).toBe(control === 'select')
+    })
+
+    it.each([true, false])('requires populated labelled Appearance sections (populated: %s)', (populated) => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/data-display/badge/Badge.stories.tsx', `
+const BadgeAppearance = () => <section><h3>Variants / Colors</h3>${populated ? '<Badge variant="contained" color="primary" /><Badge variant="outlined" color="primary" />' : ''}</section>
+const meta = { argTypes: { variant: { control: 'select' }, color: { control: 'select' } } }
+export default meta
+export const Playground = {}
+export const Appearance = { render: BadgeAppearance }
+`)
+        const component: ComponentInfo = {
+            name: 'Badge', sourcePath: 'src/components/data-display/badge/Badge.tsx',
+            category: 'data-display', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: [], subComponents: [], parentComponents: [],
+        }
+        const findings = analyzeComponentStories('/', [file], [component]).findings
+        expect(findings.some((finding) => finding.rule === 'story-canonical-showcase')).toBe(!populated)
+    })
+
+    it.each([true, false])('requires a separate Sizes story even with a populated appearance section (dedicated: %s)', (dedicated) => {
+        const project = new Project({ useInMemoryFileSystem: true })
+        const file = project.createSourceFile('/src/stories/data-display/badge/Badge.stories.tsx', `
+const BadgeAppearance = () => <section><h3>Sizes</h3><Badge size="sm" /><Badge size="md" /></section>
+const meta = { argTypes: { size: { control: 'select' } } }
+export default meta
+export const Playground = {}
+export const Appearance = { render: BadgeAppearance }
+${dedicated ? 'export const Sizes = { render: BadgeAppearance }' : ''}
+`)
+        const component: ComponentInfo = {
+            name: 'Badge', sourcePath: 'src/components/data-display/badge/Badge.tsx',
+            category: 'data-display', scope: 'public', props: [], variants: [], statuses: [],
+            tones: [], rawDimensions: [], stylingProps: [], vanillaExtractStyleBases: [],
+            exports: [], subComponents: [], parentComponents: [],
+        }
+        const findings = analyzeComponentStories('/', [file], [component]).findings
+        expect(findings.some((finding) => finding.rule === 'story-canonical-showcase')).toBe(!dedicated)
+    })
+
     it('audits component stories without applying component rules to reference pages', () => {
         const project = new Project({ useInMemoryFileSystem: true })
         const paths = [

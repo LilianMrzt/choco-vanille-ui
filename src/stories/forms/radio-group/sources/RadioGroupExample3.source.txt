@@ -1,0 +1,27 @@
+import { RadioGroup } from '@choco-vanille/ui'
+
+
+
+
+export const HorizontalExample = () => (
+<RadioGroup
+        label={'Theme'}
+        defaultValue={'system'}
+        aria-orientation={'horizontal'}
+    >
+        <div style={{ display: 'flex', gap: '1rem' }}>
+            <RadioGroup.Item
+                value={'light'}
+                label={'Light'}
+            />
+            <RadioGroup.Item
+                value={'dark'}
+                label={'Dark'}
+            />
+            <RadioGroup.Item
+                value={'system'}
+                label={'System'}
+            />
+        </div>
+    </RadioGroup>
+)

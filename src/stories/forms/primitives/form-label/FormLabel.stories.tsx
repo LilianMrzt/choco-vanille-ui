@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { FormStoryFrame } from '@stories/forms/utils/FormStoryFrame.utils'
 
 import { FormLabel } from '@components/forms/primitives/form-label'
 import FormLabelDocsPage from '@stories/forms/primitives/form-label/components/form-label-docs-page/FormLabelDocsPage'
-import source from '@stories/forms/primitives/form-label/sources/FormLabel.source.tsx.txt?raw'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import type { ComponentProps } from 'react'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/primitives/form-label/constants'
+import { createFormLabelSource } from '@stories/forms/primitives/form-label/utils/createFormLabelSource.utils'
 
 const meta = {
     title: 'Forms/Primitives/FormLabel',
@@ -12,18 +12,15 @@ const meta = {
     parameters: {
         docs: {
             page: FormLabelDocsPage,
-            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof FormLabel>>(source, { hasChildren: true }) },
+            source: { type: 'dynamic', transform: createFormLabelSource },
             description: {
-                component: 'Selectable form label text. Connect it to a control using `aria-labelledby`; set the required state on the control itself.',
+                component: DESCRIPTION,
             },
         },
     },
-    argTypes: {
-        children: { control: 'text' },
-        disabled: { control: 'boolean' },
-        required: { control: 'boolean' },
-    },
-    args: { children: 'Email address', required: true },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+    decorators: [FormStoryFrame],
     tags: ['autodocs'],
 } satisfies Meta<typeof FormLabel>
 

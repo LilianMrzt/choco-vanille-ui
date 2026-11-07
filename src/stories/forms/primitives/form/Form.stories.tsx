@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Form } from '@/components/forms/primitives/form'
 import FormDocsPage from '@stories/forms/primitives/form/components/form-docs-page/FormDocsPage'
-import { ARG_TYPES, DEFAULT_ARGS } from '@stories/forms/primitives/form/constants'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/primitives/form/constants'
 import FormPlayground from '@stories/forms/primitives/form/components/form-playground/FormPlayground'
 import FormPlaygroundPlay from '@stories/forms/primitives/form/utils/FormPlaygroundPlay.utils'
-import type { ComponentProps } from 'react'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/forms/primitives/form/sources/FormInteractive.source.tsx.txt?raw'
+import { FormFrame } from '@stories/forms/primitives/form/utils/FormFrame.utils'
+import { createFormSource } from '@stories/forms/primitives/form/utils/createFormSource.utils'
 
 const meta = {
     title: 'Forms/Primitives/Form',
@@ -17,19 +16,15 @@ const meta = {
         docs: {
             page: FormDocsPage,
             description: {
-                component: 'A native form wrapper that forwards attributes, events and its ref. Name the form when it needs to be exposed as a landmark.',
+                component: DESCRIPTION,
             },
-            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof Form>>(interactiveSource, { omit: ['onSubmit'] }) }
+            source: { type: 'dynamic', transform: createFormSource }
         },
     },
     argTypes: ARG_TYPES,
     args: DEFAULT_ARGS,
     decorators: [
-        (Story) => (
-            <div style={{ width: '320px' }}>
-                <Story />
-            </div>
-        ),
+        FormFrame,
     ],
     tags: ['autodocs']
 } satisfies Meta<typeof Form>

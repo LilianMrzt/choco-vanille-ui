@@ -1,7 +1,0 @@
-import { Progress } from '@choco-vanille/ui'
-
-<div style={{ display: 'grid', gap: '1rem', width: '20rem', maxWidth: '100%' }}>
-  {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
-    <Progress key={size} value={60} size={size} label={size.toUpperCase()} quantityLabel />
-  ))}
-</div>

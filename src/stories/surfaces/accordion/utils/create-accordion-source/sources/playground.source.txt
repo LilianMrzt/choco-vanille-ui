@@ -1,0 +1,24 @@
+import { useState } from 'react'
+import { Accordion } from '@choco-vanille/ui'
+import InfoIcon from './InfoIcon'
+
+const Example = () => {
+    const [value, setValue] = useState<string[]>({{value}})
+
+    return (
+        <Accordion value={value} onValueChange={setValue}{{rootProps}}>
+            <Accordion.Item value="item-1" disabled={{{firstDisabled}}}>
+                <Accordion.Trigger label={{{firstLabel}}}{{icons}} />
+                <Accordion.Content>Yes. It follows the WAI-ARIA Accordion pattern.</Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item value="item-2">
+                <Accordion.Trigger>Is it styled?</Accordion.Trigger>
+                <Accordion.Content>Yes. It uses the same design tokens as the rest of the kit.</Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item value="item-3">
+                <Accordion.Trigger>Can I use custom content?</Accordion.Trigger>
+                <Accordion.Content>Yes. Compose children or use the label and decorative icon props.</Accordion.Content>
+            </Accordion.Item>
+        </Accordion>
+    )
+}

@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 
 import { Button } from '@components/actions/button'
 import { HoverCard } from '@components/overlay/hover-card'
-import type { HoverCardStoryArgs } from '@stories/overlay/hover-card/constants'
+import type { HoverCardStoryArgs } from '@stories/overlay/hover-card/types'
 
 /**
  * Renders the example with root and slot controls.

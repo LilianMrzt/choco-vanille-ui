@@ -1,0 +1,28 @@
+import { useState } from 'react'
+import { Checkbox, CheckboxGroup } from '@choco-vanille/ui'
+
+export const FieldExample = () => {
+    const [accepted, setAccepted] = useState(false)
+
+    return (
+        <Checkbox
+            label="Accept terms and conditions"
+            checked={accepted}
+            onCheckedChange={setAccepted}
+        />
+    )
+}
+
+export const CompoundExample = () => (
+    <Checkbox.Root aria-label="Accept terms" defaultChecked>
+        <Checkbox.Indicator />
+    </Checkbox.Root>
+)
+
+export const GroupExample = () => (
+    <CheckboxGroup label="Notifications" allValues={['email', 'sms']}>
+        <CheckboxGroup.Header label="All notifications" />
+        <CheckboxGroup.Item value="email" label="Email" />
+        <CheckboxGroup.Item value="sms" label="SMS" />
+    </CheckboxGroup>
+)

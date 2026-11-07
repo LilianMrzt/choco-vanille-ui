@@ -1,0 +1,9 @@
+import { Toggle } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <>
+        <Toggle label="Disabled" disabled />
+        <Toggle label="Pressed" defaultPressed />
+    </>
+)

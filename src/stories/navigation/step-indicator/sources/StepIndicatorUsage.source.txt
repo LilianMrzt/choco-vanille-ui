@@ -1,0 +1,6 @@
+import { StepIndicator } from '@choco-vanille/ui'
+
+<StepIndicator aria-label="Signup progress" currentStep={1}>
+    <StepIndicator.Item label="Account" />
+    <StepIndicator.Item label="Confirmation" />
+</StepIndicator>

@@ -4,11 +4,10 @@ import { useArgs } from 'storybook/preview-api'
 import { Tabs } from '@components/navigation/tabs'
 import TabsDocsPage from '@stories/navigation/tabs/components/tabs-docs-page/TabsDocsPage'
 import TabsExample from '@stories/navigation/tabs/components/tabs-example/TabsExample'
-import TabsOrientations from '@stories/navigation/tabs/components/tabs-orientations/TabsOrientations'
-import TabsVariants from '@stories/navigation/tabs/components/tabs-variants/TabsVariants'
-import { ARG_TYPES, DEFAULT_ARGS, type TabsStoryArgs } from '@stories/navigation/tabs/constants'
-import variantsSource from '@stories/navigation/tabs/sources/TabsVariants.source.tsx.txt?raw'
-import orientationsSource from '@stories/navigation/tabs/sources/TabsOrientations.source.tsx.txt?raw'
+import TabsAppearance from './components/tabs-appearance/TabsAppearance'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/navigation/tabs/constants'
+import type { TabsStoryArgs } from './types'
+import appearanceSource from './sources/TabsAppearance.source.txt?raw'
 import { createTabsSource } from '@stories/navigation/tabs/utils/create-tabs-source/createTabsSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
@@ -16,6 +15,13 @@ const meta = {
     title: 'Navigation/Tabs',
     component: Tabs,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -70,7 +76,12 @@ export const Playground: Story = { render: ControlledTabs }
 export const Uncontrolled: Story = {
     args: { value: undefined, defaultValue: 'account' },
     parameters: { docs: { description: { story: 'Remount the component to apply a changed defaultValue.' } } },
-    render: TabsExample,
+    argTypes: { defaultValue: { control: 'select' } },
+    render: (args) => (
+        <TabsExample
+            {...args}
+            key={String(args.defaultValue)}
+        />
+    ),
 }
-export const Variants: Story = { parameters: { docs: { ...storySource(variantsSource) } }, render: TabsVariants }
-export const Orientations: Story = { parameters: { docs: { ...storySource(orientationsSource) } }, render: TabsOrientations }
+export const Appearance: Story = { parameters: { docs: { ...storySource(appearanceSource) } }, render: TabsAppearance }

@@ -1,0 +1,17 @@
+import { useState } from 'react'
+import { Button, HoverCard } from '@choco-vanille/ui'
+
+const Example = () => {
+  const [open, setOpen] = useState({{open}})
+
+  return (
+    <HoverCard open={open} onOpenChange={setOpen}>
+      <HoverCard.Trigger delay={{{triggerDelay}}} closeDelay={{{closeDelay}}}>
+        <Button label={{{triggerLabel}}} />
+      </HoverCard.Trigger>
+      <HoverCard.Content style={{ width: {{contentWidth}}, padding: '1rem' }}>
+        <p style={{ margin: 0 }}>{ {{contentText}} }</p>
+      </HoverCard.Content>
+    </HoverCard>
+  )
+}

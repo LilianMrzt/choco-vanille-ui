@@ -1,0 +1,10 @@
+import { ImagePicker } from '@choco-vanille/ui'
+
+export const WithExistingImageExample = () => (
+    <ImagePicker
+        label={'Existing image'}
+        defaultValue={'https://picsum.photos/seed/image-picker/640/420'}
+        width={'min(100%, 28rem)'}
+        height={'16rem'}
+    />
+)

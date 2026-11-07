@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/DropdownMenuUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 import { md } from '@stories/_shared/utils/markdown'
 
@@ -13,6 +14,10 @@ const DropdownMenuDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -26,6 +31,20 @@ const DropdownMenuDocsPage = (): ReactElement => (
 
 Use Enter or Space to open, arrow keys to navigate, and Escape to close.
 The popup is portalled to the document and does not inherit a locally scoped theme.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| DropdownMenu.Trigger | Accessible element opening the menu. |
+| DropdownMenu.Content | Positioned menu surface. |
+| DropdownMenu.Item | Named action with optional icons, shortcut, active and destructive styling. |
+| DropdownMenu.Group / Label | Group and accessible group heading. |
+| DropdownMenu.CheckboxItem | Independently checked menu option. |
+| DropdownMenu.RadioGroup / RadioItem | Coordinated single-choice menu options. |
+| DropdownMenu.Separator | Decorative group divider. |
+| DropdownMenu.Shortcut | Keyboard-shortcut annotation. |
+| DropdownMenu.Sub / SubTrigger / SubContent | Nested menu, named trigger and positioned surface. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

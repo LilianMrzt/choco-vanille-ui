@@ -1,6 +1,6 @@
 import type { PaginationProps } from '@components/navigation/pagination'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/navigation/pagination/utils/create-pagination-source/sources/createPaginationSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/navigation/pagination/utils/create-pagination-source/sources/createPaginationSource.source.txt?raw'
 
 /**
  * Serializes a string or number JSX attribute when present.

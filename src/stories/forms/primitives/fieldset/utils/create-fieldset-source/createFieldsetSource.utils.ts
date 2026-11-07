@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { FieldsetPlaygroundArgs } from '@stories/forms/primitives/fieldset/types'
-import template from '@stories/forms/primitives/fieldset/utils/create-fieldset-source/sources/createFieldsetSource.source.tsx.txt?raw'
+import template from '@stories/forms/primitives/fieldset/utils/create-fieldset-source/sources/createFieldsetSource.source.txt?raw'
 
 /**
  * Builds consumer JSX from the editable fieldset controls.

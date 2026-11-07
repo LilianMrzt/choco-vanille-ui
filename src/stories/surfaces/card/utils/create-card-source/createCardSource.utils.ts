@@ -1,6 +1,8 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { CardStoryArgs } from '@stories/surfaces/card/types'
-import sourceTemplate from '@stories/surfaces/card/utils/create-card-source/sources/createCardSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/surfaces/card/utils/create-card-source/sources/createCardSource.source.txt?raw'
+import footerTemplate from '@stories/surfaces/card/utils/create-card-source/sources/footer.source.txt?raw'
+import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
 /**
  * Serializes a present property into a JSX attribute.
@@ -25,7 +27,16 @@ const serializeAttribute = (name: string, value: string | number | undefined): s
  * createCardSource('', { args: { title: 'Account', showFooter: true } })
  */
 export const createCardSource = (_source: string, { args }: Readonly<{ args: CardStoryArgs }>): string => {
+    const explicitProps = new Set(['as', 'borderRadius', 'borderWidth', 'borderStyle', 'borderColor', 'backgroundColor', 'color', 'boxShadow', 'overflow', 'padding', 'children', 'className', 'style', 'ref'])
+    const layoutProps = Object.entries(args).map(([name, value]) => {
+        if (name in LAYOUT_ARG_TYPES && !explicitProps.has(name) && (typeof value === 'string' || typeof value === 'number')) {
+            return serializeAttribute(name, value)
+        }
+
+        return ''
+    }).join('')
     const rootProps = [
+        layoutProps,
         serializeAttribute('as', args.as),
         serializeAttribute('borderRadius', args.borderRadius),
         serializeAttribute('borderWidth', args.borderWidth),
@@ -53,7 +64,10 @@ export const createCardSource = (_source: string, { args }: Readonly<{ args: Car
     ].join('')
     const bodyProps = serializeAttribute('as', args.bodyAs) + serializeAttribute('padding', args.bodyPadding)
     const footer = args.showFooter
-        ? `\n  <Card.Footer${serializeAttribute('as', args.footerAs)}>\n    <Button color="primary" label={${JSON.stringify(args.footerActionLabel ?? 'Save changes')}} size="sm" variant="contained" />\n    <Button color="primary" label="Cancel" size="sm" variant="outlined" />\n  </Card.Footer>`
+        ? renderSource(footerTemplate, {
+            footerProps: serializeAttribute('as', args.footerAs),
+            actionLabel: JSON.stringify(args.footerActionLabel ?? 'Save changes'),
+        })
         : ''
 
     return renderSource(sourceTemplate, { rootProps, headerProps, bodyProps, footer })

@@ -1,0 +1,8 @@
+import { Flex, Switch } from '@choco-vanille/ui'
+
+export const StatesExample = () => (
+    <Flex flexDirection={'column'} gap={16}>
+        <Switch disabled label={'Disabled'} />
+        <Switch error={'Selection required'} label={'Required'} />
+    </Flex>
+)

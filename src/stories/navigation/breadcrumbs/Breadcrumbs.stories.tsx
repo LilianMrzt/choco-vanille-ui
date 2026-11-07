@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Breadcrumbs } from '@components/navigation/breadcrumbs'
-import BreadcrumbsColors from '@stories/navigation/breadcrumbs/components/breadcrumbs-colors/BreadcrumbsColors'
+import BreadcrumbsAppearance from './components/breadcrumbs-appearance/BreadcrumbsAppearance'
 import BreadcrumbsDocsPage from '@stories/navigation/breadcrumbs/components/breadcrumbs-docs-page/BreadcrumbsDocsPage'
 import BreadcrumbsExamples from '@stories/navigation/breadcrumbs/components/breadcrumbs-examples/BreadcrumbsExamples'
-import { ARG_TYPES, DEFAULT_ARGS, type BreadcrumbsStoryArgs } from '@stories/navigation/breadcrumbs/constants'
-import colorsSource from '@stories/navigation/breadcrumbs/sources/BreadcrumbsColors.source.tsx.txt?raw'
-import examplesSource from '@stories/navigation/breadcrumbs/sources/BreadcrumbsExamples.source.tsx.txt?raw'
+import BreadcrumbsPlayground from './components/breadcrumbs-playground/BreadcrumbsPlayground'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/navigation/breadcrumbs/constants'
+import type { BreadcrumbsStoryArgs } from './types'
+import appearanceSource from './sources/BreadcrumbsAppearance.source.txt?raw'
+import examplesSource from '@stories/navigation/breadcrumbs/sources/BreadcrumbsExamples.source.txt?raw'
 import { createBreadcrumbsSource } from '@stories/navigation/breadcrumbs/utils/create-breadcrumbs-source/createBreadcrumbsSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
@@ -14,6 +16,13 @@ const meta = {
     title: 'Navigation/Breadcrumbs',
     component: Breadcrumbs,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -33,19 +42,7 @@ export default meta
 type Story = StoryObj<BreadcrumbsStoryArgs>
 
 export const Playground: Story = {
-    render: ({ children: _children, currentLabel, ...args }) => (
-        <Breadcrumbs {...args}>
-            <Breadcrumbs.Item
-                label={'Home'}
-                href={'/'}
-            />
-            <Breadcrumbs.Item
-                label={'Products'}
-                href={'/products'}
-            />
-            <Breadcrumbs.Item label={currentLabel} />
-        </Breadcrumbs>
-    ),
+    render: BreadcrumbsPlayground,
 }
 
 export const Examples: Story = {
@@ -53,7 +50,7 @@ export const Examples: Story = {
     render: BreadcrumbsExamples,
 }
 
-export const Colors: Story = {
-    parameters: { docs: { ...storySource(colorsSource) } },
-    render: BreadcrumbsColors,
+export const Appearance: Story = {
+    parameters: { docs: { ...storySource(appearanceSource) } },
+    render: BreadcrumbsAppearance,
 }

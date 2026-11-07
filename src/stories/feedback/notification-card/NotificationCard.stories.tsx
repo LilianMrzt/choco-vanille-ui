@@ -7,8 +7,8 @@ import NotificationCardVariants from '@stories/feedback/notification-card/compon
 import NotificationCardNarrow from '@stories/feedback/notification-card/components/notification-card-narrow/NotificationCardNarrow'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/feedback/notification-card/constants'
 import type { NotificationCardStoryArgs } from '@stories/feedback/notification-card/types'
-import narrowSource from '@stories/feedback/notification-card/sources/NotificationCardNarrow.source.tsx.txt?raw'
-import variantsSource from '@stories/feedback/notification-card/sources/NotificationCardVariants.source.tsx.txt?raw'
+import narrowSource from '@stories/feedback/notification-card/sources/NotificationCardNarrow.source.txt?raw'
+import variantsSource from '@stories/feedback/notification-card/sources/NotificationCardVariants.source.txt?raw'
 import { createNotificationCardSource } from '@stories/feedback/notification-card/utils/create-notification-card-source/createNotificationCardSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 

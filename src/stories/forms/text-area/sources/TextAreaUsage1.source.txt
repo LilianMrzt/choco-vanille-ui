@@ -1,0 +1,26 @@
+import { IconButton, TextArea } from '@choco-vanille/ui'
+import InfoIcon from './InfoIcon.svg?react'
+import CloseIcon from './CloseIcon.svg?react'
+
+export const Example = () => (
+    <>
+        {/* Basic */}
+        <TextArea label="Description" placeholder="Tell us more..." rows={4} />
+
+        {/* With start icon */}
+        <TextArea label="Comment" startIcon={InfoIcon} />
+
+        {/* Custom end action */}
+        <TextArea
+            label="Bio"
+            endAction={
+                <IconButton
+                    icon={CloseIcon}
+                    aria-label="Clear"
+                    variant="ghost"
+                    color="primary"
+                />
+            }
+        />
+    </>
+)

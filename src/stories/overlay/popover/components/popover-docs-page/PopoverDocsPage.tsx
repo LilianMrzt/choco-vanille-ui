@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/PopoverUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const PopoverDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -30,6 +35,14 @@ const PopoverDocsPage = (): ReactElement => (
 Escape closes the popup. For modal focus trapping Base UI requires a close
 control inside the popup; an enabled item with \`closeOnClick\` provides one.
 The popup uses a document portal, so locally scoped themes may not follow it.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Popover.Trigger | Accessible element opening the popup. |
+| Popover.Content | Positioned dialog surface with width, padding and accessible-name options. |
+| Popover.Item | Named action with optional icons, shortcut and state styling; can close the popup on activation. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

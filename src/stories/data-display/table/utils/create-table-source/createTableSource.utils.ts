@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import { INVOICES } from '@stories/data-display/table/constants'
 import type { TableStoryArgs } from '@stories/data-display/table/types'
-import tableSource from '@stories/data-display/table/utils/create-table-source/sources/Table.source.tsx.txt?raw'
+import tableSource from '@stories/data-display/table/utils/create-table-source/sources/Table.source.txt?raw'
 
 /**
  * Produces public consumer JSX matching all current table instances and args.

@@ -1,0 +1,1 @@
+, actions: <Button label={{{fragment0}}} size="sm" variant="ghost" onClick={() => show('info', { title: 'Action completed' })} />

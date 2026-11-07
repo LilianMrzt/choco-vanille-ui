@@ -14,9 +14,11 @@ const BottomNavigationParentWidths = () => (
     <div
         style={{
             display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr)',
             gap: '1rem',
             width: '100%',
             maxWidth: '48rem',
+            minWidth: 0,
         }}
     >
         <div>

@@ -1,6 +1,6 @@
 import type { IconProps } from '@components/foundation/icon'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import template from '@stories/foundation/icon/utils/create-icon-source/sources/createIconSource.source.tsx.txt?raw'
+import template from '@stories/foundation/icon/utils/create-icon-source/sources/createIconSource.source.txt?raw'
 
 /**
  * Produces consumer JSX for the editable icon controls.

@@ -1,10 +1,10 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
-import template from '@stories/overlay/drawer/utils/create-drawer-source/sources/playground.source.tsx.txt?raw'
-import navigation from '@stories/overlay/drawer/utils/create-drawer-source/sources/navigation.source.tsx.txt?raw'
-import settings from '@stories/overlay/drawer/utils/create-drawer-source/sources/settings.source.tsx.txt?raw'
-import header from '@stories/overlay/drawer/utils/create-drawer-source/sources/header.source.tsx.txt?raw'
-import footer from '@stories/overlay/drawer/utils/create-drawer-source/sources/footer.source.tsx.txt?raw'
+import template from '@stories/overlay/drawer/utils/create-drawer-source/sources/playground.source.txt?raw'
+import navigation from '@stories/overlay/drawer/utils/create-drawer-source/sources/navigation.source.txt?raw'
+import settings from '@stories/overlay/drawer/utils/create-drawer-source/sources/settings.source.txt?raw'
+import header from '@stories/overlay/drawer/utils/create-drawer-source/sources/header.source.txt?raw'
+import footer from '@stories/overlay/drawer/utils/create-drawer-source/sources/footer.source.txt?raw'
 
 /**
  * Generates a consumer example from the controlled drawer options.
@@ -45,7 +45,7 @@ export const createDrawerSource = (_source: string, { args }: Readonly<{ args: D
         backdrop: JSON.stringify(args.withBackdrop ?? true),
         collapsedWidth: JSON.stringify(args.collapsedWidth ?? '4rem'),
         backgroundColor: JSON.stringify(args.backgroundColor ?? undefined) ?? 'undefined',
-        header: args.showHeader ? header : '',
+        header: args.showHeader ? renderSource(header, { mode: JSON.stringify(args.mode ?? 'portal') }) : '',
         navigation: args.showNavigation ? renderSource(navigation, values) : '',
         settings: args.showSettings ? renderSource(settings, values) : '',
         footer: args.showFooter ? renderSource(footer, values) : '',

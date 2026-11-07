@@ -1,0 +1,10 @@
+import { Calendar } from '@choco-vanille/ui'
+
+export const StatesExample = () => (
+    <Calendar
+        aria-label="Unavailable dates"
+        defaultMonth={new Date(2026, 10, 1)}
+        disabled
+        mode="single"
+    />
+)

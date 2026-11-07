@@ -9,9 +9,9 @@ import SeparatorPlaygroundPlay from '@stories/layout/separator/utils/SeparatorPl
 import SeparatorWithLabel from '@stories/layout/separator/components/separator-with-label/SeparatorWithLabel'
 import SeparatorColors from '@stories/layout/separator/components/separator-colors/SeparatorColors'
 import SeparatorOrientations from '@stories/layout/separator/components/separator-orientations/SeparatorOrientations'
-import SeparatorWithLabelSource from '@stories/layout/separator/sources/SeparatorWithLabel.source.tsx.txt?raw'
-import SeparatorColorsSource from '@stories/layout/separator/sources/SeparatorColors.source.tsx.txt?raw'
-import SeparatorOrientationsSource from '@stories/layout/separator/sources/SeparatorOrientations.source.tsx.txt?raw'
+import SeparatorWithLabelSource from '@stories/layout/separator/sources/SeparatorWithLabel.source.txt?raw'
+import SeparatorColorsSource from '@stories/layout/separator/sources/SeparatorColors.source.txt?raw'
+import SeparatorOrientationsSource from '@stories/layout/separator/sources/SeparatorOrientations.source.txt?raw'
 import { createSeparatorSource } from '@stories/layout/separator/utils/createSeparatorSource.utils'
 
 const meta = {

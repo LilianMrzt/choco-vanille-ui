@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { StepperStoryArgs } from '@stories/navigation/stepper/constants'
-import sourceTemplate from '@stories/navigation/stepper/utils/create-stepper-source/sources/createStepperSource.source.tsx.txt?raw'
+import type { StepperStoryArgs } from '@stories/navigation/stepper/types'
+import sourceTemplate from '@stories/navigation/stepper/utils/create-stepper-source/sources/createStepperSource.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current story controls.
@@ -20,4 +20,7 @@ export const createStepperSource = (_source: string, { args }: Readonly<{ args: 
         accountLabel: JSON.stringify(args.accountLabel),
         preferencesLabel: JSON.stringify(args.preferencesLabel),
         reviewLabel: JSON.stringify(args.reviewLabel),
+        firstDescription: args.firstDescription === undefined ? '' : ` description={${JSON.stringify(args.firstDescription)}}`,
+        firstDisabled: args.firstDisabled === undefined ? '' : ` disabled={${JSON.stringify(args.firstDisabled)}}`,
+        firstSize: args.firstSize === undefined ? '' : ` size={${JSON.stringify(args.firstSize)}}`,
     })

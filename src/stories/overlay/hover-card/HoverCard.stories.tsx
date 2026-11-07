@@ -4,13 +4,21 @@ import { useArgs } from 'storybook/preview-api'
 import { HoverCard } from '@components/overlay/hover-card'
 import HoverCardDocsPage from '@stories/overlay/hover-card/components/hover-card-docs-page/HoverCardDocsPage'
 import HoverCardExample from '@stories/overlay/hover-card/components/hover-card-example/HoverCardExample'
-import { ARG_TYPES, DEFAULT_ARGS, type HoverCardStoryArgs } from '@stories/overlay/hover-card/constants'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/hover-card/constants'
+import type { HoverCardStoryArgs } from './types'
 import { createHoverCardSource } from '@stories/overlay/hover-card/utils/create-hover-card-source/createHoverCardSource.utils'
 
 const meta = {
     title: 'Overlay/HoverCard',
     component: HoverCard,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -66,5 +74,11 @@ export const Playground: Story = { render: ControlledHoverCard }
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
     parameters: { docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } } },
-    render: HoverCardExample,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <HoverCardExample
+            {...args}
+            key={String(args.defaultOpen)}
+        />
+    ),
 }

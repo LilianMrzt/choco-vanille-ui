@@ -1,0 +1,5 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+export const ActionsExample = () => (
+    <TimePicker label={'Start time'} showNowButton clearable />
+)

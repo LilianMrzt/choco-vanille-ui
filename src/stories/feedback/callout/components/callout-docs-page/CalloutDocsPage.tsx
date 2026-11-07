@@ -1,7 +1,7 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
 import type { ReactElement } from 'react'
-
-import { md } from '@stories/_shared/utils/markdown'
+import usageSource from '@stories/feedback/callout/sources/CalloutUsage.source.txt?raw'
+import { DOCUMENTATION } from '@stories/feedback/callout/components/callout-docs-page/constants'
 
 /**
  * Renders callout documentation.
@@ -14,19 +14,13 @@ const CalloutDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
-        <Markdown>{md`
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`role\` | No | \`status \\| alert\` | Defaults to \`status\`; use \`alert\` for urgent messages. Explicit \`undefined\` removes the role. |
-| \`Callout.Action aria-label\` | Yes | \`string\` | Names the icon-only action. |
-| \`Callout.Icon aria-label\` | No | \`string\` | Name an icon that conveys meaning on its own. |
-
-The root supports convenience title and description props or compound slots.
-        `}</Markdown>
+        <Markdown>{DOCUMENTATION}</Markdown>
         <Stories includePrimary={false} />
     </>
 )

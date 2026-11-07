@@ -1,0 +1,5 @@
+import { Slider } from '@choco-vanille/ui'
+
+export const RangeExample = () => (
+    <Slider label={'Price'} defaultValue={[20, 80]} showValue />
+)

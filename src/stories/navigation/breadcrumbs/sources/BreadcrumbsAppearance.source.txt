@@ -1,0 +1,47 @@
+import { Breadcrumbs } from '@choco-vanille/ui'
+
+const Colors = () => (
+    <>
+        <Breadcrumbs aria-label="primary.main breadcrumb" color="primary.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="secondary.main breadcrumb" color="secondary.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="neutral.main breadcrumb" color="neutral.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="danger.main breadcrumb" color="danger.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="success.main breadcrumb" color="success.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="warning.main breadcrumb" color="warning.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="info.main breadcrumb" color="info.main">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+    </>
+)
+
+const Separators = () => (
+    <>
+        <Breadcrumbs aria-label="chevron breadcrumb" separator="chevron">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Products" href="/products" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="slash breadcrumb" separator="slash">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Products" href="/products" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="dot breadcrumb" separator="dot">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Products" href="/products" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="reverseSlash breadcrumb" separator="reverseSlash">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Products" href="/products" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+        <Breadcrumbs aria-label="dash breadcrumb" separator="dash">
+            <Breadcrumbs.Item label="Home" href="/" /><Breadcrumbs.Item label="Products" href="/products" /><Breadcrumbs.Item label="Current" />
+        </Breadcrumbs>
+    </>
+)

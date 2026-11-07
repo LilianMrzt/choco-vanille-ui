@@ -1,0 +1,43 @@
+import { Tabs } from '@choco-vanille/ui'
+
+const Variants = () => (
+    <>
+        <Tabs defaultValue="account">
+            <Tabs.List aria-label="default settings" variant="default">
+                <Tabs.Trigger value="account" label="Account" />
+                <Tabs.Trigger value="password" label="Password" />
+            </Tabs.List>
+            <Tabs.Content value="account">Account settings</Tabs.Content>
+            <Tabs.Content value="password">Password settings</Tabs.Content>
+        </Tabs>
+        <Tabs defaultValue="account">
+            <Tabs.List aria-label="pills settings" variant="pills">
+                <Tabs.Trigger value="account" label="Account" />
+                <Tabs.Trigger value="password" label="Password" />
+            </Tabs.List>
+            <Tabs.Content value="account">Account settings</Tabs.Content>
+            <Tabs.Content value="password">Password settings</Tabs.Content>
+        </Tabs>
+    </>
+)
+
+const Orientations = () => (
+    <>
+        <Tabs orientation="horizontal" defaultValue="account">
+            <Tabs.List aria-label="horizontal settings">
+                <Tabs.Trigger value="account" label="Account" />
+                <Tabs.Trigger value="password" label="Password" />
+            </Tabs.List>
+            <Tabs.Content value="account">Account settings</Tabs.Content>
+            <Tabs.Content value="password">Password settings</Tabs.Content>
+        </Tabs>
+        <Tabs orientation="vertical" defaultValue="account">
+            <Tabs.List aria-label="vertical settings">
+                <Tabs.Trigger value="account" label="Account" />
+                <Tabs.Trigger value="password" label="Password" />
+            </Tabs.List>
+            <Tabs.Content value="account">Account settings</Tabs.Content>
+            <Tabs.Content value="password">Password settings</Tabs.Content>
+        </Tabs>
+    </>
+)

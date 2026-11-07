@@ -6,6 +6,7 @@ import type { ReactElement } from 'react'
 const AvatarSizes = (): ReactElement => (
     <Flex
         alignItems={'center'}
+        flexWrap={'wrap'}
         gap={12}
     >
         {SIZES.map((size) => (

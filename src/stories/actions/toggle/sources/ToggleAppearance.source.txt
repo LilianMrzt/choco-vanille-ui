@@ -1,0 +1,76 @@
+import { Toggle } from '@choco-vanille/ui'
+import { Flex, Typography } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Variants / Colors</Typography>
+            <Flex flexDirection="column" gap={16}>
+                <Flex aria-label="primary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">primary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="primary" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="primary" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="primary" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="primary" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="secondary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">secondary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="secondary" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="secondary" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="secondary" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="secondary" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">tertiary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="tertiary" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="tertiary" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="tertiary" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="tertiary" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">destructive</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="destructive" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="destructive" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="destructive" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="destructive" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="success" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">success</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="success" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="success" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="success" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="success" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="warning" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">warning</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="warning" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="warning" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="warning" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="warning" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="info" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">info</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Toggle label="outlined" color="info" variant="outlined" defaultPressed />
+                        <Toggle label="outlinedSubtle" color="info" variant="outlinedSubtle" defaultPressed />
+                        <Toggle label="ghost" color="info" variant="ghost" defaultPressed />
+                        <Toggle label="ghostSubtle" color="info" variant="ghostSubtle" defaultPressed />
+                    </Flex>
+                </Flex>
+            </Flex>
+        </section>
+    </Flex>
+)

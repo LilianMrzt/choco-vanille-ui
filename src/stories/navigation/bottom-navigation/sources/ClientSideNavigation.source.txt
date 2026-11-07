@@ -1,0 +1,20 @@
+import { useState } from 'react'
+import { BottomNavigation } from '@choco-vanille/ui'
+// Replace these with icon components from your application.
+import { CircleIcon, SearchIcon, UserIcon } from './icons'
+
+const Example = () => {
+  const [route, setRoute] = useState('home')
+  return (
+    <div style={{ width: '100%' }}>
+      <BottomNavigation aria-label="Application navigation" value={route}>
+        <BottomNavigation.List>
+          <BottomNavigation.Item value="home" label="Home" icon={CircleIcon} href="/" onClick={() => setRoute('home')} />
+          <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search" onClick={() => setRoute('search')} />
+          <BottomNavigation.Item value="profile" label="Profile" icon={UserIcon} href="/profile" onClick={() => setRoute('profile')} />
+        </BottomNavigation.List>
+      </BottomNavigation>
+      <p style={{ margin: '0.75rem 0 0', textAlign: 'center' }}>Current route: /{route}</p>
+    </div>
+  )
+}

@@ -1,6 +1,9 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { DialogStoryArgs } from '@stories/overlay/dialog/types'
-import sourceTemplate from '@stories/overlay/dialog/utils/create-dialog-source/sources/createDialogSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/overlay/dialog/utils/create-dialog-source/sources/createDialogSource.source.txt?raw'
+import footerTemplate from '@stories/overlay/dialog/utils/create-dialog-source/sources/footer.source.txt?raw'
+import stateTemplate from '@stories/overlay/dialog/utils/create-dialog-source/sources/state.source.txt?raw'
+import stateImportSource from '@stories/overlay/dialog/utils/create-dialog-source/sources/state-import.source.txt?raw'
 
 /**
  * Serializes a string, number or boolean JSX attribute when present.
@@ -34,16 +37,22 @@ export const createDialogSource = (_source: string, { args }: Readonly<{ args: D
         serializeAttribute('defaultTriggerId', args.defaultTriggerId),
     ].join('')
     const headerProps = serializeAttribute('title', args.title) +
+        serializeAttribute('titleAs', args.titleAs) +
+        serializeAttribute('showCloseButton', args.showCloseButton) +
         (args.showDescription ? serializeAttribute('description', args.description) : '')
     const footer = args.showFooter
-        ? `\n      <Dialog.Footer>\n        <Dialog.Close>\n          <Button color="primary" label={${JSON.stringify(args.cancelLabel ?? 'Cancel')}} size="sm" variant="outlined" />\n        </Dialog.Close>\n        <Button color="primary" label={${JSON.stringify(args.confirmLabel ?? 'Save changes')}} size="sm" variant="contained" />\n      </Dialog.Footer>`
+        ? renderSource(footerTemplate, {
+            cancelLabel: JSON.stringify(args.cancelLabel ?? 'Cancel'),
+            confirmLabel: JSON.stringify(args.confirmLabel ?? 'Save changes'),
+        })
         : ''
 
     return renderSource(sourceTemplate, {
-        stateImport: isControlled ? "import { useState } from 'react'\n" : '',
-        state: isControlled ? `  const [open, setOpen] = useState(${JSON.stringify(args.open)})\n\n` : '',
+        stateImport: isControlled ? stateImportSource : '',
+        state: isControlled ? renderSource(stateTemplate, { open: JSON.stringify(args.open) }) : '',
         rootProps,
-        contentProps: serializeAttribute('size', args.size),
+        contentProps: serializeAttribute('size', args.size) + serializeAttribute('defaultAriaLabel', args.contentLabel),
+        bodyProps: serializeAttribute('padding', args.bodyPadding),
         headerProps,
         footer,
     })

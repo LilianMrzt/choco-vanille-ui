@@ -1,6 +1,6 @@
 import type { ProgressBaseProps } from '@components/feedback/progress'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/feedback/progress/utils/create-progress-source/sources/createProgressSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/feedback/progress/utils/create-progress-source/sources/createProgressSource.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current story controls.

@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { PopoverStoryArgs } from '@stories/overlay/popover/constants'
-import controlledTemplate from '@stories/overlay/popover/utils/create-popover-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolledTemplate from '@stories/overlay/popover/utils/create-popover-source/sources/uncontrolled.source.tsx.txt?raw'
+import type { PopoverStoryArgs } from '@stories/overlay/popover/types'
+import controlledTemplate from '@stories/overlay/popover/utils/create-popover-source/sources/controlled.source.txt?raw'
+import uncontrolledTemplate from '@stories/overlay/popover/utils/create-popover-source/sources/uncontrolled.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current popover controls.

@@ -1,7 +1,7 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
 import type { ReactElement } from 'react'
-
-import { md } from '@stories/_shared/utils/markdown'
+import usageSource from '@stories/feedback/notification-card/sources/NotificationCardUsage.source.txt?raw'
+import { DOCUMENTATION } from '@stories/feedback/notification-card/components/notification-card-docs-page/constants'
 
 /**
  * Renders notification-card documentation.
@@ -14,29 +14,13 @@ const NotificationCardDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
-        <Markdown>{md`
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`role\` | No | \`status \\| alert \\| none\` | Defaults to \`status\`; use \`alert\` for urgent messages. |
-| \`closeLabel\` | No | \`string\` | Names the convenience close button. |
-| \`NotificationCard.Close aria-label\` | Yes | \`string\` | Names the compound close button. |
-| \`onClose\` | No | \`() => void\` | Header supplies a close button unless an explicit Close slot is present. |
-
-Compose Header (Icon, Title, Close), Body (Description or custom content), and
-Footer (Actions). Compose Icon explicitly: Header never injects an icon.
-Header supplies the root's onClose button unless an explicit Close slot replaces
-it. Sections can be omitted; convenience props still include the variant icon.
-The icon defaults to sm with compact padding and a 1px border matching the
-outlinedSubtle Badge treatment. Override its borderColor to customize the tint.
-The close button uses the sm preset.
-The card does not dismiss itself;
-attach a handler to its close button. Toaster handles dismissal and announcements
-when using the notification hooks.
-        `}</Markdown>
+        <Markdown>{DOCUMENTATION}</Markdown>
         <Stories includePrimary={false} />
     </>
 )

@@ -1,0 +1,26 @@
+import { Progress, CircularProgress } from '@choco-vanille/ui'
+
+const Example = () => (
+    <div style={{ display: 'grid', gap: '1rem', width: '20rem', maxWidth: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Progress value={60} size="xs" label="XS" quantityLabel />
+            <CircularProgress value={60} size="xs" aria-label="XS" quantityLabel />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Progress value={60} size="sm" label="SM" quantityLabel />
+            <CircularProgress value={60} size="sm" aria-label="SM" quantityLabel />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Progress value={60} size="md" label="MD" quantityLabel />
+            <CircularProgress value={60} size="md" aria-label="MD" quantityLabel />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Progress value={60} size="lg" label="LG" quantityLabel />
+            <CircularProgress value={60} size="lg" aria-label="LG" quantityLabel />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Progress value={60} size="xl" label="XL" quantityLabel />
+            <CircularProgress value={60} size="xl" aria-label="XL" quantityLabel />
+        </div>
+    </div>
+)

@@ -1,32 +1,23 @@
-import { useArgs } from 'storybook/preview-api'
-
-import { Checkbox, type CheckboxRootProps } from '@components/forms/checkbox'
+import { Checkbox } from '@components/forms/checkbox'
 import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { ReactElement } from 'react'
 
 /**
  * Demonstrates the composable checkbox slots with synchronized controls.
  * @internal Storybook-only component; not part of the public package API.
- * @param _props - Storybook controls.
+ * @param args - Story controls and the callback supplied by the story renderer.
  * @returns A controlled checkbox with a custom indicator.
  * @example
  * <CompoundPlayground compoundLabel="Accept" indicatorText="X" indicatorKeepMounted={false} />
  */
-const CompoundPlayground = (_props: CheckboxStoryArgs) => {
-    const [args, updateArgs] = useArgs<CheckboxStoryArgs>()
-    const handleCheckedChange: NonNullable<CheckboxRootProps['onCheckedChange']> = (checked, details) => {
-        args.onCheckedChange?.(checked, details)
-        if (!details.isCanceled) {
-            updateArgs({ checked })
-        }
-    }
-
+const CompoundPlayground = (args: CheckboxStoryArgs): ReactElement => {
     return (
         <Checkbox.Root
             aria-label={args.compoundLabel}
             checked={args.checked}
             disabled={args.disabled}
             indeterminate={args.indeterminate}
-            onCheckedChange={handleCheckedChange}
+            onCheckedChange={args.onCheckedChange}
             required={args.required}
         >
             <Checkbox.Indicator keepMounted={args.indicatorKeepMounted}>

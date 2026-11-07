@@ -1,0 +1,23 @@
+import { Button, Panel } from '@choco-vanille/ui'
+
+const Appearance = () => (
+    <>
+        <section>
+            <h3>Positions</h3>
+            <Panel>
+                <Panel.Trigger><Button color="primary" label="Open left panel" variant="outlined" /></Panel.Trigger>
+                <Panel.Content position="left" width="min(26rem, 100vw)">
+                    <Panel.Header title="Left panel" />
+                    <Panel.Body>Slides in from the left.</Panel.Body>
+                </Panel.Content>
+            </Panel>
+            <Panel>
+                <Panel.Trigger><Button color="primary" label="Open right panel" variant="outlined" /></Panel.Trigger>
+                <Panel.Content position="right" width="min(26rem, 100vw)">
+                    <Panel.Header title="Right panel" />
+                    <Panel.Body>Slides in from the right.</Panel.Body>
+                </Panel.Content>
+            </Panel>
+        </section>
+    </>
+)

@@ -1,4 +1,0 @@
-import { Button } from '@choco-vanille/ui'
-
-<Button label="Disabled" disabled />
-<Button label="Active" active />

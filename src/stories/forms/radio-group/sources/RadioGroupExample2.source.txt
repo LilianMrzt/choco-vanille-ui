@@ -1,0 +1,7 @@
+import { RadioGroup } from '@choco-vanille/ui'
+
+export const StatesExample = () => (
+    <RadioGroup disabled aria-label={'Theme'}>
+        <RadioGroup.Item value={'system'} label={'System'} />
+    </RadioGroup>
+)

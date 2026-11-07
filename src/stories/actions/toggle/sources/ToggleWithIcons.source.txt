@@ -1,0 +1,13 @@
+import { Toggle } from '@choco-vanille/ui'
+import BoldIcon from './BoldIcon'
+import ChevronRightIcon from './ChevronRightIcon'
+import UploadIcon from './UploadIcon'
+
+
+const Example = () => (
+    <>
+        <Toggle label="Bold" startIcon={BoldIcon} />
+        <Toggle label="Next" endIcon={ChevronRightIcon} />
+        <Toggle label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} />
+    </>
+)

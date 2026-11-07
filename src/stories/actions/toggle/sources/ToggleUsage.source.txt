@@ -1,0 +1,10 @@
+import { Toggle, ToggleGroup } from '@choco-vanille/ui'
+
+const StandaloneExample = () => <Toggle label="Bold" defaultPressed />
+
+const GroupExample = () => (
+    <ToggleGroup aria-label="Text formatting" multiple defaultValue={['bold']}>
+        <ToggleGroup.Item label="Bold" value="bold" />
+        <ToggleGroup.Item label="Italic" value="italic" />
+    </ToggleGroup>
+)

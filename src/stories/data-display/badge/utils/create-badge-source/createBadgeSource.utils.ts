@@ -1,6 +1,6 @@
 import { type BadgeProps } from '@components/data-display/badge'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/data-display/badge/utils/create-badge-source/sources/createBadgeSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/data-display/badge/utils/create-badge-source/sources/createBadgeSource.source.txt?raw'
 
 /**
  * Creates consumer JSX from current Controls, including mapped icon expressions.

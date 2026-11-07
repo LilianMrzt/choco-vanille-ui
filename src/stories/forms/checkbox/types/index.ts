@@ -1,6 +1,5 @@
 import type { CheckboxProps } from '@components/forms/checkbox'
 import type { CheckboxGroupProps } from '@components/forms/checkbox-group'
-
 /** Story-only controls for the checkbox slots and group example. */
 export type CheckboxStoryArgs = CheckboxProps & Readonly<{
     compoundLabel: string

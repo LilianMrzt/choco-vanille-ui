@@ -1,0 +1,11 @@
+import SearchIcon from './SearchIcon'
+import { Flex, Icon } from '@choco-vanille/ui'
+
+<Flex alignItems="center" gap={12}>
+    <Icon icon={SearchIcon} size="xs" aria-label="xs" />
+    <Icon icon={SearchIcon} size="sm" aria-label="sm" />
+    <Icon icon={SearchIcon} size="md" aria-label="md" />
+    <Icon icon={SearchIcon} size="lg" aria-label="lg" />
+    <Icon icon={SearchIcon} size="xl" aria-label="xl" />
+    <Icon icon={SearchIcon} size="2xl" aria-label="2xl" />
+</Flex>

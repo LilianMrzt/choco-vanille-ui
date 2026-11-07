@@ -24,7 +24,7 @@ const CollapsibleExample: FC<CollapsibleStoryArgs> = ({
     panelPadding,
     ...rootProps
 }) => (
-    <div style={{ width: '25rem', maxWidth: '100%' }}>
+    <div style={{ width: 'min(25rem, 100%)', minWidth: 0, overflowX: 'auto' }}>
         <Collapsible {...rootProps}>
             <Collapsible.Trigger
                 endIcon={triggerEndIcon}

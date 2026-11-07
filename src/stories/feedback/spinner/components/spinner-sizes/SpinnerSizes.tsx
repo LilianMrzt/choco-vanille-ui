@@ -14,6 +14,7 @@ import { SIZES } from '@stories/feedback/spinner/constants'
 const SpinnerSizes = (): ReactElement => (
     <Flex
         alignItems={'center'}
+        flexWrap={'wrap'}
         gap={16}
     >
         {SIZES.map((size) => (

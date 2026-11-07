@@ -1,0 +1,10 @@
+import { Flex, Avatar } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+        <Avatar aria-label="Jane Doe, sm" initials="JD" size="sm" />
+        <Avatar aria-label="Jane Doe, md" initials="JD" size="md" />
+        <Avatar aria-label="Jane Doe, lg" initials="JD" size="lg" />
+        <Avatar aria-label="Jane Doe, xl" initials="JD" size="xl" />
+    </Flex>
+)

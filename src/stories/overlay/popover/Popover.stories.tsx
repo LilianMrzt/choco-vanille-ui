@@ -4,13 +4,21 @@ import { useArgs } from 'storybook/preview-api'
 import { Popover } from '@components/overlay/popover'
 import PopoverDocsPage from '@stories/overlay/popover/components/popover-docs-page/PopoverDocsPage'
 import PopoverExample from '@stories/overlay/popover/components/popover-example/PopoverExample'
-import { ARG_TYPES, DEFAULT_ARGS, type PopoverStoryArgs } from '@stories/overlay/popover/constants'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/popover/constants'
+import type { PopoverStoryArgs } from './types'
 import { createPopoverSource } from '@stories/overlay/popover/utils/create-popover-source/createPopoverSource.utils'
 
 const meta = {
     title: 'Overlay/Popover',
     component: Popover,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -68,5 +76,11 @@ export const Uncontrolled: Story = {
     parameters: {
         docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } },
     },
-    render: PopoverExample,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <PopoverExample
+            {...args}
+            key={String(args.defaultOpen)}
+        />
+    ),
 }

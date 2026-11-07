@@ -1,0 +1,18 @@
+import { AutocompleteField } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon.svg?react'
+
+const FRUIT_OPTIONS = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'blueberry', label: 'Blueberry' },
+    { value: 'grapes', label: 'Grapes' },
+    { value: 'pineapple', label: 'Pineapple' },
+]
+
+export const WithIconsExample = () => (
+    <AutocompleteField
+        label={'Search'}
+        startIcon={SearchIcon}
+        options={FRUIT_OPTIONS}
+    />
+)

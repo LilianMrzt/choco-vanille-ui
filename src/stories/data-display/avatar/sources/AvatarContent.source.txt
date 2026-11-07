@@ -1,0 +1,9 @@
+import { Avatar, Flex } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex flexWrap="wrap" gap={16}>
+        <Avatar alt="shadcn" aria-label="shadcn" initials="CN" src="https://github.com/shadcn.png" />
+        <Avatar aria-label="Jane Doe" initials="JD" />
+        <Avatar aria-label="Unnamed profile" />
+    </Flex>
+)

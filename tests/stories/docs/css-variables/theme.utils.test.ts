@@ -9,7 +9,7 @@ import {
     buildThemeCSS,
     buildVanillaExtractSnippet,
     editorColorRows,
-} from '@stories/docs/css-variables/utils/theme.utils.ts'
+} from '@stories/docs/css-variables/utils/theme/theme.utils.ts'
 
 describe('theme variable documentation', () => {
     it('documents every editor tone with its real light and dark values', () => {

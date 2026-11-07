@@ -2,6 +2,7 @@ import type { Meta } from '@storybook/react-vite'
 
 import { Grid } from '@components/layout/grid'
 import { md } from '@stories/_shared/utils/markdown'
+import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
 export const COLUMNS = [
     undefined,
@@ -168,6 +169,12 @@ export const ARG_TYPES = {
     className: { control: 'text', description: 'Additional container class.' },
     style: { control: 'object', description: 'Inline style overrides.' },
     ref: { control: false, description: 'Ref passed to the rendered element.' },
+    color: LAYOUT_ARG_TYPES.color,
+    flex: LAYOUT_ARG_TYPES.flex,
+    flexDirection: LAYOUT_ARG_TYPES.flexDirection,
+    flexWrap: LAYOUT_ARG_TYPES.flexWrap,
+    alignSelf: LAYOUT_ARG_TYPES.alignSelf,
+    textAlign: LAYOUT_ARG_TYPES.textAlign
 } satisfies NonNullable<Meta<typeof Grid>['argTypes']>
 
 export const DEFAULT_ARGS = {

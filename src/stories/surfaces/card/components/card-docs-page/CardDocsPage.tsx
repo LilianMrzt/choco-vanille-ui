@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/CardUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const CardDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -25,6 +30,14 @@ const CardDocsPage = (): ReactElement => (
 | \`as\` | No | HTML element | Select a semantic element for the content. |
 
 Name icon-only actions with an accessible label.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Card.Header | Header with convenient title, description and actions props, or custom children. |
+| Card.Body | Main content section with layout and semantic-element props. |
+| Card.Footer | Action row with layout and semantic-element props. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

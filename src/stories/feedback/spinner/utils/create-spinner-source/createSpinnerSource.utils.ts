@@ -1,6 +1,6 @@
 import type { SpinnerProps } from '@components/feedback/spinner'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/feedback/spinner/utils/create-spinner-source/sources/createSpinnerSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/feedback/spinner/utils/create-spinner-source/sources/createSpinnerSource.source.txt?raw'
 
 /**
  * Serializes a string-valued JSX attribute when present.

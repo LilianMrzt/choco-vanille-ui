@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { TabsStoryArgs } from '@stories/navigation/tabs/constants'
-import controlledTemplate from '@stories/navigation/tabs/utils/create-tabs-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolledTemplate from '@stories/navigation/tabs/utils/create-tabs-source/sources/uncontrolled.source.tsx.txt?raw'
+import type { TabsStoryArgs } from '@stories/navigation/tabs/types'
+import controlledTemplate from '@stories/navigation/tabs/utils/create-tabs-source/sources/controlled.source.txt?raw'
+import uncontrolledTemplate from '@stories/navigation/tabs/utils/create-tabs-source/sources/uncontrolled.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current tab controls.

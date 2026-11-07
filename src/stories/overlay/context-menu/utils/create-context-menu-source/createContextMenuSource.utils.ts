@@ -1,7 +1,8 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { ContextMenuStoryArgs } from '@stories/overlay/context-menu/types'
-import controlled from '@stories/overlay/context-menu/utils/create-context-menu-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolled from '@stories/overlay/context-menu/utils/create-context-menu-source/sources/uncontrolled.source.tsx.txt?raw'
+import controlled from '@stories/overlay/context-menu/utils/create-context-menu-source/sources/controlled.source.txt?raw'
+import uncontrolled from '@stories/overlay/context-menu/utils/create-context-menu-source/sources/uncontrolled.source.txt?raw'
+import disabledItemSource from '@stories/overlay/context-menu/utils/create-context-menu-source/sources/disabled-item.source.txt?raw'
 
 /**
  * Generates JSX from the current controls.
@@ -22,5 +23,5 @@ export const createContextMenuSource = (_source: string, { args }: Readonly<{ ar
         triggerLabel: JSON.stringify(args.triggerLabel),
         editLabel: JSON.stringify(args.editLabel),
         deleteLabel: JSON.stringify(args.deleteLabel),
-        disabledItem: args.showDisabledItem ? '\n        <ContextMenu.Item label="Disabled action" disabled />' : '',
+        disabledItem: args.showDisabledItem ? disabledItemSource.trimEnd() : '',
     })

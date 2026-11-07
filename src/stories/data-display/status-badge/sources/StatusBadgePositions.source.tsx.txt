@@ -1,8 +1,0 @@
-import { Avatar, StatusBadge } from '@choco-vanille/ui'
-
-<>
-    <StatusBadge position="top-left"><Avatar initials="TL" /></StatusBadge>
-    <StatusBadge position="top-right"><Avatar initials="TR" /></StatusBadge>
-    <StatusBadge position="bottom-left"><Avatar initials="BL" /></StatusBadge>
-    <StatusBadge position="bottom-right"><Avatar initials="BR" /></StatusBadge>
-</>

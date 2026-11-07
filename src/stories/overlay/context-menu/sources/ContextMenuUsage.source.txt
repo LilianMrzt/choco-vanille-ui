@@ -1,0 +1,9 @@
+import { Button, ContextMenu } from '@choco-vanille/ui'
+
+<ContextMenu>
+    <ContextMenu.Trigger><Button label="Right-click for actions" /></ContextMenu.Trigger>
+    <ContextMenu.Content>
+        <ContextMenu.Item label="Edit" />
+        <ContextMenu.Item label="Delete" destructive />
+    </ContextMenu.Content>
+</ContextMenu>

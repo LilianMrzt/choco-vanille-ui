@@ -1,26 +1,17 @@
-import { useArgs } from 'storybook/preview-api'
-
-import { CheckboxGroup, type CheckboxGroupProps } from '@components/forms/checkbox-group'
+import { CheckboxGroup } from '@components/forms/checkbox-group'
 import { GROUP_VALUES } from '@stories/forms/checkbox/constants'
 import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
+import type { ReactElement } from 'react'
 
 /**
  * Renders the controlled group and synchronizes its controls and callback.
  * @internal Storybook-only component; not part of the public package API.
- * @param _props - Storybook controls.
+ * @param args - Story controls and the group callback supplied by the story renderer.
  * @returns The group and its selectable items.
  * @example
  * <GroupPlayground {...args} />
  */
-const GroupPlayground = (_props: CheckboxStoryArgs) => {
-    const [args, updateArgs] = useArgs<CheckboxStoryArgs>()
-    const handleValueChange: NonNullable<CheckboxGroupProps['onValueChange']> = (value, details) => {
-        args.groupOnValueChange?.(value, details)
-        if (!details.isCanceled) {
-            updateArgs({ groupValue: value })
-        }
-    }
-
+const GroupPlayground = (args: CheckboxStoryArgs): ReactElement => {
     return (
         <CheckboxGroup
             allValues={GROUP_VALUES}
@@ -28,7 +19,7 @@ const GroupPlayground = (_props: CheckboxStoryArgs) => {
             error={args.groupError}
             helperText={args.groupHelperText}
             label={args.groupLabel}
-            onValueChange={handleValueChange}
+            onValueChange={args.groupOnValueChange}
             value={args.groupValue}
         >
             <CheckboxGroup.Header label={args.groupHeaderLabel} />

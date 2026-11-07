@@ -1,0 +1,10 @@
+import { Tabs } from '@choco-vanille/ui'
+
+<Tabs defaultValue="account">
+    <Tabs.List aria-label="Settings">
+        <Tabs.Trigger value="account" label="Account" />
+        <Tabs.Trigger value="billing" label="Billing" />
+    </Tabs.List>
+    <Tabs.Content value="account">Account settings</Tabs.Content>
+    <Tabs.Content value="billing">Billing settings</Tabs.Content>
+</Tabs>

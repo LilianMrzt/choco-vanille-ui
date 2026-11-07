@@ -1,0 +1,13 @@
+import { Icon } from '@choco-vanille/ui'
+import SearchIcon from './assets/SearchIcon.svg?react'
+import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
+
+// Decorative icon — hidden from screen readers
+
+const Example = () => (
+    <>
+        <Icon icon={SearchIcon} />{/* Semantic icon — announced with an accessible label */}
+        
+        <Icon icon={TriangleAlertIcon} aria-label="Warning" />
+    </>
+)

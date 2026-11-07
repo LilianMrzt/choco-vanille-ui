@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Popover } from '@components/overlay/popover'
-import type { PopoverStoryArgs } from '@stories/overlay/popover/constants'
+import type { PopoverStoryArgs } from '@stories/overlay/popover/types'
 
 /**
  * Renders the example with root and slot controls.

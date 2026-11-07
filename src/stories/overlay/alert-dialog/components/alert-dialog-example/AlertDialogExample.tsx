@@ -11,6 +11,9 @@ import type { AlertDialogStoryArgs } from '@stories/overlay/alert-dialog/types'
  * @param props - Dialog root props and demonstration controls.
  * @param props.size - Content size.
  * @param props.title - Header title.
+ * @param props.titleAs - Header heading level.
+ * @param props.showCloseButton - Whether to show the header close control.
+ * @param props.contentLabel - Fallback accessible confirmation name.
  * @param props.description - Header description.
  * @param props.triggerLabel - Trigger text.
  * @param props.actionLabel - Confirmation text.
@@ -23,6 +26,9 @@ import type { AlertDialogStoryArgs } from '@stories/overlay/alert-dialog/types'
 const AlertDialogExample = ({
     size,
     title,
+    titleAs,
+    showCloseButton,
+    contentLabel,
     description,
     triggerLabel,
     actionLabel,
@@ -38,10 +44,15 @@ const AlertDialogExample = ({
                 variant={'contained'}
             />
         </AlertDialog.Trigger>
-        <AlertDialog.Content size={size}>
+        <AlertDialog.Content
+            defaultAriaLabel={contentLabel}
+            size={size}
+        >
             <AlertDialog.Header
                 description={description}
                 title={title}
+                titleAs={titleAs}
+                showCloseButton={showCloseButton}
             />
             {showBody && (
                 <AlertDialog.Body>

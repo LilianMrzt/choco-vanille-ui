@@ -1,21 +1,18 @@
+import TypographyFontSizes from '@stories/foundation/typography/components/typography-font-sizes/TypographyFontSizes'
+import sizesSource from '@stories/foundation/typography/sources/TypographyFontSizes.source.txt?raw'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Typography } from '@/components/foundation/typography'
 
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import { storySource } from '@stories/_shared/utils/storySource'
 import TypographyDocsPage from '@stories/foundation/typography/components/typography-docs-page/TypographyDocsPage'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/foundation/typography/constants'
 import TypographyPlaygroundPlay from '@stories/foundation/typography/utils/TypographyPlaygroundPlay.utils'
-import TypographyVariants from '@stories/foundation/typography/components/typography-variants/TypographyVariants'
-import TypographyFontSizes from '@stories/foundation/typography/components/typography-font-sizes/TypographyFontSizes'
-import TypographyFontWeights from '@stories/foundation/typography/components/typography-font-weights/TypographyFontWeights'
-import TypographyVariantsSource from '@stories/foundation/typography/sources/TypographyVariants.source.tsx.txt?raw'
-import TypographyFontSizesSource from '@stories/foundation/typography/sources/TypographyFontSizes.source.tsx.txt?raw'
-import TypographyFontWeightsSource from '@stories/foundation/typography/sources/TypographyFontWeights.source.tsx.txt?raw'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/foundation/typography/sources/TypographyInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/foundation/typography/sources/TypographyInteractive.source.txt?raw'
+import TypographyAppearance from '@stories/foundation/typography/components/typography-appearance/TypographyAppearance'
+import appearanceSource from '@stories/foundation/typography/sources/TypographyAppearance.source.txt?raw'
 
 const meta = {
     title: 'Foundation/Typography',
@@ -50,43 +47,12 @@ export const Playground: Story = {
     },
     play: TypographyPlaygroundPlay,
 }
-
-export const Colors: Story = {
-    args: {
-        color: vars.color.primary.main,
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: 'Use a theme variable or try var(--custom-color, rebeccapurple), currentColor, or a CSS color in Controls.',
-            }
-        },
-    },
-}
-
-export const Variants: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ TypographyVariantsSource),
-        },
-    },
-    render: TypographyVariants,
+export const Appearance: Story = {
+    parameters: { docs: { ...storySource(appearanceSource) } },
+    render: TypographyAppearance,
 }
 
 export const FontSizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ TypographyFontSizesSource),
-        },
-    },
+    parameters: { docs: { ...storySource(sizesSource) } },
     render: TypographyFontSizes,
-}
-
-export const FontWeights: Story = {
-    parameters: {
-        docs: {
-            ...storySource(/* language=tsx */ TypographyFontWeightsSource),
-        },
-    },
-    render: TypographyFontWeights,
 }

@@ -1,0 +1,9 @@
+import { Flex, Switch } from '@choco-vanille/ui'
+
+export const SwitchSizes = () => (
+    <Flex flexDirection={'column'} gap={16}>
+        <Switch label={'Small'} size={'sm'} />
+        <Switch label={'Medium'} size={'md'} />
+        <Switch label={'Large'} size={'lg'} />
+    </Flex>
+)

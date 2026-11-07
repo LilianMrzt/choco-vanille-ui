@@ -1,0 +1,19 @@
+import { Flex, Typography, Spinner } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Colors</Typography>
+            <Flex alignItems="center" gap={16}>
+              <Spinner aria-label="Loading" color="primary" />
+              <Spinner aria-label="Loading" color="secondary" />
+              <Spinner aria-label="Loading" color="tertiary" />
+              <Spinner aria-label="Loading" color="destructive" />
+              <Spinner aria-label="Loading" color="success" />
+              <Spinner aria-label="Loading" color="warning" />
+              <Spinner aria-label="Loading" color="info" />
+            </Flex>
+        </section>
+    </Flex>
+)

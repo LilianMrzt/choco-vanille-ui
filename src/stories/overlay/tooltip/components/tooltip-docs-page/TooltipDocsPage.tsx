@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/TooltipUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const TooltipDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -29,6 +34,12 @@ const TooltipDocsPage = (): ReactElement => (
 
 Do not place essential information exclusively in a tooltip. The popup uses a
 document portal, so it does not automatically inherit locally scoped themes.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| TooltipProvider | Optional shared opening/skip-delay configuration for several tooltips. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

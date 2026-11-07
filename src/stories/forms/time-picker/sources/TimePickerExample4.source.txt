@@ -1,0 +1,18 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+
+
+
+export const StepsExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <TimePicker
+            label={'Every 15 minutes'}
+            minuteStep={15}
+        />
+        <TimePicker
+            label={'Every 6 hours'}
+            hourStep={6}
+            minuteStep={30}
+        />
+    </div>
+)

@@ -1,0 +1,15 @@
+import { useState } from 'react'
+import { Calendar, type CalendarProps } from '@choco-vanille/ui'
+
+export const SingleDateExample = () => {
+    const [date, setDate] = useState<Date>()
+
+    return <Calendar mode="single" selected={date} onSelect={setDate} />
+}
+
+export const DateRangeExample = () => {
+    const [range, setRange] =
+        useState<Extract<CalendarProps, { mode: 'range' }>['selected']>()
+
+    return <Calendar mode="range" selected={range} onSelect={setRange} />
+}

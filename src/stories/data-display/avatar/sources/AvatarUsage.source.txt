@@ -1,0 +1,11 @@
+import { Avatar } from '@choco-vanille/ui'
+
+const ConvenienceExample = () => <Avatar aria-label="Jane Doe" initials="JD" />
+
+const CompoundExample = () => (
+    <Avatar.Root aria-label="Jane Doe">
+        <Avatar.Image src="/portrait.png" alt="Jane Doe" />
+        <Avatar.Fallback initials="JD" />
+        <Avatar.Status status="online" label="Available" />
+    </Avatar.Root>
+)

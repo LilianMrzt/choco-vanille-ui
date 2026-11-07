@@ -1,0 +1,14 @@
+import { BottomNavigation } from '@choco-vanille/ui'
+import { CircleIcon, SearchIcon, UserIcon } from './icons'
+
+const ItemHeights = () => (
+    <>
+{{heights}}
+    </>
+)
+
+const ParentWidths = () => (
+    <>
+{{widths}}
+    </>
+)

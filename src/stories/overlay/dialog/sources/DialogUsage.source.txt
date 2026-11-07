@@ -1,0 +1,25 @@
+import { Button, Dialog } from '@choco-vanille/ui'
+
+const ConvenientHeader = () => (
+    <Dialog>
+        <Dialog.Trigger><Button label="Open settings" /></Dialog.Trigger>
+        <Dialog.Content>
+            <Dialog.Header title="Settings" description="Manage preferences" />
+            <Dialog.Body>Your settings.</Dialog.Body>
+        </Dialog.Content>
+    </Dialog>
+)
+
+const ComposedHeader = () => (
+    <Dialog>
+        <Dialog.Trigger><Button label="Open settings" /></Dialog.Trigger>
+        <Dialog.Content aria-labelledby="settings-title">
+            <Dialog.Header>
+                <Dialog.Title id="settings-title">Settings</Dialog.Title>
+                <Dialog.Description>Manage preferences</Dialog.Description>
+                <Dialog.Close><Button label="Close" /></Dialog.Close>
+            </Dialog.Header>
+            <Dialog.Body>Your settings.</Dialog.Body>
+        </Dialog.Content>
+    </Dialog>
+)

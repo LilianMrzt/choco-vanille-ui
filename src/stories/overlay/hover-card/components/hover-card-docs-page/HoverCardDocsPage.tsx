@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/HoverCardUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const HoverCardDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -29,6 +34,13 @@ const HoverCardDocsPage = (): ReactElement => (
 Use the preview for supplementary information rather than content required to
 complete an action. The content is portaled to the document and does not
 automatically inherit a locally scoped theme.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| HoverCard.Trigger | Focusable element opening the preview on hover or focus, with opening/closing delays. |
+| HoverCard.Content | Positioned supplementary preview content. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

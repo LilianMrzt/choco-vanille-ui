@@ -1,0 +1,10 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+export const RangeExample = () => (
+    <TimePicker
+        label={'Opening hours'}
+        minTime={'09:00'}
+        maxTime={'17:30'}
+        minuteStep={15}
+    />
+)

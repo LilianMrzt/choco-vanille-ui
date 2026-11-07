@@ -1,9 +1,5 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-
-type PrimitiveSourceOptions = Readonly<{
-    omit?: readonly string[]
-    hasChildren?: boolean
-}>
+import type { PrimitiveSourceOptions } from '@stories/_shared/primitive-source/types'
 
 /**
  * Serializes a story's primitive props into a public JSX source template.
@@ -27,7 +23,7 @@ export const createPrimitiveSource = <Props extends object>(
         const entries = Object.entries(args)
         const omitted = new Set(['children', 'ref', ...(options.omit ?? [])])
         const attributes = entries
-            .filter(([name, value]) => !omitted.has(name) && value !== undefined)
+            .filter(([name, value]) => !omitted.has(name) && value !== undefined && !/^on[A-Z]/.test(name))
             .map(([name, value]) => {
                 const serialized = JSON.stringify(value)
                 if (serialized === undefined) {

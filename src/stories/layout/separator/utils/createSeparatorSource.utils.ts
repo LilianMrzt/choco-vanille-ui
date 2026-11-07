@@ -1,7 +1,7 @@
 import type { SeparatorProps } from '@components/layout/separator'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import horizontal from '@stories/layout/separator/sources/SeparatorHorizontal.source.tsx.txt?raw'
-import vertical from '@stories/layout/separator/sources/SeparatorVertical.source.tsx.txt?raw'
+import horizontal from '@stories/layout/separator/sources/SeparatorHorizontal.source.txt?raw'
+import vertical from '@stories/layout/separator/sources/SeparatorVertical.source.txt?raw'
 
 /**
  * Renders the consumer source matching the current separator orientation.

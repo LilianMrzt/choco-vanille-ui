@@ -1,0 +1,26 @@
+import { useState } from 'react'
+import { RadioGroup } from '@choco-vanille/ui'
+
+export const UncontrolledExample = () => (
+    <RadioGroup label="Theme preference" defaultValue="system">
+        <RadioGroup.Item value="light" label="Light" />
+        <RadioGroup.Item value="dark" label="Dark" />
+        <RadioGroup.Item value="system" label="System" />
+    </RadioGroup>
+)
+
+export const ControlledExample = () => {
+    const [theme, setTheme] = useState('system')
+
+    return (
+        <RadioGroup
+            label="Theme preference"
+            value={theme}
+            onValueChange={setTheme}
+        >
+            <RadioGroup.Item value="light" label="Light" />
+            <RadioGroup.Item value="dark" label="Dark" />
+            <RadioGroup.Item value="system" label="System" />
+        </RadioGroup>
+    )
+}

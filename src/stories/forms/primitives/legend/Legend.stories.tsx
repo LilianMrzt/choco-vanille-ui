@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ComponentProps } from 'react'
+import { FormStoryFrame } from '@stories/forms/utils/FormStoryFrame.utils'
 
 import { Legend } from '@components/forms/primitives/legend'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
 import LegendDocsPage from '@stories/forms/primitives/legend/components/legend-docs-page/LegendDocsPage'
 import LegendPlayground from '@stories/forms/primitives/legend/components/legend-playground/LegendPlayground'
-import { ARG_TYPES, DEFAULT_ARGS } from '@stories/forms/primitives/legend/constants'
-import playgroundSource from '@stories/forms/primitives/legend/sources/LegendPlayground.source.tsx.txt?raw'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/primitives/legend/constants'
+import { createLegendSource } from '@stories/forms/primitives/legend/utils/createLegendSource.utils'
+import appearanceSource from '@stories/forms/primitives/legend/sources/LegendAppearance.source.txt?raw'
+import LegendAppearance from '@stories/forms/primitives/legend/components/legend-appearance/LegendAppearance'
+import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Forms/Primitives/Legend',
@@ -17,16 +19,17 @@ const meta = {
         docs: {
             page: LegendDocsPage,
             description: {
-                component: 'Names a fieldset using a native legend. Typography props customize its presentation without changing its semantics.',
+                component: DESCRIPTION,
             },
             source: {
                 type: 'dynamic',
-                transform: createPrimitiveSource<ComponentProps<typeof Legend>>(playgroundSource, { hasChildren: true }),
+                transform: createLegendSource,
             },
         },
     },
     argTypes: ARG_TYPES,
     args: DEFAULT_ARGS,
+    decorators: [FormStoryFrame],
     render: LegendPlayground,
 } satisfies Meta<typeof Legend>
 
@@ -36,17 +39,7 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
 
-export const Variants: Story = {
-    args: { variant: 'h3' },
-    parameters: { docs: { description: { story: 'Use a typography variant without changing the native legend element.' } } },
-}
-
-export const FontWeights: Story = {
-    args: { fontWeight: 'bold' },
-    parameters: { docs: { description: { story: 'Adjust the legend font weight using typography tokens.' } } },
-}
-
-export const Colors: Story = {
-    args: { color: 'var(--color-primary-main)' },
-    parameters: { docs: { description: { story: 'Set a CSS color or theme variable and preserve sufficient contrast.' } } },
+export const Appearance: Story = {
+    parameters: { docs: { ...storySource(appearanceSource), description: { story: 'Each section changes one typography axis while retaining the native legend element.' } } },
+    render: LegendAppearance,
 }

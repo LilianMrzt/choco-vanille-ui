@@ -1,0 +1,6 @@
+import { HoverCard, Link } from '@choco-vanille/ui'
+
+<HoverCard>
+    <HoverCard.Trigger><Link href="/profile" label="Profile" /></HoverCard.Trigger>
+    <HoverCard.Content>Supplementary profile information.</HoverCard.Content>
+</HoverCard>

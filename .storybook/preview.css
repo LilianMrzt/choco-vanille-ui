@@ -1,0 +1,17 @@
+#storybook-docs table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+#storybook-docs .sbdocs-content {
+    min-width: 0;
+    max-width: 1000px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    #storybook-docs .sbdocs-wrapper {
+        padding: 24px 16px;
+    }
+}

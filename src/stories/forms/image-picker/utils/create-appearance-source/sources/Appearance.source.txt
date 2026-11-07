@@ -1,0 +1,102 @@
+import { ImagePicker } from '@choco-vanille/ui'
+
+
+
+export const ImagePickerDimensionsExample = () => (
+<div
+        style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            alignItems: 'flex-start',
+        }}
+    >
+        <ImagePicker
+            label={'Square'}
+            width={'12rem'}
+            aspectRatio={'1'}
+        />
+        <ImagePicker
+            label={'Landscape'}
+            width={'22rem'}
+            height={'12rem'}
+        />
+        <ImagePicker
+            label={'Portrait'}
+            width={'12rem'}
+            height={'18rem'}
+        />
+    </div>
+)
+
+export const ImagePickerShapesExample = () => (
+<div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+        <ImagePicker
+            label={'Square'}
+            defaultValue={'https://picsum.photos/seed/image-picker-shape/640/640'}
+            shape={'square'}
+            width={'12rem'}
+            height={'12rem'}
+        />
+        <ImagePicker
+            label={'Rounded'}
+            defaultValue={'https://picsum.photos/seed/image-picker-shape/640/640'}
+            shape={'rounded'}
+            width={'12rem'}
+            height={'12rem'}
+        />
+        <ImagePicker
+            label={'Circle'}
+            defaultValue={'https://picsum.photos/seed/image-picker-shape/640/640'}
+            shape={'circle'}
+            width={'12rem'}
+            height={'12rem'}
+        />
+    </div>
+)
+
+export const ImagePickerObjectFitsExample = () => (
+<div
+        style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: '1rem',
+        }}
+    >
+        <ImagePicker
+            label={'Contain'}
+            defaultValue={'https://picsum.photos/seed/image-picker-fit/640/420'}
+            objectFit={'contain'}
+            width={'12rem'}
+            height={'8rem'}
+        />
+        <ImagePicker
+            label={'Cover'}
+            defaultValue={'https://picsum.photos/seed/image-picker-fit/640/420'}
+            objectFit={'cover'}
+            width={'12rem'}
+            height={'8rem'}
+        />
+        <ImagePicker
+            label={'Fill'}
+            defaultValue={'https://picsum.photos/seed/image-picker-fit/640/420'}
+            objectFit={'fill'}
+            width={'12rem'}
+            height={'8rem'}
+        />
+        <ImagePicker
+            label={'None'}
+            defaultValue={'https://picsum.photos/seed/image-picker-fit/640/420'}
+            objectFit={'none'}
+            width={'12rem'}
+            height={'8rem'}
+        />
+        <ImagePicker
+            label={'Scale down'}
+            defaultValue={'https://picsum.photos/seed/image-picker-fit/640/420'}
+            objectFit={'scale-down'}
+            width={'12rem'}
+            height={'8rem'}
+        />
+    </div>
+)

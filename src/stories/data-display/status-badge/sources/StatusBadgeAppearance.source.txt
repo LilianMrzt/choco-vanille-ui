@@ -1,0 +1,34 @@
+import { Flex, Typography, Avatar, StatusBadge } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Colors</Typography>
+            <>
+                <StatusBadge color="primary"><Avatar initials="PR" /></StatusBadge>
+                <StatusBadge color="secondary"><Avatar initials="SE" /></StatusBadge>
+                <StatusBadge color="tertiary"><Avatar initials="TE" /></StatusBadge>
+                <StatusBadge color="destructive"><Avatar initials="DE" /></StatusBadge>
+                <StatusBadge color="success"><Avatar initials="SU" /></StatusBadge>
+                <StatusBadge color="warning"><Avatar initials="WA" /></StatusBadge>
+                <StatusBadge color="info"><Avatar initials="IN" /></StatusBadge>
+                <StatusBadge color="purple"><Avatar initials="PU" /></StatusBadge>
+                <StatusBadge color="pink"><Avatar initials="PI" /></StatusBadge>
+                <StatusBadge color="orange"><Avatar initials="OR" /></StatusBadge>
+                <StatusBadge color="teal"><Avatar initials="TL" /></StatusBadge>
+                <StatusBadge color="cyan"><Avatar initials="CY" /></StatusBadge>
+                <StatusBadge color="indigo"><Avatar initials="IG" /></StatusBadge>
+            </>
+        </section>
+        <section>
+            <Typography as="h3">Positions</Typography>
+            <>
+                <StatusBadge position="top-left"><Avatar initials="TL" /></StatusBadge>
+                <StatusBadge position="top-right"><Avatar initials="TR" /></StatusBadge>
+                <StatusBadge position="bottom-left"><Avatar initials="BL" /></StatusBadge>
+                <StatusBadge position="bottom-right"><Avatar initials="BR" /></StatusBadge>
+            </>
+        </section>
+    </Flex>
+)

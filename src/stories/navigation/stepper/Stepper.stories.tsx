@@ -4,8 +4,10 @@ import { useArgs } from 'storybook/preview-api'
 import { Stepper } from '@components/navigation/stepper'
 import StepperDocsPage from '@stories/navigation/stepper/components/stepper-docs-page/StepperDocsPage'
 import StepperExamples from '@stories/navigation/stepper/components/stepper-examples/StepperExamples'
-import { ARG_TYPES, DEFAULT_ARGS, type StepperStoryArgs } from '@stories/navigation/stepper/constants'
-import examplesSource from '@stories/navigation/stepper/sources/StepperExamples.source.tsx.txt?raw'
+import StepperPlayground from './components/stepper-playground/StepperPlayground'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/navigation/stepper/constants'
+import type { StepperStoryArgs } from './types'
+import examplesSource from '@stories/navigation/stepper/sources/StepperExamples.source.txt?raw'
 import { createStepperSource } from '@stories/navigation/stepper/utils/create-stepper-source/createStepperSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
@@ -13,6 +15,13 @@ const meta = {
     title: 'Navigation/Stepper',
     component: Stepper,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -38,7 +47,6 @@ type Story = StoryObj<StepperStoryArgs>
  */
 const ControlledStepper = () => {
     const [args, updateArgs] = useArgs<StepperStoryArgs>()
-    const { children: _children, accountLabel, preferencesLabel, reviewLabel, onStepChange, ...rootProps } = args
 
     /**
      * Forwards selection and updates Storybook Controls.
@@ -49,30 +57,17 @@ const ControlledStepper = () => {
      * handleStepChange(2)
      */
     const handleStepChange = (step: number): void => {
-        onStepChange?.(step)
+        args.onStepChange?.(step)
         updateArgs({ currentStep: step })
     }
 
     return (
-        <Stepper
-            {...rootProps}
+        <StepperPlayground
+            {...args}
             onStepChange={handleStepChange}
-        >
-            <Stepper.Item
-                label={accountLabel}
-                description={'Your details'}
-            />
-            <Stepper.Item
-                label={preferencesLabel}
-                description={'Choose your options'}
-            />
-            <Stepper.Item
-                label={reviewLabel}
-                description={'Confirm your choices'}
-            />
-        </Stepper>
+        />
     )
 }
 
 export const Playground: Story = { render: ControlledStepper }
-export const Orientations: Story = { parameters: { docs: { ...storySource(examplesSource) } }, render: StepperExamples }
+export const Orientations: Story = { parameters: { layout: 'padded', docs: { ...storySource(examplesSource) } }, render: StepperExamples }

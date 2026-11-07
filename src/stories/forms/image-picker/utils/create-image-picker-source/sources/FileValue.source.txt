@@ -1,0 +1,2 @@
+// Supply the image bytes selected by the user.
+const selectedFile = new File([/* Image bytes */], {{name}}, { type: {{type}} })

@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { Pagination } from '@choco-vanille/ui'
+
+const Example = () => {
+    const [page, setPage] = useState(1)
+
+    return <Pagination aria-label="Pages" currentPage={page} totalPages={10} onPageChange={setPage} previousLabel="Previous" nextLabel="Next" />
+}

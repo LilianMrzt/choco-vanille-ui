@@ -1,5 +1,6 @@
 import { ACCESSIBILITY_DESCRIPTION } from '@stories/data-display/avatar/components/avatar-docs-page/constants'
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '@stories/data-display/avatar/sources/AvatarUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 /**
@@ -13,6 +14,7 @@ const AvatarDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source code={usageSource} />
         <Canvas />
         <Controls />
         <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>

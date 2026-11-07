@@ -1,0 +1,18 @@
+// @choco-vanille/ui — Vanilla Extract token reference          
+// Use any path below inside a *.css.ts file for full autocomplete.
+
+import { vars } from '@choco-vanille/ui';
+import { style } from '@vanilla-extract/css';
+
+// Available token paths 
+{{fragment7}}
+
+// Example usage 
+export const myCard = style({
+  color: vars.color.primary.main,
+  background: vars.color.surface.main,
+  padding: vars.space[12],
+  borderRadius: vars.radius[8],
+  boxShadow: vars.shadow.sm,
+  fontFamily: vars.fontFamily.sans,
+});

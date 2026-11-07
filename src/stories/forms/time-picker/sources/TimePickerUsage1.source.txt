@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { TimePicker } from '@choco-vanille/ui'
+
+export const Example = () => {
+    const [time, setTime] = useState<string | undefined>()
+
+    return <TimePicker label="Start time" value={time} onChange={setTime} />
+}

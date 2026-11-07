@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/PanelUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const PanelDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -26,6 +31,19 @@ const PanelDocsPage = (): ReactElement => (
 | \`closeLabel\` on \`Panel.Header\` | No | \`string\` | Localize the default close control name. |
 
 Provide a close control and choose an appropriate title or localized name.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Panel.Trigger | Accessible element opening the panel. |
+| Panel.Content | Portalled surface with position, width and accessible-name options. |
+| Panel.Header | Convenient title, description, actions and close control, or custom children. |
+| Panel.Title | Composed accessible panel title. |
+| Panel.Description | Composed panel description. |
+| Panel.Body | Main-content section. |
+| Panel.Footer | Action row. |
+| Panel.Close | Custom close element. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

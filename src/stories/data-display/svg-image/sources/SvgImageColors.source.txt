@@ -1,0 +1,19 @@
+import ImageIcon from './ImageIcon'
+import { SvgImage } from '@choco-vanille/ui'
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+<SvgImage image={ImageIcon} alt="transparent" color={'transparent'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="primary.main" color={'primary.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="secondary.main" color={'secondary.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="neutral.main" color={'neutral.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="danger.main" color={'danger.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="success.main" color={'success.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="warning.main" color={'warning.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="info.main" color={'info.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentPurple.main" color={'accentPurple.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentPink.main" color={'accentPink.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentOrange.main" color={'accentOrange.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentTeal.main" color={'accentTeal.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentCyan.main" color={'accentCyan.main'} width="96px" height="96px" />
+<SvgImage image={ImageIcon} alt="accentIndigo.main" color={'accentIndigo.main'} width="96px" height="96px" />
+</div>

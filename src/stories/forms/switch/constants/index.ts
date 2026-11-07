@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react-vite'
+import { type Meta } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 
 import type { SwitchProps, SwitchSize } from '@components/forms/switch'
@@ -35,3 +35,18 @@ export const ARG_TYPES = {
     inputRef: { control: false, description: 'Ref to the hidden form input.' },
     render: { control: false, description: 'Base UI render override; not editable in Controls.' },
 } satisfies NonNullable<Meta<SwitchProps>['argTypes']>
+export const DESCRIPTION = 'A two-state switch with optional label, helper text and error message. It supports controlled and uncontrolled usage.'
+import { md } from '@stories/_shared/utils/markdown'
+
+export const ACCESSIBILITY_DESCRIPTION = md`
+## Accessibility
+
+| Prop / Attribute | Required | Type | Notes |
+| --- | --- | --- | --- |
+| \`label\` | Conditional | \`string\` | Provides an accessible name. |
+| \`aria-label\` or \`aria-labelledby\` | Without a label | \`string\` | Supplies an accessible name. |
+| \`error\` | No | \`string\` | Describes the invalid state. |
+
+Use Space to change the focused switch. Provide the accessible label in the
+language of the surrounding interface.
+        `

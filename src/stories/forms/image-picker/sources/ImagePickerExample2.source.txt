@@ -1,0 +1,29 @@
+import { ImagePicker } from '@choco-vanille/ui'
+
+
+
+
+export const StatesExample = () => (
+<div style={{ display: 'grid', gap: '1.25rem' }}>
+        <ImagePicker
+            label={'Disabled'}
+            disabled
+            width={'24rem'}
+        />
+        <ImagePicker
+            label={'With helper'}
+            helperText={'PNG or JPG up to 5 MB.'}
+            width={'24rem'}
+        />
+        <ImagePicker
+            label={'With error'}
+            error={'Please choose a valid image.'}
+            width={'24rem'}
+        />
+        <ImagePicker
+            label={'Required'}
+            required
+            width={'24rem'}
+        />
+    </div>
+)

@@ -1,0 +1,3 @@
+    <NotificationCard.Header>
+{{children}}
+    </NotificationCard.Header>

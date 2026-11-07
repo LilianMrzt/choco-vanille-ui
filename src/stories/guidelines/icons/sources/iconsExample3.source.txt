@@ -1,0 +1,10 @@
+import { Icon } from '@choco-vanille/ui'
+import { IconRegistry } from '@/icons/registry'
+
+const Example = () => (
+    <>
+        <Icon icon={IconRegistry.search} />
+        <Icon icon={IconRegistry.warning} size="lg" aria-label="Warning" />
+        <Icon icon={IconRegistry.close} spin />
+    </>
+)

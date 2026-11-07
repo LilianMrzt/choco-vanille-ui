@@ -1,0 +1,9 @@
+import SearchIcon from './assets/SearchIcon.svg?react'
+import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
+import CloseIcon from './assets/CloseIcon.svg?react'
+
+export const IconRegistry = {
+    search: SearchIcon,
+    warning: TriangleAlertIcon,
+    close: CloseIcon,
+} as const

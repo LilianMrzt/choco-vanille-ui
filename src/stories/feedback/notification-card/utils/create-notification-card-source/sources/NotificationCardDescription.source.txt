@@ -1,0 +1,3 @@
+    <NotificationCard.Body>
+      <NotificationCard.Description>{{{description}}}</NotificationCard.Description>
+    </NotificationCard.Body>

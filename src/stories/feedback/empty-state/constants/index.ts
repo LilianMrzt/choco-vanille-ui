@@ -12,6 +12,7 @@ export const ARG_TYPES = {
     title: { control: 'text', description: 'Heading content.' },
     description: { control: 'text', description: 'Supporting paragraph content.' },
     showAction: { control: 'boolean', description: 'Demonstration control for showing the action.', table: { category: 'Composition' } },
+    action: { control: false, description: 'React node; showAction displays a composed action in this example.' },
     className: { control: 'text', description: 'Additional root class.' },
     style: { control: false, description: 'Inline style overrides.' },
     ref: { control: false, description: 'Ref to the root div.' },

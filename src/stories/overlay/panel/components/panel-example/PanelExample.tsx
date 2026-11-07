@@ -13,13 +13,17 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  * @param props.position - Content side.
  * @param props.width - Content width.
  * @param props.title - Header title.
+ * @param props.titleAs - Header heading level.
+ * @param props.showCloseButton - Whether to show the header close control.
+ * @param props.closeLabel - Accessible label of the close control.
+ * @param props.contentLabel - Fallback accessible panel name.
  * @param props.description - Header description.
  * @param props.showDescription - Whether to show the description.
  * @returns The composed panel.
  * @example
  * <PanelExample title="Settings" />
  */
-const PanelExample = ({ position, width, title, description, showDescription, ...rootProps }: PanelStoryArgs): ReactElement => (
+const PanelExample = ({ position, width, title, titleAs, showCloseButton, closeLabel, contentLabel, description, showDescription, ...rootProps }: PanelStoryArgs): ReactElement => (
     <Panel {...rootProps}>
         <Panel.Trigger>
             <Button
@@ -31,10 +35,14 @@ const PanelExample = ({ position, width, title, description, showDescription, ..
         <Panel.Content
             position={position}
             width={width}
+            defaultAriaLabel={contentLabel}
         >
             <Panel.Header
                 description={showDescription ? description : undefined}
                 title={title}
+                titleAs={titleAs}
+                showCloseButton={showCloseButton}
+                closeLabel={closeLabel}
             />
             <Panel.Body>
                 <Typography

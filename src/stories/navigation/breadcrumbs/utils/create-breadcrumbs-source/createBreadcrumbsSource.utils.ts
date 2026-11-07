@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { BreadcrumbsStoryArgs } from '@stories/navigation/breadcrumbs/constants'
-import sourceTemplate from '@stories/navigation/breadcrumbs/utils/create-breadcrumbs-source/sources/createBreadcrumbsSource.source.tsx.txt?raw'
+import type { BreadcrumbsStoryArgs } from '@stories/navigation/breadcrumbs/types'
+import sourceTemplate from '@stories/navigation/breadcrumbs/utils/create-breadcrumbs-source/sources/createBreadcrumbsSource.source.txt?raw'
 
 /**
  * Generates breadcrumb JSX reflecting the current story controls.

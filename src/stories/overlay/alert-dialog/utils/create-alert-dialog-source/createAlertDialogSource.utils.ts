@@ -1,6 +1,9 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { AlertDialogStoryArgs } from '@stories/overlay/alert-dialog/types'
-import sourceTemplate from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/sources/createAlertDialogSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/sources/createAlertDialogSource.source.txt?raw'
+import bodySource from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/sources/body.source.txt?raw'
+import stateTemplate from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/sources/state.source.txt?raw'
+import stateImportSource from '@stories/overlay/alert-dialog/utils/create-alert-dialog-source/sources/state-import.source.txt?raw'
 
 /**
  * Serializes a string or boolean JSX attribute when present.
@@ -34,17 +37,18 @@ export const createAlertDialogSource = (_source: string, { args }: Readonly<{ ar
         serializeAttribute('defaultTriggerId', args.defaultTriggerId),
     ].join('')
     const body = args.showBody
-        ? '\n        <AlertDialog.Body>\n          <Typography>Your account and its data will be permanently deleted.</Typography>\n        </AlertDialog.Body>'
+        ? bodySource.trimEnd()
         : ''
 
     return renderSource(sourceTemplate, {
-        stateImport: isControlled ? "import { useState } from 'react'\n" : '',
+        stateImport: isControlled ? stateImportSource : '',
         typographyImport: args.showBody ? ', Typography' : '',
-        state: isControlled ? `  const [open, setOpen] = useState(${JSON.stringify(args.open)})\n\n` : '',
+        state: isControlled ? renderSource(stateTemplate, { open: JSON.stringify(args.open) }) : '',
         rootProps,
         triggerLabel: JSON.stringify(args.triggerLabel ?? 'Delete account'),
-        contentProps: serializeAttribute('size', args.size),
-        headerProps: serializeAttribute('description', args.description) + serializeAttribute('title', args.title),
+        contentProps: serializeAttribute('size', args.size) + serializeAttribute('defaultAriaLabel', args.contentLabel),
+        headerProps: serializeAttribute('description', args.description) + serializeAttribute('title', args.title) +
+            serializeAttribute('titleAs', args.titleAs) + serializeAttribute('showCloseButton', args.showCloseButton),
         body,
         cancelLabel: JSON.stringify(args.cancelLabel ?? 'Cancel'),
         actionLabel: JSON.stringify(args.actionLabel ?? 'Delete account'),

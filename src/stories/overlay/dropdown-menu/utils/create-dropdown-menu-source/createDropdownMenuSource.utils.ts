@@ -1,7 +1,8 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { DropdownMenuStoryArgs } from '@stories/overlay/dropdown-menu/types'
-import controlled from '@stories/overlay/dropdown-menu/utils/create-dropdown-menu-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolled from '@stories/overlay/dropdown-menu/utils/create-dropdown-menu-source/sources/uncontrolled.source.tsx.txt?raw'
+import controlled from '@stories/overlay/dropdown-menu/utils/create-dropdown-menu-source/sources/controlled.source.txt?raw'
+import uncontrolled from '@stories/overlay/dropdown-menu/utils/create-dropdown-menu-source/sources/uncontrolled.source.txt?raw'
+import checkboxSource from '@stories/overlay/dropdown-menu/utils/create-dropdown-menu-source/sources/checkbox.source.txt?raw'
 
 /**
  * Generates JSX from the current menu controls.
@@ -22,5 +23,5 @@ export const createDropdownMenuSource = (_source: string, { args }: Readonly<{ a
         destructive: JSON.stringify(args.destructive),
         side: JSON.stringify(args.side),
         align: JSON.stringify(args.align),
-        checkbox: args.showCheckbox ? '\n        <DropdownMenu.CheckboxItem label="Show details" defaultChecked />' : '',
+        checkbox: args.showCheckbox ? checkboxSource.trimEnd() : '',
     })

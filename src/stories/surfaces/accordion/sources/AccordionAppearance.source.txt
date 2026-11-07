@@ -1,0 +1,27 @@
+import { Accordion } from '@choco-vanille/ui'
+
+const VerticalExample = () => (
+    <Accordion defaultValue={['overview']} orientation="vertical">
+        <Accordion.Item value="overview">
+            <Accordion.Trigger label="Vertical overview" />
+            <Accordion.Content>Use Up and Down to move between triggers.</Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item value="details">
+            <Accordion.Trigger label="Vertical details" />
+            <Accordion.Content>Use Enter or Space to expand this section.</Accordion.Content>
+        </Accordion.Item>
+    </Accordion>
+)
+
+const HorizontalExample = () => (
+    <Accordion defaultValue={['overview']} orientation="horizontal">
+        <Accordion.Item value="overview">
+            <Accordion.Trigger label="Horizontal overview" />
+            <Accordion.Content>Use Left and Right to move between triggers.</Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item value="details">
+            <Accordion.Trigger label="Horizontal details" />
+            <Accordion.Content>Use Enter or Space to expand this section.</Accordion.Content>
+        </Accordion.Item>
+    </Accordion>
+)

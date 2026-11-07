@@ -24,6 +24,13 @@ export const DEFAULT_ARGS = {
     fallbackDelay: 0,
     onLoadingStatusChange: fn(),
     onClick: fn(),
+    compoundLabel: 'Custom profile',
+    compoundFallback: 'AB',
+    compoundImage: '',
+    compoundAlt: 'Custom profile',
+    groupMax: 3,
+    groupSpacing: 'md',
+    groupLabel: 'Project participants',
 } satisfies NonNullable<Meta<AvatarStoryArgs>['args']>
 
 export const ARG_TYPES = {

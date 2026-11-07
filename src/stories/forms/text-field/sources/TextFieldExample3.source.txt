@@ -1,0 +1,21 @@
+import { TextField } from '@choco-vanille/ui'
+
+
+
+
+export const StatesExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <TextField
+            label={'Disabled'}
+            disabled
+        />
+        <TextField
+            label={'Email'}
+            helperText={'Use your work email.'}
+        />
+        <TextField
+            label={'Invalid email'}
+            error={'Enter a valid email address.'}
+        />
+    </div>
+)

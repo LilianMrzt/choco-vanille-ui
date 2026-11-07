@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/CommandUsage.source.txt?raw'
 import { md } from '@stories/_shared/utils/markdown'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
@@ -47,6 +48,10 @@ const CommandDocsPage = () => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>

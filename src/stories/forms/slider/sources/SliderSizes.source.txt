@@ -1,0 +1,9 @@
+import { Slider } from '@choco-vanille/ui'
+
+export const SliderSizesExample = () => (
+    <div style={{ display: 'grid', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <Slider label={'Small'} size={'sm'} width={'100%'} defaultValue={40} />
+        <Slider label={'Medium'} size={'md'} width={'100%'} defaultValue={40} />
+        <Slider label={'Large'} size={'lg'} width={'100%'} defaultValue={40} />
+    </div>
+)

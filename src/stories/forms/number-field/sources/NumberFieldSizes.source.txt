@@ -1,0 +1,26 @@
+import { NumberField } from '@choco-vanille/ui'
+
+
+
+export const NumberFieldSizesExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <NumberField
+            label={'Small'}
+            size={'sm'}
+            width={'100%'}
+            defaultValue={1}
+        />
+        <NumberField
+            label={'Medium'}
+            size={'md'}
+            width={'100%'}
+            defaultValue={1}
+        />
+        <NumberField
+            label={'Large'}
+            size={'lg'}
+            width={'100%'}
+            defaultValue={1}
+        />
+    </div>
+)

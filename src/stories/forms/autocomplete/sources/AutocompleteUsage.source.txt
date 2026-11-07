@@ -1,0 +1,29 @@
+import { Autocomplete, AutocompleteField } from '@choco-vanille/ui'
+
+const options = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+]
+
+const ConvenienceExample = () => (
+    <AutocompleteField
+        label="Fruit"
+        placeholder="Search for a fruit"
+        options={options}
+    />
+)
+
+const CompoundExample = () => (
+    <Autocomplete>
+        <Autocomplete.Input
+            aria-label="Fruit"
+            placeholder="Search for a fruit"
+        />
+        <Autocomplete.Content>
+            <Autocomplete.List>
+                <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
+                <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
+            </Autocomplete.List>
+        </Autocomplete.Content>
+    </Autocomplete>
+)

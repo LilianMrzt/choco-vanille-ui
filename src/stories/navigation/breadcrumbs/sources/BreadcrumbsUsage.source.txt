@@ -1,0 +1,6 @@
+import { Breadcrumbs } from '@choco-vanille/ui'
+
+<Breadcrumbs aria-label="Breadcrumb">
+    <Breadcrumbs.Item href="/" label="Home" />
+    <Breadcrumbs.Item label="Details" current />
+</Breadcrumbs>

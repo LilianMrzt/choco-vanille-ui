@@ -1,0 +1,7 @@
+
+      <Dialog.Footer>
+        <Dialog.Close>
+          <Button color="primary" label={{{cancelLabel}}} size="sm" variant="outlined" />
+        </Dialog.Close>
+        <Button color="primary" label={{{confirmLabel}}} size="sm" variant="contained" />
+      </Dialog.Footer>

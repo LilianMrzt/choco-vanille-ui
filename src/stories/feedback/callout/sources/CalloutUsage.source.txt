@@ -1,0 +1,12 @@
+import { Callout } from '@choco-vanille/ui'
+
+const ConvenienceExample = () => (
+    <Callout variant="info" title="Did you know?" description="Callouts are useful for inline status messages." />
+)
+
+const CompoundExample = () => (
+    <Callout variant="info">
+        <Callout.Title>Did you know?</Callout.Title>
+        <Callout.Description>Callouts are useful for inline status messages.</Callout.Description>
+    </Callout>
+)

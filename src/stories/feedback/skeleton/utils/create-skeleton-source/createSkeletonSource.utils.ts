@@ -1,6 +1,6 @@
 import type { SkeletonProps } from '@components/feedback/skeleton'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/feedback/skeleton/utils/create-skeleton-source/sources/createSkeletonSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/feedback/skeleton/utils/create-skeleton-source/sources/createSkeletonSource.source.txt?raw'
 
 /**
  * Serializes a present string or numeric JSX attribute.

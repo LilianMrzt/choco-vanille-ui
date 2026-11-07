@@ -1,0 +1,12 @@
+import TrashIcon from './TrashIcon'
+import ChevronRightIcon from './ChevronRightIcon'
+import UploadIcon from './UploadIcon'
+import { Button } from '@choco-vanille/ui'
+
+const Example = () => (
+    <>
+        <Button label="Delete" startIcon={TrashIcon} variant="outlined" color="destructive" />
+        <Button label="Next" endIcon={ChevronRightIcon} />
+        <Button label="Upload" startIcon={UploadIcon} endIcon={ChevronRightIcon} color="primary" />
+    </>
+)

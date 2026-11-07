@@ -1,0 +1,9 @@
+/* @choco-vanille/ui — Tailwind v4 @theme mapping                    */
+/* Rename the left-hand side to your own Tailwind token names and     */
+/* delete any tokens you don't need.                                  */
+
+@import 'tailwindcss';
+
+@theme {
+{{fragment7}}
+}

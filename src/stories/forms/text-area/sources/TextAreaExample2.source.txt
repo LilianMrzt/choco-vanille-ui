@@ -1,0 +1,6 @@
+import { TextArea } from '@choco-vanille/ui'
+import InfoIcon from './InfoIcon.svg?react'
+
+export const WithIconsExample = () => (
+    <TextArea label={'Comment'} startIcon={InfoIcon} />
+)

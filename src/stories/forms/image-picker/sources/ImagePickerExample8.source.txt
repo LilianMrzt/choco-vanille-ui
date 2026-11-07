@@ -1,0 +1,36 @@
+import { ImagePicker } from '@choco-vanille/ui'
+import UserIcon from './UserIcon.svg?react'
+
+
+
+export const MobileExample = () => (
+<div
+        style={{
+            display: 'grid',
+            boxSizing: 'border-box',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(12rem, 14rem))',
+            justifyContent: 'center',
+            gap: '2rem',
+            width: '100%',
+            maxWidth: '32rem',
+            margin: '0 auto',
+            padding: '1rem',
+        }}
+    >
+        <ImagePicker
+            label={'Empty state'}
+            shape={'circle'}
+            width={'100%'}
+            icon={UserIcon}
+            isMobile
+        />
+        <ImagePicker
+            label={'Selected state'}
+            defaultValue={'https://picsum.photos/seed/image-picker-avatar/320/320'}
+            shape={'circle'}
+            width={'100%'}
+            icon={UserIcon}
+            isMobile
+        />
+    </div>
+)

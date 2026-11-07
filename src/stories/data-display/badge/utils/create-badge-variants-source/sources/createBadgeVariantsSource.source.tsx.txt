@@ -1,5 +1,0 @@
-import { Badge } from '@choco-vanille/ui'
-
-<>
-{{variants}}
-</>

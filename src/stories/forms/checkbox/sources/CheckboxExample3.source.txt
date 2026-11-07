@@ -1,0 +1,8 @@
+import { CheckboxGroup } from '@choco-vanille/ui'
+
+export const GroupDisabledExample = () => (
+    <CheckboxGroup disabled aria-label="Notifications" allValues={['email']}>
+        <CheckboxGroup.Header label="All notifications" />
+        <CheckboxGroup.Item value="email" label="Email" />
+    </CheckboxGroup>
+)

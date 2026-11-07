@@ -1,6 +1,6 @@
 import { type AvatarProps } from '@components/data-display/avatar'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/data-display/avatar/utils/create-avatar-source/sources/createAvatarSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/data-display/avatar/utils/create-avatar-source/sources/createAvatarSource.source.txt?raw'
 
 /**
  * Creates consumer JSX for all serializable avatar args.

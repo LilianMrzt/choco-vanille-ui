@@ -1,0 +1,24 @@
+import { Slider } from '@choco-vanille/ui'
+
+
+
+
+export const StatesExample = () => (
+<div style={{ display: 'grid', gap: '1rem', width: '20rem' }}>
+        <Slider
+            label={'Disabled'}
+            disabled
+            defaultValue={40}
+        />
+        <Slider
+            label={'With helper'}
+            helperText={'Choose a value'}
+            defaultValue={40}
+        />
+        <Slider
+            label={'With error'}
+            error={'Value is invalid'}
+            defaultValue={40}
+        />
+    </div>
+)

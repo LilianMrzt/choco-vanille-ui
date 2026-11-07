@@ -1,8 +1,10 @@
 import type { Meta } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 import type { DropdownMenuStoryArgs } from '@stories/overlay/dropdown-menu/types'
 
 export const DEFAULT_ARGS = {
     open: false,
+    onOpenChange: fn(),
     modal: true,
     triggerLabel: 'Open menu',
     itemLabel: 'Edit',
@@ -15,7 +17,7 @@ export const DEFAULT_ARGS = {
 export const ARG_TYPES = {
     open: { control: 'boolean' },
     defaultOpen: { control: false, description: 'Initial uncontrolled state; remount to apply changes.' },
-    onOpenChange: { control: false, action: 'open changed' },
+    onOpenChange: { control: false, description: 'Requested state and cancellable details; a callback requires consumer code.' },
     modal: { control: 'boolean' },
     triggerLabel: { control: 'text', table: { category: 'Compound: Trigger' } },
     itemLabel: { control: 'text', table: { category: 'Compound: Item' } },

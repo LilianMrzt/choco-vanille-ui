@@ -6,7 +6,7 @@ import DialogDocsPage from '@stories/overlay/dialog/components/dialog-docs-page/
 import DialogExample from '@stories/overlay/dialog/components/dialog-example/DialogExample'
 import DialogSizes from '@stories/overlay/dialog/components/dialog-sizes/DialogSizes'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/dialog/constants'
-import sizesSource from '@stories/overlay/dialog/sources/DialogSizes.source.tsx.txt?raw'
+import sizesSource from '@stories/overlay/dialog/sources/DialogSizes.source.txt?raw'
 import type { DialogStoryArgs } from '@stories/overlay/dialog/types'
 import { createDialogSource } from '@stories/overlay/dialog/utils/create-dialog-source/createDialogSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
@@ -15,6 +15,13 @@ const meta = {
     title: 'Overlay/Dialog',
     component: Dialog,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -78,7 +85,13 @@ export const Playground: Story = {
 
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
-    render: (args) => <DialogExample {...args} />,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <DialogExample
+            {...args}
+            key={JSON.stringify([args.defaultOpen, args.defaultTriggerId])}
+        />
+    ),
     parameters: {
         docs: {
             description: { story: 'The initial open state applies on mount; remount to apply changes to defaultOpen.' },

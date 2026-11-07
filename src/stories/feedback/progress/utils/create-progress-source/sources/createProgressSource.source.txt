@@ -1,0 +1,8 @@
+import { CircularProgress, Flex, Progress } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex flexDirection="column" gap={16} width="100%" maxWidth="28rem">
+        <Progress{{attributes}} />
+        <CircularProgress{{attributes}} />
+    </Flex>
+)

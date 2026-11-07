@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { EmptyStateStoryArgs } from '@stories/feedback/empty-state/types'
-import actionTemplate from '@stories/feedback/empty-state/utils/create-empty-state-source/sources/action.source.tsx.txt?raw'
-import sourceTemplate from '@stories/feedback/empty-state/utils/create-empty-state-source/sources/createEmptyStateSource.source.tsx.txt?raw'
+import actionTemplate from '@stories/feedback/empty-state/utils/create-empty-state-source/sources/action.source.txt?raw'
+import sourceTemplate from '@stories/feedback/empty-state/utils/create-empty-state-source/sources/createEmptyStateSource.source.txt?raw'
 
 /**
  * Generates consumer JSX for the empty-state demonstration controls.

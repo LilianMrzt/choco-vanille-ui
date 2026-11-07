@@ -1,4 +1,0 @@
-import { Switch } from '@choco-vanille/ui'
-
-<Switch label="Disabled" disabled />
-<Switch label="Required" error="Selection required" />

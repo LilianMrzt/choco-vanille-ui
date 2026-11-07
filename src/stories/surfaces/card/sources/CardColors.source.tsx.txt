@@ -1,6 +1,0 @@
-import { Card, vars } from '@choco-vanille/ui'
-
-<Card padding={12}>Default surface</Card>
-<Card backgroundColor={vars.color.primary.main} color={vars.color.primary.foreground} padding={12}>
-  Primary surface
-</Card>

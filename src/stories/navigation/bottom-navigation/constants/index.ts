@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 import type { BottomNavigationStoryArgs } from '@stories/navigation/bottom-navigation/types'
 
 import type { BoxSpace } from '@components/layout/box'
@@ -12,8 +13,8 @@ export const ARG_TYPES = {
     bordered: { control: 'boolean' },
     defaultValue: { control: false, description: 'Initial uncontrolled selection; remount to apply changes.' },
     value: { control: 'text' },
-    onValueChange: { action: 'value changed' },
-    children: { control: false, table: { disable: true } },
+    onValueChange: { control: false, description: 'Selected value callback; requires consumer code.' },
+    children: { control: false, description: 'Compose List and Item slots in consumer code; edit the slot demonstration controls here.' },
     listClassName: {
         control: 'text',
         table: { category: 'Compound: List' },
@@ -56,7 +57,8 @@ export const ARG_TYPES = {
         table: { category: 'Compound: Item' },
     },
     itemOnClick: {
-        action: 'item clicked',
+        control: false,
+        description: 'Native click callback; requires consumer code.',
         table: { category: 'Compound: Item' },
     },
 } satisfies NonNullable<Meta<BottomNavigationStoryArgs>['argTypes']>
@@ -65,6 +67,8 @@ export const DEFAULT_ARGS = {
     'aria-label': 'Primary navigation',
     bordered: false,
     value: 'home',
+    onValueChange: fn(),
+    itemOnClick: fn(),
     listClassName: '',
     listGap: 2,
     listWidth: '100%',

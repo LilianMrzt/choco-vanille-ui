@@ -1,0 +1,11 @@
+import { BottomSheet, Button } from '@choco-vanille/ui'
+
+<BottomSheet>
+    <BottomSheet.Trigger><Button label="Actions" /></BottomSheet.Trigger>
+    <BottomSheet.Content>
+        <BottomSheet.Header title="Photo actions" />
+        <BottomSheet.Item label="Share" />
+        <BottomSheet.Item label="Delete" destructive />
+        <BottomSheet.Close><Button label="Cancel" /></BottomSheet.Close>
+    </BottomSheet.Content>
+</BottomSheet>

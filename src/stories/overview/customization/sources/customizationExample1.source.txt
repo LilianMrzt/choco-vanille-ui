@@ -1,0 +1,8 @@
+/* app.css */
+:root {
+  --color-primary-main: #005a9c;
+  --color-primary-hover: #004b83;
+  --color-primary-pressed: #003c6a;
+  --color-primary-foreground: #ffffff;
+  --radius-8: 0.75rem;
+}

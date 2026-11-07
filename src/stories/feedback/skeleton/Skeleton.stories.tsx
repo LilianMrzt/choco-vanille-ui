@@ -4,7 +4,7 @@ import { Skeleton } from '@components/feedback/skeleton'
 import SkeletonDocsPage from '@stories/feedback/skeleton/components/skeleton-docs-page/SkeletonDocsPage'
 import SkeletonVariants from '@stories/feedback/skeleton/components/skeleton-variants/SkeletonVariants'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/feedback/skeleton/constants'
-import variantsSource from '@stories/feedback/skeleton/sources/SkeletonVariants.source.tsx.txt?raw'
+import variantsSource from '@stories/feedback/skeleton/sources/SkeletonVariants.source.txt?raw'
 import { createSkeletonSource } from '@stories/feedback/skeleton/utils/create-skeleton-source/createSkeletonSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 

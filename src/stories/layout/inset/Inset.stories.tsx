@@ -9,7 +9,7 @@ import InsetPlayground from '@stories/layout/inset/components/inset-playground/I
 import InsetPlaygroundPlay from '@stories/layout/inset/utils/InsetPlaygroundPlay.utils'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/layout/inset/sources/InsetInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/layout/inset/sources/InsetInteractive.source.txt?raw'
 
 const meta = {
     title: 'Layout/Inset',

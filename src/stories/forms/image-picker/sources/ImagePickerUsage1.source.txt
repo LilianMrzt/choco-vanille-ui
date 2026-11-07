@@ -1,0 +1,19 @@
+import { useState } from 'react'
+import { ImagePicker, type ImagePickerValue } from '@choco-vanille/ui'
+import UserIcon from './UserIcon.svg?react'
+
+export const Example = () => {
+    const [avatar, setAvatar] = useState<ImagePickerValue>(null)
+
+    return (
+        <ImagePicker
+            label="Profile picture"
+            value={avatar}
+            onValueChange={setAvatar}
+            shape="circle"
+            width="10rem"
+            icon={UserIcon}
+            maxSize={5 * 1024 * 1024}
+        />
+    )
+}

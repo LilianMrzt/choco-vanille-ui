@@ -1,0 +1,17 @@
+import { Flex, Typography, Fab } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon'
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Colors</Typography>
+            <Fab icon={SearchIcon} aria-label="primary" color="primary" />
+            <Fab icon={SearchIcon} aria-label="secondary" color="secondary" />
+            <Fab icon={SearchIcon} aria-label="tertiary" color="tertiary" />
+            <Fab icon={SearchIcon} aria-label="destructive" color="destructive" />
+            <Fab icon={SearchIcon} aria-label="success" color="success" />
+            <Fab icon={SearchIcon} aria-label="warning" color="warning" />
+            <Fab icon={SearchIcon} aria-label="info" color="info" />
+        </section>
+    </Flex>
+)

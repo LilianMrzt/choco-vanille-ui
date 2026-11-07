@@ -1,0 +1,4 @@
+import { IconButton } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon'
+
+const Example = () => <IconButton icon={SearchIcon}{{attributes}} />

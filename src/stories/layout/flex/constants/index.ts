@@ -2,6 +2,7 @@ import type { Meta } from '@storybook/react-vite'
 
 import { Flex } from '@components/layout/flex'
 import { md } from '@stories/_shared/utils/markdown'
+import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
 export const DIRECTION = ['row', 'column', 'row-reverse', 'column-reverse'] as const
 
@@ -132,6 +133,11 @@ export const ARG_TYPES = {
     className: { control: 'text', description: 'Additional container class.' },
     style: { control: 'object', description: 'Inline style overrides.' },
     ref: { control: false, description: 'Ref passed to the rendered element.' },
+    color: LAYOUT_ARG_TYPES.color,
+    flex: LAYOUT_ARG_TYPES.flex,
+    alignSelf: LAYOUT_ARG_TYPES.alignSelf,
+    alignContent: LAYOUT_ARG_TYPES.alignContent,
+    textAlign: LAYOUT_ARG_TYPES.textAlign
 } satisfies NonNullable<Meta<typeof Flex>['argTypes']>
 
 export const DEFAULT_ARGS = {

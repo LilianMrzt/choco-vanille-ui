@@ -1,0 +1,17 @@
+import { NotificationCard } from '@choco-vanille/ui'
+
+const ConvenienceExample = () => (
+    <NotificationCard variant="success" title="Changes saved" description="Your workspace is up to date." />
+)
+
+const CompoundExample = () => (
+    <NotificationCard variant="success">
+        <NotificationCard.Header>
+            <NotificationCard.Icon />
+            <NotificationCard.Title>Changes saved</NotificationCard.Title>
+        </NotificationCard.Header>
+        <NotificationCard.Body>
+            <NotificationCard.Description>Your workspace is up to date.</NotificationCard.Description>
+        </NotificationCard.Body>
+    </NotificationCard>
+)

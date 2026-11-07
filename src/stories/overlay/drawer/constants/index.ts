@@ -1,10 +1,14 @@
 import type { Meta } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 import type { DrawerMode, DrawerPosition, DrawerSize } from '@components/overlay/drawer'
 import { DRAWER_MODES_ARRAY, DRAWER_POSITIONS_ARRAY, DRAWER_SIZES_ARRAY } from '@components/overlay/drawer/constants'
-import { DRAWER_ITEM_COLORS_ARRAY } from '@components/overlay/drawer/components/items/_shared/constants'
+import { DRAWER_ITEM_COLORS_ARRAY, DRAWER_ITEM_VARIANTS } from '@components/overlay/drawer/components/items/_shared/constants'
 import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
 import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
+
+export const APPEARANCE_VARIANTS = Object.values(DRAWER_ITEM_VARIANTS)
+export const APPEARANCE_COLORS = DRAWER_ITEM_COLORS_ARRAY
 
 export const ARG_TYPES = {
     open: {
@@ -16,7 +20,7 @@ export const ARG_TYPES = {
         description: 'Initial uncontrolled state; these examples use controlled open.',
         table: { category: 'Drawer' },
     },
-    onOpenChange: { control: false, action: 'open changed' },
+    onOpenChange: { control: false, description: 'Requested open state; a callback requires consumer code.' },
     mode: {
         control: 'select',
         options: DRAWER_MODES_ARRAY,
@@ -113,6 +117,7 @@ export const ARG_TYPES = {
     },
     sectionItemDefaultExpanded: {
         control: 'boolean',
+        description: 'Initial group expansion; this item remounts when the value changes.',
         table: { category: 'Drawer.SectionItem' },
     },
     sectionItemDisabled: {
@@ -136,6 +141,7 @@ export const ARG_TYPES = {
 
 export const DEFAULT_ARGS = {
     open: false,
+    onOpenChange: fn(),
     mode: 'portal' as DrawerMode,
     position: 'left' as DrawerPosition,
     size: 'md' as DrawerSize,

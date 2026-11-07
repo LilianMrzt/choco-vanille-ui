@@ -1,0 +1,9 @@
+import { Flex, Badge } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+        <Badge label="SM" size="sm" />
+        <Badge label="MD" size="md" />
+        <Badge label="LG" size="lg" />
+    </Flex>
+)

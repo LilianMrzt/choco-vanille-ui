@@ -10,7 +10,7 @@ import { Stepper } from '@components/navigation/stepper'
  * <StepperExamples />
  */
 const StepperExamples = (): ReactElement => (
-    <div style={{ display: 'grid', gap: '2rem', width: '32rem', maxWidth: '100%' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '2rem', width: 'min(32rem, 100%)', minWidth: 0, overflowX: 'auto' }}>
         <Stepper
             aria-label={'Horizontal progress'}
             currentStep={2}

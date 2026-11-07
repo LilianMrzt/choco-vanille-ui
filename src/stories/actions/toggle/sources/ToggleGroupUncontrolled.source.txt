@@ -1,0 +1,6 @@
+import { ToggleGroup } from '@choco-vanille/ui'
+<ToggleGroup aria-label="Text formatting" multiple defaultValue={['bold']}>
+    <ToggleGroup.Item value="bold" label="Bold" />
+    <ToggleGroup.Item value="italic" label="Italic" />
+    <ToggleGroup.Item value="underline" label="Underline" />
+</ToggleGroup>

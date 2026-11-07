@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Tooltip } from '@components/overlay/tooltip'
-import type { TooltipStoryArgs } from '@stories/overlay/tooltip/constants'
+import type { TooltipStoryArgs } from '@stories/overlay/tooltip/types'
 
 /**
  * Renders the example with tooltip controls.

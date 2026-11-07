@@ -1,0 +1,21 @@
+import { Button, Panel } from '@choco-vanille/ui'
+
+const ConvenientHeader = () => (
+    <Panel>
+        <Panel.Trigger><Button label="Open settings" /></Panel.Trigger>
+        <Panel.Content width="min(26rem, 100vw)"><Panel.Header title="Settings" /><Panel.Body>Your settings.</Panel.Body></Panel.Content>
+    </Panel>
+)
+
+const ComposedHeader = () => (
+    <Panel>
+        <Panel.Trigger><Button label="Open settings" /></Panel.Trigger>
+        <Panel.Content aria-labelledby="panel-title" width="min(26rem, 100vw)">
+            <Panel.Header>
+                <Panel.Title id="panel-title">Settings</Panel.Title>
+                <Panel.Close><Button label="Close" /></Panel.Close>
+            </Panel.Header>
+            <Panel.Body>Your settings.</Panel.Body>
+        </Panel.Content>
+    </Panel>
+)

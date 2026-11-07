@@ -20,7 +20,10 @@ const PanelPositions = (): ReactElement => (
                     variant={'outlined'}
                 />
             </Panel.Trigger>
-            <Panel.Content position={'left'}>
+            <Panel.Content
+                position={'left'}
+                width={'min(26rem, 100vw)'}
+            >
                 <Panel.Header title={'Left panel'} />
                 <Panel.Body>Slides in from the left.</Panel.Body>
             </Panel.Content>
@@ -33,7 +36,10 @@ const PanelPositions = (): ReactElement => (
                     variant={'outlined'}
                 />
             </Panel.Trigger>
-            <Panel.Content position={'right'}>
+            <Panel.Content
+                position={'right'}
+                width={'min(26rem, 100vw)'}
+            >
                 <Panel.Header title={'Right panel'} />
                 <Panel.Body>Slides in from the right.</Panel.Body>
             </Panel.Content>

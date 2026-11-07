@@ -1,0 +1,10 @@
+import { Flex, Fab } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon'
+
+const Example = () => (
+    <Flex flexWrap="wrap" gap={12} padding={16}>
+        <Fab icon={SearchIcon} aria-label="sm" size="sm" />
+        <Fab icon={SearchIcon} aria-label="md" size="md" />
+        <Fab icon={SearchIcon} aria-label="lg" size="lg" />
+    </Flex>
+)

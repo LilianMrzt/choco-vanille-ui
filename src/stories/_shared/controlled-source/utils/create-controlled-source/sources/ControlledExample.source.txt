@@ -1,0 +1,9 @@
+import { useState } from 'react'
+import { {{component}} } from '@choco-vanille/ui'
+{{iconImport}}{{additionalImports}}
+const Example = () => {
+    const [value, setValue] = useState{{stateType}}({{stateValue}})
+{{openState}}
+
+    return {{element}}
+}

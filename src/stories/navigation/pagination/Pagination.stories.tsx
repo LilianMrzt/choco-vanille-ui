@@ -5,7 +5,7 @@ import { Pagination, type PaginationProps } from '@components/navigation/paginat
 import PaginationDocsPage from '@stories/navigation/pagination/components/pagination-docs-page/PaginationDocsPage'
 import PaginationStates from '@stories/navigation/pagination/components/pagination-states/PaginationStates'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/navigation/pagination/constants'
-import statesSource from '@stories/navigation/pagination/sources/PaginationStates.source.tsx.txt?raw'
+import statesSource from '@stories/navigation/pagination/sources/PaginationStates.source.txt?raw'
 import { createPaginationSource } from '@stories/navigation/pagination/utils/create-pagination-source/createPaginationSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
@@ -13,6 +13,13 @@ const meta = {
     title: 'Navigation/Pagination',
     component: Pagination,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {

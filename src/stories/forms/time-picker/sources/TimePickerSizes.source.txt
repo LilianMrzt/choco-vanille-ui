@@ -1,0 +1,23 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+
+
+export const TimePickerSizesExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <TimePicker
+            label={'Small'}
+            size={'sm'}
+            width={'100%'}
+        />
+        <TimePicker
+            label={'Medium'}
+            size={'md'}
+            width={'100%'}
+        />
+        <TimePicker
+            label={'Large'}
+            size={'lg'}
+            width={'100%'}
+        />
+    </div>
+)

@@ -1,0 +1,14 @@
+import { useState } from 'react'
+import { Stepper } from '@choco-vanille/ui'
+
+const Example = () => {
+  const [currentStep, setCurrentStep] = useState({{currentStep}})
+
+  return (
+    <Stepper aria-label={{{ariaLabel}}} currentStep={currentStep} orientation={{{orientation}}} onStepChange={setCurrentStep}>
+      <Stepper.Item label={{{accountLabel}}}{{firstDescription}}{{firstDisabled}}{{firstSize}} />
+      <Stepper.Item label={{{preferencesLabel}}} description="Choose your options" />
+      <Stepper.Item label={{{reviewLabel}}} description="Confirm your choices" />
+    </Stepper>
+  )
+}

@@ -1,9 +1,0 @@
-import { SvgImage } from '@choco-vanille/ui'
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-<SvgImage image={ImageIcon} alt="contain" objectFit="contain" width="120px" height="120px" />
-<SvgImage image={ImageIcon} alt="cover" objectFit="cover" width="120px" height="120px" />
-<SvgImage image={ImageIcon} alt="fill" objectFit="fill" width="120px" height="120px" />
-<SvgImage image={ImageIcon} alt="none" objectFit="none" width="120px" height="120px" />
-<SvgImage image={ImageIcon} alt="scale-down" objectFit="scale-down" width="120px" height="120px" />
-</div>

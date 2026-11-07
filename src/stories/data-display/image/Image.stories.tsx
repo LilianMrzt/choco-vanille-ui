@@ -6,7 +6,7 @@ import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/image/constants'
 import ImagePlaygroundPlay from '@stories/data-display/image/utils/ImagePlaygroundPlay.utils'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/data-display/image/sources/ImageInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/data-display/image/sources/ImageInteractive.source.txt?raw'
 
 const meta = {
     title: 'Data Display/Image',

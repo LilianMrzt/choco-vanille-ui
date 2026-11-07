@@ -12,6 +12,11 @@ export const DEFAULT_ARGS = {
     pressed: false,
     variant: 'ghostSubtle',
     onPressedChange: fn(),
+    groupValue: ['bold'],
+    groupMultiple: false,
+    groupOrientation: 'horizontal',
+    groupDisabled: false,
+    groupOnValueChange: fn(),
 } satisfies NonNullable<Meta<ToggleStoryArgs>['args']>
 
 export const ARG_TYPES = {
@@ -23,6 +28,7 @@ export const ARG_TYPES = {
     variant: { control: 'select', options: VARIANTS, description: 'Bordered or borderless treatment with solid or subtle selection.', table: { defaultValue: { summary: 'ghostSubtle' } } },
     color: { control: 'select', options: COLORS, table: { defaultValue: { summary: 'primary' } } },
     size: { control: 'select', options: SIZES, description: 'Height at a 16px root: sm 28px, md 36px, lg 44px. Shared with Button; fixed across viewport and pointer types.', table: { defaultValue: { summary: 'md' } } },
+    radius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'], description: 'Corner radius token; defaults to 6.' },
     margin: { control: 'select', options: SPACING },
     marginTop: { control: 'select', options: SPACING },
     marginRight: { control: 'select', options: SPACING },
@@ -32,7 +38,7 @@ export const ARG_TYPES = {
     alignSelf: { control: 'select', options: [undefined, 'auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline'] },
     disabled: { control: 'boolean' },
     pressed: { control: 'boolean', description: 'Controlled standalone state.' },
-    defaultPressed: { control: 'boolean', description: 'Initial uncontrolled state; remount to apply changes.' },
+    defaultPressed: { control: 'boolean', description: 'Initial state when pressed is unset. Changing it remounts the uncontrolled example.' },
     onPressedChange: { control: false, description: 'Receives the requested state and cancellable event details.' },
     ref: { control: false, description: 'Ref to the button.' },
     groupMultiple: { control: 'boolean', description: 'Allow multiple selections.', table: { category: 'Group demo' } },

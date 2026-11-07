@@ -1,0 +1,11 @@
+/* @choco-vanille/ui — Plain CSS override scaffold                    */
+/* Fill in only the tokens you want to change, delete the rest.        */
+/* Import kit components in the application entry before using tokens.  */
+
+:root {
+{{fragment5}}
+}
+
+[data-theme="dark"] {
+{{fragment9}}
+}

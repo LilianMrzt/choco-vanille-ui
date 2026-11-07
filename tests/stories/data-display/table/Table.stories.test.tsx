@@ -164,6 +164,6 @@ describe('Table stories', () => {
         expect(source).toContain('<Table.Caption>Density: md</Table.Caption>')
         expect(source).toContain('<Table.Caption>Density: lg</Table.Caption>')
         expect(Sizes.parameters.docs.source.transform(source)).toBe(source)
-        expect(Sizes.parameters.controls.disable).toBe(true)
+        expect(Sizes.parameters).not.toHaveProperty('controls.disable')
     })
 })

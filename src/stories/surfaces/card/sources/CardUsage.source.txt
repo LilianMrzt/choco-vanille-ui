@@ -1,0 +1,15 @@
+import { Card, Typography } from '@choco-vanille/ui'
+
+const ConvenientHeader = () => (
+    <Card>
+        <Card.Header title="Account" description="Profile settings" />
+        <Card.Body>Manage your profile.</Card.Body>
+    </Card>
+)
+
+const ComposedHeader = () => (
+    <Card>
+        <Card.Header><Typography as="h3">Account</Typography></Card.Header>
+        <Card.Body>Manage your profile.</Card.Body>
+    </Card>
+)

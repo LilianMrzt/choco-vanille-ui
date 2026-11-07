@@ -1,0 +1,17 @@
+import { Fieldset, Legend } from '@choco-vanille/ui'
+
+export const AppearanceExample = () => (
+    <>
+        <Fieldset>
+            <Legend variant="h3">Delivery preferences</Legend>
+        </Fieldset>
+        <Fieldset>
+            <Legend fontWeight="bold">Delivery preferences</Legend>
+        </Fieldset>
+        <Fieldset>
+            <Legend color="var(--color-primary-main)">
+                Delivery preferences
+            </Legend>
+        </Fieldset>
+    </>
+)

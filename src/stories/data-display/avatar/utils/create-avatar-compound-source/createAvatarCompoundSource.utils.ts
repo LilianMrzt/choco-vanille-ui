@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { AvatarStoryArgs } from '@stories/data-display/avatar/types'
-import sourceTemplate from '@stories/data-display/avatar/utils/create-avatar-compound-source/sources/createAvatarCompoundSource.source.tsx.txt?raw'
-import statusTemplate from '@stories/data-display/avatar/utils/create-avatar-compound-source/sources/AvatarStatus.source.tsx.txt?raw'
+import sourceTemplate from '@stories/data-display/avatar/utils/create-avatar-compound-source/sources/createAvatarCompoundSource.source.txt?raw'
+import statusTemplate from '@stories/data-display/avatar/utils/create-avatar-compound-source/sources/AvatarStatus.source.txt?raw'
 import { createAvatarSource } from '@stories/data-display/avatar/utils/create-avatar-source/createAvatarSource.utils'
 
 export const createAvatarCompoundSource = (_source: string, { args }: Readonly<{ args: AvatarStoryArgs }>): string => {
@@ -16,7 +16,7 @@ export const createAvatarCompoundSource = (_source: string, { args }: Readonly<{
         style: args.style,
         role: args.role,
         onClick: args.onClick,
-    }).replace('<Avatar\n', '<Avatar.Root\n').replace('/>', '>')
+    }).replace(/<Avatar(?=\s|>)/, '<Avatar.Root').replace('/>', '>')
     const statusSource = args.compoundStatus
         ? '\n    ' + renderSource(statusTemplate, {
             status: JSON.stringify(args.compoundStatus),

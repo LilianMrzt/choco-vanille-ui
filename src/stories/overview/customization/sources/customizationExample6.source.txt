@@ -1,0 +1,18 @@
+// brand.css.ts
+import { globalStyle, style } from '@vanilla-extract/css';
+import { vars } from '@choco-vanille/ui';
+
+globalStyle(':root', {
+  vars: {
+    [vars.radius[8]]: '0.75rem',
+  },
+});
+
+export const brand = style({
+  vars: {
+    [vars.color.primary.main]: '#005a9c',
+    [vars.color.primary.hover]: '#004b83',
+    [vars.color.primary.pressed]: '#003c6a',
+    [vars.color.primary.foreground]: '#ffffff',
+  },
+});

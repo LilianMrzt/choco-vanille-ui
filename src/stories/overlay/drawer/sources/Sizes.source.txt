@@ -1,0 +1,27 @@
+import { useState } from 'react'
+import { Button, Drawer } from '@choco-vanille/ui'
+
+const Example = () => {
+  const [sm, setSm] = useState(false)
+  const [md, setMd] = useState(false)
+  const [lg, setLg] = useState(false)
+  const [xl, setXl] = useState(false)
+  const [xxl, setXxl] = useState(false)
+  const [full, setFull] = useState(false)
+  return (
+    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+      <Drawer open={sm} onOpenChange={setSm} mode="portal" size="sm"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: sm</strong></div></Drawer.Body></Drawer>
+      <Button label="sm" variant="outlined" onClick={() => setSm(true)} />
+      <Drawer open={md} onOpenChange={setMd} mode="portal" size="md"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: md</strong></div></Drawer.Body></Drawer>
+      <Button label="md" variant="outlined" onClick={() => setMd(true)} />
+      <Drawer open={lg} onOpenChange={setLg} mode="portal" size="lg"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: lg</strong></div></Drawer.Body></Drawer>
+      <Button label="lg" variant="outlined" onClick={() => setLg(true)} />
+      <Drawer open={xl} onOpenChange={setXl} mode="portal" size="xl"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: xl</strong></div></Drawer.Body></Drawer>
+      <Button label="xl" variant="outlined" onClick={() => setXl(true)} />
+      <Drawer open={xxl} onOpenChange={setXxl} mode="portal" size="2xl"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: 2xl</strong></div></Drawer.Body></Drawer>
+      <Button label="2xl" variant="outlined" onClick={() => setXxl(true)} />
+      <Drawer open={full} onOpenChange={setFull} mode="portal" size="full"><Drawer.Body><div style={{ padding: '1rem' }}><strong>size: full</strong></div></Drawer.Body></Drawer>
+      <Button label="full" variant="outlined" onClick={() => setFull(true)} />
+    </div>
+  )
+}

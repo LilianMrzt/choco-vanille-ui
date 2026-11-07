@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/CollapsibleUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const CollapsibleDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -26,6 +31,13 @@ const CollapsibleDocsPage = (): ReactElement => (
 
 The trigger supports keyboard activation and exposes its expanded state.
 Supply your own SVG component for InfoIcon in the consumer example.
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Collapsible.Trigger | Toggle button accepting a convenient label and icons or custom children. |
+| Collapsible.Panel | Associated expandable content with optional padding. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

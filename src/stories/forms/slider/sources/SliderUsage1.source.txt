@@ -1,0 +1,8 @@
+import { Slider } from '@choco-vanille/ui'
+
+export const Example = () => (
+    <>
+        <Slider label="Volume" defaultValue={40} />
+        <Slider label="Price" defaultValue={[20, 80]} />
+    </>
+)

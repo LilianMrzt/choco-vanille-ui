@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { TooltipStoryArgs } from '@stories/overlay/tooltip/constants'
-import controlledTemplate from '@stories/overlay/tooltip/utils/create-tooltip-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolledTemplate from '@stories/overlay/tooltip/utils/create-tooltip-source/sources/uncontrolled.source.tsx.txt?raw'
+import type { TooltipStoryArgs } from '@stories/overlay/tooltip/types'
+import controlledTemplate from '@stories/overlay/tooltip/utils/create-tooltip-source/sources/controlled.source.txt?raw'
+import uncontrolledTemplate from '@stories/overlay/tooltip/utils/create-tooltip-source/sources/uncontrolled.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current tooltip controls.

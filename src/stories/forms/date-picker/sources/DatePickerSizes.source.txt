@@ -1,0 +1,23 @@
+import { DatePicker } from '@choco-vanille/ui'
+
+
+
+export const DatePickerSizesExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <DatePicker
+            label={'Small'}
+            size={'sm'}
+            width={'100%'}
+        />
+        <DatePicker
+            label={'Medium'}
+            size={'md'}
+            width={'100%'}
+        />
+        <DatePicker
+            label={'Large'}
+            size={'lg'}
+            width={'100%'}
+        />
+    </div>
+)

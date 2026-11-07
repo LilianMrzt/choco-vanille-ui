@@ -1,3 +1,8 @@
+import iconsExample1 from '@stories/guidelines/icons/sources/iconsExample1.source.txt?raw'
+import iconsExample2 from '@stories/guidelines/icons/sources/iconsExample2.source.txt?raw'
+import iconsExample3 from '@stories/guidelines/icons/sources/iconsExample3.source.txt?raw'
+import iconsExample4 from '@stories/guidelines/icons/sources/iconsExample4.source.txt?raw'
+import iconsExample5 from '@stories/guidelines/icons/sources/iconsExample5.source.txt?raw'
 import { Meta, Source, Subtitle, Title } from '@storybook/addon-docs/blocks';
 
 <Meta title="Guidelines/Icons" />
@@ -17,17 +22,7 @@ The `Icon` component renders a locally bundled SVG component passed to the `icon
 
 <Source
     language="tsx"
-    code={`import { Icon } from '@choco-vanille/ui'
-import SearchIcon from './assets/SearchIcon.svg?react'
-import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
-
-// Decorative icon — hidden from screen readers
-
-<Icon icon={SearchIcon} />
-
-// Semantic icon — announced with an accessible label
-
-<Icon icon={TriangleAlertIcon} aria-label="Warning" />`}
+    code={iconsExample1}
 />
 
 ---
@@ -88,27 +83,14 @@ Keep the registry in the consumer project, for example in
 
 <Source
     language="tsx"
-    code={`import SearchIcon from './assets/SearchIcon.svg?react'
-import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
-import CloseIcon from './assets/CloseIcon.svg?react'
-
-export const IconRegistry = {
-    search: SearchIcon,
-    warning: TriangleAlertIcon,
-    close: CloseIcon,
-} as const`}
+    code={iconsExample2}
 />
 
 Then import that registry from the consumer project, not from the UI kit:
 
 <Source
     language="tsx"
-    code={`import { Icon } from '@choco-vanille/ui'
-import { IconRegistry } from '@/icons/registry'
-
-<Icon icon={IconRegistry.search} />
-<Icon icon={IconRegistry.warning} size="lg" aria-label="Warning" />
-<Icon icon={IconRegistry.close} spin />`}
+    code={iconsExample3}
 />
 
 ---
@@ -151,17 +133,11 @@ Configure your project to transform SVG files into React components with
 `vite-plugin-svgr`. Without this Vite plugin, the `?react` imports used by the
 registry will not work.
 
-<Source language="bash" code={`pnpm add -D vite-plugin-svgr`} />
+<Source language="bash" code={iconsExample4} />
 
 <Source
     language="ts"
-    code={`import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import svgr from 'vite-plugin-svgr'
-
-export default defineConfig({
-    plugins: [react(), svgr()],
-})`}
+    code={iconsExample5}
 />
 
 ### Choosing icons

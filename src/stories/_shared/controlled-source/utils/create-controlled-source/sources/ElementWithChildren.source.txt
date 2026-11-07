@@ -1,0 +1,3 @@
+<{{component}}{{attributes}}{{openAttributes}} {{stateProp}}={value} {{eventProp}}={{{handler}}}>
+{{children}}
+    </{{component}}>

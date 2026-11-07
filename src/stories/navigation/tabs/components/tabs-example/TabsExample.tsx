@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 
 import { Tabs } from '@components/navigation/tabs'
-import type { TabsStoryArgs } from '@stories/navigation/tabs/constants'
+import type { TabsStoryArgs } from '@stories/navigation/tabs/types'
 
 /**
  * Renders the example with root and slot controls.

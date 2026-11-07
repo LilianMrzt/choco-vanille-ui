@@ -1,0 +1,3 @@
+import { Link } from '@choco-vanille/ui'
+
+<Link href="/account" label="Account settings" />

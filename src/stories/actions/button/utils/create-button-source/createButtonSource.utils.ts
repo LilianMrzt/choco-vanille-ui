@@ -1,6 +1,6 @@
 import type { ButtonProps } from '@components/actions/button'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/actions/button/utils/create-button-source/sources/createButtonSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/actions/button/utils/create-button-source/sources/createButtonSource.source.txt?raw'
 
 /**
  * Serializes a string or number as a JSX attribute.

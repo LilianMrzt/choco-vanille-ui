@@ -1,52 +1,35 @@
-import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/bottom-sheet/constants'
-import sourceWithIcons from '@stories/overlay/bottom-sheet/sources/WithIcons.source.tsx.txt?raw'
-import sourceStates from '@stories/overlay/bottom-sheet/sources/States.source.tsx.txt?raw'
-import BottomSheetDocsPage from '@stories/overlay/bottom-sheet/components/docs-page/DocsPage'
-import BottomSheetUncontrolled from '@stories/overlay/bottom-sheet/components/uncontrolled/BottomSheetUncontrolled'
-import uncontrolledSource from '@stories/overlay/bottom-sheet/sources/Uncontrolled.source.tsx.txt?raw'
-import type { BottomSheetPlaygroundArgs } from '@stories/overlay/bottom-sheet/types'
-import BottomSheetPlayground from '@stories/overlay/bottom-sheet/components/playground/BottomSheetPlayground'
-import BottomSheetWithIcons from '@stories/overlay/bottom-sheet/components/with-icons/BottomSheetWithIcons'
-import BottomSheetStates from '@stories/overlay/bottom-sheet/components/states/BottomSheetStates'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-
-import { expect, userEvent, waitFor, within } from 'storybook/test'
-
 import { BottomSheet } from '@components/overlay/bottom-sheet'
-import { md } from '@stories/_shared/utils/markdown'
+import BottomSheetDocsPage from './components/docs-page/DocsPage'
+import BottomSheetPlayground from './components/playground/BottomSheetPlayground'
+import BottomSheetUncontrolled from './components/uncontrolled/BottomSheetUncontrolled'
+import BottomSheetWithIcons from './components/with-icons/BottomSheetWithIcons'
+import BottomSheetStates from './components/states/BottomSheetStates'
+import { ARG_TYPES, DEFAULT_ARGS } from './constants'
+import withIconsSource from './sources/WithIcons.source.txt?raw'
+import statesSource from './sources/States.source.txt?raw'
+import uncontrolledSource from './sources/Uncontrolled.source.txt?raw'
+import type { BottomSheetPlaygroundArgs } from './types'
+import { createBottomSheetSource } from './utils/create-bottom-sheet-source/createBottomSheetSource.utils'
+import { playBottomSheet } from './utils/playBottomSheet.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
-import { createBottomSheetSource } from '@stories/overlay/bottom-sheet/utils/create-bottom-sheet-source/createBottomSheetSource.utils'
 
-const meta: Meta<BottomSheetPlaygroundArgs> = {
+const meta = {
     title: 'Overlay/BottomSheet',
     component: BottomSheet,
+    tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, marginInline: 'auto', overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
-        layout: 'centered',
+        layout: 'padded',
         docs: {
             page: BottomSheetDocsPage,
-            description: {
-                component: md /* language=markdown */ `
-A modal sheet that slides up from the bottom of the screen, built on Base UI Drawer.
-
-Use it on mobile instead of \`DropdownMenu\` or popovers for contextual actions and single-choice pickers. It supports swipe-to-dismiss and keeps rows large enough for touch.
-
-**Usage**
-
-~~~tsx
-<BottomSheet>
-  <BottomSheet.Trigger>
-    <Button label="More actions" variant="outlined" />
-  </BottomSheet.Trigger>
-  <BottomSheet.Content>
-    <BottomSheet.Item label="Share" startIcon={LinkIcon} onClick={share} />
-    <BottomSheet.Item label="Upload" startIcon={UploadIcon} onClick={upload} />
-    <BottomSheet.Separator />
-    <BottomSheet.Item label="Delete" startIcon={TrashIcon} destructive onClick={remove} />
-  </BottomSheet.Content>
-</BottomSheet>
-~~~
-        `,
-            },
+            description: { component: 'A bottom-edge modal sheet for contextual actions and single-choice pickers. Its large rows support touch, and the sheet supports swipe-to-dismiss.' },
         },
     },
     argTypes: ARG_TYPES,
@@ -55,55 +38,16 @@ Use it on mobile instead of \`DropdownMenu\` or popovers for contextual actions 
 
 export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story:
-          'Interactive playground — every sub-component is exposed in the Controls panel, grouped by slot.',
-            },
-            source: { type: 'dynamic', transform: createBottomSheetSource },
-        },
-    },
     render: BottomSheetPlayground,
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement)
-        await userEvent.click(canvas.getByText('Open bottom sheet'))
-        await waitFor(() =>
-            expect(document.querySelector('[role="dialog"]')).toBeInTheDocument(),
-        )
-        await expect(document.querySelector('[role="dialog"]')).toHaveTextContent('Photo')
-        await userEvent.keyboard('{Escape}')
-    },
+    play: playBottomSheet,
+    parameters: { docs: { source: { type: 'dynamic', transform: createBottomSheetSource } } },
 }
-
 export const Uncontrolled: Story = {
     render: BottomSheetUncontrolled,
-    parameters: { docs: { ...storySource(uncontrolledSource), description: { story: 'The sheet manages its own open state.' } } },
+    parameters: { docs: { ...storySource(uncontrolledSource), description: { story: 'The sheet owns its open state. Initial defaultOpen changes require a remount.' } } },
 }
-
-export const WithIcons: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Items with a start icon, an end icon, and both.',
-            },
-            ...storySource(sourceWithIcons),
-        },
-    },
-    render: BottomSheetWithIcons,
-}
-
-export const States: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Default, destructive, disabled and selected rows.',
-            },
-            ...storySource(sourceStates),
-        },
-    },
-    render: BottomSheetStates,
-}
+export const WithIcons: Story = { render: BottomSheetWithIcons, parameters: { docs: { ...storySource(withIconsSource) } } }
+export const States: Story = { render: BottomSheetStates, parameters: { docs: { ...storySource(statesSource) } } }

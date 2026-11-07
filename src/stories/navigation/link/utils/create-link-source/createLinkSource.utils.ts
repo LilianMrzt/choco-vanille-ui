@@ -1,6 +1,6 @@
 import type { LinkProps } from '@components/navigation/link'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/navigation/link/utils/create-link-source/sources/createLinkSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/navigation/link/utils/create-link-source/sources/createLinkSource.source.txt?raw'
 
 /**
  * Serializes a string or number as a JSX attribute.

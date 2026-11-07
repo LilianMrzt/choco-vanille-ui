@@ -1,0 +1,12 @@
+import { Button, Command } from '@choco-vanille/ui'
+
+<Command>
+    <Command.Trigger><Button label="Open command palette" /></Command.Trigger>
+    <Command.Content>
+        <Command.Input placeholder="Search actions" />
+        <Command.List aria-label="Commands">
+            <Command.Group label="Actions"><Command.Item>Edit profile</Command.Item></Command.Group>
+            <Command.Empty>No results found.</Command.Empty>
+        </Command.List>
+    </Command.Content>
+</Command>

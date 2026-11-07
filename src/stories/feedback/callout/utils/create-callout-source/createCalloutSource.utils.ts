@@ -1,6 +1,11 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { CalloutStoryArgs } from '@stories/feedback/callout/constants'
-import sourceTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/createCalloutSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/createCalloutSource.source.txt?raw'
+import actionTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/CalloutAction.source.txt?raw'
+import titleTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/CalloutTitle.source.txt?raw'
+import iconTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/CalloutIcon.source.txt?raw'
+import descriptionTemplate from '@stories/feedback/callout/utils/create-callout-source/sources/CalloutDescription.source.txt?raw'
+import type { CalloutStoryArgs } from '@stories/feedback/callout/types'
+import iconImportTemplate from '@stories/_shared/controlled-source/utils/create-controlled-source/sources/IconImport.source.txt?raw'
 
 /**
  * Generates compound callout JSX reflecting the current story controls.
@@ -14,15 +19,19 @@ import sourceTemplate from '@stories/feedback/callout/utils/create-callout-sourc
  */
 export const createCalloutSource = (_source: string, { args }: Readonly<{ args: CalloutStoryArgs }>): string => {
     const children = [
-        args.showCustomIcon && '  <Callout.Icon icon={InfoIcon} />',
-        args.showTitle && `  <Callout.Title>{${JSON.stringify(args.title)}}</Callout.Title>`,
-        args.showDescription && `  <Callout.Description>{${JSON.stringify(args.description)}}</Callout.Description>`,
-        args.showAction && `  <Callout.Action icon={CloseIcon} aria-label={${JSON.stringify(args.actionLabel)}} onClick={() => {}} />`,
+        args.showCustomIcon && iconTemplate.trimEnd(),
+        args.showTitle && renderSource(titleTemplate, { title: JSON.stringify(args.title) }).trimEnd(),
+        args.showDescription && renderSource(descriptionTemplate, { description: JSON.stringify(args.description) }).trimEnd(),
+        args.showAction && renderSource(actionTemplate, { label: JSON.stringify(args.actionLabel) }).trimEnd(),
     ].filter(Boolean).join('\n')
 
     return renderSource(sourceTemplate, {
         variant: JSON.stringify(args.variant),
         role: args.role === undefined ? 'undefined' : JSON.stringify(args.role),
         children,
+        iconImports: [
+            args.showCustomIcon && renderSource(iconImportTemplate, { name: 'InfoIcon' }).trimEnd(),
+            args.showAction && renderSource(iconImportTemplate, { name: 'CloseIcon' }).trimEnd(),
+        ].filter(Boolean).join('\n'),
     })
 }

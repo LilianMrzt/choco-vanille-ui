@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { DatePicker } from '@choco-vanille/ui'
+
+export const Example = () => {
+    const [date, setDate] = useState<Date | undefined>()
+
+    return <DatePicker label="Pick a date" value={date} onChange={setDate} />
+}

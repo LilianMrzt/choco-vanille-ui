@@ -1,8 +1,8 @@
 import { type AvatarGroupProps } from '@components/data-display/avatar-group'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import { PEOPLE } from '@stories/data-display/avatar-group/constants'
-import sourceTemplate from '@stories/data-display/avatar-group/utils/create-group-source/sources/createGroupSource.source.tsx.txt?raw'
-import childTemplate from '@stories/data-display/avatar-group/utils/create-group-source/sources/AvatarGroupChild.source.tsx.txt?raw'
+import sourceTemplate from '@stories/data-display/avatar-group/utils/create-group-source/sources/createGroupSource.source.txt?raw'
+import childTemplate from '@stories/data-display/avatar-group/utils/create-group-source/sources/AvatarGroupChild.source.txt?raw'
 
 /**
  * Generates public JSX for a group and every displayed child.

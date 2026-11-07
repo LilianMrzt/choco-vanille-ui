@@ -1,6 +1,8 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { PanelStoryArgs } from '@stories/overlay/panel/types'
-import sourceTemplate from '@stories/overlay/panel/utils/create-panel-source/sources/createPanelSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/overlay/panel/utils/create-panel-source/sources/createPanelSource.source.txt?raw'
+import stateTemplate from '@stories/overlay/panel/utils/create-panel-source/sources/state.source.txt?raw'
+import stateImportSource from '@stories/overlay/panel/utils/create-panel-source/sources/state-import.source.txt?raw'
 
 /**
  * Serializes a string or boolean JSX attribute when present.
@@ -36,11 +38,15 @@ export const createPanelSource = (_source: string, { args }: Readonly<{ args: Pa
     ].join('')
 
     return renderSource(sourceTemplate, {
-        stateImport: isControlled ? "import { useState } from 'react'\n" : '',
-        state: isControlled ? `  const [open, setOpen] = useState(${JSON.stringify(args.open)})\n\n` : '',
+        stateImport: isControlled ? stateImportSource : '',
+        state: isControlled ? renderSource(stateTemplate, { open: JSON.stringify(args.open) }) : '',
         rootProps,
-        contentProps: serializeAttribute('position', args.position) + serializeAttribute('width', args.width),
+        contentProps: serializeAttribute('position', args.position) + serializeAttribute('width', args.width) +
+            serializeAttribute('defaultAriaLabel', args.contentLabel),
         headerProps: (args.showDescription ? serializeAttribute('description', args.description) : '') +
-            serializeAttribute('title', args.title),
+            serializeAttribute('title', args.title) +
+            serializeAttribute('titleAs', args.titleAs) +
+            serializeAttribute('showCloseButton', args.showCloseButton) +
+            serializeAttribute('closeLabel', args.closeLabel),
     })
 }

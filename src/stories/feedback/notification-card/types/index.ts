@@ -1,7 +1,7 @@
 import type { NotificationCardProps } from '@components/feedback/notification-card'
 
 /** @internal Storybook-only composition controls; not public package API. */
-export type NotificationCardStoryArgs = Readonly<Omit<NotificationCardProps, 'children' | 'title' | 'description' | 'icon'> & {
+export type NotificationCardStoryArgs = Readonly<Omit<NotificationCardProps, 'title' | 'description'> & {
     title: string
     description: string
     showIcon: boolean

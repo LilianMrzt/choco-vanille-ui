@@ -1,0 +1,11 @@
+import { Flex, Spinner } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={16}>
+        <Spinner aria-label="Loading" size="xs" />
+        <Spinner aria-label="Loading" size="sm" />
+        <Spinner aria-label="Loading" size="md" />
+        <Spinner aria-label="Loading" size="lg" />
+        <Spinner aria-label="Loading" size="xl" />
+    </Flex>
+)

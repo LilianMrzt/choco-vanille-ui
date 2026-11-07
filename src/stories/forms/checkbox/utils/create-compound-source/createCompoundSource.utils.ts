@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { CheckboxStoryArgs } from '@stories/forms/checkbox/types'
-import template from '@stories/forms/checkbox/utils/create-compound-source/sources/createCompoundSource.source.tsx.txt?raw'
+import template from '@stories/forms/checkbox/utils/create-compound-source/sources/createCompoundSource.source.txt?raw'
 
 /**
  * Produces a consumer example for the current compound controls.

@@ -15,7 +15,9 @@ const CollapsibleStates = (): ReactElement => (
         flexDirection={'column'}
         gap={12}
         maxWidth={'100%'}
-        width={'25rem'}
+        minWidth={0}
+        style={{ overflowX: 'auto' }}
+        width={'min(25rem, 100%)'}
     >
         <Collapsible defaultOpen>
             <Collapsible.Trigger label={'Open'} />

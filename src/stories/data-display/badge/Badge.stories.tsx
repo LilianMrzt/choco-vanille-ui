@@ -1,19 +1,17 @@
+import BadgeSizes from '@stories/data-display/badge/components/badge-sizes/BadgeSizes'
+import sizesSource from '@stories/data-display/badge/sources/BadgeSizes.source.txt?raw'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Badge } from '@components/data-display/badge'
-import BadgeColors from '@stories/data-display/badge/components/badge-colors/BadgeColors'
 import BadgeDocsPage from '@stories/data-display/badge/components/badge-docs-page/BadgeDocsPage'
-import BadgeSizes from '@stories/data-display/badge/components/badge-sizes/BadgeSizes'
-import BadgeVariants from '@stories/data-display/badge/components/badge-variants/BadgeVariants'
 import BadgeWithIcons from '@stories/data-display/badge/components/badge-with-icons/BadgeWithIcons'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/badge/constants'
-import badgeSizesSource from '@stories/data-display/badge/sources/BadgeSizes.source.tsx.txt?raw'
-import badgeWithIconsSource from '@stories/data-display/badge/sources/BadgeWithIcons.source.tsx.txt?raw'
-import { createBadgeColorsSource } from '@stories/data-display/badge/utils/create-badge-colors-source/createBadgeColorsSource.utils'
+import badgeWithIconsSource from '@stories/data-display/badge/sources/BadgeWithIcons.source.txt?raw'
 import { createBadgeSource } from '@stories/data-display/badge/utils/create-badge-source/createBadgeSource.utils'
-import { createBadgeVariantsSource } from '@stories/data-display/badge/utils/create-badge-variants-source/createBadgeVariantsSource.utils'
 import { playBadgePlayground } from '@stories/data-display/badge/utils/playBadgePlayground.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
+import BadgeAppearance from '@stories/data-display/badge/components/badge-appearance/BadgeAppearance'
+import appearanceSource from '@stories/data-display/badge/sources/BadgeAppearance.source.txt?raw'
 
 const meta = {
     title: 'Data Display/Badge',
@@ -43,34 +41,6 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {
     play: playBadgePlayground,
 }
-
-export const Variants: Story = {
-    parameters: {
-        docs: {
-            ...storySource(createBadgeVariantsSource()),
-        },
-    },
-    render: BadgeVariants,
-}
-
-export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(badgeSizesSource),
-        },
-    },
-    render: BadgeSizes,
-}
-
-export const Colors: Story = {
-    parameters: {
-        docs: {
-            ...storySource(createBadgeColorsSource()),
-        },
-    },
-    render: BadgeColors,
-}
-
 export const WithIcons: Story = {
     parameters: {
         docs: {
@@ -88,4 +58,13 @@ export const LongLabel: Story = {
             description: { story: 'Labels are not truncated. Allow enough space or provide a concise label in narrow layouts.' },
         },
     },
+}
+export const Appearance: Story = {
+    parameters: { docs: { ...storySource(appearanceSource) } },
+    render: BadgeAppearance,
+}
+
+export const Sizes: Story = {
+    parameters: { docs: { ...storySource(sizesSource) } },
+    render: BadgeSizes,
 }

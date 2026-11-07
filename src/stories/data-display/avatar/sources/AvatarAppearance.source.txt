@@ -1,0 +1,136 @@
+import { Flex, Typography, Avatar } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Variants / Colors</Typography>
+            <Flex flexDirection="column" gap={16}>
+                <Flex aria-label="primary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">primary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, primary, contained" color="primary" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, primary, subtle" color="primary" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, primary, outlined" color="primary" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, primary, outlinedSubtle" color="primary" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="secondary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">secondary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, secondary, contained" color="secondary" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, secondary, subtle" color="secondary" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, secondary, outlined" color="secondary" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, secondary, outlinedSubtle" color="secondary" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">tertiary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, tertiary, contained" color="tertiary" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, tertiary, subtle" color="tertiary" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, tertiary, outlined" color="tertiary" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, tertiary, outlinedSubtle" color="tertiary" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">destructive</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, destructive, contained" color="destructive" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, destructive, subtle" color="destructive" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, destructive, outlined" color="destructive" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, destructive, outlinedSubtle" color="destructive" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="success" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">success</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, success, contained" color="success" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, success, subtle" color="success" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, success, outlined" color="success" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, success, outlinedSubtle" color="success" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="warning" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">warning</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, warning, contained" color="warning" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, warning, subtle" color="warning" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, warning, outlined" color="warning" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, warning, outlinedSubtle" color="warning" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="info" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">info</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, info, contained" color="info" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, info, subtle" color="info" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, info, outlined" color="info" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, info, outlinedSubtle" color="info" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="purple" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">purple</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, purple, contained" color="purple" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, purple, subtle" color="purple" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, purple, outlined" color="purple" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, purple, outlinedSubtle" color="purple" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="pink" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">pink</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, pink, contained" color="pink" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, pink, subtle" color="pink" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, pink, outlined" color="pink" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, pink, outlinedSubtle" color="pink" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="orange" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">orange</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, orange, contained" color="orange" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, orange, subtle" color="orange" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, orange, outlined" color="orange" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, orange, outlinedSubtle" color="orange" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="teal" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">teal</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, teal, contained" color="teal" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, teal, subtle" color="teal" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, teal, outlined" color="teal" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, teal, outlinedSubtle" color="teal" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="cyan" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">cyan</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, cyan, contained" color="cyan" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, cyan, subtle" color="cyan" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, cyan, outlined" color="cyan" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, cyan, outlinedSubtle" color="cyan" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="indigo" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">indigo</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Avatar aria-label="Jane Doe, indigo, contained" color="indigo" initials="JD" variant="contained" />
+                        <Avatar aria-label="Jane Doe, indigo, subtle" color="indigo" initials="JD" variant="subtle" />
+                        <Avatar aria-label="Jane Doe, indigo, outlined" color="indigo" initials="JD" variant="outlined" />
+                        <Avatar aria-label="Jane Doe, indigo, outlinedSubtle" color="indigo" initials="JD" variant="outlinedSubtle" />
+                    </Flex>
+                </Flex>
+            </Flex>
+        </section>
+        <section>
+            <Typography as="h3">Shapes</Typography>
+            <Flex flexWrap="wrap" gap={12}>
+                <Avatar aria-label="Jane Doe, circle" initials="JD" shape="circle" />
+                <Avatar aria-label="Jane Doe, square" initials="JD" shape="square" />
+            </Flex>
+        </section>
+    </Flex>
+)

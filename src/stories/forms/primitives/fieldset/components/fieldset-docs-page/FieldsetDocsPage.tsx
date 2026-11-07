@@ -1,5 +1,6 @@
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import type { ReactElement } from 'react'
+import { ACCESSIBILITY_DESCRIPTION } from '@stories/forms/primitives/fieldset/constants'
 
 /**
  * Presents fieldset examples and accessible naming guidance.
@@ -14,7 +15,7 @@ const FieldsetDocsPage = (): ReactElement => (
         <Description />
         <Canvas />
         <Controls />
-        <Markdown>{'## Accessibility\n\n| Prop / Attribute | Required | Type | Notes |\n| --- | --- | --- | --- |\n| `Legend` | Yes | ReactNode | Names the group of related controls. |\n| `disabled` | No | boolean | Disables controls outside the first legend. |'}</Markdown>
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
         <Stories includePrimary={false} />
     </>
 )

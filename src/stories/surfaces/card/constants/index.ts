@@ -2,6 +2,7 @@ import type { Meta } from '@storybook/react-vite'
 
 import type { BoxVariant } from '@components/layout/box'
 import type { CardStoryArgs } from '@stories/surfaces/card/types'
+import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
 const ELEMENTS: BoxVariant[] = [
     'div', 'section', 'article', 'aside', 'main', 'header', 'footer', 'nav',
@@ -25,6 +26,7 @@ export const DEFAULT_ARGS = {
 } satisfies NonNullable<Meta<CardStoryArgs>['args']>
 
 export const ARG_TYPES = {
+    ...LAYOUT_ARG_TYPES,
     as: { control: 'select', options: ELEMENTS, description: 'Semantic root element.', table: { defaultValue: { summary: 'div' } } },
     borderRadius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'], description: 'Radius token.', table: { defaultValue: { summary: '6' } } },
     borderWidth: { control: 'text', description: 'CSS border width.', table: { defaultValue: { summary: '1px' } } },

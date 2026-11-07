@@ -1,0 +1,18 @@
+import { Typography } from '@choco-vanille/ui'
+
+const Example = () => (
+    <div style={{ display: 'grid', gap: '0.5rem' }}>
+        <Typography variant="p" fontSize={10}>10</Typography>
+        <Typography variant="p" fontSize={12}>12</Typography>
+        <Typography variant="p" fontSize={14}>14</Typography>
+        <Typography variant="p" fontSize={16}>16</Typography>
+        <Typography variant="p" fontSize={18}>18</Typography>
+        <Typography variant="p" fontSize={20}>20</Typography>
+        <Typography variant="p" fontSize={24}>24</Typography>
+        <Typography variant="p" fontSize={30}>30</Typography>
+        <Typography variant="p" fontSize={36}>36</Typography>
+        <Typography variant="p" fontSize={48}>48</Typography>
+        <Typography variant="p" fontSize={60}>60</Typography>
+        <Typography variant="p" fontSize={72}>72</Typography>
+    </div>
+)

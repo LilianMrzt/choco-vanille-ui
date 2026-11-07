@@ -1,5 +1,0 @@
-import { Fab } from '@choco-vanille/ui'
-
-<Fab icon={SearchIcon} label="Search" position="bottom-end" />
-<Fab icon={SearchIcon} label="Search" position="bottom-start" />
-<Fab icon={SearchIcon} label="Search" position="bottom-center" />

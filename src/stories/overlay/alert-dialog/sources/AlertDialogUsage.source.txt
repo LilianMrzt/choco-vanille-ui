@@ -1,0 +1,24 @@
+import { AlertDialog, Button } from '@choco-vanille/ui'
+
+const ConvenientHeader = () => (
+    <AlertDialog>
+        <AlertDialog.Trigger><Button label="Delete account" /></AlertDialog.Trigger>
+        <AlertDialog.Content>
+            <AlertDialog.Header title="Delete account?" description="This cannot be undone." />
+            <AlertDialog.Footer><AlertDialog.Cancel /><AlertDialog.Action label="Delete account" /></AlertDialog.Footer>
+        </AlertDialog.Content>
+    </AlertDialog>
+)
+
+const ComposedHeader = () => (
+    <AlertDialog>
+        <AlertDialog.Trigger><Button label="Delete account" /></AlertDialog.Trigger>
+        <AlertDialog.Content aria-labelledby="confirmation-title">
+            <AlertDialog.Header>
+                <AlertDialog.Title id="confirmation-title">Delete account?</AlertDialog.Title>
+                <AlertDialog.Description>This cannot be undone.</AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer><AlertDialog.Cancel /><AlertDialog.Action label="Delete account" /></AlertDialog.Footer>
+        </AlertDialog.Content>
+    </AlertDialog>
+)

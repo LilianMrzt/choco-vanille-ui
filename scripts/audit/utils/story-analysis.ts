@@ -121,11 +121,42 @@ const getStoryValue = (node: Node | undefined, visited = new Set<Node>()): Node 
       .find(Node.isVariableDeclaration);
     return getStoryValue(declaration?.getInitializer(), visited);
   }
+  if (Node.isPropertyAccessExpression(node)) {
+    const owner = getStoryValue(node.getExpression(), visited)?.asKind(SyntaxKind.ObjectLiteralExpression);
+    const property = owner?.getProperty(node.getName())?.asKind(SyntaxKind.PropertyAssignment);
+    return getStoryValue(property?.getInitializer(), visited);
+  }
   return node;
 };
 
 const getStoryObject = (node: Node | undefined): ObjectLiteralExpression | undefined =>
   getStoryValue(node)?.asKind(SyntaxKind.ObjectLiteralExpression);
+
+/**
+ * Recognizes labelled, populated axes in an exported combined comparison.
+ * @param sourceFile - Component's CSF entry.
+ * @param axis - Canonical comparative section.
+ * @returns Whether Appearance renders that section with example content.
+ * @example
+ * hasAppearanceComparison(storyFile, 'Colors')
+ */
+const hasAppearanceComparison = (sourceFile: SourceFile, axis: string): boolean => {
+  const appearance = getStoryObject(sourceFile.getVariableDeclaration('Appearance')?.getInitializer());
+  const render = appearance?.getProperty('render')?.asKind(SyntaxKind.PropertyAssignment);
+  const renderer = getStoryValue(render?.getInitializer());
+  if (!renderer) return false;
+  const normalize = (text: string): string => text.replace(/[^a-z]/gi, '').toLowerCase();
+  return renderer.getDescendantsOfKind(SyntaxKind.JsxElement).some((section) =>
+    section.getOpeningElement().getTagNameNode().getText() === 'section' &&
+    section.getDescendantsOfKind(SyntaxKind.JsxText).some((text) =>
+      text.getText().split('/').some((label) => normalize(label) === normalize(axis)),
+    ) &&
+    (
+      section.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement).length > 0 ||
+      section.getDescendantsOfKind(SyntaxKind.JsxElement).length > 1
+    ),
+  );
+};
 
 /**
  * Reads a story's owned modules without mixing in unrelated stories or package code.
@@ -216,13 +247,17 @@ function componentNameForStory(sourceFile: SourceFile): string {
   return sourceFile.getBaseName().replace(/\.stories\.tsx$/, '');
 }
 
-function argTypeNames(sourceFile: SourceFile): Set<string> {
+function storyArgTypes(sourceFile: SourceFile): ObjectLiteralExpression | undefined {
   const metaDeclaration = sourceFile.getVariableDeclaration('meta');
   const metaInitializer = getStoryObject(metaDeclaration?.getInitializer());
-  const argTypes = getStoryObject(metaInitializer
+  return getStoryObject(metaInitializer
     ?.getProperty('argTypes')
     ?.asKind(SyntaxKind.PropertyAssignment)
     ?.getInitializer());
+}
+
+function argTypeNames(sourceFile: SourceFile): Set<string> {
+  const argTypes = storyArgTypes(sourceFile);
   if (!argTypes) return new Set();
 
   return new Set(
@@ -244,6 +279,17 @@ function hasNativeImageLoading(sourceFile: SourceFile): boolean {
   const types = loading.getTypeAtLocation(component).getUnionTypes();
   const values = types.filter((type) => type.isStringLiteral()).map((type) => type.getLiteralValue());
   return values.length === 2 && values.includes('eager') && values.includes('lazy');
+}
+
+function hasOpenStringProp(sourceFile: SourceFile, name: string): boolean {
+  const meta = getStoryObject(sourceFile.getVariableDeclaration('meta')?.getInitializer());
+  const component = meta?.getProperty('component')?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer();
+  const props = component?.getType().getCallSignatures()[0]?.getParameters()[0];
+  if (!component || !props) return false;
+  const property = props.getTypeAtLocation(component).getProperty(name);
+  return property?.getTypeAtLocation(component).getUnionTypes().some((type) =>
+    type.isString() || (type.isIntersection() && type.getIntersectionTypes().some((part) => part.isString())),
+  ) ?? false;
 }
 
 function hasAccessibilityTable(source: string): boolean {
@@ -457,10 +503,24 @@ export function analyzeComponentStories(
       ]);
       for (const rule of showcaseRules) {
         if (!componentProps.has(rule.prop)) continue;
+        const configuration = getStoryObject(storyArgTypes(sourceFile)?.getProperty(rule.prop)
+          ?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer());
+        const control = getStoryValue(configuration?.getProperty('control')
+          ?.asKind(SyntaxKind.PropertyAssignment)?.getInitializer());
+        if (
+          rule.prop === 'color' && Node.isStringLiteral(control) &&
+          (
+            control.getLiteralValue() === 'color' ||
+            (control.getLiteralValue() === 'text' && hasOpenStringProp(sourceFile, rule.prop))
+          )
+        ) {
+          continue;
+        }
         if (rule.prop === 'color' && component.category === 'foundation') {
           continue;
         }
-        if (exportedStoryNames.has(rule.story)) continue;
+        const requiresDedicatedStory = rule.prop === 'size' || rule.prop === 'fontSize';
+        if (exportedStoryNames.has(rule.story) || (!requiresDedicatedStory && hasAppearanceComparison(sourceFile, rule.story))) continue;
 
         addFinding(
           findings,
@@ -468,8 +528,10 @@ export function analyzeComponentStories(
           sourceFile,
           'story-canonical-showcase',
           0,
-          `La prop publique \`${rule.prop}\` n’a pas de story \`${rule.story}\` dédiée aux ${rule.label}.`,
-          `Ajouter la story \`${rule.story}\` pour comparer toutes les valeurs publiques de \`${rule.prop}\`.`,
+          `La prop publique \`${rule.prop}\` n’a pas de comparaison \`${rule.story}\` dédiée aux ${rule.label}.`,
+          requiresDedicatedStory
+            ? `Ajouter une story \`${rule.story}\` pour comparer les tailles indépendamment des variantes et couleurs.`
+            : `Ajouter une section \`${rule.story}\` peuplée dans \`Appearance\` pour comparer toutes les valeurs publiques de \`${rule.prop}\`.`,
         );
       }
 

@@ -1,8 +1,6 @@
 import type { RichTextEditorFieldProps } from '@components/forms/rich-text-editor'
 
-export type RichTextEditorPlaygroundArgs = RichTextEditorFieldProps & {
-    useCompoundLayout?: boolean
-    showToolbarGroups?: boolean
+export type RichTextEditorPlaygroundArgs = RichTextEditorFieldProps & {    showToolbarGroups?: boolean
     showTextStyleGroup?: boolean
     showTextAppearanceGroup?: boolean
     showTextColorMenu?: boolean

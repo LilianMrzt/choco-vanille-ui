@@ -7,15 +7,15 @@ const ENTRIES = [
     ['foundation', 'icon', 'Icon'],
     ['foundation', 'typography', 'Typography'],
     ['layout', 'box', 'Box'],
-    ['layout', 'fieldset', 'Fieldset'],
+    ['forms', 'primitives/fieldset', 'Fieldset'],
     ['layout', 'flex', 'Flex'],
-    ['layout', 'form', 'Form'],
+    ['forms', 'primitives/form', 'Form'],
     ['layout', 'grid', 'Grid'],
-    ['layout', 'image', 'Image'],
+    ['data-display', 'image', 'Image'],
     ['layout', 'inset', 'Inset'],
-    ['forms', 'legend', 'Legend'],
+    ['forms', 'primitives/legend', 'Legend'],
     ['layout', 'separator', 'Separator'],
-    ['layout', 'svg-image', 'SvgImage'],
+    ['data-display', 'svg-image', 'SvgImage'],
 ] as const
 
 describe('Foundation, layout and Legend story organization', () => {

@@ -1,0 +1,64 @@
+import { Flex, Typography, Progress, CircularProgress } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Colors</Typography>
+            <div style={{ display: 'grid', gap: '1rem', width: '20rem', maxWidth: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="primary" label="primary" quantityLabel />
+                    <CircularProgress value={60} color="primary" size="sm" quantityLabel aria-label="primary" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="secondary" label="secondary" quantityLabel />
+                    <CircularProgress value={60} color="secondary" size="sm" quantityLabel aria-label="secondary" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="tertiary" label="tertiary" quantityLabel />
+                    <CircularProgress value={60} color="tertiary" size="sm" quantityLabel aria-label="tertiary" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="destructive" label="destructive" quantityLabel />
+                    <CircularProgress value={60} color="destructive" size="sm" quantityLabel aria-label="destructive" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="success" label="success" quantityLabel />
+                    <CircularProgress value={60} color="success" size="sm" quantityLabel aria-label="success" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="warning" label="warning" quantityLabel />
+                    <CircularProgress value={60} color="warning" size="sm" quantityLabel aria-label="warning" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="info" label="info" quantityLabel />
+                    <CircularProgress value={60} color="info" size="sm" quantityLabel aria-label="info" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="purple" label="purple" quantityLabel />
+                    <CircularProgress value={60} color="purple" size="sm" quantityLabel aria-label="purple" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="pink" label="pink" quantityLabel />
+                    <CircularProgress value={60} color="pink" size="sm" quantityLabel aria-label="pink" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="orange" label="orange" quantityLabel />
+                    <CircularProgress value={60} color="orange" size="sm" quantityLabel aria-label="orange" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="teal" label="teal" quantityLabel />
+                    <CircularProgress value={60} color="teal" size="sm" quantityLabel aria-label="teal" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="cyan" label="cyan" quantityLabel />
+                    <CircularProgress value={60} color="cyan" size="sm" quantityLabel aria-label="cyan" />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <Progress value={60} color="indigo" label="indigo" quantityLabel />
+                    <CircularProgress value={60} color="indigo" size="sm" quantityLabel aria-label="indigo" />
+                </div>
+            </div>
+        </section>
+    </Flex>
+)

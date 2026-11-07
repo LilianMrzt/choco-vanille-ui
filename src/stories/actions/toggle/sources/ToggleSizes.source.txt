@@ -1,0 +1,9 @@
+import { Flex, Toggle } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+        <Toggle label="SM" size="sm" />
+        <Toggle label="MD" size="md" />
+        <Toggle label="LG" size="lg" />
+    </Flex>
+)

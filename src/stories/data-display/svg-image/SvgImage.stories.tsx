@@ -7,11 +7,11 @@ import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/svg-image/constan
 import SvgImagePlaygroundPlay from '@stories/data-display/svg-image/utils/SvgImagePlaygroundPlay.utils'
 import SvgImageColors from '@stories/data-display/svg-image/components/svg-image-colors/SvgImageColors'
 import SvgImageObjectFits from '@stories/data-display/svg-image/components/svg-image-object-fits/SvgImageObjectFits'
-import SvgImageColorsSource from '@stories/data-display/svg-image/sources/SvgImageColors.source.tsx.txt?raw'
-import SvgImageObjectFitsSource from '@stories/data-display/svg-image/sources/SvgImageObjectFits.source.tsx.txt?raw'
+import SvgImageColorsSource from '@stories/data-display/svg-image/sources/SvgImageColors.source.txt?raw'
+import SvgImageObjectFitsSource from '@stories/data-display/svg-image/sources/SvgImageObjectFits.source.txt?raw'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/data-display/svg-image/sources/SvgImageInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/data-display/svg-image/sources/SvgImageInteractive.source.txt?raw'
 
 const meta = {
     title: 'Data Display/SvgImage',

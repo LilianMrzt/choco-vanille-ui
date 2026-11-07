@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { StepIndicatorStoryArgs } from '@stories/navigation/step-indicator/constants'
-import sourceTemplate from '@stories/navigation/step-indicator/utils/create-step-indicator-source/sources/createStepIndicatorSource.source.tsx.txt?raw'
+import type { StepIndicatorStoryArgs } from '@stories/navigation/step-indicator/types'
+import sourceTemplate from '@stories/navigation/step-indicator/utils/create-step-indicator-source/sources/createStepIndicatorSource.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current story controls.
@@ -20,4 +20,5 @@ export const createStepIndicatorSource = (_source: string, { args }: Readonly<{ 
         preferencesLabel: JSON.stringify(args.preferencesLabel),
         reviewLabel: JSON.stringify(args.reviewLabel),
         confirmationLabel: JSON.stringify(args.confirmationLabel),
+        firstDisabled: args.firstDisabled === undefined ? '' : ` disabled={${JSON.stringify(args.firstDisabled)}}`,
     })

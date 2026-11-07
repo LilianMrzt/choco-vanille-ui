@@ -1,0 +1,6 @@
+import { Stepper } from '@choco-vanille/ui'
+
+<Stepper aria-label="Signup progress" currentStep={1}>
+    <Stepper.Item label="Account" description="Your details" />
+    <Stepper.Item label="Confirmation" />
+</Stepper>

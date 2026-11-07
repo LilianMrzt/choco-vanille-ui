@@ -1,10 +1,10 @@
 import type { ReactElement } from 'react'
 
-import { Progress } from '@components/feedback/progress'
+import { CircularProgress, Progress } from '@components/feedback/progress'
 import { SIZES } from '@stories/feedback/progress/constants'
 
 /**
- * Demonstrates the available linear sizes.
+ * Compares linear and circular indicators at every public size.
  * @internal Storybook-only component; not part of the public package API.
  * @returns Progress examples.
  * @example
@@ -13,13 +13,23 @@ import { SIZES } from '@stories/feedback/progress/constants'
 const ProgressSizes = (): ReactElement => (
     <div style={{ display: 'grid', gap: '1rem', width: '20rem', maxWidth: '100%' }}>
         {SIZES.map((size) => (
-            <Progress
+            <div
                 key={size}
-                value={60}
-                size={size}
-                label={size.toUpperCase()}
-                quantityLabel
-            />
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+            >
+                <Progress
+                    value={60}
+                    size={size}
+                    label={size.toUpperCase()}
+                    quantityLabel
+                />
+                <CircularProgress
+                    value={60}
+                    size={size}
+                    aria-label={size.toUpperCase()}
+                    quantityLabel
+                />
+            </div>
         ))}
     </div>
 )

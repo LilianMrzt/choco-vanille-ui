@@ -1,6 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { ToasterStoryArgs } from '@stories/feedback/toaster/types'
-import template from '@stories/feedback/toaster/utils/create-toaster-source/sources/createToasterSource.source.tsx.txt?raw'
+import template from '@stories/feedback/toaster/utils/create-toaster-source/sources/createToasterSource.source.txt?raw'
+import createToasterSourceutilsSnippet1 from '@stories/feedback/toaster/utils/create-toaster-source/sources/createToasterSourceutilsSnippet1.source.txt?raw'
 
 /**
  * Generates consumer code matching the notification triggers and viewports.
@@ -15,7 +16,7 @@ import template from '@stories/feedback/toaster/utils/create-toaster-source/sour
 export const createToasterSource = (_source: string, { args }: Readonly<{ args: ToasterStoryArgs }>): string => {
     const content = `title: ${JSON.stringify(args.title)}, description: ${JSON.stringify(args.description)}`
     const actions = args.showActions
-        ? `, actions: <Button label={${JSON.stringify(args.actionLabel)}} size="sm" variant="ghost" onClick={() => show('info', { title: 'Action completed' })} />`
+        ? renderSource(createToasterSourceutilsSnippet1, { fragment0: String(JSON.stringify(args.actionLabel)) })
         : ''
 
     return renderSource(template, {

@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { BottomNavigationStoryArgs } from '@stories/navigation/bottom-navigation/types'
-import template from '@stories/navigation/bottom-navigation/utils/create-bottom-navigation-source/sources/playground.source.tsx.txt?raw'
+import template from '@stories/navigation/bottom-navigation/utils/create-bottom-navigation-source/sources/playground.source.txt?raw'
 
 /**
  * Generates the controlled navigation example from Storybook args.

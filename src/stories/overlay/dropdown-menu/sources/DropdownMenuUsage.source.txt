@@ -1,0 +1,9 @@
+import { Button, DropdownMenu } from '@choco-vanille/ui'
+
+<DropdownMenu>
+    <DropdownMenu.Trigger><Button label="Actions" /></DropdownMenu.Trigger>
+    <DropdownMenu.Content>
+        <DropdownMenu.Item label="Edit" />
+        <DropdownMenu.Item label="Delete" destructive />
+    </DropdownMenu.Content>
+</DropdownMenu>

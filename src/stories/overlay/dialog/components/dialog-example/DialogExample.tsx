@@ -12,6 +12,10 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
  * @param props - Dialog root props and demonstration controls.
  * @param props.size - Content size.
  * @param props.title - Header title.
+ * @param props.titleAs - Header heading level.
+ * @param props.showCloseButton - Whether to show the header close control.
+ * @param props.contentLabel - Fallback accessible dialog name.
+ * @param props.bodyPadding - Body padding token.
  * @param props.description - Header description.
  * @param props.showDescription - Whether to show the description.
  * @param props.showFooter - Whether to show the footer.
@@ -24,6 +28,10 @@ import { vars } from '@theme/styles/contract/contract.css.ts'
 const DialogExample = ({
     size,
     title,
+    titleAs,
+    showCloseButton,
+    contentLabel,
+    bodyPadding,
     description,
     showDescription,
     showFooter,
@@ -39,12 +47,17 @@ const DialogExample = ({
                 variant={'contained'}
             />
         </Dialog.Trigger>
-        <Dialog.Content size={size}>
+        <Dialog.Content
+            defaultAriaLabel={contentLabel}
+            size={size}
+        >
             <Dialog.Header
                 title={title}
+                titleAs={titleAs}
+                showCloseButton={showCloseButton}
                 description={showDescription ? description : undefined}
             />
-            <Dialog.Body>
+            <Dialog.Body padding={bodyPadding}>
                 <Typography
                     color={vars.color.text.primary}
                     fontSize={14}

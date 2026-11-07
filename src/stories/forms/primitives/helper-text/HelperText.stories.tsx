@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { FormStoryFrame } from '@stories/forms/utils/FormStoryFrame.utils'
 
 import { HelperText } from '@components/forms/primitives/helper-text'
 import HelperTextDocsPage from '@stories/forms/primitives/helper-text/components/helper-text-docs-page/HelperTextDocsPage'
-import source from '@stories/forms/primitives/helper-text/sources/HelperText.source.tsx.txt?raw'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import type { ComponentProps } from 'react'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/primitives/helper-text/constants'
+import { createHelperTextSource } from '@stories/forms/primitives/helper-text/utils/createHelperTextSource.utils'
 
 const meta = {
     title: 'Forms/Primitives/HelperText',
@@ -12,19 +12,15 @@ const meta = {
     parameters: {
         docs: {
             page: HelperTextDocsPage,
-            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof HelperText>>(source, { hasChildren: true }) },
+            source: { type: 'dynamic', transform: createHelperTextSource },
             description: {
-                component: 'Supporting or error text for a form control. Give it an ID and reference it from the control with `aria-describedby`.',
+                component: DESCRIPTION,
             },
         },
     },
-    argTypes: {
-        children: { control: 'text' },
-        hasError: { control: 'boolean' },
-        role: { control: false },
-        'aria-live': { control: 'select', options: ['off', 'polite', 'assertive'] },
-    },
-    args: { children: 'Use your work email.' },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+    decorators: [FormStoryFrame],
     tags: ['autodocs'],
 } satisfies Meta<typeof HelperText>
 

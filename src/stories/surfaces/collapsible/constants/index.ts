@@ -15,7 +15,7 @@ export const DEFAULT_ARGS = {
 
 export const ARG_TYPES = {
     open: { control: 'boolean', description: 'Controlled open state, synchronized with Controls in the playground.' },
-    defaultOpen: { control: 'boolean', description: 'Initial uncontrolled state; changes apply on remount.' },
+    defaultOpen: { control: false, description: 'Initial uncontrolled state; the primary example is controlled. Edit in Uncontrolled, which remounts to apply changes.' },
     onOpenChange: { control: false, description: 'Receives the requested open state and event details.' },
     disabled: { control: 'boolean', description: 'Disables interaction.' },
     width: { control: 'text', description: 'Outer width.', table: { defaultValue: { summary: '100%' } } },

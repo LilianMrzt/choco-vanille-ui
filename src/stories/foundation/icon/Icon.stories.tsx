@@ -4,10 +4,9 @@ import { Icon } from '@components/foundation/icon'
 import IconDocsPage from '@stories/foundation/icon/components/icon-docs-page/IconDocsPage'
 import IconSizes from '@stories/foundation/icon/components/icon-sizes/IconSizes'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/foundation/icon/constants'
-import sizesSource from '@stories/foundation/icon/sources/IconSizes.source.tsx.txt?raw'
+import sizesSource from '@stories/foundation/icon/sources/IconSizes.source.txt?raw'
 import { createIconSource } from '@stories/foundation/icon/utils/create-icon-source/createIconSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const meta = {
     title: 'Foundation/Icon',
@@ -32,18 +31,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
-
-export const Colors: Story = {
-    args: {
-        color: 'var(--custom-color, rebeccapurple)',
-        backgroundColor: vars.color.surface.muted,
-        borderColor: vars.color.border.strong,
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        padding: 8,
-    },
-}
-
 export const Sizes: Story = {
     parameters: {
         docs: {

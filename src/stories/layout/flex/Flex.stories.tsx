@@ -7,7 +7,7 @@ import FlexPlayground from '@stories/layout/flex/components/flex-playground/Flex
 import FlexPlaygroundPlay from '@stories/layout/flex/utils/FlexPlaygroundPlay.utils'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/layout/flex/sources/FlexInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/layout/flex/sources/FlexInteractive.source.txt?raw'
 
 const meta = {
     title: 'Layout/Flex',

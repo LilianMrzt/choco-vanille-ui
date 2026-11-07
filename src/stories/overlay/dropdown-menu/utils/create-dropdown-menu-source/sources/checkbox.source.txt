@@ -1,0 +1,2 @@
+
+        <DropdownMenu.CheckboxItem label="Show details" defaultChecked />

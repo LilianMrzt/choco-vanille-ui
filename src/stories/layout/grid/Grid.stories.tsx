@@ -7,7 +7,7 @@ import GridPlayground from '@stories/layout/grid/components/grid-playground/Grid
 import GridPlaygroundPlay from '@stories/layout/grid/utils/GridPlaygroundPlay.utils'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/layout/grid/sources/GridInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/layout/grid/sources/GridInteractive.source.txt?raw'
 
 const meta = {
     title: 'Layout/Grid',

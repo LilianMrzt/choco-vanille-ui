@@ -1,0 +1,5 @@
+
+  <Card.Footer{{footerProps}}>
+    <Button color="primary" label={{{actionLabel}}} size="sm" variant="contained" />
+    <Button color="primary" label="Cancel" size="sm" variant="outlined" />
+  </Card.Footer>

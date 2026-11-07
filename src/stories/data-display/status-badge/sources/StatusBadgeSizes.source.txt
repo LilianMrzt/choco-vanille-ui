@@ -1,0 +1,9 @@
+import { Flex, Avatar, StatusBadge } from '@choco-vanille/ui'
+
+const Example = () => (
+    <Flex alignItems="center" flexWrap="wrap" gap={32} padding={12}>
+        <StatusBadge size="sm"><Avatar initials="SM" /></StatusBadge>
+        <StatusBadge size="md"><Avatar initials="MD" /></StatusBadge>
+        <StatusBadge size="lg"><Avatar initials="LG" /></StatusBadge>
+    </Flex>
+)

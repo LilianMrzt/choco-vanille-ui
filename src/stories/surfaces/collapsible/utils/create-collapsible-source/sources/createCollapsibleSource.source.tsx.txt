@@ -1,6 +1,0 @@
-{{stateImport}}import { Collapsible } from '@choco-vanille/ui'
-
-{{state}}<Collapsible{{rootProps}}>
-  <Collapsible.Trigger{{triggerProps}} />
-  <Collapsible.Panel{{panelProps}}>This content can be shown or hidden by clicking the trigger above.</Collapsible.Panel>
-</Collapsible>{{end}}

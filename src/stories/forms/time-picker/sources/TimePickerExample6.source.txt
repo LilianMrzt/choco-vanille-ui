@@ -1,0 +1,5 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+export const DefaultPanelTimeExample = () => (
+    <TimePicker label={'Start time'} defaultPanelTime={'09:00'} />
+)

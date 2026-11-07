@@ -1,0 +1,9 @@
+import { BottomNavigation } from '@choco-vanille/ui'
+import { CircleIcon, SearchIcon } from './icons'
+
+<BottomNavigation aria-label="Primary navigation" defaultValue="home">
+    <BottomNavigation.List>
+        <BottomNavigation.Item value="home" label="Home" icon={CircleIcon} href="/" />
+        <BottomNavigation.Item value="search" label="Search" icon={SearchIcon} href="/search" />
+    </BottomNavigation.List>
+</BottomNavigation>

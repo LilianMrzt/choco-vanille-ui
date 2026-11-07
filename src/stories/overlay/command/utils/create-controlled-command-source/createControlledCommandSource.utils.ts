@@ -1,6 +1,6 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { CommandPlaygroundArgs } from '@stories/overlay/command/types'
-import template from '@stories/overlay/command/utils/create-controlled-command-source/sources/controlled.source.tsx.txt?raw'
+import template from '@stories/overlay/command/utils/create-controlled-command-source/sources/controlled.source.txt?raw'
 
 /**
  * Renders the controlled command example with the current open state.

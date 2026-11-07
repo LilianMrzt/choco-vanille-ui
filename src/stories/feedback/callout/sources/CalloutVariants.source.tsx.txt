@@ -1,7 +1,0 @@
-import { Callout } from '@choco-vanille/ui'
-
-<div style={{ display: 'grid', gap: '1rem' }}>
-  {(['info', 'success', 'warning', 'error'] as const).map((variant) => (
-    <Callout key={variant} variant={variant} title={variant} description="A contextual message." />
-  ))}
-</div>

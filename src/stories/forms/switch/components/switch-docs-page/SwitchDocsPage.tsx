@@ -1,7 +1,7 @@
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
 import type { ReactElement } from 'react'
 
-import { md } from '@stories/_shared/utils/markdown'
+import { ACCESSIBILITY_DESCRIPTION } from '@stories/forms/switch/constants'
 
 /**
  * Renders switch documentation and accessibility guidance.
@@ -16,18 +16,7 @@ const SwitchDocsPage = (): ReactElement => (
         <Description />
         <Canvas />
         <Controls />
-        <Markdown>{md`
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`label\` | Conditional | \`string\` | Provides an accessible name. |
-| \`aria-label\` or \`aria-labelledby\` | Without a label | \`string\` | Supplies an accessible name. |
-| \`error\` | No | \`string\` | Describes the invalid state. |
-
-Use Space to change the focused switch. Provide the accessible label in the
-language of the surrounding interface.
-        `}</Markdown>
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
         <Stories includePrimary={false} />
     </>
 )

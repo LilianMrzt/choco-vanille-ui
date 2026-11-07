@@ -1,0 +1,4 @@
+import SearchIcon from './SearchIcon'
+import { Fab } from '@choco-vanille/ui'
+
+<Fab icon={SearchIcon} aria-label="Disabled" disabled />

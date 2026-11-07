@@ -152,8 +152,8 @@
   do not refer to an absent `@stories/_shared/utils/consumer-source` helper.
   Dynamic snippets must reflect current args and use explicit expressions
   for nonliteral values. Consumer snippets use package imports, not private aliases.
-- Store long consumer snippets in their owner's `sources/` subfolder as
-  `*.source.tsx.txt` files and import them with Vite's `?raw`.
+- Store consumer snippets in their owner's `sources/` subfolder as
+  `*.source.txt` files and import them with Vite's `?raw`.
   They are source text, not modules
   sharing the story's imports or scope. Pass static text to `storySource`;
   for dynamic text, use `renderSource` from
@@ -171,15 +171,28 @@
 - Represent story-only custom-content placeholders in consumer snippets with
   the JSX comment `{/* Custom content */}`, not their private component or markup.
 - Where a custom Docs page is needed, show description, one primary Playground,
-  Controls, accessibility guidance and focused examples in that order. Render
+  all Controls in a single table without control tabs, accessibility guidance,
+  a short subcomponent table when applicable and focused examples in that order.
+  When convenience and compound APIs coexist, show both in one consumer code
+  block immediately after the description. Render
   `<Stories includePrimary={false} />` when a primary Canvas is already present.
   Keep accessibility guidance in one place rather than duplicate tables.
 - Compound Playgrounds expose meaningful controls for public slots. Categorize
   story-only slot controls as `Compound: <SlotName>` and wire them to that slot;
   do not create a separate composition gallery solely to satisfy an old template.
-- Choose comparative sections from the actual public axes, such as `Variants`,
-  `Colors`, `Sizes` and `States`. Keep comparable components coherent without
+- When both finite variants and semantic colors exist, compare every variant
+  for every color in one labelled `Appearance` story. Group by color and keep
+  the treatments together so their differences are immediately visible.
+  Put sizes in a separate `Sizes` story (`FontSizes` for typography); never
+  multiply the variant/color comparison by sizes. Expand every displayed
+  instance in its consumer source.
+  Keep `States` and interaction scenarios separate when they teach distinct
+  behavior. Keep comparable components coherent without
   forcing irrelevant sections or an exhaustive matrix on every component.
+- Keep story and example frames bounded on desktop and responsive on mobile.
+  Give field comparisons a readable local width: selects and text inputs may
+  fill their example container, not the viewport. Do not shrink their labels
+  to minimum content size.
 - Verify that controls, callbacks, argument resets and both directions of
   controlled updates work. Check touched story types, the Storybook build and
   relevant visual/interactive behavior; report review that could not be performed.

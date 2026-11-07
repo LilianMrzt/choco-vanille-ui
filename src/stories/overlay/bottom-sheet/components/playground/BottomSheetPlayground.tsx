@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useArgs } from 'storybook/preview-api'
 import { Button } from '@components/actions/button'
 import { BottomSheet } from '@components/overlay/bottom-sheet'
@@ -24,16 +23,36 @@ const BottomSheetPlayground = () => {
         showHandle,
         showHeader,
         title,
+        titleAs,
+        contentLabel,
         description,
         itemLabel,
         itemDestructive,
         itemDisabled,
+        itemCloseOnClick,
         showRadioGroup,
         radioItemLabel,
+        radioValue,
+        radioDisabled,
+        onRadioValueChange,
         showSeparator,
         closeLabel,
     } = args
-    const [size, setSize] = useState<unknown>('original')
+    /**
+     * Forwards details and synchronizes uncanceled radio selections.
+     * @internal Storybook-only handler; not part of the public package API.
+     * @param value - Requested option value.
+     * @param details - Cancellable event details.
+     * @returns Nothing.
+     * @example handleRadioValueChange('compressed', details)
+     */
+    const handleRadioValueChange: NonNullable<BottomSheetPlaygroundArgs['onRadioValueChange']> = (value, details) => {
+        onRadioValueChange?.(value, details)
+
+        if (!details.isCanceled && (value === 'original' || value === 'compressed')) {
+            updateArgs({ radioValue: value })
+        }
+    }
 
     return (
         <BottomSheet
@@ -53,10 +72,14 @@ const BottomSheetPlayground = () => {
                     color={'primary'}
                 />
             </BottomSheet.Trigger>
-            <BottomSheet.Content showHandle={showHandle}>
+            <BottomSheet.Content
+                defaultAriaLabel={contentLabel}
+                showHandle={showHandle}
+            >
                 {showHeader && (
                     <BottomSheet.Header
                         title={title ?? 'Photo'}
+                        titleAs={titleAs}
                         description={description}
                     />
                 )}
@@ -73,8 +96,9 @@ const BottomSheetPlayground = () => {
                         {showSeparator && <BottomSheet.Separator />}
                         <BottomSheet.RadioGroup
                             aria-label={'Size'}
-                            value={size}
-                            onValueChange={setSize}
+                            value={radioValue}
+                            disabled={radioDisabled}
+                            onValueChange={handleRadioValueChange}
                         >
                             <BottomSheet.RadioItem
                                 label={radioItemLabel ?? 'Original size'}
@@ -93,6 +117,7 @@ const BottomSheetPlayground = () => {
                     startIcon={TrashIcon}
                     destructive={itemDestructive}
                     disabled={itemDisabled}
+                    closeOnClick={itemCloseOnClick}
                 />
                 <BottomSheet.Close>
                     <Button

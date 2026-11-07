@@ -1,16 +1,18 @@
 import type { Meta } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 import type { BottomSheetPlaygroundArgs } from '@stories/overlay/bottom-sheet/types'
 
 export const ARG_TYPES = {
     defaultOpen: {
         control: false,
+        description: 'Initial open state; the primary example is controlled and initial changes require remounting.',
         table: { category: 'BottomSheet' },
     },
     open: {
         control: 'boolean',
         table: { category: 'BottomSheet' },
     },
-    onOpenChange: { action: 'open changed', control: false },
+    onOpenChange: { control: false, description: 'Requested state and cancellable details; a callback requires consumer code.' },
     modal: {
         control: 'boolean',
         table: { category: 'BottomSheet' },
@@ -23,6 +25,12 @@ export const ARG_TYPES = {
         control: 'boolean',
         table: { category: 'Compound: Content' },
     },
+    contentLabel: { control: 'text', description: 'Content accessible name used when no header labels the sheet.', table: { category: 'Compound: Content' } },
+    titleAs: { control: 'select', options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], description: 'Header heading level.', table: { category: 'Compound: Header' } },
+    itemCloseOnClick: { control: 'boolean', description: 'Whether the configurable action closes the sheet.', table: { category: 'Compound: Item' } },
+    radioValue: { control: 'select', options: ['original', 'compressed'], description: 'Controlled radio selection, synchronized in both directions.', table: { category: 'Compound: RadioGroup' } },
+    radioDisabled: { control: 'boolean', description: 'Disable the radio group.', table: { category: 'Compound: RadioGroup' } },
+    onRadioValueChange: { control: false, description: 'Radio selection and cancellable details; requires consumer code.', table: { category: 'Compound: RadioGroup' } },
     showHeader: {
         control: 'boolean',
         table: { category: 'Compound: Header' },
@@ -67,9 +75,16 @@ export const ARG_TYPES = {
 
 export const DEFAULT_ARGS = {
     open: false,
+    onOpenChange: fn(),
     modal: true,
     triggerLabel: 'Open bottom sheet',
     showHandle: true,
+    titleAs: 'h2',
+    contentLabel: 'Photo actions',
+    itemCloseOnClick: true,
+    radioValue: 'original',
+    radioDisabled: false,
+    onRadioValueChange: fn(),
     showHeader: true,
     title: 'Photo',
     description: 'Choose what to do with this photo.',

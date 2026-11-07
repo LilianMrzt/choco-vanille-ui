@@ -1,7 +1,7 @@
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import type { HoverCardStoryArgs } from '@stories/overlay/hover-card/constants'
-import controlledTemplate from '@stories/overlay/hover-card/utils/create-hover-card-source/sources/controlled.source.tsx.txt?raw'
-import uncontrolledTemplate from '@stories/overlay/hover-card/utils/create-hover-card-source/sources/uncontrolled.source.tsx.txt?raw'
+import type { HoverCardStoryArgs } from '@stories/overlay/hover-card/types'
+import controlledTemplate from '@stories/overlay/hover-card/utils/create-hover-card-source/sources/controlled.source.txt?raw'
+import uncontrolledTemplate from '@stories/overlay/hover-card/utils/create-hover-card-source/sources/uncontrolled.source.txt?raw'
 
 /**
  * Generates JSX reflecting the current preview card controls.

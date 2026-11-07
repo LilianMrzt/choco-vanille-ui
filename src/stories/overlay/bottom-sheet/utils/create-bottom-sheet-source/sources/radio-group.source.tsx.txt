@@ -1,4 +1,0 @@
-<BottomSheet.RadioGroup aria-label="Size" value={size} onValueChange={setSize}>
-          <BottomSheet.RadioItem label={{{radioItemLabel}}} value="original" />
-          <BottomSheet.RadioItem label="Compressed" value="compressed" />
-        </BottomSheet.RadioGroup>

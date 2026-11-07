@@ -1,22 +1,15 @@
 import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-
-const accessibility = `
-## Accessibility
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| id | Yes | string | Reference this ID using the control's aria-describedby. |
-| hasError | No | boolean | Uses an assertive alert instead of a polite status. |
-`
+import type { ReactElement } from 'react'
+import { ACCESSIBILITY_DESCRIPTION } from '@stories/forms/primitives/helper-text/constants'
 
 /** Documentation for this story; not part of the public package API. @internal */
-const HelperTextDocsPage = () => (
+const HelperTextDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
         <Canvas />
         <Controls />
-        <Markdown>{accessibility}</Markdown>
+        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
         <Stories includePrimary={false} />
     </>
 )

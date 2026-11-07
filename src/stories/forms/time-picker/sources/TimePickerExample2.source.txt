@@ -1,0 +1,21 @@
+import { TimePicker } from '@choco-vanille/ui'
+
+
+
+
+export const StatesExample = () => (
+<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: 'min(100%, 24rem)' }}>
+        <TimePicker
+            label={'Disabled'}
+            disabled
+        />
+        <TimePicker
+            label={'Start time'}
+            helperText={'Choose an available time.'}
+        />
+        <TimePicker
+            label={'Invalid time'}
+            error={'Choose a valid time.'}
+        />
+    </div>
+)

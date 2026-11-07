@@ -5,8 +5,9 @@ import { Tooltip } from '@components/overlay/tooltip'
 import TooltipDocsPage from '@stories/overlay/tooltip/components/tooltip-docs-page/TooltipDocsPage'
 import TooltipExample from '@stories/overlay/tooltip/components/tooltip-example/TooltipExample'
 import TooltipStates from '@stories/overlay/tooltip/components/tooltip-states/TooltipStates'
-import { ARG_TYPES, DEFAULT_ARGS, type TooltipStoryArgs } from '@stories/overlay/tooltip/constants'
-import statesSource from '@stories/overlay/tooltip/sources/TooltipStates.source.tsx.txt?raw'
+import { ARG_TYPES, DEFAULT_ARGS } from '@stories/overlay/tooltip/constants'
+import type { TooltipStoryArgs } from './types'
+import statesSource from '@stories/overlay/tooltip/sources/TooltipStates.source.txt?raw'
 import { createTooltipSource } from '@stories/overlay/tooltip/utils/create-tooltip-source/createTooltipSource.utils'
 import { storySource } from '@stories/_shared/utils/storySource'
 
@@ -14,6 +15,13 @@ const meta = {
     title: 'Overlay/Tooltip',
     component: Tooltip,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
     parameters: {
         layout: 'centered',
         docs: {
@@ -66,7 +74,13 @@ export const Playground: Story = { render: ControlledTooltip }
 export const Uncontrolled: Story = {
     args: { open: undefined, defaultOpen: false },
     parameters: { docs: { description: { story: 'Remount the component to apply a changed defaultOpen value.' } } },
-    render: TooltipExample,
+    argTypes: { defaultOpen: { control: 'boolean' } },
+    render: (args) => (
+        <TooltipExample
+            {...args}
+            key={String(args.defaultOpen)}
+        />
+    ),
 }
 
 export const States: Story = {

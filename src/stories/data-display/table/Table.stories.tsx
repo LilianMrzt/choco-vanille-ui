@@ -7,7 +7,7 @@ import TableDocsPage from '@stories/data-display/table/components/table-docs-pag
 import TablePlayground from '@stories/data-display/table/components/table-playground/TablePlayground'
 import TableSizes from '@stories/data-display/table/components/table-sizes/TableSizes'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/data-display/table/constants'
-import tableSizesSource from '@stories/data-display/table/sources/TableSizes.source.tsx.txt?raw'
+import tableSizesSource from '@stories/data-display/table/sources/TableSizes.source.txt?raw'
 import { type TableStoryArgs } from '@stories/data-display/table/types'
 import { createTableSource } from '@stories/data-display/table/utils/create-table-source/createTableSource.utils'
 import { playTableSelectableRows } from '@stories/data-display/table/utils/playTableSelectableRows.utils'
@@ -39,19 +39,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
-
-export const Striped: Story = {
-    args: { striped: true },
-}
-
-export const Bordered: Story = {
-    args: { bordered: true },
-}
-
-export const FixedLayout: Story = {
-    args: { fixed: true, columnWidth: '25%', truncate: true },
-}
-
 export const Sortable: Story = {
     args: { sortable: true, sortDirection: 'asc' },
     play: playTableSortable,
@@ -61,14 +48,9 @@ export const SelectableRows: Story = {
     args: { selectable: true, selectedInvoice: 'INV-001' },
     play: playTableSelectableRows,
 }
-
-export const IntentRows: Story = {
-    args: { intent: 'warning', caption: 'Invoices awaiting review', hoverable: true },
-}
 export const Sizes = {
     render: TableSizes,
     parameters: {
-        controls: { disable: true },
         docs: {
             description: {
                 story: 'Small, medium and large cell density with the same data and default presentation. This comparison fixes each size; use Playground to edit other props.',

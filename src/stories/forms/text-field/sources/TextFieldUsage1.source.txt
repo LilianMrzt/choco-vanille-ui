@@ -1,0 +1,29 @@
+import { IconButton, TextField } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon.svg?react'
+
+export const Example = () => (
+    <>
+        {/* With start icon */}
+        <TextField
+            label="Email"
+            startIcon={SearchIcon}
+            placeholder="you@example.com"
+        />
+
+        {/* Password field with a visibility toggle */}
+        <TextField label="Password" type="password" />
+
+        {/* Custom end action */}
+        <TextField
+            label="Search"
+            endAction={
+                <IconButton
+                    icon={SearchIcon}
+                    aria-label="Search"
+                    variant="ghost"
+                    color="primary"
+                />
+            }
+        />
+    </>
+)

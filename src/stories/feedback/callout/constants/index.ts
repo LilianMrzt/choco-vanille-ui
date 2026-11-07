@@ -1,19 +1,7 @@
 import type { Meta } from '@storybook/react-vite'
 
-import type { CalloutRole, CalloutVariant } from '@components/feedback/callout'
-
-export type CalloutStoryArgs = {
-    variant: CalloutVariant
-    role: CalloutRole
-    title: string
-    description: string
-    showCustomIcon: boolean
-    showTitle: boolean
-    showDescription: boolean
-    showAction: boolean
-    actionLabel: string
-    onActionClick?: () => void
-}
+import type { CalloutVariant } from '@components/feedback/callout'
+import type { CalloutStoryArgs } from '@stories/feedback/callout/types'
 
 export const VARIANTS: CalloutVariant[] = ['info', 'success', 'warning', 'error']
 
@@ -39,5 +27,10 @@ export const ARG_TYPES = {
     showDescription: { control: 'boolean' },
     showAction: { control: 'boolean' },
     actionLabel: { control: 'text', table: { category: 'Compound: Action' } },
-    onActionClick: { control: false, action: 'action clicked', table: { category: 'Compound: Action' } },
+    onActionClick: { control: false, action: 'action clicked', description: 'Callback for the compound Action button.', table: { category: 'Compound: Action' } },
+    children: { control: false, description: 'Custom React content; slot controls compose this Playground.' },
+    icon: { control: false, description: 'Consumer-owned SVG component; showCustomIcon demonstrates the Icon slot.' },
+    className: { control: false, description: 'Additional root class; supplied by the consumer.' },
+    style: { control: false, description: 'Native root style overrides; supplied by the consumer.' },
+    ref: { control: false, description: 'Ref to the root div; cannot be edited in Controls.' },
 } satisfies NonNullable<Meta<CalloutStoryArgs>['argTypes']>

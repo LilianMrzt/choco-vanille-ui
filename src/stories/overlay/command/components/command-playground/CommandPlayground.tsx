@@ -24,6 +24,13 @@ const CommandPlayground = () => {
         showGroup2,
         showIcons,
         showShortcuts,
+        contentLabel,
+        inputLabel,
+        firstItemDisabled,
+        firstItemKeywords,
+        actionsLabel,
+        navigationLabel,
+        emptyLabel,
     } = args
     return (
         <Command
@@ -43,18 +50,24 @@ const CommandPlayground = () => {
                     color={'primary'}
                 />
             </Command.Trigger>
-            <Command.Content size={size}>
+            <Command.Content
+                defaultAriaLabel={contentLabel}
+                size={size}
+            >
                 <Command.Input
                     placeholder={inputPlaceholder}
                     defaultClearAriaLabel={inputClearAriaLabel}
+                    defaultAriaLabel={inputLabel}
                 />
                 <Command.List aria-label={'Commands'}>
                     {showGroup1 && (
-                        <Command.Group label={'Actions'}>
+                        <Command.Group label={actionsLabel}>
                             <Command.Item
                                 icon={showIcons ? SearchIcon : undefined}
                                 shortcut={showShortcuts ? '⌘E' : undefined}
                                 onSelect={() => {}}
+                                disabled={firstItemDisabled}
+                                keywords={firstItemKeywords}
                             >
                                 Edit profile
                             </Command.Item>
@@ -75,7 +88,7 @@ const CommandPlayground = () => {
                     )}
                     {showGroup1 && showGroup2 && <Command.Separator />}
                     {showGroup2 && (
-                        <Command.Group label={'Navigation'}>
+                        <Command.Group label={navigationLabel}>
                             <Command.Item
                                 icon={showIcons ? UserIcon : undefined}
                                 shortcut={showShortcuts ? '⌘H' : undefined}
@@ -92,7 +105,7 @@ const CommandPlayground = () => {
                             </Command.Item>
                         </Command.Group>
                     )}
-                    <Command.Empty>No results found.</Command.Empty>
+                    <Command.Empty>{emptyLabel}</Command.Empty>
                 </Command.List>
             </Command.Content>
         </Command>

@@ -11,12 +11,14 @@ describe('shared Storybook helpers', () => {
     })
 
     it('provides trimmed TSX source parameters for static examples', () => {
-        expect(storySource('\n  <Example />\n')).toEqual({
+        const parameters = storySource('\n  <Example />\n')
+        expect(parameters).toMatchObject({
             source: {
                 code: '<Example />',
                 language: 'tsx',
                 type: 'code',
             },
         })
+        expect(parameters.source.transform(parameters.source.code)).toBe('<Example />')
     })
 })

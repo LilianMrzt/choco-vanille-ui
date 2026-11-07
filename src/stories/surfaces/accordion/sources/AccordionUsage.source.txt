@@ -1,0 +1,19 @@
+import { Accordion } from '@choco-vanille/ui'
+
+const ConvenientTrigger = () => (
+    <Accordion defaultValue={['details']}>
+        <Accordion.Item value="details">
+            <Accordion.Trigger label="Details" />
+            <Accordion.Content>More information.</Accordion.Content>
+        </Accordion.Item>
+    </Accordion>
+)
+
+const ComposedTrigger = () => (
+    <Accordion defaultValue={['details']}>
+        <Accordion.Item value="details">
+            <Accordion.Trigger><strong>Details</strong></Accordion.Trigger>
+            <Accordion.Content>More information.</Accordion.Content>
+        </Accordion.Item>
+    </Accordion>
+)

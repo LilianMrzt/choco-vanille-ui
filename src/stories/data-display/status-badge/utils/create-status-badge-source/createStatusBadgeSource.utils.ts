@@ -2,7 +2,7 @@ import {
     type StatusBadgeProps
 } from '@components/data-display/status-badge'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
-import sourceTemplate from '@stories/data-display/status-badge/utils/create-status-badge-source/sources/createStatusBadgeSource.source.tsx.txt?raw'
+import sourceTemplate from '@stories/data-display/status-badge/utils/create-status-badge-source/sources/createStatusBadgeSource.source.txt?raw'
 
 /**
  * Creates consumer JSX for the playground's fixed Avatar composition.

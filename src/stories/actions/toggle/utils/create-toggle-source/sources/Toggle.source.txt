@@ -1,0 +1,6 @@
+import { Toggle } from '@choco-vanille/ui'
+{{stateImport}}{{iconImports}}
+const Example = () => {
+{{stateDeclaration}}
+    return <Toggle{{attributes}} />
+}

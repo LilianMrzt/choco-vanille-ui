@@ -1,5 +1,4 @@
-import type { Meta } from '@storybook/react-vite'
-
+import { type Meta } from '@storybook/react-vite'
 import { Form } from '@/components/forms/primitives/form'
 import { md } from '@stories/_shared/utils/markdown'
 import { fn } from 'storybook/test'
@@ -26,3 +25,4 @@ export const DEFAULT_ARGS = {
     'aria-label': 'Sign in form',
     onSubmit: fn(),
 } satisfies NonNullable<Meta<typeof Form>['args']>
+export const DESCRIPTION = 'A native form wrapper that forwards attributes, events and its ref. Name the form when it needs to be exposed as a landmark.'

@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Box } from '@components/layout/box'
-import { vars } from '@theme/styles/contract/contract.css.ts'
 import BoxDocsPage from '@stories/layout/box/components/box-docs-page/BoxDocsPage'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/layout/box/constants'
 import BoxPlaygroundPlay from '@stories/layout/box/utils/BoxPlaygroundPlay.utils'
 import type { ComponentProps } from 'react'
 import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import interactiveSource from '@stories/layout/box/sources/BoxInteractive.source.tsx.txt?raw'
+import interactiveSource from '@stories/layout/box/sources/BoxInteractive.source.txt?raw'
 
 const meta = {
     title: 'Layout/Box',
@@ -41,18 +40,4 @@ export const Playground: Story = {
         },
     },
     play: BoxPlaygroundPlay,
-}
-
-export const Colors: Story = {
-    args: {
-        color: 'var(--custom-color, rebeccapurple)',
-        backgroundColor: vars.color.surface.muted,
-        borderColor: vars.color.border.strong,
-        borderStyle: 'solid',
-        borderWidth: '1px',
-    },
-    parameters: {
-        docs: {
-        },
-    },
 }

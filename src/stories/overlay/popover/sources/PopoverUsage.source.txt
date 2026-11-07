@@ -1,0 +1,6 @@
+import { Button, Popover } from '@choco-vanille/ui'
+
+<Popover>
+    <Popover.Trigger><Button label="Actions" /></Popover.Trigger>
+    <Popover.Content aria-label="Actions"><Popover.Item label="Edit" /></Popover.Content>
+</Popover>

@@ -1,113 +1,36 @@
-﻿import { type ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
-import { expect, fn, within } from 'storybook/test'
-
 import { DatePicker } from '@components/forms/date-picker'
-import type { TextFieldSize } from '@components/forms/text-field'
-import { md } from '@stories/_shared/utils/markdown'
 import { storySource } from '@stories/_shared/utils/storySource'
-import { createPrimitiveSource } from '@stories/_shared/primitive-source/utils/createPrimitiveSource.utils'
-import source from '@stories/forms/date-picker/sources/DatePicker.source.tsx.txt?raw'
-
-const SIZES: TextFieldSize[] = [
-    'sm',
-    'md',
-    'lg',
-]
-
-const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
-## Accessibility
-
-**Accessibility**
-
-| Prop / Attribute | Required | Type | Notes |
-|---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label, linked to the date field group. |
-| \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables every segment and the calendar trigger. |
-| \`error\` | No | \`string\` | Marks the field \`aria-invalid\` and is linked via \`aria-describedby\`. |
-| \`calendarAriaLabel\` | No | \`string\` | Accessible name for the calendar dialog. |
-
-- Each day, month and year is a \`role="spinbutton"\` (React Aria), announced with the locale date format.
-- Keyboard: type digits to fill a segment, \`Tab\` / \`Shift+Tab\` to move between segments, \`ArrowUp\` / \`ArrowDown\` to step a value.
-- The calendar button is an \`IconButton\` with an \`aria-label\`, reachable with \`Tab\` after the segments.
-`
-
-const DatePickerDocsPage = () => (
-    <>
-        <Title />
-        <Description />
-        <Canvas />
-        <Controls />
-        <Markdown>{ACCESSIBILITY_DESCRIPTION}</Markdown>
-        <Stories includePrimary={false} />
-    </>
-)
+import consumerSource2 from '@stories/forms/date-picker/sources/DatePickerExample2.source.txt?raw'
+import DatePickerDocsPage from '@stories/forms/date-picker/components/date-picker-docs-page/DatePickerDocsPage'
+import { playDatePickerPlayground } from '@stories/forms/date-picker/utils/playDatePickerPlayground.utils'
+import DatePickerStatesExample from '@stories/forms/date-picker/components/date-picker-states-example/DatePickerStatesExample'
+import { ARG_TYPES, DEFAULT_ARGS, DESCRIPTION } from '@stories/forms/date-picker/constants'
+import DatePickerSizesExample from '@stories/forms/date-picker/components/date-picker-sizes-example/DatePickerSizesExample'
+import sizesSource from '@stories/forms/date-picker/sources/DatePickerSizes.source.txt?raw'
+import { createDatePickerSource } from '@stories/forms/date-picker/utils/createDatePickerSource.utils'
+import DatePickerPlayground from '@stories/forms/date-picker/components/date-picker-playground/DatePickerPlayground'
+import { DatePickerFrame } from '@stories/forms/date-picker/utils/DatePickerFrame.utils'
 
 const meta = {
     title: 'Forms/DatePicker',
     tags: ['autodocs'],
     component: DatePicker,
     parameters: {
-        layout: 'centered',
+        layout: 'padded',
         docs: {
 
             page: DatePickerDocsPage,
-            source: { type: 'dynamic', transform: createPrimitiveSource<ComponentProps<typeof DatePicker>>(source, { omit: ['onChange'] }) },
+            source: { type: 'dynamic', transform: createDatePickerSource },
             description: {
-                component: md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A date picker built on React Aria's \`DateField\`. The input is a segmented day / month / year field on every device, so it keeps segment-by-segment keyboard entry and screen-reader semantics, and the browser or OS date picker never takes over on mobile.
-
-- **Direct input** — type each segment, or step it with the arrow keys.
-- **Calendar selection** — click the calendar button to open the popover and pick a day.
-- **Value** — \`value\` / \`onChange\` (controlled) or \`defaultValue\` (uncontrolled), as \`Date\` objects.
-
-**Usage**
-
-\`\`\`tsx
-const [date, setDate] = useState<Date | undefined>()
-
-<DatePicker
-  label="Pick a date"
-  value={date}
-  onChange={setDate}
-/>
-\`\`\`
-                `,
+                component: DESCRIPTION,
             },
         },
     },
-    argTypes: {
-        label: { control: 'text', table: { category: 'DatePicker' } },
-        helperText: { control: 'text', table: { category: 'DatePicker' } },
-        error: { control: 'text', table: { category: 'DatePicker' } },
-        width: { control: 'text', table: { category: 'DatePicker' } },
-        size: {
-            control: 'select',
-            options: SIZES,
-            table: { category: 'DatePicker' },
-        },
-        disabled: { control: 'boolean', table: { category: 'DatePicker' } },
-        required: { control: 'boolean', table: { category: 'DatePicker' } },
-        calendarAriaLabel: { control: 'text', table: { category: 'DatePicker' } },
-        showRequiredIndicator: { control: 'boolean', table: { category: 'DatePicker' } },
-        value: { control: false, description: 'Date object for controlled usage; not editable in this uncontrolled playground.' },
-        defaultValue: { control: false, description: 'Initial Date; changes require a remount.' },
-        minDate: { control: false, description: 'Earliest selectable Date.' },
-        maxDate: { control: false, description: 'Latest selectable Date.' },
-        calendarProps: { control: false, description: 'Props forwarded to the calendar.' },
-        onChange: { control: false },
-    },
-    args: {
-        label: 'Pick a date',
-        size: 'md',
-        disabled: false,
-        required: false,
-        calendarAriaLabel: 'Calendar',
-        width: '300px',
-        onChange: fn(),
-    },
+    argTypes: ARG_TYPES,
+    args: DEFAULT_ARGS,
+    decorators: [DatePickerFrame],
 } satisfies Meta<ComponentProps<typeof DatePicker> & { width?: string }>
 
 export default meta
@@ -115,68 +38,22 @@ export default meta
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+    render: DatePickerPlayground,
     parameters: {
         docs: {
             description: {
                 story:
-          'Uncontrolled playground. Use the Controls panel for serializable props; Date values and calendar props are documented but not editable here.',
+          'Uncontrolled playground. Use the Controls table for serializable props; Date values and calendar props are documented but not editable here.',
             },
         },
     },
-    play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement)
-        const label = args.label as string | undefined
-        if (label) {
-            await expect(canvas.getByRole('group', { name: label })).toBeInTheDocument()
-        }
-        await expect(canvas.getAllByRole('spinbutton').length).toBeGreaterThan(0)
-    },
-}
-
-export const Sizes: Story = {
-    parameters: {
-        docs: {
-            ...storySource(`
-<DatePicker label="Small" size="sm" />
-<DatePicker label="Medium" size="md" />
-<DatePicker label="Large" size="lg" />`),
-        },
-    },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <DatePicker
-                label={'Small'}
-                size={'sm'}
-            />
-            <DatePicker
-                label={'Medium'}
-                size={'md'}
-            />
-            <DatePicker
-                label={'Large'}
-                size={'lg'}
-            />
-        </div>
-    ),
+    play: playDatePickerPlayground,
 }
 export const States: Story = {
-    parameters: { docs: { ...storySource(`<DatePicker label="Disabled" disabled />
-<DatePicker label="Appointment" helperText="Choose an available date." />
-<DatePicker label="Invalid date" error="Choose a valid date." />`) } },
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <DatePicker
-                label={'Disabled'}
-                disabled
-            />
-            <DatePicker
-                label={'Appointment'}
-                helperText={'Choose an available date.'}
-            />
-            <DatePicker
-                label={'Invalid date'}
-                error={'Choose a valid date.'}
-            />
-        </div>
-    ),
+    parameters: { docs: { ...storySource(consumerSource2) } },
+    render: DatePickerStatesExample,
+}
+export const Sizes: Story = {
+    parameters: { docs: { ...storySource(sizesSource), description: { story: 'Compare small, medium and large fields in the same bounded container. Date segments remain accessible through internal scrolling on narrow screens.' } } },
+    render: DatePickerSizesExample,
 }

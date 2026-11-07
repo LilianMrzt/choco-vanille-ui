@@ -2,12 +2,8 @@ import { createElement } from 'react'
 import type { Meta } from '@storybook/react-vite'
 
 import { Button } from '@components/actions/button'
-import type { TooltipProps } from '@components/overlay/tooltip'
-
-export type TooltipStoryArgs = Omit<TooltipProps, 'content'> & {
-    triggerLabel: string
-    content: string
-}
+import { fn } from 'storybook/test'
+import type { TooltipStoryArgs } from '@stories/overlay/tooltip/types'
 
 const POSITIONS = ['top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-start', 'bottom', 'bottom-end', 'left-start', 'left', 'left-end'] as const
 
@@ -23,6 +19,7 @@ export const DEFAULT_ARGS = {
     openOnFocus: true,
     arrow: false,
     closeOnClick: true,
+    onOpenChange: fn(),
 } satisfies NonNullable<Meta<TooltipStoryArgs>['args']>
 
 export const ARG_TYPES = {
@@ -38,7 +35,7 @@ export const ARG_TYPES = {
     arrow: { control: 'boolean' },
     closeOnClick: { control: 'boolean' },
     open: { control: 'boolean' },
-    defaultOpen: { control: 'boolean', description: 'Initial uncontrolled state; remount to apply changes.' },
-    onOpenChange: { control: false, action: 'open changed' },
-    className: { control: false },
+    defaultOpen: { control: false, description: 'Initial uncontrolled state; the primary example is controlled. Edit in Uncontrolled, which remounts to apply changes.' },
+    onOpenChange: { control: false, description: 'Requested open state callback; requires consumer code.' },
+    className: { control: false, description: 'Popup class; use consumer code to supply a stylesheet.' },
 } satisfies NonNullable<Meta<TooltipStoryArgs>['argTypes']>

@@ -11,7 +11,7 @@ export const DEFAULT_ARGS = {
     modal: true,
     withBackdrop: true,
     position: 'right',
-    width: '33.333vw',
+    width: 'min(26rem, 100vw)',
     title: 'Panel settings',
     description: 'Manage your profile and preferences.',
     showDescription: true,
@@ -19,8 +19,12 @@ export const DEFAULT_ARGS = {
 } satisfies NonNullable<Meta<PanelStoryArgs>['args']>
 
 export const ARG_TYPES = {
+    titleAs: { control: 'select', options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], description: 'Header heading level.', table: { category: 'Compound: Header' } },
+    showCloseButton: { control: 'boolean', description: 'Header close control; defaults to true.', table: { category: 'Compound: Header' } },
+    closeLabel: { control: 'text', description: 'Accessible label of the header close control.', table: { category: 'Compound: Header' } },
+    contentLabel: { control: 'text', description: 'Fallback accessible name when no title labels the panel.', table: { category: 'Compound: Content' } },
     open: { control: 'boolean', description: 'Controlled open state.' },
-    defaultOpen: { control: 'boolean', description: 'Initial uncontrolled state; remount to apply changes.' },
+    defaultOpen: { control: false, description: 'Initial uncontrolled state; the primary example is controlled. Edit in Uncontrolled, which remounts to apply changes.' },
     modal: { control: 'select', options: [true, false, 'trap-focus'], description: 'Modal interaction mode.', table: { defaultValue: { summary: 'true' } } },
     withBackdrop: { control: 'boolean', description: 'Render the backdrop.', table: { defaultValue: { summary: 'true' } } },
     onOpenChange: { control: false, description: 'Called with the requested state and change details.' },
@@ -28,8 +32,8 @@ export const ARG_TYPES = {
     disablePointerDismissal: { control: 'boolean', description: 'Prevents dismissal by outside interaction.' },
     actionsRef: { control: false, description: 'Ref to imperative panel actions.' },
     handle: { control: false, description: 'Associates the panel with external triggers.' },
-    triggerId: { control: 'text', description: 'Associated trigger ID in controlled mode.' },
-    defaultTriggerId: { control: 'text', description: 'Initial associated trigger ID in uncontrolled mode.' },
+    triggerId: { control: false, description: 'Associated controlled trigger ID; requires external trigger composition.' },
+    defaultTriggerId: { control: false, description: 'Initial associated trigger ID; requires external trigger composition and remounting.' },
     position: { control: 'select', options: POSITIONS, description: 'Demonstration control for panel side.', table: { category: 'Compound: Content' } },
     width: { control: 'text', description: 'Demonstration control for CSS width.', table: { category: 'Compound: Content' } },
     title: { control: 'text', description: 'Demonstration control for the header title.', table: { category: 'Compound: Header' } },

@@ -1,0 +1,68 @@
+import { Flex, Typography, Button } from '@choco-vanille/ui'
+
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Variants / Colors</Typography>
+            <Flex flexDirection="column" gap={16}>
+                <Flex aria-label="primary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">primary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="primary" variant="contained" />
+                        <Button label="outlined" color="primary" variant="outlined" />
+                        <Button label="ghost" color="primary" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="secondary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">secondary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="secondary" variant="contained" />
+                        <Button label="outlined" color="secondary" variant="outlined" />
+                        <Button label="ghost" color="secondary" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">tertiary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="tertiary" variant="contained" />
+                        <Button label="outlined" color="tertiary" variant="outlined" />
+                        <Button label="ghost" color="tertiary" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">destructive</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="destructive" variant="contained" />
+                        <Button label="outlined" color="destructive" variant="outlined" />
+                        <Button label="ghost" color="destructive" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="success" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">success</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="success" variant="contained" />
+                        <Button label="outlined" color="success" variant="outlined" />
+                        <Button label="ghost" color="success" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="warning" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">warning</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="warning" variant="contained" />
+                        <Button label="outlined" color="warning" variant="outlined" />
+                        <Button label="ghost" color="warning" variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="info" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">info</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <Button label="contained" color="info" variant="contained" />
+                        <Button label="outlined" color="info" variant="outlined" />
+                        <Button label="ghost" color="info" variant="ghost" />
+                    </Flex>
+                </Flex>
+            </Flex>
+        </section>
+    </Flex>
+)

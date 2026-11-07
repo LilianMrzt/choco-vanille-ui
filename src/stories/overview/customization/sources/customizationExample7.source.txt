@@ -1,0 +1,8 @@
+import { Button } from '@choco-vanille/ui';
+import { brand } from './brand.css';
+
+export const BrandedAction = () => (
+  <div className={brand}>
+    <Button color="primary" label="Acme action" variant="contained" />
+  </div>
+);

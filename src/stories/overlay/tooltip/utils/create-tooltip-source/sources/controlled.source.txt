@@ -1,0 +1,12 @@
+import { useState } from 'react'
+import { Button, Tooltip } from '@choco-vanille/ui'
+
+const Example = () => {
+  const [open, setOpen] = useState({{open}})
+
+  return (
+    <Tooltip{{attributes}} open={open} onOpenChange={setOpen}>
+      <Button label={{{triggerLabel}}} />
+    </Tooltip>
+  )
+}

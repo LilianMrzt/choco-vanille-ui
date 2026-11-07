@@ -58,7 +58,7 @@ const DrawerExample = () => {
     const isMini = mode === 'mini'
 
     return (
-        <div style={{ display: 'flex', height: '100%' }}>
+        <div style={{ display: 'flex', minHeight: '24rem', maxWidth: '100%', flexWrap: 'wrap' }}>
             <Drawer
                 open={open}
                 onOpenChange={setOpen}
@@ -73,7 +73,7 @@ const DrawerExample = () => {
                     <Drawer.Header>
                         <IconButton
                             icon={open ? CloseIcon : ChevronRightIcon}
-                            aria-label={open ? 'Collapse mini' : 'Expand mini'}
+                            aria-label={isPortal ? 'Close drawer' : open ? 'Collapse drawer' : 'Expand drawer'}
                             size={'sm'}
                             onClick={() => setOpen(!open)}
                         />
@@ -131,6 +131,7 @@ const DrawerExample = () => {
                         {showSettings && (
                             <Drawer.Section title={settingsTitle}>
                                 <Drawer.SectionItem
+                                    key={String(sectionItemDefaultExpanded)}
                                     label={sectionItemLabel ?? 'Section item'}
                                     startIcon={SearchIcon}
                                     endIcon={InfoIcon}

@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { Calendar, type CalendarProps } from '@choco-vanille/ui'
+
+export const Example = () => {
+    const [selected, setSelected] = useState<Extract<CalendarProps, { mode: "{{mode}}" }>['selected']>({{selected}})
+
+    return <Calendar{{props}} mode="{{mode}}" selected={selected} onSelect={setSelected} />
+}

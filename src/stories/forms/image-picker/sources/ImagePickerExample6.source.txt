@@ -1,0 +1,37 @@
+import { ImagePicker } from '@choco-vanille/ui'
+
+
+
+
+export const CroppingExample = () => (
+<div
+        style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gap: '1rem',
+            width: 'min(100%, 42rem)',
+        }}
+    >
+        <ImagePicker
+            label={'Square crop'}
+            crop
+            cropAspectRatio={1}
+            shape={'square'}
+            width={'100%'}
+        />
+        <ImagePicker
+            label={'Rounded 16:9 crop'}
+            crop
+            cropAspectRatio={16 / 9}
+            shape={'rounded'}
+            width={'100%'}
+        />
+        <ImagePicker
+            label={'Circle crop'}
+            crop
+            cropAspectRatio={1}
+            shape={'circle'}
+            width={'100%'}
+        />
+    </div>
+)

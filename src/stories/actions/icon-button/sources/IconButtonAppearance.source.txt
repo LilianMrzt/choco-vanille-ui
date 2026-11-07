@@ -1,0 +1,69 @@
+import { IconButton } from '@choco-vanille/ui'
+import { Flex, Typography } from '@choco-vanille/ui'
+import SearchIcon from './SearchIcon'
+
+const Example = () => (
+    <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">
+        <section>
+            <Typography as="h3">Variants / Colors</Typography>
+            <Flex flexDirection="column" gap={16}>
+                <Flex aria-label="primary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">primary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="primary, contained" color="primary" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="primary, outlined" color="primary" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="primary, ghost" color="primary" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="secondary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">secondary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="secondary, contained" color="secondary" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="secondary, outlined" color="secondary" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="secondary, ghost" color="secondary" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="tertiary" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">tertiary</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="tertiary, contained" color="tertiary" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="tertiary, outlined" color="tertiary" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="tertiary, ghost" color="tertiary" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="destructive" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">destructive</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="destructive, contained" color="destructive" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="destructive, outlined" color="destructive" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="destructive, ghost" color="destructive" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="success" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">success</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="success, contained" color="success" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="success, outlined" color="success" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="success, ghost" color="success" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="warning" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">warning</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="warning, contained" color="warning" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="warning, outlined" color="warning" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="warning, ghost" color="warning" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+                <Flex aria-label="info" role="group" flexDirection="column" gap={8}>
+                    <Typography as="h4">info</Typography>
+                    <Flex alignItems="center" flexWrap="wrap" gap={12}>
+                        <IconButton aria-label="info, contained" color="info" icon={SearchIcon} variant="contained" />
+                        <IconButton aria-label="info, outlined" color="info" icon={SearchIcon} variant="outlined" />
+                        <IconButton aria-label="info, ghost" color="info" icon={SearchIcon} variant="ghost" />
+                    </Flex>
+                </Flex>
+            </Flex>
+        </section>
+    </Flex>
+)

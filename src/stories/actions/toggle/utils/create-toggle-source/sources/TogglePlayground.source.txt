@@ -1,0 +1,7 @@
+import { useState } from 'react'
+import { Toggle, ToggleGroup } from '@choco-vanille/ui'
+{{iconImports}}
+
+{{standalone}}
+
+{{group}}

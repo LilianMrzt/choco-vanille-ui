@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import ts from 'typescript'
 
-import meta, { Colors, Numbers, Playground, Positions, Sizes } from '@stories/data-display/status-badge/StatusBadge.stories'
+import meta, { Appearance, Numbers, Playground } from '@stories/data-display/status-badge/StatusBadge.stories'
 
 describe('StatusBadge stories', () => {
-    it.each([Colors, Positions, Sizes, Numbers])('provides syntactically valid TSX for comparative examples', (story) => {
+    it.each([Appearance, Numbers])('provides syntactically valid TSX for comparative examples', (story) => {
         const source = story.parameters?.docs.source.code
         expect(typeof source).toBe('string')
         const result = ts.transpileModule(source, {

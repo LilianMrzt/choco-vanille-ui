@@ -1,4 +1,5 @@
-import { Canvas, Controls, Description, Markdown, Stories, Title } from '@storybook/addon-docs/blocks'
+import { Canvas, Controls, Description, Markdown, Source, Stories, Title } from '@storybook/addon-docs/blocks'
+import usageSource from '../../sources/BreadcrumbsUsage.source.txt?raw'
 import type { ReactElement } from 'react'
 
 import { md } from '@stories/_shared/utils/markdown'
@@ -14,6 +15,10 @@ const BreadcrumbsDocsPage = (): ReactElement => (
     <>
         <Title />
         <Description />
+        <Source
+            code={usageSource}
+            language={'tsx'}
+        />
         <Canvas />
         <Controls />
         <Markdown>{md`
@@ -26,6 +31,12 @@ const BreadcrumbsDocsPage = (): ReactElement => (
 | \`current\` | No | \`boolean\` | Marks an item current; otherwise the last is current. |
 | \`aria-current\` | Automatic | \`page\` | Marks the current item. |
 | \`separator\` | No | \`BreadcrumbsSeparator\` | Decorative separator. |
+
+## Subcomponents
+
+| Subcomponent | Description |
+| --- | --- |
+| Breadcrumbs.Item | Native link with a label, optional decorative icons, and explicit or inferred current-page state. |
         `}</Markdown>
         <Stories includePrimary={false} />
     </>
