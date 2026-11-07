@@ -5,5 +5,5 @@ export { CALENDAR_GRID_STYLES } from '@components/forms/calendar/styles/calendar
 export { CALENDAR_DAY_BUTTON_STYLES } from '@components/forms/calendar/styles/calendarDayButton.css.ts'
 export { CALENDAR_MONTH_VIEW_STYLES } from '@components/forms/calendar/components/calendar-month-view/styles/CalendarMonthView.css.ts'
 export { CALENDAR_YEAR_VIEW_STYLES } from '@components/forms/calendar/components/calendar-year-view/styles/CalendarYearView.css.ts'
-export type { CalendarProps } from '@components/forms/calendar/types/Calendar.props.ts'
+export type { CalendarProps, CalendarRange, CalendarMatcher } from '@components/forms/calendar/types'
 export type { CalendarView } from '@components/forms/calendar/context/calendarContext.ts'

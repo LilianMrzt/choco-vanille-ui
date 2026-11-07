@@ -69,6 +69,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
         >
             <IconButton
                 icon={ChevronLeftIcon}
+                type={'button'}
                 aria-label={prevLabel}
                 variant={'ghost'}
                 color={'neutral'}
@@ -85,6 +86,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
             >
                 {view === 'day' && (
                     <Button
+                        type={'button'}
                         variant={'ghost'}
                         color={'neutral'}
                         size={'sm'}
@@ -118,6 +120,7 @@ const CalendarCaption: FC<CalendarCaptionProps> = memo(({
 
             <IconButton
                 icon={ChevronRightIcon}
+                type={'button'}
                 aria-label={nextLabel}
                 variant={'ghost'}
                 color={'neutral'}

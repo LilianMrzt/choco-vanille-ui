@@ -4,15 +4,18 @@ import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
 import { GRID_COLS } from '@components/forms/calendar/components/calendar-year-view/constants'
 import { getDecadeStart } from '@components/forms/calendar/utils/decadeStart.utils.ts'
+import { createLocalDate } from '@components/forms/calendar/utils/calendarDates.utils.ts'
 
 export const useCalendarYearView = () => {
-    const { currentMonth, setCurrentMonth, setView, startYear, endYear } = useCalendarContext()
+    const { currentMonth, setCurrentMonth, setView, startYear, endYear, startMonth, endMonth } = useCalendarContext()
 
     const today = new Date()
     const year = currentMonth.getFullYear()
     const decadeStart = getDecadeStart(year)
+    const minimumIndex = Math.max(0, startYear - decadeStart)
+    const maximumIndex = Math.min(YEARS_PER_PAGE - 1, endYear - decadeStart)
 
-    const [focusedIndex, setFocusedIndex] = useState(year - decadeStart)
+    const [focusedIndex, setFocusedIndex] = useState(Math.min(maximumIndex, Math.max(minimumIndex, year - decadeStart)))
     const buttonRefs = useRef<Array<HTMLButtonElement | null>>([])
 
     useEffect(() => {
@@ -29,17 +32,20 @@ export const useCalendarYearView = () => {
             else {return}
 
             event.preventDefault()
-            setFocusedIndex(next)
+            setFocusedIndex(Math.min(maximumIndex, Math.max(minimumIndex, next)))
         },
-        [],
+        [minimumIndex, maximumIndex],
     )
 
     const handleSelect = useCallback(
         (selectedYear: number) => {
-            setCurrentMonth(new Date(selectedYear, currentMonth.getMonth(), 1))
+            let month = currentMonth.getMonth()
+            if (selectedYear === startYear) {month = Math.max(month, startMonth?.getMonth() ?? 0)}
+            if (selectedYear === endYear) {month = Math.min(month, endMonth?.getMonth() ?? 11)}
+            setCurrentMonth(createLocalDate(selectedYear, month, 1))
             setView('month')
         },
-        [currentMonth, setCurrentMonth, setView],
+        [currentMonth, setCurrentMonth, setView, startYear, endYear, startMonth, endMonth],
     )
 
     const isDisabled = useCallback(

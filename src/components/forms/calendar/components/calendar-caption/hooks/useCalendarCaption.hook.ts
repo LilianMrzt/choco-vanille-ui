@@ -4,51 +4,52 @@ import { useCalendarContext } from '@components/forms/calendar/context/calendarC
 import { YEARS_PER_PAGE } from '@components/forms/calendar/constants'
 import { getDecadeStart } from '@components/forms/calendar/utils/decadeStart.utils.ts'
 import { capitalizeMonth } from '@components/forms/calendar/components/calendar-caption/utils/capitalizeMonth.utils.ts'
+import { createLocalDate } from '@components/forms/calendar/utils/calendarDates.utils.ts'
 
 export const useCalendarCaption = () => {
-    const { view, setView, currentMonth, setCurrentMonth, startYear, endYear } = useCalendarContext()
+    const { view, setView, currentMonth, setCurrentMonth, startYear, endYear, startMonth, endMonth, locale } = useCalendarContext()
 
     const year = currentMonth.getFullYear()
     const month = currentMonth.getMonth()
     const decadeStart = getDecadeStart(year)
     const decadeEnd = decadeStart + YEARS_PER_PAGE - 1
-    const label = `${capitalizeMonth(new Intl.DateTimeFormat(undefined, { month: 'long' }).format(currentMonth))} ${year}`
+    const label = `${capitalizeMonth(new Intl.DateTimeFormat(locale, { month: 'long', calendar: 'gregory' }).format(currentMonth))} ${year}`
 
     const handlePrev = useCallback(() => {
         if (view === 'day') {
-            setCurrentMonth(new Date(year, month - 1, 1))
+            setCurrentMonth(createLocalDate(year, month - 1, 1))
             return
         }
 
         if (view === 'month') {
-            setCurrentMonth(new Date(year - 1, month, 1))
+            setCurrentMonth(createLocalDate(year - 1, month, 1))
             return
         }
 
-        setCurrentMonth(new Date(year - YEARS_PER_PAGE, month, 1))
-    }, [view, year, month, setCurrentMonth])
+        setCurrentMonth(createLocalDate(Math.max(year - YEARS_PER_PAGE, startYear), month, 1))
+    }, [view, year, month, setCurrentMonth, startYear])
 
     const handleNext = useCallback(() => {
         if (view === 'day') {
-            setCurrentMonth(new Date(year, month + 1, 1))
+            setCurrentMonth(createLocalDate(year, month + 1, 1))
             return
         }
 
         if (view === 'month') {
-            setCurrentMonth(new Date(year + 1, month, 1))
+            setCurrentMonth(createLocalDate(year + 1, month, 1))
             return
         }
 
-        setCurrentMonth(new Date(year + YEARS_PER_PAGE, month, 1))
-    }, [view, year, month, setCurrentMonth])
+        setCurrentMonth(createLocalDate(Math.min(year + YEARS_PER_PAGE, endYear), month, 1))
+    }, [view, year, month, setCurrentMonth, endYear])
 
     const isPrevDisabled =
-        view === 'day' ? new Date(year, month - 1, 1) < new Date(startYear, 0, 1)
+        view === 'day' ? createLocalDate(year, month - 1, 1) < createLocalDate(startYear, startMonth?.getMonth() ?? 0, 1)
             : view === 'month' ? year - 1 < startYear
                 : decadeStart <= startYear
 
     const isNextDisabled =
-        view === 'day' ? new Date(year, month + 1, 1) > new Date(endYear, 11, 1)
+        view === 'day' ? createLocalDate(year, month + 1, 1) > createLocalDate(endYear, endMonth?.getMonth() ?? 11, 1)
             : view === 'month' ? year + 1 > endYear
                 : decadeEnd >= endYear
 

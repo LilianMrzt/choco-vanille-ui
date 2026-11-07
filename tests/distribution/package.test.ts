@@ -31,7 +31,12 @@ describe('package distribution', () => {
                 resolve('tests', 'distribution', 'fixtures', 'notification-consumer.tsx.txt'),
                 notificationConsumerPath,
             )
-            const program = ts.createProgram([consumerTypesPath, notificationConsumerPath], {
+            const datePickerConsumerPath = resolve(outputDirectory, 'date-picker-consumer.tsx')
+            await copyFile(
+                resolve('tests', 'distribution', 'fixtures', 'date-picker-consumer.tsx.txt'),
+                datePickerConsumerPath,
+            )
+            const program = ts.createProgram([consumerTypesPath, notificationConsumerPath, datePickerConsumerPath], {
                 noEmit: true,
                 strict: true,
                 skipLibCheck: true,
@@ -46,6 +51,7 @@ describe('package distribution', () => {
 
             const declarations = await readFile(resolve(outputDirectory, 'index.d.ts'), 'utf8')
             expect(declarations).not.toMatch(/from ['"]@(?:theme|components|utils|hooks)\b/)
+            expect(declarations).not.toMatch(/react-day-picker|react-aria-components|@internationalized\/date/)
             expect(declarations).toContain('export declare const NotificationCard:')
             expect(declarations).toContain('export declare const Toaster:')
             expect(declarations).toContain('export declare const ToasterProvider:')

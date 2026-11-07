@@ -168,20 +168,20 @@ describe('Controlled form playgrounds', () => {
         expect(screen.queryByRole('img')).toBeNull()
     })
 
-    it('preserves the complete calendar selection payload and synchronizes selected dates', async () => {
+    it('forwards the calendar selection and synchronizes selected dates', async () => {
         const onSelect = vi.fn()
         const month = new Date(2026, 10, 1)
-        controls.args = { mode: 'single', defaultMonth: month, onSelect }
+        controls.args = { mode: 'single', defaultMonth: month, locale: 'en-US', onSelect }
         const { rerender } = render(renderStory(RenderCalendarPlayground, {}))
         const grid = screen.getByRole('grid')
-        const day = grid.querySelector('button')
+        const day = grid.querySelector('button[aria-label="Sunday, November 15, 2026"]')
         if (!(day instanceof HTMLButtonElement)) {
             throw new Error('The calendar day button was not rendered.')
         }
 
         await userEvent.click(day)
 
-        expect(onSelect).toHaveBeenCalledWith(expect.any(Date), expect.any(Date), expect.any(Object), expect.objectContaining({ type: 'click' }))
+        expect(onSelect).toHaveBeenCalledWith(expect.any(Date))
         expect(controls.updateArgs).toHaveBeenCalledWith({ selected: expect.any(Date) })
 
         controls.args = { ...controls.args, selected: new Date(2026, 10, 15) }

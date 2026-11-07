@@ -13,7 +13,6 @@ export const playDatePickerPlayground: NonNullable<StoryObj<ComponentProps<typeo
     const canvas = within(canvasElement)
     const label = args.label as string | undefined
     if (label) {
-        await expect(canvas.getByRole('group', { name: label })).toBeInTheDocument()
+        await expect(canvas.getByRole('button', { name: new RegExp(label) })).toBeInTheDocument()
     }
-    await expect(canvas.getAllByRole('spinbutton').length).toBeGreaterThan(0)
 }

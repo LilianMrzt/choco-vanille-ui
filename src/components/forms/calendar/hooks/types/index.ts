@@ -1,4 +1,5 @@
-import type { CalendarProps, CalendarView } from '@components'
+import type { CalendarProps } from '@components/forms/calendar/types'
+import type { CalendarView } from '@components/forms/calendar/context/calendarContext.ts'
 
 export type UseCalendarProps = Pick<
     CalendarProps,

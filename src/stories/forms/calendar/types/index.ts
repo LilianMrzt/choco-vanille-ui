@@ -3,7 +3,7 @@ import type { CalendarProps } from '@components/forms/calendar'
 
 export type CalendarSelection = Extract<CalendarProps, { mode: 'single' | 'multiple' | 'range' }>['selected']
 
-export type CalendarArgs = Readonly<Pick<CalendarProps, 'captionLabels' | 'className' | 'disabled' | 'onDayClick' | 'month' | 'defaultMonth' | 'onMonthChange' | 'startMonth' | 'endMonth'> & {
+export type CalendarArgs = Readonly<Pick<CalendarProps, 'captionLabels' | 'className' | 'disabled' | 'month' | 'defaultMonth' | 'onMonthChange' | 'startMonth' | 'endMonth' | 'locale'> & {
     mode?: (typeof MODES)[number]
     showOutsideDays?: boolean
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6

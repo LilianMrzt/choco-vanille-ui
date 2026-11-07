@@ -9,6 +9,9 @@ export type CalendarContextValue = {
     setCurrentMonth: (d: Date) => void
     startYear: number
     endYear: number
+    startMonth?: Date
+    endMonth?: Date
+    locale?: string
 }
 
 export const CalendarContext = createContext<CalendarContextValue | undefined>(undefined)

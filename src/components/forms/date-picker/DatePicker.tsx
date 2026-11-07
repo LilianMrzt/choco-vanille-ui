@@ -1,228 +1,185 @@
-import { memo, useId, useMemo, type MouseEvent } from 'react'
-import { DateField, DateInput, DateSegment } from 'react-aria-components'
-import type { Matcher } from 'react-day-picker'
+import { useEffect, useId, useMemo, useRef, useState, type FC } from 'react'
 
-import { Calendar } from '@components/forms/calendar'
+import { Calendar, type CalendarMatcher } from '@components/forms/calendar'
+import { compareDays } from '@components/forms/calendar/utils/calendarDates.utils.ts'
 import { Popover } from '@components/overlay/popover'
-import { IconButton } from '@components/actions/icon-button'
+import { Icon } from '@components/foundation/icon'
 import { Flex } from '@components/layout/flex'
 import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import HelperText from '@components/forms/primitives/helper-text/HelperText.tsx'
-import { TextFieldEndAction } from '@components/forms/text-field/components/index.ts'
 import { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField.css.ts'
-import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
-import { useDatePicker } from '@components/forms/date-picker/hooks/useDatePicker.hook.ts'
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePicker.css.ts'
-import type { DatePickerProps } from '@components/forms/date-picker/types/DatePicker.props.ts'
-import { toCalendarDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
+import type { DatePickerProps } from '@components/forms/date-picker/types'
+import { formatDateValue, formatDisplayDate, getInitialPickerDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
 import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
 /**
- * A date field with segmented day, month and year inputs and a calendar popover.
- *
- * Built on React Aria's `DateField`, which provides segment-by-segment typing,
- * arrow-key stepping, locale-aware ordering and screen-reader semantics. The
- * look comes from the design system's TextField styles.
- *
- * - Typing a complete, valid date updates the calendar and calls `onChange`.
- * - Picking a day in the calendar updates the segments and closes the popover.
- *
+ * A date-selection button opening a calendar dialog. Provide `label`,
+ * `aria-label`, or `aria-labelledby` for an accessible name. The selected
+ * local date is submitted as `YYYY-MM-DD` when `name` is provided.
+ * The date is displayed numerically in `DD/MM/YYYY` by default; `locale`
+ * changes the numeric date format and the calendar's month and weekday names.
+ * `required` displays an indicator but does not perform native validation;
+ * applications are responsible for validation and can supply `error`.
+ * Opening the calendar focuses the selected day or the nearest available day
+ * to today. An explicit calendar month limits the initial focus to that month.
+ * Disabled days remain focusable but cannot be selected.
+ * @throws {RangeError} If date bounds are invalid or reversed.
+ * @param props - Date, form, accessibility and calendar options.
+ * @returns A date-selection control.
  * @example
- * ```tsx
- * const [date, setDate] = useState<Date | undefined>()
- * <DatePicker label="Start date" value={date} onChange={setDate} />
- * ```
+ * <DatePicker label="Start date" name="start" />
  */
-const DatePicker = memo(
-    ({
-        id,
-        value,
-        defaultValue,
-        onChange,
-        minDate,
-        maxDate,
-        calendarProps,
-        calendarAriaLabel = 'Calendar',
-        label,
-        error,
-        helperText,
-        required,
-        showRequiredIndicator = true,
-        disabled,
-        size = 'md',
-        width,
-        'aria-label': ariaLabel,
-        'aria-labelledby': ariaLabelledBy,
-        'aria-describedby': ariaDescribedBy,
-        name,
-    }: DatePickerProps) => {
-        const generatedId = useId()
-        const inputId = id ?? generatedId
-        const labelId = label ? `${inputId}-label` : undefined
-        const helperId = `${inputId}-helper`
-        const hasError = Boolean(error)
-        const showHelper = Boolean(error || helperText)
+const DatePicker: FC<DatePickerProps> = (props) => {
+    const {
+        id, value, defaultValue, onChange, minDate, maxDate, calendarProps,
+        calendarAriaLabel = 'Calendar', label, error, helperText, required,
+        showRequiredIndicator = true, disabled, size = 'md', width, name,
+        locale, placeholder = 'Select a date', requiredText = 'Required', 'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy,
+    } = props
+    const generatedId = useId()
+    const inputId = id ?? generatedId
+    const labelId = label ? `${inputId}-label` : undefined
+    const valueId = `${inputId}-value`
+    const helperId = `${inputId}-helper`
+    const requiredId = `${inputId}-required`
+    const buttonRef = useRef<HTMLButtonElement>(null)
+    const popupRef = useRef<HTMLDivElement>(null)
+    const [internalDate, setInternalDate] = useState(defaultValue)
+    const [open, setOpen] = useState(false)
+    const selectedDate = 'value' in props ? value : internalDate
+    const isControlled = 'value' in props
+    useEffect(() => {
+        const form = buttonRef.current?.form
+        if (!form || isControlled) {return}
+        const handleReset = (): void => setInternalDate(defaultValue)
+        form.addEventListener('reset', handleReset)
+        return () => form.removeEventListener('reset', handleReset)
+    }, [defaultValue, isControlled])
+    const valueText = selectedDate
+        ? formatDisplayDate(selectedDate, locale)
+        : placeholder
+    const { className: calendarClassName, disabled: calendarDisabled, ...restCalendarProps } = calendarProps ?? {}
+    if ((minDate && Number.isNaN(minDate.getTime())) || (maxDate && Number.isNaN(maxDate.getTime()))) {
+        throw new RangeError('DatePicker bounds must be valid dates')
+    }
+    if (minDate && maxDate && compareDays(minDate, maxDate) > 0) {
+        throw new RangeError('DatePicker minDate must not be after maxDate')
+    }
+    const disabledMatchers = useMemo<CalendarMatcher[]>(() => [
+        ...(minDate ? [{ before: minDate }] : []),
+        ...(maxDate ? [{ after: maxDate }] : []),
+        ...(calendarDisabled === undefined ? [] : Array.isArray(calendarDisabled) ? calendarDisabled : [calendarDisabled]),
+    ], [minDate, maxDate, calendarDisabled])
+    const { month, defaultMonth, startMonth, endMonth, startYear, endYear } = restCalendarProps
+    const initialDate = useMemo(() => {
+        if (!open || selectedDate || month || defaultMonth) {return undefined}
+        return getInitialPickerDate({ startMonth, endMonth, startYear, endYear }, minDate, maxDate, disabledMatchers)
+    }, [open, selectedDate, month, defaultMonth, startMonth, endMonth, startYear, endYear, minDate, maxDate, disabledMatchers])
+    const handleSelect = (date: Date | undefined): void => {
+        setInternalDate(date)
+        onChange?.(date)
+        setOpen(false)
+    }
 
-        const {
-            selectedDate,
-            calendarValue,
-            open,
-            setOpen,
-            handleFieldChange,
-            handleCalendarSelect,
-        } = useDatePicker({ value, defaultValue, onChange })
-
-        const minTime = minDate?.getTime()
-        const maxTime = maxDate?.getTime()
-
-        const minCalendarValue = useMemo(
-            () => toCalendarDate(minTime === undefined ? undefined : new Date(minTime)) ?? undefined,
-            [minTime],
-        )
-        const maxCalendarValue = useMemo(
-            () => toCalendarDate(maxTime === undefined ? undefined : new Date(maxTime)) ?? undefined,
-            [maxTime],
-        )
-
-        const calendarDefaultMonth = useMemo(() => selectedDate ?? new Date(), [selectedDate])
-
-        const { className: calendarClassName, disabled: calendarDisabled, ...restCalendarProps } = calendarProps ?? {}
-
-        const calendarDisabledMatchers = useMemo((): Matcher | Matcher[] | undefined => {
-            const rangeMatchers: Matcher[] = [
-                ...(minTime === undefined ? [] : [{ before: new Date(minTime) }]),
-                ...(maxTime === undefined ? [] : [{ after: new Date(maxTime) }]),
-            ]
-
-            if (rangeMatchers.length === 0) {
-                return calendarDisabled
-            }
-
-            const extraMatchers = calendarDisabled === undefined
-                ? []
-                : Array.isArray(calendarDisabled) ? calendarDisabled : [calendarDisabled]
-
-            return [...rangeMatchers, ...extraMatchers]
-        }, [minTime, maxTime, calendarDisabled])
-
-        // Keep focus in the date segments when the calendar button is pressed.
-        const preventFocusSteal = (event: MouseEvent<HTMLButtonElement>) => event.preventDefault()
-
-        return (
-            <Flex
-                flexDirection={'column'}
-                gap={4}
-                width={'100%'}
-                alignItems={'start'}
-                style={width !== undefined ? { width } : undefined}
-            >
-                {label && (
-                    <FormLabel
-                        id={labelId}
-                        disabled={disabled}
-                        required={required && showRequiredIndicator}
-                    >
-                        {label}
-                    </FormLabel>
-                )}
-
-                <Popover
-                    open={open}
-                    onOpenChange={setOpen}
+    return (
+        <Flex
+            flexDirection={'column'}
+            gap={4}
+            width={'100%'}
+            alignItems={'start'}
+            className={DATE_PICKER_STYLES.root}
+            style={width !== undefined ? { width } : undefined}
+        >
+            {label && (
+                <FormLabel
+                    id={labelId}
+                    disabled={disabled}
+                    required={required && showRequiredIndicator}
                 >
-                    <Flex
-                        position={'relative'}
-                        width={'100%'}
-                        gap={0}
+                    {label}
+                </FormLabel>
+            )}
+            <Popover
+                open={open}
+                onOpenChange={setOpen}
+            >
+                <Popover.Trigger>
+                    <button
+                        ref={buttonRef}
+                        id={inputId}
+                        type={'button'}
+                        disabled={disabled}
+                        aria-label={ariaLabel}
+                        aria-labelledby={ariaLabelledBy || labelId ? `${ariaLabelledBy ?? labelId} ${valueId}` : undefined}
+                        aria-describedby={[
+                            ariaDescribedBy,
+                            ariaLabel && !ariaLabelledBy && !labelId ? valueId : undefined,
+                            required ? requiredId : undefined,
+                            error || helperText ? helperId : undefined,
+                        ].filter(Boolean).join(' ') || undefined}
+                        className={cn(TEXT_FIELD_STYLES.recipe({ size, hasError: Boolean(error) }), DATE_PICKER_STYLES.input)}
                     >
-                        <DateField
-                            className={DATE_PICKER_STYLES.root}
-                            value={calendarValue}
-                            onChange={handleFieldChange}
-                            isDisabled={disabled}
-                            isRequired={required}
-                            isInvalid={hasError}
-                            minValue={minCalendarValue}
-                            maxValue={maxCalendarValue}
-                            name={name}
-                            aria-label={ariaLabel}
-                            aria-labelledby={ariaLabelledBy ?? labelId}
-                            aria-describedby={
-                                [ariaDescribedBy, showHelper ? helperId : undefined]
-                                    .filter(Boolean)
-                                    .join(' ') || undefined
-                            }
-                        >
-                            <DateInput
-                                className={({ isInvalid }) =>
-                                    cn(
-                                        TEXT_FIELD_STYLES.recipe({
-                                            size,
-                                            hasError: isInvalid,
-                                            hasStartIcon: false,
-                                            hasEndAction: true,
-                                        }),
-                                        DATE_PICKER_STYLES.input,
-                                    )
-                                }
-                            >
-                                {(segment) => (
-                                    <DateSegment
-                                        segment={segment}
-                                        className={DATE_PICKER_STYLES.segment}
-                                    />
-                                )}
-                            </DateInput>
-                        </DateField>
-
-                        <TextFieldEndAction>
-                            <Popover.Trigger>
-                                <IconButton
-                                    icon={CalendarIcon}
-                                    aria-label={'Open calendar'}
-                                    variant={'ghost'}
-                                    color={'primary'}
-                                    size={fieldSizeToActionSize[size]}
-                                    type={'button'}
-                                    disabled={disabled}
-                                    onMouseDown={preventFocusSteal}
-                                />
-                            </Popover.Trigger>
-                        </TextFieldEndAction>
-                    </Flex>
-
-                    <Popover.Content
-                        side={'bottom'}
-                        align={'end'}
-                        padding={0}
-                        aria-label={calendarAriaLabel}
-                    >
-                        <Calendar
-                            mode={'single'}
-                            selected={selectedDate}
-                            onSelect={handleCalendarSelect}
-                            defaultMonth={calendarDefaultMonth}
-                            className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
-                            disabled={calendarDisabledMatchers}
-                            {...restCalendarProps}
+                        <span
+                            id={valueId}
+                            className={DATE_PICKER_STYLES.segment}
+                        >{valueText}</span>
+                        <Icon
+                            icon={CalendarIcon}
+                            size={'sm'}
                         />
-                    </Popover.Content>
-                </Popover>
-
-                {showHelper && (
-                    <HelperText
-                        id={helperId}
-                        hasError={hasError}
-                    >
-                        {error ?? helperText}
-                    </HelperText>
-                )}
-            </Flex>
-        )
-    },
-)
-
-DatePicker.displayName = 'DatePicker'
+                    </button>
+                </Popover.Trigger>
+                <Popover.Content
+                    ref={popupRef}
+                    side={'bottom'}
+                    align={'end'}
+                    padding={0}
+                    aria-label={calendarAriaLabel}
+                    initialFocus={(openType) => openType === 'touch'
+                        ? true
+                        : popupRef.current?.querySelector<HTMLButtonElement>('[role="grid"] button[tabindex="0"]') ?? null}
+                >
+                    <Calendar
+                        {...restCalendarProps}
+                        locale={locale}
+                        mode={'single'}
+                        selected={selectedDate}
+                        onSelect={handleSelect}
+                        defaultMonth={defaultMonth ?? selectedDate ?? initialDate}
+                        className={cn(DATE_PICKER_STYLES.calendar, calendarClassName)}
+                        disabled={disabledMatchers}
+                    />
+                </Popover.Content>
+            </Popover>
+            {required && (
+                <span
+                    id={requiredId}
+                    className={DATE_PICKER_STYLES.requiredDescription}
+                >
+                    {requiredText}
+                </span>
+            )}
+            {name && (
+                <input
+                    type={'hidden'}
+                    name={name}
+                    value={formatDateValue(selectedDate)}
+                    disabled={disabled}
+                />
+            )}
+            {(error || helperText) && (
+                <HelperText
+                    id={helperId}
+                    hasError={Boolean(error)}
+                >
+                    {error ?? helperText}
+                </HelperText>
+            )}
+        </Flex>
+    )
+}
 
 export default DatePicker

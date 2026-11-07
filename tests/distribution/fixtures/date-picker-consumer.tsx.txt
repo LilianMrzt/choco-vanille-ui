@@ -1,0 +1,12 @@
+import { Calendar, DatePicker, type CalendarMatcher, type CalendarRange } from './index.js'
+
+const disabled: CalendarMatcher[] = [{ dayOfWeek: [0, 6] }, { before: new Date(2024, 0, 1) }]
+const range: CalendarRange = { from: new Date(2024, 0, 1) }
+const date = new Date(2024, 0, 15)
+
+export const examples = <>
+    <DatePicker label="Date" value={date} locale="en-US" calendarProps={{ disabled }} />
+    <Calendar mode="single" selected={date} onSelect={(value) => { const selected: Date | undefined = value; void selected }} />
+    <Calendar mode="multiple" selected={[date]} onSelect={(value) => { const selected: Date[] | undefined = value; void selected }} />
+    <Calendar mode="range" selected={range} onSelect={(value) => { const selected: CalendarRange | undefined = value; void selected }} />
+</>

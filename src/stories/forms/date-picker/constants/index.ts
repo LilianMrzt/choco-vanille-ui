@@ -17,15 +17,17 @@ export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 
 | Prop / Attribute | Required | Type | Notes |
 |---|---|---|---|
-| \`label\` | Recommended | \`string\` | Visible label, linked to the date field group. |
+| \`label\` | Recommended | \`string\` | Visible label, linked to the date selection button. |
 | \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required when \`label\` is omitted. |
-| \`disabled\` | No | \`boolean\` | Disables every segment and the calendar trigger. |
-| \`error\` | No | \`string\` | Marks the field \`aria-invalid\` and is linked via \`aria-describedby\`. |
+| \`disabled\` | No | \`boolean\` | Disables the selection button. |
+| \`error\` | No | \`string\` | Linked to the button via \`aria-describedby\`. |
 | \`calendarAriaLabel\` | No | \`string\` | Accessible name for the calendar dialog. |
 
-- Each day, month and year is a \`role="spinbutton"\` (React Aria), announced with the locale date format.
-- Keyboard: type digits to fill a segment, \`Tab\` / \`Shift+Tab\` to move between segments, \`ArrowUp\` / \`ArrowDown\` to step a value.
-- The calendar button is an \`IconButton\` with an \`aria-label\`, reachable with \`Tab\` after the segments.
+- The button opens a calendar dialog with Enter or Space. Focus moves to the selected day, or to the available day closest to today within the navigation and date bounds. If no day is available, a disabled day remains focusable.
+- An explicit calendar month keeps the initial focus within the displayed month. On touch, the popover retains its default focus behavior.
+- Arrow keys navigate by day or week, Home/End by week, Page Up/Down by month, and Shift + Page Up/Down by year. Disabled days remain focusable but cannot be selected.
+- Enter or Space selects a day and closes the dialog. Escape closes it without changing the value; focus returns to the date selection button.
+- Required validation is performed by the application, not by the browser.
 `
 export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<ComponentProps<typeof DatePicker> & { width?: string }> = {
     label: { control: 'text', table: { category: 'DatePicker' },
@@ -55,6 +57,9 @@ export const ARG_TYPES: import('@storybook/react-vite').ArgTypes<ComponentProps<
     calendarAriaLabel: { control: 'text', table: { category: 'DatePicker' },
         description: 'Sets the public calendarAriaLabel prop.'
     },
+    locale: { control: 'text', description: 'BCP 47 locale for the numeric date and calendar. The date defaults to fr-FR (DD/MM/YYYY); the calendar defaults to the runtime locale.' },
+    placeholder: { control: 'text', description: 'Text displayed when no date is selected.' },
+    requiredText: { control: 'text', description: 'Accessible required-state description.' },
     showRequiredIndicator: { control: 'boolean', table: { category: 'DatePicker' },
         description: 'Sets the public showRequiredIndicator prop.'
     },
@@ -81,11 +86,13 @@ export const DEFAULT_ARGS = {
     onChange: fn(),
 } satisfies Partial<ComponentProps<typeof DatePicker> & { width?: string }>
 export const DESCRIPTION = md /* language=markdown */ `<!--suppress HtmlUnknownAttribute -->
-A date picker built on React Aria's \`DateField\`. The input is a segmented day / month / year field on every device, so it keeps segment-by-segment keyboard entry and screen-reader semantics, and the browser or OS date picker never takes over on mobile.
+A date selection button with a calendar popover.
 
-- **Direct input** — type each segment, or step it with the arrow keys.
 - **Calendar selection** — click the calendar button to open the popover and pick a day.
 - **Value** — \`value\` / \`onChange\` (controlled) or \`defaultValue\` (uncontrolled), as \`Date\` objects.
+- **Display** — numeric \`DD/MM/YYYY\` by default. Set \`locale\`, for example \`en-US\`, to adapt the date format and the calendar's month and weekday names.
+- **Form submission** — \`name\` submits a local \`YYYY-MM-DD\` value. Required validation is the application's responsibility.
+- The calendar uses a document portal and does not inherit a locally scoped theme.
 
 \`\`\`tsx
 ${consumerSource1}

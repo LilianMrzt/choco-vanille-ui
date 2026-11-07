@@ -73,7 +73,7 @@ describe('useCalendarCaption', () => {
     it('navigates to the previous decade in year view', () => {
         const setCurrentMonth = vi.fn()
         const { result } = renderHook(() => useCalendarCaption(), {
-            wrapper: createWrapper({ currentMonth: new Date(2025, 5, 15), view: 'year', setCurrentMonth }),
+            wrapper: createWrapper({ currentMonth: new Date(2025, 5, 15), view: 'year', setCurrentMonth, endYear: 2050 }),
         })
 
         act(() => {
@@ -112,7 +112,7 @@ describe('useCalendarCaption', () => {
     it('navigates to the next decade in year view', () => {
         const setCurrentMonth = vi.fn()
         const { result } = renderHook(() => useCalendarCaption(), {
-            wrapper: createWrapper({ currentMonth: new Date(2025, 5, 15), view: 'year', setCurrentMonth }),
+            wrapper: createWrapper({ currentMonth: new Date(2025, 5, 15), view: 'year', setCurrentMonth, endYear: 2050 }),
         })
 
         act(() => {
@@ -120,6 +120,16 @@ describe('useCalendarCaption', () => {
         })
 
         expect(setCurrentMonth).toHaveBeenCalledWith(new Date(2025 + YEARS_PER_PAGE, 5, 1))
+    })
+
+    it('clamps a year-page jump to the end boundary', () => {
+        const setCurrentMonth = vi.fn()
+        const { result } = renderHook(() => useCalendarCaption(), {
+            wrapper: createWrapper({ currentMonth: new Date(2025, 5, 15), view: 'year', setCurrentMonth }),
+        })
+
+        act(() => { result.current.handleNext() })
+        expect(setCurrentMonth).toHaveBeenCalledWith(new Date(2030, 5, 1))
     })
 
     it('disables previous navigation at the start boundary', () => {

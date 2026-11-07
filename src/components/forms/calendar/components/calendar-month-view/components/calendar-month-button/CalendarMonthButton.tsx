@@ -29,6 +29,7 @@ const CalendarMonthButton = memo(({
     return (
         <button
             key={index}
+            type={'button'}
             ref={el => { buttonRefs.current[index] = el }}
             tabIndex={isFocused ? 0 : -1}
             disabled={isDisabled(index)}

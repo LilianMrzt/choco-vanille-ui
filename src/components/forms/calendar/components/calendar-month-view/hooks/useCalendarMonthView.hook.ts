@@ -2,15 +2,18 @@ import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from 're
 
 import { useCalendarContext } from '@components/forms/calendar/context/calendarContext.ts'
 import { GRID_COLS } from '@components/forms/calendar/components/calendar-month-view/constants'
+import { createLocalDate } from '@components/forms/calendar/utils/calendarDates.utils.ts'
 
 export const useCalendarMonthView = () => {
-    const { currentMonth, setCurrentMonth, setView, startYear, endYear } = useCalendarContext()
+    const { currentMonth, setCurrentMonth, setView, startYear, endYear, startMonth, endMonth } = useCalendarContext()
 
     const today = new Date()
     const year = currentMonth.getFullYear()
     const selectedMonth = currentMonth.getMonth()
 
-    const [focusedIndex, setFocusedIndex] = useState(selectedMonth)
+    const minimumMonth = year === startYear ? startMonth?.getMonth() ?? 0 : 0
+    const maximumMonth = year === endYear ? endMonth?.getMonth() ?? 11 : 11
+    const [focusedIndex, setFocusedIndex] = useState(Math.min(maximumMonth, Math.max(minimumMonth, selectedMonth)))
     const buttonRefs = useRef<Array<HTMLButtonElement | null>>([])
 
     useEffect(() => {
@@ -27,14 +30,14 @@ export const useCalendarMonthView = () => {
             else {return}
 
             event.preventDefault()
-            setFocusedIndex(next)
+            setFocusedIndex(Math.min(maximumMonth, Math.max(minimumMonth, next)))
         },
-        [],
+        [minimumMonth, maximumMonth],
     )
 
     const handleSelect = useCallback(
         (monthIndex: number) => {
-            setCurrentMonth(new Date(year, monthIndex, 1))
+            setCurrentMonth(createLocalDate(year, monthIndex, 1))
             setView('day')
         },
         [year, setCurrentMonth, setView],
@@ -42,8 +45,9 @@ export const useCalendarMonthView = () => {
 
     const isDisabled = useCallback(
         (monthIndex: number) =>
-            (year === startYear && monthIndex < 0) || (year === endYear && monthIndex > 11),
-        [year, startYear, endYear],
+            (year === startYear && monthIndex < (startMonth?.getMonth() ?? 0)) ||
+            (year === endYear && monthIndex > (endMonth?.getMonth() ?? 11)),
+        [year, startYear, endYear, startMonth, endMonth],
     )
 
     const isToday = useCallback(
