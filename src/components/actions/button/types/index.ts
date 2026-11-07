@@ -30,7 +30,7 @@ export type ButtonProps = Readonly<(
   variant?: ButtonVariant;
   /** Theme color of the button. */
   color?: ButtonColor;
-  /** Button size. Defaults to `md`. */
+  /** Height at a 16px root: sm 28px, md 36px, lg 44px. Defaults to `md`. Use lg for touch-oriented actions. */
   size?: ButtonSize;
   /** The text content rendered inside the button via the Typography component. */
   label: string;

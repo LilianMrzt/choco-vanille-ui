@@ -1,0 +1,57 @@
+import { createRef } from 'react'
+import {
+    NotificationCard, Toaster, ToasterProvider, useNotification, useToast,
+    NOTIFICATION_CARD_STYLES, NOTIFICATION_CARD_ICON_STYLES, TOASTER_STYLES,
+    type NotificationCardProps, type NotificationCardCompound,
+    type NotificationCardIconProps, type NotificationCardTitleProps,
+    type NotificationCardDescriptionProps, type NotificationCardActionsProps,
+    type NotificationCardCloseProps, type NotificationCardVariant, type ToasterProps, type ToasterProviderProps,
+    type NotificationCardHeaderProps, type NotificationCardBodyProps, type NotificationCardFooterProps,
+} from './index.js'
+
+const variant: NotificationCardVariant = 'success'
+const card: NotificationCardCompound = NotificationCard
+const props: NotificationCardProps = { variant, title: <strong>Saved</strong>, ref: createRef<HTMLDivElement>() }
+const icon: NotificationCardIconProps = { 'aria-label': 'Success', ref: createRef<SVGSVGElement>() }
+const title: NotificationCardTitleProps = { children: 'Saved', ref: createRef<HTMLSpanElement>() }
+const description: NotificationCardDescriptionProps = { children: 'Changes are up to date.' }
+const actions: NotificationCardActionsProps = { children: <button>Undo</button> }
+const close: NotificationCardCloseProps = { 'aria-label': 'Dismiss', ref: createRef<HTMLButtonElement>() }
+const toaster: ToasterProps = { toastPosition: 'top-center', notificationLabel: 'Inbox' }
+const provider: ToasterProviderProps = { ...toaster, children: 'Application' }
+const header: NotificationCardHeaderProps = { ref: createRef<HTMLDivElement>() }
+const body: NotificationCardBodyProps = { ref: createRef<HTMLDivElement>() }
+const footer: NotificationCardFooterProps = { ref: createRef<HTMLDivElement>() }
+const manualViewport = <Toaster {...toaster} />
+const example = <ToasterProvider {...provider}>
+    <NotificationCard {...props}>
+        <NotificationCard.Header {...header}>
+            <NotificationCard.Icon {...icon} />
+            <NotificationCard.Title {...title} />
+            <NotificationCard.Close {...close} />
+        </NotificationCard.Header>
+        <NotificationCard.Body {...body}>
+            <NotificationCard.Description {...description} />
+        </NotificationCard.Body>
+        <NotificationCard.Footer {...footer}>
+            <NotificationCard.Actions {...actions} />
+        </NotificationCard.Footer>
+    </NotificationCard>
+</ToasterProvider>
+const Example = () => {
+    const { showSuccess } = useToast()
+    const { show } = useNotification()
+    return <button onClick={() => {
+        showSuccess({ title: 'Saved', actions: <button>Undo</button> })
+        show({ children: <NotificationCard.Header><NotificationCard.Title>Update</NotificationCard.Title></NotificationCard.Header>, closeLabel: 'Dismiss update' })
+    }}>Show feedback</button>
+}
+const rootClass = NOTIFICATION_CARD_STYLES.recipe({ variant })
+const iconClass = NOTIFICATION_CARD_ICON_STYLES.icon
+const viewportClass = TOASTER_STYLES.viewport
+// @ts-expect-error Close controls require an accessible name.
+const unnamedClose = <NotificationCard.Close />
+// @ts-expect-error Toaster is a viewport, not a message card.
+const invalidToaster = <Toaster variant="success" />
+// @ts-expect-error Provider configuration does not include message variants.
+const invalidProvider = <ToasterProvider variant="success" />

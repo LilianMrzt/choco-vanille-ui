@@ -60,8 +60,65 @@ available at `@choco-vanille/ui/styles.css`.
 | **Surfaces** | `Accordion`, `Card`, `Collapsible` |
 | **Navigation** | `Tabs`, `Link`, `Pagination`, `Breadcrumbs`, `Stepper`, `StepIndicator` |
 | **Overlay** | `Tooltip`, `DropdownMenu`, `ContextMenu`, `Popover`, `HoverCard`, `Dialog`, `AlertDialog`, `Drawer`, `Panel`, `Command` |
-| **Feedback** | `Skeleton`, `Callout`, `Toast`, `Progress`, `EmptyState`, `Spinner` |
+| **Feedback** | `Skeleton`, `Callout`, `NotificationCard`, `ToasterProvider`, `Toaster`, `Progress`, `EmptyState`, `Spinner` |
 | **Theme** | `ThemeProvider`, `useTheme` |
+
+## Notifications
+
+`NotificationCard` is the standalone visual compound: `Header` contains `Icon`,
+`Title` and `Close`, `Body` contains `Description` or custom content, and `Footer`
+contains `Actions`. Sections are optional; compose `NotificationCard.Icon`
+explicitly when using compound content. `Header` supplies the root's `onClose`
+button unless a `Close` slot is present. Convenience props still include the
+variant icon. `ToasterProvider` mounts both channels using the same card
+for transient toasts and persistent notifications. Wrap the application once
+inside the desired theme scope, outside transformed or clipping containers:
+
+```tsx
+import { Button, ThemeProvider, ToasterProvider, useNotification, useToast } from '@choco-vanille/ui';
+
+const Actions = () => {
+  const { showSuccess } = useToast();
+  const { show } = useNotification();
+
+  return (
+    <>
+      <Button label="Save" onClick={() => showSuccess({ title: 'Changes saved' })} />
+      <Button label="Notify" onClick={() => show({ title: 'Update available' })} />
+    </>
+  );
+};
+
+const Example = () => (
+  <ThemeProvider>
+    <ToasterProvider>
+      <Actions />
+    </ToasterProvider>
+  </ThemeProvider>
+);
+```
+
+`ToasterProviderProps` accepts `children` and the viewport configuration:
+`toastPosition`, `notificationPosition`, `toastLabel`, `notificationLabel`,
+`className`, and `style`. It adds no DOM wrapper and keeps the viewports in the
+local theme scope. `Toaster` remains available for manual mounting instead;
+do not mount both for the same application. The hooks do not require a React
+context, but messages need a mounted provider or manual Toaster to be displayed.
+
+Toasts appear at bottom-right, default to 5000ms and support swipe dismissal
+without a close button. Notifications appear at top-right, default to persistent
+(`duration: 0`) and have a close button. Each channel shows up to three stacked
+messages, with additional messages kept in Sonner's queue. Actions align to
+flex-end. Both hooks accept `actions`; only notifications accept `closeLabel`.
+Notification `children` accept
+custom `NotificationCard` sections; include `Header` to retain the default close
+button, or supply its own `Close` slot. Previously flat compound content should
+be grouped into `Header`, `Body`, and `Footer`.
+
+**Breaking API change:** replace `Toast` and `Toast.*` with `NotificationCard`
+and `NotificationCard.*`, including their corresponding prop types and style
+maps. Replace `<ToastProvider>{children}</ToastProvider>` with
+`<ToasterProvider>{children}</ToasterProvider>`; the hook names are unchanged.
 
 ## Theming
 

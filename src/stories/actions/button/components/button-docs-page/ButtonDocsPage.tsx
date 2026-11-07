@@ -26,6 +26,17 @@ const ButtonDocsPage = (): ReactElement => (
 | \`disabled\` | No | \`boolean\` | Disables a native button, not a link. |
 
 Use IconButton for an action with no visible text. Button icons are decorative.
+
+## Sizes
+
+| Size | Height | Label | Icon | Horizontal padding |
+| --- | --- | --- | --- | --- |
+| \`sm\` | 28px | 14px | 14px | 10px per side |
+| \`md\` (default) | 36px | 14px | 16px | 14px per side |
+| \`lg\` | 44px | 16px | 20px | 20px per side |
+
+Values use rem units and are shown at a 16px root font size. The same size
+applies on every viewport and pointer type. Prefer lg for touch-oriented actions.
         `}</Markdown>
         <Stories includePrimary={false} />
     </>

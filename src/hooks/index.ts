@@ -4,9 +4,9 @@ export { useToast } from '@hooks/use-toast/useToast.hook.tsx'
 export type {
     ShowNotificationOptions,
     UseNotificationReturn,
-} from '@hooks/use-notification/types/useNotification.types.ts'
+} from '@hooks/use-notification/types'
 export type {
     ShowToastOptions,
     ToastId,
     UseToastReturn,
-} from '@hooks/use-toast/types/useToast.types.ts'
+} from '@hooks/use-toast/types'

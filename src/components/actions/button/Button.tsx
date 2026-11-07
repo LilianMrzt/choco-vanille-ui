@@ -17,7 +17,7 @@ import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
  * @param props - Button options and native element attributes.
  * @param props.variant - Visual treatment; defaults to contained.
  * @param props.color - Semantic color intent; defaults to primary.
- * @param props.size - Size preset; defaults to md.
+ * @param props.size - Height preset: sm 28px, md 36px (default), lg 44px at a 16px root.
  * @param props.className - Additional element class.
  * @param props.label - Visible text and accessible name.
  * @param props.startIcon - Decorative leading SVG component.

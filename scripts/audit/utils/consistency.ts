@@ -779,7 +779,7 @@ function detectObservableAriaProblems(
             "La valeur publique role='none' est rendue littéralement au lieu de supprimer le rôle.",
           evidence: 'role={role} avec une union publique contenant "none"',
           remediation:
-            'Traduire la sentinelle none en undefined avant le rendu, comme Toast.',
+            'Traduire la sentinelle none en undefined avant le rendu, comme NotificationCard.',
         });
       }
     }

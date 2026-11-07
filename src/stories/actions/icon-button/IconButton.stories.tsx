@@ -53,6 +53,18 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 
 - The component renders a native \`<button>\`, so it is keyboard-operable (Space / Enter) and has the correct ARIA role by default.
 - When combining an \`IconButton\` with a \`Tooltip\`, the tooltip content should match the \`aria-label\` so sighted and non-sighted users receive the same information.
+
+## Sizes
+
+| Size | Width and height | Icon |
+| --- | --- | --- |
+| \`xs\` | 24px | 12px |
+| \`sm\` | 28px | 14px |
+| \`md\` (default) | 36px | 16px |
+| \`lg\` | 44px | 20px |
+
+Values use rem units and are shown at a 16px root font size. Sizes do not change
+with viewport or pointer type. Prefer lg for touch-oriented actions.
 `
 
 const IconButtonDocsPage = () => (
@@ -94,7 +106,7 @@ It shares the same variant, color, and size system as \`Button\` but renders a s
         'aria-label': { control: 'text' },
         variant: { control: 'select', options: VARIANTS },
         color: { control: 'select', options: COLORS },
-        size: { control: 'select', options: SIZES },
+        size: { control: 'select', options: SIZES, description: 'Square size at a 16px root: xs 24px, sm 28px, md 36px (default), lg 44px.' },
         margin: { control: 'select', options: SPACING },
         marginTop: { control: 'select', options: SPACING },
         marginRight: { control: 'select', options: SPACING },

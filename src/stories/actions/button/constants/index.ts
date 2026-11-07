@@ -20,7 +20,7 @@ export const ARG_TYPES = {
     href: { control: false, description: 'When supplied, renders an anchor instead of a button; see WithHref.' },
     variant: { control: 'select', options: VARIANTS, description: 'Visual treatment.', table: { defaultValue: { summary: 'contained' } } },
     color: { control: 'select', options: COLORS, description: 'Semantic color intent.', table: { defaultValue: { summary: 'primary' } } },
-    size: { control: 'select', options: SIZES, description: 'Size preset.', table: { defaultValue: { summary: 'md' } } },
+    size: { control: 'select', options: SIZES, description: 'Height at a 16px root: sm 28px, md 36px, lg 44px. Fixed across viewport and pointer types.', table: { defaultValue: { summary: 'md' } } },
     startIcon: { control: 'select', options: ['None', 'Trash'], mapping: { None: undefined, Trash: TrashIcon }, description: 'Decorative leading SVG component.' },
     endIcon: { control: 'select', options: ['None', 'Chevron'], mapping: { None: undefined, Chevron: ChevronRightIcon }, description: 'Decorative trailing SVG component.' },
     margin: { control: 'select', options: SPACING, description: 'Margin token.' },

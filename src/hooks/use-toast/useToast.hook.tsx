@@ -1,40 +1,34 @@
 import { useCallback } from 'react'
 import { toast } from 'sonner'
 
-import { Toast, type ToastVariant } from '@components/feedback/toast'
-import { TOAST_CHANNELS } from '@components/feedback/toast/constants'
+import type { NotificationCardVariant } from '@components/feedback/notification-card'
+import { showToasterNotification } from '@components/feedback/toaster/utils/show-toaster-notification/showToasterNotification.utils'
 import type {
     ShowToastOptions,
     ToastId,
     UseToastReturn,
-} from '@hooks/use-toast/types/useToast.types.ts'
+} from '@hooks/use-toast/types'
 
 const DEFAULT_TOAST_DURATION = 5000
 
+/**
+ * Shows transient notifications in the Toaster's toast channel.
+ * Wrap the application in ToasterProvider within the desired theme scope,
+ * or mount Toaster manually. Messages appear at bottom-right,
+ * default to 5000ms and support swipe dismissal without a close button.
+ * @returns Intent-specific show methods and dismissal by identifier.
+ * @example
+ * const { showSuccess } = useToast()
+ * showSuccess({ title: 'Changes saved' })
+ */
 export const useToast = (): UseToastReturn => {
     const show = useCallback((
-        variant: ToastVariant,
+        variant: NotificationCardVariant,
         {
-            title,
-            description,
             duration = DEFAULT_TOAST_DURATION,
-            icon,
+            ...content
         }: ShowToastOptions,
-    ): ToastId => toast.custom(
-        (id) => (
-            <Toast
-                variant={variant}
-                icon={icon}
-                title={title}
-                description={description}
-                onClose={() => toast.dismiss(id)}
-            />
-        ),
-        {
-            duration,
-            toasterId: TOAST_CHANNELS.toasts,
-        },
-    ), [])
+    ): ToastId => showToasterNotification('toasts', { ...content, variant, duration }), [])
 
     const dismiss = useCallback((id: ToastId): void => {
         toast.dismiss(id)

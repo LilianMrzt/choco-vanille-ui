@@ -1,41 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
-import {
-  createElement,
-  Fragment,
-  useEffect,
-  useState,
-  type ReactNode,
-} from 'react';
-import { createPortal } from 'react-dom';
-
 import '../src/theme';
-import { ToastProvider } from '../src/components/feedback/toast';
-
-const StorybookToastPortal = ({ story }: { story: ReactNode }) => {
-  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    setPortalRoot(document.body);
-  }, []);
-
-  return createElement(
-    Fragment,
-    null,
-    story,
-    portalRoot
-      ? createPortal(createElement(ToastProvider), portalRoot)
-      : null,
-  );
-};
 
 const preview: Preview = {
-  decorators: [
-    (Story) =>
-      createElement(
-        StorybookToastPortal,
-        { story: createElement(Story) },
-      ),
-  ],
   tags: ['autodocs'],
   parameters: {
     options: {

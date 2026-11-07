@@ -1,0 +1,23 @@
+import { Box, Button, NotificationCard } from '@choco-vanille/ui'
+
+<Box maxWidth="100%" width="18rem">
+  <NotificationCard variant="warning">
+    <NotificationCard.Header>
+      <NotificationCard.Icon />
+      <NotificationCard.Title>Your session is about to expire</NotificationCard.Title>
+      <NotificationCard.Close aria-label="Dismiss session warning" />
+    </NotificationCard.Header>
+    <NotificationCard.Body>
+      <NotificationCard.Description>
+        Save your changes before reconnecting. Long names such as
+        workspace-with-a-very-long-unbroken-identifier remain readable.
+      </NotificationCard.Description>
+    </NotificationCard.Body>
+    <NotificationCard.Footer>
+      <NotificationCard.Actions>
+        <Button label="Save changes" size="sm" variant="outlined" />
+        <Button label="Reconnect" size="sm" variant="ghost" />
+      </NotificationCard.Actions>
+    </NotificationCard.Footer>
+  </NotificationCard>
+</Box>

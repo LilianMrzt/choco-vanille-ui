@@ -26,7 +26,12 @@ describe('package distribution', () => {
                 resolve('tests', 'distribution', 'fixtures', 'color-consumer.tsx.txt'),
                 consumerTypesPath,
             )
-            const program = ts.createProgram([consumerTypesPath], {
+            const notificationConsumerPath = resolve(outputDirectory, 'notification-consumer.tsx')
+            await copyFile(
+                resolve('tests', 'distribution', 'fixtures', 'notification-consumer.tsx.txt'),
+                notificationConsumerPath,
+            )
+            const program = ts.createProgram([consumerTypesPath, notificationConsumerPath], {
                 noEmit: true,
                 strict: true,
                 skipLibCheck: true,
@@ -41,6 +46,13 @@ describe('package distribution', () => {
 
             const declarations = await readFile(resolve(outputDirectory, 'index.d.ts'), 'utf8')
             expect(declarations).not.toMatch(/from ['"]@(?:theme|components|utils|hooks)\b/)
+            expect(declarations).toContain('export declare const NotificationCard:')
+            expect(declarations).toContain('export declare const Toaster:')
+            expect(declarations).toContain('export declare const ToasterProvider:')
+            expect(declarations).toContain('export declare type NotificationCardProps')
+            expect(declarations).toContain('export declare type ToasterProps')
+            expect(declarations).toContain('export declare type ToasterProviderProps')
+            expect(declarations).not.toMatch(/export declare (?:const|type) Toast(?:Provider|Props|Variant|:)/)
             expect(declarations).toContain('export declare const Legend:')
             expect(declarations).toContain('export declare const LEGEND_STYLES:')
             expect(declarations).toContain('export declare type LegendProps')
@@ -94,7 +106,7 @@ describe('package distribution', () => {
                 'data-display/table/components/table-footer/TableFooter.css.js',
                 'data-display/rich-text-renderer/RichTextRenderer.css.js',
                 'foundation/typography/Typography.css.js',
-                'feedback/toast/Toast.css.js',
+                'feedback/notification-card/NotificationCard.css.js',
                 'forms/calendar/styles/calendarRoot.css.js',
                 'forms/select/components/select-content/styles/SelectContent.css.js',
                 'forms/autocomplete/components/autocomplete-content/styles/AutocompleteContent.css.js',

@@ -20,7 +20,7 @@ conservent des vocabulaires différents.
 | Remplissage d'action | `contained`, `outlined`, `ghost` | Button, IconButton |
 | Remplissage de toggle | `outlined`, `ghost` | Toggle, ToggleGroup.Item |
 | Remplissage de label | `contained`, `subtle`, `outlined`, `outlinedSubtle` | Badge |
-| Intention de feedback | `info`, `success`, `warning`, `error` | Callout, Toast |
+| Intention de feedback | `info`, `success`, `warning`, `error` | Callout, NotificationCard |
 | Forme de placeholder | `circular`, `rectangular`, `rounded` | Skeleton |
 | Présentation de navigation | `default`, `pills` | Tabs.List |
 
@@ -28,7 +28,7 @@ conservent des vocabulaires différents.
 
 - Utiliser `contained` pour un fond plein et `outlined` pour une surface
   bordée sur l'axe de remplissage.
-- Ne pas renommer `error` en `destructive` sur Callout/Toast : `error` est un
+- Ne pas renommer `error` en `destructive` sur Callout/NotificationCard : `error` est un
   état de message ; `destructive` est une intention de couleur/action.
 - Ne pas ajouter `variant` lorsqu'un composant n'a qu'une présentation.
 - Ne pas utiliser `variant` pour une dimension déjà nommée précisément
@@ -100,7 +100,7 @@ clés.
 - Réserver `intent` à un état métier contextualisé ; ne pas le remplacer par
   `color` uniquement parce qu'il produit une couleur de fond.
 - Une surface de feedback utilise son axe propre (`variant` pour Callout et
-  Toast) plutôt que `intent`.
+  NotificationCard) plutôt que `intent`.
 
 ## Callbacks
 
@@ -285,7 +285,7 @@ second import à plat.
 | --- | --- | --- |
 | Actions | Button / IconButton | Conserver, sauf labels Toggle ciblés |
 | Data display | Table / Avatar composé | Conserver, sauf Badge et type Avatar |
-| Feedback | Toast pour les rôles, Progress pour les styles partagés | Conserver, sauf noms progressbar et exports ciblés |
+| Feedback | NotificationCard pour les rôles, Progress pour les styles partagés | Conserver, sauf noms progressbar et exports ciblés |
 | Foundation | Icon / Typography | Conserver |
 | Formulaires natifs | TextField / TextArea | Conserver |
 | Formulaires headless | Select / RadioGroup | Conserver, sauf callbacks Checkbox/Switch et type Autocomplete |

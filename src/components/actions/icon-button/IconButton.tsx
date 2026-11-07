@@ -10,7 +10,9 @@ import { ICON_BUTTON_SIZE_TO_ICON_SIZE, ICON_BUTTON_SIZES } from '@components/ac
 /**
  * Icon-only action button. Requires `aria-label` for accessibility.
  * Supports `variant` (contained|outlined|ghost), semantic `color`,
- *  `size` (xs|sm|md|lg), and a local SVG `icon` component.
+ * `size` (xs|sm|md|lg), and a local SVG `icon` component.
+ * Square dimensions at a 16px root: xs 24px, sm 28px, md 36px (default), lg 44px.
+ * Sizes do not change with viewport or pointer type. Prefer lg for touch-oriented actions.
  */
 const IconButton: FC<IconButtonProps> = ({
     variant,

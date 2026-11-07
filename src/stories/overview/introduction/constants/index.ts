@@ -8,7 +8,7 @@ const componentCategories = [
     { name: 'Surfaces', items: ['Accordion', 'Card', 'Collapsible'] },
     { name: 'Navigation', items: ['BottomNavigation', 'Breadcrumbs', 'Link', 'Pagination', 'StepIndicator', 'Stepper', 'Tabs'] },
     { name: 'Overlay', items: ['AlertDialog', 'BottomSheet', 'Command', 'ContextMenu', 'Dialog', 'Drawer', 'DropdownMenu', 'HoverCard', 'Panel', 'Popover', 'Tooltip'] },
-    { name: 'Feedback', items: ['Callout', 'EmptyState', 'Progress', 'Skeleton', 'Spinner', 'Toast'] },
+    { name: 'Feedback', items: ['Callout', 'EmptyState', 'NotificationCard', 'Progress', 'Skeleton', 'Spinner', 'Toaster'] },
 ] as const
 
 const referenceCategories = [

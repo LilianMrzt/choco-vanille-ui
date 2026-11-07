@@ -101,11 +101,11 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
     expected: ['info', 'success', 'warning', 'error'],
   },
   {
-    component: 'Toast',
+    component: 'NotificationCard',
     axis: 'variant',
     source: {
       kind: 'recipe',
-      file: 'src/components/feedback/toast/Toast.css.ts',
+      file: 'src/components/feedback/notification-card/NotificationCard.css.ts',
       axis: 'variant',
     },
     expected: ['info', 'success', 'warning', 'error'],

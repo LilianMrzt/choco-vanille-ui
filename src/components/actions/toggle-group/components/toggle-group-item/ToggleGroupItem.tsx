@@ -21,7 +21,7 @@ import { cn } from '@utils/cn.ts'
  * @param props - Content, appearance, state and native button props.
  * @param props.variant - Visual treatment; defaults to `ghostSubtle`.
  * @param props.color - Semantic color intent; defaults to `primary`.
- * @param props.size - Size preset; defaults to `md`.
+ * @param props.size - Height preset: sm 28px, md 36px (default), lg 44px at a 16px root.
  * @param props.radius - Radius override.
  * @param props.className - Additional button classes.
  * @param props.label - Text label in text mode.

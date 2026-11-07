@@ -26,7 +26,7 @@ export type IconButtonProps = Omit<
   ) & {
     variant?: IconButtonVariant
     color?: IconButtonColor
-    /** Button size. Defaults to `md`. */
+    /** Square size at a 16px root: xs 24px, sm 28px, md 36px, lg 44px. Defaults to `md`. Prefer lg for touch. */
     size?: IconButtonSize
     /** Ref forwarded to the underlying `<button>` element. */
     ref?: React.Ref<HTMLButtonElement>;

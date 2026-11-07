@@ -1,0 +1,8 @@
+import { Box, NotificationCard{{buttonImport}} } from '@choco-vanille/ui'
+
+{{iconNote}}
+<Box maxWidth="24rem" width="100%">
+  <NotificationCard variant={{{variant}}} role={{{role}}}>
+{{children}}
+  </NotificationCard>
+</Box>

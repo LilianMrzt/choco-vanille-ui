@@ -22,7 +22,7 @@ export const ARG_TYPES = {
     endIcon: { control: false, description: 'Decorative SVG component after the label.' },
     variant: { control: 'select', options: VARIANTS, description: 'Bordered or borderless treatment with solid or subtle selection.', table: { defaultValue: { summary: 'ghostSubtle' } } },
     color: { control: 'select', options: COLORS, table: { defaultValue: { summary: 'primary' } } },
-    size: { control: 'select', options: SIZES, table: { defaultValue: { summary: 'md' } } },
+    size: { control: 'select', options: SIZES, description: 'Height at a 16px root: sm 28px, md 36px, lg 44px. Shared with Button; fixed across viewport and pointer types.', table: { defaultValue: { summary: 'md' } } },
     margin: { control: 'select', options: SPACING },
     marginTop: { control: 'select', options: SPACING },
     marginRight: { control: 'select', options: SPACING },

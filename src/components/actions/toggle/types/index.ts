@@ -42,7 +42,7 @@ export type ToggleProps = Readonly<
         variant?: ToggleVariant
         /** Semantic color intent; defaults to `primary`. */
         color?: ToggleColor
-        /** Size preset; defaults to `md`. */
+        /** Height at a 16px root: sm 28px, md 36px, lg 44px. Defaults to `md`. Prefer lg for touch. */
         size?: ToggleSize
         /** Radius override. */
         radius?: ToggleRadius

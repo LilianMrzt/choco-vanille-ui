@@ -1,0 +1,21 @@
+import { Button, Flex, ToasterProvider, useNotification, useToast } from '@choco-vanille/ui'
+
+const Example = () => {
+  const { show } = useToast()
+  const { show: showNotification } = useNotification()
+
+  return (
+    <ToasterProvider
+      toastPosition={{{toastPosition}}}
+      notificationPosition={{{notificationPosition}}}
+      toastLabel={{{toastLabel}}}
+      notificationLabel={{{notificationLabel}}}
+    >
+      <Flex flexWrap="wrap" gap={12}>
+        <Button label="Show simple toast" variant="ghost" onClick={() => show({{variant}}, { title: {{title}}, duration: {{duration}} })} />
+        <Button label="Show toast" onClick={() => show({{variant}}, { {{content}}, duration: {{duration}}{{actions}} })} />
+        <Button label="Show notification" variant="outlined" onClick={() => showNotification({ variant: {{variant}}, {{content}}, closeLabel: {{closeLabel}}, duration: {{notificationDuration}}{{actions}} })} />
+      </Flex>
+    </ToasterProvider>
+  )
+}
