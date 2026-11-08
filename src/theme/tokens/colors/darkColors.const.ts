@@ -157,9 +157,9 @@ export const darkColors = {
         subtleBorder: palette.cyan[200],
     } as const satisfies ThemeColorAccent,
     accentIndigo: {
-        main: palette.indigo[400],
-        hover: palette.indigo[300],
-        pressed: palette.indigo[500],
+        main: palette.indigo[300],
+        hover: palette.indigo[200],
+        pressed: palette.indigo[400],
         foreground: palette.neutral[1000],
         subtle: palette.indigo[900],
         subtleHover: palette.indigo[800],

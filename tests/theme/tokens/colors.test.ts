@@ -12,17 +12,33 @@ const states = ['main', 'hover', 'pressed'] as const
 const surfaces = ['background', 'surface.main', 'surface.elevated', 'surface.muted'] as const
 const subtleStates = { main: 'subtle', hover: 'subtleHover', pressed: 'subtlePressed' } as const
 
-const getLuminance = (color: string): number => {
+const getLinearChannels = (color: string): number[] => {
     if (!/^#[\da-f]{6}$/i.test(color)) {
         throw new Error(`Expected a six-digit sRGB color: ${color}`)
     }
 
-    const channels = [1, 3, 5].map((offset) => {
+    return [1, 3, 5].map((offset) => {
         const channel = Number.parseInt(color.slice(offset, offset + 2), 16) / 255
         return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
     })
+}
 
+const getLuminance = (color: string): number => {
+    const channels = getLinearChannels(color)
     return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722
+}
+
+const getOklab = (color: string): number[] => {
+    const [red, green, blue] = getLinearChannels(color)
+    const long = Math.cbrt(0.4122214708 * red + 0.5363325363 * green + 0.0514459929 * blue)
+    const medium = Math.cbrt(0.2119034982 * red + 0.6806995451 * green + 0.1073969566 * blue)
+    const short = Math.cbrt(0.0883024619 * red + 0.2817188376 * green + 0.6299787005 * blue)
+
+    return [
+        0.2104542553 * long + 0.7936177850 * medium - 0.0040720468 * short,
+        1.9779984951 * long - 2.4285922050 * medium + 0.4505937099 * short,
+        0.0259040371 * long + 0.7827717662 * medium - 0.8086757660 * short,
+    ]
 }
 
 const expectContrast = (foreground: string, background: string, minimum: number, pair: string): void => {
@@ -99,7 +115,7 @@ describe('semantic colors', () => {
         expectContrast(lightColors.border.main, lightColors.surface.muted, 3, 'light border on muted surface')
     })
 
-    it('restores the original light accent surfaces and their decorative borders', () => {
+    it('provides the intended light accent surfaces', () => {
         const expected = {
             primary: ['#dfeaff', '#c5daff'],
             secondary: ['#ffe8fa', '#ffcff4'],
@@ -109,11 +125,11 @@ describe('semantic colors', () => {
             info: ['#d5ecfc', '#b4dffb'],
             danger: ['#ffe2e2', '#ffc9c9'],
             accentPurple: ['#f3ebff', '#e6d4ff'],
-            accentPink: ['#ffe9f4', '#ffd3ea'],
-            accentOrange: ['#ffe9d7', '#ffd0a9'],
+            accentPink: ['#ffe4e6', '#fecdd3'],
+            accentOrange: ['#ffedd5', '#fed7aa'],
             accentTeal: ['#d6fbf3', '#a5f3e3'],
             accentCyan: ['#d6faff', '#a4f2ff'],
-            accentIndigo: ['#e5edff', '#c9dbff'],
+            accentIndigo: ['#e0e7ff', '#c7d2fe'],
         } as const
 
         for (const intent of intents) {
@@ -129,6 +145,21 @@ describe('semantic colors', () => {
 
         it('preserves the built-in color values', () => {
             expect(leaves).toMatchSnapshot()
+        })
+
+        it('visually separates contained accents from their closest semantic colors', () => {
+            for (const [accent, semantic] of [
+                ['accentIndigo', 'primary'],
+                ['accentPink', 'secondary'],
+                ['accentOrange', 'warning'],
+            ] as const) {
+                const accentLab = getOklab(colors[accent].main)
+                const semanticLab = getOklab(colors[semantic].main)
+                const distance = Math.hypot(...accentLab.map((channel, index) => channel - semanticLab[index]))
+
+                // A deliberate palette separation, not an accessibility contrast ratio.
+                expect(distance, `${accent} versus ${semantic}`).toBeGreaterThanOrEqual(0.08)
+            }
         })
 
         it('initializes independent accent borders from the existing subtle border values', () => {
