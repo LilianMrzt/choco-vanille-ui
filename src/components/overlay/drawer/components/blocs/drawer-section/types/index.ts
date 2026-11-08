@@ -1,12 +1,12 @@
 import type { BoxProps } from '@components/layout/box/types'
-import type { TypographyProps } from '@components/foundation/typography'
+import type { DrawerSectionTitleProps } from '@components/overlay/drawer/components/blocs/drawer-section-title/types'
 
 /** Props for `Drawer.Section`. */
-export type DrawerSectionProps = Omit<BoxProps, 'as'> & {
+export type DrawerSectionProps = Readonly<Omit<BoxProps, 'as'> & {
   /** The HTML element to render. @default 'section' */
   as?: 'section' | 'div';
-  /** Uppercase title rendered above the section items. */
+  /** Title rendered above the items, preserving its supplied casing. */
   title?: string;
-  /** Extra props forwarded to the title `<Typography>` element. */
-  titleProps?: TypographyProps;
-};
+  /** Title typography overrides; use only with the title shortcut, not SectionTitle. */
+  titleProps?: DrawerSectionTitleProps<'span'>;
+}>

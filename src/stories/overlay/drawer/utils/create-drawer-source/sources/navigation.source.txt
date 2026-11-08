@@ -1,5 +1,6 @@
 
-            <Drawer.Section title={{{navigationTitle}}}>
+            <Drawer.Section>
+              {{navigationHeading}}
               <Drawer.NavItem label={{{first}}} href="/dashboard" startIcon={UserIcon} active={{{active}}} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
               <Drawer.NavItem label={{{second}}} href="/team" startIcon={UserIcon} endIcon={ChevronRightIcon} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
               <Drawer.NavItem label="Messages" href="/messages" startIcon={SearchIcon} trailing={<Badge label="3" size="sm" color="orange" borderRadius={6} />} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />

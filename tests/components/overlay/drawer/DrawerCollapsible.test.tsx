@@ -5,17 +5,17 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer'
 
-describe('Drawer.SectionItem', () => {
+describe('Drawer.Collapsible', () => {
     it('renders the section header button', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" startIcon={CircleIcon}>
+                <Drawer.Collapsible label="Settings" startIcon={CircleIcon}>
                     <Drawer.NavItem
                         label="Profile"
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -25,7 +25,7 @@ describe('Drawer.SectionItem', () => {
     it('renders an end icon before the expansion chevron', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem
+                <Drawer.Collapsible
                     label="Settings"
                     startIcon={CircleIcon}
                     endIcon={InfoIcon}
@@ -35,7 +35,7 @@ describe('Drawer.SectionItem', () => {
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -45,13 +45,13 @@ describe('Drawer.SectionItem', () => {
     it('toggles children when the header is clicked', async () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" startIcon={CircleIcon}>
+                <Drawer.Collapsible label="Settings" startIcon={CircleIcon}>
                     <Drawer.NavItem
                         label="Profile"
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -69,7 +69,7 @@ describe('Drawer.SectionItem', () => {
     it('respects defaultExpanded', () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem
+                <Drawer.Collapsible
                     label="Settings"
                     startIcon={CircleIcon}
                     defaultExpanded
@@ -79,7 +79,7 @@ describe('Drawer.SectionItem', () => {
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -90,7 +90,7 @@ describe('Drawer.SectionItem', () => {
         const onExpandedChange = vi.fn()
         const { rerender } = render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem
+                <Drawer.Collapsible
                     label="Settings"
                     startIcon={CircleIcon}
                     expanded={false}
@@ -101,7 +101,7 @@ describe('Drawer.SectionItem', () => {
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -113,7 +113,7 @@ describe('Drawer.SectionItem', () => {
 
         rerender(
             <Drawer defaultOpen>
-                <Drawer.SectionItem
+                <Drawer.Collapsible
                     label="Settings"
                     startIcon={CircleIcon}
                     expanded
@@ -124,7 +124,7 @@ describe('Drawer.SectionItem', () => {
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -134,13 +134,13 @@ describe('Drawer.SectionItem', () => {
     it('sets aria-expanded on the header', async () => {
         render(
             <Drawer defaultOpen>
-                <Drawer.SectionItem label="Settings" startIcon={CircleIcon}>
+                <Drawer.Collapsible label="Settings" startIcon={CircleIcon}>
                     <Drawer.NavItem
                         label="Profile"
                         href="/profile"
                         startIcon={UserIcon}
                     />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 
@@ -155,13 +155,13 @@ describe('Drawer.SectionItem', () => {
     it('does not show the tooltip when hideTooltip is true', async () => {
         render(
             <Drawer mode="mini">
-                <Drawer.SectionItem
+                <Drawer.Collapsible
                     label="Settings"
                     startIcon={CircleIcon}
                     hideTooltip
                 >
                     <Drawer.NavItem label="Profile" startIcon={UserIcon} />
-                </Drawer.SectionItem>
+                </Drawer.Collapsible>
             </Drawer>,
         )
 

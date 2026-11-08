@@ -1,9 +1,9 @@
 
-            <Drawer.Section title={{{settingsTitle}}}>
-              <Drawer.SectionItem label={{{sectionLabel}}} startIcon={SearchIcon} endIcon={InfoIcon} trailing={<Badge label="Pro" size="sm" color="secondary" />} defaultExpanded={{{sectionExpanded}}} disabled={{{sectionDisabled}}} hideTooltip={{{sectionHideTooltip}}} color={{{sectionColor}}}>
+            <Drawer.Section title={{{settingsTitle}}} titleProps={{ lineHeight: {{titleLineHeight}}, textTransform: {{titleTransform}} }}>
+              <Drawer.Collapsible label={{{sectionLabel}}} startIcon={SearchIcon} endIcon={InfoIcon} trailing={<Badge label="Pro" size="sm" color="secondary" />} defaultExpanded={{{sectionExpanded}}} disabled={{{sectionDisabled}}} hideTooltip={{{sectionHideTooltip}}} color={{{sectionColor}}}>
                 <Drawer.NavItem label="Notifications" href="/notifications" startIcon={InfoIcon} trailing={<Badge label="New" size="sm" borderRadius={6} color="danger" />} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
                 <Drawer.NavItem label={{{third}}} href="/profile" startIcon={UserIcon} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
                 <Drawer.NavItem label={{{fourth}}} href="/billing" startIcon={UserIcon} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
-              </Drawer.SectionItem>
+              </Drawer.Collapsible>
               <Drawer.NavItem label={{{third}}} href="/profile" startIcon={UserIcon} disabled={{{disabled}}} hideTooltip={{{hideTooltip}}} variant={{{variant}}} color={{{color}}} />
             </Drawer.Section>

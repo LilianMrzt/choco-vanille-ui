@@ -1,11 +1,17 @@
 import type { ComponentProps } from 'react'
-import type { Drawer } from '@components/overlay/drawer'
+import type { Drawer, DrawerBodyProps, DrawerHeaderProps, DrawerFooterProps } from '@components/overlay/drawer'
+import type { TypographyProps } from '@components/foundation/typography'
 
 export type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
   showHeader?: boolean;
   showFooter?: boolean;
   showNavigation?: boolean;
   showSettings?: boolean;
+  headerGap?: DrawerHeaderProps['gap'];
+  bodyGap?: DrawerBodyProps['gap'];
+  footerGap?: DrawerFooterProps['gap'];
+  sectionTitleTransform?: TypographyProps['textTransform'];
+  sectionTitleLineHeight?: TypographyProps['lineHeight'];
   navigationTitle?: string;
   settingsTitle?: string;
   firstNavItemLabel?: string;
@@ -24,11 +30,11 @@ export type DrawerPlaygroundArgs = ComponentProps<typeof Drawer> & {
     | 'success'
     | 'warning'
     | 'info';
-  sectionItemLabel?: string;
-  sectionItemDefaultExpanded?: boolean;
-  sectionItemDisabled?: boolean;
-  sectionItemHideTooltip?: boolean;
-  sectionItemColor?:
+  collapsibleLabel?: string;
+  collapsibleDefaultExpanded?: boolean;
+  collapsibleDisabled?: boolean;
+  collapsibleHideTooltip?: boolean;
+  collapsibleColor?:
     | 'primary'
     | 'secondary'
     | 'neutral'

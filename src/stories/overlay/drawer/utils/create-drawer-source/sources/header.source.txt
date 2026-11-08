@@ -1,2 +1,2 @@
 
-        <Drawer.Header><IconButton icon={open ? CloseIcon : ChevronRightIcon} aria-label={{{mode}} === 'portal' ? 'Close drawer' : open ? 'Collapse drawer' : 'Expand drawer'} size="sm" onClick={() => setOpen(!open)} /></Drawer.Header>
+        <Drawer.Header gap={{{headerGap}}}><IconButton icon={open ? CloseIcon : ChevronRightIcon} aria-label={{{mode}} === 'portal' ? 'Close drawer' : open ? 'Collapse drawer' : 'Expand drawer'} size="sm" onClick={() => setOpen(!open)} /></Drawer.Header>

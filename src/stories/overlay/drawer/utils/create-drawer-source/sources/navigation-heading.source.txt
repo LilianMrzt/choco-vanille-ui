@@ -1,0 +1,1 @@
+<Drawer.SectionTitle lineHeight={{{titleLineHeight}}} textTransform={{{titleTransform}}}>{{{navigationTitle}}}</Drawer.SectionTitle>

@@ -31,7 +31,7 @@ const sectionSeparator = style({
     },
 })
 
-export const DRAWER_SECTION_ITEM_STYLES = {
+export const DRAWER_COLLAPSIBLE_STYLES = {
     ...DRAWER_ITEM_STYLES,
     recipe: DRAWER_ITEM_STYLES.recipe,
     sectionContent,

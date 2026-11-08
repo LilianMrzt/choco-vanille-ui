@@ -7,7 +7,8 @@ import DrawerMini from '@components/overlay/drawer/components/variants/drawer-mi
 import DrawerNavItem from '@components/overlay/drawer/components/items/drawer-nav-item/DrawerNavItem.tsx'
 import DrawerPortal from '@components/overlay/drawer/components/variants/drawer-portal/DrawerPortal.tsx'
 import DrawerSection from '@components/overlay/drawer/components/blocs/drawer-section/DrawerSection.tsx'
-import DrawerSectionItem from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
+import DrawerSectionTitle from '@components/overlay/drawer/components/blocs/drawer-section-title/DrawerSectionTitle'
+import DrawerCollapsible from '@components/overlay/drawer/components/items/drawer-collapsible/DrawerCollapsible.tsx'
 import { DRAWER_MODES, DRAWER_SIZE_WIDTH } from '@components/overlay/drawer/constants'
 import { DrawerContext } from '@components/overlay/drawer/context/Drawer.context.ts'
 import { useDrawer } from '@components/overlay/drawer/hooks/use-drawer/useDrawer.hook.ts'
@@ -28,10 +29,10 @@ import { memo, useId } from 'react'
  *       <Drawer.NavItem label="Dashboard" href="/dashboard" startIcon={HomeIcon} />
  *     </Drawer.Section>
  *     <Drawer.Section title="Account">
- *       <Drawer.SectionItem label="Account" startIcon={UserIcon}>
+ *       <Drawer.Collapsible label="Account" startIcon={UserIcon}>
  *         <Drawer.NavItem label="Profile" href="/profile" startIcon={UserIcon} />
  *         <Drawer.ActionItem label="Sign out" startIcon={ExitIcon} />
- *       </Drawer.SectionItem>
+ *       </Drawer.Collapsible>
  *     </Drawer.Section>
  *   </Drawer.Body>
  *   <Drawer.Footer>
@@ -141,9 +142,10 @@ const Drawer = Object.assign(DrawerRoot, {
     Body: DrawerBody,
     Footer: DrawerFooter,
     Section: DrawerSection,
+    SectionTitle: DrawerSectionTitle,
     NavItem: DrawerNavItem,
     ActionItem: DrawerActionItem,
-    SectionItem: DrawerSectionItem,
+    Collapsible: DrawerCollapsible,
 })
 
 export default Drawer

@@ -3,9 +3,18 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
+import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/Typography.css.ts'
 
 describe('DrawerItemContent', () => {
     describe('default rendering', () => {
+        it('uses medium 14px button-like typography for the label', () => {
+            render(<DrawerItemContent label="Dashboard" startIcon={UserIcon} />)
+
+            expect(screen.getByText('Dashboard').className).toContain(
+                TYPOGRAPHY_STYLES.recipe({ variant: 'span', fontSize: 14, fontWeight: 'medium' }),
+            )
+        })
+
         it('renders the label text', () => {
             render(<DrawerItemContent label={'Dashboard'} startIcon={UserIcon} />)
             expect(screen.getByText('Dashboard')).toBeTruthy()

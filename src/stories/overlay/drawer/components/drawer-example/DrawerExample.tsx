@@ -3,7 +3,6 @@ import { useArgs } from 'storybook/preview-api'
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
 import { Badge } from '@components/data-display/badge'
-import { Flex } from '@components/layout/flex'
 import { Drawer } from '@components/overlay/drawer'
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
 
@@ -27,6 +26,11 @@ const DrawerExample = () => {
         showFooter,
         showNavigation,
         showSettings,
+        headerGap,
+        bodyGap,
+        footerGap,
+        sectionTitleTransform,
+        sectionTitleLineHeight,
         navigationTitle,
         settingsTitle,
         firstNavItemLabel,
@@ -38,11 +42,11 @@ const DrawerExample = () => {
         navItemHideTooltip,
         navItemVariant,
         navItemColor,
-        sectionItemLabel,
-        sectionItemDefaultExpanded,
-        sectionItemDisabled,
-        sectionItemHideTooltip,
-        sectionItemColor,
+        collapsibleLabel,
+        collapsibleDefaultExpanded,
+        collapsibleDisabled,
+        collapsibleHideTooltip,
+        collapsibleColor,
         actionItemHideTooltip,
     } = args
     const open = args.open ?? false
@@ -66,7 +70,7 @@ const DrawerExample = () => {
                 backgroundColor={backgroundColor}
             >
                 {showHeader && (
-                    <Drawer.Header>
+                    <Drawer.Header gap={headerGap}>
                         <IconButton
                             icon={open ? CloseIcon : ChevronRightIcon}
                             aria-label={isPortal ? 'Close drawer' : open ? 'Collapse drawer' : 'Expand drawer'}
@@ -78,107 +82,96 @@ const DrawerExample = () => {
                 <Drawer.Body
                     as={'nav'}
                     aria-label={'Main navigation'}
+                    gap={bodyGap}
                 >
-                    <Flex
-                        flexDirection={'column'}
-                        gap={16}
-                    >
-                        {showNavigation && (
-                            <Drawer.Section title={navigationTitle}>
-                                <Drawer.NavItem
-                                    label={firstNavItemLabel ?? 'Dashboard'}
-                                    href={'/dashboard'}
-                                    startIcon={UserIcon}
-                                    active={navItemActive}
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                                <Drawer.NavItem
-                                    label={secondNavItemLabel ?? 'Team'}
-                                    href={'/team'}
-                                    startIcon={UserIcon}
-                                    endIcon={ChevronRightIcon}
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                                <Drawer.NavItem
-                                    label={'Messages'}
-                                    href={'/messages'}
-                                    startIcon={SearchIcon}
-                                    trailing={
-                                        <Badge
-                                            label={'3'}
-                                            size={'sm'}
-                                            color={'orange'}
-                                            borderRadius={6}
-                                        />
-                                    }
-                                    disabled={navItemDisabled}
-                                    hideTooltip={navItemHideTooltip}
-                                    variant={navItemVariant}
-                                    color={navItemColor}
-                                />
-                            </Drawer.Section>
-                        )}
-                        {showSettings && (
-                            <Drawer.Section title={settingsTitle}>
-                                <Drawer.SectionItem
-                                    key={String(sectionItemDefaultExpanded)}
-                                    label={sectionItemLabel ?? 'Section item'}
-                                    startIcon={SearchIcon}
-                                    endIcon={InfoIcon}
-                                    trailing={
-                                        <Badge
-                                            label={'Pro'}
-                                            size={'sm'}
-                                            color={'secondary'}
-                                        />
-                                    }
-                                    defaultExpanded={sectionItemDefaultExpanded}
-                                    disabled={sectionItemDisabled}
-                                    hideTooltip={sectionItemHideTooltip}
-                                    color={sectionItemColor}
+                    {showNavigation && (
+                        <Drawer.Section>
+                            {navigationTitle && (
+                                <Drawer.SectionTitle
+                                    lineHeight={sectionTitleLineHeight}
+                                    textTransform={sectionTitleTransform}
                                 >
-                                    <Drawer.NavItem
-                                        label={'Notifications'}
-                                        href={'/notifications'}
-                                        startIcon={InfoIcon}
-                                        trailing={
-                                            <Badge
-                                                label={'New'}
-                                                size={'sm'}
-                                                borderRadius={6}
-                                                color={'danger'}
-                                            />
-                                        }
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
+                                    {navigationTitle}
+                                </Drawer.SectionTitle>
+                            )}
+                            <Drawer.NavItem
+                                label={firstNavItemLabel ?? 'Dashboard'}
+                                href={'/dashboard'}
+                                startIcon={UserIcon}
+                                active={navItemActive}
+                                disabled={navItemDisabled}
+                                hideTooltip={navItemHideTooltip}
+                                variant={navItemVariant}
+                                color={navItemColor}
+                            />
+                            <Drawer.NavItem
+                                label={secondNavItemLabel ?? 'Team'}
+                                href={'/team'}
+                                startIcon={UserIcon}
+                                endIcon={ChevronRightIcon}
+                                disabled={navItemDisabled}
+                                hideTooltip={navItemHideTooltip}
+                                variant={navItemVariant}
+                                color={navItemColor}
+                            />
+                            <Drawer.NavItem
+                                label={'Messages'}
+                                href={'/messages'}
+                                startIcon={SearchIcon}
+                                trailing={
+                                    <Badge
+                                        label={'3'}
+                                        size={'sm'}
+                                        color={'orange'}
+                                        borderRadius={6}
                                     />
-                                    <Drawer.NavItem
-                                        label={thirdNavItemLabel ?? 'Profile'}
-                                        href={'/profile'}
-                                        startIcon={UserIcon}
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
+                                }
+                                disabled={navItemDisabled}
+                                hideTooltip={navItemHideTooltip}
+                                variant={navItemVariant}
+                                color={navItemColor}
+                            />
+                        </Drawer.Section>
+                    )}
+                    {showSettings && (
+                        <Drawer.Section
+                            title={settingsTitle}
+                            titleProps={{ lineHeight: sectionTitleLineHeight, textTransform: sectionTitleTransform }}
+                        >
+                            <Drawer.Collapsible
+                                key={String(collapsibleDefaultExpanded)}
+                                label={collapsibleLabel ?? 'Collapsible'}
+                                startIcon={SearchIcon}
+                                endIcon={InfoIcon}
+                                trailing={
+                                    <Badge
+                                        label={'Pro'}
+                                        size={'sm'}
+                                        color={'secondary'}
                                     />
-                                    <Drawer.NavItem
-                                        label={fourthNavItemLabel ?? 'Billing'}
-                                        href={'/billing'}
-                                        startIcon={UserIcon}
-                                        disabled={navItemDisabled}
-                                        hideTooltip={navItemHideTooltip}
-                                        variant={navItemVariant}
-                                        color={navItemColor}
-                                    />
-                                </Drawer.SectionItem>
+                                }
+                                defaultExpanded={collapsibleDefaultExpanded}
+                                disabled={collapsibleDisabled}
+                                hideTooltip={collapsibleHideTooltip}
+                                color={collapsibleColor}
+                            >
+                                <Drawer.NavItem
+                                    label={'Notifications'}
+                                    href={'/notifications'}
+                                    startIcon={InfoIcon}
+                                    trailing={
+                                        <Badge
+                                            label={'New'}
+                                            size={'sm'}
+                                            borderRadius={6}
+                                            color={'danger'}
+                                        />
+                                    }
+                                    disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
                                 <Drawer.NavItem
                                     label={thirdNavItemLabel ?? 'Profile'}
                                     href={'/profile'}
@@ -188,13 +181,37 @@ const DrawerExample = () => {
                                     variant={navItemVariant}
                                     color={navItemColor}
                                 />
-                            </Drawer.Section>
-                        )}
-                    </Flex>
+                                <Drawer.NavItem
+                                    label={fourthNavItemLabel ?? 'Billing'}
+                                    href={'/billing'}
+                                    startIcon={UserIcon}
+                                    disabled={navItemDisabled}
+                                    hideTooltip={navItemHideTooltip}
+                                    variant={navItemVariant}
+                                    color={navItemColor}
+                                />
+                            </Drawer.Collapsible>
+                            <Drawer.NavItem
+                                label={thirdNavItemLabel ?? 'Profile'}
+                                href={'/profile'}
+                                startIcon={UserIcon}
+                                disabled={navItemDisabled}
+                                hideTooltip={navItemHideTooltip}
+                                variant={navItemVariant}
+                                color={navItemColor}
+                            />
+                        </Drawer.Section>
+                    )}
                 </Drawer.Body>
                 {showFooter && (
-                    <Drawer.Footer justifyContent={'start'}>
-                        <Drawer.Section title={'Actions'}>
+                    <Drawer.Footer
+                        gap={footerGap}
+                        justifyContent={'start'}
+                    >
+                        <Drawer.Section
+                            title={'Actions'}
+                            titleProps={{ lineHeight: sectionTitleLineHeight, textTransform: sectionTitleTransform }}
+                        >
                             <Drawer.ActionItem
                                 label={'Sign out'}
                                 startIcon={CloseIcon}

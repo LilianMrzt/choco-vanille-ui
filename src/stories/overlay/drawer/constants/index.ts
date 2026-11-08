@@ -6,6 +6,7 @@ import { DRAWER_ITEM_COLORS_ARRAY, DRAWER_ITEM_VARIANTS } from '@components/over
 import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
 import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
+import { SPACE } from '@theme/tokens/spacing/spacing.const.ts'
 
 export const APPEARANCE_VARIANTS = Object.values(DRAWER_ITEM_VARIANTS)
 export const APPEARANCE_COLORS = DRAWER_ITEM_COLORS_ARRAY
@@ -65,6 +66,35 @@ export const ARG_TYPES = {
         control: 'boolean',
         table: { category: 'Drawer.Body' },
     },
+    headerGap: {
+        control: 'select',
+        options: Object.keys(SPACE).map(Number),
+        description: 'Header layout gap token; defaults to 12.',
+        table: { category: 'Compound: Header' },
+    },
+    bodyGap: {
+        control: 'select',
+        options: Object.keys(SPACE).map(Number),
+        description: 'Spacing between body groups; defaults to 12.',
+        table: { category: 'Compound: Body' },
+    },
+    footerGap: {
+        control: 'select',
+        options: Object.keys(SPACE).map(Number),
+        description: 'Footer layout gap token; defaults to 8.',
+        table: { category: 'Compound: Footer' },
+    },
+    sectionTitleTransform: {
+        control: 'select',
+        options: ['none', 'uppercase', 'lowercase', 'capitalize'],
+        description: 'Section title casing; supplied casing is preserved by default.',
+        table: { category: 'Compound: SectionTitle' },
+    },
+    sectionTitleLineHeight: {
+        control: 'number',
+        description: 'Title line height; defaults to 1.5. Also available through titleProps in shortcut sections.',
+        table: { category: 'Compound: SectionTitle' },
+    },
     navigationTitle: {
         control: 'text',
         table: { category: 'Drawer.Section' },
@@ -111,27 +141,27 @@ export const ARG_TYPES = {
         options: DRAWER_ITEM_COLORS_ARRAY,
         table: { category: 'Drawer.NavItem' },
     },
-    sectionItemLabel: {
+    collapsibleLabel: {
         control: 'text',
-        table: { category: 'Drawer.SectionItem' },
+        table: { category: 'Drawer.Collapsible' },
     },
-    sectionItemDefaultExpanded: {
+    collapsibleDefaultExpanded: {
         control: 'boolean',
         description: 'Initial group expansion; this item remounts when the value changes.',
-        table: { category: 'Drawer.SectionItem' },
+        table: { category: 'Drawer.Collapsible' },
     },
-    sectionItemDisabled: {
+    collapsibleDisabled: {
         control: 'boolean',
-        table: { category: 'Drawer.SectionItem' },
+        table: { category: 'Drawer.Collapsible' },
     },
-    sectionItemHideTooltip: {
+    collapsibleHideTooltip: {
         control: 'boolean',
-        table: { category: 'Drawer.SectionItem' },
+        table: { category: 'Drawer.Collapsible' },
     },
-    sectionItemColor: {
+    collapsibleColor: {
         control: 'select',
         options: DRAWER_ITEM_COLORS_ARRAY,
-        table: { category: 'Drawer.SectionItem' },
+        table: { category: 'Drawer.Collapsible' },
     },
     actionItemHideTooltip: {
         control: 'boolean',
@@ -151,6 +181,11 @@ export const DEFAULT_ARGS = {
     showFooter: true,
     showNavigation: true,
     showSettings: true,
+    headerGap: 12,
+    bodyGap: 16,
+    footerGap: 8,
+    sectionTitleTransform: 'none',
+    sectionTitleLineHeight: 1.5,
     navigationTitle: 'Navigation',
     settingsTitle: 'Settings',
     firstNavItemLabel: 'Dashboard',
@@ -162,10 +197,10 @@ export const DEFAULT_ARGS = {
     navItemHideTooltip: false,
     navItemVariant: 'default',
     navItemColor: 'primary',
-    sectionItemLabel: 'Section item ',
-    sectionItemDefaultExpanded: true,
-    sectionItemDisabled: false,
-    sectionItemHideTooltip: false,
-    sectionItemColor: 'primary',
+    collapsibleLabel: 'Collapsible ',
+    collapsibleDefaultExpanded: true,
+    collapsibleDisabled: false,
+    collapsibleHideTooltip: false,
+    collapsibleColor: 'primary',
     actionItemHideTooltip: false,
 } satisfies NonNullable<Meta<DrawerPlaygroundArgs>['args']>

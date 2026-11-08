@@ -2,17 +2,23 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer'
+import { Drawer as PublicDrawer } from '@/index'
 
 describe('Drawer', () => {
     describe('compound components', () => {
-        it('exposes Header, Body, Footer, Section, NavItem, ActionItem and SectionItem', () => {
+        it('publishes SectionTitle through the package root', () => {
+            expect(PublicDrawer.SectionTitle).toBe(Drawer.SectionTitle)
+        })
+
+        it('exposes Header, Body, Footer, Section, NavItem, ActionItem and Collapsible', () => {
             expect(Drawer.Header).toBeDefined()
             expect(Drawer.Body).toBeDefined()
             expect(Drawer.Footer).toBeDefined()
             expect(Drawer.Section).toBeDefined()
+            expect(Drawer.SectionTitle).toBeDefined()
             expect(Drawer.NavItem).toBeDefined()
             expect(Drawer.ActionItem).toBeDefined()
-            expect(Drawer.SectionItem).toBeDefined()
+            expect(Drawer.Collapsible).toBeDefined()
         })
     })
 

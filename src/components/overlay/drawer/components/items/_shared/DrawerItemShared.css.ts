@@ -1,5 +1,7 @@
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
+import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
+import { BUTTON_SHARED_SIZE_STYLES } from '@components/actions/_shared/buttons/styles/ButtonSharedSizes.css.ts'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import {
@@ -27,38 +29,28 @@ const content = style({
 
 const drawerItemRecipe = recipe({
     base: {
+        ...BUTTON_SHARED_STYLES.base,
+        ...BUTTON_SHARED_SIZE_STYLES.md,
         display: 'flex',
-        alignItems: 'center',
-        gap: vars.space[12],
+        justifyContent: 'start',
         width: '100%',
         minWidth: 0,
         flexShrink: 0,
-        height: '2.25rem',
-        paddingInline: vars.space[10],
-        border: '1px solid transparent',
-        borderRadius: vars.radius[4],
         backgroundColor: 'transparent',
         color: vars.color.text.secondary,
-        fontFamily: vars.fontFamily.sans,
         fontSize: vars.fontSize[14],
         fontWeight: vars.fontWeight.medium,
         lineHeight: '1.25',
         textAlign: 'left',
-        textDecoration: 'none',
-        cursor: 'pointer',
         transform: 'translateX(0)',
         transition: [
-            `background-color ${vars.duration.fast} ${vars.easing.standard}`,
-            `color ${vars.duration.fast} ${vars.easing.standard}`,
+            BUTTON_SHARED_STYLES.base.transition,
             `box-shadow ${vars.duration.fast} ${vars.easing.standard}`,
             `opacity ${vars.duration.normal} ${vars.easing.standard}`,
             `transform ${vars.duration.normal} ${vars.easing.standard}`,
         ].join(', '),
         selectors: {
-            '&:focus-visible': {
-                outline: 'none',
-                boxShadow: `0 0 0 2px ${vars.color.background}, 0 0 0 4px ${vars.color.focusRing}`,
-            },
+            ...BUTTON_SHARED_STYLES.base.selectors,
             '&[aria-disabled="true"], &:disabled': {
                 pointerEvents: 'none',
                 opacity: 0.5,
@@ -73,6 +65,7 @@ const drawerItemRecipe = recipe({
             '&[data-mode="mini"][data-state="closed"]': {
                 opacity: 1,
                 transform: 'none',
+                paddingInline: vars.space[10],
             },
         },
     },

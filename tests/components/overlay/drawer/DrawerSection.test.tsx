@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { Drawer } from '@components/overlay/drawer'
 
 describe('Drawer.Section', () => {
-    it('renders the uppercase title and children', () => {
+    it('preserves title casing by default and renders children', () => {
         render(
             <Drawer defaultOpen>
                 <Drawer.Section title="Account">
@@ -14,7 +14,37 @@ describe('Drawer.Section', () => {
         )
 
         expect(screen.getByText('Account')).toBeTruthy()
+        expect(screen.getByText('Account').style.textTransform).toBe('')
         expect(screen.getByText('Profile')).toBeTruthy()
+    })
+
+    it('supports explicit title casing and keeps a custom accessible label ID', () => {
+        render(
+            <Drawer defaultOpen>
+                <Drawer.Section
+                    title="Account"
+                    titleProps={{ id: 'account-title', textTransform: 'uppercase' }}
+                    data-testid="section"
+                >
+                    Profile
+                </Drawer.Section>
+            </Drawer>,
+        )
+
+        expect(screen.getByText('Account').style.textTransform).toBe('uppercase')
+        expect(screen.getByTestId('section').getAttribute('aria-labelledby')).toBe('account-title')
+    })
+
+    it('uses a readable line height for single-line titles with descenders', () => {
+        render(<Drawer.Section title="Navigation, typography" />)
+
+        expect(screen.getByText('Navigation, typography').style.lineHeight).toBe('1.5')
+    })
+
+    it('preserves consumer title line-height overrides', () => {
+        render(<Drawer.Section title="Navigation" titleProps={{ lineHeight: 2 }} />)
+
+        expect(screen.getByText('Navigation').style.lineHeight).toBe('2')
     })
 
     it('forwards data-* attributes', () => {

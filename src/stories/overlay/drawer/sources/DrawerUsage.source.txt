@@ -11,7 +11,13 @@ const Example = () => {
             <Drawer aria-label="Settings" open={open} onOpenChange={setOpen}>
                 <Drawer.Header><Button label="Close drawer" onClick={() => setOpen(false)} /></Drawer.Header>
                 <Drawer.Body as="nav" aria-label="Main navigation">
-                    <Drawer.Section title="Navigation"><Drawer.NavItem label="Profile" href="/profile" startIcon={UserIcon} /></Drawer.Section>
+                    <Drawer.Section>
+                        <Drawer.SectionTitle>Navigation</Drawer.SectionTitle>
+                        <Drawer.NavItem label="Profile" href="/profile" startIcon={UserIcon} />
+                    </Drawer.Section>
+                    <Drawer.Section title="Account">
+                        <Drawer.ActionItem label="Manage account" startIcon={UserIcon} />
+                    </Drawer.Section>
                 </Drawer.Body>
             </Drawer>
         </>

@@ -4,8 +4,8 @@ import type {
 import type * as React from 'react'
 import type { ReactNode } from 'react'
 
-/** Props for `Drawer.SectionItem`. */
-export type DrawerSectionItemProps = Omit<
+/** Props for `Drawer.Collapsible`. */
+export type DrawerCollapsibleProps = Readonly<Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children' | 'onClick'
 > & {
@@ -33,5 +33,5 @@ export type DrawerSectionItemProps = Omit<
   color?: DrawerItemColor;
   /** Accessible label for the section header. Defaults to `label`. */
   'aria-label'?: string;
-};
+}>
 import type { IconifyIcon } from '@components/foundation/icon'

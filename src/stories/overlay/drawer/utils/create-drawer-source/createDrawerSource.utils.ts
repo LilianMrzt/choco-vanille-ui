@@ -2,6 +2,7 @@ import { renderSource } from '@stories/_shared/consumer-source/utils/renderSourc
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
 import template from '@stories/overlay/drawer/utils/create-drawer-source/sources/playground.source.txt?raw'
 import navigation from '@stories/overlay/drawer/utils/create-drawer-source/sources/navigation.source.txt?raw'
+import navigationHeading from '@stories/overlay/drawer/utils/create-drawer-source/sources/navigation-heading.source.txt?raw'
 import settings from '@stories/overlay/drawer/utils/create-drawer-source/sources/settings.source.txt?raw'
 import header from '@stories/overlay/drawer/utils/create-drawer-source/sources/header.source.txt?raw'
 import footer from '@stories/overlay/drawer/utils/create-drawer-source/sources/footer.source.txt?raw'
@@ -18,6 +19,9 @@ import footer from '@stories/overlay/drawer/utils/create-drawer-source/sources/f
  */
 export const createDrawerSource = (_source: string, { args }: Readonly<{ args: DrawerPlaygroundArgs }>): string => {
     const values = {
+        titleTransform: JSON.stringify(args.sectionTitleTransform ?? 'none'),
+        titleLineHeight: JSON.stringify(args.sectionTitleLineHeight) ?? 'undefined',
+        footerGap: JSON.stringify(args.footerGap) ?? 'undefined',
         navigationTitle: JSON.stringify(args.navigationTitle) ?? 'undefined',
         settingsTitle: JSON.stringify(args.settingsTitle) ?? 'undefined',
         first: JSON.stringify(args.firstNavItemLabel ?? 'Dashboard'),
@@ -29,11 +33,11 @@ export const createDrawerSource = (_source: string, { args }: Readonly<{ args: D
         hideTooltip: JSON.stringify(args.navItemHideTooltip) ?? 'undefined',
         variant: JSON.stringify(args.navItemVariant) ?? 'undefined',
         color: JSON.stringify(args.navItemColor) ?? 'undefined',
-        sectionLabel: JSON.stringify(args.sectionItemLabel ?? 'Section item'),
-        sectionExpanded: JSON.stringify(args.sectionItemDefaultExpanded) ?? 'undefined',
-        sectionDisabled: JSON.stringify(args.sectionItemDisabled) ?? 'undefined',
-        sectionHideTooltip: JSON.stringify(args.sectionItemHideTooltip) ?? 'undefined',
-        sectionColor: JSON.stringify(args.sectionItemColor) ?? 'undefined',
+        sectionLabel: JSON.stringify(args.collapsibleLabel ?? 'Collapsible'),
+        sectionExpanded: JSON.stringify(args.collapsibleDefaultExpanded) ?? 'undefined',
+        sectionDisabled: JSON.stringify(args.collapsibleDisabled) ?? 'undefined',
+        sectionHideTooltip: JSON.stringify(args.collapsibleHideTooltip) ?? 'undefined',
+        sectionColor: JSON.stringify(args.collapsibleColor) ?? 'undefined',
         actionHideTooltip: JSON.stringify(args.actionItemHideTooltip) ?? 'undefined',
     }
 
@@ -45,8 +49,15 @@ export const createDrawerSource = (_source: string, { args }: Readonly<{ args: D
         backdrop: JSON.stringify(args.withBackdrop ?? true),
         collapsedWidth: JSON.stringify(args.collapsedWidth ?? '4rem'),
         backgroundColor: JSON.stringify(args.backgroundColor ?? undefined) ?? 'undefined',
-        header: args.showHeader ? renderSource(header, { mode: JSON.stringify(args.mode ?? 'portal') }) : '',
-        navigation: args.showNavigation ? renderSource(navigation, values) : '',
+        header: args.showHeader ? renderSource(header, {
+            mode: JSON.stringify(args.mode ?? 'portal'),
+            headerGap: JSON.stringify(args.headerGap) ?? 'undefined',
+        }) : '',
+        bodyGap: JSON.stringify(args.bodyGap) ?? 'undefined',
+        navigation: args.showNavigation ? renderSource(navigation, {
+            ...values,
+            navigationHeading: args.navigationTitle ? renderSource(navigationHeading, values).trim() : '',
+        }) : '',
         settings: args.showSettings ? renderSource(settings, values) : '',
         footer: args.showFooter ? renderSource(footer, values) : '',
         openLabel: JSON.stringify(args.mode === 'mini' ? 'Expand mini' : args.mode === 'inline' ? 'Expand drawer' : 'Open drawer'),

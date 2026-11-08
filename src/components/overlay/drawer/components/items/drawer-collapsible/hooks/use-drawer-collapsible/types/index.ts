@@ -1,12 +1,12 @@
 import { useDrawerItemAttributes } from '@components/overlay/drawer/components/items/_shared'
-import type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types'
+import type { DrawerCollapsibleProps } from '@components/overlay/drawer/components/items/drawer-collapsible/types'
 
-export type UseDrawerSectionItemOptions = Pick<
-    DrawerSectionItemProps,
+export type UseDrawerCollapsibleOptions = Pick<
+    DrawerCollapsibleProps,
     'defaultExpanded' | 'expanded' | 'onExpandedChange' | 'disabled'
 >
 
-export type UseDrawerSectionItemReturn = {
+export type UseDrawerCollapsibleReturn = {
     open: ReturnType<typeof useDrawerItemAttributes>['open'];
     state: ReturnType<typeof useDrawerItemAttributes>['state'];
     resolvedIconSize: ReturnType<

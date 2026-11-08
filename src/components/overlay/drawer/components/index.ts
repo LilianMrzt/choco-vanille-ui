@@ -13,8 +13,8 @@ export type { DrawerNavItemProps } from '@components/overlay/drawer/components/i
 export { default as DrawerActionItem } from '@components/overlay/drawer/components/items/drawer-action-item/DrawerActionItem.tsx'
 export type { DrawerActionItemProps } from '@components/overlay/drawer/components/items/drawer-action-item/types'
 
-export { default as DrawerSectionItem } from '@components/overlay/drawer/components/items/drawer-section-item/DrawerSectionItem.tsx'
-export type { DrawerSectionItemProps } from '@components/overlay/drawer/components/items/drawer-section-item/types'
+export { default as DrawerCollapsible } from '@components/overlay/drawer/components/items/drawer-collapsible/DrawerCollapsible.tsx'
+export type { DrawerCollapsibleProps } from '@components/overlay/drawer/components/items/drawer-collapsible/types'
 
 export { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/_shared'
 export type { DrawerItemRecipeVariants } from '@components/overlay/drawer/components/items/_shared'

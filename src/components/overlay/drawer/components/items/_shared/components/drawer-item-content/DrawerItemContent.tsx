@@ -12,7 +12,7 @@ import { DRAWER_ITEM_STYLES } from '@components/overlay/drawer/components/items/
  *
  * Renders the start icon, label, optional trailing content and an optional
  * end icon. Used by `DrawerActionItem`, `DrawerNavItem` and
- * `DrawerSectionItem` to keep their markup consistent.
+ * `DrawerCollapsible` to keep their markup consistent.
  */
 const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
     label,
@@ -38,6 +38,8 @@ const DrawerItemContent: FC<DrawerItemContentProps> = memo(({
             >
                 <Typography
                     variant={'span'}
+                    fontSize={14}
+                    fontWeight={'medium'}
                     width={'100%'}
                     maxLines={1}
                     minWidth={0}
