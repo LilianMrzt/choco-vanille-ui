@@ -20,7 +20,7 @@ import { memo, useId, type CSSProperties, type FC } from 'react'
  *
  * @param props - Local Iconify data, SVG attributes and wrapper appearance.
  * @param props.icon - Trusted Iconify data to render offline.
- * @param props.size - Size preset; defaults to `md`.
+ * @param props.size - Font-size token for both dimensions; defaults to 16.
  * @param props.spin - Whether to rotate continuously.
  * @param props.color - CSS color applied to the SVG.
  * @param props.padding - Padding token for the wrapper.

@@ -49,7 +49,7 @@ clés.
 | Avatar | `sm`, `md`, `lg`, `xl` | `md` |
 | Progress | `xs`, `sm`, `md`, `lg`, `xl` | `sm` |
 | Drawer | `sm`, `md`, `lg`, `xl`, `2xl`, `full` | `md` |
-| Icon | `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md` |
+| Icon | `10`, `12`, `14`, `16`, `18`, `20`, `24`, `30`, `36`, `48`, `60`, `72` (nombres) | `16` |
 | Spinner | `xs`, `sm`, `md`, `lg`, `xl` | `md` |
 | Typography `fontSize` | `10`, `12`, `14`, `16`, `18`, `20`, `24`, `30`, `36`, `48`, `60`, `72` (nombres) | selon le variant typographique |
 

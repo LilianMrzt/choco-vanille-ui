@@ -33,7 +33,7 @@ const DropdownMenuSubTrigger: FC<DropdownMenuSubTriggerProps> = memo(({
             >
                 <Icon
                     icon={startIcon}
-                    size={'xs'}
+                    size={12}
                 />
             </Flex>
         )}
@@ -53,7 +53,7 @@ const DropdownMenuSubTrigger: FC<DropdownMenuSubTriggerProps> = memo(({
         >
             <Icon
                 icon={ChevronRightIcon}
-                size={'xs'}
+                size={12}
             />
         </Flex>
     </BaseMenu.SubmenuTrigger>

@@ -73,7 +73,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
             <span className={IMAGE_PICKER_STYLES.empty}>
                 <Icon
                     icon={icon}
-                    size={'xl'}
+                    size={24}
                     color={vars.color.primary.main}
                     className={IMAGE_PICKER_STYLES.emptyIcon}
                 />
@@ -97,7 +97,7 @@ export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({
             >
                 <Icon
                     icon={UploadIcon}
-                    size={'lg'}
+                    size={20}
                 />
                 <Typography
                     as={'span'}

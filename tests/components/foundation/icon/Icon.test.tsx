@@ -7,6 +7,7 @@ import { hydrateRoot } from 'react-dom/client'
 
 import { Icon, ICON_STYLES, type IconColor, type IconProps, type IconifyIcon } from '@components/foundation/icon'
 import { vars } from '@theme/styles/contract/contract.css.ts'
+import type { TypographySize } from '@components/foundation/typography'
 
 const definitionIcon: IconifyIcon = {
     width: 32,
@@ -48,7 +49,11 @@ describe('Icon', () => {
             expect(onClick).toHaveBeenCalledOnce()
         })
 
-        it.each(['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const)('preserves the %s size and spin recipe without inline dimensions', (size) => {
+        it('shares the Typography font-size token contract', () => {
+            expectTypeOf<NonNullable<IconProps['size']>>().toEqualTypeOf<TypographySize>()
+        })
+
+        it.each([10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72] as const)('preserves the %s size and spin recipe without inline dimensions', (size) => {
             render(<Icon icon={definitionIcon} size={size} spin data-testid="icon" />)
             const svg = screen.getByTestId('icon')
 
@@ -66,7 +71,7 @@ describe('Icon', () => {
             render(<Icon icon={UserIcon} style={{ width: '3rem', height: '2rem' }} data-testid="icon" />)
             const svg = screen.getByTestId('icon')
 
-            expect(svg.getAttribute('class')).toContain(ICON_STYLES.recipe({ size: 'md' }))
+            expect(svg.getAttribute('class')).toContain(ICON_STYLES.recipe({ size: 16 }))
             expect(svg.style.width).toBe('3rem')
             expect(svg.style.height).toBe('2rem')
         })

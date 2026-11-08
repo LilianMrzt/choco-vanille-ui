@@ -27,4 +27,4 @@ export const DRAWER_ITEM_COLORS_ARRAY = Object.values(DRAWER_ITEM_COLORS)
 /**
  * Default icon size rendered inside a drawer item row.
  */
-export const DRAWER_ITEM_DEFAULT_ICON_SIZE = 'md' as const
+export const DRAWER_ITEM_DEFAULT_ICON_SIZE = 16 as const

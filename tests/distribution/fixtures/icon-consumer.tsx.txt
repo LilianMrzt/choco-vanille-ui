@@ -8,7 +8,7 @@ import { createRef } from 'react'
 const icon: IconifyIcon = searchIcon
 const props = { icon, ref: createRef<SVGSVGElement>(), 'aria-label': 'Search' } satisfies IconProps
 const examples = <>
-    <Icon {...props} />
+    <Icon {...props} size={72} />
     <IconButton icon={icon} aria-label="Search" />
     <Button label="Search" startIcon={icon} endIcon={icon} />
     <Fab icon={icon} aria-label="Search" />
@@ -34,4 +34,8 @@ const componentIcon = <Button label="Search" startIcon={() => <svg />} />
 const invalidRef = <Icon icon={icon} ref={createRef<HTMLSpanElement>()} />
 // @ts-expect-error Iconify owns SVG body markup.
 const unsafeMarkup = <Icon icon={icon} dangerouslySetInnerHTML={{ __html: '<path />' }} />
-void [examples, useMessages, remoteIcon, componentIcon, invalidRef, unsafeMarkup]
+// @ts-expect-error Icon size uses numeric font-size tokens, not named presets.
+const legacySize = <Icon icon={icon} size="md" />
+// @ts-expect-error Icon sizes are limited to the font-size token scale.
+const invalidSize = <Icon icon={icon} size={22} />
+void [examples, useMessages, remoteIcon, componentIcon, invalidRef, unsafeMarkup, legacySize, invalidSize]

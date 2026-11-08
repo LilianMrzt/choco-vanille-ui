@@ -38,7 +38,7 @@ const TabsTrigger: FC<TabsTriggerProps> = memo(({ className, style, width, label
             {startIcon && (
                 <Icon
                     icon={startIcon}
-                    size={'sm'}
+                    size={14}
                 />
             )}
             {label && (
@@ -54,7 +54,7 @@ const TabsTrigger: FC<TabsTriggerProps> = memo(({ className, style, width, label
             {endIcon && (
                 <Icon
                     icon={endIcon}
-                    size={'sm'}
+                    size={14}
                 />
             )}
         </BaseTabs.Tab>

@@ -45,7 +45,7 @@ const StepperItem = memo(
         const marker = isCompleted ? (
             <Icon
                 icon={CheckIcon}
-                size={'sm'}
+                size={14}
             />
         ) : (
             <Typography

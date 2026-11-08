@@ -55,7 +55,7 @@ const CommandInput: FC<CommandInputProps> = memo(({
             >
                 <Icon
                     icon={SearchIcon}
-                    size={'sm'}
+                    size={14}
                 />
             </span>
             <input

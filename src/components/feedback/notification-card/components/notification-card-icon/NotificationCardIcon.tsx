@@ -64,7 +64,7 @@ const NotificationCardIcon: FC<NotificationCardIconProps> = memo(({
                 className={cn(NOTIFICATION_CARD_ICON_STYLES.svg, className)}
                 color={color ?? VARIANT_TO_COLOR[variant]}
                 icon={icon ?? VARIANT_TO_ICON[variant]}
-                size={'sm'}
+                size={14}
                 {...props}
             />
         </Box>

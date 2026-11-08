@@ -27,7 +27,7 @@ import { cn } from '@utils/cn.ts'
  * @param props.endIcon - Decorative icon following the label.
  * @param props.fontSize - Label font size token; defaults to `16`.
  * @param props.fontWeight - Label font weight; defaults to `normal`.
- * @param props.iconSize - Icon size; defaults to `md`.
+ * @param props.iconSize - Icon font-size token; defaults to 16.
  * @param props.margin - Margin token.
  * @param props.marginTop - Top margin token.
  * @param props.marginRight - Right margin token.
@@ -53,7 +53,7 @@ const Link: React.FC<LinkProps> = memo(({
     endIcon,
     fontSize = 16,
     fontWeight = 'normal',
-    iconSize = 'md',
+    iconSize = 16,
     margin,
     marginTop,
     marginRight,

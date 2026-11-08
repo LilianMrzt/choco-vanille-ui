@@ -82,7 +82,7 @@ const TableHead: FC<TableHeadProps> = ({
                     {children}
                     <Icon
                         icon={SORT_ICONS[sortDirection]}
-                        size={'xs'}
+                        size={12}
                         className={cn(
                             TABLE_HEAD_STYLES.sortIcon,
                             isActiveSort && TABLE_HEAD_STYLES.sortIconActive,

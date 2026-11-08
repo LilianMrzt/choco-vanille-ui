@@ -39,7 +39,7 @@ const AccordionTrigger: FC<AccordionTriggerProps> = memo(({
                     {startIcon && (
                         <Icon
                             icon={startIcon}
-                            size={'sm'}
+                            size={14}
                         />
                     )}
                     <Typography
@@ -52,14 +52,14 @@ const AccordionTrigger: FC<AccordionTriggerProps> = memo(({
                     {endIcon && (
                         <Icon
                             icon={endIcon}
-                            size={'sm'}
+                            size={14}
                         />
                     )}
                 </Flex>
             ) : (
                 children
             )}
-            <RotatingChevron size={'sm'} />
+            <RotatingChevron size={14} />
         </BaseAccordion.Trigger>
     </BaseAccordion.Header>
 ))

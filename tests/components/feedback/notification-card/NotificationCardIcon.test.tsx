@@ -15,7 +15,7 @@ describe('NotificationCardIcon', () => {
         it('uses a small SVG and compact padding by default', () => {
             const { container } = render(<NotificationCard.Icon />)
             const svg = container.querySelector('svg')
-            for (const className of ICON_STYLES.recipe({ size: 'sm' }).split(' ')) {
+            for (const className of ICON_STYLES.recipe({ size: 14 }).split(' ')) {
                 expect(svg?.getAttribute('class')).toContain(className)
             }
             for (const className of BOX_STYLES.recipe({ padding: 6, borderRadius: 6 }).split(' ')) {
@@ -24,8 +24,8 @@ describe('NotificationCardIcon', () => {
         })
 
         it('preserves explicit size overrides', () => {
-            const { container } = render(<NotificationCard.Icon size={'lg'} />)
-            for (const className of ICON_STYLES.recipe({ size: 'lg' }).split(' ')) {
+            const { container } = render(<NotificationCard.Icon size={20} />)
+            for (const className of ICON_STYLES.recipe({ size: 20 }).split(' ')) {
                 expect(container.querySelector('svg')?.getAttribute('class')).toContain(className)
             }
         })

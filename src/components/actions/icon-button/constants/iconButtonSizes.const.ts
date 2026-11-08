@@ -13,6 +13,6 @@ export const ICON_BUTTON_SIZES_ARRAY = Object.values(ICON_BUTTON_SIZES)
 
 /** Proportional SVG sizes: xs 12px, sm 14px, md 16px and lg 20px at a 16px root. */
 export const ICON_BUTTON_SIZE_TO_ICON_SIZE: Record<NonNullable<IconButtonSize>, IconSize> = {
-    xs: 'xs',
+    xs: 12,
     ...buttonSizeToIconSize,
 }

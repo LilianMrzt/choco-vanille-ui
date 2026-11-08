@@ -6,6 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Link, LINK_STYLES } from '@components/navigation/link'
 import { BOX_STYLES } from '@components/layout/box'
+import { ICON_STYLES } from '@components/foundation/icon'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
@@ -85,19 +86,19 @@ describe('Link', () => {
             expect(container.querySelectorAll('svg')).toHaveLength(2)
         })
 
-        it('defaults icon size to md', () => {
+        it('defaults icon size to 16', () => {
             const { container } = render(
                 <Link label={'Home'} startIcon={UserIcon} />,
             )
             const icon = container.querySelector('svg')
-            expect(icon).toBeTruthy()
+            expect(icon?.className.baseVal).toContain(ICON_STYLES.recipe({ size: 16 }))
         })
 
         it('forwards a custom icon size', () => {
             const { container } = render(
-                <Link label={'Home'} startIcon={UserIcon} iconSize="lg" />,
+                <Link label={'Home'} startIcon={UserIcon} iconSize={20} />,
             )
-            expect(container.querySelector('svg')).toBeTruthy()
+            expect(container.querySelector('svg')?.className.baseVal).toContain(ICON_STYLES.recipe({ size: 20 }))
         })
     })
 

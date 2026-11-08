@@ -71,7 +71,7 @@ const SelectTrigger: FC<SelectTriggerProps> = memo(({
             <Box className={SELECT_TRIGGER_END_ICON}>
                 <Icon
                     icon={ChevronDownIcon}
-                    size={'md'}
+                    size={16}
                     color={vars.color.surface.mutedForeground}
                 />
             </Box>

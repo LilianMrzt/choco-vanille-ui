@@ -49,7 +49,7 @@ const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
             >
                 <Icon
                     icon={startIcon}
-                    size={'xs'}
+                    size={12}
                 />
             </Flex>
         )}
@@ -71,7 +71,7 @@ const DropdownMenuItem: FC<DropdownMenuItemProps> = memo(({
             >
                 <Icon
                     icon={endIcon}
-                    size={'xs'}
+                    size={12}
                 />
             </Flex>
         )}

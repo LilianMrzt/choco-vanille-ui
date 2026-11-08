@@ -132,7 +132,7 @@ const TextColorMenu = () => {
                                                 <span className={TEXT_COLOR_MENU_STYLES.colorCheck}>
                                                     <Icon
                                                         icon={CheckIcon}
-                                                        size={'sm'}
+                                                        size={14}
                                                     />
                                                 </span>
                                             )}

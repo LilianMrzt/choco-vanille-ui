@@ -25,7 +25,7 @@ const AutocompleteTrigger: FC<AutocompleteTriggerProps> = memo(({
     >
         <Icon
             icon={ChevronDownIcon}
-            size={'md'}
+            size={16}
         />
     </BaseAutocomplete.Trigger>
 ))

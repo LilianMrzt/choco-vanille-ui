@@ -15,11 +15,12 @@ const IconSizes = (): ReactElement => (
     <Flex
         alignItems={'center'}
         gap={12}
+        flexWrap={'wrap'}
     >
         {SIZES.map(size => (
             <Icon
                 key={size}
-                aria-label={size}
+                aria-label={String(size)}
                 icon={SearchIcon}
                 size={size}
             />

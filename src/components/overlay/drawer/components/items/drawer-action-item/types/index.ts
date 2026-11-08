@@ -22,7 +22,7 @@ export type DrawerActionItemProps = Omit<
     variant?: DrawerItemVariant;
     /** Color intent for the row. @default 'primary' */
     color?: DrawerItemColor;
-    /** Size of the start/end icons. Defaults to the row size mapping. */
+    /** Font-size token for the start/end icons. Defaults to 16. */
     iconSize?: IconSize;
     /** Optional content rendered before the end icon (e.g. a badge). */
     trailing?: ReactNode;

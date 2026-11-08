@@ -1,12 +1,13 @@
 import type { IconifyIcon } from '@iconify/react/offline'
 import type { CSSProperties, SVGProps } from 'react'
+import type { FontSize } from '@theme/tokens/typography/types'
 
 import type {
     BoxBorderRadius,
     BoxSpace,
 } from '@components/layout/box/types'
-/** Icon size presets. */
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+/** Font-size token used for both SVG dimensions. */
+export type IconSize = FontSize
 
 /** CSS icon colors, including theme and external custom property references. */
 export type IconColor = CSSProperties['color']
@@ -15,7 +16,7 @@ export type IconColor = CSSProperties['color']
 export type IconProps = Readonly<Omit<SVGProps<SVGSVGElement>, 'children' | 'color' | 'dangerouslySetInnerHTML' | 'mode' | 'onLoad' | 'rotate' | 'viewBox'> & {
     /** Trusted, locally imported Iconify SVG data; icon names are not accepted. */
     icon: IconifyIcon
-    /** Icon size. Defaults to `md`. */
+    /** Font-size token for the SVG dimensions. Defaults to `16`. */
     size?: IconSize
     /** Whether the icon should continuously rotate. */
     spin?: boolean

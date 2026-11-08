@@ -277,8 +277,8 @@ export const visualVocabularyContracts: VisualVocabularyContract[] = [
       file: 'src/components/foundation/icon/Icon.css.ts',
       axis: 'size',
     },
-    expected: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-    defaultValue: 'md',
+    expected: ['10', '12', '14', '16', '18', '20', '24', '30', '36', '48', '60', '72'],
+    defaultValue: '16',
     defaultSource: 'src/components/foundation/icon/Icon.css.ts',
   },
   {

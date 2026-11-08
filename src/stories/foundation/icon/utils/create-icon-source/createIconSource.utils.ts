@@ -10,7 +10,7 @@ import template from '@stories/foundation/icon/utils/create-icon-source/sources/
  * @param context.args - Current icon and wrapper props.
  * @returns Public consumer JSX using the example Iconify data.
  * @example
- * createIconSource('', { args: { icon: SearchIcon, size: 'sm' } })
+ * createIconSource('', { args: { icon: SearchIcon, size: 14 } })
  */
 export const createIconSource = (_source: string, { args }: Readonly<{ args: IconProps }>): string => {
     const values = {

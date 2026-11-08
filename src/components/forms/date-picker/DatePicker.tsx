@@ -128,7 +128,7 @@ const DatePicker: FC<DatePickerProps> = (props) => {
                         >{valueText}</span>
                         <Icon
                             icon={CalendarIcon}
-                            size={'sm'}
+                            size={14}
                         />
                     </button>
                 </Popover.Trigger>

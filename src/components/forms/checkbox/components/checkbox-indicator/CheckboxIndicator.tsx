@@ -28,12 +28,12 @@ const CheckboxIndicator: FC<CheckboxIndicatorProps> = ({ className, children, ..
             <>
                 <Icon
                     icon={CheckIcon}
-                    size={'xs'}
+                    size={12}
                     className={CHECKBOX_STYLES.checkIcon}
                 />
                 <Icon
                     icon={MinusIcon}
-                    size={'xs'}
+                    size={12}
                     className={CHECKBOX_STYLES.indeterminateIcon}
                 />
             </>

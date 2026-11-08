@@ -91,7 +91,7 @@ const CommandItem: FC<CommandItemProps> = memo(({
                 >
                     <Icon
                         icon={icon}
-                        size={'xs'}
+                        size={12}
                     />
                 </Flex>
             )}

@@ -37,7 +37,7 @@ const DropdownMenuCheckboxItem: FC<DropdownMenuCheckboxItemProps> = memo(({
                 <BaseMenu.CheckboxItemIndicator className={CHECKBOX_STYLES.indicator}>
                     <Icon
                         icon={CheckIcon}
-                        size={'xs'}
+                        size={12}
                     />
                 </BaseMenu.CheckboxItemIndicator>
             </Box>

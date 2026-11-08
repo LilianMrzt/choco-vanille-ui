@@ -74,12 +74,12 @@ describe('Button sizing', () => {
 
     it('uses 14/14/16px labels and 14/16/20px icons', () => {
         expect(BUTTON_SIZE_TO_FONT_SIZE).toEqual({ sm: 14, md: 14, lg: 16 })
-        expect(buttonSizeToIconSize).toEqual({ sm: 'sm', md: 'md', lg: 'lg' })
+        expect(buttonSizeToIconSize).toEqual({ sm: 14, md: 16, lg: 20 })
     })
 
     it('renders a proportional 12px icon in an xs icon button', () => {
         const { container } = render(<IconButton aria-label={'Search'} icon={SearchIcon} size={'xs'} />)
-        for (const className of ICON_STYLES.recipe({ size: 'xs' }).split(' ')) {
+        for (const className of ICON_STYLES.recipe({ size: 12 }).split(' ')) {
             expect(container.querySelector('svg')?.classList.contains(className)).toBe(true)
         }
     })

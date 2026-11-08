@@ -9,8 +9,8 @@ describe('Icon stories', () => {
     it('renders every labelled size', () => {
         render(<IconSizes />)
 
-        expect(screen.getAllByRole('img')).toHaveLength(6)
-        expect(screen.getByRole('img', { name: '2xl' })).toBeTruthy()
+        expect(screen.getAllByRole('img')).toHaveLength(12)
+        expect(screen.getByRole('img', { name: '72' })).toBeTruthy()
     })
 
     it('generates consumer source from current controls', () => {

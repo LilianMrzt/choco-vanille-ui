@@ -24,7 +24,7 @@ export type LinkProps = Readonly<
         fontSize?: TypographySize
         /** Label font weight. Defaults to `normal`. */
         fontWeight?: TypographyWeight
-        /** Size of the icons. Defaults to `md`. */
+        /** Font-size token for the icons. Defaults to 16. */
         iconSize?: IconSize
     } &
     Pick<BoxProps, 'margin' | 'marginTop' | 'marginRight' | 'marginBottom' | 'marginLeft' | 'width' | 'alignSelf' | 'padding'>

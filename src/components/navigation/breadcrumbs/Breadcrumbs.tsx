@@ -74,7 +74,7 @@ const BreadcrumbsRoot: FC<BreadcrumbsProps> = memo(({
                                 (separator === BREADCRUMBS_SEPARATORS.chevron ? (
                                     <Icon
                                         icon={ChevronRightIcon}
-                                        size={'sm'}
+                                        size={14}
                                         className={BREADCRUMBS_STYLES.separator}
                                     />
                                 ) : (

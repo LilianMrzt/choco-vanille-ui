@@ -49,7 +49,7 @@ const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
                 {startIcon && (
                     <Icon
                         icon={startIcon}
-                        size={'sm'}
+                        size={14}
                     />
                 )}
                 <Typography
@@ -62,14 +62,14 @@ const CollapsibleTrigger: FC<CollapsibleTriggerProps> = memo(({
                 {endIcon && (
                     <Icon
                         icon={endIcon}
-                        size={'sm'}
+                        size={14}
                     />
                 )}
             </Flex>
         ) : (
             children
         )}
-        <RotatingChevron size={'sm'} />
+        <RotatingChevron size={14} />
     </BaseCollapsible.Trigger>
 ))
 

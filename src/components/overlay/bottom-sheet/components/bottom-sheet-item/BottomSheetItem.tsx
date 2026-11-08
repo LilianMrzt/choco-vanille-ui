@@ -40,7 +40,7 @@ const BottomSheetItem: FC<BottomSheetItemProps> = memo(({
                 <span className={BOTTOM_SHEET_ITEM_STYLES.icon}>
                     <Icon
                         icon={startIcon}
-                        size={'sm'}
+                        size={14}
                     />
                 </span>
             )}
@@ -56,7 +56,7 @@ const BottomSheetItem: FC<BottomSheetItemProps> = memo(({
                 <span className={BOTTOM_SHEET_ITEM_STYLES.icon}>
                     <Icon
                         icon={endIcon}
-                        size={'sm'}
+                        size={14}
                     />
                 </span>
             )}

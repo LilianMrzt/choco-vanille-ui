@@ -3,8 +3,8 @@ import { IconRegistry } from '@/icons'
 
 const Example = () => (
     <>
-        <Icon icon={IconRegistry.searchIcon} size="md" aria-label="Search" />
-        <Icon icon={IconRegistry.warningIcon} size="lg" aria-label="Warning" />
+        <Icon icon={IconRegistry.searchIcon} size={16} aria-label="Search" />
+        <Icon icon={IconRegistry.warningIcon} size={20} aria-label="Warning" />
         <Button label="Search" startIcon={IconRegistry.searchIcon} />
         <IconButton icon={IconRegistry.closeIcon} aria-label="Close" />
     </>

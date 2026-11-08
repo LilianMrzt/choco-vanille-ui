@@ -39,7 +39,7 @@ const BottomNavigationItem: FC<BottomNavigationItemProps> = memo((props) => {
         <>
             <Icon
                 icon={icon}
-                size={'lg'}
+                size={20}
                 className={BOTTOM_NAVIGATION_STYLES.icon}
             />
             {label !== undefined && (

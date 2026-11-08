@@ -24,7 +24,7 @@ const SelectItem: FC<SelectItemProps> = memo(({
             <BaseSelect.ItemIndicator>
                 <Icon
                     icon={CheckIcon}
-                    size={'xs'}
+                    size={12}
                 />
             </BaseSelect.ItemIndicator>
         </span>

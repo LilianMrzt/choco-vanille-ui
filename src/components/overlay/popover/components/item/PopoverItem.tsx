@@ -65,7 +65,7 @@ const PopoverItem: FC<PopoverItemProps> = memo(({
                 >
                     <Icon
                         icon={startIcon}
-                        size={'xs'}
+                        size={12}
                     />
                 </Flex>
             )}
@@ -87,7 +87,7 @@ const PopoverItem: FC<PopoverItemProps> = memo(({
                 >
                     <Icon
                         icon={endIcon}
-                        size={'xs'}
+                        size={12}
                     />
                 </Flex>
             )}

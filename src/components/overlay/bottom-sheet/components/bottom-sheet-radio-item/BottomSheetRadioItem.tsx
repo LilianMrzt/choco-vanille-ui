@@ -30,7 +30,7 @@ const BottomSheetRadioItem: FC<BottomSheetRadioItemProps> = memo(({
             <span className={BOTTOM_SHEET_RADIO_ITEM_STYLES.item.icon}>
                 <Icon
                     icon={startIcon}
-                    size={'sm'}
+                    size={14}
                 />
             </span>
         )}
@@ -50,7 +50,7 @@ const BottomSheetRadioItem: FC<BottomSheetRadioItemProps> = memo(({
         >
             <Icon
                 icon={CheckIcon}
-                size={'sm'}
+                size={14}
             />
         </Radio.Indicator>
     </Radio.Root>

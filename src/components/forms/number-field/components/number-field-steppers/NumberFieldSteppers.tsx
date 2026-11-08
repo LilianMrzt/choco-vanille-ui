@@ -11,14 +11,14 @@ const NumberFieldSteppers = ({ className }: NumberFieldSteppersProps) => (
         <BaseNumberField.Increment className={NUMBER_FIELD_STEPPERS_STYLES.button}>
             <Icon
                 icon={ChevronUpIcon}
-                size={'xs'}
+                size={12}
                 className={NUMBER_FIELD_STEPPERS_STYLES.icon}
             />
         </BaseNumberField.Increment>
         <BaseNumberField.Decrement className={NUMBER_FIELD_STEPPERS_STYLES.button}>
             <Icon
                 icon={ChevronDownIcon}
-                size={'xs'}
+                size={12}
                 className={NUMBER_FIELD_STEPPERS_STYLES.icon}
             />
         </BaseNumberField.Decrement>

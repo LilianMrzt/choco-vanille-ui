@@ -22,7 +22,7 @@ export const BUTTON_SIZE_TO_FONT_SIZE: Readonly<Record<ButtonSizeShared, Typogra
 
 /** SVG sizes shared by Button, IconButton and Toggle: 14, 16 and 20px at a 16px root. */
 export const buttonSizeToIconSize: Record<NonNullable<ButtonSizeShared>, IconSize> = {
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
+    sm: 14,
+    md: 16,
+    lg: 20,
 }

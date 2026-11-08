@@ -211,6 +211,17 @@ describe('package distribution', () => {
                 return stylesheets.join('\n')
             }
 
+            const iconCss = await readComponentCss('foundation/icon/Icon.css.js')
+            const iconStyleModule = await readFile(
+                resolve(outputDirectory, 'components/foundation/icon/Icon.css.js'),
+                'utf8',
+            )
+            for (const size of [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]) {
+                const className = iconStyleModule.match(new RegExp(`\\b${size}:\\s*["']([^"']+)["']`))?.[1]
+                expect(className).toBeTruthy()
+                expect(iconCss).toContain(`.${className}{width:var(--fontSize-${size});height:var(--fontSize-${size})}`)
+            }
+
             const typographyModule = await readFile(
                 resolve(
                     outputDirectory,

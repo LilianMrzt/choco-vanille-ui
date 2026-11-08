@@ -485,7 +485,9 @@ function resolveDefaultExpression(expression: Expression): string | undefined {
     return resolveDefaultExpression(expression.getRight());
   }
   const literalValue = expression.getType().getLiteralValue();
-  return typeof literalValue === 'string' ? literalValue : undefined;
+  return typeof literalValue === 'string' || typeof literalValue === 'number'
+    ? String(literalValue)
+    : undefined;
 }
 
 function defaultValue(

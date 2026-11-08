@@ -50,9 +50,9 @@ export const BADGE_SIZE_TO_FONT_SIZE: Readonly<Record<BadgeSize, TypographySize>
 
 /** Decorative icon presets matched to each label size. */
 export const BADGE_SIZE_TO_ICON_SIZE: Readonly<Record<BadgeSize, IconSize>> = {
-    sm: 'xs',
-    md: 'sm',
-    lg: 'sm',
+    sm: 12,
+    md: 14,
+    lg: 14,
 }
 
 /** Layout presets; numeric spacing tokens are pixels at a 16px root. */
