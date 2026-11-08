@@ -1,8 +1,8 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('DropdownMenuSubTrigger', () => {
     it('renders a sub-menu trigger', () => {

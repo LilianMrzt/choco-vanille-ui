@@ -1,11 +1,10 @@
+import { LIST_ICON as ListIcon, LIST_ORDERED_ICON as ListOrderedIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import ListIcon from '@resources/asset/ListIcon.svg?react'
-import ListOrderedIcon from '@resources/asset/ListOrderedIcon.svg?react'
 import { LISTS_GROUP_STYLES } from '@components/forms/rich-text-editor/components/lists-group/styles/ListsGroup.css.ts'
 import type { ListsGroupProps } from '@components/forms/rich-text-editor/components/lists-group/types/ListsGroup.props.ts'
 

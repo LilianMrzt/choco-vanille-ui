@@ -1,6 +1,6 @@
+import SearchIcon from '@iconify-icons/lucide/search'
+import TrashIcon from '@iconify-icons/lucide/trash-2'
 import { Command, Button } from '@choco-vanille/ui'
-// Replace these with icon components from your application.
-import { SearchIcon, TrashIcon } from './icons'
 
 <Command>
   <Command.Trigger><Button label="Show item states" /></Command.Trigger>

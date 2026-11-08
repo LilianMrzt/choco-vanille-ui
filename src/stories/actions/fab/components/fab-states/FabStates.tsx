@@ -1,7 +1,7 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { ReactElement } from 'react'
 
 import { Fab } from '@components/actions/fab'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import FabFrame from '@stories/actions/fab/components/fab-frame/FabFrame'
 
 /**

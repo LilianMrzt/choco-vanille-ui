@@ -1,3 +1,4 @@
+import { BOLD_ICON as BoldIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -11,14 +12,13 @@ import {
 } from '@components/actions/fab'
 import { BUTTON_STYLES } from '@components/actions/button'
 import { ICON_BUTTON_STYLES } from '@components/actions/icon-button'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 import { Fab as PublicFab } from '@/index'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 describe('Fab', () => {
     it('exposes the same component from the public entry', () => {
         expect(PublicFab).toBe(Fab)
-        expectTypeOf<FabProps['icon']>().toEqualTypeOf<IconComponent>()
+        expectTypeOf<FabProps['icon']>().toEqualTypeOf<IconifyIcon>()
     })
 
     describe('round (icon-only) rendering', () => {

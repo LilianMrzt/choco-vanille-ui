@@ -1,9 +1,9 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { AutocompleteField } from '@components/forms/autocomplete'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 const OPTIONS = [
     { value: 'apple', label: 'Apple' },

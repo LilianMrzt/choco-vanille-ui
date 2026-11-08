@@ -1,4 +1,4 @@
-import type { IconComponent, IconSize } from '@components/foundation/icon'
+import type { IconifyIcon, IconSize } from '@components/foundation/icon'
 import type {
     DrawerItemColor,
     DrawerItemVariant,
@@ -17,9 +17,9 @@ export type DrawerNavItemProps = Omit<
     /** Destination URL. @default '#' */
     href?: string;
     /** Icon rendered before the label. */
-    startIcon: IconComponent;
+    startIcon: IconifyIcon;
     /** Icon rendered after the label and trailing content. */
-    endIcon?: IconComponent;
+    endIcon?: IconifyIcon;
     /** Whether the item represents the current page. */
     active?: boolean;
     /** Disables the item and sets `aria-disabled`. */

@@ -1,8 +1,8 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import TextFieldStartIcon from '@components/forms/text-field/components/text-field-start-icon/TextFieldStartIcon.tsx'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 describe('TextFieldStartIcon', () => {
     it('renders an icon', () => {

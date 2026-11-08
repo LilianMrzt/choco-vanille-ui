@@ -8,7 +8,7 @@ import template from '@stories/foundation/icon/utils/create-icon-source/sources/
  * @param _source - Storybook-generated source, replaced by this example.
  * @param context - Current story context.
  * @param context.args - Current icon and wrapper props.
- * @returns Public consumer JSX using the example SVG.
+ * @returns Public consumer JSX using the example Iconify data.
  * @example
  * createIconSource('', { args: { icon: SearchIcon, size: 'sm' } })
  */
@@ -24,6 +24,12 @@ export const createIconSource = (_source: string, { args }: Readonly<{ args: Ico
         borderStyle: args.borderStyle,
         borderRadius: args.borderRadius,
         'aria-label': args['aria-label'],
+        'aria-labelledby': args['aria-labelledby'],
+        'aria-hidden': args['aria-hidden'],
+        role: args.role,
+        id: args.id,
+        width: args.width,
+        height: args.height,
         className: args.className,
         style: args.style,
     }

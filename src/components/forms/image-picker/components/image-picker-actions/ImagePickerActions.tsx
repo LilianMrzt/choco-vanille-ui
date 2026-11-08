@@ -1,8 +1,7 @@
+import { TRASH_ICON as TrashIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { Button } from '@components/actions/button'
 import { IMAGE_PICKER_STYLES } from '@components/forms/image-picker/styles/ImagePicker.css.ts'
 import type { ImagePickerActionsProps } from '@components/forms/image-picker/components/image-picker-actions/types/ImagePickerActions.props.ts'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { memo } from 'react'
 
 export const ImagePickerActions = memo<ImagePickerActionsProps>(({

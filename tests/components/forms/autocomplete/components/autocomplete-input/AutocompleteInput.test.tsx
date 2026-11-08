@@ -1,10 +1,10 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import Autocomplete from '@components/forms/autocomplete/Autocomplete.tsx'
 import AutocompleteInput from '@components/forms/autocomplete/components/autocomplete-input/AutocompleteInput.tsx'
 import { AUTOCOMPLETE_INPUT_STYLES } from '@components/forms/autocomplete/components/autocomplete-input/styles/AutocompleteInput.css.ts'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 const buildInput = (
     inputProps: React.ComponentProps<typeof AutocompleteInput> = {},

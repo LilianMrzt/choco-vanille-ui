@@ -1,9 +1,8 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { DrawerItemContent } from '@components/overlay/drawer/components/items/_shared'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('DrawerItemContent', () => {
     describe('default rendering', () => {

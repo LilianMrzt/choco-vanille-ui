@@ -1,5 +1,5 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { SelectField } from '@choco-vanille/ui'
-import SearchIcon from './SearchIcon.svg?react'
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },

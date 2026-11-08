@@ -1,13 +1,10 @@
+import { IMAGE_ICON as ImageIcon, IMAGE_PLUS_ICON as ImagePlusIcon, TRASH_ICON as TrashIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useRef, useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import ImageIcon from '@resources/asset/ImageIcon.svg?react'
-import ImagePlusIcon from '@resources/asset/ImagePlusIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { IMAGE_GROUP_STYLES } from '@components/forms/rich-text-editor/components/image-group/styles/ImageGroup.css.ts'
 import type { ImageGroupProps } from '@components/forms/rich-text-editor/components/image-group/types/ImageGroup.props.ts'
 

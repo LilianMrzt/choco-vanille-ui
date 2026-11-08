@@ -1,3 +1,4 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, LINK_ICON as LinkIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -5,9 +6,6 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Link, LINK_STYLES } from '@components/navigation/link'
 import { BOX_STYLES } from '@components/layout/box'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import LinkIcon from '@resources/asset/LinkIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement

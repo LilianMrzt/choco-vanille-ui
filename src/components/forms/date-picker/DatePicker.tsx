@@ -1,3 +1,4 @@
+import { CALENDAR_ICON as CalendarIcon } from '@constants/icon-registry'
 import { useEffect, useId, useMemo, useRef, useState, type FC } from 'react'
 
 import { Calendar, type CalendarMatcher } from '@components/forms/calendar'
@@ -11,7 +12,6 @@ import { TEXT_FIELD_STYLES } from '@components/forms/text-field/styles/TextField
 import { DATE_PICKER_STYLES } from '@components/forms/date-picker/styles/DatePicker.css.ts'
 import type { DatePickerProps } from '@components/forms/date-picker/types'
 import { formatDateValue, formatDisplayDate, getInitialPickerDate } from '@components/forms/date-picker/utils/datePicker.utils.ts'
-import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
 /**

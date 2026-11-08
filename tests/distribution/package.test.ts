@@ -68,11 +68,16 @@ describe('package distribution', () => {
                 ),
                 datePickerConsumerPath,
             )
+            await copyFile(
+                resolve('tests', 'distribution', 'fixtures', 'icon-consumer.tsx.txt'),
+                resolve(outputDirectory, 'icon-consumer.tsx'),
+            )
             const program = ts.createProgram(
                 [
                     consumerTypesPath,
                     notificationConsumerPath,
                     datePickerConsumerPath,
+                    resolve(outputDirectory, 'icon-consumer.tsx'),
                 ],
                 {
                     noEmit: true,
@@ -101,6 +106,8 @@ describe('package distribution', () => {
             expect(declarations).not.toMatch(
                 /from ['"]@(?:theme|components|utils|hooks)\b/,
             )
+            expect(declarations).toContain('IconifyIcon')
+            expect(declarations).not.toMatch(/\bIconComponent\b/)
             expect(declarations).not.toMatch(
                 /react-day-picker|react-aria-components|@internationalized\/date/,
             )
@@ -529,6 +536,12 @@ describe('package distribution', () => {
             }
 
             for (const extension of ['js', 'cjs']) {
+                const iconModule = await readFile(
+                    resolve(outputDirectory, `components/foundation/icon/Icon.${extension}`),
+                    'utf8',
+                )
+                expect(iconModule).toContain('@iconify/react/offline')
+                expect(iconModule).not.toMatch(/from ['"]@iconify\/react['"]/)
                 const entry = await readFile(
                     resolve(outputDirectory, `index.${extension}`),
                     'utf8',
@@ -685,7 +698,7 @@ describe('package distribution', () => {
                             id === 'virtual:consumer' ? id : undefined,
                         load: (id) =>
                             id === 'virtual:consumer'
-                                ? "import { Button } from '@choco-vanille/ui'; console.log(Button)"
+                                ? "import { Button } from '@choco-vanille/ui'; import searchIcon from '@iconify-icons/lucide/search'; console.log(Button, searchIcon)"
                                 : undefined,
                     },
                 ],
@@ -722,6 +735,9 @@ describe('package distribution', () => {
                     source.includes('/components/forms/select/'),
                 ),
             ).toBe(false)
+            expect(sources.some((source) => source.includes('/@iconify-icons/lucide/') && source.endsWith('/search.js'))).toBe(true)
+            expect(sources.some((source) => source.includes('/@iconify-icons/lucide/') && /\/(?:upload|eye|image-plus)\.js$/.test(source))).toBe(false)
+            expect(sources.some((source) => /\/@iconify\/react\/dist\/iconify\./.test(source))).toBe(false)
             expect(css.source.toString()).toContain(`.${buttonClass}`)
             expect(css.source.toString()).not.toContain(`.${selectClass}`)
         } finally {

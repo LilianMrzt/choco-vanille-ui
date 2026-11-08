@@ -1,6 +1,6 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { describe, expect, it } from 'vitest'
 
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { createFabSource } from '@stories/actions/fab/utils/create-fab-source/createFabSource.utils'
 
 describe('createFabSource', () => {

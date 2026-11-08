@@ -1,10 +1,8 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, TRASH_ICON as TrashIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import type { ReactElement } from 'react'
 
 import { Button } from '@components/actions/button'
 import { Flex } from '@components/layout/flex'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 
 /**
  * Shows leading and trailing decorative icons.

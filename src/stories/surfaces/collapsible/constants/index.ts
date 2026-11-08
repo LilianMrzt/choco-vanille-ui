@@ -1,7 +1,7 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import type { Meta } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { CollapsibleStoryArgs } from '@stories/surfaces/collapsible/types'
 
 export const DEFAULT_ARGS = {

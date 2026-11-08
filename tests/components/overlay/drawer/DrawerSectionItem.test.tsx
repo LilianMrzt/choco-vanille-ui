@@ -1,11 +1,9 @@
+import { CIRCLE_ICON as CircleIcon, INFO_ICON as InfoIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('Drawer.SectionItem', () => {
     it('renders the section header button', () => {

@@ -1,3 +1,4 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
@@ -13,7 +14,6 @@ import { IconButton } from '@components/actions/icon-button'
 import { ICON_BUTTON_SIZE_VARIANTS } from '@components/actions/icon-button/constants/iconButtonSizeVariants.const'
 import { ICON_STYLES } from '@components/foundation/icon/Icon.css'
 import { TYPOGRAPHY_STYLES } from '@components/foundation/typography/Typography.css'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const sizes: ButtonSize[] = ['sm', 'md', 'lg']

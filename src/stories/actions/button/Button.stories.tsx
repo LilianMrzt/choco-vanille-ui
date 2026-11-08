@@ -23,7 +23,7 @@ const meta = {
         docs: {
             page: ButtonDocsPage,
             description: {
-                component: 'A text-labelled action button with optional decorative icons. Supplying href renders a link; provide your own SVG components for the icons in these examples.',
+                component: 'A text-labelled action button with optional decorative icons. Supplying href renders a link; provide your own local Iconify data for the icons in these examples.',
             },
             source: {
                 type: 'dynamic',

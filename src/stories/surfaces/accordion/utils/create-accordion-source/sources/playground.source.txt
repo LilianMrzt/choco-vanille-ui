@@ -1,6 +1,6 @@
+import InfoIcon from '@iconify-icons/lucide/info'
 import { useState } from 'react'
 import { Accordion } from '@choco-vanille/ui'
-import InfoIcon from './InfoIcon'
 
 const Example = () => {
     const [value, setValue] = useState<string[]>({{value}})

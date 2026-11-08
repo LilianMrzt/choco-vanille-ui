@@ -1,7 +1,7 @@
+import { USER_ICON as UserIcon } from '@constants/icon-registry'
 import {
     ImagePicker
 } from '@components/forms/image-picker'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 import type { ReactElement } from 'react'
 
 /**

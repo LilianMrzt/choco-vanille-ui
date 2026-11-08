@@ -1,3 +1,5 @@
+import ChevronLeftIcon from '@iconify-icons/lucide/chevron-left'
+import ChevronRightIcon from '@iconify-icons/lucide/chevron-right'
 import { Grid, Link } from '@choco-vanille/ui'
 
 <Grid gap={8}>

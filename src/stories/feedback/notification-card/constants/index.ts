@@ -40,5 +40,5 @@ export const ARG_TYPES = {
     style: { control: false, description: 'Native root style overrides.' },
     ref: { control: false, description: 'Ref to the root div.' },
     children: { control: false, description: 'React content; this Playground composes the public slots using the demonstration controls.' },
-    icon: { control: false, description: 'Consumer-owned SVG; showCustomIcon demonstrates this override.' },
+    icon: { control: false, description: 'Consumer-owned local Iconify data; showCustomIcon demonstrates this override.' },
 } satisfies NonNullable<Meta<NotificationCardStoryArgs>['argTypes']>

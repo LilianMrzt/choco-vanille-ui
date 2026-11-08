@@ -1,8 +1,8 @@
+import { UNLINK_ICON as UnlinkIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import UnlinkIcon from '@resources/asset/UnlinkIcon.svg?react'
 import type { UnsetLinkProps } from '@components/forms/rich-text-editor/components/link-group/types/UnsetLink.props.ts'
 
 /**

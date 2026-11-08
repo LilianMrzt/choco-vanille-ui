@@ -1,3 +1,4 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { Fab } from '@choco-vanille/ui'
 
 <Fab icon={SearchIcon}{{label}}{{ariaLabel}}{{color}}{{size}}{{position}}{{disabled}} />

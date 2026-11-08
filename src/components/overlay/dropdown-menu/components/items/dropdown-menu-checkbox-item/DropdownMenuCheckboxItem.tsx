@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { memo, useCallback, type FC } from 'react'
 
@@ -6,7 +7,6 @@ import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/com
 import { Box } from '@components/layout/box'
 import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import { Icon } from '@components/foundation/icon'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuCheckboxItemProps } from '@components/overlay/dropdown-menu/components/items/dropdown-menu-checkbox-item/types'
 

@@ -1,0 +1,37 @@
+import { Icon, IconButton, Button, Fab, Badge, Avatar, TextField, TextArea,
+    SelectField, AutocompleteField, BottomNavigation, Callout, NotificationCard,
+    useToast, useNotification, type IconifyIcon, type IconProps
+} from './index.js'
+import searchIcon from '@iconify-icons/lucide/search'
+import { createRef } from 'react'
+
+const icon: IconifyIcon = searchIcon
+const props = { icon, ref: createRef<SVGSVGElement>(), 'aria-label': 'Search' } satisfies IconProps
+const examples = <>
+    <Icon {...props} />
+    <IconButton icon={icon} aria-label="Search" />
+    <Button label="Search" startIcon={icon} endIcon={icon} />
+    <Fab icon={icon} aria-label="Search" />
+    <Badge label="Search" startIcon={icon} />
+    <Avatar icon={icon} />
+    <TextField startIcon={icon} />
+    <TextArea startIcon={icon} />
+    <SelectField startIcon={icon} options={[]} />
+    <AutocompleteField startIcon={icon} options={[]} />
+    <BottomNavigation aria-label="Navigation"><BottomNavigation.List><BottomNavigation.Item icon={icon} label="Search" value="search" /></BottomNavigation.List></BottomNavigation>
+    <Callout title="Search" icon={icon} />
+    <NotificationCard title="Search" icon={icon} />
+</>
+const useMessages = () => {
+    useToast().show('info', { title: 'Search', icon })
+    useNotification().show({ title: 'Search', icon })
+}
+// @ts-expect-error String names are not local Iconify data.
+const remoteIcon = <Icon icon="lucide:search" />
+// @ts-expect-error SVG React components no longer satisfy icon props.
+const componentIcon = <Button label="Search" startIcon={() => <svg />} />
+// @ts-expect-error The ref targets the rendered SVG rather than its wrapper.
+const invalidRef = <Icon icon={icon} ref={createRef<HTMLSpanElement>()} />
+// @ts-expect-error Iconify owns SVG body markup.
+const unsafeMarkup = <Icon icon={icon} dangerouslySetInnerHTML={{ __html: '<path />' }} />
+void [examples, useMessages, remoteIcon, componentIcon, invalidRef, unsafeMarkup]

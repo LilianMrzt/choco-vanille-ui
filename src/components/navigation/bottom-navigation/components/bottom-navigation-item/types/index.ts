@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 type BottomNavigationItemLabelProps =
     | {
@@ -26,7 +26,7 @@ type BottomNavigationItemSharedProps = {
     /** Stable value used for selection and controlled state. */
     value: string
     /** Icon displayed above the optional label. */
-    icon: IconComponent
+    icon: IconifyIcon
     /** Overrides the default item height. */
     height?: React.CSSProperties['height']
     /** Prevents selection and interaction. */

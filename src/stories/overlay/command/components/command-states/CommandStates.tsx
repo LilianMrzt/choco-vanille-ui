@@ -1,7 +1,6 @@
+import { SEARCH_ICON as SearchIcon, TRASH_ICON as TrashIcon } from '@constants/icon-registry'
 import { Command } from '@components/overlay/command'
 import { Button } from '@components/actions/button'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 
 /**
  * Renders command item states.

@@ -1,6 +1,6 @@
+import CircleIcon from '@iconify-icons/lucide/circle'
+import SearchIcon from '@iconify-icons/lucide/search'
 import { BottomNavigation } from '@choco-vanille/ui'
-// Replace these with icon components from your application.
-import { CircleIcon, SearchIcon } from './icons'
 
 <BottomNavigation aria-label="Primary navigation" defaultValue="home">
   <BottomNavigation.List>

@@ -54,11 +54,13 @@
     "test": "vitest"
   },
   "peerDependencies": {
+    "@iconify/react": "^5.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
+    "@iconify-icons/lucide": "^2.0.28",
     "@tiptap/extension-color": "3.32.2",
     "@tiptap/extension-image": "3.32.2",
     "@tiptap/extension-link": "3.32.2",
@@ -76,6 +78,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@iconify/react": "^5.2.1",
     "@microsoft/api-extractor": "^7.60.1",
     "@storybook/addon-a11y": "10.6.5",
     "@storybook/addon-docs": "10.6.5",

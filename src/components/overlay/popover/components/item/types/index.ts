@@ -1,4 +1,4 @@
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type * as React from 'react'
 
 /** Props for the `Popover.Item` action row. */
@@ -14,9 +14,9 @@ export type PopoverItemProps = Readonly<Omit<
     /** Renders the item with a destructive (danger) visual style. */
     destructive?: boolean
     /** Iconify icon identifier rendered on the left side of the item. */
-    startIcon?: IconComponent
+    startIcon?: IconifyIcon
     /** Iconify icon identifier rendered on the right side of the item. */
-    endIcon?: IconComponent
+    endIcon?: IconifyIcon
     /** Keyboard shortcut hint rendered on the right. */
     shortcut?: string
     /** Whether activating the item closes the surrounding popover. @default true */

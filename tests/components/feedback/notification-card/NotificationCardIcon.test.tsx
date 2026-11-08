@@ -1,8 +1,8 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { NotificationCard, type NotificationCardVariant } from '@components/feedback/notification-card'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { ICON_STYLES } from '@components/foundation/icon/Icon.css'
 import { BOX_STYLES } from '@components/layout/box/Box.css'
 import { VARIANT_TO_BORDER_COLOR } from '@components/feedback/notification-card/constants'

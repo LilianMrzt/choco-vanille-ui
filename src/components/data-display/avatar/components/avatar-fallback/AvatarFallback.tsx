@@ -1,3 +1,4 @@
+import { USER_ICON as UserIcon } from '@constants/icon-registry'
 import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 
 import { AVATAR_FALLBACK_STYLES } from '@components/data-display/avatar/components/avatar-fallback/AvatarFallback.css.ts'
@@ -10,7 +11,6 @@ import { Flex } from '@components/layout/flex'
 import {
     AVATAR_SIZE_TO_TYPOGRAPHY_SIZE
 } from '@components/data-display/avatar/components/avatar-fallback/constants'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 /**
  * Fallback content slot for `Avatar.Root`. Renders initials (up to 2

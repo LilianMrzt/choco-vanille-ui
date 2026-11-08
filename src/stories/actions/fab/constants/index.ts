@@ -1,8 +1,8 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { Meta } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 
 import type { FabColor, FabPosition, FabProps, FabSize } from '@components/actions/fab'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 export const COLORS: FabColor[] = [
     'primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info',
@@ -17,7 +17,7 @@ export const DEFAULT_ARGS = {
 } satisfies NonNullable<Meta<FabProps>['args']>
 
 export const ARG_TYPES = {
-    icon: { control: false, description: 'Decorative SVG component; this example uses SearchIcon.' },
+    icon: { control: false, description: 'Decorative local Iconify data; this example uses SearchIcon.' },
     label: { control: 'text', description: 'Visible text for an extended Fab; omit for an icon-only button.' },
     'aria-label': { control: 'text', description: 'Accessible name; required for an icon-only Fab.' },
     color: { control: 'select', options: COLORS, description: 'Semantic color intent.', table: { defaultValue: { summary: 'primary' } } },

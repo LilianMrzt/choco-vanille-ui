@@ -1,3 +1,4 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { Button, Card, IconButton, Typography, vars } from '@choco-vanille/ui'
 
 <Card{{rootProps}}>

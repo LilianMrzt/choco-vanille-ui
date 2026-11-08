@@ -1,10 +1,10 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { FC } from 'react'
 
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
 import { Typography } from '@components/foundation/typography'
 import { Card } from '@components/surfaces/card'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { CardStoryArgs } from '@stories/surfaces/card/types'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 

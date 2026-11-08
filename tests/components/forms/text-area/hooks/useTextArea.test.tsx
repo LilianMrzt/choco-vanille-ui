@@ -1,9 +1,9 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { describe, expect, it, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 
 import { useTextArea } from '@components/forms/text-area/hooks/useTextArea.hook.tsx'
 import type { TextAreaProps } from '@components/forms/text-area/types/TextArea.props.ts'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 
 describe('useTextArea', () => {
     it('uses the provided id when available', () => {

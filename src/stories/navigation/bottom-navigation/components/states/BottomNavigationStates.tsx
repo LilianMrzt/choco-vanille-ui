@@ -1,7 +1,5 @@
+import { CIRCLE_ICON as CircleIcon, LIST_ICON as ListIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { BottomNavigation } from '@components/navigation/bottom-navigation'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import ListIcon from '@resources/asset/ListIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 /**
  * Renders the example.

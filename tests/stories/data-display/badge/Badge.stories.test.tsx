@@ -1,9 +1,8 @@
+import { CHECK_ICON as CheckIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { describe, expect, it } from 'vitest'
 import ts from 'typescript'
 
 import meta, { Appearance, WithIcons } from '@stories/data-display/badge/Badge.stories'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('Badge stories', () => {
     it.each([Appearance, WithIcons])('emits valid TSX for comparative examples', (story) => {
@@ -18,7 +17,7 @@ describe('Badge stories', () => {
             .toEqual([])
     })
 
-    it('maps serializable icon controls to the real SVG components', () => {
+    it('maps serializable icon controls to the real local Iconify data', () => {
         expect(meta.argTypes.startIcon.mapping.None).toBeUndefined()
         expect(meta.argTypes.startIcon.mapping.Check).toBe(CheckIcon)
         expect(meta.argTypes.endIcon.mapping.None).toBeUndefined()

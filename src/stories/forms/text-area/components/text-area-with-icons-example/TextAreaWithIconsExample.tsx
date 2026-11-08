@@ -1,5 +1,5 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { TextArea } from '@components/forms/text-area'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { ReactElement } from 'react'
 
 /**

@@ -1,6 +1,6 @@
+import UserIcon from '@iconify-icons/lucide/user'
 import { useState } from 'react'
 import { ImagePicker, type ImagePickerValue } from '@choco-vanille/ui'
-import UserIcon from './UserIcon.svg?react'
 
 export const Example = () => {
     const [avatar, setAvatar] = useState<ImagePickerValue>(null)

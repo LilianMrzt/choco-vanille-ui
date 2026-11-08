@@ -9,7 +9,7 @@ const transform = createControlledSource<ImagePickerStoryArgs>({
     eventProp: 'onValueChange',
     stateType: 'File | string | null',
     handler: 'setValue',
-    icon: { prop: 'icon', name: 'UserIcon' },
+    icon: { prop: 'icon', name: 'UserIcon', module: '@iconify-icons/lucide/user' },
 })
 
 /**

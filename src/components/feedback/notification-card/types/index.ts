@@ -2,7 +2,7 @@ import type * as React from 'react'
 
 import type NotificationCard from '@components/feedback/notification-card/NotificationCard.tsx'
 import type { NOTIFICATION_CARD_VARIANTS } from '@components/feedback/notification-card/constants'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 /** Visual intent of the notification card. */
 export type NotificationCardVariant = (typeof NOTIFICATION_CARD_VARIANTS)[keyof typeof NOTIFICATION_CARD_VARIANTS]
@@ -19,7 +19,7 @@ export type NotificationCardProps = Readonly<Omit<React.HTMLAttributes<HTMLDivEl
         /** Optional message content. */
         description?: React.ReactNode
         /** Convenience layout's SVG icon; defaults to the variant icon. Compound content uses an explicit Icon slot. */
-        icon?: IconComponent
+        icon?: IconifyIcon
         /** Live-region role; defaults to `status`. */
         role?: NotificationCardRole
         /** Accessible close label; defaults to `Close notification`. */

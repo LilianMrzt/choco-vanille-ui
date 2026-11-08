@@ -1,10 +1,9 @@
+import { CIRCLE_ICON as CircleIcon, TRIANGLE_ALERT_ICON as TriangleAlertIcon } from '@constants/icon-registry'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { Callout } from '@components/feedback/callout'
 import CalloutIcon from '@components/feedback/callout/components/callout-icon/CalloutIcon.tsx'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 
 describe('CalloutIcon', () => {
     describe('default rendering', () => {

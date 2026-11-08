@@ -1,7 +1,5 @@
+import { BOLD_ICON as BoldIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { Toggle } from '@components/actions'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import type { ReactElement } from 'react'
 
 const ToggleIcons = (): ReactElement => (

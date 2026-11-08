@@ -1,9 +1,10 @@
-import SearchIcon from './assets/SearchIcon.svg?react'
-import TriangleAlertIcon from './assets/TriangleAlertIcon.svg?react'
-import CloseIcon from './assets/CloseIcon.svg?react'
+import type { IconifyIcon } from '@iconify/react/offline'
+import searchIcon from '@iconify-icons/lucide/search'
+import warningIcon from '@iconify-icons/lucide/triangle-alert'
+import closeIcon from '@iconify-icons/lucide/x'
 
 export const IconRegistry = {
-    search: SearchIcon,
-    warning: TriangleAlertIcon,
-    close: CloseIcon,
-} as const
+    searchIcon,
+    warningIcon,
+    closeIcon,
+} as const satisfies Readonly<Record<string, IconifyIcon>>

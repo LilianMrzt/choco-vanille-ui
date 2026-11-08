@@ -21,7 +21,7 @@ const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`onClick\` | No | Native mouse handler | Preserves the event and prevents native navigation when \`href\` is present, enabling client-side routers. |
 | \`label\` | No | \`string\` | Visible label. Omit it for icon-only items. |
 | Item \`aria-label\` / \`aria-labelledby\` | Conditional | \`string\` | Required on icon-only items to provide an accessible name. |
-| \`icon\` | Yes | \`IconComponent\` | Decorative icon shown in the navigation item. |
+| \`icon\` | Yes | \`IconifyIcon\` | Decorative icon shown in the navigation item. |
 | \`height\` | No | \`CSSProperties['height']\` | Overrides the height of an individual item control. |
 | \`aria-current\` | Automatic | \`"page"\` | Applied to the selected item. |
 | \`disabled\` | No | \`boolean\` | Removes an item from interaction while keeping it visible. |

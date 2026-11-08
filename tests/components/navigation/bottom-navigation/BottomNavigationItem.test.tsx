@@ -1,9 +1,9 @@
+import { CIRCLE_ICON as CircleIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { BottomNavigation } from '@components/navigation/bottom-navigation'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
 describe('BottomNavigationItem', () => {
     it('renders links and buttons with their labels and icons', () => {

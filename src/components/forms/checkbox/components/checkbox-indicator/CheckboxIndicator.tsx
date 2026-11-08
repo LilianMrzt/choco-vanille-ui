@@ -1,11 +1,10 @@
+import { CHECK_ICON as CheckIcon, MINUS_ICON as MinusIcon } from '@constants/icon-registry'
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import type { FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
 import { CHECKBOX_STYLES } from '@components/forms/checkbox/Checkbox.css.ts'
 import type { CheckboxIndicatorProps } from '@components/forms/checkbox/types'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import MinusIcon from '@resources/asset/MinusIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
 /**

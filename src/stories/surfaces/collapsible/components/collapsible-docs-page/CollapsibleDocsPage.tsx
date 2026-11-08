@@ -30,7 +30,7 @@ const CollapsibleDocsPage = (): ReactElement => (
 | \`disabled\` | No | \`boolean\` | Disables the trigger. |
 
 The trigger supports keyboard activation and exposes its expanded state.
-Supply your own SVG component for InfoIcon in the consumer example.
+Supply your own local Iconify data for InfoIcon in the consumer example.
 
 ## Subcomponents
 

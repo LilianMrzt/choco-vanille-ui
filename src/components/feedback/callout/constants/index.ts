@@ -1,13 +1,10 @@
-import CircleCheckIcon from '@resources/asset/CircleCheckIcon.svg?react'
-import CircleErrorIcon from '@resources/asset/CircleErrorIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
+import { CIRCLE_CHECK_ICON as CircleCheckIcon, CIRCLE_ERROR_ICON as CircleErrorIcon, INFO_ICON as InfoIcon, TRIANGLE_ALERT_ICON as TriangleAlertIcon } from '@constants/icon-registry'
 import type { CalloutVariant } from '@components/feedback/callout/types'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import type { IconButtonColor } from '@components/actions/icon-button/types/IconButton.types.ts'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
-export const VARIANT_TO_ICON: Record<CalloutVariant, IconComponent> = {
+export const VARIANT_TO_ICON: Record<CalloutVariant, IconifyIcon> = {
     info: InfoIcon,
     success: CircleCheckIcon,
     warning: TriangleAlertIcon,

@@ -1,5 +1,5 @@
+import InfoIcon from '@iconify-icons/lucide/info'
 import { Accordion } from '@choco-vanille/ui'
-import InfoIcon from './InfoIcon'
 
 <Accordion defaultValue={{{value}}}{{rootProps}}>
     <Accordion.Item value="item-1" disabled={{{firstDisabled}}}>

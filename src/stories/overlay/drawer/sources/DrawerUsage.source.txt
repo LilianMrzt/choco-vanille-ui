@@ -1,6 +1,6 @@
+import UserIcon from '@iconify-icons/lucide/user'
 import { useState } from 'react'
 import { Button, Drawer } from '@choco-vanille/ui'
-import UserIcon from './UserIcon'
 
 const Example = () => {
     const [open, setOpen] = useState(false)

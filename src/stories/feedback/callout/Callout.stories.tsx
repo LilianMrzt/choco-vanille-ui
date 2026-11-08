@@ -18,7 +18,7 @@ const meta = {
         layout: 'padded',
         docs: {
             description: {
-                component: 'A contextual message with a default icon, convenience props and compound slots. Supply your own icon components when using custom icons or actions.',
+                component: 'A contextual message with a default icon, convenience props and compound slots. Supply your own local Iconify data when using custom icons or actions.',
             },
             page: CalloutDocsPage,
             source: { type: 'dynamic', transform: createCalloutSource },

@@ -1,9 +1,9 @@
+import { CIRCLE_ICON as CircleIcon } from '@constants/icon-registry'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { SelectField } from '@components/forms/select'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
 const FRUIT_OPTIONS = [
     { value: 'apple', label: 'Apple' },

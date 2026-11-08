@@ -50,7 +50,7 @@ export const createControlledSource = <Props extends object>(options: Controlled
         return ` ${name}={${serialized}}`
     }).join('')
     const iconImport = hasIcon && options.icon
-        ? renderSource(iconImportTemplate, { name: options.icon.name }) + '\n'
+        ? renderSource(iconImportTemplate, { name: options.icon.name, module: options.icon.module }) + '\n'
         : ''
     const stateType = options.stateType ? `<${options.stateType}>` : ''
     const element = renderSource(options.children ? childrenTemplate : elementTemplate, {

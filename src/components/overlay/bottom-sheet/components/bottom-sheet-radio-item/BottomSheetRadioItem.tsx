@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { Radio } from '@base-ui/react/radio'
 import { memo, type FC } from 'react'
 
@@ -5,7 +6,6 @@ import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
 import { BOTTOM_SHEET_RADIO_ITEM_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/BottomSheetRadioItem.css.ts'
 import type { BottomSheetRadioItemProps } from '@components/overlay/bottom-sheet/components/bottom-sheet-radio-item/types'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
 /**

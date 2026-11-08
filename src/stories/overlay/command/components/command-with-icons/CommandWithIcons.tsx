@@ -1,6 +1,6 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { Command } from '@components/overlay/command'
 import { Button } from '@components/actions/button'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 /**
  * Renders command item icon variants.

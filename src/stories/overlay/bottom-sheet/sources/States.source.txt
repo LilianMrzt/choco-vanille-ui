@@ -1,6 +1,7 @@
+import CloseIcon from '@iconify-icons/lucide/x'
+import LinkIcon from '@iconify-icons/lucide/link'
+import TrashIcon from '@iconify-icons/lucide/trash-2'
 import { BottomSheet, Button } from '@choco-vanille/ui'
-// Replace these with icon components from your application.
-import { LinkIcon, TrashIcon, CloseIcon } from './icons'
 
 <BottomSheet>
   <BottomSheet.Trigger>

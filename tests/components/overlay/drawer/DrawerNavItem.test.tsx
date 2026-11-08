@@ -1,10 +1,9 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 describe('Drawer.NavItem', () => {
     it('renders an anchor with the label', () => {

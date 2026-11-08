@@ -1,3 +1,4 @@
+import { CHEVRON_LEFT_ICON as ChevronLeftIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { memo, type FC, type ReactElement, useCallback } from 'react'
 
 import { Button } from '@components/actions/button'
@@ -7,8 +8,6 @@ import { CALENDAR_CAPTION_STYLES } from '@components/forms/calendar/components/c
 import { useCalendarCaption } from '@components/forms/calendar/components/calendar-caption/hooks/useCalendarCaption.hook.ts'
 import type { CalendarCaptionProps } from '@components/forms/calendar/components/calendar-caption/types/CalendarCaption.props.ts'
 import Flex from '@components/layout/flex/Flex.tsx'
-import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { DEFAULT_CALENDAR_CAPTION_LABELS } from '@components/forms/calendar/components/calendar-caption/constants'
 
 /**

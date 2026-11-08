@@ -1,3 +1,4 @@
+import { BOLD_ICON as BoldIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -10,7 +11,6 @@ import {
     type IconButtonSize,
 } from '@components/actions/icon-button'
 import { BOX_STYLES } from '@components/layout/box'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 
 // Helper
 

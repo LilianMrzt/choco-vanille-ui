@@ -1,4 +1,4 @@
-import type { IconComponent, IconSize } from '@components/foundation/icon'
+import type { IconifyIcon, IconSize } from '@components/foundation/icon'
 import type {
     DrawerItemColor,
     DrawerItemVariant,
@@ -15,9 +15,9 @@ export type DrawerActionItemProps = Omit<
     /** Visible text label. */
     label: string;
     /** Icon rendered before the label. */
-    startIcon: IconComponent;
+    startIcon: IconifyIcon;
     /** Icon rendered after the label and trailing content. */
-    endIcon?: IconComponent;
+    endIcon?: IconifyIcon;
     /** Visual variant for the row. @default 'default' */
     variant?: DrawerItemVariant;
     /** Color intent for the row. @default 'primary' */

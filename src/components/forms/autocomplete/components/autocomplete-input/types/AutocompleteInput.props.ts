@@ -7,8 +7,8 @@ import type { TextFieldSize } from '@components/forms/text-field/types/TextField
 export type AutocompleteInputProps = Omit<BaseAutocomplete.Input.Props, 'size'> & {
     /** Placeholder shown when the input is empty. */
     placeholder?: string
-    /** Iconify icon name rendered on the left side of the input. */
-    startIcon?: IconComponent
+    /** local Iconify data rendered on the left side of the input. */
+    startIcon?: IconifyIcon
     /** Visual size of the input. */
     size?: TextFieldSize
     /** Whether the input should be styled in its error state. */
@@ -16,4 +16,4 @@ export type AutocompleteInputProps = Omit<BaseAutocomplete.Input.Props, 'size'> 
     /** CSS width of the input. */
     width?: React.CSSProperties['width']
 }
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'

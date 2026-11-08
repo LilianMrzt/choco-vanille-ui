@@ -1,8 +1,6 @@
+import { CIRCLE_ICON as CircleIcon, SEARCH_ICON as SearchIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { useState } from 'react'
 import { BottomNavigation } from '@components/navigation/bottom-navigation'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 /**
  * Renders the example.

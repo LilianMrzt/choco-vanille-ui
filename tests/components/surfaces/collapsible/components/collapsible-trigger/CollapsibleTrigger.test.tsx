@@ -1,10 +1,10 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Collapsible } from '@components/surfaces/collapsible'
 import CollapsibleTrigger from '@components/surfaces/collapsible/components/collapsible-trigger/CollapsibleTrigger.tsx'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 
 const buildTrigger = (
     triggerProps: React.ComponentProps<typeof CollapsibleTrigger> = {},

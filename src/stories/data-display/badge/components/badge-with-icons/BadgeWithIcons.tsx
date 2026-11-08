@@ -1,7 +1,6 @@
+import { CHECK_ICON as CheckIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { Badge } from '@components/data-display/badge'
 import { Flex } from '@components/layout/flex'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { type ReactElement } from 'react'
 
 const BadgeWithIcons = (): ReactElement => (

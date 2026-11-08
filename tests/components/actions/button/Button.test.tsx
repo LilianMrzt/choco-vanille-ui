@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -11,8 +12,6 @@ import {
 } from '@components/actions/button'
 import { BOX_STYLES } from '@components/layout/box'
 import { outlinedCompoundVariants } from '@components/actions/_shared/buttons/styles/variants/outlined.ts'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 

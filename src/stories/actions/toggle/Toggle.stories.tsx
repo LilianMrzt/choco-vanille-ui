@@ -1,9 +1,9 @@
+import { BOLD_ICON as BoldIcon } from '@constants/icon-registry'
 import ToggleSizes from '@stories/actions/toggle/components/toggle-sizes/ToggleSizes'
 import sizesSource from '@stories/actions/toggle/sources/ToggleSizes.source.txt?raw'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Toggle } from '@components/actions'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 import ToggleDocsPage from '@stories/actions/toggle/components/toggle-docs-page/ToggleDocsPage'
 import { ARG_TYPES, DEFAULT_ARGS } from '@stories/actions/toggle/constants'
 import type { ToggleStoryArgs } from '@stories/actions/toggle/types'

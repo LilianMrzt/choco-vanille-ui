@@ -6,7 +6,7 @@ export type ControlledSourceOptions<Props> = Readonly<{
     stateType?: string
     handler: string
     omitted?: readonly string[]
-    icon?: Readonly<{ prop: string; name: string }>
+    icon?: Readonly<{ prop: string; name: string; module: string }>
     children?: (args: Props) => string
     openState?: boolean
     additionalImports?: string

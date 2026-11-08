@@ -1,7 +1,7 @@
 export type TextStyleActionProps = {
     mark: 'bold' | 'italic' | 'underline' | 'strike'
-    icon: IconComponent
+    icon: IconifyIcon
     label: string
     onToggle: () => void
 }
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'

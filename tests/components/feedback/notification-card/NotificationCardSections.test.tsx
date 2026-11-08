@@ -1,10 +1,10 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { NotificationCard } from '@components/feedback/notification-card'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 
 describe('NotificationCard sections', () => {
     it('does not inject an icon into compound headers, even when the root has an icon prop', () => {

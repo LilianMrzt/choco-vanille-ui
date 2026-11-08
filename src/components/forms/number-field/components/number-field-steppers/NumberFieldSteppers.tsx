@@ -1,10 +1,9 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon, CHEVRON_UP_ICON as ChevronUpIcon } from '@constants/icon-registry'
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field'
 
 import { Icon } from '@components/foundation/icon'
 import { NUMBER_FIELD_STEPPERS_STYLES } from '@components/forms/number-field/components/number-field-steppers/styles/NumberFieldSteppers.css.ts'
 import type { NumberFieldSteppersProps } from '@components/forms/number-field/components/number-field-steppers/types'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
-import ChevronUpIcon from '@resources/asset/ChevronUpIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 
 const NumberFieldSteppers = ({ className }: NumberFieldSteppersProps) => (

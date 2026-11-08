@@ -20,13 +20,13 @@ previewed with **Storybook**.
 
 ```bash
 # npm
-npm install @choco-vanille/ui react react-dom
+npm install @choco-vanille/ui @iconify/react@^5.2.1 react react-dom
 
 # yarn
-yarn add @choco-vanille/ui react react-dom
+yarn add @choco-vanille/ui @iconify/react@^5.2.1 react react-dom
 
 # pnpm
-pnpm add @choco-vanille/ui react react-dom
+pnpm add @choco-vanille/ui @iconify/react@^5.2.1 react react-dom
 ```
 
 The package entry automatically loads its stylesheet. Then use components:
@@ -49,6 +49,60 @@ For integrations that require explicit CSS loading, the stylesheet remains
 available at `@choco-vanille/ui/styles.css`.
 
 ## Components
+
+### Icons
+
+All icon props accept trusted local `IconifyIcon` SVG data and render through
+`@iconify/react/offline`, without network requests or global registration.
+Install a data package for your chosen collection:
+
+```bash
+pnpm add @iconify-icons/lucide
+```
+
+```tsx
+// src/icons/index.ts
+import type { IconifyIcon } from '@iconify/react/offline';
+import searchIcon from '@iconify-icons/lucide/search';
+
+export const IconRegistry = {
+  searchIcon,
+} as const satisfies Readonly<Record<string, IconifyIcon>>;
+```
+
+Consumer projects should define one `IconRegistry` that exports all icons used
+by the project. Import individual Iconify data modules only in that registry,
+and use its entries in components. Keys use camelCase with the `Icon` suffix,
+such as `searchIcon` or `warningIcon`; do not import entire collections.
+
+```tsx
+import { Button, Icon, IconButton } from '@choco-vanille/ui';
+import { IconRegistry } from './icons';
+
+const Example = () => (
+  <>
+    <Icon icon={IconRegistry.searchIcon} size="md" aria-label="Search" />
+    <Button label="Search" startIcon={IconRegistry.searchIcon} />
+    <IconButton icon={IconRegistry.searchIcon} aria-label="Search" />
+  </>
+);
+```
+
+Icons are decorative by default. Provide `aria-label` or `aria-labelledby` for
+informative icons; icon-only controls own their accessible name. Sizes (`xs`
+through `2xl`, default `md`), `spin`, wrapper styling and CSS colors are unchanged.
+Refs point to the SVG. Monochrome icons inherit `currentColor`; multicolor icons
+can keep their fixed colors. The library's registry is internal; each consumer
+owns its registry. This convention requires no runtime provider or Iconify
+global registration. No SVG-to-React build plugin is required for icons.
+Only use trusted data, because SVG bodies are inserted as markup.
+Internal SVG identifiers are instance-scoped for SSR and hydration. Supplied
+SVG IDs must be nonempty and unique after replacing hyphens with underscores.
+
+**Breaking change:** replace SVG React components and the former `IconComponent`
+type with `IconifyIcon` data, including leading/trailing and custom variant
+icons. String icon names are not accepted. `SvgImage` retains its separate SVG
+React component contract.
 
 ### Box and Typography
 

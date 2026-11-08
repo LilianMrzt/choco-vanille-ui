@@ -1,6 +1,6 @@
 import type { FC, HTMLAttributes, RefAttributes } from 'react'
 import type { Avatar as BaseAvatar } from '@base-ui/react/avatar'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type {
     AVATAR_COLORS,
     AVATAR_SHAPES,
@@ -41,7 +41,7 @@ export type AvatarProps = Readonly<HTMLAttributes<HTMLSpanElement> & RefAttribut
     /** Fallback initials, uppercased and limited to two characters. */
     initials?: string
     /** Decorative SVG fallback when initials are absent or empty; defaults to a user icon. */
-    icon?: IconComponent
+    icon?: IconifyIcon
     /** Avatar size. Defaults to `md`. */
     size?: AvatarSize
     /** Root shape. Defaults to `circle`. */

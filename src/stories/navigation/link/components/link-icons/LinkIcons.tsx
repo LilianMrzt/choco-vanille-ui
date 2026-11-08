@@ -1,9 +1,8 @@
+import { CHEVRON_LEFT_ICON as ChevronLeftIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import type { ReactElement } from 'react'
 
 import { Grid } from '@components/layout/grid'
 import { Link } from '@components/navigation/link'
-import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 /**
  * Displays links with leading and trailing icons.

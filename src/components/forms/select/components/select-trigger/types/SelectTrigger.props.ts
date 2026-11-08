@@ -7,8 +7,8 @@ import type { TextFieldSize } from '@components/forms/text-field/types/TextField
 export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     /** Placeholder shown when no option is selected. */
     placeholder?: string
-    /** Iconify icon name rendered on the left side of the trigger. */
-    startIcon?: IconComponent
+    /** local Iconify data rendered on the left side of the trigger. */
+    startIcon?: IconifyIcon
     /** Visual size of the trigger. Defaults to `md`. */
     size?: TextFieldSize
     /** Whether the trigger should be styled in its error state. */
@@ -16,4 +16,4 @@ export type SelectTriggerProps = BaseSelect.Trigger.Props & {
     /** CSS width of the trigger. */
     width?: React.CSSProperties['width']
 }
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'

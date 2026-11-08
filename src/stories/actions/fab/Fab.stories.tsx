@@ -24,7 +24,7 @@ const meta = {
         docs: {
             page: FabDocsPage,
             description: {
-                component: 'A floating action button for a primary action. It can display an icon alone or an icon with a visible label. Supply your own SVG component for SearchIcon in the examples.',
+                component: 'A floating action button for a primary action. It can display an icon alone or an icon with a visible label. Supply your own local Iconify data for SearchIcon in the examples.',
             },
             source: {
                 type: 'dynamic',

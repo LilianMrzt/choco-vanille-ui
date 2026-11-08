@@ -1,3 +1,4 @@
+import { CLOSE_ICON as CloseIcon } from '@constants/icon-registry'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import { memo, type FC, useEffect } from 'react'
@@ -7,7 +8,6 @@ import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import type { PanelHeaderProps } from '@components/overlay/panel/components/panel-header/types'
 import { PANEL_HEADER_STYLES } from '@components/overlay/panel/components/panel-header/PanelHeader.css.ts'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { usePanelContext } from '@components/overlay/panel/context/Panel.context.ts'
 
 /**

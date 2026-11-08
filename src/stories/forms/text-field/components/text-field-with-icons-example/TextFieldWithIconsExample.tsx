@@ -1,5 +1,5 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { TextField } from '@components/forms/text-field'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { ReactElement } from 'react'
 
 /**

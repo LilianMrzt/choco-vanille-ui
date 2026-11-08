@@ -1,7 +1,8 @@
+import LinkIcon from '@iconify-icons/lucide/link'
+import TrashIcon from '@iconify-icons/lucide/trash-2'
+import UploadIcon from '@iconify-icons/lucide/upload'
 import { useState } from 'react'
 import { BottomSheet, Button } from '@choco-vanille/ui'
-// Replace these with icon components from your application.
-import { LinkIcon, UploadIcon, TrashIcon } from './icons'
 
 const Example = () => {
   const [open, setOpen] = useState({{open}})

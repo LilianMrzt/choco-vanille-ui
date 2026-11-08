@@ -1,6 +1,6 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { describe, expect, it } from 'vitest'
 
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import { createCollapsibleSource } from '@stories/surfaces/collapsible/utils/create-collapsible-source/createCollapsibleSource.utils'
 
 describe('createCollapsibleSource', () => {

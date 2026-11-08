@@ -38,7 +38,7 @@ const meta = {
             page: CardDocsPage,
             description: {
                 component:
-                    'A surface container for related content. Compose its header, body and footer to structure the content and actions. Supply your own SVG component for SearchIcon in the example.',
+                    'A surface container for related content. Compose its header, body and footer to structure the content and actions. Supply your own local Iconify data for SearchIcon in the example.',
             },
             source: {
                 type: 'dynamic',

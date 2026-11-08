@@ -24,11 +24,11 @@ export type CommandItemProps = Omit<
     /**
      * Iconify icon identifier rendered at the leading edge.
      */
-    icon?: IconComponent
+    icon?: IconifyIcon
     /**
      * Keyboard shortcut hint rendered at the trailing edge.
      * Purely decorative — not a functional key binding.
      */
     shortcut?: string
 }
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'

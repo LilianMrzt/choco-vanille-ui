@@ -1,7 +1,7 @@
 import type * as React from 'react'
 import type { CSSProperties, HTMLAttributes, RefAttributes } from 'react'
 
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type {
     ImagePickerLabels,
     ImagePickerObjectFit,
@@ -59,7 +59,7 @@ export type ImagePickerProps = Omit<
      */
     isMobile?: boolean
     /** Icon shown in the empty state. @default the bundled image-plus icon */
-    icon?: IconComponent
+    icon?: IconifyIcon
     /** Id applied to the native file input. An id is generated when omitted. */
     inputId?: string
     /** Name applied to the native file input for native form submission. */

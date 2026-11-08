@@ -1,4 +1,4 @@
-import SearchIcon from './SearchIcon'
+import SearchIcon from '@iconify-icons/lucide/search'
 import { Flex, Icon } from '@choco-vanille/ui'
 
 <Flex alignItems="center" gap={12}>

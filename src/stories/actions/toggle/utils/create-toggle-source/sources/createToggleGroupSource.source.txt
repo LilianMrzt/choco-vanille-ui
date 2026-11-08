@@ -1,3 +1,6 @@
+import BoldIcon from '@iconify-icons/lucide/bold'
+import ChevronRightIcon from '@iconify-icons/lucide/chevron-right'
+import UploadIcon from '@iconify-icons/lucide/upload'
 import { useState } from 'react'
 import { ToggleGroup } from '@choco-vanille/ui'
 

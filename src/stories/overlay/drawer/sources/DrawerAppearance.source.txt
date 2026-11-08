@@ -1,6 +1,6 @@
+import UserIcon from '@iconify-icons/lucide/user'
 import { Drawer } from '@choco-vanille/ui'
 // Supply an icon component from your application.
-import { UserIcon } from './icons'
 
 <section style={{ width: '100%', minWidth: 0 }}>
     <h3>Variants and colors</h3>

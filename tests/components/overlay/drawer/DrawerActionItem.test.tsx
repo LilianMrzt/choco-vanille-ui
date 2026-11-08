@@ -1,10 +1,9 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, CLOSE_ICON as CloseIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Drawer } from '@components/overlay/drawer'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 
 describe('Drawer.ActionItem', () => {
     it('renders a button with the label', () => {

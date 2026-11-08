@@ -1,9 +1,7 @@
+import { LINK_ICON as LinkIcon, TRASH_ICON as TrashIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { useArgs } from 'storybook/preview-api'
 import { Button } from '@components/actions/button'
 import { BottomSheet } from '@components/overlay/bottom-sheet'
-import LinkIcon from '@resources/asset/LinkIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import type { BottomSheetPlaygroundArgs } from '@stories/overlay/bottom-sheet/types'
 
 /**

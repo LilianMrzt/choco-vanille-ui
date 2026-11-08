@@ -1,6 +1,5 @@
+import { CHECK_ICON as CheckIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { type BadgeColor, type BadgeProps, type BadgeSize, type BadgeVariant } from '@components/data-display/badge'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import type { Meta } from '@storybook/react-vite'
 import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
@@ -27,8 +26,8 @@ export const ARG_TYPES = {
     size: { control: 'select', options: SIZES, description: 'Label and icon size preset.', table: { defaultValue: { summary: 'md' } } },
     borderRadius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'], description: 'Inherited radius token.', table: { defaultValue: { summary: '4' } } },
     width: { control: 'text', description: 'Inherited CSS width; omitted by default.' },
-    startIcon: { control: 'select', options: ['None', 'Check'], mapping: { None: undefined, Check: CheckIcon }, description: 'Decorative leading SVG component; the control maps a demonstration icon.' },
-    endIcon: { control: 'select', options: ['None', 'Chevron'], mapping: { None: undefined, Chevron: ChevronRightIcon }, description: 'Decorative trailing SVG component; the control maps a demonstration icon.' },
+    startIcon: { control: 'select', options: ['None', 'Check'], mapping: { None: undefined, Check: CheckIcon }, description: 'Decorative leading local Iconify data; the control maps a demonstration icon.' },
+    endIcon: { control: 'select', options: ['None', 'Chevron'], mapping: { None: undefined, Chevron: ChevronRightIcon }, description: 'Decorative trailing local Iconify data; the control maps a demonstration icon.' },
     className: { control: false, description: 'Consumer class merged with the badge classes.' },
     style: { control: 'object', description: 'Consumer CSS overrides; takes precedence over layout props and recipe colors.' },
     ref: { control: false, description: 'Ref to the outer span; not editable in Controls.' },

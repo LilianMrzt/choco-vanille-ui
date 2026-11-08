@@ -167,9 +167,9 @@ describe('ImagePicker', () => {
     )
 
     it('renders a custom empty-state icon', () => {
-        const CustomIcon = () => <svg data-testid={'custom-icon'} />
+        const customIcon = { body: '<path data-testid="custom-icon" d="M0 0h16v16H0z"/>' }
 
-        render(<ImagePicker label={'Profile picture'} icon={CustomIcon} />)
+        render(<ImagePicker label={'Profile picture'} icon={customIcon} />)
 
         expect(screen.getByTestId('custom-icon')).toBeTruthy()
     })

@@ -1,3 +1,4 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import {
     Children,
     isValidElement,
@@ -7,7 +8,6 @@ import {
 } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import BreadcrumbsItem from '@components/navigation/breadcrumbs/components/breadcrumbs-item/BreadcrumbsItem.tsx'
 import type { BreadcrumbsItemProps } from '@components/navigation/breadcrumbs/components/breadcrumbs-item/types'

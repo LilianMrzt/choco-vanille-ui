@@ -1,5 +1,7 @@
+import CircleIcon from '@iconify-icons/lucide/circle'
+import SearchIcon from '@iconify-icons/lucide/search'
+import UserIcon from '@iconify-icons/lucide/user'
 import { BottomNavigation } from '@choco-vanille/ui'
-import { CircleIcon, SearchIcon, UserIcon } from './icons'
 
 const ItemHeights = () => (
     <>

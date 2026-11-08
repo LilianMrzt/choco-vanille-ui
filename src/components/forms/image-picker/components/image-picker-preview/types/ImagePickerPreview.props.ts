@@ -1,6 +1,6 @@
 import type { CSSProperties, DragEvent, HTMLAttributes } from 'react'
 
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type {
     ImagePickerObjectFit,
     ImagePickerShape,
@@ -20,7 +20,7 @@ export type ImagePickerPreviewProps = {
     hasError: boolean
     hasValue: boolean
     height?: CSSProperties['height']
-    icon?: IconComponent
+    icon?: IconifyIcon
     isDragging: boolean
     isMobile: boolean
     objectFit: ImagePickerObjectFit

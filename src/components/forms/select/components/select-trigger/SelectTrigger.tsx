@@ -1,8 +1,8 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon } from '@constants/icon-registry'
 import { Select as BaseSelect } from '@base-ui/react/select'
 import { type CSSProperties, memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 import { Box } from '@components/layout/box'
 import { TextFieldStartIcon } from '@components/forms/text-field/components'
 import {

@@ -1,11 +1,8 @@
+import { BOLD_ICON as BoldIcon, ITALIC_ICON as ItalicIcon, STRIKETHROUGH_ICON as StrikethroughIcon, UNDERLINE_ICON as UnderlineIcon } from '@constants/icon-registry'
 import { Toggle } from '@components/actions/toggle'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import type { TextStyleActionProps } from '@components/forms/rich-text-editor/components/text-style-group/types/TextStyleAction.props.ts'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
-import ItalicIcon from '@resources/asset/ItalicIcon.svg?react'
-import StrikethroughIcon from '@resources/asset/StrikethroughIcon.svg?react'
-import UnderlineIcon from '@resources/asset/UnderlineIcon.svg?react'
 
 const TextStyleAction = ({
     mark,

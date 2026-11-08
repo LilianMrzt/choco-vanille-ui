@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -11,8 +12,6 @@ import {
     type ToggleSize,
 } from '@components/actions/toggle'
 import { BOX_STYLES } from '@components/layout/box'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 // Helper
 

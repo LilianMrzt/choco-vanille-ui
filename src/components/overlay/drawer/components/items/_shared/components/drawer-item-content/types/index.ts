@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react'
 
-import type { IconComponent, IconSize } from '@components/foundation/icon'
+import type { IconifyIcon, IconSize } from '@components/foundation/icon'
 
 /** Props for `DrawerItemContent`. */
 export type DrawerItemContentProps = {
     /** Visible text label. */
     label: string
     /** Icon rendered before the label. */
-    startIcon: IconComponent
+    startIcon: IconifyIcon
     /** Icon rendered after the label and trailing content. */
-    endIcon?: IconComponent
+    endIcon?: IconifyIcon
     /** Optional icon rendered at the end of the row. */
     endChevronIcon?: boolean
     /** Whether the drawer item is expanded. */

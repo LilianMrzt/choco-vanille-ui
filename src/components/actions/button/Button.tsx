@@ -20,8 +20,8 @@ import { BUTTON_SIZES } from '@components/actions/_shared/buttons/constants'
  * @param props.size - Height preset: sm 28px, md 36px (default), lg 44px at a 16px root.
  * @param props.className - Additional element class.
  * @param props.label - Visible text and accessible name.
- * @param props.startIcon - Decorative leading SVG component.
- * @param props.endIcon - Decorative trailing SVG component.
+ * @param props.startIcon - Decorative leading local Iconify data.
+ * @param props.endIcon - Decorative trailing local Iconify data.
  * @param props.active - Whether the button has an active visual state.
  * @param props.margin - Margin token.
  * @param props.marginTop - Top margin token.

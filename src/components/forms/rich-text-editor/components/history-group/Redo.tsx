@@ -1,7 +1,7 @@
+import { REDO_ICON as RedoIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import RedoIcon from '@resources/asset/RedoIcon.svg?react'
 
 const Redo = () => {
     const { editor, disabled, labels } = useRichTextEditorContext()

@@ -1,3 +1,4 @@
+import { IMAGE_PLUS_ICON as ImagePlusIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { Icon } from '@components/foundation/icon'
 import { Typography } from '@components/foundation/typography'
@@ -5,8 +6,6 @@ import { Image } from '@components/data-display/image'
 import { IMAGE_PICKER_SHAPES } from '@components/forms/image-picker/constants'
 import type { ImagePickerPreviewProps } from '@components/forms/image-picker/components/image-picker-preview/types/ImagePickerPreview.props.ts'
 import { IMAGE_PICKER_STYLES } from '@components/forms/image-picker/styles/ImagePicker.css.ts'
-import ImagePlusIcon from '@resources/asset/ImagePlusIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
 import { memo } from 'react'
 
 export const ImagePickerPreview = memo<ImagePickerPreviewProps>(({

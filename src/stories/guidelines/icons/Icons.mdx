@@ -11,14 +11,18 @@ import { Meta, Source, Subtitle, Title } from '@storybook/addon-docs/blocks';
 
 <Subtitle>
   How to define and correctly use icons in your project with the{' '}
-  <code>Icon</code> component and local SVG components.
+  <code>Icon</code> component and local Iconify data.
 </Subtitle>
 
 ---
 
 ## 1 — The `Icon` component
 
-The `Icon` component renders a locally bundled SVG component passed to the `icon` prop. The library keeps its internal icon registry private; consumers provide the SVG component they need.
+The `Icon` component renders trusted `IconifyIcon` data passed to the `icon` prop
+using `@iconify/react/offline`. Icons are bundled locally: there are no API
+requests, remote icon names or required global registrations. The library's
+internal registry is private. Consumer projects should define and export their
+own `IconRegistry`, then pass its entries to the component:
 
 <Source
     language="tsx"
@@ -27,11 +31,18 @@ The `Icon` component renders a locally bundled SVG component passed to the `icon
 
 ---
 
-## 2 — Providing local SVG components
+## 2 — Defining the consumer's `IconRegistry`
 
-Import the SVG components you want to use and keep a registry in your consumer
-project. The registry used by the library itself is internal and is not part of
-the public package API.
+Each consumer project should have a single `IconRegistry` that exports all the
+icons used by that project. Import individual Iconify data modules in this
+registry, not throughout application components. Components should import
+`IconRegistry` and reference an entry such as `IconRegistry.searchIcon`.
+
+The registry belongs to the consumer project; it is not imported from
+`@choco-vanille/ui`. Centralize only the icons the project actually uses, not
+an entire Iconify collection. This is a project organization convention:
+`Icon` still receives an `IconifyIcon` object, without a provider or a global
+Iconify registration.
 
 This gives you:
 
@@ -48,7 +59,7 @@ This gives you:
         🔄 <strong>Maintainability</strong>
       </td>
       <td>
-        SVG assets can be replaced without changing the <code>Icon</code> API.
+        Replace an icon's data in the registry without changing component usage.
       </td>
     </tr>
     <tr>
@@ -56,7 +67,7 @@ This gives you:
         🔒 <strong>Type-safety</strong>
       </td>
       <td>
-        The <code>icon</code> prop accepts SVG React components.
+        Registry values are checked against <code>IconifyIcon</code>, and its keys are inferred.
       </td>
     </tr>
     <tr>
@@ -64,29 +75,32 @@ This gives you:
         📖 <strong>Consistency</strong>
       </td>
       <td>
-        All icons use the same <code>Icon</code> accessibility boundary.
+        Components share named registry entries and the same <code>Icon</code> accessibility boundary.
       </td>
     </tr>
     <tr>
       <td>
         🔍 <strong>Traceability</strong>
       </td>
-      <td>The SVG source remains easy to locate.</td>
+      <td>All project icon imports have a single, explicit entry point.</td>
     </tr>
   </tbody>
 </table>
 
 ### Using local icons in your components
 
-Keep the registry in the consumer project, for example in
-`src/icons/registry.ts`:
+Define and export the registry in the consumer project, for example in
+`src/icons/index.ts`. Use `as const satisfies Readonly<Record<string,
+IconifyIcon>>` to validate the data while preserving the exact keys:
 
 <Source
     language="tsx"
     code={iconsExample2}
 />
 
-Then import that registry from the consumer project, not from the UI kit:
+Then import that registry from the consumer project, not from the UI kit.
+The example uses the project's configured `@/` alias; use the appropriate import
+path for your project:
 
 <Source
     language="tsx"
@@ -112,7 +126,7 @@ Then import that registry from the consumer project, not from the UI kit:
         <strong>Decorative</strong> icon (accompanied by a text label)
       </td>
       <td>
-        Omit <code>aria-label</code>; <code>aria-hidden="true"</code> is set
+        Omit accessible labels; <code>aria-hidden="true"</code> is set
         automatically.
       </td>
     </tr>
@@ -121,19 +135,22 @@ Then import that registry from the consumer project, not from the UI kit:
         <strong>Standalone</strong> meaningful icon
       </td>
       <td>
-        Pass <code>aria-label</code> with an explicit description.
+        Pass <code>aria-label</code> or <code>aria-labelledby</code> with an explicit description.
       </td>
     </tr>
   </tbody>
 </table>
 
-### SVG setup
+### Offline setup
 
-Configure your project to transform SVG files into React components with
-`vite-plugin-svgr`. Without this Vite plugin, the `?react` imports used by the
-registry will not work.
+Install the shared Iconify React peer dependency and a data package for the
+collection you use. No SVG-to-React plugin is needed for icons.
 
 <Source language="bash" code={iconsExample4} />
+
+The data contract is available from `@iconify/react/offline` and from the
+library's public API. Trusted custom icon data should also be added to the
+consumer's `IconRegistry`, rather than defined inside rendering components:
 
 <Source
     language="ts"
@@ -142,15 +159,33 @@ registry will not work.
 
 ### Choosing icons
 
-Use the local SVG that matches the component's meaning. Library components use
-their private registry internally; consumer components should use the
-consumer-owned registry instead.
+Use the icon that matches the component's meaning. Any Iconify collection or
+trusted custom `IconifyIcon` object is supported; do not import an entire
+collection when you only need individual icons. Custom SVG bodies are inserted
+as markup: never use untrusted user input as icon data. Monochrome artwork uses
+`currentColor`; multicolor artwork can retain its fixed colors.
+
+The same data contract applies to `IconButton.icon`, `Button.startIcon`,
+`Button.endIcon` and the other component icon props. Refs point to the SVG.
+The existing size presets, spin animation, wrapper styling and CSS colors remain
+available. Instance IDs keep masks, gradients and clip paths separate and
+stable during hydration. If you supply `id`, use a nonempty value that remains
+unique after hyphens are replaced with underscores.
+
+**Breaking change:** replace React SVG components and `IconComponent` types with
+local `IconifyIcon` data. String icon names are not accepted.
 
 ### Naming keys
 
 ```
-✅  search, chevronRight, user, imagePlus
+✅  searchIcon, warningIcon, chevronRightIcon, userIcon
 ❌  SearchIcon, search-icon, SEARCH_ICON, icon_search
 ```
 
-Use **camelCase** and **semantic names** (what the icon represents) rather than descriptive names (its shape).
+Use **camelCase** keys with the **`Icon` suffix**, and name them by purpose.
+Keep the key stable when replacing the artwork, for example
+`warningIcon` even if the underlying collection or shape changes.
+
+Use the same registry for every icon prop, not only `Icon.icon`:
+`Button.startIcon`, `Button.endIcon`, `IconButton.icon` and custom feedback
+icons should also receive entries from the consumer's `IconRegistry`.

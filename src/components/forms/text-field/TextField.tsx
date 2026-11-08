@@ -1,3 +1,4 @@
+import { EYE_ICON as EyeIcon, EYE_OFF_ICON as EyeOffIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import {
@@ -10,8 +11,6 @@ import { fieldSizeToActionSize } from '@components/forms/text-field/constants'
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldCompound } from '@components/forms/text-field/types'
 import { Flex } from '@components/layout/flex'
-import EyeIcon from '@resources/asset/EyeIcon.svg?react'
-import EyeOffIcon from '@resources/asset/EyeOffIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { memo, useCallback } from 'react'
 import type { TextFieldProps } from '@/components'
@@ -19,7 +18,7 @@ import type { TextFieldProps } from '@/components'
 /**
   * A styled text input built with a native `<input>` and selectable label text.
   *
-  * - `startIcon` - Iconify icon name rendered on the left.
+  * - `startIcon` - local Iconify data rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
   * - `type="password"` - auto-shows an eye-toggle `IconButton` (overrides `endAction`).
   * - `width` - overrides the default `100%` wrapper width.
@@ -30,9 +29,9 @@ import type { TextFieldProps } from '@/components'
   *
   * @example
   * ```tsx
-  * <TextField label="Email" startIcon="lucide:mail" placeholder="you@example.com" />
+  * <TextField label="Email" startIcon={mailIcon} placeholder="you@example.com" />
   * <TextField label="Password" type="password" />
-  * <TextField label="Search" endAction={<IconButton icon="lucide:search" aria-label="Search" variant="ghost" color="primary" />} />
+  * <TextField label="Search" endAction={<IconButton icon={searchIcon} aria-label="Search" variant="ghost" color="primary" />} />
   * <TextField label="Amount" width="12rem" />
   * ```
   */

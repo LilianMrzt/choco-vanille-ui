@@ -1,5 +1,5 @@
 import type * as React from 'react'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type { ButtonLayoutProps } from '@components/actions/_shared/buttons/types'
 
 import type {
@@ -14,8 +14,8 @@ export type IconButtonProps = Omit<
 > &
   (
     | {
-        /** SVG component rendered inside the button. */
-        icon: IconComponent
+        /** local Iconify data rendered inside the button. */
+        icon: IconifyIcon
         children?: never
       }
     | {

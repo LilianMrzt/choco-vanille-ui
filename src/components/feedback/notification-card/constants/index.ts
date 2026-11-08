@@ -1,10 +1,7 @@
+import { CIRCLE_CHECK_ICON as CircleCheckIcon, CIRCLE_ERROR_ICON as CircleErrorIcon, INFO_ICON as InfoIcon, TRIANGLE_ALERT_ICON as TriangleAlertIcon } from '@constants/icon-registry'
 import type { NotificationCardVariant } from '@components/feedback/notification-card/types'
-import CircleCheckIcon from '@resources/asset/CircleCheckIcon.svg?react'
-import CircleErrorIcon from '@resources/asset/CircleErrorIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 export const NOTIFICATION_CARD_VARIANTS = {
     info: 'info',
@@ -13,7 +10,7 @@ export const NOTIFICATION_CARD_VARIANTS = {
     danger: 'danger',
 } as const
 
-export const VARIANT_TO_ICON: Record<NotificationCardVariant, IconComponent> = {
+export const VARIANT_TO_ICON: Record<NotificationCardVariant, IconifyIcon> = {
     info: InfoIcon,
     success: CircleCheckIcon,
     warning: TriangleAlertIcon,

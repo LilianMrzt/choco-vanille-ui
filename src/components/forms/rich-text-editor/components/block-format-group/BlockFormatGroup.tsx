@@ -1,13 +1,10 @@
+import { CODE_ICON as CodeIcon, MINUS_ICON as MinusIcon, PILCROW_ICON as PilcrowIcon, QUOTE_ICON as QuoteIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
-import CodeIcon from '@resources/asset/CodeIcon.svg?react'
-import MinusIcon from '@resources/asset/MinusIcon.svg?react'
-import PilcrowIcon from '@resources/asset/PilcrowIcon.svg?react'
-import QuoteIcon from '@resources/asset/QuoteIcon.svg?react'
 import { BLOCK_FORMAT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/block-format-group/styles/BlockFormatGroup.css.ts'
 import type { BlockFormatGroupProps } from '@components/forms/rich-text-editor/components/block-format-group/types/BlockFormatGroup.props.ts'
 

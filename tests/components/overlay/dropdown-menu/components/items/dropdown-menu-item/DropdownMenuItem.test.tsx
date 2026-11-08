@@ -1,10 +1,9 @@
+import { BOLD_ICON as BoldIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 
 describe('DropdownMenuItem', () => {
     it('renders an actionable menu item', () => {

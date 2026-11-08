@@ -1,3 +1,4 @@
+import { TRIANGLE_ALERT_ICON as TriangleAlertIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
@@ -8,7 +9,6 @@ import {
     type CalloutVariant,
 } from '@components/feedback/callout'
 import { CALLOUT_VARIANT_STYLES } from '@components/feedback/callout/Callout.css.ts'
-import TriangleAlertIcon from '@resources/asset/TriangleAlertIcon.svg?react'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 
 const getFirstChild = (container: HTMLElement) =>

@@ -1,8 +1,8 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { SelectField } from '@components/forms/select'
 import { md } from '@stories/_shared/utils/markdown'
 import usageSource from '@stories/forms/select/sources/SelectUsage.source.txt?raw'
 import { fn } from 'storybook/test'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { TextFieldSize } from '@components/forms/text-field'
 
 export const SIZES: TextFieldSize[] = [

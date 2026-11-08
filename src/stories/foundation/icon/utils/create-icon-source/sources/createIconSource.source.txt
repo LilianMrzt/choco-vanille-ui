@@ -1,3 +1,4 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { Icon } from '@choco-vanille/ui'
 
 <Icon icon={SearchIcon}{{attributes}} />

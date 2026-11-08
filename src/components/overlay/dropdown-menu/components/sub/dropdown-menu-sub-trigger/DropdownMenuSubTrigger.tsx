@@ -1,3 +1,4 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { memo, type FC } from 'react'
 
@@ -6,7 +7,6 @@ import { DROPDOWN_MENU_SUB_TRIGGER_STYLES } from '@components/overlay/dropdown-m
 import { DROPDOWN_MENU_ITEM_STYLES } from '@components/overlay/dropdown-menu/components/_shared/item.css.ts'
 import { Flex } from '@components/layout/flex'
 import { Icon } from '@components/foundation/icon'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Typography } from '@components/foundation/typography'
 import type { DropdownMenuSubTriggerProps } from '@components/overlay/dropdown-menu/components/sub/dropdown-menu-sub-trigger/types'
 

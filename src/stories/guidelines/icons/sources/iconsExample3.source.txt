@@ -1,10 +1,11 @@
-import { Icon } from '@choco-vanille/ui'
-import { IconRegistry } from '@/icons/registry'
+import { Button, Icon, IconButton } from '@choco-vanille/ui'
+import { IconRegistry } from '@/icons'
 
 const Example = () => (
     <>
-        <Icon icon={IconRegistry.search} />
-        <Icon icon={IconRegistry.warning} size="lg" aria-label="Warning" />
-        <Icon icon={IconRegistry.close} spin />
+        <Icon icon={IconRegistry.searchIcon} size="md" aria-label="Search" />
+        <Icon icon={IconRegistry.warningIcon} size="lg" aria-label="Warning" />
+        <Button label="Search" startIcon={IconRegistry.searchIcon} />
+        <IconButton icon={IconRegistry.closeIcon} aria-label="Close" />
     </>
 )

@@ -1,3 +1,4 @@
+import { CLOSE_ICON as CloseIcon } from '@constants/icon-registry'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { memo, type FC } from 'react'
 
@@ -6,7 +7,6 @@ import { Flex } from '@components/layout/flex'
 import { Typography } from '@components/foundation/typography'
 import DialogClose from '@components/overlay/dialog/components/dialog-close/DialogClose.tsx'
 import { DIALOG_HEADER_STYLES } from '@components/overlay/dialog/components/dialog-header/DialogHeader.css.ts'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import type { DialogHeaderProps } from '@components/overlay/dialog/components/dialog-header/types'
 
 /**

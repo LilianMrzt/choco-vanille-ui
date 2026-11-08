@@ -1,5 +1,5 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { TextField } from '@choco-vanille/ui'
-import SearchIcon from './SearchIcon.svg?react'
 
 export const WithIconsExample = () => (
     <TextField label={'Search'} startIcon={SearchIcon} />

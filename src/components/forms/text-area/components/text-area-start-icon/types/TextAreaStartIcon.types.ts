@@ -1,6 +1,6 @@
 import type { TextAreaSize } from '@components'
 
 export type TextAreaStartIconProps = {
-    icon: import('@components/foundation/icon').IconComponent
+    icon: import('@components/foundation/icon').IconifyIcon
     size: NonNullable<TextAreaSize>
 }

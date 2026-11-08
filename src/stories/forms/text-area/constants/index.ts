@@ -1,8 +1,8 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { TextArea, type TextAreaSize } from '@components/forms/text-area'
 import { md } from '@stories/_shared/utils/markdown'
 import consumerSource1 from '@stories/forms/text-area/sources/TextAreaUsage1.source.txt?raw'
 import { fn } from 'storybook/test'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 
 export const SIZES: TextAreaSize[] = ['sm', 'md', 'lg']
 export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `

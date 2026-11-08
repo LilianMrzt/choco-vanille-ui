@@ -1,5 +1,5 @@
+import UserIcon from '@iconify-icons/lucide/user'
 import { ImagePicker } from '@choco-vanille/ui'
-import UserIcon from './UserIcon.svg?react'
 
 
 

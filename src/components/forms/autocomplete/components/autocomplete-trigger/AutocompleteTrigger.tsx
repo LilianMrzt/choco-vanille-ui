@@ -1,8 +1,8 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon } from '@constants/icon-registry'
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { AUTOCOMPLETE_TRIGGER_STYLES } from '@components/forms/autocomplete/components/autocomplete-trigger/styles/AutocompleteTrigger.css.ts'
 import type { AutocompleteTriggerProps } from '@components/forms/autocomplete/components/autocomplete-trigger/types/AutocompleteTrigger.props.ts'

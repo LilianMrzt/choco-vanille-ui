@@ -1,11 +1,8 @@
+import { ALIGN_CENTER_ICON as AlignCenterIcon, ALIGN_JUSTIFY_ICON as AlignJustifyIcon, ALIGN_LEFT_ICON as AlignLeftIcon, ALIGN_RIGHT_ICON as AlignRightIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { Tooltip } from '@components/overlay/tooltip'
 import { DropdownMenu } from '@components/overlay/dropdown-menu'
 import { useState } from 'react'
-import AlignCenterIcon from '@resources/asset/AlignCenterIcon.svg?react'
-import AlignJustifyIcon from '@resources/asset/AlignJustifyIcon.svg?react'
-import AlignLeftIcon from '@resources/asset/AlignLeftIcon.svg?react'
-import AlignRightIcon from '@resources/asset/AlignRightIcon.svg?react'
 
 import { useRichTextEditorContext } from '@components/forms/rich-text-editor/context/RichTextEditor.context.ts'
 import { ALIGNMENT_GROUP_STYLES } from '@components/forms/rich-text-editor/components/alignment-group/styles/AlignmentGroup.css.ts'

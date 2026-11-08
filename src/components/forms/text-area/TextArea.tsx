@@ -16,7 +16,7 @@ import type { TextAreaProps } from '@/components'
 /**
   * A styled textarea built with a native `<textarea>` and selectable label text.
   *
-  * - `startIcon` - Iconify icon name rendered on the left.
+  * - `startIcon` - local Iconify data rendered on the left.
   * - `endAction` - any ReactNode (e.g. `<IconButton>`) rendered on the right.
   * - `width` - overrides the default `100%` wrapper width.
   * - `rows` - sets the native number of visible text lines.
@@ -31,8 +31,8 @@ import type { TextAreaProps } from '@/components'
   * @example
   * ```tsx
   * <TextArea label="Description" placeholder="Tell us more…" rows={4} />
-  * <TextArea label="Comment" startIcon="lucide:message-square" minRows={2} maxRows={6} />
-  * <TextArea label="Bio" endAction={<IconButton icon="lucide:x" aria-label="Clear" variant="ghost" color="primary" />} />
+  * <TextArea label="Comment" startIcon={messageIcon} minRows={2} maxRows={6} />
+  * <TextArea label="Bio" endAction={<IconButton icon={closeIcon} aria-label="Clear" variant="ghost" color="primary" />} />
   * <TextArea label="Notes" width="24rem" />
   * ```
   */

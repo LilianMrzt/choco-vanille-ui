@@ -1,6 +1,4 @@
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import UploadIcon from '@resources/asset/UploadIcon.svg?react'
+import { BOLD_ICON as BoldIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon, UPLOAD_ICON as UploadIcon } from '@constants/icon-registry'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
 import groupSource from '@stories/actions/toggle/utils/create-toggle-source/sources/createToggleGroupSource.source.txt?raw'
@@ -35,16 +33,16 @@ export const createToggleSource = (_source: string, { args }: Readonly<{ args: T
     ].join('')
 
     const icons = [
-        (args.icon === BoldIcon || args.startIcon === BoldIcon) && 'BoldIcon',
-        args.startIcon === UploadIcon && 'UploadIcon',
-        args.endIcon === ChevronRightIcon && 'ChevronRightIcon',
-    ].filter((name): name is string => typeof name === 'string')
+        (args.icon === BoldIcon || args.startIcon === BoldIcon) && { name: 'BoldIcon', module: '@iconify-icons/lucide/bold' },
+        args.startIcon === UploadIcon && { name: 'UploadIcon', module: '@iconify-icons/lucide/upload' },
+        args.endIcon === ChevronRightIcon && { name: 'ChevronRightIcon', module: '@iconify-icons/lucide/chevron-right' },
+    ].filter((icon): icon is { name: string; module: string } => typeof icon === 'object')
 
     return renderSource(template, {
         attributes,
         stateImport: args.pressed === undefined ? '' : stateImport.trim() + '\n',
         stateDeclaration: args.pressed === undefined ? '' : '    ' + renderSource(stateTemplate, { pressed: JSON.stringify(args.pressed) }),
-        iconImports: icons.map(name => renderSource(iconImportTemplate, { name })).join('\n'),
+        iconImports: icons.map(icon => renderSource(iconImportTemplate, icon)).join('\n'),
     })
 }
 

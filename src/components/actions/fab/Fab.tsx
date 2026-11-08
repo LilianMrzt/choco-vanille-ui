@@ -15,7 +15,7 @@ import type { FC } from 'react'
  * @param props.color - Semantic color intent; defaults to primary.
  * @param props.size - Size preset; defaults to md.
  * @param props.position - Viewport position; defaults to bottom-end.
- * @param props.icon - Decorative SVG component.
+ * @param props.icon - Decorative local Iconify data.
  * @param props.className - Additional class for the button.
  * @returns The floating action button.
  * @example

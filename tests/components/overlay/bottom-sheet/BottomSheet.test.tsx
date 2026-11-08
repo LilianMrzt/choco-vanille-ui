@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon, TRASH_ICON as TrashIcon } from '@constants/icon-registry'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
@@ -6,8 +7,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { Button } from '@components/actions/button'
 import { BottomSheet } from '@components/overlay/bottom-sheet'
 import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/BottomSheetClose.css.ts'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 
 const ControlledRadioGroup = ({ onValueChange }: { onValueChange: (value: unknown) => void }) => {
     const [value, setValue] = useState<unknown>('light')

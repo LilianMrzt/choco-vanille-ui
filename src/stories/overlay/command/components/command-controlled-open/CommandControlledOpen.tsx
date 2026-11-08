@@ -1,7 +1,7 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { useArgs } from 'storybook/preview-api'
 import { Button } from '@components/actions/button'
 import { Command } from '@components/overlay/command'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { CommandPlaygroundArgs } from '@stories/overlay/command/types'
 
 /**

@@ -37,7 +37,7 @@ export const createNotificationCardSource = (_source: string, { args }: Readonly
 
     return renderSource(sourceTemplate, {
         buttonImport: args.showActions ? ', Button' : '',
-        iconNote: args.showIcon && args.showCustomIcon ? renderSource(iconImportTemplate, { name: 'InfoIcon' }).trimEnd() : '',
+        iconNote: args.showIcon && args.showCustomIcon ? renderSource(iconImportTemplate, { name: 'InfoIcon', module: '@iconify-icons/lucide/info' }).trimEnd() : '',
         variant: JSON.stringify(args.variant),
         role: JSON.stringify(args.role),
         children,

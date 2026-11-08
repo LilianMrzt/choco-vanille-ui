@@ -29,7 +29,7 @@ export const ARG_TYPES = {
     actionLabel: { control: 'text', table: { category: 'Compound: Action' } },
     onActionClick: { control: false, action: 'action clicked', description: 'Callback for the compound Action button.', table: { category: 'Compound: Action' } },
     children: { control: false, description: 'Custom React content; slot controls compose this Playground.' },
-    icon: { control: false, description: 'Consumer-owned SVG component; showCustomIcon demonstrates the Icon slot.' },
+    icon: { control: false, description: 'Consumer-owned local Iconify data; showCustomIcon demonstrates the Icon slot.' },
     className: { control: false, description: 'Additional root class; supplied by the consumer.' },
     style: { control: false, description: 'Native root style overrides; supplied by the consumer.' },
     ref: { control: false, description: 'Ref to the root div; cannot be edited in Controls.' },

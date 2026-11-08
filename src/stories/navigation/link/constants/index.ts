@@ -1,10 +1,9 @@
+import { CHEVRON_LEFT_ICON as ChevronLeftIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import type { Meta } from '@storybook/react-vite'
 
 import type { IconSize } from '@components/foundation/icon'
 import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
 import type { LinkProps } from '@components/navigation/link'
-import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { lightColors } from '@theme/tokens/colors/lightColors.const.ts'
 import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 

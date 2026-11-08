@@ -1,6 +1,6 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { Icon } from '@components/foundation/icon'
 import { Flex } from '@components/layout/flex'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { SIZES } from '@stories/foundation/icon/constants'
 import type { ReactElement } from 'react'
 

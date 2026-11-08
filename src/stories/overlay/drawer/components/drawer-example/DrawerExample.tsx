@@ -1,14 +1,10 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, CLOSE_ICON as CloseIcon, INFO_ICON as InfoIcon, SEARCH_ICON as SearchIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { useArgs } from 'storybook/preview-api'
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
 import { Badge } from '@components/data-display/badge'
 import { Flex } from '@components/layout/flex'
 import { Drawer } from '@components/overlay/drawer'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 import type { DrawerPlaygroundArgs } from '@stories/overlay/drawer/types'
 
 /**

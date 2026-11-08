@@ -30,7 +30,7 @@ export const ARG_TYPES = {
     src: { control: 'text', description: 'Image URL; empty URLs show the fallback.' },
     alt: { control: 'text', description: 'Image alternative; defaults to an empty decorative alternative.' },
     initials: { control: 'text', description: 'Uppercased fallback, limited to two characters.' },
-    icon: { control: false, description: 'SVG component; not serializable. Defaults to a decorative user icon.' },
+    icon: { control: false, description: 'local Iconify data; not serializable. Defaults to a decorative user icon.' },
     size: { control: 'select', options: SIZES, description: 'Avatar size.', table: { defaultValue: { summary: 'md' } } },
     shape: { control: 'select', options: SHAPES, description: 'Root outline.', table: { defaultValue: { summary: 'circle' } } },
     color: { control: 'select', options: COLORS, description: 'Fallback semantic intent.', table: { defaultValue: { summary: 'primary' } } },

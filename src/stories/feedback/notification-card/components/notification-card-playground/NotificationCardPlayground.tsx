@@ -1,9 +1,9 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import type { FC } from 'react'
 
 import { Button } from '@components/actions/button'
 import { NotificationCard } from '@components/feedback/notification-card'
 import { Box } from '@components/layout/box'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { NotificationCardStoryArgs } from '@stories/feedback/notification-card/types'
 
 /**

@@ -1,7 +1,7 @@
+import { BOLD_ICON as BoldIcon } from '@constants/icon-registry'
 import { describe, expect, it } from 'vitest'
 import ts from 'typescript'
 
-import BoldIcon from '@resources/asset/BoldIcon.svg?react'
 import { createToggleGroupSource, createToggleSource } from '@stories/actions/toggle/utils/create-toggle-source/createToggleSource.utils'
 
 describe('Toggle story consumer sources', () => {

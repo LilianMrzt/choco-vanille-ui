@@ -1,6 +1,6 @@
+import SearchIcon from '@iconify-icons/lucide/search'
 import { IconButton } from '@choco-vanille/ui'
 import { Flex, Typography } from '@choco-vanille/ui'
-import SearchIcon from './SearchIcon'
 
 const Example = () => (
     <Flex flexDirection="column" gap={24} maxWidth="100%" width="min(40rem, calc(100vw - 32px))">

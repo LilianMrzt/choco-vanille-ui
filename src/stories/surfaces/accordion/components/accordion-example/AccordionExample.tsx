@@ -1,6 +1,6 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import type { ReactElement } from 'react'
 import { Accordion } from '@components/surfaces/accordion'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { AccordionStoryArgs } from '../../types'
 
 /**

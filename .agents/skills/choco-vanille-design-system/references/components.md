@@ -200,7 +200,18 @@ Component.Content
   decorative icons must be hidden from assistive technology.
 - Use the library Icon contract: decorative by default, informative when
   given an accessible name. Named controls own their name; their icons remain
-  decorative. Do not assume an icon-library integration not present in the code.
+  decorative. Every icon prop receives trusted local `IconifyIcon` data, not
+  a React SVG component or remote icon name. Render through
+  `@iconify/react/offline` without network loading or global registration.
+  The internal icon registry uses individual data imports. Consumer projects
+  should centralize all their used icons in an exported `IconRegistry`, with
+  camelCase keys ending in `Icon` (for example `searchIcon`). Application
+  components use entries such as `IconRegistry.searchIcon`, including for
+  leading/trailing and feedback icons. The consumer registry remains separate
+  from the private library registry and requires no runtime registration.
+  Refs target the SVG, and internal
+  SVG identifiers must stay instance-scoped and stable through hydration.
+  Keep `SvgImage`'s separate SVG React component contract.
 - Preserve theme scope in portals rather than assuming they inherit variables
   from the trigger's container. Do not modify the document theme merely to style
   a portal; preserve an explicitly documented document-level provider contract.

@@ -1,4 +1,4 @@
-import SearchIcon from './SearchIcon'
+import SearchIcon from '@iconify-icons/lucide/search'
 import { Fab } from '@choco-vanille/ui'
 
 <Fab icon={SearchIcon} aria-label="Disabled" disabled />

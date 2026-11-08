@@ -1,7 +1,7 @@
 import type * as React from 'react'
 import type { Toggle as BaseToggle } from '@base-ui/react/toggle'
 import type { ButtonColorShared, ButtonLayoutProps, ButtonSizeShared } from '@components/actions/_shared/buttons/types'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type { Radius } from '@theme/tokens/radius/types/index.ts'
 
 /** Supported toggle treatments. */
@@ -18,14 +18,14 @@ export type ToggleLabelContent = Readonly<{
     label: string
     icon?: never
     'aria-label'?: string
-    startIcon?: IconComponent
-    endIcon?: IconComponent
+    startIcon?: IconifyIcon
+    endIcon?: IconifyIcon
 }>
 
 /** Icon-only mode requires an accessible name. */
 export type ToggleIconContent = Readonly<{
     label?: never
-    icon: IconComponent
+    icon: IconifyIcon
     'aria-label': string
     startIcon?: never
     endIcon?: never

@@ -1,6 +1,6 @@
+import InfoIcon from '@iconify-icons/lucide/info'
+import CloseIcon from '@iconify-icons/lucide/x'
 import { IconButton, TextArea } from '@choco-vanille/ui'
-import InfoIcon from './InfoIcon.svg?react'
-import CloseIcon from './CloseIcon.svg?react'
 
 export const Example = () => (
     <>

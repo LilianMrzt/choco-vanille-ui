@@ -1,10 +1,7 @@
+import { CALENDAR_ICON as CalendarIcon, CIRCLE_ICON as CircleIcon, SEARCH_ICON as SearchIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { type MouseEventHandler } from 'react'
 import { useArgs } from 'storybook/preview-api'
 import { BottomNavigation } from '@components/navigation/bottom-navigation'
-import CalendarIcon from '@resources/asset/CalendarIcon.svg?react'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 import type { BottomNavigationStoryArgs } from '@stories/navigation/bottom-navigation/types'
 
 /**

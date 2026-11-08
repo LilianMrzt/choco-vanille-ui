@@ -1,3 +1,4 @@
+import { USER_ICON as UserIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
@@ -17,7 +18,6 @@ import {
     type AvatarStatusProps,
 } from '@components/data-display/avatar'
 import { AvatarGroup } from '@components/data-display/avatar-group'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 const getFirstChild = (container: HTMLElement) =>
     container.firstElementChild as HTMLElement

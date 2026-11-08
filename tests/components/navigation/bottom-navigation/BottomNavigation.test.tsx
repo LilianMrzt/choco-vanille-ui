@@ -1,3 +1,4 @@
+import { CIRCLE_ICON as CircleIcon, SEARCH_ICON as SearchIcon, USER_ICON as UserIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createRef } from 'react'
@@ -7,9 +8,6 @@ import {
     BOTTOM_NAVIGATION_STYLES,
     BottomNavigation,
 } from '@components/navigation/bottom-navigation'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 
 type TestNavigationProps = Omit<
   React.ComponentProps<typeof BottomNavigation>,

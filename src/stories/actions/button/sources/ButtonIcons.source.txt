@@ -1,6 +1,6 @@
-import TrashIcon from './TrashIcon'
-import ChevronRightIcon from './ChevronRightIcon'
-import UploadIcon from './UploadIcon'
+import TrashIcon from '@iconify-icons/lucide/trash-2'
+import ChevronRightIcon from '@iconify-icons/lucide/chevron-right'
+import UploadIcon from '@iconify-icons/lucide/upload'
 import { Button } from '@choco-vanille/ui'
 
 const Example = () => (

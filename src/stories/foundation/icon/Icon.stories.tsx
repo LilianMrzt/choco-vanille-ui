@@ -18,7 +18,7 @@ const meta = {
             page: IconDocsPage,
             source: { type: 'dynamic', transform: createIconSource },
             description: {
-                component: 'Displays a locally bundled SVG with token sizes and CSS colors. Icons are decorative unless given an accessible name.',
+                component: 'Displays trusted local Iconify data as an SVG using @iconify/react/offline, with token sizes and CSS colors. Icons are decorative unless given an accessible name.',
             },
         },
     },

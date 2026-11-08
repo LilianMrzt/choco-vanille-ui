@@ -1,10 +1,10 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import Select from '@components/forms/select/Select.tsx'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 describe('SelectTrigger', () => {
     describe('default rendering', () => {

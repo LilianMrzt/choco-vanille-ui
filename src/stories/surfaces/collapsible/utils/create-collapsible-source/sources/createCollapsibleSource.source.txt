@@ -1,5 +1,5 @@
+import InfoIcon from '@iconify-icons/lucide/info'
 import { Collapsible } from '@choco-vanille/ui'
-import InfoIcon from './InfoIcon'
 
 <Collapsible{{rootProps}}>
   <Collapsible.Trigger{{triggerProps}} />

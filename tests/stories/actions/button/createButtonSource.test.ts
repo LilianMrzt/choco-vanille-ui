@@ -1,6 +1,6 @@
+import { TRASH_ICON as TrashIcon } from '@constants/icon-registry'
 import { describe, expect, it } from 'vitest'
 
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 import { createButtonSource } from '@stories/actions/button/utils/create-button-source/createButtonSource.utils'
 
 describe('createButtonSource', () => {

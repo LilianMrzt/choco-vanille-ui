@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Popover } from '@components/overlay/popover'
+import { TRASH_ICON, CHEVRON_RIGHT_ICON } from '@constants/icon-registry'
 
 describe('PopoverItem', () => {
     it('renders an actionable button with the item label', () => {
@@ -49,8 +50,8 @@ describe('PopoverItem', () => {
                 <Popover.Content>
                     <Popover.Item
                         label={'Delete'}
-                        startIcon={() => null}
-                        endIcon={() => null}
+                        startIcon={TRASH_ICON}
+                        endIcon={CHEVRON_RIGHT_ICON}
                         shortcut={'⌘D'}
                         active
                         destructive

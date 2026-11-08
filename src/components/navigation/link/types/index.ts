@@ -1,4 +1,4 @@
-import type { IconComponent, IconSize } from '@components/foundation/icon'
+import type { IconifyIcon, IconSize } from '@components/foundation/icon'
 import type { TypographySize, TypographyWeight } from '@components/foundation/typography'
 import type { BoxProps } from '@components/layout/box/types'
 import type { ThemeColorValue } from '@theme'
@@ -17,9 +17,9 @@ export type LinkProps = Readonly<
         /** Theme color at rest; interaction states use the semantic link colors. */
         color?: LinkColor
         /** Decorative icon before the label. */
-        startIcon?: IconComponent
+        startIcon?: IconifyIcon
         /** Decorative icon after the label. */
-        endIcon?: IconComponent
+        endIcon?: IconifyIcon
         /** Label font size. Defaults to `16`. */
         fontSize?: TypographySize
         /** Label font weight. Defaults to `normal`. */

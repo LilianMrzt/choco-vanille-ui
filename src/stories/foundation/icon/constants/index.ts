@@ -1,7 +1,7 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { IconProps, IconSize } from '@components/foundation/icon'
 import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
 import type { Meta } from '@storybook/react-vite'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import type { CSSProperties } from 'react'
 
 export const SIZES: IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl']
@@ -17,7 +17,7 @@ export const DEFAULT_ARGS = {
 } satisfies NonNullable<Meta<IconProps>['args']>
 
 export const ARG_TYPES = {
-    icon: { control: false, description: 'Locally bundled SVG component.' },
+    icon: { control: false, description: 'Trusted local IconifyIcon data rendered with @iconify/react/offline.' },
     size: { control: 'select', options: SIZES, description: 'SVG size preset.', table: { defaultValue: { summary: 'md' } } },
     spin: { control: 'boolean', description: 'Continuously rotate the SVG.' },
     color: { control: 'color', description: 'CSS SVG color; inherits when omitted. SVG style.color takes precedence.' },
@@ -28,7 +28,13 @@ export const ARG_TYPES = {
     borderStyle: { control: 'select', options: BORDER_STYLES, description: 'CSS wrapper border style.' },
     borderRadius: { control: 'select', options: BORDER_RADIUSES, description: 'Wrapper radius token.' },
     'aria-label': { control: 'text', description: 'Names an informative icon; otherwise the SVG is decorative.' },
+    'aria-labelledby': { control: 'text', description: 'References the accessible label of an informative icon.' },
+    'aria-hidden': { control: 'boolean', description: 'Overrides automatic decorative hiding.' },
+    role: { control: false, description: 'Native SVG role; defaults to presentation for decorative icons and img for named icons.' },
+    id: { control: 'text', description: 'Nonempty SVG ID, unique after hyphens become underscores; generated when omitted.' },
+    width: { control: 'text', description: 'Native SVG width; the size preset and inline style take precedence in CSS.' },
+    height: { control: 'text', description: 'Native SVG height; the size preset and inline style take precedence in CSS.' },
     className: { control: 'text', description: 'Additional SVG class.' },
     style: { control: 'object', description: 'SVG style overrides.' },
-    ref: { control: false, description: 'Ref forwarded to the SVG component.' },
+    ref: { control: false, description: 'Ref forwarded to the SVG element.' },
 } satisfies NonNullable<Meta<IconProps>['argTypes']>

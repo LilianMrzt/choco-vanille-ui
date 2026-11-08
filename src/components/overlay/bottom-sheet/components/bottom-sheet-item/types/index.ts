@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, RefAttributes } from 'react'
 
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 /** Props for `BottomSheet.Item`. */
 export type BottomSheetItemProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>
@@ -9,9 +9,9 @@ export type BottomSheetItemProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>,
         /** Text label of the item. */
         label: string
         /** Icon rendered before the label. */
-        startIcon?: IconComponent
+        startIcon?: IconifyIcon
         /** Icon rendered after the label. */
-        endIcon?: IconComponent
+        endIcon?: IconifyIcon
         /** Renders the item with a destructive (danger) visual style. */
         destructive?: boolean
         /**

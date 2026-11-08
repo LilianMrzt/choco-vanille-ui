@@ -1,8 +1,6 @@
+import { CLOSE_ICON as CloseIcon, LINK_ICON as LinkIcon, TRASH_ICON as TrashIcon } from '@constants/icon-registry'
 import { Button } from '@components/actions/button'
 import { BottomSheet } from '@components/overlay/bottom-sheet'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import LinkIcon from '@resources/asset/LinkIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 
 /**
  * Renders the example.

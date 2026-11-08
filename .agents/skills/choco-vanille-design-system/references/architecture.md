@@ -99,6 +99,11 @@ Les composants publics vivent dans
 - Toute dépendance runtime doit être déclarée et son externalisation cohérente
   avec le build. Déclarer en peer dependency ce qui doit être partagé avec
   l'application et vérifier sa compatibilité réelle.
+- Le rendu des icônes utilise la peer dependency `@iconify/react`, via son
+  entrée `offline` uniquement. Les données internes vivent dans le registre
+  privé `src/constants/icon-registry/index.ts`, avec des imports individuels
+  pour conserver l'exclusion des icônes inutilisées. Ne pas exposer ce registre
+  ni charger une collection complète ou une API distante.
 - Préserver les sorties ESM et CommonJS actuelles, les déclarations correspondant
   à l'API JavaScript, les chemins des exports et la liste des fichiers publiés.
   Ne distribuer ni tests, ni stories, ni configuration locale.

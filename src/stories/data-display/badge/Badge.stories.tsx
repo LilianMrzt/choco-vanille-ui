@@ -44,7 +44,7 @@ export const Playground: Story = {
 export const WithIcons: Story = {
     parameters: {
         docs: {
-            description: { story: 'Supply your own SVG components for CheckIcon and ChevronRightIcon. Both icons remain decorative.' },
+            description: { story: 'Supply your own local Iconify data for CheckIcon and ChevronRightIcon. Both icons remain decorative.' },
             ...storySource(badgeWithIconsSource),
         },
     },

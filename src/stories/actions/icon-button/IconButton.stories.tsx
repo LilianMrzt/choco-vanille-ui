@@ -22,7 +22,7 @@ const meta = {
             page: IconButtonDocsPage,
             source: { type: 'dynamic', transform: createIconButtonSource },
             description: {
-                component: 'An icon-only action button for toolbars and compact controls. Supply your own SVG component and an accessible name describing the action.',
+                component: 'An icon-only action button for toolbars and compact controls. Supply your own local Iconify data and an accessible name describing the action.',
             },
         },
     },

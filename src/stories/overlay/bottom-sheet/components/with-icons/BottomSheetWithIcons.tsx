@@ -1,8 +1,6 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, IMAGE_ICON as ImageIcon, LINK_ICON as LinkIcon } from '@constants/icon-registry'
 import { Button } from '@components/actions/button'
 import { BottomSheet } from '@components/overlay/bottom-sheet'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import ImageIcon from '@resources/asset/ImageIcon.svg?react'
-import LinkIcon from '@resources/asset/LinkIcon.svg?react'
 
 /**
  * Renders the example.

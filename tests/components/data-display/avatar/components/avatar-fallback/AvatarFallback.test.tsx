@@ -1,9 +1,9 @@
+import { CIRCLE_ICON as CircleIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Avatar, type AvatarFallbackProps } from '@components/data-display/avatar'
-import CircleIcon from '@resources/asset/CircleIcon.svg?react'
 
 const { Root: AvatarRoot, Fallback: AvatarFallback } = Avatar
 

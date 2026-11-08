@@ -1,3 +1,4 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { Meta } from '@storybook/react-vite'
 import { IconButton } from '@/components/actions/icon-button'
 import type {
@@ -5,7 +6,6 @@ import type {
     IconButtonSize,
     IconButtonVariant,
 } from '@components/actions/icon-button'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { md } from '@stories/_shared/utils/markdown'
 import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
 
@@ -56,7 +56,7 @@ export const COLORS: IconButtonColor[] = [
 ]
 export const VARIANTS: IconButtonVariant[] = ['contained', 'outlined', 'ghost']
 export const ARG_TYPES = {
-    icon: { control: false, description: 'Consumer-owned SVG component; this example uses SearchIcon.' },
+    icon: { control: false, description: 'Consumer-owned local Iconify data; this example uses SearchIcon.' },
     'aria-label': { control: 'text' },
     variant: { control: 'select', options: VARIANTS },
     color: { control: 'select', options: COLORS },

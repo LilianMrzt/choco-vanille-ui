@@ -1,9 +1,8 @@
+import { CHEVRON_LEFT_ICON as ChevronLeftIcon, CHEVRON_RIGHT_ICON as ChevronRightIcon } from '@constants/icon-registry'
 import type { FC } from 'react'
 
 import { Button } from '@components/actions/button'
 import { IconButton } from '@components/actions/icon-button'
-import ChevronLeftIcon from '@resources/asset/ChevronLeftIcon.svg?react'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
 import { Flex } from '@components/layout/flex'
 import { usePagination } from '@components/navigation/pagination/hooks/usePagination.hook.ts'
 import { PAGINATION_STYLES } from '@components/navigation/pagination/Pagination.css.ts'

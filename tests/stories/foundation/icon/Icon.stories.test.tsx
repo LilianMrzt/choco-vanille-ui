@@ -15,12 +15,16 @@ describe('Icon stories', () => {
 
     it('generates consumer source from current controls', () => {
         const source = meta.parameters.docs.source.transform('', {
-            args: { ...meta.args, color: 'red', padding: 8, 'aria-label': 'Search' },
+            args: { ...meta.args, color: 'red', padding: 8, 'aria-label': 'Search', 'aria-labelledby': 'search-label', id: 'search-icon', width: '24' },
         })
 
         expect(source).toContain('color={"red"}')
         expect(source).toContain('padding={8}')
         expect(source).toContain('aria-label={"Search"}')
+        expect(source).toContain('aria-labelledby={"search-label"}')
+        expect(source).toContain('id={"search-icon"}')
+        expect(source).toContain('width={"24"}')
+        expect(source).toContain("from '@iconify-icons/lucide/search'")
         expect(source).not.toContain('undefined')
     })
 

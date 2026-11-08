@@ -1,7 +1,7 @@
 import type { Ref } from 'react'
 
 import type { BADGE_COLORS, BADGE_SIZES, BADGE_VARIANTS } from '@components/data-display/badge/constants'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type { BoxProps } from '@components/layout/box'
 
 /** Visual treatments supported by Badge. */
@@ -25,8 +25,8 @@ export type BadgeProps = Readonly<Omit<BoxProps, 'as' | 'children' | 'color' | '
     color?: BadgeColor
     /** Size preset. Defaults to `md`. */
     size?: BadgeSize
-    /** Decorative SVG component displayed before the text. */
-    startIcon?: IconComponent
-    /** Decorative SVG component displayed after the text. */
-    endIcon?: IconComponent
+    /** Decorative local Iconify data displayed before the text. */
+    startIcon?: IconifyIcon
+    /** Decorative local Iconify data displayed after the text. */
+    endIcon?: IconifyIcon
 }>

@@ -1,6 +1,6 @@
 import type * as React from 'react'
 import type { Select as BaseSelect } from '@base-ui/react/select'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 import type { TextFieldSize } from '@components/forms/text-field/types/TextField.types.ts'
 
@@ -34,8 +34,8 @@ export type SelectFieldProps = {
     helperText?: string
     /** Error message rendered below the trigger. When set, the trigger is styled in its error state. */
     error?: string
-    /** Iconify icon name rendered on the left side of the trigger. */
-    startIcon?: IconComponent
+    /** local Iconify data rendered on the left side of the trigger. */
+    startIcon?: IconifyIcon
     /** Placeholder shown when no option is selected. */
     placeholder?: string
     /** Visual size of the trigger. */

@@ -24,6 +24,26 @@ describe('Storybook consumer source programs', () => {
                 if (typeof code !== 'string') {throw new TypeError('Consumer source must be text')}
                 expect(code).toMatch(/from ['"]@choco-vanille\/ui['"]/)
                 expect(code).not.toMatch(/@(?:components|stories|resources|theme)\//)
+                if (!filename.includes('/svg-image/')) {
+                    expect(code).not.toMatch(/import\s+[^;\n]*Icon[^;\n]*from ['"]\./)
+                    expect(code).not.toContain('.svg?react')
+                }
+                const sourceFile = ts.createSourceFile('Example.tsx', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)
+                const importNames: string[] = []
+                const nodes: ts.Node[] = [sourceFile]
+                while (nodes.length > 0) {
+                    const node = nodes.pop()!
+                    if (ts.isImportDeclaration(node)) {
+                        expect(node.parent).toBe(sourceFile)
+                        const clause = node.importClause
+                        if (clause?.name) { importNames.push(clause.name.text) }
+                        if (clause?.namedBindings && ts.isNamedImports(clause.namedBindings)) {
+                            importNames.push(...clause.namedBindings.elements.map(binding => binding.name.text))
+                        }
+                    }
+                    nodes.push(...node.getChildren(sourceFile))
+                }
+                expect(new Set(importNames).size).toBe(importNames.length)
                 const result = ts.transpileModule(code, {
                     compilerOptions: { jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.Latest },
                     reportDiagnostics: true,

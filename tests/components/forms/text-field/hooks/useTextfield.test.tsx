@@ -1,9 +1,9 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { describe, expect, it, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 
 import { useTextField } from '@components/forms/text-field/hooks/useTextfield.hook.tsx'
 import type { TextFieldProps } from '@components/forms/text-field/types/TextField.props.ts'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 
 describe('useTextField', () => {
     it('uses the provided id when available', () => {

@@ -1,6 +1,5 @@
+import { CLOSE_ICON as CloseIcon, INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { Callout } from '@components/feedback/callout'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 import type { CalloutStoryArgs } from '@stories/feedback/callout/types'
 import type { ReactElement } from 'react'
 const CalloutPlayground = ({ title, description, showCustomIcon, showTitle, showDescription, showAction, actionLabel, onActionClick, ...props }: CalloutStoryArgs): ReactElement => (

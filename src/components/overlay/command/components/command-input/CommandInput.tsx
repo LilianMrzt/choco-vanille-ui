@@ -1,9 +1,8 @@
+import { CLOSE_ICON as CloseIcon, SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { memo, type FC } from 'react'
 
 import { IconButton } from '@components/actions/icon-button'
 import { Icon } from '@components/foundation/icon'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { useCommandContext } from '@components/overlay/command/context/Command.context.ts'
 import { COMMAND_INPUT_STYLES } from '@components/overlay/command/components/command-input/CommandInput.css.ts'
 import type { CommandInputProps } from '@components/overlay/command/components/command-input/types'

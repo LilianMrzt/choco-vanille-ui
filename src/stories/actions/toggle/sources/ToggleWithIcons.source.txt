@@ -1,7 +1,7 @@
+import BoldIcon from '@iconify-icons/lucide/bold'
+import ChevronRightIcon from '@iconify-icons/lucide/chevron-right'
+import UploadIcon from '@iconify-icons/lucide/upload'
 import { Toggle } from '@choco-vanille/ui'
-import BoldIcon from './BoldIcon'
-import ChevronRightIcon from './ChevronRightIcon'
-import UploadIcon from './UploadIcon'
 
 
 const Example = () => (

@@ -1,5 +1,5 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon } from '@constants/icon-registry'
 import { Icon } from '@components/foundation/icon'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { type FC } from 'react'
 

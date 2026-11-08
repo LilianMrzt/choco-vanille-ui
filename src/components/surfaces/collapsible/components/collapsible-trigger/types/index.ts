@@ -1,7 +1,7 @@
 import type { Collapsible } from '@base-ui/react/collapsible'
 
 import type { DataAttributes } from '@/types/DataAttributes.ts'
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 
 /** Props for the collapsible trigger. */
 export type CollapsibleTriggerProps = Readonly<Omit<
@@ -9,7 +9,7 @@ export type CollapsibleTriggerProps = Readonly<Omit<
   'children' | 'render'
 > & {
   label?: string;
-  startIcon?: IconComponent;
-  endIcon?: IconComponent;
+  startIcon?: IconifyIcon;
+  endIcon?: IconifyIcon;
   children?: Collapsible.Trigger.Props['children'];
 } & DataAttributes>

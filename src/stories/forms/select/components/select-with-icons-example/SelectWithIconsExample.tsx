@@ -1,5 +1,5 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { SelectField } from '@components/forms/select'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { FRUIT_OPTIONS } from '@stories/forms/select/constants'
 import type { ReactElement } from 'react'
 

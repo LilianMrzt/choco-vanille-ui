@@ -1,10 +1,10 @@
+import { CHEVRON_DOWN_ICON as ChevronDownIcon } from '@constants/icon-registry'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import Accordion from '@components/surfaces/accordion/Accordion.tsx'
 import AccordionTrigger from '@components/surfaces/accordion/components/accordion-trigger/AccordionTrigger.tsx'
-import ChevronDownIcon from '@resources/asset/ChevronDownIcon.svg?react'
 
 /** Helper: render a minimal accordion with a single item using AccordionTrigger. */
 const buildTrigger = (

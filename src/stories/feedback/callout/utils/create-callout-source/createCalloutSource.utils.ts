@@ -30,8 +30,8 @@ export const createCalloutSource = (_source: string, { args }: Readonly<{ args: 
         role: args.role === undefined ? 'undefined' : JSON.stringify(args.role),
         children,
         iconImports: [
-            args.showCustomIcon && renderSource(iconImportTemplate, { name: 'InfoIcon' }).trimEnd(),
-            args.showAction && renderSource(iconImportTemplate, { name: 'CloseIcon' }).trimEnd(),
+            args.showCustomIcon && renderSource(iconImportTemplate, { name: 'InfoIcon', module: '@iconify-icons/lucide/info' }).trimEnd(),
+            args.showAction && renderSource(iconImportTemplate, { name: 'CloseIcon', module: '@iconify-icons/lucide/x' }).trimEnd(),
         ].filter(Boolean).join('\n'),
     })
 }

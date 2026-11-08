@@ -1,5 +1,5 @@
+import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import { AutocompleteField } from '@components/forms/autocomplete'
-import SearchIcon from '@resources/asset/SearchIcon.svg?react'
 import { FRUIT_OPTIONS } from '@stories/forms/autocomplete/constants'
 import type { ReactElement } from 'react'
 

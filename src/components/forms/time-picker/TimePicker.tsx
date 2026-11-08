@@ -1,3 +1,4 @@
+import { CLOCK_ICON as ClockIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import { TextField } from '@components/forms/text-field'
 import TimePickerPanel from '@components/forms/time-picker/components/time-picker-panel/TimePickerPanel.tsx'
@@ -6,7 +7,6 @@ import { useTimePicker } from '@components/forms/time-picker/hooks/useTimePicker
 import { TIME_PICKER_STYLES } from '@components/forms/time-picker/styles/TimePicker.css.ts'
 import type { TimePickerProps } from '@components/forms/time-picker/types/TimePicker.props.ts'
 import { Popover } from '@components/overlay/popover'
-import ClockIcon from '@resources/asset/ClockIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { memo, useCallback, useRef } from 'react'
 

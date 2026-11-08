@@ -1,7 +1,7 @@
+import { CLOSE_ICON as CloseIcon } from '@constants/icon-registry'
 import { IconButton } from '@components/actions/icon-button'
 import type { NotificationCardCloseProps } from '@components/feedback/notification-card/components/notification-card-close/types'
 import { NOTIFICATION_CARD_CLOSE_STYLES } from '@components/feedback/notification-card/components/notification-card-close/NotificationCardClose.css.ts'
-import CloseIcon from '@resources/asset/CloseIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { memo, type FC } from 'react'
 

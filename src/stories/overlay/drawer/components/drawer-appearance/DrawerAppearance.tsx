@@ -1,6 +1,6 @@
+import { USER_ICON as UserIcon } from '@constants/icon-registry'
 import type { ReactElement } from 'react'
 import { Drawer } from '@components/overlay/drawer'
-import UserIcon from '@resources/asset/UserIcon.svg?react'
 import { APPEARANCE_COLORS, APPEARANCE_VARIANTS } from '@stories/overlay/drawer/constants'
 
 /**

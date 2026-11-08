@@ -1,8 +1,8 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { Select as BaseSelect } from '@base-ui/react/select'
 import { memo, type FC } from 'react'
 
 import { Icon } from '@components/foundation/icon'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 import { cn } from '@utils/cn.ts'
 import { SELECT_ITEM_STYLES } from '@components/forms/select/components/select-item/styles/SelectItem.css.ts'
 import type { SelectItemProps } from '@components/forms/select/components/select-item/types/SelectItem.props.ts'

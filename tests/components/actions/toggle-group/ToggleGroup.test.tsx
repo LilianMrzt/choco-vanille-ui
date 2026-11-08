@@ -1,3 +1,4 @@
+import { CHECK_ICON as CheckIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -10,7 +11,6 @@ import {
 import { Toggle } from '@components/actions/toggle'
 import { Toggle as PublicToggle, ToggleGroup as PublicToggleGroup } from '@/index'
 import { BOX_STYLES } from '@components/layout/box'
-import CheckIcon from '@resources/asset/CheckIcon.svg?react'
 
 // Helper
 

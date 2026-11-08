@@ -1,9 +1,8 @@
+import { CHEVRON_RIGHT_ICON as ChevronRightIcon, TRASH_ICON as TrashIcon } from '@constants/icon-registry'
 import type { Meta } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 
 import type { ButtonColor, ButtonProps, ButtonSize, ButtonVariant } from '@components/actions/button'
-import ChevronRightIcon from '@resources/asset/ChevronRightIcon.svg?react'
-import TrashIcon from '@resources/asset/TrashIcon.svg?react'
 
 export const VARIANTS: ButtonVariant[] = ['contained', 'outlined', 'ghost']
 export const COLORS: ButtonColor[] = ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info']
@@ -21,8 +20,8 @@ export const ARG_TYPES = {
     variant: { control: 'select', options: VARIANTS, description: 'Visual treatment.', table: { defaultValue: { summary: 'contained' } } },
     color: { control: 'select', options: COLORS, description: 'Semantic color intent.', table: { defaultValue: { summary: 'primary' } } },
     size: { control: 'select', options: SIZES, description: 'Height at a 16px root: sm 28px, md 36px, lg 44px. Fixed across viewport and pointer types.', table: { defaultValue: { summary: 'md' } } },
-    startIcon: { control: 'select', options: ['None', 'Trash'], mapping: { None: undefined, Trash: TrashIcon }, description: 'Decorative leading SVG component.' },
-    endIcon: { control: 'select', options: ['None', 'Chevron'], mapping: { None: undefined, Chevron: ChevronRightIcon }, description: 'Decorative trailing SVG component.' },
+    startIcon: { control: 'select', options: ['None', 'Trash'], mapping: { None: undefined, Trash: TrashIcon }, description: 'Decorative leading local Iconify data.' },
+    endIcon: { control: 'select', options: ['None', 'Chevron'], mapping: { None: undefined, Chevron: ChevronRightIcon }, description: 'Decorative trailing local Iconify data.' },
     margin: { control: 'select', options: SPACING, description: 'Margin token.' },
     marginTop: { control: 'select', options: SPACING, description: 'Top margin token.' },
     marginRight: { control: 'select', options: SPACING, description: 'Right margin token.' },

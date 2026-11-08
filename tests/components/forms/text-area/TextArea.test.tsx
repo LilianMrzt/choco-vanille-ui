@@ -1,3 +1,4 @@
+import { INFO_ICON as InfoIcon } from '@constants/icon-registry'
 import { createRef } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -5,7 +6,6 @@ import { describe, expect, it, vi } from 'vitest'
 
 import FormLabel from '@components/forms/primitives/form-label/FormLabel.tsx'
 import { TextArea } from '@components/forms/text-area'
-import InfoIcon from '@resources/asset/InfoIcon.svg?react'
 
 describe('TextArea', () => {
     describe('rendering', () => {

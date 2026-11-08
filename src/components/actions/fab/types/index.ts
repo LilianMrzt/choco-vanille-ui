@@ -1,6 +1,6 @@
 import type * as React from 'react'
 
-import type { IconComponent } from '@components/foundation/icon'
+import type { IconifyIcon } from '@components/foundation/icon'
 import type { ButtonColorShared, ButtonSizeShared } from '@components/actions/_shared/buttons/types'
 import type { FAB_POSITIONS } from '@components/actions/fab/constants'
 
@@ -33,8 +33,8 @@ export type FabProps = Readonly<Omit<
 > &
   React.RefAttributes<HTMLButtonElement> &
   FabContentProps & {
-    /** SVG component describing the primary action. */
-    icon: IconComponent;
+    /** local Iconify data describing the primary action. */
+    icon: IconifyIcon;
     /** Theme color of the Fab. Defaults to `primary`. */
     color?: FabColor;
     /** Fab size. Defaults to `md`. */

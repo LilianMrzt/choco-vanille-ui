@@ -1,8 +1,25 @@
 import { describe, expect, it } from 'vitest'
 
 import { createControlledSource } from '@stories/_shared/controlled-source/utils/create-controlled-source/createControlledSource.utils'
+import type { IconifyIcon } from '@iconify/react/offline'
 
 describe('createControlledSource', () => {
+    it('imports consumer Iconify data from the configured module exactly once', () => {
+        const transform = createControlledSource<{ value: string; startIcon: IconifyIcon }>({
+            component: 'TextField',
+            stateProp: 'value',
+            eventProp: 'onChange',
+            handler: '(event) => setValue(event.target.value)',
+            icon: { prop: 'startIcon', name: 'SearchIcon', module: '@iconify-icons/lucide/search' },
+        })
+        const source = transform('', { args: { value: '', startIcon: { body: '<path d="M0 0h16"/>' } } })
+
+        expect(source.match(/import SearchIcon/g)).toHaveLength(1)
+        expect(source).toContain("import SearchIcon from '@iconify-icons/lucide/search'")
+        expect(source).toContain('startIcon={SearchIcon}')
+        expect(source).not.toContain("from './SearchIcon'")
+    })
+
     it('serializes current controls and controlled text state', () => {
         const transform = createControlledSource<{ label: string; value: string; onChange: () => void }>({
             component: 'TextField',
