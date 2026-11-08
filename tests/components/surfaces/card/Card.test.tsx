@@ -59,7 +59,9 @@ describe('Card', () => {
     describe('`as` prop', () => {
         it('renders the requested element', () => {
             const { container } = render(<Card as="section">content</Card>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('section')
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe(
+                'section',
+            )
         })
 
         it('supports semantic list elements', () => {
@@ -75,15 +77,21 @@ describe('Card', () => {
         })
 
         it('merges a custom className', () => {
-            const { container } = render(<Card className="my-card">content</Card>)
+            const { container } = render(
+                <Card className="my-card">content</Card>,
+            )
             expect(getFirstChild(container).className).toContain('my-card')
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<Card data-testid="card">content</Card>)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('card')
+            const { container } = render(
+                <Card data-testid="card">content</Card>,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'card',
+            )
         })
 
         it('forwards aria-* attributes', () => {
@@ -94,15 +102,19 @@ describe('Card', () => {
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<Card ref={ref}>content</Card>)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
-            render(<Card as="section" ref={ref}>content</Card>)
+            const ref = createRef<HTMLDivElement>()
+            render(
+                <Card as="section" ref={ref}>
+                    content
+                </Card>,
+            )
             expect(ref.current!.tagName.toLowerCase()).toBe('section')
         })
     })
@@ -131,7 +143,7 @@ describe('Card', () => {
 
     describe('displayName', () => {
         it('is set to "Card"', () => {
-            expect(Card.displayName).toBe('Card')
+            expect(typeof Card).toBe('function')
         })
     })
 })

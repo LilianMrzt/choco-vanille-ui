@@ -3,9 +3,33 @@ import { Box, Icon, Typography, ThemeProvider, lightTheme, darkTheme, vars,
     type CheckboxCompound, type CheckboxGroupCompound, type CheckboxRootProps, type CheckboxIndicatorProps,
     type ToggleProps, type ToggleGroupItemProps, type ToggleGroupProps, type ToggleGroupCompound,
     type AvatarGroupItemProps, type AvatarGroupCompound, type BadgeProps, type StatusBadgeProps, type RichTextRendererProps,
-    type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides
+    type ThemeColor, type ThemeColorAccent, type ThemeColors, type ThemeColorOverrides, type BoxProps, type TypographyProps,
+    type BoxStyleProps, type BoxInlineStyle, type TypographyStyleProps
 } from './index.js'
 import { createRef } from 'react'
+const linkProps: BoxProps<'a'> = { as: 'a', href: '/example', ref: createRef<HTMLAnchorElement>() }
+const link = <Box {...linkProps} as="a">Link</Box>
+const button = <Box as="button" type="button" ref={createRef<HTMLButtonElement>()}>Action</Box>
+// @ts-expect-error The selected element determines its ref.
+const invalidBoxRef = <Box as="button" ref={createRef<HTMLAnchorElement>()} />
+// @ts-expect-error A non-default element requires as.
+const missingBoxElement = <Box<'a'> href="/example" />
+void [link, button, invalidBoxRef, missingBoxElement]
+const typographyLabelProps: TypographyProps<'label'> = { variant: 'label', htmlFor: 'name', ref: createRef<HTMLLabelElement>() }
+const typographyLabel = <Typography {...typographyLabelProps} as="label">Name</Typography>
+const typographyLink = <Typography as="a" variant="h1" href="/example" ref={createRef<HTMLAnchorElement>()}>Link</Typography>
+// @ts-expect-error The ref follows as, not the visual variant.
+const invalidTypographyRef = <Typography as="a" variant="label" ref={createRef<HTMLLabelElement>()} />
+// @ts-expect-error A span does not have a label's htmlFor attribute.
+const invalidTypographyAttribute = <Typography htmlFor="name" />
+void [typographyLabel, typographyLink, invalidTypographyRef, invalidTypographyAttribute]
+const layoutStyles: BoxStyleProps = { gridTemplateColumns: '1fr auto', inset: 0, flexGrow: 1, opacity: 0.5 }
+const inlineStyles: BoxInlineStyle = { '--brand': 'rebeccapurple', width: '12rem' }
+const textStyles: TypographyStyleProps = { fontFamily: 'serif', lineHeight: 1.6, textWrap: 'balance', maxLines: 12 }
+const composedLinkProps = { as: 'a', href: '/example', ...layoutStyles } satisfies BoxProps<'a'>
+const composedLabelProps = { variant: 'label', htmlFor: 'name', ...textStyles } satisfies TypographyProps<'label'>
+const composedExamples = <><Box {...composedLinkProps} style={inlineStyles} /><Typography {...composedLabelProps}>Name</Typography></>
+void composedExamples
 const accent: ThemeColorAccent = lightTheme.color.primary
 const colors: ThemeColors = darkTheme.color
 const path: ThemeColor = 'primary.subtleForeground'

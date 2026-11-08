@@ -1,7 +1,5 @@
 import { expect } from 'storybook/test'
-import { Typography } from '@/components/foundation/typography'
-
-import type { ComponentProps } from 'react'
+import type { TypographyStoryArgs } from '@stories/foundation/typography/types'
 import type { StoryContext } from '@storybook/react-vite'
 
 /**
@@ -13,7 +11,9 @@ import type { StoryContext } from '@storybook/react-vite'
  * @example
  * const story = { play: TypographyPlaygroundPlay }
  */
-const TypographyPlaygroundPlay = async ({ canvasElement }: StoryContext<ComponentProps<typeof Typography>>): Promise<void> => {
+const TypographyPlaygroundPlay = async ({
+    canvasElement,
+}: StoryContext<TypographyStoryArgs>): Promise<void> => {
     await expect(canvasElement.firstElementChild).toBeInTheDocument()
 }
 

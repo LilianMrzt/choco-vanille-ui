@@ -38,7 +38,7 @@ export function Example() {
   return (
     <>
       <Typography variant="h1">Hello world</Typography>
-      <Typography variant="muted">A typographic primitive.</Typography>
+      <Typography variant="p">A typographic primitive.</Typography>
       <Typography variant="code">@choco-vanille/ui</Typography>
     </>
   );
@@ -49,6 +49,64 @@ For integrations that require explicit CSS loading, the stylesheet remains
 available at `@choco-vanille/ui/styles.css`.
 
 ## Components
+
+### Box and Typography
+
+`Box` defaults to a `div`; `Typography` defaults to a `span`. Both infer native
+attributes, events and refs from `as`, including custom React components.
+For Typography, `variant` also chooses the element when `as` is absent; `as`
+takes precedence, while `variant` keeps its visual preset.
+
+```tsx
+import { Box, Typography, vars, type BoxProps } from '@choco-vanille/ui';
+
+const linkProps = {
+  as: 'a',
+  href: '/account',
+  padding: 16,
+} satisfies BoxProps<'a'>;
+
+export function AccountSummary() {
+  return (
+    <Box display="grid" gridTemplateColumns="1fr auto" gap={16} padding={24}>
+      <Typography variant="h2" fontSize={20} lineHeight={1.4}>
+        Account
+      </Typography>
+      <Box {...linkProps}>Open account</Box>
+      <Typography
+        variant="p"
+        maxLines={8}
+        overflowWrap="anywhere"
+        color={vars.color.text.secondary}
+      >
+        Account details and preferences.
+      </Typography>
+    </Box>
+  );
+}
+```
+
+Box supports positioning (`inset`, directional offsets, `zIndex`), flex and grid
+placement, individual borders, `background`, `boxSizing`, `aspectRatio` and
+`opacity`. Typography inherits Box's layout props and adds theme font families
+(`sans`, `serif`, `mono`), `fontStyle`, `lineHeight`, `letterSpacing`,
+`verticalAlign`, wrapping and decoration. Token-based spacing, font sizes,
+radii and shadows use the published finite scales; other CSS props accept CSS
+values. `style` takes precedence over styling props and accepts custom properties.
+
+Constrain the width for `ellipsis`. `maxLines` accepts any positive integer and
+takes precedence over `ellipsis`; explicit `style` can override truncation.
+Provide another way to read essential clipped content.
+
+**Breaking contract changes:** refs and native attributes must match the
+rendered element; an explicit non-default generic requires `as` or a matching
+Typography `variant` at the call site. Use `satisfies` when composing props to
+retain those literal selectors, or provide the selector explicitly after the
+spread. Invalid tokens, non-finite CSS numbers and invalid line limits throw
+`TypeError`. The public Typography recipe uses `clamp: true` for multiline
+structure instead of numbered `maxLines` variants; line counts are dynamic.
+Margin styling is now owned by Box rather than duplicated in the Typography
+recipe. Component names remain `Box` and `Typography`.
 
 | Category | Components |
 |---|---|

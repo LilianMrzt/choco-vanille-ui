@@ -1,82 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
-import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
 import { truncateTextStyles } from '@components/foundation/typography/utils/truncateTextStyles.utils.ts'
-
-const MARGIN_VALUES = {
-    auto: 'auto',
-    ...SPACE_VARIANTS,
-} as const
-
-const marginVariants = {
-    'auto': {
-        margin: MARGIN_VALUES['auto'],
-    },
-    0: {
-        margin: MARGIN_VALUES[0],
-    },
-    1: {
-        margin: MARGIN_VALUES[1],
-    },
-    2: {
-        margin: MARGIN_VALUES[2],
-    },
-    4: {
-        margin: MARGIN_VALUES[4],
-    },
-    6: {
-        margin: MARGIN_VALUES[6],
-    },
-    8: {
-        margin: MARGIN_VALUES[8],
-    },
-    10: {
-        margin: MARGIN_VALUES[10],
-    },
-    12: {
-        margin: MARGIN_VALUES[12],
-    },
-    14: {
-        margin: MARGIN_VALUES[14],
-    },
-    16: {
-        margin: MARGIN_VALUES[16],
-    },
-    18: {
-        margin: MARGIN_VALUES[18],
-    },
-    20: {
-        margin: MARGIN_VALUES[20],
-    },
-    24: {
-        margin: MARGIN_VALUES[24],
-    },
-    28: {
-        margin: MARGIN_VALUES[28],
-    },
-    32: {
-        margin: MARGIN_VALUES[32],
-    },
-    48: {
-        margin: MARGIN_VALUES[48],
-    },
-    64: {
-        margin: MARGIN_VALUES[64],
-    },
-    80: {
-        margin: MARGIN_VALUES[80],
-    },
-    96: {
-        margin: MARGIN_VALUES[96],
-    },
-    112: {
-        margin: MARGIN_VALUES[112],
-    },
-    128: {
-        margin: MARGIN_VALUES[128],
-    },
-} as const
 
 const headingStyles = {
     scrollMarginTop: vars.space[48],
@@ -295,24 +220,21 @@ const localTypographyRecipe = recipe({
             },
         },
 
-        margin: marginVariants,
-
         ellipsis: {
             true: {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
+                selectors: {
+                    '&:where(a, abbr, b, bdi, bdo, cite, code, data, del, dfn, em, i, ins, kbd, label, mark, q, ruby, s, samp, small, span, strong, sub, sup, time, u, var)':
+                        {
+                            display: 'inline-block',
+                        },
+                },
             },
         },
 
-        maxLines: {
-            1: truncateTextStyles(1),
-            2: truncateTextStyles(2),
-            3: truncateTextStyles(3),
-            4: truncateTextStyles(4),
-            5: truncateTextStyles(5),
-            6: truncateTextStyles(6),
-        },
+        clamp: { true: truncateTextStyles() },
     },
 
     defaultVariants: {

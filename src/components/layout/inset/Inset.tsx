@@ -1,10 +1,10 @@
 import { SPACE_VARIANTS } from '@constants/styles/spaceVariants.const.ts'
-import { Box } from '@components/layout/box'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
 import { INSET_STYLES } from '@components/layout/inset/Inset.css.ts'
-import type { InsetProps } from '@components/layout/inset/types'
+import type { InsetComponent, InsetProps } from '@components/layout/inset/types'
 import { resolveInsetPadding } from '@components/layout/inset/utils/resolveInsetPadding.utils.ts'
 import { cn } from '@utils/cn.ts'
-import { memo, type CSSProperties, type FC } from 'react'
+import { createElement, type ElementType, type ReactElement } from 'react'
 
 /**
  * Negative-margin utility that pulls content to the edge of its parent's
@@ -14,6 +14,7 @@ import { memo, type CSSProperties, type FC } from 'react'
  * clipping. Native attributes and ref target the element selected by `as`.
  * The consumer's inline style can override the computed inset variable.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Inset and inherited layout attributes.
  * @param props.space - Spacing token matching the parent padding.
  * @param props.side - Sides to bleed; defaults to `all`.
@@ -31,7 +32,7 @@ import { memo, type CSSProperties, type FC } from 'react'
  * @example
  * <Inset space={16} side="top">Full-width content</Inset>
  */
-const Inset: FC<InsetProps> = memo(({
+const Inset: InsetComponent = <Element extends ElementType = 'div'>({
     space,
     side = 'all',
     clip = 'border-box',
@@ -45,28 +46,27 @@ const Inset: FC<InsetProps> = memo(({
     className,
     style,
     ...props
-}) => {
+}: InsetProps<Element> & Readonly<{ as?: Element }>): ReactElement => {
     const insetStyle = {
         [INSET_STYLES.insetSpaceProperty]: SPACE_VARIANTS[space],
         ...style,
     }
 
-    return (
-        <Box
-            padding={resolveInsetPadding(padding, space)}
-            paddingX={resolveInsetPadding(paddingX, space)}
-            paddingY={resolveInsetPadding(paddingY, space)}
-            paddingTop={resolveInsetPadding(paddingTop, space)}
-            paddingRight={resolveInsetPadding(paddingRight, space)}
-            paddingBottom={resolveInsetPadding(paddingBottom, space)}
-            paddingLeft={resolveInsetPadding(paddingLeft, space)}
-            className={cn(INSET_STYLES.recipe({ clip, side }), className)}
-            style={insetStyle as CSSProperties}
-            {...props}
-        />
+    return createElement(
+        props.as ?? 'div',
+        resolveBoxProps({
+            padding: resolveInsetPadding(padding, space),
+            paddingX: resolveInsetPadding(paddingX, space),
+            paddingY: resolveInsetPadding(paddingY, space),
+            paddingTop: resolveInsetPadding(paddingTop, space),
+            paddingRight: resolveInsetPadding(paddingRight, space),
+            paddingBottom: resolveInsetPadding(paddingBottom, space),
+            paddingLeft: resolveInsetPadding(paddingLeft, space),
+            className: cn(INSET_STYLES.recipe({ clip, side }), className),
+            style: insetStyle,
+            ...props,
+        }),
     )
-})
-
-Inset.displayName = 'Inset'
+}
 
 export default Inset

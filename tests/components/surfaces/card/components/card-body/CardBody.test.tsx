@@ -24,8 +24,12 @@ describe('CardBody', () => {
 
     describe('`as` prop', () => {
         it('renders the requested element', () => {
-            const { container } = render(<CardBody as="section">content</CardBody>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('section')
+            const { container } = render(
+                <CardBody as="section">content</CardBody>,
+            )
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe(
+                'section',
+            )
         })
     })
 
@@ -36,15 +40,21 @@ describe('CardBody', () => {
         })
 
         it('merges a custom className', () => {
-            const { container } = render(<CardBody className="my-card-body">content</CardBody>)
+            const { container } = render(
+                <CardBody className="my-card-body">content</CardBody>,
+            )
             expect(getFirstChild(container).className).toContain('my-card-body')
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<CardBody data-testid="card-body">content</CardBody>)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('card-body')
+            const { container } = render(
+                <CardBody data-testid="card-body">content</CardBody>,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'card-body',
+            )
         })
 
         it('forwards aria-* attributes', () => {
@@ -55,15 +65,19 @@ describe('CardBody', () => {
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<CardBody ref={ref}>content</CardBody>)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
-            render(<CardBody as="section" ref={ref}>content</CardBody>)
+            const ref = createRef<HTMLDivElement>()
+            render(
+                <CardBody as="section" ref={ref}>
+                    content
+                </CardBody>,
+            )
             expect(ref.current!.tagName.toLowerCase()).toBe('section')
         })
     })

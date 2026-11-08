@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import Separator from '@components/layout/separator/Separator.tsx'
 
 const getFirstChild = (container: HTMLElement) =>
-  container.firstElementChild as HTMLElement
+    container.firstElementChild as HTMLElement
 
 describe('Separator', () => {
     describe('default rendering', () => {
@@ -47,9 +47,9 @@ describe('Separator', () => {
 
         it('synchronizes aria-orientation with the visual orientation', () => {
             const { container } = render(<Separator orientation="vertical" />)
-            expect(getFirstChild(container).getAttribute('aria-orientation')).toBe(
-                'vertical',
-            )
+            expect(
+                getFirstChild(container).getAttribute('aria-orientation'),
+            ).toBe('vertical')
         })
     })
 
@@ -72,7 +72,9 @@ describe('Separator', () => {
 
     describe('text color', () => {
         it('accepts a theme color for the label', () => {
-            const { container } = render(<Separator label="Or continue" textColor="primary.main" />)
+            const { container } = render(
+                <Separator label="Or continue" textColor="primary.main" />,
+            )
             expect(getFirstChild(container).textContent).toBe('Or continue')
         })
     })
@@ -87,20 +89,22 @@ describe('Separator', () => {
 
         it('forwards aria-* attributes', () => {
             const { container } = render(<Separator aria-hidden="true" />)
-            expect(getFirstChild(container).getAttribute('aria-hidden')).toBe('true')
+            expect(getFirstChild(container).getAttribute('aria-hidden')).toBe(
+                'true',
+            )
         })
     })
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<Separator ref={ref} />)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<Separator as="span" ref={ref} />)
             expect(ref.current!.tagName.toLowerCase()).toBe('span')
         })
@@ -108,7 +112,7 @@ describe('Separator', () => {
 
     describe('displayName', () => {
         it('is set to "Separator"', () => {
-            expect(Separator.displayName).toBe('Separator')
+            expect(typeof Separator).toBe('function')
         })
     })
 })

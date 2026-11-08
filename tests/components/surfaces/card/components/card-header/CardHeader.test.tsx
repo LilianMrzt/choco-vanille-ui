@@ -24,8 +24,12 @@ describe('CardHeader', () => {
 
     describe('`as` prop', () => {
         it('renders the requested element', () => {
-            const { container } = render(<CardHeader as="header">content</CardHeader>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('header')
+            const { container } = render(
+                <CardHeader as="header">content</CardHeader>,
+            )
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe(
+                'header',
+            )
         })
     })
 
@@ -36,29 +40,47 @@ describe('CardHeader', () => {
         })
 
         it('merges a custom className', () => {
-            const { container } = render(<CardHeader className="my-card-header">content</CardHeader>)
-            expect(getFirstChild(container).className).toContain('my-card-header')
+            const { container } = render(
+                <CardHeader className="my-card-header">content</CardHeader>,
+            )
+            expect(getFirstChild(container).className).toContain(
+                'my-card-header',
+            )
         })
     })
 
     describe('title and description', () => {
         it('renders the title as an h3 by default', () => {
             render(<CardHeader title="Card Title" />)
-            expect(screen.getByRole('heading', { level: 3, name: 'Card Title' })).toBeTruthy()
+            expect(
+                screen.getByRole('heading', { level: 3, name: 'Card Title' }),
+            ).toBeTruthy()
         })
 
         it('renders the title with the requested heading level', () => {
             render(<CardHeader title="Card Title" titleAs="h1" />)
-            expect(screen.getByRole('heading', { level: 1, name: 'Card Title' })).toBeTruthy()
+            expect(
+                screen.getByRole('heading', { level: 1, name: 'Card Title' }),
+            ).toBeTruthy()
         })
 
         it('renders the description', () => {
-            render(<CardHeader title="Card Title" description="Card description" />)
+            render(
+                <CardHeader
+                    title="Card Title"
+                    description="Card description"
+                />,
+            )
             expect(screen.getByText('Card description')).toBeTruthy()
         })
 
         it('forwards titleProps to the title element', () => {
-            render(<CardHeader title="Card Title" titleProps={{ 'data-testid': 'title' }} />)
+            render(
+                <CardHeader
+                    title="Card Title"
+                    titleProps={{ 'data-testid': 'title' }}
+                />,
+            )
             expect(screen.getByTestId('title')).toBeTruthy()
         })
 
@@ -76,7 +98,12 @@ describe('CardHeader', () => {
 
     describe('actions and children', () => {
         it('renders actions', () => {
-            render(<CardHeader title="Card Title" actions={<button type="button">Action</button>} />)
+            render(
+                <CardHeader
+                    title="Card Title"
+                    actions={<button type="button">Action</button>}
+                />,
+            )
             expect(screen.getByRole('button', { name: 'Action' })).toBeTruthy()
         })
 
@@ -92,27 +119,37 @@ describe('CardHeader', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<CardHeader data-testid="card-header">content</CardHeader>)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('card-header')
+            const { container } = render(
+                <CardHeader data-testid="card-header">content</CardHeader>,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'card-header',
+            )
         })
 
         it('forwards aria-* attributes', () => {
-            render(<CardHeader aria-label="card header label">content</CardHeader>)
+            render(
+                <CardHeader aria-label="card header label">content</CardHeader>,
+            )
             expect(screen.getByLabelText('card header label')).toBeTruthy()
         })
     })
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<CardHeader ref={ref}>content</CardHeader>)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
-            render(<CardHeader as="header" ref={ref}>content</CardHeader>)
+            const ref = createRef<HTMLDivElement>()
+            render(
+                <CardHeader as="header" ref={ref}>
+                    content
+                </CardHeader>,
+            )
             expect(ref.current!.tagName.toLowerCase()).toBe('header')
         })
     })

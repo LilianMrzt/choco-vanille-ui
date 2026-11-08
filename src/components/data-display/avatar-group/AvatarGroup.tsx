@@ -1,16 +1,23 @@
 import {
     Children,
     cloneElement,
+    createElement,
     isValidElement,
-    type FC,
+    type ElementType,
+    type ReactElement,
 } from 'react'
 
 import AvatarGroupItem from '@components/data-display/avatar-group/components/avatar-group-item/AvatarGroupItem.tsx'
 import { AVATAR_GROUP_SPACING } from '@components/data-display/avatar-group/constants'
-import type { AvatarGroupCompound, AvatarGroupProps } from '@components/data-display/avatar-group/types'
+import type {
+    AvatarGroupComponent,
+    AvatarGroupCompound,
+    AvatarGroupProps,
+} from '@components/data-display/avatar-group/types'
 import type { AvatarProps } from '@components/data-display/avatar/types'
 import { Box } from '@components/layout/box'
-import { Flex } from '@components/layout/flex'
+import { FLEX_STYLES } from '@components/layout/flex/Flex.css.ts'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
 import { Typography } from '@components/foundation/typography'
 import { cn } from '@utils/cn.ts'
 
@@ -33,6 +40,7 @@ const defaultOverflowLabel = (count: number): string => `${count} more`
  * element, a div by default. Custom `as` components must forward native props and ref.
  * Label identifying avatars and supply a localized overflowLabel when needed.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Children, visible limit, overlap, native attributes and layout props.
  * @param props.children - Avatars or custom content displayed in their original order.
  * @param props.max - Finite visible limit, floored and clamped to zero; omitted values show all children.
@@ -47,42 +55,49 @@ const defaultOverflowLabel = (count: number): string => `${count} more`
  * <AvatarGroup max={1}><AvatarGroup.Item initials="JD" aria-label="Jane Doe" /><AvatarGroup.Item initials="AB" aria-label="Alex Brown" /></AvatarGroup>
  * ```
  */
-const AvatarGroupRoot: FC<AvatarGroupProps> = ({
-    children,
-    max,
-    spacing = 'md',
-    overflowLabel = defaultOverflowLabel,
-    className,
-    ref,
-    ...props
-}) => {
+const AvatarGroupRoot: AvatarGroupComponent = <
+    Element extends ElementType = 'div',
+>({
+        children,
+        max,
+        spacing = 'md',
+        overflowLabel = defaultOverflowLabel,
+        className,
+        ref,
+        ...props
+    }: AvatarGroupProps<Element> & Readonly<{ as?: Element }>): ReactElement => {
     if (max !== undefined && !Number.isFinite(max)) {
-        throw new RangeError('AvatarGroup max must be a finite number when provided.')
+        throw new RangeError(
+            'AvatarGroup max must be a finite number when provided.',
+        )
     }
 
     const childArray = Children.toArray(children)
-    const limit = max !== undefined
-        ? Math.max(0, Math.floor(max))
-        : childArray.length
+    const limit =
+        max !== undefined ? Math.max(0, Math.floor(max)) : childArray.length
     const visibleCount = Math.min(childArray.length, limit)
     const overflowCount = childArray.length - visibleCount
     const visibleChildren = childArray.slice(0, visibleCount)
     const overlap = AVATAR_GROUP_SPACING[spacing]
 
-    return (
-        <Flex
-            ref={ref}
-            inline
-            alignItems={'center'}
-            gap={0}
-            className={cn(className)}
-            {...props}
-        >
+    return createElement(
+        props.as ?? 'div',
+        resolveBoxProps({
+            ref,
+            alignItems: 'center',
+            gap: 0,
+            className: cn(FLEX_STYLES.recipe({ inline: true }), className),
+            ...props,
+        }),
+        <>
             {visibleChildren.map((child, index) => {
                 const isFirst = index === 0
                 const style = isFirst ? undefined : { marginLeft: overlap }
 
-                if (isValidElement<AvatarProps>(child) && child.type === AvatarGroupItem) {
+                if (
+                    isValidElement<AvatarProps>(child) &&
+                    child.type === AvatarGroupItem
+                ) {
                     const avatarChild = child
                     const existingStyle = avatarChild.props.style ?? {}
                     return cloneElement(avatarChild, {
@@ -107,7 +122,9 @@ const AvatarGroupRoot: FC<AvatarGroupProps> = ({
                 <AvatarGroupItem.Root
                     aria-label={overflowLabel(overflowCount)}
                     role={'img'}
-                    style={visibleCount > 0 ? { marginLeft: overlap } : undefined}
+                    style={
+                        visibleCount > 0 ? { marginLeft: overlap } : undefined
+                    }
                 >
                     <AvatarGroupItem.Fallback>
                         <Typography
@@ -120,11 +137,9 @@ const AvatarGroupRoot: FC<AvatarGroupProps> = ({
                     </AvatarGroupItem.Fallback>
                 </AvatarGroupItem.Root>
             )}
-        </Flex>
+        </>,
     )
 }
-
-AvatarGroupRoot.displayName = 'AvatarGroup'
 
 /** Avatar group with its reusable individual avatar component. */
 const AvatarGroup: AvatarGroupCompound = Object.assign(AvatarGroupRoot, {

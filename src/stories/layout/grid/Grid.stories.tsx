@@ -11,7 +11,7 @@ import interactiveSource from '@stories/layout/grid/sources/GridInteractive.sour
 
 const meta = {
     title: 'Layout/Grid',
-    component: Grid,
+    component: GridPlayground,
     parameters: {
         layout: 'padded',
         docs: {

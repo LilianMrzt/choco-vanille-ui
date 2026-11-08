@@ -1,4 +1,8 @@
-import type { ThemeColor, ThemeColorValue } from '@theme/tokens/colors/types/index.ts'
+import type { ElementType, ReactElement } from 'react'
+import type {
+    ThemeColor,
+    ThemeColorValue,
+} from '@theme/tokens/colors/types/index.ts'
 import type { SEPARATOR_ORIENTATIONS } from '@components/layout/separator/constants'
 import type { BoxProps } from '@components/layout/box/types'
 
@@ -12,13 +16,31 @@ export type SeparatorColor = ThemeColorValue
 /** Theme color token applied to the separator label. */
 export type SeparatorTextColor = ThemeColor
 
-export type SeparatorProps = Readonly<Omit<BoxProps, 'children' | 'aria-orientation'> & {
-      /** The orientation of the separator. Defaults to `horizontal`. */
-      orientation?: SeparatorOrientation
-      /** The theme color token applied to the separator's background color. */
-      color?: SeparatorColor
-      /** The theme color leaf path applied to the separator label. Defaults to `text.tertiary`. */
-      textColor?: SeparatorTextColor
-      /** Optional text displayed between the separator lines. */
-      label?: string
-    }>
+export type SeparatorProps<Element extends ElementType = 'div'> = Readonly<
+    Omit<
+        BoxProps<Element>,
+        | 'children'
+        | 'aria-orientation'
+        | 'orientation'
+        | 'color'
+        | 'textColor'
+        | 'label'
+    > & {
+        /** The orientation of the separator. Defaults to `horizontal`. */
+        orientation?: SeparatorOrientation
+        /** The theme color token applied to the separator's background color. */
+        color?: SeparatorColor
+        /** The theme color leaf path applied to the separator label. Defaults to `text.tertiary`. */
+        textColor?: SeparatorTextColor
+        /** Optional text displayed between the separator lines. */
+        label?: string
+    }
+>
+
+/** Polymorphic Separator with a div default. */
+export type SeparatorComponent = {
+    <Element extends ElementType>(
+        props: SeparatorProps<Element> & Readonly<{ as: Element }>,
+    ): ReactElement
+    (props: SeparatorProps): ReactElement
+}

@@ -1,4 +1,5 @@
 import { type RichTextRendererProps } from '@components/data-display/rich-text-renderer'
+import type { BoxVariant } from '@components/layout/box'
 import { renderSource } from '@stories/_shared/consumer-source/utils/renderSource.utils'
 import rendererSource from '@stories/data-display/rich-text-renderer/utils/create-rich-text-renderer-source/sources/RichTextRenderer.source.txt?raw'
 
@@ -9,11 +10,17 @@ import rendererSource from '@stories/data-display/rich-text-renderer/utils/creat
  * @param context.args - Values serialized into the consumer template.
  * @returns Public imports, a structured document and a rendering component.
  */
-export const createRichTextRendererSource = (_source: string, { args }: Readonly<{ args: RichTextRendererProps }>): string => {
+export const createRichTextRendererSource = (
+    _source: string,
+    { args }: Readonly<{ args: RichTextRendererProps<BoxVariant> }>,
+): string => {
     const as = typeof args.as === 'string' ? ` as="${args.as}"` : ''
-    const width = args.width === undefined ? '' : ` width={${JSON.stringify(args.width)}}`
-    const color = args.color === undefined ? '' : ` color={${JSON.stringify(args.color)}}`
-    const style = args.style === undefined ? '' : ` style={${JSON.stringify(args.style)}}`
+    const width =
+        args.width === undefined ? '' : ` width={${JSON.stringify(args.width)}}`
+    const color =
+        args.color === undefined ? '' : ` color={${JSON.stringify(args.color)}}`
+    const style =
+        args.style === undefined ? '' : ` style={${JSON.stringify(args.style)}}`
 
     return renderSource(rendererSource, {
         value: JSON.stringify(args.value, null, 4),

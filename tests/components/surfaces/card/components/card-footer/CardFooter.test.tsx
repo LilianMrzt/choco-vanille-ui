@@ -24,8 +24,12 @@ describe('CardFooter', () => {
 
     describe('`as` prop', () => {
         it('renders the requested element', () => {
-            const { container } = render(<CardFooter as="footer">content</CardFooter>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('footer')
+            const { container } = render(
+                <CardFooter as="footer">content</CardFooter>,
+            )
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe(
+                'footer',
+            )
         })
     })
 
@@ -36,34 +40,48 @@ describe('CardFooter', () => {
         })
 
         it('merges a custom className', () => {
-            const { container } = render(<CardFooter className="my-card-footer">content</CardFooter>)
-            expect(getFirstChild(container).className).toContain('my-card-footer')
+            const { container } = render(
+                <CardFooter className="my-card-footer">content</CardFooter>,
+            )
+            expect(getFirstChild(container).className).toContain(
+                'my-card-footer',
+            )
         })
     })
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<CardFooter data-testid="card-footer">content</CardFooter>)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('card-footer')
+            const { container } = render(
+                <CardFooter data-testid="card-footer">content</CardFooter>,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'card-footer',
+            )
         })
 
         it('forwards aria-* attributes', () => {
-            render(<CardFooter aria-label="card footer label">content</CardFooter>)
+            render(
+                <CardFooter aria-label="card footer label">content</CardFooter>,
+            )
             expect(screen.getByLabelText('card footer label')).toBeTruthy()
         })
     })
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<CardFooter ref={ref}>content</CardFooter>)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
-            render(<CardFooter as="footer" ref={ref}>content</CardFooter>)
+            const ref = createRef<HTMLDivElement>()
+            render(
+                <CardFooter as="footer" ref={ref}>
+                    content
+                </CardFooter>,
+            )
             expect(ref.current!.tagName.toLowerCase()).toBe('footer')
         })
     })

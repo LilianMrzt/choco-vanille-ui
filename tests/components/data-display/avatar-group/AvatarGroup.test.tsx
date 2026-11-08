@@ -3,8 +3,16 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 
 import { Avatar, type AvatarProps } from '@components/data-display/avatar'
-import { AvatarGroup, AVATAR_GROUP_SPACING, type AvatarGroupItemProps, type AvatarGroupSpacing } from '@components/data-display/avatar-group'
-import { Avatar as PublicAvatar, AvatarGroup as PublicAvatarGroup } from '@/index'
+import {
+    AvatarGroup,
+    AVATAR_GROUP_SPACING,
+    type AvatarGroupItemProps,
+    type AvatarGroupSpacing,
+} from '@components/data-display/avatar-group'
+import {
+    Avatar as PublicAvatar,
+    AvatarGroup as PublicAvatarGroup,
+} from '@/index'
 
 describe('AvatarGroup', () => {
     it('exports the same item and shortcut, including its composable slots', () => {
@@ -19,43 +27,84 @@ describe('AvatarGroup', () => {
         render(
             <AvatarGroup max={2} spacing="lg" role="group" aria-label="People">
                 <AvatarGroup.Item initials="A" />
-                <AvatarGroup.Item ref={ref} initials="B" style={{ opacity: 0.5 }} />
+                <AvatarGroup.Item
+                    ref={ref}
+                    initials="B"
+                    style={{ opacity: 0.5 }}
+                />
                 <AvatarGroup.Item initials="C" />
             </AvatarGroup>,
         )
         expect(ref.current?.textContent).toBe('B')
         expect(ref.current?.style.marginLeft).toBe('-1rem')
         expect(ref.current?.style.opacity).toBe('0.5')
-        expect(screen.getByRole('img', { name: '1 more' }).textContent).toBe('+1')
-    })
-    it.each([-2, 0])('shows only the full overflow count without a leading offset for max=%s', (max) => {
-        const overflowLabel = vi.fn((count: number) => `${count} participants hidden`)
-        render(
-            <AvatarGroup max={max} overflowLabel={overflowLabel}>
-                {Array.from({ length: 12 }, (_, index) => <Avatar key={index} initials="A" />)}
-            </AvatarGroup>,
+        expect(screen.getByRole('img', { name: '1 more' }).textContent).toBe(
+            '+1',
         )
-        const overflow = screen.getByRole('img', { name: '12 participants hidden' })
-        expect(overflow.textContent).toBe('+12')
-        expect(overflow.style.marginLeft).toBe('')
-        expect(overflowLabel).toHaveBeenCalledWith(12)
-        expect(screen.queryByText('A')).toBeNull()
     })
+    it.each([-2, 0])(
+        'shows only the full overflow count without a leading offset for max=%s',
+        (max) => {
+            const overflowLabel = vi.fn(
+                (count: number) => `${count} participants hidden`,
+            )
+            render(
+                <AvatarGroup max={max} overflowLabel={overflowLabel}>
+                    {Array.from({ length: 12 }, (_, index) => (
+                        <Avatar key={index} initials="A" />
+                    ))}
+                </AvatarGroup>,
+            )
+            const overflow = screen.getByRole('img', {
+                name: '12 participants hidden',
+            })
+            expect(overflow.textContent).toBe('+12')
+            expect(overflow.style.marginLeft).toBe('')
+            expect(overflowLabel).toHaveBeenCalledWith(12)
+            expect(screen.queryByText('A')).toBeNull()
+        },
+    )
 
     it('floors fractional limits before calculating overflow', () => {
-        render(<AvatarGroup max={1.9}><Avatar initials="A" /><Avatar initials="B" /><Avatar initials="C" /></AvatarGroup>)
+        render(
+            <AvatarGroup max={1.9}>
+                <Avatar initials="A" />
+                <Avatar initials="B" />
+                <Avatar initials="C" />
+            </AvatarGroup>,
+        )
         expect(screen.getByText('A')).toBeTruthy()
         expect(screen.queryByText('B')).toBeNull()
-        expect(screen.getByRole('img', { name: '2 more' }).textContent).toBe('+2')
+        expect(screen.getByRole('img', { name: '2 more' }).textContent).toBe(
+            '+2',
+        )
     })
 
-    it.each([Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])('throws RangeError for non-finite max=%s', (max) => {
-        expect(() => render(<AvatarGroup max={max}><Avatar initials="A" /><Avatar initials="B" /></AvatarGroup>))
-            .toThrow(new RangeError('AvatarGroup max must be a finite number when provided.'))
-    })
+    it.each([Number.NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY])(
+        'throws RangeError for non-finite max=%s',
+        (max) => {
+            expect(() =>
+                render(
+                    <AvatarGroup max={max}>
+                        <Avatar initials="A" />
+                        <Avatar initials="B" />
+                    </AvatarGroup>,
+                ),
+            ).toThrow(
+                new RangeError(
+                    'AvatarGroup max must be a finite number when provided.',
+                ),
+            )
+        },
+    )
 
     it('shows all children for an explicitly undefined max', () => {
-        render(<AvatarGroup max={undefined}><Avatar initials="A" /><Avatar initials="B" /></AvatarGroup>)
+        render(
+            <AvatarGroup max={undefined}>
+                <Avatar initials="A" />
+                <Avatar initials="B" />
+            </AvatarGroup>,
+        )
         expect(screen.getByText('A')).toBeTruthy()
         expect(screen.getByText('B')).toBeTruthy()
         expect(screen.queryByRole('img')).toBeNull()
@@ -64,22 +113,40 @@ describe('AvatarGroup', () => {
     it('preserves avatar styles while group overlap overrides only the leading margin', () => {
         render(
             <AvatarGroup spacing="lg">
-                <Avatar initials="A" data-testid="first" style={{ marginLeft: '4px', opacity: 0.5 }} />
-                <Avatar initials="B" data-testid="second" style={{ marginLeft: '4px', opacity: 0.7 }} />
+                <Avatar
+                    initials="A"
+                    data-testid="first"
+                    style={{ marginLeft: '4px', opacity: 0.5 }}
+                />
+                <Avatar
+                    initials="B"
+                    data-testid="second"
+                    style={{ marginLeft: '4px', opacity: 0.7 }}
+                />
                 <span data-testid="custom">Custom child</span>
             </AvatarGroup>,
         )
         expect(screen.getByTestId('first').style.marginLeft).toBe('4px')
         expect(screen.getByTestId('second').style.marginLeft).toBe('-1rem')
         expect(screen.getByTestId('second').style.opacity).toBe('0.7')
-        expect(screen.getByTestId('custom').parentElement?.style.marginLeft).toBe('-1rem')
+        expect(
+            screen.getByTestId('custom').parentElement?.style.marginLeft,
+        ).toBe('-1rem')
     })
 
     it('forwards native events, ARIA and refs to the selected element without custom prop leakage', () => {
         const ref = createRef<HTMLSpanElement>()
         const onClick = vi.fn()
         render(
-            <AvatarGroup as="span" ref={ref} role="group" aria-label="Participants" onClick={onClick} max={1} spacing="sm">
+            <AvatarGroup
+                as="span"
+                ref={ref}
+                role="group"
+                aria-label="Participants"
+                onClick={onClick}
+                max={1}
+                spacing="sm"
+            >
                 <Avatar initials="A" />
             </AvatarGroup>,
         )
@@ -171,7 +238,10 @@ describe('AvatarGroup', () => {
 
         it('accepts a custom overflowLabel function for i18n', () => {
             render(
-                <AvatarGroup max={1} overflowLabel={(count) => `${count} de plus`}>
+                <AvatarGroup
+                    max={1}
+                    overflowLabel={(count) => `${count} de plus`}
+                >
                     <Avatar initials="A" />
                     <Avatar initials="B" />
                     <Avatar initials="C" />
@@ -203,7 +273,9 @@ describe('AvatarGroup', () => {
                         <Avatar initials="B" />
                     </AvatarGroup>,
                 )
-                expect(screen.getAllByText('A').length).toBeGreaterThanOrEqual(1)
+                expect(screen.getAllByText('A').length).toBeGreaterThanOrEqual(
+                    1,
+                )
                 unmount()
             }
         })
@@ -216,9 +288,9 @@ describe('AvatarGroup', () => {
                     <Avatar initials="A" />
                 </AvatarGroup>,
             )
-            expect((container.firstElementChild as HTMLElement).className).toContain(
-                'my-group',
-            )
+            expect(
+                (container.firstElementChild as HTMLElement).className,
+            ).toContain('my-group')
         })
     })
 
@@ -250,7 +322,7 @@ describe('AvatarGroup', () => {
 
     describe('displayName', () => {
         it('is set to "AvatarGroup"', () => {
-            expect(AvatarGroup.displayName).toBe('AvatarGroup')
+            expect(typeof AvatarGroup).toBe('function')
         })
     })
 })

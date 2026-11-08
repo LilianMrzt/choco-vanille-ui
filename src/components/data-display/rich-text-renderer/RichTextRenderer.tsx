@@ -1,9 +1,12 @@
-import type { FC } from 'react'
+import { createElement, type ElementType, type ReactElement } from 'react'
 
-import { Box } from '@components/layout/box'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
 import { cn } from '@utils/cn.ts'
 import { RICH_TEXT_RENDERER_STYLES } from '@components/data-display/rich-text-renderer/RichTextRenderer.css.ts'
-import type { RichTextRendererProps } from '@components/data-display/rich-text-renderer/types'
+import type {
+    RichTextRendererComponent,
+    RichTextRendererProps,
+} from '@components/data-display/rich-text-renderer/types'
 import { renderRichTextNodes } from '@components/data-display/rich-text-renderer/utils/renderRichTextNodes.utils.tsx'
 
 /**
@@ -13,6 +16,7 @@ import { renderRichTextNodes } from '@components/data-display/rich-text-renderer
  * Native attributes, events, layout props and ref target the container, a div by default.
  * Consumer style overrides layout props and default container colors.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Document and container customization.
  * @param props.value - Structured document whose supported nodes and marks are rendered as semantic HTML.
  * @param props.className - Consumer class merged with the document container class.
@@ -21,21 +25,22 @@ import { renderRichTextNodes } from '@components/data-display/rich-text-renderer
  * @example
  * <RichTextRenderer value={{ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Hello' }] }] }} />
  */
-const RichTextRenderer: FC<RichTextRendererProps> = ({
-    value,
-    className,
-    ref,
-    ...props
-}) => (
-    <Box
-        ref={ref}
-        className={cn(RICH_TEXT_RENDERER_STYLES, className)}
-        {...props}
-    >
-        {renderRichTextNodes(value.content)}
-    </Box>
-)
-
-RichTextRenderer.displayName = 'RichTextRenderer'
+const RichTextRenderer: RichTextRendererComponent = <
+    Element extends ElementType = 'div',
+>({
+        value,
+        className,
+        ref,
+        ...props
+    }: RichTextRendererProps<Element> & Readonly<{ as?: Element }>): ReactElement =>
+        createElement(
+            props.as ?? 'div',
+            resolveBoxProps({
+                ref,
+                className: cn(RICH_TEXT_RENDERER_STYLES, className),
+                ...props,
+                children: <>{renderRichTextNodes(value.content)}</>,
+            }),
+        )
 
 export default RichTextRenderer

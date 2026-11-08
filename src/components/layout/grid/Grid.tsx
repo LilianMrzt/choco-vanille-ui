@@ -1,9 +1,9 @@
 import { GRID_STYLES } from '@components/layout/grid/Grid.css.ts'
-import type { GridProps } from '@components/layout/grid/types'
+import type { GridComponent, GridProps } from '@components/layout/grid/types'
 import { cn } from '@utils/cn.ts'
-import { memo, type FC } from 'react'
+import { createElement, type ElementType, type ReactElement } from 'react'
 
-import Box from '@components/layout/box/Box.tsx'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
 
 /**
  * CSS grid container built on `Box`. Supports token-based `columns`,
@@ -11,6 +11,7 @@ import Box from '@components/layout/box/Box.tsx'
  * and `gap`. Accepts all `Box` props for additional layout customization.
  * Native attributes and ref target the element selected by `as`.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Grid and inherited layout attributes.
  * @param props.columns - Column count or `none`.
  * @param props.gridAutoRows - Automatic row sizing preset.
@@ -26,7 +27,7 @@ import Box from '@components/layout/box/Box.tsx'
  * @example
  * <Grid columns={2} gap={12}><span>One</span><span>Two</span></Grid>
  */
-const Grid: FC<GridProps> = memo(({
+const Grid: GridComponent = <Element extends ElementType = 'div'>({
     columns,
     gridAutoRows,
     gridTemplateRows,
@@ -38,11 +39,12 @@ const Grid: FC<GridProps> = memo(({
     gap = 12,
     className,
     ...props
-}) => {
-    return (
-        <Box
-            gap={gap}
-            className={cn(
+}: GridProps<Element> & Readonly<{ as?: Element }>): ReactElement => {
+    return createElement(
+        props.as ?? 'div',
+        resolveBoxProps({
+            gap,
+            className: cn(
                 GRID_STYLES.recipe({
                     columns,
                     gridAutoRows,
@@ -54,12 +56,10 @@ const Grid: FC<GridProps> = memo(({
                     justifyContent,
                 }),
                 className,
-            )}
-            {...props}
-        />
+            ),
+            ...props,
+        }),
     )
-})
-
-Grid.displayName = 'Grid'
+}
 
 export default Grid

@@ -1,12 +1,12 @@
 import type { Meta } from '@storybook/react-vite'
 
-import { Typography } from '@/components/foundation/typography'
 import type {
     TypographySize,
     TypographyVariant,
     TypographyWeight,
 } from '@components/foundation/typography'
 import { md } from '@stories/_shared/utils/markdown'
+import type { TypographyStoryArgs } from '@stories/foundation/typography/types'
 
 export const VARIANTS: TypographyVariant[] = [
     'h1',
@@ -35,7 +35,9 @@ export const VARIANTS: TypographyVariant[] = [
     'sup',
 ]
 
-export const SIZES: TypographySize[] = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]
+export const SIZES: TypographySize[] = [
+    10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72,
+]
 
 export const WEIGHTS: TypographyWeight[] = [
     'thin',
@@ -49,7 +51,31 @@ export const WEIGHTS: TypographyWeight[] = [
     'black',
 ]
 
-export const MARGINS = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128, 'auto'] as const
+export const MARGINS = [
+    undefined,
+    0,
+    1,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    24,
+    28,
+    32,
+    48,
+    64,
+    80,
+    96,
+    112,
+    128,
+    'auto',
+] as const
 
 export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
@@ -62,20 +88,85 @@ export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 | \`htmlFor\` (for \`label\`) | Conditional | \`string\`                           | Links a \`label\` variant to its form control; alternative is wrapping the control as a child.                       |
 
 When \`variant\` is omitted, a known typography element passed to \`as\` also selects its matching style.
+The rendered element determines the accepted native attributes and ref target.
+
+Single-line truncation requires constrained width and uses inline-block for inline
+text elements. Explicit \`display\` or \`style\` may override it. When both
+\`ellipsis\` and \`maxLines\` are set, the line limit takes precedence. Provide
+another way to read essential clipped content.
 
 - Respect heading hierarchy: use one \`h1\` per page and nest levels in order without skipping.
 - Pair \`del\` and \`ins\` together to communicate document revisions accessibly.
 `
 
 export const ARG_TYPES = {
-    as: { control: 'select', options: [undefined, ...VARIANTS], description: 'Native element override; custom components are not editable here.' },
-    variant: { control: 'select', options: [undefined, ...VARIANTS], description: 'Defaults to the recognized as element or span.' },
+    as: {
+        control: 'select',
+        options: [undefined, ...VARIANTS],
+        description:
+            'Native element override; custom components are not editable here.',
+    },
+    variant: {
+        control: 'select',
+        options: [undefined, ...VARIANTS],
+        description: 'Defaults to the recognized as element or span.',
+    },
     fontSize: { control: 'select', options: [undefined, ...SIZES] },
     fontWeight: { control: 'select', options: [undefined, ...WEIGHTS] },
-    color: { control: 'text', description: 'CSS color or custom property reference. No inline default; style.color wins.' },
+    color: {
+        control: 'text',
+        description:
+            'CSS color or custom property reference. No inline default; style.color wins.',
+    },
     margin: { control: 'select', options: MARGINS },
-    ellipsis: { control: 'boolean' },
-    maxLines: { control: 'select', options: [undefined, 1, 2, 3, 4, 5, 6], description: 'Maximum visible lines.' },
+    ellipsis: {
+        control: 'boolean',
+        description: 'Single-line truncation; requires constrained width.',
+    },
+    maxLines: {
+        control: { type: 'number', min: 1, step: 1 },
+        description:
+            'Positive integer line limit; takes precedence over ellipsis.',
+    },
+    fontFamily: {
+        control: 'select',
+        options: [undefined, 'sans', 'serif', 'mono'],
+        description: 'Theme font family.',
+    },
+    fontStyle: {
+        control: 'select',
+        options: [undefined, 'normal', 'italic', 'oblique'],
+    },
+    verticalAlign: { control: 'text' },
+    lineHeight: {
+        control: 'text',
+        description: 'CSS line height; numeric values are unitless.',
+    },
+    whiteSpace: {
+        control: 'select',
+        options: [
+            undefined,
+            'normal',
+            'nowrap',
+            'pre',
+            'pre-wrap',
+            'pre-line',
+            'break-spaces',
+        ],
+    },
+    overflowWrap: {
+        control: 'select',
+        options: [undefined, 'normal', 'break-word', 'anywhere'],
+    },
+    wordBreak: {
+        control: 'select',
+        options: [undefined, 'normal', 'break-all', 'keep-all'],
+    },
+    textWrap: {
+        control: 'select',
+        options: [undefined, 'wrap', 'nowrap', 'balance', 'pretty'],
+    },
+    textDecoration: { control: 'text' },
     textTransform: { control: 'text', description: 'CSS text transformation.' },
     display: { control: 'text', description: 'CSS display value.' },
     width: { control: 'text', description: 'CSS width.' },
@@ -86,13 +177,15 @@ export const ARG_TYPES = {
     flexGrow: { control: 'number', description: 'CSS flex growth.' },
     flexShrink: { control: 'number', description: 'CSS flex shrinkage.' },
     letterSpacing: { control: 'text', description: 'CSS letter spacing.' },
-    htmlFor: { control: 'text', description: 'Associated control ID for a label.' },
+    htmlFor: {
+        control: 'text',
+        description: 'Associated control ID for a label.',
+    },
     children: { control: 'text', description: 'Text shown in this example.' },
     className: { control: 'text', description: 'Additional text class.' },
     style: { control: 'object', description: 'Inline style overrides.' },
-    ref: { control: false, description: 'Ref passed to the rendered element.' },
-} satisfies NonNullable<Meta<typeof Typography>['argTypes']>
+} satisfies NonNullable<Meta<TypographyStoryArgs>['argTypes']>
 
 export const DEFAULT_ARGS = {
     children: 'The quick brown fox jumps over the lazy dog.',
-} satisfies NonNullable<Meta<typeof Typography>['args']>
+} satisfies NonNullable<Meta<TypographyStoryArgs>['args']>

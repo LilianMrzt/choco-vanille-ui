@@ -3,7 +3,7 @@ import type { TypographyProps } from '@components/foundation/typography'
 import type { BoxSpace, BoxVariant } from '@components/layout/box'
 
 /** Story-only composition controls and card props. */
-export type CardStoryArgs = Omit<CardProps, 'as'> & {
+export type CardStoryArgs = Omit<CardProps, 'as' | 'ref' | 'title'> & {
     as?: BoxVariant
     headerAs?: 'div' | 'header'
     title?: string

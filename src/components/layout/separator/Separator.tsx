@@ -1,9 +1,13 @@
-import Box from '@components/layout/box/Box.tsx'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
+import { Box } from '@components/layout/box'
 import { Typography } from '@components/foundation/typography'
 import { SEPARATOR_STYLES } from '@components/layout/separator/Separator.css.ts'
-import type { SeparatorProps } from '@components/layout/separator/types'
+import type {
+    SeparatorComponent,
+    SeparatorProps,
+} from '@components/layout/separator/types'
 import { cn } from '@utils/cn.ts'
-import { memo, type FC } from 'react'
+import { createElement, type ElementType, type ReactElement } from 'react'
 import { vars } from '@theme/styles/contract/contract.css.ts'
 import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
 
@@ -15,6 +19,7 @@ const colorReferences = Object.fromEntries(getColorEntries(vars.color))
  * The separator role and orientation are exposed to assistive technology.
  * Native attributes and ref target the container.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Separator appearance and inherited layout attributes.
  * @param props.orientation - Line direction; defaults to `horizontal`.
  * @param props.color - Theme color token for the line; defaults to `border.muted`.
@@ -25,60 +30,62 @@ const colorReferences = Object.fromEntries(getColorEntries(vars.color))
  * @example
  * <Separator label="or" />
  */
-const Separator: FC<SeparatorProps> = memo(({
+const Separator: SeparatorComponent = <Element extends ElementType = 'div'>({
     orientation = 'horizontal',
     color,
     textColor = 'text.tertiary',
     label,
     className,
     ...props
-}) => {
-    const hasLabel = label !== undefined && label.length > 0
+}: SeparatorProps<Element> & Readonly<{ as?: Element }>): ReactElement => {
+    const hasLabel = typeof label === 'string' && label.length > 0
 
-    return (
-        <Box
-            as={'div'}
-            role={'separator'}
-            className={cn(
+    return createElement(
+        props.as ?? 'div',
+        resolveBoxProps({
+            as: 'div',
+            role: 'separator',
+            className: cn(
                 SEPARATOR_STYLES.recipe({ orientation, color, hasLabel }),
                 className,
-            )}
-            {...props}
-            aria-orientation={orientation}
-        >
-            {hasLabel ? (
+            ),
+            ...props,
+            'aria-orientation': orientation,
+            children: (
                 <>
-                    <Box
-                        as={'span'}
-                        className={cn(
-                            SEPARATOR_STYLES.line,
-                            orientation === 'horizontal'
-                                ? SEPARATOR_STYLES.horizontalLine
-                                : SEPARATOR_STYLES.verticalLine,
-                        )}
-                    />
-                    <Typography
-                        variant={'label'}
-                        color={colorReferences[textColor]}
-                        flexShrink={0}
-                    >
-                        {label}
-                    </Typography>
-                    <Box
-                        as={'span'}
-                        className={cn(
-                            SEPARATOR_STYLES.line,
-                            orientation === 'horizontal'
-                                ? SEPARATOR_STYLES.horizontalLine
-                                : SEPARATOR_STYLES.verticalLine,
-                        )}
-                    />
+                    {hasLabel ? (
+                        <>
+                            <Box
+                                as={'span'}
+                                className={cn(
+                                    SEPARATOR_STYLES.line,
+                                    orientation === 'horizontal'
+                                        ? SEPARATOR_STYLES.horizontalLine
+                                        : SEPARATOR_STYLES.verticalLine,
+                                )}
+                            />
+                            <Typography
+                                variant={'label'}
+                                color={colorReferences[textColor]}
+                                flexShrink={0}
+                            >
+                                {label}
+                            </Typography>
+                            <Box
+                                as={'span'}
+                                className={cn(
+                                    SEPARATOR_STYLES.line,
+                                    orientation === 'horizontal'
+                                        ? SEPARATOR_STYLES.horizontalLine
+                                        : SEPARATOR_STYLES.verticalLine,
+                                )}
+                            />
+                        </>
+                    ) : null}
                 </>
-            ) : null}
-        </Box>
+            ),
+        }),
     )
-})
-
-Separator.displayName = 'Separator'
+}
 
 export default Separator

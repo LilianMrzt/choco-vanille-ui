@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react-vite'
-import { Box, type BoxVariant } from '@components/layout/box'
+import type { BoxProps, BoxVariant } from '@components/layout/box'
 
 export const BOX_VARIANTS: BoxVariant[] = [
     'div',
@@ -44,11 +44,57 @@ export const TEXT_ALIGN = [
     'start',
     'end',
 ] as const
-export const SPACING = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128] as const
+export const SPACING = [
+    undefined,
+    0,
+    1,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    24,
+    28,
+    32,
+    48,
+    64,
+    80,
+    96,
+    112,
+    128,
+] as const
 export const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
-export const WH = [undefined, '100%', '100vw', 'fit-content', 'min-content', 'max-content', 'auto'] as const
-export const MIN_MAX = [undefined, 'none', '100%', '100vw', 'fit-content', 'min-content', 'max-content'] as const
-export const BORDER_WIDTH = [undefined, '0', '1px', '2px', '4px', '8px'] as const
+export const WH = [
+    undefined,
+    '100%',
+    '100vw',
+    'fit-content',
+    'min-content',
+    'max-content',
+    'auto',
+] as const
+export const MIN_MAX = [
+    undefined,
+    'none',
+    '100%',
+    '100vw',
+    'fit-content',
+    'min-content',
+    'max-content',
+] as const
+export const BORDER_WIDTH = [
+    undefined,
+    '0',
+    '1px',
+    '2px',
+    '4px',
+    '8px',
+] as const
 export const BORDER_STYLE = [
     undefined,
     'solid',
@@ -62,7 +108,15 @@ export const BORDER_STYLE = [
     'none',
     'hidden',
 ] as const
-export const BOX_SHADOW = [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'] as const
+export const BOX_SHADOW = [
+    undefined,
+    'none',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+] as const
 export const FLEX = [undefined, '1', 'auto', 'initial', 'none'] as const
 export const ALIGN_SELF = [
     undefined,
@@ -111,9 +165,21 @@ export const LAYOUT_ARG_TYPES = {
     columnGap: { control: 'select', options: SPACING },
     rowGap: { control: 'select', options: SPACING },
     borderRadius: { control: 'select', options: ROUNDED },
-    color: { control: 'text', description: 'CSS color, including var(--custom-color). Inherits when omitted; style.color wins.' },
-    backgroundColor: { control: 'text', description: 'CSS background color, including vars.color references. No default; style wins.' },
-    borderColor: { control: 'text', description: 'CSS border color or shorthand, including custom properties. No default; style wins.' },
+    color: {
+        control: 'text',
+        description:
+            'CSS color, including var(--custom-color). Inherits when omitted; style.color wins.',
+    },
+    backgroundColor: {
+        control: 'text',
+        description:
+            'CSS background color, including vars.color references. No default; style wins.',
+    },
+    borderColor: {
+        control: 'text',
+        description:
+            'CSS border color or shorthand, including custom properties. No default; style wins.',
+    },
     boxShadow: { control: 'select', options: BOX_SHADOW },
     width: { control: 'select', options: WH },
     height: { control: 'select', options: WH },
@@ -122,24 +188,90 @@ export const LAYOUT_ARG_TYPES = {
     minHeight: { control: 'select', options: MIN_MAX },
     maxHeight: { control: 'select', options: MIN_MAX },
     flex: { control: 'select', options: FLEX },
-    flexDirection: { control: 'select', options: [undefined, 'row', 'column', 'row-reverse', 'column-reverse'] },
-    flexWrap: { control: 'select', options: [undefined, 'nowrap', 'wrap', 'wrap-reverse'] },
+    flexDirection: {
+        control: 'select',
+        options: [undefined, 'row', 'column', 'row-reverse', 'column-reverse'],
+    },
+    flexWrap: {
+        control: 'select',
+        options: [undefined, 'nowrap', 'wrap', 'wrap-reverse'],
+    },
     alignSelf: { control: 'select', options: ALIGN_SELF },
-    alignItems: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'baseline'] },
-    alignContent: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly'] },
-    justifyContent: { control: 'select', options: [undefined, 'start', 'end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly'] },
+    alignItems: {
+        control: 'select',
+        options: [undefined, 'start', 'end', 'center', 'stretch', 'baseline'],
+    },
+    alignContent: {
+        control: 'select',
+        options: [
+            undefined,
+            'start',
+            'end',
+            'center',
+            'stretch',
+            'space-between',
+            'space-around',
+            'space-evenly',
+        ],
+    },
+    justifyContent: {
+        control: 'select',
+        options: [
+            undefined,
+            'start',
+            'end',
+            'center',
+            'stretch',
+            'space-between',
+            'space-around',
+            'space-evenly',
+        ],
+    },
     overflow: { control: 'select', options: OVERFLOW },
     overflowX: { control: 'select', options: OVERFLOW },
     overflowY: { control: 'select', options: OVERFLOW },
     position: { control: 'select', options: POSITION },
+    background: { control: 'text', description: 'CSS background shorthand.' },
+    border: { control: 'text', description: 'CSS border shorthand.' },
+    borderTop: { control: 'text' },
+    borderRight: { control: 'text' },
+    borderBottom: { control: 'text' },
+    borderLeft: { control: 'text' },
+    boxSizing: { control: 'select', options: [undefined, 'border-box', 'content-box'] },
+    aspectRatio: { control: 'text' },
+    zIndex: { control: 'number' },
+    inset: { control: 'text' },
+    top: { control: 'text' },
+    right: { control: 'text' },
+    bottom: { control: 'text' },
+    left: { control: 'text' },
+    flexGrow: { control: 'number' },
+    flexShrink: { control: 'number' },
+    justifyItems: { control: 'text' },
+    justifySelf: { control: 'text' },
+    gridTemplateColumns: { control: 'text' },
+    gridTemplateRows: { control: 'text' },
+    gridAutoColumns: { control: 'text' },
+    gridAutoRows: { control: 'text' },
+    gridAutoFlow: { control: 'select', options: [undefined, 'row', 'column', 'dense', 'row dense', 'column dense'] },
+    gridColumn: { control: 'text' },
+    gridRow: { control: 'text' },
+    order: { control: 'number' },
+    opacity: { control: { type: 'number', min: 0, max: 1, step: 0.1 } },
     borderWidth: { control: 'select', options: BORDER_WIDTH },
     borderTopWidth: { control: 'select', options: BORDER_WIDTH },
     borderRightWidth: { control: 'select', options: BORDER_WIDTH },
     borderBottomWidth: { control: 'select', options: BORDER_WIDTH },
     borderLeftWidth: { control: 'select', options: BORDER_WIDTH },
     borderStyle: { control: 'select', options: BORDER_STYLE },
-    children: { control: 'text', description: 'Text content for this example.' },
-    className: { control: 'text', description: 'Additional class on the rendered element.' },
+    children: {
+        control: 'text',
+        description: 'Text content for this example.',
+    },
+    className: {
+        control: 'text',
+        description: 'Additional class on the rendered element.',
+    },
     style: { control: 'object', description: 'Inline style overrides.' },
     ref: { control: false, description: 'Ref passed to the rendered element.' },
-} satisfies NonNullable<Meta<typeof Box>['argTypes']>
+} satisfies NonNullable<Meta<BoxProps>['argTypes']>

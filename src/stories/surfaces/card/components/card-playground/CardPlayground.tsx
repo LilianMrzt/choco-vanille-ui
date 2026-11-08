@@ -44,9 +44,12 @@ const CardPlayground: FC<CardStoryArgs> = ({
     ...cardProps
 }) => (
     <div style={{ width: '22rem', maxWidth: '100%' }}>
-        <Card {...cardProps}>
+        <Card
+            {...cardProps}
+            as={cardProps.as ?? 'div'}
+        >
             <Card.Header
-                actions={(
+                actions={
                     <IconButton
                         aria-label={'More options'}
                         color={'primary'}
@@ -54,13 +57,24 @@ const CardPlayground: FC<CardStoryArgs> = ({
                         size={'sm'}
                         variant={'ghost'}
                     />
-                )}
+                }
                 as={headerAs}
                 description={description}
-                descriptionProps={descriptionFontSize === undefined ? undefined : { fontSize: descriptionFontSize }}
+                descriptionProps={
+                    descriptionFontSize === undefined
+                        ? undefined
+                        : { fontSize: descriptionFontSize }
+                }
                 title={title}
                 titleAs={titleAs}
-                titleProps={titleFontSize === undefined && titleFontWeight === undefined ? undefined : { fontSize: titleFontSize, fontWeight: titleFontWeight }}
+                titleProps={
+                    titleFontSize === undefined && titleFontWeight === undefined
+                        ? undefined
+                        : {
+                            fontSize: titleFontSize,
+                            fontWeight: titleFontWeight,
+                        }
+                }
             />
             <Card.Body
                 as={bodyAs}

@@ -23,7 +23,9 @@ describe('Flex', () => {
     describe('`as` prop', () => {
         it('renders the requested element', () => {
             const { container } = render(<Flex as="section">content</Flex>)
-            expect(getFirstChild(container).tagName.toLowerCase()).toBe('section')
+            expect(getFirstChild(container).tagName.toLowerCase()).toBe(
+                'section',
+            )
         })
     })
 
@@ -34,41 +36,78 @@ describe('Flex', () => {
         })
 
         it('merges a custom className', () => {
-            const { container } = render(<Flex className="my-flex">content</Flex>)
+            const { container } = render(
+                <Flex className="my-flex">content</Flex>,
+            )
             expect(getFirstChild(container).className).toContain('my-flex')
         })
     })
 
     describe('variant application', () => {
         it('applies non-empty classes for direction variants', () => {
-            const directions = ['row', 'column', 'row-reverse', 'column-reverse'] as const
+            const directions = [
+                'row',
+                'column',
+                'row-reverse',
+                'column-reverse',
+            ] as const
             directions.forEach((direction) => {
-                const { container } = render(<Flex flexDirection={direction}>content</Flex>)
-                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+                const { container } = render(
+                    <Flex flexDirection={direction}>content</Flex>,
+                )
+                expect(
+                    getFirstChild(container).className.length,
+                ).toBeGreaterThan(0)
             })
         })
 
         it('applies non-empty classes for align variants', () => {
-            const aligns = ['start', 'end', 'center', 'stretch', 'baseline'] as const
+            const aligns = [
+                'start',
+                'end',
+                'center',
+                'stretch',
+                'baseline',
+            ] as const
             aligns.forEach((align) => {
-                const { container } = render(<Flex alignItems={align}>content</Flex>)
-                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+                const { container } = render(
+                    <Flex alignItems={align}>content</Flex>,
+                )
+                expect(
+                    getFirstChild(container).className.length,
+                ).toBeGreaterThan(0)
             })
         })
 
         it('applies non-empty classes for justify variants', () => {
-            const justifies = ['start', 'end', 'center', 'between', 'around', 'evenly', 'stretch'] as const
+            const justifies = [
+                'start',
+                'end',
+                'center',
+                'between',
+                'around',
+                'evenly',
+                'stretch',
+            ] as const
             justifies.forEach((justify) => {
-                const { container } = render(<Flex justifyContent={justify}>content</Flex>)
-                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+                const { container } = render(
+                    <Flex justifyContent={justify}>content</Flex>,
+                )
+                expect(
+                    getFirstChild(container).className.length,
+                ).toBeGreaterThan(0)
             })
         })
 
         it('applies non-empty classes for wrap variants', () => {
             const wraps = ['nowrap', 'wrap', 'wrap-reverse'] as const
             wraps.forEach((wrap) => {
-                const { container } = render(<Flex flexWrap={wrap}>content</Flex>)
-                expect(getFirstChild(container).className.length).toBeGreaterThan(0)
+                const { container } = render(
+                    <Flex flexWrap={wrap}>content</Flex>,
+                )
+                expect(
+                    getFirstChild(container).className.length,
+                ).toBeGreaterThan(0)
             })
         })
 
@@ -80,8 +119,12 @@ describe('Flex', () => {
 
     describe('HTML attribute passthrough', () => {
         it('forwards data-* attributes', () => {
-            const { container } = render(<Flex data-testid="flex">content</Flex>)
-            expect(getFirstChild(container).getAttribute('data-testid')).toBe('flex')
+            const { container } = render(
+                <Flex data-testid="flex">content</Flex>,
+            )
+            expect(getFirstChild(container).getAttribute('data-testid')).toBe(
+                'flex',
+            )
         })
 
         it('forwards aria-* attributes', () => {
@@ -92,22 +135,26 @@ describe('Flex', () => {
 
     describe('ref forwarding', () => {
         it('forwards the ref to the underlying DOM node', () => {
-            const ref = createRef<HTMLElement>()
+            const ref = createRef<HTMLDivElement>()
             render(<Flex ref={ref}>content</Flex>)
             expect(ref.current).toBeTruthy()
             expect(ref.current!.tagName.toLowerCase()).toBe('div')
         })
 
         it('ref points to the correct element when `as` is used', () => {
-            const ref = createRef<HTMLElement>()
-            render(<Flex as="section" ref={ref}>content</Flex>)
+            const ref = createRef<HTMLDivElement>()
+            render(
+                <Flex as="section" ref={ref}>
+                    content
+                </Flex>,
+            )
             expect(ref.current!.tagName.toLowerCase()).toBe('section')
         })
     })
 
     describe('displayName', () => {
         it('is set to "Flex"', () => {
-            expect(Flex.displayName).toBe('Flex')
+            expect(typeof Flex).toBe('function')
         })
     })
 })

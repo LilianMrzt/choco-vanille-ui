@@ -6,10 +6,10 @@ import { md } from '@stories/_shared/utils/markdown'
 export const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
 ## Accessibility
 
-| Prop / Attribute | Required | Type | Notes |
-| --- | --- | --- | --- |
-| \`children\` | Yes | ReactNode | Provide meaningful text to name the fieldset. |
-| \`variant\` | No | TypographyVariant | Changes presentation only; the element remains a legend. |
+| Prop / Attribute | Required | Type              | Notes                                                    |
+| ---------------- | -------- | ----------------- | -------------------------------------------------------- |
+| \`children\`       | Yes      | ReactNode         | Provide meaningful text to name the fieldset.            |
+| \`variant\`        | No       | TypographyVariant | Changes presentation only; the element remains a legend. |
 
 Place the Legend as the first child of its Fieldset. Label the individual controls separately.
 `
@@ -17,7 +17,8 @@ Place the Legend as the first child of its Fieldset. Label the individual contro
 export const ARG_TYPES = {
     variant: {
         ...TYPOGRAPHY_ARG_TYPES.variant,
-        description: 'Typography style only; Legend always renders a legend element. Defaults to label.',
+        description:
+            'Typography style only; Legend always renders a legend element. Defaults to label.',
         table: { defaultValue: { summary: 'label' } },
     },
     fontWeight: TYPOGRAPHY_ARG_TYPES.fontWeight,
@@ -40,11 +41,14 @@ export const ARG_TYPES = {
     title: { control: 'text', description: 'Native legend title.' },
     className: TYPOGRAPHY_ARG_TYPES.className,
     style: TYPOGRAPHY_ARG_TYPES.style,
-    htmlFor: { control: false, description: 'Inherited from Typography; not applicable to a native legend.' },
-    ref: { control: false, description: 'Ref forwarded to the native legend element.' },
+    ref: {
+        control: false,
+        description: 'Ref forwarded to the native legend element.',
+    },
 } satisfies NonNullable<Meta<typeof Legend>['argTypes']>
 
 export const DEFAULT_ARGS = {
     children: 'Notification preferences',
 } satisfies NonNullable<Meta<typeof Legend>['args']>
-export const DESCRIPTION = 'Names a fieldset using a native legend. Typography props customize its presentation without changing its semantics.'
+export const DESCRIPTION =
+    'Names a fieldset using a native legend. Typography props customize its presentation without changing its semantics.'

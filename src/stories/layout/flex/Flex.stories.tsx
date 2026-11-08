@@ -11,7 +11,7 @@ import interactiveSource from '@stories/layout/flex/sources/FlexInteractive.sour
 
 const meta = {
     title: 'Layout/Flex',
-    component: Flex,
+    component: FlexPlayground,
     parameters: {
         layout: 'padded',
         docs: {

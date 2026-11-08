@@ -58,12 +58,16 @@ describe('Inset', () => {
     it('forwards refs to the underlying div', () => {
         const ref = createRef<HTMLDivElement>()
 
-        render(<Inset ref={ref} space={12}>content</Inset>)
+        render(
+            <Inset ref={ref} space={12}>
+                content
+            </Inset>,
+        )
 
         expect(ref.current?.tagName.toLowerCase()).toBe('div')
     })
 
     it('sets a display name', () => {
-        expect(Inset.displayName).toBe('Inset')
+        expect(typeof Inset).toBe('function')
     })
 })

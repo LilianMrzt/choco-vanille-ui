@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Card } from '@components/surfaces/card'
 import CardColors from '@stories/surfaces/card/components/card-colors/CardColors'
 import CardDocsPage from '@stories/surfaces/card/components/card-docs-page/CardDocsPage'
 import CardPlayground from '@stories/surfaces/card/components/card-playground/CardPlayground'
@@ -12,11 +11,22 @@ import { storySource } from '@stories/_shared/utils/storySource'
 
 const meta = {
     title: 'Surfaces/Card',
-    component: Card,
+    component: CardPlayground,
     tags: ['autodocs'],
     decorators: [
         (Story) => (
-            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', width: 'min(40rem, calc(100vw - 2rem))', maxWidth: '100%', minWidth: 0, overflowX: 'auto' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    gap: '1rem',
+                    width: 'min(40rem, calc(100vw - 2rem))',
+                    maxWidth: '100%',
+                    minWidth: 0,
+                    overflowX: 'auto',
+                }}
+            >
                 <Story />
             </div>
         ),
@@ -27,7 +37,8 @@ const meta = {
         docs: {
             page: CardDocsPage,
             description: {
-                component: 'A surface container for related content. Compose its header, body and footer to structure the content and actions. Supply your own SVG component for SearchIcon in the example.',
+                component:
+                    'A surface container for related content. Compose its header, body and footer to structure the content and actions. Supply your own SVG component for SearchIcon in the example.',
             },
             source: {
                 type: 'dynamic',

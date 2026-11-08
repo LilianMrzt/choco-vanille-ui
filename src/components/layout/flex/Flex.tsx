@@ -1,9 +1,9 @@
 import { FLEX_STYLES } from '@components/layout/flex/Flex.css.ts'
-import type { FlexProps } from '@components/layout/flex/types'
+import type { FlexComponent, FlexProps } from '@components/layout/flex/types'
 import { cn } from '@utils/cn.ts'
-import { memo, type FC } from 'react'
+import { createElement, type ElementType, type ReactElement } from 'react'
 
-import Box from '@components/layout/box/Box.tsx'
+import { resolveBoxProps } from '@components/layout/box/utils/resolveBoxProps.utils'
 
 /**
  * Flex container built on `Box`. Sets `display: flex` (or `inline-flex`
@@ -11,6 +11,7 @@ import Box from '@components/layout/box/Box.tsx'
  * `Box` props for additional layout customization. Native attributes and ref
  * target the element selected by `as`, which defaults to `div`.
  *
+ * @template Element - Native element or custom component selected by as.
  * @param props - Flex and inherited layout attributes.
  * @param props.inline - Use `inline-flex` instead of `flex`.
  * @param props.gap - Spacing token between children; defaults to `0`.
@@ -19,21 +20,20 @@ import Box from '@components/layout/box/Box.tsx'
  * @example
  * <Flex gap={8}><span>One</span><span>Two</span></Flex>
  */
-const Flex: FC<FlexProps> = memo(({
+const Flex: FlexComponent = <Element extends ElementType = 'div'>({
     inline,
     gap = 0,
     className,
     ...props
-}) => {
-    return (
-        <Box
-            gap={gap}
-            className={cn(FLEX_STYLES.recipe({ inline }), className)}
-            {...props}
-        />
+}: FlexProps<Element> & Readonly<{ as?: Element }>): ReactElement => {
+    return createElement(
+        props.as ?? 'div',
+        resolveBoxProps({
+            gap,
+            className: cn(FLEX_STYLES.recipe({ inline }), className),
+            ...props,
+        }),
     )
-})
-
-Flex.displayName = 'Flex'
+}
 
 export default Flex

@@ -13,7 +13,7 @@ import interactiveSource from '@stories/layout/inset/sources/InsetInteractive.so
 
 const meta = {
     title: 'Layout/Inset',
-    component: Inset,
+    component: InsetPlayground,
     parameters: {
         layout: 'padded',
         docs: {
