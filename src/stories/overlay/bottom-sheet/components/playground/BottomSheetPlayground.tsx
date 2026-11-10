@@ -19,6 +19,12 @@ const BottomSheetPlayground = () => {
         modal,
         triggerLabel,
         showHandle,
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
         showHeader,
         title,
         titleAs,
@@ -72,7 +78,13 @@ const BottomSheetPlayground = () => {
             </BottomSheet.Trigger>
             <BottomSheet.Content
                 defaultAriaLabel={contentLabel}
+                height={height}
+                maxHeight={maxHeight}
+                maxWidth={maxWidth}
+                minHeight={minHeight}
+                minWidth={minWidth}
                 showHandle={showHandle}
+                width={width}
             >
                 {showHeader && (
                     <BottomSheet.Header

@@ -2,10 +2,10 @@ import { CHECK_ICON as CheckIcon, TRASH_ICON as TrashIcon } from '@constants/ico
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 
 import { Button } from '@components/actions/button'
-import { BottomSheet } from '@components/overlay/bottom-sheet'
+import { BottomSheet, type BottomSheetContentProps } from '@components/overlay/bottom-sheet'
 import { BOTTOM_SHEET_CLOSE_STYLES } from '@components/overlay/bottom-sheet/components/bottom-sheet-close/BottomSheetClose.css.ts'
 
 const ControlledRadioGroup = ({ onValueChange }: { onValueChange: (value: unknown) => void }) => {
@@ -58,6 +58,85 @@ describe('BottomSheet', () => {
     })
 
     describe('Content', () => {
+        it('supports CSS dimensions on the panel without forwarding them as attributes', () => {
+            expectTypeOf<BottomSheetContentProps['width']>().toEqualTypeOf<React.CSSProperties['width']>()
+            expectTypeOf<BottomSheetContentProps['height']>().toEqualTypeOf<React.CSSProperties['height']>()
+
+            render(
+                <BottomSheet defaultOpen>
+                    <BottomSheet.Content
+                        width="100%"
+                        minWidth={120}
+                        maxWidth="none"
+                        height="80dvh"
+                        minHeight={200}
+                        maxHeight="90dvh"
+                    >
+                        Content
+                    </BottomSheet.Content>
+                </BottomSheet>,
+            )
+
+            const dialog = screen.getByRole('dialog')
+            expect(dialog.style.width).toBe('100%')
+            expect(dialog.style.minWidth).toBe('120px')
+            expect(dialog.style.maxWidth).toBe('none')
+            expect(dialog.style.height).toBe('80dvh')
+            expect(dialog.style.minHeight).toBe('200px')
+            expect(dialog.style.maxHeight).toBe('90dvh')
+            for (const name of ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight']) {
+                expect(dialog.hasAttribute(name)).toBe(false)
+            }
+        })
+
+        it('preserves default dimension styles and gives object and callback styles precedence', () => {
+            const { rerender } = render(
+                <BottomSheet defaultOpen>
+                    <BottomSheet.Content>Content</BottomSheet.Content>
+                </BottomSheet>,
+            )
+            const dialog = screen.getByRole('dialog')
+            expect(dialog.style.width).toBe('')
+            expect(dialog.style.maxWidth).toBe('')
+            expect(dialog.style.height).toBe('')
+            expect(dialog.style.maxHeight).toBe('')
+
+            rerender(
+                <BottomSheet defaultOpen>
+                    <BottomSheet.Content width="100%" height={300} style={{ width: '75%', color: 'red' }}>
+                        Content
+                    </BottomSheet.Content>
+                </BottomSheet>,
+            )
+            expect(dialog.style.width).toBe('75%')
+            expect(dialog.style.height).toBe('300px')
+            expect(dialog.style.color).toBe('red')
+
+            rerender(
+                <BottomSheet defaultOpen>
+                    <BottomSheet.Content width="100%" height={300} style={(state) => ({ width: state.open ? '60%' : '50%' })}>
+                        Content
+                    </BottomSheet.Content>
+                </BottomSheet>,
+            )
+            expect(dialog.style.width).toBe('60%')
+            expect(dialog.style.height).toBe('300px')
+        })
+
+        it('preserves styles supplied through the rendered element when dimensions are omitted', () => {
+            render(
+                <BottomSheet defaultOpen>
+                    <BottomSheet.Content render={<div style={{ width: '75%', height: '50vh' }} />}>
+                        Content
+                    </BottomSheet.Content>
+                </BottomSheet>,
+            )
+
+            const dialog = screen.getByRole('dialog')
+            expect(dialog.style.width).toBe('75%')
+            expect(dialog.style.height).toBe('50vh')
+        })
+
         it('renders a dialog with a drag handle', () => {
             render(
                 <BottomSheet defaultOpen>

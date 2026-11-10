@@ -50,4 +50,15 @@ describe('BottomSheetPlayground', () => {
         expect(controls.updateArgs).not.toHaveBeenCalled()
         expect(screen.getByRole('radio', { name: 'Original size' }).getAttribute('aria-checked')).toBe('true')
     })
+
+    it('applies dimension controls to the panel', () => {
+        controls.args = { ...controls.args, width: '100%', maxWidth: 'none', height: '80vh', maxHeight: '90vh' }
+        render(<BottomSheetPlayground />)
+
+        const dialog = screen.getByRole('dialog')
+        expect(dialog.style.width).toBe('100%')
+        expect(dialog.style.maxWidth).toBe('none')
+        expect(dialog.style.height).toBe('80vh')
+        expect(dialog.style.maxHeight).toBe('90vh')
+    })
 })

@@ -25,6 +25,9 @@ export const createBottomSheetSource = (_source: string, { args }: Readonly<{ ar
         })}`
         : ''
     const separator = args.showSeparator ? `\n        ${separatorTemplate.trim()}` : ''
+    const dimensions = (['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight'] as const)
+        .map((key) => args[key] === undefined ? '' : ` ${key}={${JSON.stringify(args[key])}}`)
+        .join('')
     const radio = args.showRadioGroup
         ? `${separator}\n        ${renderSource(radioGroupTemplate, {
             radioItemLabel: JSON.stringify(args.radioItemLabel ?? 'Original size'),
@@ -38,6 +41,7 @@ export const createBottomSheetSource = (_source: string, { args }: Readonly<{ ar
         triggerLabel: JSON.stringify(args.triggerLabel ?? 'Open bottom sheet'),
         showHandle: JSON.stringify(args.showHandle ?? true),
         contentLabel: args.contentLabel === undefined ? '' : ` defaultAriaLabel={${JSON.stringify(args.contentLabel)}}`,
+        dimensions,
         radioValue: JSON.stringify(args.radioValue ?? 'original'),
         header,
         radio,

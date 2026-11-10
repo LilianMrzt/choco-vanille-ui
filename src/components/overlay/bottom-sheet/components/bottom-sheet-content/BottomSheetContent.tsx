@@ -10,6 +10,10 @@ import { cn } from '@utils/cn.ts'
  * viewport. Includes the backdrop, the drag handle and a scrollable content
  * area. The sheet can be dismissed by swiping down, pressing `Escape` or
  * tapping the backdrop.
+ *
+ * Width and height props apply to the panel. The default maximum width is
+ * 40rem and maximum height is `calc(100dvh - 3rem)`; override them explicitly
+ * when needed. The `style` prop takes precedence over dimension props.
  */
 const BottomSheetContent: FC<BottomSheetContentProps> = memo(({
     className,
@@ -18,6 +22,13 @@ const BottomSheetContent: FC<BottomSheetContentProps> = memo(({
     'aria-labelledby': ariaLabelledBy,
     defaultAriaLabel = 'Bottom sheet',
     children,
+    width,
+    minWidth,
+    maxWidth,
+    height,
+    minHeight,
+    maxHeight,
+    style,
     ...props
 }) => {
     // A role="dialog" element must have an accessible name. Base UI wires
@@ -26,6 +37,17 @@ const BottomSheetContent: FC<BottomSheetContentProps> = memo(({
     // set so it never clears Base UI's own value.
     const accessibleName = ariaLabel ?? (ariaLabelledBy ? undefined : defaultAriaLabel)
     const labelledByProps = ariaLabelledBy ? { 'aria-labelledby': ariaLabelledBy } : {}
+    const dimensions = {
+        ...(width === undefined ? {} : { width }),
+        ...(minWidth === undefined ? {} : { minWidth }),
+        ...(maxWidth === undefined ? {} : { maxWidth }),
+        ...(height === undefined ? {} : { height }),
+        ...(minHeight === undefined ? {} : { minHeight }),
+        ...(maxHeight === undefined ? {} : { maxHeight }),
+    }
+    const panelStyle: BottomSheetContentProps['style'] = typeof style === 'function'
+        ? (state) => ({ ...dimensions, ...style(state) })
+        : { ...dimensions, ...style }
 
     return (
         <BaseDrawer.Portal>
@@ -34,6 +56,7 @@ const BottomSheetContent: FC<BottomSheetContentProps> = memo(({
                 <BaseDrawer.Popup
                     className={cn(BOTTOM_SHEET_STYLES.popup, className)}
                     aria-label={accessibleName}
+                    style={panelStyle}
                     {...labelledByProps}
                     {...props}
                 >

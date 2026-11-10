@@ -13,7 +13,7 @@ const Example = () => {
       <BottomSheet.Trigger>
         <Button label={{{triggerLabel}}} variant="contained" color="primary" />
       </BottomSheet.Trigger>
-      <BottomSheet.Content showHandle={{{showHandle}}}{{contentLabel}}>{{header}}
+      <BottomSheet.Content showHandle={{{showHandle}}}{{contentLabel}}{{dimensions}}>{{header}}
         <BottomSheet.Item label="Share link" startIcon={LinkIcon} />
         <BottomSheet.Item label="Upload" startIcon={UploadIcon} />{{radio}}{{separator}}
         <BottomSheet.Item label={{{itemLabel}}} startIcon={TrashIcon} destructive={{{itemDestructive}}} disabled={{{itemDisabled}}}{{itemCloseOnClick}} />

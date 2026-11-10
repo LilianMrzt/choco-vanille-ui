@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
-import type { BottomSheet, BottomSheetHeaderProps, BottomSheetRadioGroupProps } from '@components/overlay/bottom-sheet'
+import type { BottomSheet, BottomSheetContentProps, BottomSheetHeaderProps, BottomSheetRadioGroupProps } from '@components/overlay/bottom-sheet'
 
-export type BottomSheetPlaygroundArgs = ComponentProps<typeof BottomSheet> & {
+export type BottomSheetPlaygroundArgs = ComponentProps<typeof BottomSheet> & Pick<BottomSheetContentProps, 'width' | 'minWidth' | 'maxWidth' | 'height' | 'minHeight' | 'maxHeight'> & {
   triggerLabel?: string;
   showHandle?: boolean;
   showHeader?: boolean;

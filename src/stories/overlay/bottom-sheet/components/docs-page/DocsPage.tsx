@@ -3,6 +3,8 @@ import usageSource from '../../sources/BottomSheetUsage.source.txt?raw'
 import { md } from '@stories/_shared/utils/markdown'
 
 const ACCESSIBILITY_DESCRIPTION = md /* language=markdown */ `
+The panel defaults to a width of \`100%\` (maximum \`40rem\`) and a content-driven height (maximum \`calc(100dvh - 3rem)\`). Set dimension props on \`BottomSheet.Content\`, for example \`width="100%" maxWidth="none"\` for a full-width panel. The \`style\` prop takes precedence over dimension props.
+
 ## Accessibility
 
 | Prop / Attribute                                | Required    | Type      | Notes                                                             |

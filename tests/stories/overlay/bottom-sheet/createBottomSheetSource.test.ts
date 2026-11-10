@@ -26,6 +26,15 @@ describe('createBottomSheetSource', () => {
             .toContain('<BottomSheet.Header title={"Photo"} />')
     })
 
+    it('includes supplied dimensions in the consumer example', () => {
+        const source = createBottomSheetSource('', {
+            args: { width: '100%', minWidth: 120, maxWidth: 'none', height: '80vh', minHeight: 0, maxHeight: '90vh' },
+        })
+
+        expect(source).toContain('width={"100%"} minWidth={120} maxWidth={"none"} height={"80vh"} minHeight={0} maxHeight={"90vh"}')
+        expect(createBottomSheetSource('', { args: {} })).not.toContain('maxWidth=')
+    })
+
     it.each([
         [false, false, 0],
         [false, true, 1],
