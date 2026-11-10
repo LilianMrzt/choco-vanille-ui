@@ -9,8 +9,8 @@ const MARGIN_VARIANTS = {
     ...SPACE_VARIANTS,
 } as const
 
-const borderRadiusVariants = styleVariants(vars.radius, (value) => ({
-    borderRadius: value,
+const borderRadiusVariants = styleVariants(vars.radius, (borderRadius) => ({
+    borderRadius,
 }))
 
 const paddingVariants = styleVariants(SPACE_VARIANTS, (value) => ({

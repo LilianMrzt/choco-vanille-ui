@@ -130,7 +130,8 @@ const incomplete: ThemeColors = { primary: { main: 'red' } }
 const objectColor = <Typography color={vars.color.primary} />
 // @ts-expect-error Subtle is a direct leaf.
 const deep = vars.color.primary.subtle.main
-const numericTokens = [vars.space[16], vars.space[80], vars.space[112], vars.fontSize[14], vars.radius[8], vars.radius.full, vars.shadow.xs, vars.dropShadow.xs]
+const numericTokens = [vars.space[16], vars.space[80], vars.space[112], vars.fontSize[14], vars.radius[8], vars.radius[32], vars.radius[128], vars.radius.full, vars.shadow.xs, vars.dropShadow.xs]
+const extendedRadii = <><Box borderRadius={32} /><Toggle label="Bold" radius={128} /></>
 // @ts-expect-error Spacing props require numbers, not quoted numeric keys.
 const quotedSpacing = <Box padding="16" />
 // @ts-expect-error Font-size props require numbers.
@@ -141,6 +142,6 @@ const quotedRadius = <Box borderRadius="8" />
 const arbitrarySpacing = <Box padding={17} />
 // @ts-expect-error Only the finite font-size scale is supported.
 const arbitraryFontSize = <Typography fontSize={15} />
-void [accent, colors, path, example, numericTokens, dataDisplay, semanticColors, legacyButtonColor, legacyBadgeColor, avatarGroup, toggleGroup, checkbox, checkboxGroup, checkboxExample, toggleStyle, legacyToggleStyle, toggleExamples, missingToggleValue, legacyToggleSubtle, unnamedToggle,
+void [accent, colors, path, example, numericTokens, extendedRadii, dataDisplay, semanticColors, legacyButtonColor, legacyBadgeColor, avatarGroup, toggleGroup, checkbox, checkboxGroup, checkboxExample, toggleStyle, legacyToggleStyle, toggleExamples, missingToggleValue, legacyToggleSubtle, unnamedToggle,
     branch, legacy, nested, incomplete, objectColor, deep,
     quotedSpacing, quotedFontSize, quotedRadius, arbitrarySpacing, arbitraryFontSize]

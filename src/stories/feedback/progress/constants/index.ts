@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react-vite'
 
 import { PROGRESS_COLORS_ARRAY, type ProgressBaseProps, type ProgressBorderRadius, type ProgressSize } from '@components/feedback/progress'
-import { LAYOUT_ARG_TYPES } from '@stories/_shared/layout-controls/constants'
+import { LAYOUT_ARG_TYPES, RADIUS_OPTIONS } from '@stories/_shared/layout-controls/constants'
 
 export const SIZES: ProgressSize[] = ['xs', 'sm', 'md', 'lg', 'xl']
-export const RADII: ProgressBorderRadius[] = [0, 4, 6, 8, 10, 14, 20, 'full']
+export const RADII: ProgressBorderRadius[] = [...RADIUS_OPTIONS]
 
 export const DEFAULT_ARGS = {
     value: 50,

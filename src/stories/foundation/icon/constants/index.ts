@@ -1,12 +1,13 @@
 import { SEARCH_ICON as SearchIcon } from '@constants/icon-registry'
 import type { IconProps, IconSize } from '@components/foundation/icon'
-import type { BoxBorderRadius, BoxSpace } from '@components/layout/box'
+import type { BoxSpace } from '@components/layout/box'
 import type { Meta } from '@storybook/react-vite'
 import type { CSSProperties } from 'react'
+import { ROUNDED } from '@stories/_shared/layout-controls/constants'
 
 export const SIZES: IconSize[] = [10, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72]
 export const PADDINGS: (BoxSpace | undefined)[] = [undefined, 0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 48, 64, 80, 96, 112, 128]
-export const BORDER_RADIUSES: (BoxBorderRadius | undefined)[] = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full']
+export const BORDER_RADIUSES = ROUNDED
 export const BORDER_STYLES: (CSSProperties['borderStyle'] | undefined)[] = [
     undefined, 'none', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset',
 ]

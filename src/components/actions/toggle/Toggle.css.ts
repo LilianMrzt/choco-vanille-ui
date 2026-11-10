@@ -1,4 +1,5 @@
 import { COLOR_INTENT_TOKENS } from '@theme/constants/color-intents/index.ts'
+import { styleVariants } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
@@ -9,6 +10,10 @@ import {
 } from '@components/actions/_shared/buttons/constants'
 import { BUTTON_SHARED_STYLES } from '@components/actions/_shared/buttons/styles/buttonShared.css.ts'
 import { BUTTON_SHARED_SIZE_STYLES } from '@components/actions/_shared/buttons/styles/ButtonSharedSizes.css'
+
+const radiusVariants = styleVariants(vars.radius, (borderRadius) => ({
+    borderRadius,
+}))
 
 const pressedSelector = '&[data-pressed]'
 const subtleCompoundVariants = BUTTON_COLORS_ARRAY.flatMap((color) =>
@@ -259,32 +264,7 @@ export const TOGGLE_STYLES = {
                 },
             },
             size: BUTTON_SHARED_SIZE_STYLES,
-            radius: {
-                0: {
-                    borderRadius: vars.radius[0],
-                },
-                4: {
-                    borderRadius: vars.radius[4],
-                },
-                6: {
-                    borderRadius: vars.radius[6],
-                },
-                8: {
-                    borderRadius: vars.radius[8],
-                },
-                10: {
-                    borderRadius: vars.radius[10],
-                },
-                14: {
-                    borderRadius: vars.radius[14],
-                },
-                20: {
-                    borderRadius: vars.radius[20],
-                },
-                'full': {
-                    borderRadius: vars.radius['full'],
-                },
-            },
+            radius: radiusVariants,
         },
         compoundVariants: subtleCompoundVariants,
         defaultVariants: {

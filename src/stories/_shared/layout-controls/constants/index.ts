@@ -68,7 +68,11 @@ export const SPACING = [
     112,
     128,
 ] as const
-export const ROUNDED = [undefined, 0, 4, 6, 8, 10, 14, 20, 'full'] as const
+export const RADIUS_OPTIONS = [
+    0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20,
+    24, 28, 32, 48, 64, 80, 96, 112, 128, 'full',
+] as const satisfies readonly BoxProps['borderRadius'][]
+export const ROUNDED = [undefined, ...RADIUS_OPTIONS] as const
 export const WH = [
     undefined,
     '100%',

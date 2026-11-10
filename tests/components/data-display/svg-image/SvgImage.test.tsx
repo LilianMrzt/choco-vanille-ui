@@ -53,6 +53,13 @@ describe('SvgImage', () => {
     })
 
     describe('styles and attributes', () => {
+        it('applies an extended radius token', () => {
+            render(<SvgImage image={TestSvg} alt="Illustration" borderRadius={32} />)
+            expect(screen.getByRole('img').getAttribute('class')).toContain(
+                SVG_IMAGE_STYLES.recipe({ borderRadius: 32 }),
+            )
+        })
+
         it('accepts free background variables while keeping color token paths', () => {
             render(
                 <SvgImage

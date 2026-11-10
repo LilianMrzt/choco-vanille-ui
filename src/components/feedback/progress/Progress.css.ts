@@ -1,3 +1,4 @@
+import { styleVariants } from '@vanilla-extract/css'
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
@@ -7,7 +8,6 @@ import {
     PROGRESS_SIZE_TO_HEIGHT,
     PROGRESS_SIZE_TO_STROKE_WIDTH,
 } from '@components/feedback/progress/constants'
-import type { ProgressBorderRadius } from '@components/feedback/progress/types'
 
 const PROGRESS_TRACK_COLORS = {
     primary: vars.color.primary.subtle,
@@ -48,35 +48,9 @@ const colorCompoundVariants = PROGRESS_COLORS_ARRAY.map((color) => ({
     },
 }))
 
-const BORDER_RADIUS_VARIANTS: Record<
-  ProgressBorderRadius,
-  { borderRadius: string }
-> = {
-    0: {
-        borderRadius: vars.radius[0],
-    },
-    4: {
-        borderRadius: vars.radius[4],
-    },
-    6: {
-        borderRadius: vars.radius[6],
-    },
-    8: {
-        borderRadius: vars.radius[8],
-    },
-    10: {
-        borderRadius: vars.radius[10],
-    },
-    14: {
-        borderRadius: vars.radius[14],
-    },
-    20: {
-        borderRadius: vars.radius[20],
-    },
-    'full': {
-        borderRadius: vars.radius['full'],
-    },
-}
+const BORDER_RADIUS_VARIANTS = styleVariants(vars.radius, (borderRadius) => ({
+    borderRadius,
+}))
 
 export const PROGRESS_STYLES = {
     recipe: recipe({

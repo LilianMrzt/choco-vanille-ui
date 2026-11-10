@@ -8,6 +8,7 @@ import {
     type ProgressColor,
     type ProgressSize,
 } from '@components/feedback/progress'
+import { vars } from '@theme'
 
 const getFirstChild = (container: HTMLElement) =>
   container.firstElementChild as HTMLElement
@@ -120,6 +121,21 @@ describe('Progress', () => {
             expect(track.className).toContain(
                 PROGRESS_STYLES.recipe({ borderRadius: 'full', size: 'sm' }),
             )
+        })
+
+        it('supports every radius token on both track and fill', () => {
+            expect(Object.keys(PROGRESS_STYLES.recipe.classNames.variants.borderRadius))
+                .toEqual(Object.keys(vars.radius))
+            expect(Object.keys(PROGRESS_STYLES.fill.classNames.variants.borderRadius))
+                .toEqual(Object.keys(vars.radius))
+
+            const { container } = render(
+                <Progress value={50} borderRadius={32} aria-label="Progress" />,
+            )
+            const track = screen.getByRole('progressbar')
+            const fill = container.querySelector('[data-progress-fill]')
+            expect(track.className).toContain(PROGRESS_STYLES.recipe({ borderRadius: 32 }))
+            expect(fill?.className).toContain(PROGRESS_STYLES.fill({ borderRadius: 32 }))
         })
     })
 

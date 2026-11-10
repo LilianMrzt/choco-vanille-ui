@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { darkTheme, lightTheme, vars } from '@theme'
 import { getColorEntries } from '@theme/utils/getColorEntries.utils.ts'
+import { RADIUS_OPTIONS, ROUNDED } from '@stories/_shared/layout-controls/constants'
 import {
     buildPlainCssScaffold,
     buildStaticRows,
@@ -9,6 +10,7 @@ import {
     buildThemeCSS,
     buildVanillaExtractSnippet,
     editorColorRows,
+    radiusRows,
 } from '@stories/docs/css-variables/utils/theme/theme.utils.ts'
 
 describe('theme variable documentation', () => {
@@ -72,5 +74,22 @@ describe('theme variable documentation', () => {
         expect(reference).not.toContain('vars.fontSize.10')
         expect(reference).toContain('vars.radius[8]')
         expect(reference).not.toMatch(/vars\.(?:lineHeight|letterSpacing)\b/)
+    })
+
+    it('documents every radius token in CSS and typed references', () => {
+        const css = buildThemeCSS()
+        const scaffold = buildPlainCssScaffold()
+        const reference = buildVanillaExtractSnippet()
+
+        expect(radiusRows).toHaveLength(Object.keys(lightTheme.radius).length)
+        expect(RADIUS_OPTIONS.map(String)).toEqual(Object.keys(lightTheme.radius))
+        expect(ROUNDED).toEqual([undefined, ...RADIUS_OPTIONS])
+        for (const row of radiusRows) {
+            const key = row.variable.slice('--radius-'.length)
+            const tokenReference = key === 'full' ? 'vars.radius.full' : `vars.radius[${key}]`
+            expect(css).toContain(`${row.variable}: ${row.lightValue};`)
+            expect(scaffold).toContain(`${row.variable}: ;`)
+            expect(reference).toContain(tokenReference)
+        }
     })
 })

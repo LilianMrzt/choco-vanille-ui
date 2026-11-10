@@ -76,7 +76,10 @@ one without a concrete requirement and an explicit dependency decision.
   typographic compositions; `fontFamily` and `fontWeight` remain theme tokens.
   Line-height and letter-spacing are component-owned CSS values, not theme
   groups. Typography's `letterSpacing` accepts a CSS value.
-- Radius keys are `0`, `4`, `6`, `8`, `10`, `14`, `20`, `full`.
+- Radius keys follow the spacing scale: `0`, `1`, even steps from `2` through
+  `20`, then `24`, `28`, `32`, `48`, `64`, `80`, `96`, `112`, `128`, plus
+  `full`. Numeric keys reference pixels at a 16px root; values are rem-based
+  except zero and fixed `1px`.
   Both `shadow` and `dropShadow` use `none`, `xs`, `sm`, `md`, `lg`, `xl`.
   Keep the existing `duration`, `easing` and `zIndex` scales. Non-color
   scales do not introduce component-named semantic aliases, except zIndex.

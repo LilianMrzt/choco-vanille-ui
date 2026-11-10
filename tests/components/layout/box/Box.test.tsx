@@ -262,6 +262,18 @@ describe('Box', () => {
         expect(box.hasAttribute('gap')).toBe(false)
     })
 
+    it('applies an extended radius token as a class', () => {
+        expectTypeOf<32>().toMatchTypeOf<NonNullable<BoxProps['borderRadius']>>()
+        render(<Box borderRadius={32} data-testid="rounded" />)
+
+        const box = screen.getByTestId('rounded')
+        for (const className of BOX_STYLES.recipe({ borderRadius: 32 }).split(' ')) {
+            expect(box.classList.contains(className)).toBe(true)
+        }
+        expect(box.hasAttribute('borderRadius')).toBe(false)
+        expect(box.style.borderRadius).toBe('')
+    })
+
     it('provides every numeric token for every spacing axis', () => {
         for (const property of [
             'padding',

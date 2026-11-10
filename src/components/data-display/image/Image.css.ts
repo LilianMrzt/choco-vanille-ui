@@ -1,6 +1,11 @@
+import { styleVariants } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 import { vars } from '@theme/styles/contract/contract.css.ts'
+
+const borderRadiusVariants = styleVariants(vars.radius, (borderRadius) => ({
+    borderRadius,
+}))
 
 const localImageRecipe = recipe({
     base: {
@@ -61,32 +66,7 @@ const localImageRecipe = recipe({
         },
 
         // Border Radius
-        borderRadius: {
-            0: {
-                borderRadius: vars.radius[0],
-            },
-            4: {
-                borderRadius: vars.radius[4],
-            },
-            6: {
-                borderRadius: vars.radius[6],
-            },
-            8: {
-                borderRadius: vars.radius[8],
-            },
-            10: {
-                borderRadius: vars.radius[10],
-            },
-            14: {
-                borderRadius: vars.radius[14],
-            },
-            20: {
-                borderRadius: vars.radius[20],
-            },
-            'full': {
-                borderRadius: vars.radius['full'],
-            },
-        },
+        borderRadius: borderRadiusVariants,
 
         // Padding
         padding: {

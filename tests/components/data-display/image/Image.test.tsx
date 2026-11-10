@@ -17,6 +17,15 @@ describe('Image', () => {
         }
     })
 
+    it('supports every radius token', () => {
+        expect(Object.keys(IMAGE_STYLES.recipe.classNames.variants.borderRadius))
+            .toEqual(Object.keys(vars.radius))
+        render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} borderRadius={32} />)
+        expect(screen.getByRole('img').className).toContain(
+            IMAGE_STYLES.recipe({ borderRadius: 32 }),
+        )
+    })
+
     describe('default rendering', () => {
         it('renders an <img> element', () => {
             render(<Image src={IMAGE_SRC} alt={IMAGE_ALT} />)

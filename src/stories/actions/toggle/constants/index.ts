@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react-vite'
 import type { ToggleStoryArgs } from '@stories/actions/toggle/types'
 import { fn } from 'storybook/test'
+import { RADIUS_OPTIONS } from '@stories/_shared/layout-controls/constants'
 
 export const VARIANTS = ['outlined', 'outlinedSubtle', 'ghost', 'ghostSubtle'] as const
 export const COLORS = ['primary', 'secondary', 'neutral', 'danger', 'success', 'warning', 'info'] as const
@@ -23,7 +24,7 @@ export const ARG_TYPES = {
     variant: { control: 'select', options: VARIANTS, description: 'Bordered or borderless treatment with solid or subtle selection.', table: { defaultValue: { summary: 'ghostSubtle' } } },
     color: { control: 'select', options: COLORS, table: { defaultValue: { summary: 'primary' } } },
     size: { control: 'select', options: SIZES, description: 'Height at a 16px root: sm 28px, md 36px, lg 44px. Shared with Button; fixed across viewport and pointer types.', table: { defaultValue: { summary: 'md' } } },
-    radius: { control: 'select', options: [0, 4, 6, 8, 10, 14, 20, 'full'], description: 'Corner radius token; defaults to 6.' },
+    radius: { control: 'select', options: RADIUS_OPTIONS, description: 'Corner radius token; defaults to 6.' },
     margin: { control: 'select', options: SPACING },
     marginTop: { control: 'select', options: SPACING },
     marginRight: { control: 'select', options: SPACING },

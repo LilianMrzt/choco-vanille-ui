@@ -12,6 +12,7 @@ import {
     type ToggleSize,
 } from '@components/actions/toggle'
 import { BOX_STYLES } from '@components/layout/box'
+import { vars } from '@theme'
 
 // Helper
 
@@ -22,6 +23,13 @@ const getFirstChild = (container: HTMLElement) =>
 // Suites
 
 describe('Toggle', () => {
+    it('supports every radius token', () => {
+        expect(Object.keys(TOGGLE_STYLES.recipe.classNames.variants.radius))
+            .toEqual(Object.keys(vars.radius))
+        render(<Toggle label="Bold" radius={32} />)
+        expect(getButton().className).toContain(TOGGLE_STYLES.recipe({ radius: 32 }))
+    })
+
     describe('default rendering', () => {
         it('renders a <button> element', () => {
             const { container } = render(<Toggle label={'Bold'} />)
